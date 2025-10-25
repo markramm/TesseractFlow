@@ -37,9 +37,21 @@ TesseractFlow is a **structured alternative to LLM fine-tuning** for performance
 
 ---
 
+## Project Status
+
+**Current:** MVP Specification Complete ✅
+**Branch:** `001-mvp-optimizer`
+**Next:** Implementation (60-70 hours estimated)
+
+See [MVP Specification](specs/001-mvp-optimizer/) for complete details.
+
+---
+
 ## Quick Start
 
-### Installation
+> **Note:** TesseractFlow is currently in active development. Installation instructions below reflect the planned MVP. For current status, see [Implementation Tasks](specs/001-mvp-optimizer/tasks.md).
+
+### Installation (Planned)
 
 ```bash
 pip install tesseract-flow
@@ -316,13 +328,14 @@ Test variables:
 
 ## Roadmap
 
-### Phase 1: MVP (Weeks 1-8)
-- ✅ Core workflow framework
-- ✅ Taguchi L8 experiments
-- ✅ Rubric-based evaluation
-- ✅ Pareto frontier visualization
-- ✅ LiteLLM provider abstraction
-- ✅ Langfuse integration
+### Phase 1: MVP (Current - Weeks 1-8)
+- ✅ **Specification Complete** - Full spec/plan/tasks generated via speckit workflow
+- ⏳ Core workflow framework (implementation starting)
+- ⏳ Taguchi L8 experiments
+- ⏳ Rubric-based evaluation
+- ⏳ Pareto frontier visualization
+- ⏳ LiteLLM provider abstraction
+- 📋 Langfuse integration (post-MVP)
 
 ### Phase 2: Advanced Features (Weeks 9-16)
 - ⏳ Pairwise A/B evaluation
@@ -352,7 +365,14 @@ TesseractFlow is in early development. We welcome:
 
 ## Documentation
 
-- [Architecture Overview](docs/architecture/unified-spec.md)
+**MVP Specification** (Branch: `001-mvp-optimizer`):
+- [Feature Specification](specs/001-mvp-optimizer/spec.md) - User stories, requirements, success criteria
+- [Implementation Plan](specs/001-mvp-optimizer/plan.md) - Technical architecture, decisions
+- [Task Breakdown](specs/001-mvp-optimizer/tasks.md) - 126 implementation tasks
+- [Quickstart Guide](specs/001-mvp-optimizer/quickstart.md) - Complete walkthrough
+
+**Architecture**:
+- [Unified Specification](docs/architecture/unified-spec.md)
 - [Simplified HITL Pattern](docs/architecture/simplified-hitl.md)
 - [Generation Strategies](docs/architecture/generation-strategies.md)
 - [Examples](examples/)
