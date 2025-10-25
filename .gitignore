@@ -41,6 +41,9 @@ htmlcov/
 *~
 .DS_Store
 
+# Agent folders (may contain credentials)
+.claude/
+
 # Environment variables
 .env
 .env.local
