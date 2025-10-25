@@ -11,20 +11,22 @@ Build a Python-based LLM workflow optimization framework using Taguchi Design of
 
 **Language/Version**: Python 3.11+
 **Primary Dependencies**:
+- LangGraph 0.2.0+ (workflow orchestration - mandatory)
 - LiteLLM 1.0+ (provider-agnostic LLM calls)
-- LangGraph 0.2.0+ (workflow orchestration)
 - Pydantic 2.0+ (configuration validation)
 - NumPy 1.24+ (Taguchi array math)
 - SciPy 1.10+ (statistical analysis)
 - Matplotlib 3.7+ (Pareto visualization)
 - PyYAML 6.0+ (configuration parsing)
+- Typer 0.9+ (CLI framework)
+- Rich 13.0+ (terminal UI - progress bars, tables)
 
 **Storage**: JSON files (no database for MVP)
 **Testing**: pytest 7.4+ with pytest-asyncio 0.21+
 **Target Platform**: Linux/macOS command-line (developers)
 **Project Type**: Single Python package with CLI
 **Performance Goals**:
-- L8 experiment (8 tests) completes in <15 minutes
+- L8 experiment (8 tests) completes in <15 minutes (mock provider) or <30 minutes (real LLM providers)
 - Main effects analysis <5 seconds
 - Pareto visualization <2 seconds
 

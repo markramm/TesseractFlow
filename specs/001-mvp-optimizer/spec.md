@@ -82,7 +82,7 @@ An AI engineer wants to see the Pareto frontier showing quality vs cost trade-of
 - **FR-004**: System MUST evaluate workflow outputs using rubric-based quality scoring
 - **FR-005**: System MUST track quality score (0-1), cost (USD), and latency (ms) for each experiment
 - **FR-006**: System MUST compute main effects showing each variable's contribution to utility
-- **FR-007**: System MUST calculate utility function as weighted combination: w_quality × quality - w_cost × norm_cost - w_time × norm_time
+- **FR-007**: System MUST calculate utility function as weighted combination: w_quality × quality - w_cost × norm_cost - w_time × norm_time, where normalization uses min-max scaling across the current experiment's 8 trials (norm_x = (x - min_x) / (max_x - min_x), or 0.0 if max == min)
 - **FR-008**: System MUST identify Pareto frontier (non-dominated configurations on quality vs cost)
 - **FR-009**: System MUST generate Pareto visualization as SVG/PNG scatter plot
 - **FR-010**: System MUST save experiment results as JSON including all configs, scores, costs, latencies
@@ -90,11 +90,11 @@ An AI engineer wants to see the Pareto frontier showing quality vs cost trade-of
 - **FR-012**: System MUST allow users to specify custom utility weights (quality/cost/time)
 - **FR-013**: System MUST validate that variable count is between 4-7 for L8 array
 - **FR-014**: System MUST provide progress updates during experiment execution
-- **FR-015**: System MUST generate reproducible experiments using random seeds
+- **FR-015**: System MUST support best-effort reproducibility by: (1) version-controlling configuration files, (2) ensuring deterministic workflow logic, (3) optionally caching LLM responses for test replay, (4) documenting non-determinism sources (LLM API sampling, rate limits) in experiment metadata
 
 ### Non-Functional Requirements
 
-- **NFR-001**: Complete L8 experiment (8 tests) MUST finish in under 15 minutes for code review example
+- **NFR-001**: Complete L8 experiment (8 tests) MUST finish in under 15 minutes with mock provider, or under 30 minutes with real LLM providers (accounting for API rate limits and retries)
 - **NFR-002**: Main effects analysis MUST complete in under 5 seconds
 - **NFR-003**: Pareto visualization generation MUST complete in under 2 seconds
 - **NFR-004**: Experiment configuration YAML MUST be validated with clear error messages
@@ -114,11 +114,11 @@ An AI engineer wants to see the Pareto frontier showing quality vs cost trade-of
 
 ### Measurable Outcomes
 
-- **SC-001**: User can define 4 variables and run complete L8 experiment in under 15 minutes
+- **SC-001**: User can define 4 variables and run complete L8 experiment in under 15 minutes (mock provider) or 30 minutes (real LLM provider)
 - **SC-002**: System correctly identifies which variable contributes most to quality (verifiable by known test case)
 - **SC-003**: Pareto frontier identifies at least 3 non-dominated configurations for code review example
 - **SC-004**: Optimal configuration improves quality by 10-30% vs random baseline configuration
-- **SC-005**: User can reproduce experiment results exactly using same seed and configuration
+- **SC-005**: User can reproduce experiment configuration and workflow logic deterministically; LLM response caching enables exact result replay for testing (best-effort reproducibility given inherent LLM API stochasticity)
 - **SC-006**: Main effects analysis shows clear variable rankings (contribution % sum to ~100%)
 - **SC-007**: Generated Pareto chart clearly shows quality/cost trade-off with labeled axes
 - **SC-008**: Code review example demonstrates complete workflow from config to deployment
@@ -134,11 +134,18 @@ An AI engineer wants to see the Pareto frontier showing quality vs cost trade-of
 
 ### Dependencies
 
-- LiteLLM library for provider-agnostic LLM calls
-- NumPy/SciPy for Taguchi array math
-- Matplotlib for Pareto visualization
-- Pydantic for configuration validation
-- YAML parsing library
+**Primary Dependencies:**
+- Python 3.11+ - Core language
+- LangGraph 0.2.0+ - Workflow orchestration (mandatory)
+- LiteLLM 1.0+ - Provider-agnostic LLM calls
+- Pydantic 2.0+ - Configuration validation
+- NumPy 1.24+ - Taguchi array math
+- SciPy 1.10+ - Statistical analysis
+- Matplotlib 3.7+ - Pareto visualization
+- PyYAML 6.0+ - Configuration parsing
+- Typer 0.9+ - CLI framework
+- Rich 13.0+ - Terminal UI (progress bars, tables)
+- pytest 7.4+ - Testing framework
 
 ### Out of Scope (MVP)
 

@@ -1,0 +1,119 @@
+# TesseractFlow Development Guidelines
+
+## Spec-Kit Development Process
+
+**TesseractFlow uses Spec-Kit for systematic feature specification and implementation.**
+
+### Workflow Overview
+
+```
+/speckit.specify → spec.md (user stories, requirements, success criteria)
+        ↓
+/speckit.plan → plan.md, research.md, data-model.md, contracts/, quickstart.md
+        ↓
+/speckit.tasks → tasks.md (126+ implementation tasks with dependencies)
+        ↓
+/speckit.analyze → Consistency validation across all spec artifacts
+        ↓
+Implementation → Follow tasks.md sequentially, check off completed tasks
+```
+
+## Repository Orientation
+
+- **Specification Source**: All work must align with the MVP optimizer specification in `specs/001-mvp-optimizer/`
+  - Start with `spec.md` for user stories, requirements (FR-001 to FR-015), and success criteria (SC-001 to SC-008)
+  - Review `plan.md` for technical architecture and dependencies
+  - Review `data-model.md` for entity relationships
+  - Review `tasks.md` for the 132-task implementation breakdown
+  - Review `contracts/` for CLI commands and API contracts
+  - Review `quickstart.md` for complete user walkthrough
+
+- **Project Constitution**: Follow the 6 core principles in `.specify/memory/constitution.md`
+  1. Workflows-as-Boundaries (HITL between workflows, not within)
+  2. Generation Strategies as Variables (test prompting techniques experimentally)
+  3. Multi-Objective Optimization (quality + cost + time)
+  4. Provider Agnostic (LiteLLM for universal provider abstraction)
+  5. Transparency Over Automation (main effects show variable contributions)
+  6. Test-Driven Core (≥80% coverage for core algorithms)
+
+- **Change Management**:
+  - When modifying specs: Re-run `/speckit.analyze` to verify consistency
+  - When implementing code: Reference task numbers (e.g., "Implements T015: BaseWorkflowService")
+  - When deviating from spec: Document in spec files or create DECISION_LOG.md
+
+- **Testing**: Run `pytest tests/` after implementing each phase
+  - Unit tests required for: Taguchi arrays, main effects, Pareto frontier, utility function
+  - Integration tests required for: Experiment execution, CLI commands
+  - Target: ≥80% test coverage for core modules
+
+- **Communication**:
+  - Commit messages: Reference spec tasks (e.g., "feat: Implement Taguchi L8 array generator [T022-T023]")
+  - PR descriptions: Map completed tasks to user stories
+  - Issues: Reference requirement IDs (e.g., "FR-007 normalization needs clarification")
+
+## Development Commands
+
+```bash
+# Spec-Kit Commands (when updating specs)
+/speckit.specify   # Generate spec.md from feature description
+/speckit.plan      # Generate implementation plan and research
+/speckit.tasks     # Generate task breakdown (132 tasks)
+/speckit.analyze   # Validate consistency across spec artifacts
+
+# Development Commands
+pytest tests/                        # Run all tests
+pytest tests/unit/ -v                # Run unit tests
+pytest --cov=tesseract_flow tests/   # Test with coverage
+ruff check .                         # Lint code
+mypy tesseract_flow/                 # Type checking
+
+# CLI Commands (after implementation)
+tesseract experiment run config.yaml -o results.json
+tesseract analyze results.json --export optimal_config.yaml
+tesseract visualize pareto results.json -o pareto.png
+```
+
+## Current Implementation Status
+
+**Phase 1: Setup** (T001-T007) - ⏳ Ready to start
+**Phase 2: Foundation** (T008-T021) - 📋 Pending
+**Phase 3: US1 - Run Experiment** (T022-T059 incl. T043a-e, T049a) - 📋 Pending
+**Phase 4: US2 - Analyze Results** (T060-T076) - 📋 Pending
+**Phase 5: US3 - Visualize Pareto** (T077-T097) - 📋 Pending
+**Phase 6: Polish** (T098-T124) - 📋 Pending
+
+**Total**: 132 tasks, 64-74 hours estimated
+
+See `specs/001-mvp-optimizer/tasks.md` for complete breakdown.
+
+## Key Architectural Decisions
+
+**From research.md (Phase 0 decisions):**
+1. **L8 Array**: Hard-coded NumPy constant (standard, fast, testable)
+2. **Main Effects**: Taguchi formula with contribution percentages
+3. **Pareto**: Sort-based O(n log n) algorithm (efficient, simple)
+4. **CLI**: Typer (type-safe, Pydantic integration, async support)
+5. **LLM-as-Judge**: Rubric + CoT prompting, temperature=0.3
+
+**From plan.md (MVP constraints):**
+- CLI-only (no web UI)
+- Sequential execution (no parallelization for MVP)
+- JSON storage (no database for MVP)
+- L8 array only (defer L16/L18 to Phase 2)
+- Best-effort reproducibility (cache LLM responses for test replay)
+
+## Recent Spec Updates (2025-10-25)
+
+1. **FR-007**: Clarified utility normalization uses min-max scaling across experiment trials
+2. **FR-015**: Changed to best-effort reproducibility with optional response caching
+3. **NFR-001**: Updated timing to 15min (mock) / 30min (real LLM providers)
+4. **SC-001, SC-005**: Aligned with timing and reproducibility changes
+5. **Dependencies**: Added LangGraph, Typer, Rich to spec.md and plan.md
+6. **New Tasks**: Added T043a-T043e (response caching) and T049a (LangGraph workflow building)
+
+## Questions or Issues?
+
+- See `README.md` for project overview and quickstart
+- See `CONTRIBUTING.md` for contribution guidelines
+- See `specs/001-mvp-optimizer/` for complete specification
+- See `PATCH_ANALYSIS.md` for analysis of alternative implementation approach

@@ -59,6 +59,11 @@ Tasks are organized by **User Story** to enable independent implementation and t
 ### Base Classes
 
 - [ ] T015 - Create BaseWorkflowService abstract class in tesseract_flow/core/base_workflow.py
+  - Extend Generic[InputModel, OutputModel] with Pydantic models
+  - Define abstract _build_workflow(self) -> StateGraph method (LangGraph integration)
+  - Implement run(input: InputModel) -> OutputModel that compiles and invokes LangGraph workflow
+  - Capture execution metadata (start/end time, cost, latency)
+  - Raise WorkflowExecutionError on failure
 - [ ] T016 - Create GenerationStrategy protocol in tesseract_flow/core/strategies.py
 - [ ] T017 - Implement StandardStrategy in tesseract_flow/core/strategies.py
 - [ ] T018 - Implement strategy registry (GENERATION_STRATEGIES, get_strategy, register_strategy)
@@ -106,11 +111,31 @@ Tasks are organized by **User Story** to enable independent implementation and t
 - [ ] T036 [US1] - Implement ExperimentRun model with status transitions in tesseract_flow/core/config.py
 - [ ] T037 [US1] - Implement UtilityFunction class in tesseract_flow/optimization/utility.py
 - [ ] T038 [US1] - Implement metric normalization (min-max) in tesseract_flow/optimization/utility.py
+  - Normalize cost and time using min-max scaling across current experiment's 8 trials
+  - Formula: norm_x = (x - min_x) / (max_x - min_x), or 0.0 if max == min
+  - Input: List[TestResult] from current experiment
+  - Output: Normalized cost and time values for utility calculation
+  - Store normalization parameters (min, max) in ExperimentRun metadata
 - [ ] T039 [US1] - Implement ExperimentExecutor class in tesseract_flow/experiments/executor.py
 - [ ] T040 [US1] - Implement run_single_test() method with cost/latency tracking in executor.py
 - [ ] T041 [US1] - Implement run() method for full L8 experiment in executor.py
 - [ ] T042 [US1] - Add progress callback support in executor.py
 - [ ] T043 [US1] - Implement JSON persistence for ExperimentRun in executor.py
+- [ ] T043a [US1] - Implement ExperimentMetadata model with config hash in tesseract_flow/core/config.py
+  - Track configuration hash for reproducibility verification
+  - Store timestamp, dependencies versions, non-determinism sources
+- [ ] T043b [US1] - Create response caching interface in tesseract_flow/evaluation/cache.py
+  - Define CacheBackend protocol (get, set, clear methods)
+  - Support cache key generation from prompt + model + temperature
+- [ ] T043c [US1] - Implement file-based response cache for deterministic test replays
+  - Store LLM responses as JSON files keyed by request hash
+  - Enable --use-cache and --record-cache modes
+- [ ] T043d [US1] - Add --use-cache and --record-cache flags to CLI experiment run command
+  - --record-cache: Save all LLM responses to cache
+  - --use-cache: Replay responses from cache (skip API calls)
+- [ ] T043e [US1] [P] - Write tests for cache hit/miss scenarios in tests/unit/test_cache.py
+  - Test cache key generation consistency
+  - Test file-based cache read/write
 - [ ] T044 [US1] - Add resume capability for failed experiments in executor.py
 - [ ] T045 [US1] [P] - Write unit tests for UtilityFunction in tests/unit/test_utility.py
 - [ ] T046 [US1] [P] - Write unit tests for metric normalization in tests/unit/test_utility.py
@@ -120,6 +145,12 @@ Tasks are organized by **User Story** to enable independent implementation and t
 - [ ] T047 [US1] - Implement CodeReviewInput and CodeReviewOutput models in tesseract_flow/workflows/code_review.py
 - [ ] T048 [US1] - Implement CodeReviewWorkflow class extending BaseWorkflowService in code_review.py
 - [ ] T049 [US1] - Implement code analysis using configured strategy in code_review.py
+- [ ] T049a [US1] - Implement _build_workflow() returning LangGraph StateGraph in code_review.py
+  - Define state dict with 'code', 'issues', 'suggestions' keys
+  - Add node for code analysis using generation strategy
+  - Add node for generating suggestions based on issues
+  - Set entry point and edges to connect nodes
+  - Return compiled StateGraph
 - [ ] T050 [US1] - Create sample code files in examples/code_review/sample_code/
 - [ ] T051 [US1] - Create example experiment config YAML in examples/code_review/experiment_config.yaml
 - [ ] T052 [US1] [P] - Write integration test for CodeReviewWorkflow in tests/integration/test_code_review.py
@@ -337,14 +368,14 @@ Phase 6 (Polish) ← Requires all user stories complete
 
 | Phase | Tasks | Time | Cumulative |
 |-------|-------|------|------------|
-| Phase 1: Setup | T001-T007 | 2-4 hours | 4 hours |
-| Phase 2: Foundation | T008-T021 | 6-8 hours | 12 hours |
-| Phase 3: US1 (P1) | T022-T059 | 16-20 hours | 32 hours |
-| Phase 4: US2 (P2) | T060-T076 | 10-12 hours | 44 hours |
-| Phase 5: US3 (P3) | T077-T097 | 8-10 hours | 54 hours |
-| Phase 6: Polish | T098-T124 | 12-16 hours | 70 hours |
+| Phase 1: Setup | T001-T007 (7 tasks) | 2-4 hours | 4 hours |
+| Phase 2: Foundation | T008-T021 (14 tasks) | 6-8 hours | 12 hours |
+| Phase 3: US1 (P1) | T022-T059 (44 tasks incl. T043a-e, T049a) | 19-24 hours | 36 hours |
+| Phase 4: US2 (P2) | T060-T076 (17 tasks) | 10-12 hours | 48 hours |
+| Phase 5: US3 (P3) | T077-T097 (21 tasks) | 8-10 hours | 58 hours |
+| Phase 6: Polish | T098-T124 (27 tasks) | 12-16 hours | 74 hours |
 
-**Total:** 60-70 hours (~2-3 weeks full-time, or 6-8 weeks part-time)
+**Total:** 132 tasks, 64-74 hours (~2-3 weeks full-time, or 6-9 weeks part-time)
 
 ---
 

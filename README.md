@@ -352,6 +352,41 @@ Test variables:
 
 ---
 
+## Development Process
+
+**TesseractFlow uses Spec-Kit for systematic feature development.**
+
+### Spec-Kit Workflow
+
+```
+1. /speckit.specify  → Generate spec.md from feature description
+2. /speckit.plan     → Generate plan.md, research.md, data-model.md, contracts/
+3. /speckit.tasks    → Generate tasks.md (132 implementation tasks)
+4. /speckit.analyze  → Validate consistency across all artifacts
+5. Implementation    → Follow tasks.md, check off completed items
+```
+
+### Current Status
+
+- ✅ **Specification Complete** - spec.md with 3 user stories, 15 requirements, 8 success criteria
+- ✅ **Research Complete** - 5 technical decisions documented
+- ✅ **Planning Complete** - Architecture, dependencies, data model defined
+- ✅ **Tasks Complete** - 132 tasks across 6 phases (64-74 hours estimated)
+- ✅ **Consistency Validated** - All artifacts aligned, 0 ambiguities
+- ⏳ **Implementation Starting** - Phase 1: Setup (T001-T007)
+
+### Development Guidelines
+
+All work aligns with specifications in `specs/001-mvp-optimizer/`:
+- User stories define what to build (US1: Run Experiment, US2: Analyze, US3: Visualize)
+- Requirements define how it works (FR-001 to FR-015, NFR-001 to NFR-005)
+- Tasks break work into 132 concrete steps with dependencies
+- Constitution principles govern all architectural decisions
+
+See [.agents](.agents) for complete development guidelines and [CLAUDE.md](CLAUDE.md) for AI assistant context.
+
+---
+
 ## Contributing
 
 TesseractFlow is in early development. We welcome:
@@ -368,7 +403,7 @@ TesseractFlow is in early development. We welcome:
 **MVP Specification** (Branch: `001-mvp-optimizer`):
 - [Feature Specification](specs/001-mvp-optimizer/spec.md) - User stories, requirements, success criteria
 - [Implementation Plan](specs/001-mvp-optimizer/plan.md) - Technical architecture, decisions
-- [Task Breakdown](specs/001-mvp-optimizer/tasks.md) - 126 implementation tasks
+- [Task Breakdown](specs/001-mvp-optimizer/tasks.md) - 132 implementation tasks
 - [Quickstart Guide](specs/001-mvp-optimizer/quickstart.md) - Complete walkthrough
 
 **Architecture**:
