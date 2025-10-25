@@ -1,8 +1,8 @@
 # TesseractFlow Implementation Guide for ChatGPT Codex
 
-**Branch:** `001-mvp-optimizer`  
-**Status:** Specifications Complete, Ready for Implementation  
-**Estimated Effort:** 132 tasks, 64-74 hours
+**Branch:** `001-mvp-optimizer`
+**Status:** Specifications Complete, Ready for Implementation
+**Estimated Effort:** 135 tasks, 65-75 hours
 
 ---
 
@@ -39,7 +39,7 @@ Implement in order from `tasks.md`:
 - **Phase 1:** Setup (T001-T007) - 2-4 hours
 - **Phase 2:** Foundation (T008-T021) - 6-8 hours
 - **Phase 3:** User Story 1 (T022-T059) - 19-24 hours
-- **Phase 4:** User Story 2 (T060-T076) - 10-12 hours
+- **Phase 4:** User Story 2 (T060-T076 incl. T070a-c) - 11-13 hours
 - **Phase 5:** User Story 3 (T077-T097) - 8-10 hours
 - **Phase 6:** Polish (T098-T124) - 12-16 hours
 

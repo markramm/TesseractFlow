@@ -90,6 +90,7 @@ An AI engineer wants to see the Pareto frontier showing quality vs cost trade-of
 - **FR-012**: System MUST allow users to specify custom utility weights (quality/cost/time)
 - **FR-013**: System MUST validate that variable count is between 4-7 for L8 array
 - **FR-014**: System MUST provide progress updates during experiment execution
+- **FR-014a**: System MUST designate first L8 test configuration as baseline and compute quality improvement percentage (optimal - baseline) / baseline × 100% for reporting
 - **FR-015**: System MUST support best-effort reproducibility by: (1) version-controlling configuration files, (2) ensuring deterministic workflow logic, (3) optionally caching LLM responses for test replay, (4) documenting non-determinism sources (LLM API sampling, rate limits) in experiment metadata
 
 ### Non-Functional Requirements
@@ -117,7 +118,7 @@ An AI engineer wants to see the Pareto frontier showing quality vs cost trade-of
 - **SC-001**: User can define 4 variables and run complete L8 experiment in under 15 minutes (mock provider) or 30 minutes (real LLM provider)
 - **SC-002**: System correctly identifies which variable contributes most to quality (verifiable by known test case)
 - **SC-003**: Pareto frontier identifies at least 3 non-dominated configurations for code review example
-- **SC-004**: Optimal configuration improves quality by 10-30% vs random baseline configuration
+- **SC-004**: Optimal configuration improves quality by 10-30% vs random baseline configuration (baseline = first L8 test configuration, representing arbitrary variable choices before optimization)
 - **SC-005**: User can reproduce experiment configuration and workflow logic deterministically; LLM response caching enables exact result replay for testing (best-effort reproducibility given inherent LLM API stochasticity)
 - **SC-006**: Main effects analysis shows clear variable rankings (contribution % sum to ~100%)
 - **SC-007**: Generated Pareto chart clearly shows quality/cost trade-off with labeled axes

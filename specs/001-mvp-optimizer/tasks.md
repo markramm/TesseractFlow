@@ -198,6 +198,18 @@ tesseract experiment run examples/code_review/experiment_config.yaml -o results.
 - [ ] T069 [US2] - Implement configuration comparison function in analysis.py
 - [ ] T070 [US2] - Implement YAML export for optimal config in analysis.py
 
+### Baseline Measurement & Quality Improvement
+
+- [ ] T070a [US2] - Implement baseline tracking in ExperimentRun model in core/config.py
+  - Mark first L8 test configuration as baseline
+  - Store baseline quality score and configuration
+- [ ] T070b [US2] - Implement quality improvement calculation in analysis.py
+  - Formula: improvement_pct = (optimal_quality - baseline_quality) / baseline_quality × 100
+  - Include in ExperimentResult output
+- [ ] T070c [US2] [P] - Write unit test for improvement calculation in tests/unit/test_analysis.py
+  - Test with known baseline and optimal values
+  - Verify 10-30% improvement range for code review example
+
 ### CLI for Analysis
 
 - [ ] T071 [US2] - Implement `analyze` command in tesseract_flow/cli/experiment.py
@@ -205,12 +217,19 @@ tesseract experiment run examples/code_review/experiment_config.yaml -o results.
 - [ ] T073 [US2] - Add --format option (table, json, markdown) in cli/experiment.py
 - [ ] T074 [US2] - Add --export option for optimal config YAML in cli/experiment.py
 - [ ] T075 [US2] - Implement configuration comparison display in cli/experiment.py
+  - Show baseline config and quality
+  - Show optimal config and quality
+  - Display improvement percentage with color (green if 10-30%, yellow otherwise)
 - [ ] T076 [US2] [P] - Write CLI test for analyze command in tests/integration/test_cli.py
 
 **Phase 4 Acceptance Test:**
 ```bash
 tesseract analyze results.json --export optimal_config.yaml
-# Should display main effects table with contribution %
+# Should display:
+# - Main effects table with contribution %
+# - Baseline configuration and quality score
+# - Optimal configuration and quality score
+# - Quality improvement percentage (target: 10-30%)
 # Should export optimal configuration
 ```
 
@@ -353,6 +372,7 @@ Phase 6 (Polish) ← Requires all user stories complete
 
 **Within Phase 4 (US2):**
 - T066, T067 (Main effects tests) - parallel
+- T070c (Baseline improvement test) - parallel
 - T076 (CLI test) - parallel with documentation
 
 **Within Phase 5 (US3):**
@@ -371,11 +391,11 @@ Phase 6 (Polish) ← Requires all user stories complete
 | Phase 1: Setup | T001-T007 (7 tasks) | 2-4 hours | 4 hours |
 | Phase 2: Foundation | T008-T021 (14 tasks) | 6-8 hours | 12 hours |
 | Phase 3: US1 (P1) | T022-T059 (44 tasks incl. T043a-e, T049a) | 19-24 hours | 36 hours |
-| Phase 4: US2 (P2) | T060-T076 (17 tasks) | 10-12 hours | 48 hours |
-| Phase 5: US3 (P3) | T077-T097 (21 tasks) | 8-10 hours | 58 hours |
-| Phase 6: Polish | T098-T124 (27 tasks) | 12-16 hours | 74 hours |
+| Phase 4: US2 (P2) | T060-T076 (20 tasks incl. T070a-c) | 11-13 hours | 49 hours |
+| Phase 5: US3 (P3) | T077-T097 (21 tasks) | 8-10 hours | 59 hours |
+| Phase 6: Polish | T098-T124 (27 tasks) | 12-16 hours | 75 hours |
 
-**Total:** 132 tasks, 64-74 hours (~2-3 weeks full-time, or 6-9 weeks part-time)
+**Total:** 135 tasks, 65-75 hours (~2-3 weeks full-time, or 7-9 weeks part-time)
 
 ---
 
