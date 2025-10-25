@@ -116,4 +116,4 @@ See `specs/001-mvp-optimizer/tasks.md` for complete breakdown.
 - See `README.md` for project overview and quickstart
 - See `CONTRIBUTING.md` for contribution guidelines
 - See `specs/001-mvp-optimizer/` for complete specification
-- See `PATCH_ANALYSIS.md` for analysis of alternative implementation approach
+- See `docs/architecture/` for architecture documentation
