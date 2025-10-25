@@ -1,0 +1,104 @@
+# Code Review Optimization Experiment
+#
+# This experiment tests 4 variables using Taguchi L8 design:
+# - Temperature (conservative vs creative)
+# - Model (DeepSeek vs Claude)
+# - Context size (file only vs full module)
+# - Generation strategy (standard vs verbalized sampling)
+#
+# With full factorial, this would require 2^4 = 16 experiments.
+# With Taguchi L8, we only need 8 experiments (50% reduction).
+
+name: "code_review_optimization"
+workflow: "code_review"
+description: "Optimize code review workflow for quality, cost, and time"
+
+# Experiment design method
+method:
+  type: "taguchi_l8"
+
+# Variables to test (2 levels each)
+variables:
+  # Variable 1: Temperature
+  # Lower temperature = more conservative/focused
+  # Higher temperature = more creative/exploratory
+  temperature:
+    1: 0.3    # Conservative
+    2: 0.7    # Creative
+
+  # Variable 2: Model
+  # Different models have different strengths
+  model:
+    1: "deepseek/deepseek-coder-v2"      # Optimized for code
+    2: "anthropic/claude-3.5-sonnet"     # Strong general reasoning
+
+  # Variable 3: Context size
+  # More context = better understanding but higher cost
+  context_size:
+    1: "file_only"       # Just the file being reviewed
+    2: "full_module"     # Entire module context
+
+  # Variable 4: Generation strategy
+  # Test whether VS improves code review quality
+  generation_strategy:
+    1: "standard"              # Standard prompting
+    2: "verbalized_sampling"   # VS with k=5
+
+# Multi-objective optimization weights
+# These weights determine the utility function
+utility_weights:
+  quality: 0.6    # 60% weight on quality
+  cost: 0.3       # 30% weight on cost
+  time: 0.1       # 10% weight on latency
+
+# Test data
+# Each test case will be run with all 8 configurations
+test_cases:
+  - name: "react_component"
+    input_file: "test_data/react_component.js"
+    language: "javascript"
+
+  - name: "python_service"
+    input_file: "test_data/python_service.py"
+    language: "python"
+
+  - name: "sql_query"
+    input_file: "test_data/sql_query.sql"
+    language: "sql"
+
+# Quality evaluation configuration
+evaluation:
+  rubric: "rubrics/code_review.yaml"
+  judge_model: "anthropic/claude-3.5-sonnet"
+
+  # Optional: Use ensemble of judges for more robust evaluation
+  ensemble:
+    enabled: false
+    judges:
+      - "anthropic/claude-3.5-sonnet"
+      - "openai/gpt-4o"
+
+# Output configuration
+output:
+  results_dir: "results/code_review_optimization"
+  save_pareto_plot: true
+  export_to_langfuse: true
+
+# Expected results from Taguchi experiment:
+#
+# Main Effects Analysis (example):
+#   context_size: 45% contribution
+#   model: 22% contribution
+#   temperature: 18% contribution
+#   generation_strategy: 15% contribution
+#
+# Optimal Configuration (predicted):
+#   temperature: 0.7
+#   model: anthropic/claude-3.5-sonnet
+#   context_size: full_module
+#   generation_strategy: verbalized_sampling
+#
+# Pareto Frontier (Quality vs Cost):
+#   Config 8: Quality 0.88, Cost $0.25 (Highest quality)
+#   Config 4: Quality 0.82, Cost $0.12 (Best balance)
+#   Config 1: Quality 0.72, Cost $0.02 (Lowest cost)

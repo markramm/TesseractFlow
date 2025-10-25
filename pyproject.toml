@@ -1,0 +1,145 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tesseract-flow"
+version = "0.1.0"
+description = "Multi-dimensional LLM workflow optimization using Taguchi Design of Experiments"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [
+    {name = "Mark Ramm", email = "mark@tesseractflow.dev"}
+]
+keywords = [
+    "llm",
+    "optimization",
+    "taguchi",
+    "design-of-experiments",
+    "doe",
+    "workflow",
+    "langgraph",
+    "prompt-engineering"
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+dependencies = [
+    "pydantic>=2.0",
+    "pyyaml>=6.0",
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "langgraph>=0.2.0",
+    "langchain-core>=0.3.0",
+    "litellm>=1.0",
+    "httpx>=0.25",
+    "jinja2>=3.1",
+    "matplotlib>=3.7",
+    "fastapi>=0.104",
+    "uvicorn>=0.24",
+    "sqlalchemy>=2.0",
+    "asyncpg>=0.29",
+    "alembic>=1.12",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+verbalized-sampling = [
+    "verbalized-sampling>=0.1.0",
+]
+observability = [
+    "langfuse>=2.0",
+    "weave>=0.50",
+]
+dev = [
+    "pytest>=7.4",
+    "pytest-asyncio>=0.21",
+    "pytest-cov>=4.1",
+    "black>=23.0",
+    "ruff>=0.1",
+    "mypy>=1.7",
+    "pre-commit>=3.5",
+]
+all = [
+    "tesseract-flow[verbalized-sampling,observability,dev]",
+]
+
+[project.urls]
+Homepage = "https://github.com/markramm/TesseractFlow"
+Documentation = "https://github.com/markramm/TesseractFlow/tree/main/docs"
+Repository = "https://github.com/markramm/TesseractFlow"
+Issues = "https://github.com/markramm/TesseractFlow/issues"
+
+[project.scripts]
+tesseract = "tesseract_flow.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["tesseract_flow*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = [
+    "--cov=tesseract_flow",
+    "--cov-report=html",
+    "--cov-report=term-missing",
+    "-v"
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+include = '\.pyi?$'
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+]
+ignore = [
+    "E501",  # line too long (handled by black)
+    "B008",  # do not perform function calls in argument defaults
+]
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]  # Allow unused imports in __init__.py
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+strict_equality = true
+
+[[tool.mypy.overrides]]
+module = [
+    "langgraph.*",
+    "langchain_core.*",
+    "litellm.*",
+    "verbalized_sampling.*",
+]
+ignore_missing_imports = true

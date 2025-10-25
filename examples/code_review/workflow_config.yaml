@@ -1,0 +1,108 @@
+# Code Review Workflow Configuration
+#
+# This configuration defines the default settings for the code review workflow.
+# These settings can be overridden by experiment configurations.
+
+name: "code_review"
+version: "1.0"
+description: "Code review workflow with configurable generation strategy"
+
+# Model configuration
+models:
+  analyzer:
+    # Default model
+    model: "deepseek/deepseek-coder-v2"
+    temperature: 0.3
+    max_tokens: 2000
+
+    # Generation strategy (experimental variable)
+    # Options: "standard", "chain_of_thought", "few_shot", "verbalized_sampling"
+    generation_strategy: "standard"
+
+    # Strategy-specific parameters
+    # (only used if relevant strategy is enabled)
+
+    # Verbalized Sampling parameters
+    vs_k: 5              # Number of samples
+    vs_tau: 0.10         # Temperature for sampling
+
+    # Chain-of-Thought parameters
+    cot_steps: 3         # Number of reasoning steps
+
+    # Few-shot parameters
+    few_shot_examples: []  # List of examples (empty = zero-shot)
+
+# Provider configuration
+provider:
+  type: "openrouter"               # or "anthropic", "openai", "litellm"
+  api_key_env: "OPENROUTER_API_KEY"
+  fallback_providers: ["anthropic"]
+
+# Prompt templates (Jinja2)
+prompts:
+  analyze: |
+    You are an expert code reviewer. Analyze the following {{language}} code for issues.
+
+    {% if context %}
+    Context: {{context}}
+    {% endif %}
+
+    Code:
+    ```{{language}}
+    {{code}}
+    ```
+
+    Identify:
+    1. Bugs and potential runtime errors
+    2. Security vulnerabilities
+    3. Performance issues
+    4. Style and maintainability concerns
+
+    For each issue, provide:
+    - Type (bug/security/performance/style)
+    - Severity (low/medium/high/critical)
+    - Line number (if applicable)
+    - Description
+    - Suggested fix
+
+  suggest: |
+    Based on this code analysis:
+
+    {{analysis}}
+
+    Original code:
+    ```
+    {{code}}
+    ```
+
+    Provide 3-5 specific, actionable suggestions to improve the code.
+    Focus on the most impactful improvements.
+
+# Quality evaluation
+evaluation:
+  rubric: "rubrics/code_review.yaml"
+  judge_model: "anthropic/claude-3.5-sonnet"
+
+  # Evaluation dimensions
+  dimensions:
+    - correctness    # Are identified issues actually problems?
+    - actionability  # Are suggestions specific and implementable?
+    - depth          # Does review go beyond surface-level?
+
+  # Dimension weights
+  weights:
+    correctness: 0.5
+    actionability: 0.3
+    depth: 0.2
+
+# Observability
+observability:
+  langfuse:
+    enabled: true
+    project: "tesseract-flow"
+    public_key_env: "LANGFUSE_PUBLIC_KEY"
+    secret_key_env: "LANGFUSE_SECRET_KEY"
+
+  trace_inputs: true
+  trace_outputs: true
+  trace_intermediate_steps: false  # Set to true for debugging
