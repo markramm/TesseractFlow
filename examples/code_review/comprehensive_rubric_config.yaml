@@ -23,9 +23,11 @@ utility_weights:
   time: 0.05
 
 workflow_config:
-  # Comprehensive 100-point rubric across 7 categories
+  # Comprehensive rubric with all dimensions scored 0-100
+  # Each dimension is independently scored on a 100-point scale
+  # Weights determine the relative importance of each dimension in the final score
   rubric:
-    # 1. Functionality & Correctness (20 points)
+    # 1. Functionality & Correctness (20% weight)
     functionality:
       description: |
         Does the code accomplish its intended purpose correctly?
@@ -33,10 +35,10 @@ workflow_config:
         - Edge case handling (nulls, empty inputs, boundaries)
         - Expected behavior matches requirements
         - No off-by-one errors or logic flaws
-      scale: "0-20 points"
+      scale: "0-100 points"
       weight: 0.20
 
-    # 2. Code Quality & Style (15 points)
+    # 2. Code Quality & Style (15% weight)
     code_quality:
       description: |
         Does the code follow established standards and best practices?
@@ -46,10 +48,10 @@ workflow_config:
         - DRY principle (no unnecessary duplication)
         - SOLID principles where applicable
         - Appropriate use of design patterns
-      scale: "0-15 points"
+      scale: "0-100 points"
       weight: 0.15
 
-    # 3. Readability & Maintainability (15 points)
+    # 3. Readability & Maintainability (15% weight)
     readability:
       description: |
         Is the code easy to understand and maintain?
@@ -58,10 +60,10 @@ workflow_config:
         - Appropriate abstraction levels
         - Minimal complexity (avoid over-engineering)
         - Easy for team members to modify
-      scale: "0-15 points"
+      scale: "0-100 points"
       weight: 0.15
 
-    # 4. Error Handling & Robustness (15 points)
+    # 4. Error Handling & Robustness (15% weight)
     error_handling:
       description: |
         Does the code handle errors and edge cases appropriately?
@@ -70,10 +72,10 @@ workflow_config:
         - Graceful degradation
         - Input validation and sanitization
         - Defensive programming practices
-      scale: "0-15 points"
+      scale: "0-100 points"
       weight: 0.15
 
-    # 5. Testing & Testability (10 points)
+    # 5. Testing & Testability (10% weight)
     testing:
       description: |
         Is the code testable and adequately tested?
@@ -82,10 +84,10 @@ workflow_config:
         - Code is designed for testability
         - Tests are clear and maintainable
         - Appropriate test coverage
-      scale: "0-10 points"
+      scale: "0-100 points"
       weight: 0.10
 
-    # 6. Performance & Efficiency (10 points)
+    # 6. Performance & Efficiency (10% weight)
     performance:
       description: |
         Is the code performant and resource-efficient?
@@ -94,10 +96,10 @@ workflow_config:
         - Efficient resource usage (memory, CPU)
         - Scalability considerations
         - Avoids premature optimization
-      scale: "0-10 points"
+      scale: "0-100 points"
       weight: 0.10
 
-    # 7. Security & Safety (15 points)
+    # 7. Security & Safety (15% weight)
     security:
       description: |
         Does the code follow security best practices?
@@ -106,7 +108,7 @@ workflow_config:
         - Proper authentication/authorization checks
         - Sensitive data handling (encryption, no hardcoded secrets)
         - Safe dependencies (no known vulnerabilities)
-      scale: "0-15 points"
+      scale: "0-100 points"
       weight: 0.15
 
   sample_code_path: "examples/code_review/sample_code/example1.py"

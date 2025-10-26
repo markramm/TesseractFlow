@@ -6,6 +6,7 @@ import json
 import logging
 import math
 import random
+import re
 from typing import Any, Dict, Iterable, Mapping, Optional
 
 import litellm
@@ -25,19 +26,19 @@ class RubricEvaluator:
     DEFAULT_RUBRIC: Dict[str, RubricDimension] = {
         "clarity": {
             "description": "Is the output clear and understandable?",
-            "scale": "1-10 where 1=incomprehensible, 10=crystal clear",
+            "scale": "0-100 where 0=incomprehensible, 100=crystal clear",
         },
         "accuracy": {
             "description": "Is the output factually accurate?",
-            "scale": "1-10 where 1=many errors, 10=fully accurate",
+            "scale": "0-100 where 0=many errors, 100=fully accurate",
         },
         "completeness": {
             "description": "Does the output address all requirements?",
-            "scale": "1-10 where 1=missing major parts, 10=comprehensive",
+            "scale": "0-100 where 0=missing major parts, 100=comprehensive",
         },
         "usefulness": {
             "description": "Is the output actionable and useful?",
-            "scale": "1-10 where 1=not useful, 10=highly actionable",
+            "scale": "0-100 where 0=not useful, 100=highly actionable",
         },
     }
 
@@ -305,8 +306,19 @@ class RubricEvaluator:
         return content
 
     def _load_json(self, content: str) -> Mapping[str, Any]:
+        # Strip markdown code fences if present (some models wrap JSON in ```json ... ```)
+        stripped = content.strip()
+        if stripped.startswith("```"):
+            # Remove opening fence (e.g., "```json" or "```")
+            lines = stripped.split("\n", 1)
+            if len(lines) > 1:
+                stripped = lines[1]
+            # Remove closing fence
+            if stripped.endswith("```"):
+                stripped = stripped[:-3].rstrip()
+
         try:
-            return json.loads(content)
+            return json.loads(stripped)
         except json.JSONDecodeError as exc:
             msg = "Evaluator response was not valid JSON."
             raise EvaluationError(msg) from exc
@@ -328,24 +340,47 @@ class RubricEvaluator:
             else:
                 raw_score = entry
                 reasoning = None
-            normalized_score = self._normalize_score(raw_score)
+
+            # Extract max score from rubric scale (e.g., "0-20 points" -> 20)
+            max_score = self._extract_max_score(rubric[name].get("scale", "1-10"))
+            normalized_score = self._normalize_score(raw_score, max_score)
             scores[name] = DimensionScore(score=normalized_score, reasoning=reasoning)
         return scores
 
-    def _normalize_score(self, raw_score: Any) -> float:
+    def _extract_max_score(self, scale: str) -> float:
+        """Extract maximum score from scale string like '0-100 points' or '1-10'."""
+        # Try to find a pattern like "X-Y" where Y is the max
+        match = re.search(r'(\d+(?:\.\d+)?)\s*-\s*(\d+(?:\.\d+)?)', scale)
+        if match:
+            return float(match.group(2))
+        # Default to 100 if we can't parse the scale
+        return 100.0
+
+    def _normalize_score(self, raw_score: Any, max_score: float = 100.0) -> float:
         try:
             value = self._coerce_numeric(raw_score)
         except (TypeError, ValueError) as exc:
             msg = "Dimension score must be a numeric value."
             raise EvaluationError(msg) from exc
 
-        if 0.0 <= value <= 1.0:
-            return value
-        if 1.0 <= value <= 10.0:
-            return value / 10.0
+        # Clamp to valid range (LLMs sometimes give scores slightly outside bounds)
+        if value < 0.0:
+            self._logger.warning(
+                "Evaluator gave negative score %.2f (clamping to 0). Max scale was %.2f.",
+                value,
+                max_score,
+            )
+            value = 0.0
+        elif value > max_score:
+            self._logger.warning(
+                "Evaluator gave score %.2f exceeding max %.2f (clamping to max).",
+                value,
+                max_score,
+            )
+            value = max_score
 
-        msg = "Dimension score must be between 0-1 or 1-10."
-        raise EvaluationError(msg)
+        # Normalize to 0-1 range
+        return value / max_score
 
     def _coerce_numeric(self, value: Any) -> float:
         if isinstance(value, (int, float)) and math.isfinite(value):
