@@ -20,7 +20,7 @@ from .metrics import DimensionScore, QualityScore
 class RubricEvaluator:
     """Evaluate workflow output quality using a rubric and LiteLLM."""
 
-    DEFAULT_MODEL = "anthropic/claude-3.5-sonnet"
+    DEFAULT_MODEL = "openrouter/deepseek/deepseek-chat"
     DEFAULT_TEMPERATURE = 0.3
     DEFAULT_RUBRIC: Dict[str, RubricDimension] = {
         "clarity": {
