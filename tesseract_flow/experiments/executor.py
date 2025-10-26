@@ -18,6 +18,7 @@ from tesseract_flow.core.config import (
     TestResult,
 )
 from tesseract_flow.core.exceptions import ExperimentError, WorkflowExecutionError
+from tesseract_flow.core.strategies import GENERATION_STRATEGIES
 from tesseract_flow.core.types import RubricDimension
 from tesseract_flow.evaluation.rubric import RubricEvaluator
 from tesseract_flow.experiments.taguchi import generate_test_configs
@@ -174,9 +175,26 @@ class ExperimentExecutor:
                 None, workflow_service.run, workflow_input
             )
         except WorkflowExecutionError as exc:
-            raise ExperimentError("Workflow execution failed.") from exc
+            # Provide context about which test failed
+            error_msg = f"Workflow execution failed for test #{test_config.test_number}"
+            if hasattr(exc, "__cause__") and exc.__cause__:
+                error_msg += f": {type(exc.__cause__).__name__}: {exc.__cause__}"
+            elif str(exc):
+                error_msg += f": {exc}"
+            raise ExperimentError(error_msg) from exc
+        except ValueError as exc:
+            # Catch configuration errors (e.g., unknown strategy)
+            error_msg = f"Configuration error in test #{test_config.test_number}: {exc}"
+            raise ExperimentError(error_msg) from exc
+        except KeyError as exc:
+            # Catch missing keys (e.g., unknown generation strategy)
+            error_msg = f"Missing configuration in test #{test_config.test_number}: {exc}"
+            if "strategy" in str(exc).lower():
+                error_msg += f". Available strategies: {list(GENERATION_STRATEGIES.keys())}"
+            raise ExperimentError(error_msg) from exc
         except Exception as exc:  # pragma: no cover - defensive guard
-            raise ExperimentError("Workflow execution raised an unexpected error.") from exc
+            error_msg = f"Unexpected error in test #{test_config.test_number}: {type(exc).__name__}: {exc}"
+            raise ExperimentError(error_msg) from exc
 
         duration_ms = (perf_counter() - start) * 1000.0
         workflow_metadata = self._extract_workflow_metadata(workflow_service)

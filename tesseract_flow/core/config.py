@@ -80,6 +80,7 @@ class WorkflowConfig(BaseModel):
 
     rubric: Dict[str, RubricDimension] = Field(default_factory=dict)
     sample_code_path: Optional[str] = None
+    evaluator_model: Optional[str] = None
 
     model_config = ConfigDict(extra="allow")
 

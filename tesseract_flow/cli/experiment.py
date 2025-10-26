@@ -122,10 +122,14 @@ def run_experiment(
         )
 
     try:
+        evaluator_model = None
+        if config.workflow_config:
+            evaluator_model = config.workflow_config.evaluator_model
         evaluator = build_evaluator(
             use_cache=use_cache,
             record_cache=record_cache,
             cache_dir=cache_dir,
+            evaluator_model=evaluator_model,
         )
     except (CacheError, ValueError) as exc:
         console.print(f"[bold red]✗ Error:[/] Failed to initialize evaluator: {exc}")
@@ -448,7 +452,7 @@ def _default_output_path(config_name: str) -> Path:
 
 
 def build_evaluator(
-    *, use_cache: bool, record_cache: bool, cache_dir: Optional[Path]
+    *, use_cache: bool, record_cache: bool, cache_dir: Optional[Path], evaluator_model: Optional[str] = None
 ) -> RubricEvaluator:
     """Return a RubricEvaluator configured with optional caching."""
 
@@ -457,7 +461,13 @@ def build_evaluator(
         cache_path = (cache_dir or _default_cache_dir()).expanduser()
         cache_backend = FileCacheBackend(cache_path)
         console.print(f"[cyan]• Using evaluator cache at:[/] {cache_backend.cache_dir}")
-    return RubricEvaluator(cache=cache_backend, use_cache=use_cache, record_cache=record_cache)
+
+    # Use provided evaluator_model or fall back to default
+    kwargs = {"cache": cache_backend, "use_cache": use_cache, "record_cache": record_cache}
+    if evaluator_model:
+        kwargs["model"] = evaluator_model
+
+    return RubricEvaluator(**kwargs)
 
 
 def _default_cache_dir() -> Path:

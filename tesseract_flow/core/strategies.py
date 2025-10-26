@@ -50,8 +50,89 @@ class StandardStrategy:
         return str(content).strip()
 
 
+class ChainOfThoughtStrategy:
+    """Chain-of-thought prompting strategy for step-by-step reasoning."""
+
+    async def generate(
+        self,
+        prompt: str,
+        *,
+        model: str,
+        config: Mapping[str, Any] | None = None,
+    ) -> str:
+        parameters: Dict[str, Any] = {}
+        if config is not None:
+            parameters.update(config)
+        temperature = parameters.pop("temperature", 0.0)
+
+        # Prepend chain-of-thought instruction
+        cot_prompt = (
+            "Think step-by-step and explain your reasoning before providing the final answer.\n\n"
+            f"{prompt}"
+        )
+
+        response = await litellm.acompletion(
+            model=model,
+            messages=[{"role": "user", "content": cot_prompt}],
+            temperature=temperature,
+            **parameters,
+        )
+        choices = response.get("choices", [])
+        if not choices:
+            return ""
+        message = choices[0].get("message", {})
+        content = message.get("content", "")
+        if isinstance(content, list):
+            content = "".join(str(block) for block in content)
+        return str(content).strip()
+
+
+class FewShotStrategy:
+    """Few-shot prompting strategy with examples."""
+
+    def __init__(self, examples: list[tuple[str, str]] | None = None):
+        """Initialize with optional example pairs of (input, output)."""
+        self.examples = examples or []
+
+    async def generate(
+        self,
+        prompt: str,
+        *,
+        model: str,
+        config: Mapping[str, Any] | None = None,
+    ) -> str:
+        parameters: Dict[str, Any] = {}
+        if config is not None:
+            parameters.update(config)
+        temperature = parameters.pop("temperature", 0.0)
+
+        # Build messages with examples
+        messages = []
+        for example_input, example_output in self.examples:
+            messages.append({"role": "user", "content": example_input})
+            messages.append({"role": "assistant", "content": example_output})
+        messages.append({"role": "user", "content": prompt})
+
+        response = await litellm.acompletion(
+            model=model,
+            messages=messages,
+            temperature=temperature,
+            **parameters,
+        )
+        choices = response.get("choices", [])
+        if not choices:
+            return ""
+        message = choices[0].get("message", {})
+        content = message.get("content", "")
+        if isinstance(content, list):
+            content = "".join(str(block) for block in content)
+        return str(content).strip()
+
+
 GENERATION_STRATEGIES: Dict[str, GenerationStrategy] = {
     "standard": StandardStrategy(),
+    "chain_of_thought": ChainOfThoughtStrategy(),
+    "few_shot": FewShotStrategy(),
 }
 
 
