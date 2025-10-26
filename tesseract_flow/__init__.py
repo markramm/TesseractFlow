@@ -10,10 +10,11 @@ from tesseract_flow.core.base_workflow import BaseWorkflowService
 from tesseract_flow.core.config import WorkflowConfig
 from tesseract_flow.core.strategies import (
     GENERATION_STRATEGIES,
+    GenerationStrategy,
     get_strategy,
     register_strategy,
-    GenerationStrategy,
 )
+from tesseract_flow.workflows import CodeIssue, CodeReviewInput, CodeReviewOutput, CodeReviewWorkflow
 
 __all__ = [
     "BaseWorkflowService",
@@ -22,4 +23,8 @@ __all__ = [
     "get_strategy",
     "register_strategy",
     "GenerationStrategy",
+    "CodeReviewWorkflow",
+    "CodeReviewInput",
+    "CodeReviewOutput",
+    "CodeIssue",
 ]

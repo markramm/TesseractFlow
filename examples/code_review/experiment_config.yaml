@@ -1,0 +1,39 @@
+# Taguchi L8 experiment configuration for the code review workflow
+name: "code_review_optimization"
+workflow: "code_review"
+
+variables:
+  - name: "temperature"
+    level_1: 0.3
+    level_2: 0.7
+  - name: "model"
+    level_1: "openai/gpt-4o-mini"
+    level_2: "anthropic/claude-3.5-sonnet"
+  - name: "context_size"
+    level_1: "file_only"
+    level_2: "full_module"
+  - name: "generation_strategy"
+    level_1: "standard"
+    level_2: "chain_of_thought"
+
+utility_weights:
+  quality: 1.0
+  cost: 0.1
+  time: 0.05
+
+workflow_config:
+  rubric:
+    clarity:
+      description: "Is the review easy to follow and understand?"
+      scale: "1-10"
+    accuracy:
+      description: "Do the identified issues reflect real problems?"
+      scale: "1-10"
+    completeness:
+      description: "Does the review cover important aspects of the code?"
+      scale: "1-10"
+  sample_code_path: "examples/code_review/sample_code/example1.py"
+  language: "python"
+  context_descriptions:
+    file_only: "Review limited to the provided snippet."
+    full_module: "Consider module-level implications during review."
