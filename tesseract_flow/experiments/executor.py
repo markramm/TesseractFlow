@@ -123,8 +123,12 @@ class ExperimentExecutor:
                 if progress_callback:
                     progress_callback(len(run_state.results), total_tests)
 
-            run_state = run_state.mark_completed()
-            logger.info("Experiment %s completed successfully", experiment_identifier)
+            # Only mark as completed if not already completed (handles resume of finished experiments)
+            if run_state.status != "COMPLETED":
+                run_state = run_state.mark_completed()
+                logger.info("Experiment %s completed successfully", experiment_identifier)
+            else:
+                logger.info("Experiment %s was already completed", experiment_identifier)
 
             if persistence_path is not None:
                 self.save_run(run_state, persistence_path)

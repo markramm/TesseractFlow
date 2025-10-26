@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tesseract-flow"
-version = "0.1.0"
+version = "0.1.1"
 description = "Multi-dimensional LLM workflow optimization using Taguchi Design of Experiments"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -86,11 +86,11 @@ include = ["tesseract_flow*"]
 testpaths = ["tests"]
 asyncio_mode = "auto"
 addopts = [
-    "--cov=tesseract_flow",
-    "--cov-report=html",
-    "--cov-report=term-missing",
     "-v"
 ]
+
+# To run with coverage (requires pytest-cov from dev extras):
+#   pytest --cov=tesseract_flow --cov-report=html --cov-report=term-missing
 
 [tool.black]
 line-length = 100

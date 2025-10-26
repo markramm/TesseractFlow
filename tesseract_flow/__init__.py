@@ -4,7 +4,7 @@ TesseractFlow - Multi-dimensional LLM Workflow Optimization
 A framework for systematic LLM workflow optimization using Taguchi Design of Experiments.
 """
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 from tesseract_flow.core.base_workflow import BaseWorkflowService
 from tesseract_flow.core.config import WorkflowConfig

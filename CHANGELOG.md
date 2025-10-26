@@ -5,6 +5,24 @@ All notable changes to TesseractFlow will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.1] - 2025-10-26
+
+### Fixed
+
+- **pytest dependency issue** - Removed `--cov` options from default pytest config in pyproject.toml. Coverage reporting now requires explicit `pytest --cov` invocation with `pytest-cov` from dev extras. This fixes the "unrecognized arguments" error when running `pytest` after fresh install with `pip install -e .` ([tesseract_flow/experiments/executor.py:126-131](https://github.com/markramm/TesseractFlow/blob/main/tesseract_flow/experiments/executor.py#L126-L131))
+
+- **--resume crash on completed experiments** - Fixed `ValueError` when using `--resume` flag on an already-completed experiment. Executor now checks if experiment status is COMPLETED before attempting to call `mark_completed()`, preventing invalid state transition error ([tesseract_flow/experiments/executor.py:126-131](https://github.com/markramm/TesseractFlow/blob/main/tesseract_flow/experiments/executor.py#L126-L131))
+
+### Changed
+
+- pytest coverage reporting is now opt-in: run `pytest --cov=tesseract_flow --cov-report=html` for coverage analysis
+
+### Developer Notes
+
+Both issues were discovered during beta testing with fresh developer installations. Thanks to early testers for the detailed bug reports!
+
+---
+
 ## [0.1.0] - 2025-10-26
 
 ### Added - Core Framework
