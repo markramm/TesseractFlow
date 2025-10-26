@@ -404,8 +404,13 @@ class CodeReviewWorkflow(BaseWorkflowService[CodeReviewInput, CodeReviewOutput])
                     config=parameters,
                 )
             )
+        except ValueError as exc:
+            # ValueError from strategies contains detailed API error info
+            raise WorkflowExecutionError(f"Generation strategy failed: {exc}") from exc
         except Exception as exc:  # pragma: no cover - defensive guard
-            raise WorkflowExecutionError("Generation strategy failed.") from exc
+            raise WorkflowExecutionError(
+                f"Generation strategy failed: {type(exc).__name__}: {exc}"
+            ) from exc
 
     def _resolve_strategy(self, name: str) -> GenerationStrategy:
         try:

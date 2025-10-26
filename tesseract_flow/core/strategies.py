@@ -34,12 +34,24 @@ class StandardStrategy:
         if config is not None:
             parameters.update(config)
         temperature = parameters.pop("temperature", 0.0)
-        response = await litellm.acompletion(
-            model=model,
-            messages=[{"role": "user", "content": prompt}],
-            temperature=temperature,
-            **parameters,
-        )
+
+        try:
+            response = await litellm.acompletion(
+                model=model,
+                messages=[{"role": "user", "content": prompt}],
+                temperature=temperature,
+                **parameters,
+            )
+        except litellm.BadRequestError as exc:
+            raise ValueError(f"Invalid model or request for '{model}': {exc}") from exc
+        except litellm.AuthenticationError as exc:
+            raise ValueError(f"Authentication failed for model '{model}': {exc}") from exc
+        except litellm.RateLimitError as exc:
+            raise ValueError(f"Rate limit exceeded for model '{model}': {exc}") from exc
+        except Exception as exc:
+            # Preserve other LiteLLM errors with context
+            raise ValueError(f"LLM API call failed for model '{model}': {type(exc).__name__}: {exc}") from exc
+
         choices = response.get("choices", [])
         if not choices:
             return ""
@@ -71,12 +83,23 @@ class ChainOfThoughtStrategy:
             f"{prompt}"
         )
 
-        response = await litellm.acompletion(
-            model=model,
-            messages=[{"role": "user", "content": cot_prompt}],
-            temperature=temperature,
-            **parameters,
-        )
+        try:
+            response = await litellm.acompletion(
+                model=model,
+                messages=[{"role": "user", "content": cot_prompt}],
+                temperature=temperature,
+                **parameters,
+            )
+        except litellm.BadRequestError as exc:
+            raise ValueError(f"Invalid model or request for '{model}': {exc}") from exc
+        except litellm.AuthenticationError as exc:
+            raise ValueError(f"Authentication failed for model '{model}': {exc}") from exc
+        except litellm.RateLimitError as exc:
+            raise ValueError(f"Rate limit exceeded for model '{model}': {exc}") from exc
+        except Exception as exc:
+            # Preserve other LiteLLM errors with context
+            raise ValueError(f"LLM API call failed for model '{model}': {type(exc).__name__}: {exc}") from exc
+
         choices = response.get("choices", [])
         if not choices:
             return ""
@@ -113,12 +136,23 @@ class FewShotStrategy:
             messages.append({"role": "assistant", "content": example_output})
         messages.append({"role": "user", "content": prompt})
 
-        response = await litellm.acompletion(
-            model=model,
-            messages=messages,
-            temperature=temperature,
-            **parameters,
-        )
+        try:
+            response = await litellm.acompletion(
+                model=model,
+                messages=messages,
+                temperature=temperature,
+                **parameters,
+            )
+        except litellm.BadRequestError as exc:
+            raise ValueError(f"Invalid model or request for '{model}': {exc}") from exc
+        except litellm.AuthenticationError as exc:
+            raise ValueError(f"Authentication failed for model '{model}': {exc}") from exc
+        except litellm.RateLimitError as exc:
+            raise ValueError(f"Rate limit exceeded for model '{model}': {exc}") from exc
+        except Exception as exc:
+            # Preserve other LiteLLM errors with context
+            raise ValueError(f"LLM API call failed for model '{model}': {type(exc).__name__}: {exc}") from exc
+
         choices = response.get("choices", [])
         if not choices:
             return ""
