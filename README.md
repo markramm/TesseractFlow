@@ -1,392 +1,440 @@
 # TesseractFlow
 
-**Multi-dimensional LLM workflow optimization using Taguchi Design of Experiments**
+**Systematic LLM workflow optimization using Taguchi Design of Experiments**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
-[![Status: Alpha](https://img.shields.io/badge/status-alpha-orange.svg)]()
+[![Version 0.1.0](https://img.shields.io/badge/version-0.1.0-green.svg)]()
 
 ---
 
-## Overview
+## Why TesseractFlow?
 
-TesseractFlow is a **structured alternative to LLM fine-tuning** for performance optimization. Instead of expensive, brittle fine-tuning that becomes obsolete as models evolve, TesseractFlow helps you systematically optimize workflows through prompt engineering, context design, model selection, and generation strategies.
+**The Problem:** Optimizing LLM workflows is expensive and time-consuming. Testing 4 variables with 2 levels each requires 16 experiments (2⁴). With costly models and complex workflows, this becomes prohibitively expensive.
 
-### Why TesseractFlow?
+**The Solution:** TesseractFlow uses Taguchi Design of Experiments (DOE) to reduce 16 experiments to just 8, while still identifying which variables matter most. This means:
 
-**The Problem with Fine-Tuning:**
-- Expensive ($1000s per training run)
-- Brittle (breaks with model updates)
-- Slow (days to weeks)
-- Vendor lock-in (tied to specific model versions)
+- **50% fewer API calls** - Test 4 variables in 8 experiments instead of 16
+- **10x cost reduction** - Use cheap models (DeepSeek $0.69/M) for experimentation
+- **Data-driven decisions** - Main effects analysis shows which variables contribute most to quality
+- **Multi-objective optimization** - Balance quality, cost, and latency simultaneously
 
-**The TesseractFlow Approach:**
-- Optimize prompts, context, and strategies (not model weights)
-- Works with any LLM provider (OpenRouter, Anthropic, OpenAI, etc.)
-- Results in hours, not weeks
-- Continuous optimization as models evolve
-- Data-driven decisions via Taguchi DOE
+**Real-world example:** Our rubric.py code review experiment cost $0.40 and discovered that:
+- Model choice impacts quality by 6.5% (Sonnet vs Haiku)
+- Full context improves reviews by 4.7%
+- Chain-of-thought actually reduces quality by 1.9%
+- Temperature has minimal impact (1.0%)
 
-### Core Capabilities
+---
 
-1. **Efficient Experimentation** - Test 4-7 variables with just 8 experiments (Taguchi L8 array)
-2. **Multi-Objective Optimization** - Balance Quality, Cost, and Latency simultaneously
-3. **Pareto Frontier Analysis** - Visualize trade-offs between competing objectives
-4. **Generation Strategy Testing** - Compare standard prompting, Chain-of-Thought, Verbalized Sampling, etc.
-5. **Pluggable Architecture** - Works with LangGraph, custom workflows, any LLM provider
+## Key Features
+
+- ✅ **Efficient Experimentation** - Taguchi L8 orthogonal arrays test 4-7 variables in just 8 runs
+- ✅ **Quality Evaluation** - LLM-as-judge with customizable rubrics (0-100 point scale)
+- ✅ **Multi-Objective Optimization** - Utility function balances quality, cost, and latency
+- ✅ **Statistical Analysis** - Main effects show variable contributions with percentages
+- ✅ **Pareto Visualization** - See quality vs cost trade-offs graphically
+- ✅ **Provider Agnostic** - Works with any LiteLLM-supported provider (400+ models)
+- ✅ **Rich CLI** - Beautiful terminal output with progress bars and colored tables
+- ✅ **Evaluation Caching** - Reuse LLM evaluations across experiments
+- ✅ **Resume Support** - Continue interrupted experiments from last checkpoint
+
+---
+
+## Installation
+
+**Requirements:** Python 3.11+
+
+```bash
+# Clone the repository
+git clone https://github.com/markramm/TesseractFlow.git
+cd TesseractFlow
+
+# Create virtual environment
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# Install in development mode
+pip install -e .
+```
+
+**Set up API keys:**
+
+```bash
+# For OpenRouter (recommended - access to 400+ models)
+export OPENROUTER_API_KEY="your-key-here"
+
+# Or for direct providers
+export ANTHROPIC_API_KEY="your-key-here"
+export OPENAI_API_KEY="your-key-here"
+```
+
+Verify installation:
+```bash
+tesseract --version
+# Output: TesseractFlow 0.1.0
+```
 
 ---
 
 ## Quick Start
 
-### Installation
+### 1. Create an Experiment Configuration
 
-```bash
-pip install tesseract-flow
-```
-
-**With optional strategies:**
-```bash
-pip install tesseract-flow[verbalized-sampling]  # Adds VS support
-pip install tesseract-flow[all]                  # All optional strategies
-```
-
-### Basic Usage
-
-**1. Define your workflow:**
-
-```python
-from tesseract_flow import BaseWorkflowService
-from pydantic import BaseModel
-
-class CodeReviewInput(BaseModel):
-    code: str
-    language: str
-
-class CodeReviewOutput(BaseModel):
-    issues: List[Dict[str, str]]
-    suggestions: List[str]
-
-class CodeReviewWorkflow(BaseWorkflowService[CodeReviewInput, CodeReviewOutput]):
-    def _build_workflow(self) -> StateGraph:
-        # Define workflow logic using LangGraph
-        graph = StateGraph()
-        graph.add_node("analyze", self._analyze_code)
-        graph.add_node("suggest", self._generate_suggestions)
-        graph.add_edge("analyze", "suggest")
-        return graph.compile()
-```
-
-**2. Configure experiment:**
+Create `my_experiment.yaml`:
 
 ```yaml
-# experiments/optimize_code_review.yaml
-name: "code_review_optimization"
-workflow: "code_review"
+name: "optimize_summarization"
+workflow: "code_review"  # Example workflow (you can create your own)
 
-method:
-  type: "taguchi_l8"
-
+# Define 4 variables to test (2 levels each)
 variables:
-  temperature: {1: 0.3, 2: 0.7}
-  model: {1: "deepseek/deepseek-coder-v2", 2: "anthropic/claude-3.5-sonnet"}
-  context_size: {1: "file_only", 2: "full_module"}
-  generation_strategy: {1: "standard", 2: "verbalized_sampling"}
+  - name: "temperature"
+    level_1: 0.3  # Deterministic
+    level_2: 0.7  # Creative
 
+  - name: "model"
+    level_1: "openrouter/deepseek/deepseek-chat"  # Budget: $0.69/M
+    level_2: "openrouter/anthropic/claude-haiku-4.5"  # Balanced: $3/M
+
+  - name: "context_size"
+    level_1: "file_only"     # Minimal context
+    level_2: "full_module"   # Complete context
+
+  - name: "generation_strategy"
+    level_1: "standard"           # Direct prompting
+    level_2: "chain_of_thought"   # Reasoning-based
+
+# Utility function weights (how to trade off objectives)
 utility_weights:
-  quality: 0.6
-  cost: 0.3
-  time: 0.1
+  quality: 1.0   # Most important
+  cost: 0.1      # Moderately important
+  time: 0.05     # Least important
+
+# Workflow-specific configuration
+workflow_config:
+  rubric:
+    clarity:
+      description: "Is the output clear and understandable?"
+      scale: "0-100 where 0=incomprehensible, 100=crystal clear"
+      weight: 0.3
+
+    accuracy:
+      description: "Is the output factually accurate?"
+      scale: "0-100 where 0=many errors, 100=fully accurate"
+      weight: 0.4
+
+    completeness:
+      description: "Does the output address all requirements?"
+      scale: "0-100 where 0=missing major parts, 100=comprehensive"
+      weight: 0.3
+
+  sample_code_path: "path/to/code.py"
+  evaluator_model: "openrouter/anthropic/claude-haiku-4.5"
+  evaluator_temperature: 0.3
 ```
 
-**3. Run experiment:**
+### 2. Run the Experiment
 
 ```bash
-tesseract experiment run experiments/optimize_code_review.yaml
+# Preview what will run (dry-run mode)
+tesseract experiment run my_experiment.yaml --dry-run
+
+# Execute all 8 test configurations
+tesseract experiment run my_experiment.yaml \
+  --output results.json \
+  --use-cache \
+  --record-cache
 ```
 
-**4. Analyze results:**
-
+You'll see beautiful progress output:
 ```
-Main Effects Analysis:
-  context_size: 45% contribution (full_module >> file_only)
-  model: 22% contribution (claude > deepseek)
-  temperature: 18% contribution (0.7 > 0.3)
-  generation_strategy: 15% contribution (verbalized_sampling > standard)
+✓ Loaded experiment config: optimize_summarization
+• Generating Taguchi L8 test configurations...
+  Running experiment ━━━━━━━━━━━━━━━━━━━ 3/8 0:02:45
+```
 
-Optimal Configuration:
-  temperature: 0.7
-  model: anthropic/claude-3.5-sonnet
-  context_size: full_module
-  generation_strategy: verbalized_sampling
+### 3. Analyze Results
 
-Pareto Frontier (Quality vs Cost):
-  Config 8: Quality 0.88, Cost $0.25 ⭐ (Highest quality)
-  Config 4: Quality 0.82, Cost $0.12 ⭐ (Best balance)
-  Config 1: Quality 0.72, Cost $0.02 ⭐ (Lowest cost)
+```bash
+# Show main effects analysis
+tesseract analyze main-effects results.json
+
+# Export optimal configuration
+tesseract analyze main-effects results.json --export optimal.yaml
+```
+
+Output shows variable contributions:
+```
+┏━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Variable            ┃ Level 1    ┃ Level 2    ┃ Effect Size  ┃ Contribution %   ┃
+┡━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│ model               │   0.6562   │   0.6985   │    +0.0423   │      38.5%       │
+│ context_size        │   0.6642   │   0.6955   │    +0.0313   │      48.2%       │
+│ generation_strategy │   0.6842   │   0.6710   │    -0.0132   │       9.8%       │
+│ temperature         │   0.6742   │   0.6812   │    +0.0070   │       3.5%       │
+└─────────────────────┴────────────┴────────────┴──────────────┴──────────────────┘
+```
+
+**Key Insight:** Model and context_size contribute 86.7% of quality improvement!
+
+### 4. Visualize Trade-offs
+
+```bash
+# Generate Pareto frontier chart
+tesseract visualize pareto results.json --output pareto.png
+```
+
+This creates a chart showing which test configurations are Pareto-optimal (best quality for a given cost).
+
+---
+
+## Real-World Example
+
+See `experiments/rubric_review_experiment.yaml` for a production-grade code review experiment that:
+- Tested optimal settings for reviewing critical infrastructure code
+- Cost $0.40 for complete L8 experiment
+- Discovered Sonnet 4.5 provides 6.5% better reviews than Haiku
+- Found that full module context improves quality by 4.7%
+- Showed chain-of-thought reduces quality by 1.9% (surprising!)
+
+Results documented in `experiments/FINDINGS.md`.
+
+---
+
+## CLI Reference
+
+### Experiment Commands
+
+```bash
+# Run an experiment
+tesseract experiment run CONFIG.yaml [OPTIONS]
+  --output PATH          Save results to JSON file
+  --dry-run              Preview test configurations without running
+  --use-cache            Use cached evaluations
+  --record-cache         Save evaluations to cache
+  --resume               Continue from last checkpoint
+  --verbose              Show detailed logging
+
+# Validate configuration
+tesseract experiment validate CONFIG.yaml
+
+# Check status of running experiment
+tesseract experiment status RESULTS.json
+```
+
+### Analysis Commands
+
+```bash
+# Main effects analysis
+tesseract analyze main-effects RESULTS.json [OPTIONS]
+  --export PATH          Export optimal config to YAML
+  --show-config          Display recommended configuration (default: true)
+
+# Quick summary
+tesseract analyze summary RESULTS.json
+```
+
+### Visualization Commands
+
+```bash
+# Pareto frontier
+tesseract visualize pareto RESULTS.json [OPTIONS]
+  --output PATH          Save chart to file (default: pareto.png)
+  --budget FLOAT         Highlight configs within budget
+  --axes X Y             Choose axes (quality-cost, quality-latency, cost-latency)
 ```
 
 ---
 
-## Key Concepts
+## Project Structure
+
+```
+TesseractFlow/
+├── tesseract_flow/          # Core framework
+│   ├── core/                # Base classes, config, strategies
+│   ├── experiments/         # Taguchi arrays, execution, analysis
+│   ├── evaluation/          # LLM-as-judge rubric evaluator
+│   ├── optimization/        # Utility functions, Pareto analysis
+│   ├── workflows/           # Example workflows (code_review)
+│   └── cli/                 # Command-line interface
+├── examples/                # Example configurations
+│   └── code_review/         # Code review workflow examples
+├── experiments/             # Real experiment results
+│   ├── rubric_review_experiment.yaml
+│   ├── rubric_review_results.json
+│   └── FINDINGS.md
+├── docs/                    # Documentation
+│   ├── openrouter-model-costs.md
+│   ├── openrouter-model-capabilities.md
+│   └── user-guide/
+├── .claude/                 # Claude Code integration
+│   └── skills/
+│       └── tesseract-experiment-designer/  # AI-powered experiment design assistant
+└── tests/                   # Test suite (80% coverage)
+```
+
+---
+
+## Claude Code Integration
+
+TesseractFlow includes a Claude Code skill for AI-assisted experiment design:
+
+**`.claude/skills/tesseract-experiment-designer/`**
+
+When using Claude Code in this repository, you can ask:
+
+> "Design an experiment to optimize my summarization workflow. I want high quality but have a $0.50 budget."
+
+Claude will:
+1. Recommend a best-guess configuration based on your requirements
+2. Design an L8 experiment to fill knowledge gaps
+3. Estimate costs using OpenRouter pricing data
+4. Generate a complete YAML configuration file
+
+The skill references:
+- `docs/openrouter-model-costs.md` - Pricing data for 15+ models
+- `docs/openrouter-model-capabilities.md` - Performance benchmarks and optimal settings
+
+---
+
+## How It Works
 
 ### Taguchi Design of Experiments
 
-Traditional optimization requires testing every combination of variables (full factorial):
-- 4 variables × 2 levels = 2^4 = **16 experiments**
+Traditional grid search for 4 variables with 2 levels = 2⁴ = **16 experiments**
 
-TesseractFlow uses Taguchi orthogonal arrays:
-- 4 variables × 2 levels = **8 experiments** (L8 array)
-- **50% reduction** in experiments
-- Still identifies which variables matter most (main effects)
+TesseractFlow uses Taguchi L8 orthogonal array = **8 experiments**
 
-### Multi-Objective Optimization
-
-Most LLM optimization focuses on quality alone. TesseractFlow optimizes:
-- **Quality** - Task-specific metrics (accuracy, coherence, etc.)
-- **Cost** - API costs in USD
-- **Time** - Latency in milliseconds
-
-**Utility Function:**
+**L8 Array:**
 ```
-utility = (w_quality × quality) - (w_cost × normalized_cost) - (w_time × normalized_time)
+Test #  Var1  Var2  Var3  Var4
+  1      1     1     1     1
+  2      1     1     2     2
+  3      1     2     1     2
+  4      1     2     2     1
+  5      2     1     1     2
+  6      2     1     2     1
+  7      2     2     1     1
+  8      2     2     2     2
 ```
 
-**Pareto Frontier:**
-Visualize trade-offs between quality and cost. Choose configurations based on your budget and requirements.
+Each variable appears 4 times at level 1 and 4 times at level 2, enabling unbiased main effects analysis.
 
-### Generation Strategies as Variables
+### Main Effects Analysis
 
-TesseractFlow treats prompting techniques as **experimental variables to test**, not assumptions:
+For each variable, TesseractFlow computes:
+- **Average utility at level 1** (4 tests)
+- **Average utility at level 2** (4 tests)
+- **Effect size** = avg(level 2) - avg(level 1)
+- **Contribution %** = (effect² / total variance) × 100
 
-- **Standard Prompting** - Direct LLM call
-- **Chain-of-Thought** - "Let's think step by step..."
-- **Few-Shot** - Examples before the task
-- **Verbalized Sampling** - Sample from probability distribution (optional)
+This tells you **which variables matter most** for improving your workflow.
 
-Test which strategy actually improves your task:
-```yaml
-variables:
-  generation_strategy:
-    1: "standard"
-    2: "verbalized_sampling"
+### Utility Function
+
+Combines multiple objectives into a single score:
+
+```python
+utility = (w_quality × quality) - (w_cost × cost) - (w_time × latency)
 ```
 
-Main effects analysis tells you if the strategy contributes to quality improvement.
-
-### Workflows as Boundaries (HITL)
-
-Human-in-the-loop (HITL) occurs **between workflows**, not within them:
-
-```
-Workflow 1: Generate Draft  →  Database (Approval Queue)  →  Workflow 2: Apply Feedback
-  (10-60 seconds)              (Human reviews async)           (10-60 seconds)
-```
-
-**Benefits:**
-- No complex orchestration (Temporal, checkpointing)
-- Simple synchronous workflows
-- Human reviews at their own pace
-- Works with any workflow framework
+Configurable weights let you prioritize what matters for your use case.
 
 ---
 
-## Architecture
+## Documentation
 
-### Technology Stack
-
-- **Python 3.11+** - Core framework
-- **LangGraph** - Workflow orchestration
-- **LiteLLM** - Universal LLM provider gateway
-- **FastAPI** - REST API for workflows and approvals
-- **PostgreSQL** - Results, experiments, approval queue
-- **Langfuse** - Observability and experiment tracking
-
-### System Components
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    CLI / API Interface                       │
-└───────────────────────────┬─────────────────────────────────┘
-                            │
-┌───────────────────────────▼─────────────────────────────────┐
-│                  Experiment Orchestrator                     │
-│  - Taguchi array generation (L8, L16, L18)                  │
-│  - Test execution across configurations                      │
-│  - Main effects analysis                                     │
-│  - Pareto frontier computation                               │
-└───────────────────────────┬─────────────────────────────────┘
-                            │
-┌───────────────────────────▼─────────────────────────────────┐
-│                   Workflow Executor                          │
-│  - BaseWorkflowService[TInput, TOutput]                     │
-│  - Generation strategy selection                            │
-│  - LangGraph integration                                     │
-└─────────┬─────────────────┴─────────────────┬───────────────┘
-          │                                   │
-┌─────────▼──────────────┐       ┌───────────▼──────────────┐
-│  Generation Strategies │       │   Quality Evaluator      │
-│  - Standard            │       │   - Rubric-based         │
-│  - Chain-of-Thought    │       │   - Pairwise A/B         │
-│  - Few-Shot            │       │   - Ensemble judges      │
-│  - Verbalized Sampling │       │   - Custom evaluators    │
-└─────────┬──────────────┘       └───────────┬──────────────┘
-          │                                   │
-┌─────────▼───────────────────────────────────▼───────────────┐
-│              LLM Provider Gateway (LiteLLM)                  │
-│  OpenRouter • Anthropic • OpenAI • DeepSeek • Azure         │
-└──────────────────────────────────────────────────────────────┘
-```
-
----
-
-## Comparison to Alternatives
-
-### vs Fine-Tuning
-
-| Fine-Tuning | TesseractFlow |
-|-------------|---------------|
-| $1000s per run | $10s for experiments |
-| Days to weeks | Hours |
-| Brittle (model version locked) | Works with any model |
-| Vendor lock-in | Provider agnostic |
-| Opaque (hard to debug) | Transparent (see what works) |
-
-### vs DSPy
-
-| DSPy | TesseractFlow |
-|------|---------------|
-| Auto-optimizes prompts | User tests variables explicitly |
-| Must use DSPy pipeline | Works with any workflow |
-| Opaque optimization | Transparent main effects |
-| Grid search (slow) | Taguchi (efficient) |
-
-### vs LangSmith
-
-| LangSmith | TesseractFlow |
-|-----------|---------------|
-| Manual A/B testing | Systematic DOE |
-| No experiment design | Taguchi arrays |
-| Observability focus | Optimization focus |
-| Run A vs B, compare | 8 tests, 4 variables |
-
-**TesseractFlow integrates with LangSmith/Langfuse for observability.**
+- **[User Guide](docs/user-guide/)** - Getting started, configuration, interpreting results
+- **[OpenRouter Models](docs/openrouter-model-costs.md)** - Cost tiers and pricing for 15+ models
+- **[Model Capabilities](docs/openrouter-model-capabilities.md)** - Benchmarks and optimal settings
+- **[API Reference](docs/api/)** - Core modules and extension points
+- **[Examples](examples/)** - Ready-to-use experiment configurations
 
 ---
 
 ## Use Cases
 
 ### 1. Code Review Optimization
-Test variables:
-- Temperature (conservative vs creative)
-- Model (DeepSeek vs Claude vs GPT-4)
-- Context size (file vs module vs full codebase)
-- Generation strategy (standard vs CoT)
+Test prompts, models, and context strategies to find optimal code review settings.
 
-**Result:** Find configuration that maximizes issue detection while minimizing false positives and cost.
+### 2. Summarization Quality
+Experiment with temperature, context window, and generation strategies for summaries.
 
-### 2. Creative Writing (Fiction Scenes)
-Test variables:
-- Temperature
-- Model
-- Context (minimal vs full story context)
-- Generation strategy (standard vs Verbalized Sampling)
+### 3. Data Extraction
+Optimize structured output generation (JSON, YAML) with different models and temperatures.
 
-**Result:** Find configuration that maximizes diversity and quality while staying within budget.
+### 4. Cost Reduction
+Test cheap models (DeepSeek $0.69/M) vs expensive models (GPT-4 $30/M) to find best value.
 
-### 3. Documentation Generation
-Test variables:
-- Model (technical models vs general models)
-- Context size
-- Few-shot examples (0 vs 3 vs 5)
-- Output format (markdown vs restructured text)
-
-**Result:** Find configuration that produces clear, accurate documentation efficiently.
-
-### 4. Customer Support Response Generation
-Test variables:
-- Temperature
-- Model
-- Context (ticket only vs customer history)
-- Generation strategy (standard vs few-shot)
-
-**Result:** Balance quality (customer satisfaction) with cost and response time.
-
----
-
-## Roadmap
-
-### Phase 1: MVP (Weeks 1-8)
-- ✅ Core workflow framework
-- ✅ Taguchi L8 experiments
-- ✅ Rubric-based evaluation
-- ✅ Pareto frontier visualization
-- ✅ LiteLLM provider abstraction
-- ✅ Langfuse integration
-
-### Phase 2: Advanced Features (Weeks 9-16)
-- ⏳ Pairwise A/B evaluation
-- ⏳ Judge ensembles
-- ⏳ L16/L18 orthogonal arrays
-- ⏳ Web UI for approval queue
-- ⏳ TruLens evaluator integration
-
-### Phase 3: Platform (Weeks 17-24)
-- 📋 Multi-user support
-- 📋 Experiment history and comparison
-- 📋 Custom strategy plugins
-- 📋 Advanced visualizations
+### 5. Latency Optimization
+Balance quality and response time for user-facing applications.
 
 ---
 
 ## Contributing
 
-TesseractFlow is in early development. We welcome:
+Contributions are welcome! Please:
 
-- **Use cases and feedback** - What workflows are you optimizing?
-- **Bug reports** - Found an issue? Open a GitHub issue.
-- **Feature requests** - What would make TesseractFlow more useful?
-- **Code contributions** - PRs welcome! See `CONTRIBUTING.md`
+1. **Open an issue** to discuss major changes
+2. **Run tests** before submitting: `pytest --cov=tesseract_flow`
+3. **Update docs** for new features
+4. **Follow code style** established in `tesseract_flow/core/`
+
+See `docs/development/setup.md` for development environment setup.
 
 ---
 
-## Documentation
+## Roadmap
 
-- [Architecture Overview](docs/architecture/unified-spec.md)
-- [Simplified HITL Pattern](docs/architecture/simplified-hitl.md)
-- [Generation Strategies](docs/architecture/generation-strategies.md)
-- [Examples](examples/)
+### v0.2 (Next Release)
+- [ ] Web dashboard for experiment visualization
+- [ ] Parallel execution (8x speedup)
+- [ ] Additional workflow examples (summarization, extraction)
+- [ ] L16/L18 orthogonal arrays for more variables
+
+### v0.3
+- [ ] Human-in-the-loop (HITL) approval queue integration
+- [ ] PostgreSQL backend for experiment history
+- [ ] Experiment comparison tools
+- [ ] Advanced evaluators (pairwise, ensemble)
+
+### v1.0
+- [ ] Hosted SaaS version
+- [ ] Team collaboration features
+- [ ] CI/CD integrations
+- [ ] Workflow marketplace
 
 ---
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) for details
+TesseractFlow is released under the [MIT License](LICENSE).
 
 ---
 
 ## Citation
 
-If you use TesseractFlow in your research or product, please cite:
+If you use TesseractFlow in research or production, please cite:
 
 ```bibtex
 @software{tesseractflow2025,
   title = {TesseractFlow: Multi-dimensional LLM Workflow Optimization},
-  author = {Ramm, Mark},
+  author = {Mark Ramm},
   year = {2025},
+  version = {0.1.0},
   url = {https://github.com/markramm/TesseractFlow}
 }
 ```
 
 ---
 
-## Acknowledgments
+## Support
 
-- **Taguchi Methods** - Genichi Taguchi's Design of Experiments
-- **LangGraph** - Workflow orchestration framework
-- **Verbalized Sampling** - Research from CHATS Lab (arXiv:2510.01171v3)
-- **LiteLLM** - Universal LLM provider abstraction
+- **Issues:** [GitHub Issues](https://github.com/markramm/TesseractFlow/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/markramm/TesseractFlow/discussions)
+- **Email:** mark.ramm@gmail.com
 
 ---
 
-**TesseractFlow** - Navigate the quality-cost-time manifold
+**Built with ❤️ using Taguchi DOE, LangGraph, and LiteLLM**

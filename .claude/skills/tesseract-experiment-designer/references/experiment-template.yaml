@@ -1,0 +1,75 @@
+# TesseractFlow Experiment Configuration Template
+# Copy and customize for your specific workflow
+
+name: "my_experiment_name"
+workflow: "code_review"  # or your workflow type
+
+# Taguchi L8 Variables (test 4 variables in 8 experiments)
+variables:
+  # Variable 1: Temperature (creativity vs. determinism)
+  - name: "temperature"
+    level_1: 0.3  # Lower = more deterministic, consistent
+    level_2: 0.7  # Higher = more creative, varied
+
+  # Variable 2: Model (cost vs. quality trade-off)
+  - name: "model"
+    level_1: "openrouter/deepseek/deepseek-chat"  # Budget: $0.69/M tokens
+    level_2: "openrouter/anthropic/claude-haiku-4.5"  # Balanced: $3/M tokens
+    # Alternative level_2: "openrouter/anthropic/claude-sonnet-4.5"  # Premium: $9/M tokens
+
+  # Variable 3: Context Size (information scope)
+  - name: "context_size"
+    level_1: "file_only"  # Focused, faster, cheaper
+    level_2: "full_module"  # Comprehensive, slower, more context
+
+  # Variable 4: Generation Strategy (prompting technique)
+  - name: "generation_strategy"
+    level_1: "standard"  # Direct prompting
+    level_2: "chain_of_thought"  # Reasoning-based (often better quality)
+    # Alternative level_2: "few_shot"  # Example-based learning
+
+# Utility Function Weights (how to combine quality, cost, time)
+utility_weights:
+  quality: 1.0  # Most important
+  cost: 0.1     # Somewhat important
+  time: 0.05    # Least important
+
+# Workflow-Specific Configuration
+workflow_config:
+  # For code review workflow:
+  rubric:
+    # Define your quality dimensions (0-100 scale each)
+    functionality:
+      description: "Does the code work correctly and handle edge cases?"
+      scale: "0-100 points"
+      weight: 0.20
+
+    code_quality:
+      description: "Does code follow standards and best practices?"
+      scale: "0-100 points"
+      weight: 0.15
+
+    readability:
+      description: "Is the code easy to understand and maintain?"
+      scale: "0-100 points"
+      weight: 0.15
+
+    # Add more dimensions as needed...
+
+  # Sample code to review (for code_review workflow)
+  sample_code_path: "examples/code_review/sample_code/example1.py"
+  language: "python"
+
+  # Evaluator configuration
+  evaluator_model: "openrouter/anthropic/claude-haiku-4.5"  # Fast, cost-effective
+  evaluator_temperature: 0.3  # Consistent evaluation
+
+  # Context descriptions (optional)
+  context_descriptions:
+    file_only: "Review limited to the provided file only."
+    full_module: "Review considering the full module context and dependencies."
+
+# Expected Costs (for planning)
+# DeepSeek + Haiku eval: ~$0.10 per L8 (8 tests)
+# Haiku + Haiku eval: ~$0.16 per L8
+# Sonnet + Haiku eval: ~$0.35 per L8
