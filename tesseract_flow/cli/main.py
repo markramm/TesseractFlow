@@ -8,10 +8,11 @@ import typer
 
 from tesseract_flow import __version__
 
-from . import experiment, visualize
+from . import analyze, experiment, visualize
 
 app = typer.Typer(help="TesseractFlow command line interface")
 app.add_typer(experiment.app, name="experiment", help="Run and manage experiments")
+app.add_typer(analyze.app, name="analyze", help="Analyze experiment results")
 app.add_typer(visualize.app, name="visualize", help="Generate experiment visualizations")
 
 
