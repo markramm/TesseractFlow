@@ -1,0 +1,117 @@
+# Comprehensive 100-Point Code Review Rubric
+# Based on 2024 industry best practices for code review
+name: "code_review_comprehensive"
+workflow: "code_review"
+
+variables:
+  - name: "temperature"
+    level_1: 0.3
+    level_2: 0.7
+  - name: "model"
+    level_1: "openrouter/deepseek/deepseek-chat"
+    level_2: "openrouter/anthropic/claude-haiku-4.5"
+  - name: "context_size"
+    level_1: "file_only"
+    level_2: "full_module"
+  - name: "generation_strategy"
+    level_1: "standard"
+    level_2: "chain_of_thought"
+
+utility_weights:
+  quality: 1.0
+  cost: 0.1
+  time: 0.05
+
+workflow_config:
+  # Comprehensive 100-point rubric across 7 categories
+  rubric:
+    # 1. Functionality & Correctness (20 points)
+    functionality:
+      description: |
+        Does the code accomplish its intended purpose correctly?
+        - Logic correctness (no bugs, handles all cases)
+        - Edge case handling (nulls, empty inputs, boundaries)
+        - Expected behavior matches requirements
+        - No off-by-one errors or logic flaws
+      scale: "0-20 points"
+      weight: 0.20
+
+    # 2. Code Quality & Style (15 points)
+    code_quality:
+      description: |
+        Does the code follow established standards and best practices?
+        - Consistent naming conventions (clear, descriptive names)
+        - Proper code organization and structure
+        - Adherence to language idioms and patterns
+        - DRY principle (no unnecessary duplication)
+        - SOLID principles where applicable
+        - Appropriate use of design patterns
+      scale: "0-15 points"
+      weight: 0.15
+
+    # 3. Readability & Maintainability (15 points)
+    readability:
+      description: |
+        Is the code easy to understand and maintain?
+        - Clear, self-documenting code structure
+        - Logical flow and organization
+        - Appropriate abstraction levels
+        - Minimal complexity (avoid over-engineering)
+        - Easy for team members to modify
+      scale: "0-15 points"
+      weight: 0.15
+
+    # 4. Error Handling & Robustness (15 points)
+    error_handling:
+      description: |
+        Does the code handle errors and edge cases appropriately?
+        - Proper exception handling (try/catch where needed)
+        - Meaningful error messages
+        - Graceful degradation
+        - Input validation and sanitization
+        - Defensive programming practices
+      scale: "0-15 points"
+      weight: 0.15
+
+    # 5. Testing & Testability (10 points)
+    testing:
+      description: |
+        Is the code testable and adequately tested?
+        - Unit tests cover critical paths
+        - Test cases include edge cases
+        - Code is designed for testability
+        - Tests are clear and maintainable
+        - Appropriate test coverage
+      scale: "0-10 points"
+      weight: 0.10
+
+    # 6. Performance & Efficiency (10 points)
+    performance:
+      description: |
+        Is the code performant and resource-efficient?
+        - No obvious performance bottlenecks
+        - Appropriate algorithm complexity
+        - Efficient resource usage (memory, CPU)
+        - Scalability considerations
+        - Avoids premature optimization
+      scale: "0-10 points"
+      weight: 0.10
+
+    # 7. Security & Safety (15 points)
+    security:
+      description: |
+        Does the code follow security best practices?
+        - Input validation and sanitization
+        - Protection against common vulnerabilities (SQL injection, XSS, etc.)
+        - Proper authentication/authorization checks
+        - Sensitive data handling (encryption, no hardcoded secrets)
+        - Safe dependencies (no known vulnerabilities)
+      scale: "0-15 points"
+      weight: 0.15
+
+  sample_code_path: "examples/code_review/sample_code/example1.py"
+  language: "python"
+
+  context_descriptions:
+    file_only: "Review limited to the provided file only."
+    full_module: "Review considering the full module context and dependencies."

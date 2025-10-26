@@ -178,12 +178,27 @@ class CodeReviewWorkflow(BaseWorkflowService[CodeReviewInput, CodeReviewOutput])
 
     DEFAULT_PROMPTS: Dict[str, str] = {
         "analyze": (
-            "You are an expert reviewer of {{language}} code.\n"
+            "You are an expert {{language}} code reviewer following industry best practices.\n"
             "{% if context %}Context: {{context}}\n{% endif %}"
-            "Review the following snippet and identify issues.\n"
+            "\n"
+            "Review the following code systematically across these dimensions:\n"
+            "1. **Functionality**: Does it work correctly? Handle edge cases?\n"
+            "2. **Code Quality**: Follow standards, naming conventions, design principles?\n"
+            "3. **Readability**: Clear, maintainable, well-organized?\n"
+            "4. **Error Handling**: Proper exceptions, validation, robustness?\n"
+            "5. **Testing**: Testable design, adequate coverage?\n"
+            "6. **Performance**: Efficient algorithms, no obvious bottlenecks?\n"
+            "7. **Security**: Input validation, no vulnerabilities, safe practices?\n"
+            "\n"
             "```{{language}}\n{{code}}\n```\n"
-            "Return JSON with keys 'summary', 'issues', and 'suggestions'. Each issue should "
-            "include type, severity, description, optional line_number, and suggestion."
+            "\n"
+            "Return JSON with:\n"
+            "- 'summary': Brief overview of code quality\n"
+            "- 'issues': Array of objects with {type, severity (low/medium/high/critical), "
+            "description, line_number (optional), suggestion}\n"
+            "- 'suggestions': Array of actionable improvements\n"
+            "\n"
+            "Focus on impactful issues. Be specific and constructive."
         ),
         "suggest": (
             "Given the analysis below, enumerate actionable suggestions in JSON under "
