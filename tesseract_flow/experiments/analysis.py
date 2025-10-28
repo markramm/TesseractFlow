@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import math
 from pathlib import Path
-from statistics import mean
+from statistics import mean, stdev
 from typing import Dict, Iterable, Mapping, MutableMapping, Optional, Sequence
 
 import yaml
@@ -21,6 +21,9 @@ class Effect(BaseModel):
     effect_size: float
     sum_of_squares: float = Field(ge=0.0)
     contribution_pct: float = Field(ge=0.0)
+    std_level_1: Optional[float] = Field(default=None, ge=0.0)
+    std_level_2: Optional[float] = Field(default=None, ge=0.0)
+    replications: int = Field(default=1, ge=1)
 
     model_config = ConfigDict(frozen=True)
 
@@ -71,14 +74,34 @@ class MainEffectsAnalyzer:
         *,
         experiment_id: str,
     ) -> MainEffects:
-        """Return main effects for ``variables`` derived from ``results``."""
+        """Return main effects for ``variables`` derived from ``results``.
 
-        if len(results) != 8:
-            msg = "Main effects analysis requires exactly 8 results for L8 array."
+        Handles both single-run experiments (8 results) and replicated experiments
+        (multiples of 8). For replicated experiments, computes averages and
+        standard deviations across replications.
+        """
+
+        num_results = len(results)
+
+        # Detect replications
+        if num_results < 8 or num_results % 8 != 0:
+            msg = (
+                f"Main effects analysis requires exactly 8 results for L8 array, "
+                f"or a multiple of 8 for replicated experiments. Got {num_results} results."
+            )
             raise ValueError(msg)
+
         if not variables:
             msg = "At least one variable is required for main effects analysis."
             raise ValueError(msg)
+
+        replications = num_results // 8
+
+        # For replicated experiments, average utilities by L8 configuration
+        if replications > 1:
+            averaged_results = _average_replicated_results(results, replications)
+        else:
+            averaged_results = list(results)
 
         effects: MutableMapping[str, Effect] = {}
         total_ss = 0.0
@@ -86,8 +109,10 @@ class MainEffectsAnalyzer:
         for variable in variables:
             name = variable.name
             level_1, level_2 = variable.level_1, variable.level_2
-            level_1_utilities = _utilities_for_level(results, name, level_1)
-            level_2_utilities = _utilities_for_level(results, name, level_2)
+
+            # Get utilities for averaged results
+            level_1_utilities = _utilities_for_level(averaged_results, name, level_1)
+            level_2_utilities = _utilities_for_level(averaged_results, name, level_2)
 
             if not level_1_utilities or not level_2_utilities:
                 msg = f"Results are missing level assignments for variable '{name}'."
@@ -99,6 +124,10 @@ class MainEffectsAnalyzer:
             sum_of_squares = (effect_size**2) * len(level_1_utilities)
             total_ss += sum_of_squares
 
+            # Compute standard deviations for replicated experiments
+            std_1 = stdev(level_1_utilities) if len(level_1_utilities) > 1 and replications > 1 else None
+            std_2 = stdev(level_2_utilities) if len(level_2_utilities) > 1 and replications > 1 else None
+
             effects[name] = Effect(
                 variable=name,
                 avg_level_1=avg_1,
@@ -106,6 +135,9 @@ class MainEffectsAnalyzer:
                 effect_size=effect_size,
                 sum_of_squares=sum_of_squares,
                 contribution_pct=0.0,
+                std_level_1=std_1,
+                std_level_2=std_2,
+                replications=replications,
             )
 
         if total_ss > 0.0:
@@ -207,6 +239,79 @@ def _utilities_for_level(
         if value == level_value:
             utilities.append(result.utility)
     return utilities
+
+
+def _average_replicated_results(
+    results: Sequence[TestResult],
+    replications: int,
+) -> list[TestResult]:
+    """Average replicated results by L8 configuration.
+
+    For n replications, we have 8*n results. This function groups them by
+    L8 configuration index (1-8) and averages the metrics (quality, cost,
+    latency, utility) across replications.
+
+    Returns 8 averaged TestResult objects (one per L8 configuration).
+    """
+    # Group results by L8 configuration (tests 1-8, 9-16, 17-24, etc.)
+    config_groups: Dict[int, list[TestResult]] = {}
+
+    for result in results:
+        # Map test_number to L8 config index (1-8)
+        # test_number 1,9,17,25,33 -> config 1
+        # test_number 2,10,18,26,34 -> config 2, etc.
+        config_index = ((result.test_number - 1) % 8) + 1
+
+        if config_index not in config_groups:
+            config_groups[config_index] = []
+        config_groups[config_index].append(result)
+
+    # Average metrics for each configuration
+    averaged_results: list[TestResult] = []
+
+    for config_index in sorted(config_groups.keys()):
+        group = config_groups[config_index]
+
+        if len(group) != replications:
+            msg = (
+                f"Expected {replications} replications for config {config_index}, "
+                f"got {len(group)}"
+            )
+            raise ValueError(msg)
+
+        # Use the first result as a template
+        template = group[0]
+
+        # Average numeric metrics
+        avg_quality = mean(r.quality_score.overall_score for r in group)
+        avg_cost = mean(r.cost for r in group)
+        avg_latency = mean(r.latency for r in group)
+        avg_utility = mean(r.utility for r in group)
+
+        # Create averaged quality score
+        avg_quality_score = template.quality_score.model_copy(
+            update={"overall_score": avg_quality}
+        )
+
+        # Create averaged result - use model_copy to preserve computed properties
+        averaged_result = template.model_copy(
+            update={
+                "test_number": config_index,  # Use L8 index (1-8)
+                "quality_score": avg_quality_score,
+                "cost": avg_cost,
+                "latency": avg_latency,
+                "metadata": {
+                    **template.metadata,
+                    "replications": replications,
+                    "averaged": True,
+                    "avg_utility": avg_utility,  # Store averaged utility in metadata
+                },
+            }
+        )
+
+        averaged_results.append(averaged_result)
+
+    return averaged_results
 
 
 __all__ = [

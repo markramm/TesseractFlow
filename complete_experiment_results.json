@@ -1,0 +1,1359 @@
+{
+  "experiment_id": "code_review_optimization-20251026T054644",
+  "config": {
+    "name": "code_review_optimization",
+    "workflow": "code_review",
+    "variables": [
+      {
+        "name": "temperature",
+        "level_1": 0.3,
+        "level_2": 0.7
+      },
+      {
+        "name": "model",
+        "level_1": "openrouter/deepseek/deepseek-chat",
+        "level_2": "openrouter/anthropic/claude-haiku-4.5"
+      },
+      {
+        "name": "context_size",
+        "level_1": "file_only",
+        "level_2": "full_module"
+      },
+      {
+        "name": "generation_strategy",
+        "level_1": "standard",
+        "level_2": "chain_of_thought"
+      }
+    ],
+    "utility_weights": {
+      "quality": 1.0,
+      "cost": 0.1,
+      "time": 0.05
+    },
+    "workflow_config": {
+      "rubric": {
+        "clarity": {
+          "description": "Is the review easy to follow and understand?",
+          "scale": "1-10"
+        },
+        "accuracy": {
+          "description": "Do the identified issues reflect real problems?",
+          "scale": "1-10"
+        },
+        "completeness": {
+          "description": "Does the review cover important aspects of the code?",
+          "scale": "1-10"
+        }
+      },
+      "sample_code_path": "examples/code_review/sample_code/example1.py",
+      "language": "python",
+      "context_descriptions": {
+        "file_only": "Review limited to the provided snippet.",
+        "full_module": "Consider module-level implications during review."
+      }
+    }
+  },
+  "test_configurations": [
+    {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.3,
+        "model": "openrouter/deepseek/deepseek-chat",
+        "context_size": "file_only",
+        "generation_strategy": "standard"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 2,
+      "config_values": {
+        "temperature": 0.3,
+        "model": "openrouter/deepseek/deepseek-chat",
+        "context_size": "file_only",
+        "generation_strategy": "chain_of_thought"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 3,
+      "config_values": {
+        "temperature": 0.3,
+        "model": "openrouter/anthropic/claude-haiku-4.5",
+        "context_size": "full_module",
+        "generation_strategy": "standard"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 4,
+      "config_values": {
+        "temperature": 0.3,
+        "model": "openrouter/anthropic/claude-haiku-4.5",
+        "context_size": "full_module",
+        "generation_strategy": "chain_of_thought"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 5,
+      "config_values": {
+        "temperature": 0.7,
+        "model": "openrouter/deepseek/deepseek-chat",
+        "context_size": "full_module",
+        "generation_strategy": "standard"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 6,
+      "config_values": {
+        "temperature": 0.7,
+        "model": "openrouter/deepseek/deepseek-chat",
+        "context_size": "full_module",
+        "generation_strategy": "chain_of_thought"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 7,
+      "config_values": {
+        "temperature": 0.7,
+        "model": "openrouter/anthropic/claude-haiku-4.5",
+        "context_size": "file_only",
+        "generation_strategy": "standard"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 8,
+      "config_values": {
+        "temperature": 0.7,
+        "model": "openrouter/anthropic/claude-haiku-4.5",
+        "context_size": "file_only",
+        "generation_strategy": "chain_of_thought"
+      },
+      "workflow": "code_review"
+    }
+  ],
+  "results": [
+    {
+      "test_number": 1,
+      "config": {
+        "test_number": 1,
+        "config_values": {
+          "temperature": 0.3,
+          "model": "openrouter/deepseek/deepseek-chat",
+          "context_size": "file_only",
+          "generation_strategy": "standard"
+        },
+        "workflow": "code_review"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "clarity": {
+            "score": 0.9,
+            "reasoning": "The review is well-structured and easy to follow. Issues are clearly labeled with severity levels, and suggestions are concise and actionable. Minor improvements could include grouping related issues or using bullet points for better readability."
+          },
+          "accuracy": {
+            "score": 1.0,
+            "reasoning": "All identified issues are valid and reflect real problems in the code. The suggested fixes are appropriate and align with best practices in Python development."
+          },
+          "completeness": {
+            "score": 0.8,
+            "reasoning": "The review covers most important aspects of the code, including type hints, docstrings, error handling, and module documentation. However, it could have mentioned the importance of version control or coding style (e.g., PEP 8 compliance) for a more comprehensive evaluation."
+          }
+        },
+        "overall_score": 0.9,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-26T05:47:06.127925Z",
+        "metadata": {
+          "rubric": {
+            "clarity": {
+              "description": "Is the review easy to follow and understand?",
+              "scale": "1-10"
+            },
+            "accuracy": {
+              "description": "Do the identified issues reflect real problems?",
+              "scale": "1-10"
+            },
+            "completeness": {
+              "description": "Does the review cover important aspects of the code?",
+              "scale": "1-10"
+            }
+          },
+          "raw_response": {
+            "clarity": {
+              "score": 9,
+              "reasoning": "The review is well-structured and easy to follow. Issues are clearly labeled with severity levels, and suggestions are concise and actionable. Minor improvements could include grouping related issues or using bullet points for better readability."
+            },
+            "accuracy": {
+              "score": 10,
+              "reasoning": "All identified issues are valid and reflect real problems in the code. The suggested fixes are appropriate and align with best practices in Python development."
+            },
+            "completeness": {
+              "score": 8,
+              "reasoning": "The review covers most important aspects of the code, including type hints, docstrings, error handling, and module documentation. However, it could have mentioned the importance of version control or coding style (e.g., PEP 8 compliance) for a more comprehensive evaluation."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "b8bde17b54f361fb9a44f9819d2ea3938e5e0bcc5ec0fa1dea0e518e14f4ba9e",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 13378.35250000353,
+      "utility": 0.8565565725854407,
+      "workflow_output": "The code snippet is a simple module with two basic math operations. Overall it's clean and functional, but has some minor issues that could be improved.\nIssues:\n- (low) The type hints only allow integers, which limits the functions' usefulness for floating-point numbers. [line 4] Suggested fix: Consider using Union[int, float] or float for type hints to support more numeric types.\n- (low) The individual functions lack docstrings explaining their purpose and parameters. [line 4] Suggested fix: Add docstrings following PEP 257 conventions, explaining what each function does and its parameters.\n- (medium) No error handling for cases where non-numeric values are passed. Suggested fix: Consider adding type checking or try-except blocks to handle invalid inputs gracefully.\n- (low) The module docstring is very basic and doesn't explain usage examples. [line 1] Suggested fix: Expand the module docstring to include usage examples and more detailed description.\nSuggestions:\n- Consider adding multiplication and division functions for more complete math operations.\n- Add unit tests to verify the functions work as expected.\n- Consider using @overload if you want to maintain separate type signatures for int vs float inputs.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.3,
+        "context_size": "file_only",
+        "language": "python",
+        "sample_code_path": "/Users/markr/Documents/aiwriting/TesseractFlow/examples/code_review/sample_code/example1.py",
+        "analysis_prompt": "You are an expert reviewer of python code.\nContext: Review limited to the provided file.\nReview the following snippet and identify issues.\n```python\n\"\"\"Example module showcasing simple math operations.\"\"\"\n\n\ndef add(a: int, b: int) -> int:\n    return a + b\n\n\ndef subtract(a: int, b: int) -> int:\n    return a - b\n```\nReturn JSON with keys 'summary', 'issues', and 'suggestions'. Each issue should include type, severity, description, optional line_number, and suggestion.",
+        "analysis_raw": "```json\n{\n  \"summary\": \"The code snippet is a simple module with two basic math operations. Overall it's clean and functional, but has some minor issues that could be improved.\",\n  \"issues\": [\n    {\n      \"type\": \"Type Hint Limitation\",\n      \"severity\": \"low\",\n      \"description\": \"The type hints only allow integers, which limits the functions' usefulness for floating-point numbers.\",\n      \"line_number\": 4,\n      \"suggestion\": \"Consider using Union[int, float] or float for type hints to support more numeric types.\"\n    },\n    {\n      \"type\": \"Missing Docstrings\",\n      \"severity\": \"low\",\n      \"description\": \"The individual functions lack docstrings explaining their purpose and parameters.\",\n      \"line_number\": 4,\n      \"suggestion\": \"Add docstrings following PEP 257 conventions, explaining what each function does and its parameters.\"\n    },\n    {\n      \"type\": \"Missing Error Handling\",\n      \"severity\": \"medium\",\n      \"description\": \"No error handling for cases where non-numeric values are passed.\",\n      \"line_number\": null,\n      \"suggestion\": \"Consider adding type checking or try-except blocks to handle invalid inputs gracefully.\"\n    },\n    {\n      \"type\": \"Missing Module Docstring Detail\",\n      \"severity\": \"low\",\n      \"description\": \"The module docstring is very basic and doesn't explain usage examples.\",\n      \"line_number\": 1,\n      \"suggestion\": \"Expand the module docstring to include usage examples and more detailed description.\"\n    }\n  ],\n  \"suggestions\": [\n    \"Consider adding multiplication and division functions for more complete math operations.\",\n    \"Add unit tests to verify the functions work as expected.\",\n    \"Consider using @overload if you want to maintain separate type signatures for int vs float inputs.\"\n  ]\n}\n```",
+        "test_config": {
+          "test_number": 1,
+          "config": {
+            "temperature": 0.3,
+            "model": "openrouter/deepseek/deepseek-chat",
+            "context_size": "file_only",
+            "generation_strategy": "standard"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-26T05:46:44.249010Z",
+          "completed_at": "2025-10-26T05:46:57.627508Z",
+          "duration_seconds": 13.37835250000353
+        },
+        "evaluation": {
+          "rubric": {
+            "clarity": {
+              "description": "Is the review easy to follow and understand?",
+              "scale": "1-10"
+            },
+            "accuracy": {
+              "description": "Do the identified issues reflect real problems?",
+              "scale": "1-10"
+            },
+            "completeness": {
+              "description": "Does the review cover important aspects of the code?",
+              "scale": "1-10"
+            }
+          },
+          "raw_response": {
+            "clarity": {
+              "score": 9,
+              "reasoning": "The review is well-structured and easy to follow. Issues are clearly labeled with severity levels, and suggestions are concise and actionable. Minor improvements could include grouping related issues or using bullet points for better readability."
+            },
+            "accuracy": {
+              "score": 10,
+              "reasoning": "All identified issues are valid and reflect real problems in the code. The suggested fixes are appropriate and align with best practices in Python development."
+            },
+            "completeness": {
+              "score": 8,
+              "reasoning": "The review covers most important aspects of the code, including type hints, docstrings, error handling, and module documentation. However, it could have mentioned the importance of version control or coding style (e.g., PEP 8 compliance) for a more comprehensive evaluation."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "b8bde17b54f361fb9a44f9819d2ea3938e5e0bcc5ec0fa1dea0e518e14f4ba9e",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-26T05:47:06.128149Z"
+    },
+    {
+      "test_number": 2,
+      "config": {
+        "test_number": 2,
+        "config_values": {
+          "temperature": 0.3,
+          "model": "openrouter/deepseek/deepseek-chat",
+          "context_size": "file_only",
+          "generation_strategy": "chain_of_thought"
+        },
+        "workflow": "code_review"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "clarity": {
+            "score": 0.9,
+            "reasoning": "The review is well-structured and easy to follow. Issues and suggestions are clearly separated, and each point is explained concisely. Minor improvements could include bullet points or numbered lists for better readability."
+          },
+          "accuracy": {
+            "score": 1.0,
+            "reasoning": "The identified issues accurately reflect real problems in the code. The suggestions for type hints, docstrings, and error handling are valid and relevant to improving the code's robustness and usability."
+          },
+          "completeness": {
+            "score": 0.9,
+            "reasoning": "The review covers important aspects such as type hints, docstrings, error handling, and testing. It could be slightly more comprehensive by mentioning potential edge cases or performance considerations, but overall, it is thorough."
+          }
+        },
+        "overall_score": 0.9333333333333332,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-26T05:47:27.054291Z",
+        "metadata": {
+          "rubric": {
+            "clarity": {
+              "description": "Is the review easy to follow and understand?",
+              "scale": "1-10"
+            },
+            "accuracy": {
+              "description": "Do the identified issues reflect real problems?",
+              "scale": "1-10"
+            },
+            "completeness": {
+              "description": "Does the review cover important aspects of the code?",
+              "scale": "1-10"
+            }
+          },
+          "raw_response": {
+            "clarity": {
+              "score": 9,
+              "reasoning": "The review is well-structured and easy to follow. Issues and suggestions are clearly separated, and each point is explained concisely. Minor improvements could include bullet points or numbered lists for better readability."
+            },
+            "accuracy": {
+              "score": 10,
+              "reasoning": "The identified issues accurately reflect real problems in the code. The suggestions for type hints, docstrings, and error handling are valid and relevant to improving the code's robustness and usability."
+            },
+            "completeness": {
+              "score": 9,
+              "reasoning": "The review covers important aspects such as type hints, docstrings, error handling, and testing. It could be slightly more comprehensive by mentioning potential edge cases or performance considerations, but overall, it is thorough."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "3261b8c0b4b58712ae62179831265ec6f78253c521d462f1273510e12e9ac973",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 14747.151292016497,
+      "utility": 0.8833333333333332,
+      "workflow_output": "The provided Python snippet is a simple module showcasing basic math operations. The code is clean and functional, but there are minor issues related to type hints and potential improvements for robustness.\nIssues:\n- (low) The type hints for the functions `add` and `subtract` only accept `int` types, which limits the usability of these functions for floating-point numbers or other numeric types. [line 4] Suggested fix: Consider using `Union[int, float]` or `float` as type hints if floating-point operations are expected, or `typing.Number` for broader numeric compatibility.\n- (low) The functions `add` and `subtract` lack detailed docstrings explaining their purpose, parameters, and return values. [line 4] Suggested fix: Add docstrings to each function following the PEP 257 guidelines. For example: `\"\"\"Add two numbers.\"\"\"` for the `add` function.\n- (medium) The functions do not handle potential errors, such as non-numeric inputs, which could lead to runtime exceptions. [line 4] Suggested fix: Add input validation or error handling to ensure the inputs are numeric. For example, use `isinstance()` checks or try-except blocks.\nSuggestions:\n- Consider adding a module-level docstring to provide an overview of the module's purpose and usage.\n- Expand the type hints to support more numeric types if the functions are intended to be more versatile.\n- Include examples in the docstrings to demonstrate how the functions should be used.\n- Add unit tests to verify the correctness of the functions, especially if they are part of a larger codebase.",
+      "metadata": {
+        "strategy": "chain_of_thought",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.3,
+        "context_size": "file_only",
+        "language": "python",
+        "sample_code_path": "/Users/markr/Documents/aiwriting/TesseractFlow/examples/code_review/sample_code/example1.py",
+        "analysis_prompt": "You are an expert reviewer of python code.\nContext: Review limited to the provided file.\nReview the following snippet and identify issues.\n```python\n\"\"\"Example module showcasing simple math operations.\"\"\"\n\n\ndef add(a: int, b: int) -> int:\n    return a + b\n\n\ndef subtract(a: int, b: int) -> int:\n    return a - b\n```\nReturn JSON with keys 'summary', 'issues', and 'suggestions'. Each issue should include type, severity, description, optional line_number, and suggestion.",
+        "analysis_raw": "```json\n{\n  \"summary\": \"The provided Python snippet is a simple module showcasing basic math operations. The code is clean and functional, but there are minor issues related to type hints and potential improvements for robustness.\",\n  \"issues\": [\n    {\n      \"type\": \"Type Hint Limitation\",\n      \"severity\": \"Low\",\n      \"description\": \"The type hints for the functions `add` and `subtract` only accept `int` types, which limits the usability of these functions for floating-point numbers or other numeric types.\",\n      \"line_number\": 4,\n      \"suggestion\": \"Consider using `Union[int, float]` or `float` as type hints if floating-point operations are expected, or `typing.Number` for broader numeric compatibility.\"\n    },\n    {\n      \"type\": \"Missing Docstrings\",\n      \"severity\": \"Low\",\n      \"description\": \"The functions `add` and `subtract` lack detailed docstrings explaining their purpose, parameters, and return values.\",\n      \"line_number\": 4,\n      \"suggestion\": \"Add docstrings to each function following the PEP 257 guidelines. For example: `\\\"\\\"\\\"Add two numbers.\\\"\\\"\\\"` for the `add` function.\"\n    },\n    {\n      \"type\": \"No Error Handling\",\n      \"severity\": \"Medium\",\n      \"description\": \"The functions do not handle potential errors, such as non-numeric inputs, which could lead to runtime exceptions.\",\n      \"line_number\": 4,\n      \"suggestion\": \"Add input validation or error handling to ensure the inputs are numeric. For example, use `isinstance()` checks or try-except blocks.\"\n    }\n  ],\n  \"suggestions\": [\n    \"Consider adding a module-level docstring to provide an overview of the module's purpose and usage.\",\n    \"Expand the type hints to support more numeric types if the functions are intended to be more versatile.\",\n    \"Include examples in the docstrings to demonstrate how the functions should be used.\",\n    \"Add unit tests to verify the correctness of the functions, especially if they are part of a larger codebase.\"\n  ]\n}\n```",
+        "test_config": {
+          "test_number": 2,
+          "config": {
+            "temperature": 0.3,
+            "model": "openrouter/deepseek/deepseek-chat",
+            "context_size": "file_only",
+            "generation_strategy": "chain_of_thought"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-26T05:47:06.129614Z",
+          "completed_at": "2025-10-26T05:47:20.876929Z",
+          "duration_seconds": 14.747151292016497
+        },
+        "evaluation": {
+          "rubric": {
+            "clarity": {
+              "description": "Is the review easy to follow and understand?",
+              "scale": "1-10"
+            },
+            "accuracy": {
+              "description": "Do the identified issues reflect real problems?",
+              "scale": "1-10"
+            },
+            "completeness": {
+              "description": "Does the review cover important aspects of the code?",
+              "scale": "1-10"
+            }
+          },
+          "raw_response": {
+            "clarity": {
+              "score": 9,
+              "reasoning": "The review is well-structured and easy to follow. Issues and suggestions are clearly separated, and each point is explained concisely. Minor improvements could include bullet points or numbered lists for better readability."
+            },
+            "accuracy": {
+              "score": 10,
+              "reasoning": "The identified issues accurately reflect real problems in the code. The suggestions for type hints, docstrings, and error handling are valid and relevant to improving the code's robustness and usability."
+            },
+            "completeness": {
+              "score": 9,
+              "reasoning": "The review covers important aspects such as type hints, docstrings, error handling, and testing. It could be slightly more comprehensive by mentioning potential edge cases or performance considerations, but overall, it is thorough."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "3261b8c0b4b58712ae62179831265ec6f78253c521d462f1273510e12e9ac973",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-26T05:47:27.054416Z"
+    },
+    {
+      "test_number": 3,
+      "config": {
+        "test_number": 3,
+        "config_values": {
+          "temperature": 0.3,
+          "model": "openrouter/anthropic/claude-haiku-4.5",
+          "context_size": "full_module",
+          "generation_strategy": "standard"
+        },
+        "workflow": "code_review"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "clarity": {
+            "score": 0.9,
+            "reasoning": "The review is well-organized and easy to follow. Issues and suggestions are clearly separated, and each point is explained concisely. The use of examples and specific recommendations enhances understanding."
+          },
+          "accuracy": {
+            "score": 1.0,
+            "reasoning": "The identified issues are accurate and reflect real problems in the code. The suggestions for improvement are relevant and practical, addressing documentation, type hints, and testing."
+          },
+          "completeness": {
+            "score": 0.8,
+            "reasoning": "The review covers important aspects such as documentation, type hints, and testing. However, it could have included a brief mention of code readability or style, though these may be less critical in this context."
+          }
+        },
+        "overall_score": 0.9,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-26T05:47:34.104771Z",
+        "metadata": {
+          "rubric": {
+            "clarity": {
+              "description": "Is the review easy to follow and understand?",
+              "scale": "1-10"
+            },
+            "accuracy": {
+              "description": "Do the identified issues reflect real problems?",
+              "scale": "1-10"
+            },
+            "completeness": {
+              "description": "Does the review cover important aspects of the code?",
+              "scale": "1-10"
+            }
+          },
+          "raw_response": {
+            "clarity": {
+              "score": 9,
+              "reasoning": "The review is well-organized and easy to follow. Issues and suggestions are clearly separated, and each point is explained concisely. The use of examples and specific recommendations enhances understanding."
+            },
+            "accuracy": {
+              "score": 10,
+              "reasoning": "The identified issues are accurate and reflect real problems in the code. The suggestions for improvement are relevant and practical, addressing documentation, type hints, and testing."
+            },
+            "completeness": {
+              "score": 8,
+              "reasoning": "The review covers important aspects such as documentation, type hints, and testing. However, it could have included a brief mention of code readability or style, though these may be less critical in this context."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "43414b3228dd7907cbb1ef0592f02dfd9273aa6bbcd8509d696637103b40a4e8",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 4308.779915998457,
+      "utility": 0.9,
+      "workflow_output": "The module is well-structured with basic functionality. No critical issues detected, but there are minor areas for improvement.\nIssues:\n- (low) Functions lack docstrings explaining their purpose, parameters, and return values. Suggested fix: Add docstrings to each function following PEP 257 conventions. Example: 'Add two integers and return their sum.'\n- (low) Type hints are restrictive - they only accept `int` type, but the functions would work with any numeric type (float, Decimal, etc.). Suggested fix: Consider using `Union[int, float]` or a numeric protocol for more flexibility, or document why only integers are accepted.\n- (medium) No unit tests are present to verify the correctness of the functions. Suggested fix: Create a test file (e.g., `test_math.py`) with test cases covering normal cases, edge cases, and potential error conditions.\nSuggestions:\n- Consider adding type hints for edge cases or error handling if needed.\n- Add a module-level example or usage section in the docstring.\n- If this module grows, consider organizing functions into classes or submodules.\n- Add a `__all__` variable to explicitly define the public API.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/anthropic/claude-haiku-4.5",
+        "temperature": 0.3,
+        "context_size": "full_module",
+        "language": "python",
+        "sample_code_path": "/Users/markr/Documents/aiwriting/TesseractFlow/examples/code_review/sample_code/example1.py",
+        "analysis_prompt": "You are an expert reviewer of python code.\nContext: Consider surrounding module context for the review.\nReview the following snippet and identify issues.\n```python\n\"\"\"Example module showcasing simple math operations.\"\"\"\n\n\ndef add(a: int, b: int) -> int:\n    return a + b\n\n\ndef subtract(a: int, b: int) -> int:\n    return a - b\n```\nReturn JSON with keys 'summary', 'issues', and 'suggestions'. Each issue should include type, severity, description, optional line_number, and suggestion.",
+        "analysis_raw": "```json\n{\n  \"summary\": \"The module is well-structured with basic functionality. No critical issues detected, but there are minor areas for improvement.\",\n  \"issues\": [\n    {\n      \"type\": \"missing_docstrings\",\n      \"severity\": \"low\",\n      \"description\": \"Functions lack docstrings explaining their purpose, parameters, and return values.\",\n      \"line_number\": [4, 8],\n      \"suggestion\": \"Add docstrings to each function following PEP 257 conventions. Example: 'Add two integers and return their sum.'\"\n    },\n    {\n      \"type\": \"type_hint_limitation\",\n      \"severity\": \"low\",\n      \"description\": \"Type hints are restrictive - they only accept `int` type, but the functions would work with any numeric type (float, Decimal, etc.).\",\n      \"line_number\": [4, 8],\n      \"suggestion\": \"Consider using `Union[int, float]` or a numeric protocol for more flexibility, or document why only integers are accepted.\"\n    },\n    {\n      \"type\": \"missing_tests\",\n      \"severity\": \"medium\",\n      \"description\": \"No unit tests are present to verify the correctness of the functions.\",\n      \"suggestion\": \"Create a test file (e.g., `test_math.py`) with test cases covering normal cases, edge cases, and potential error conditions.\"\n    }\n  ],\n  \"suggestions\": [\n    \"Consider adding type hints for edge cases or error handling if needed.\",\n    \"Add a module-level example or usage section in the docstring.\",\n    \"If this module grows, consider organizing functions into classes or submodules.\",\n    \"Add a `__all__` variable to explicitly define the public API.\"\n  ]\n}\n```",
+        "test_config": {
+          "test_number": 3,
+          "config": {
+            "temperature": 0.3,
+            "model": "openrouter/anthropic/claude-haiku-4.5",
+            "context_size": "full_module",
+            "generation_strategy": "standard"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-26T05:47:27.055481Z",
+          "completed_at": "2025-10-26T05:47:31.364310Z",
+          "duration_seconds": 4.308779915998457
+        },
+        "evaluation": {
+          "rubric": {
+            "clarity": {
+              "description": "Is the review easy to follow and understand?",
+              "scale": "1-10"
+            },
+            "accuracy": {
+              "description": "Do the identified issues reflect real problems?",
+              "scale": "1-10"
+            },
+            "completeness": {
+              "description": "Does the review cover important aspects of the code?",
+              "scale": "1-10"
+            }
+          },
+          "raw_response": {
+            "clarity": {
+              "score": 9,
+              "reasoning": "The review is well-organized and easy to follow. Issues and suggestions are clearly separated, and each point is explained concisely. The use of examples and specific recommendations enhances understanding."
+            },
+            "accuracy": {
+              "score": 10,
+              "reasoning": "The identified issues are accurate and reflect real problems in the code. The suggestions for improvement are relevant and practical, addressing documentation, type hints, and testing."
+            },
+            "completeness": {
+              "score": 8,
+              "reasoning": "The review covers important aspects such as documentation, type hints, and testing. However, it could have included a brief mention of code readability or style, though these may be less critical in this context."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "43414b3228dd7907cbb1ef0592f02dfd9273aa6bbcd8509d696637103b40a4e8",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-26T05:47:34.104902Z"
+    },
+    {
+      "test_number": 4,
+      "config": {
+        "test_number": 4,
+        "config_values": {
+          "temperature": 0.3,
+          "model": "openrouter/anthropic/claude-haiku-4.5",
+          "context_size": "full_module",
+          "generation_strategy": "chain_of_thought"
+        },
+        "workflow": "code_review"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "clarity": {
+            "score": 0.9,
+            "reasoning": "The review is well-structured with clear headings and a logical flow. The issues are described in detail with specific suggestions, making it easy to follow. The use of JSON for findings enhances readability."
+          },
+          "accuracy": {
+            "score": 0.9,
+            "reasoning": "The identified issues, such as missing docstrings and lack of input validation, are valid and accurately reflect potential problems in the code. The suggestions provided are practical and relevant."
+          },
+          "completeness": {
+            "score": 0.8,
+            "reasoning": "The review covers key aspects like documentation, type hints, and robustness. However, it could have included a brief mention of performance considerations or more detailed examples of edge cases."
+          }
+        },
+        "overall_score": 0.8666666666666667,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-26T05:47:42.235303Z",
+        "metadata": {
+          "rubric": {
+            "clarity": {
+              "description": "Is the review easy to follow and understand?",
+              "scale": "1-10"
+            },
+            "accuracy": {
+              "description": "Do the identified issues reflect real problems?",
+              "scale": "1-10"
+            },
+            "completeness": {
+              "description": "Does the review cover important aspects of the code?",
+              "scale": "1-10"
+            }
+          },
+          "raw_response": {
+            "clarity": {
+              "score": 9,
+              "reasoning": "The review is well-structured with clear headings and a logical flow. The issues are described in detail with specific suggestions, making it easy to follow. The use of JSON for findings enhances readability."
+            },
+            "accuracy": {
+              "score": 9,
+              "reasoning": "The identified issues, such as missing docstrings and lack of input validation, are valid and accurately reflect potential problems in the code. The suggestions provided are practical and relevant."
+            },
+            "completeness": {
+              "score": 8,
+              "reasoning": "The review covers key aspects like documentation, type hints, and robustness. However, it could have included a brief mention of performance considerations or more detailed examples of edge cases."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "8f459789b2c0224343a08df901d663b2f364ff4ff4a9f192fb1401a1a9bdc6fb",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 5341.863042005571,
+      "utility": 0.8617181785893954,
+      "workflow_output": "# Code Review Analysis\n\nLet me think through this step-by-step:\n\n## Analysis Process\n\n1. **Module Purpose**: Simple math operations module with type hints\n2. **Code Structure**: Two functions with clear signatures\n3. **Type Hints**: Present and consistent\n4. **Documentation**: Module docstring exists, but functions lack docstrings\n5. **Potential Issues**:\n   - Missing function-level documentation\n   - Type hints allow any int, including edge cases\n   - No input validation\n   - Limited error handling\n   - No examples or usage documentation\n\n## Findings\n\n```json\n{\n  \"summary\": \"The module is well-structured with proper type hints, but lacks comprehensive documentation and input validation. The code is functional but could benefit from docstrings and consideration of edge cases.\",\n  \"issues\": [\n    {\n      \"type\": \"documentation\",\n      \"severity\": \"medium\",\n      \"description\": \"Functions lack docstrings explaining parameters, return values, and behavior\",\n      \"line_number\": 5,\n      \"suggestion\": \"Add docstrings to both functions following PEP 257 convention, e.g., 'Add two integers and return their sum.'\"\n    },\n    {\n      \"type\": \"robustness\",\n      \"severity\": \"low\",\n      \"description\": \"No input validation or error handling for edge cases (e.g., None values, type mismatches at runtime)\",\n      \"line_number\": null,\n      \"suggestion\": \"Consider adding runtime type checking or validation if this module will receive untrusted input, or document assumptions clearly\"\n    },\n    {\n      \"type\": \"completeness\",\n      \"severity\": \"low\",\n      \"description\": \"Module lacks usage examples or additional common math operations\",\n      \"line_number\": 1,\n      \"suggestion\": \"Consider adding a module-level example in the docstring or implementing multiply/divide functions for a more complete math module\"\n    }\n  ],\n  \"suggestions\": [\n    \"Add comprehensive docstrings to all public functions\",\n    \"Consider adding type hints for edge cases (e.g., Optional types if None is possible)\",\n    \"Add unit tests to validate function behavior\",\n    \"Consider using a tool like `mypy` for static type checking\"\n  ]\n}\n```",
+      "metadata": {
+        "strategy": "chain_of_thought",
+        "model": "openrouter/anthropic/claude-haiku-4.5",
+        "temperature": 0.3,
+        "context_size": "full_module",
+        "language": "python",
+        "sample_code_path": "/Users/markr/Documents/aiwriting/TesseractFlow/examples/code_review/sample_code/example1.py",
+        "analysis_prompt": "You are an expert reviewer of python code.\nContext: Consider surrounding module context for the review.\nReview the following snippet and identify issues.\n```python\n\"\"\"Example module showcasing simple math operations.\"\"\"\n\n\ndef add(a: int, b: int) -> int:\n    return a + b\n\n\ndef subtract(a: int, b: int) -> int:\n    return a - b\n```\nReturn JSON with keys 'summary', 'issues', and 'suggestions'. Each issue should include type, severity, description, optional line_number, and suggestion.",
+        "analysis_raw": "# Code Review Analysis\n\nLet me think through this step-by-step:\n\n## Analysis Process\n\n1. **Module Purpose**: Simple math operations module with type hints\n2. **Code Structure**: Two functions with clear signatures\n3. **Type Hints**: Present and consistent\n4. **Documentation**: Module docstring exists, but functions lack docstrings\n5. **Potential Issues**:\n   - Missing function-level documentation\n   - Type hints allow any int, including edge cases\n   - No input validation\n   - Limited error handling\n   - No examples or usage documentation\n\n## Findings\n\n```json\n{\n  \"summary\": \"The module is well-structured with proper type hints, but lacks comprehensive documentation and input validation. The code is functional but could benefit from docstrings and consideration of edge cases.\",\n  \"issues\": [\n    {\n      \"type\": \"documentation\",\n      \"severity\": \"medium\",\n      \"description\": \"Functions lack docstrings explaining parameters, return values, and behavior\",\n      \"line_number\": 5,\n      \"suggestion\": \"Add docstrings to both functions following PEP 257 convention, e.g., 'Add two integers and return their sum.'\"\n    },\n    {\n      \"type\": \"robustness\",\n      \"severity\": \"low\",\n      \"description\": \"No input validation or error handling for edge cases (e.g., None values, type mismatches at runtime)\",\n      \"line_number\": null,\n      \"suggestion\": \"Consider adding runtime type checking or validation if this module will receive untrusted input, or document assumptions clearly\"\n    },\n    {\n      \"type\": \"completeness\",\n      \"severity\": \"low\",\n      \"description\": \"Module lacks usage examples or additional common math operations\",\n      \"line_number\": 1,\n      \"suggestion\": \"Consider adding a module-level example in the docstring or implementing multiply/divide functions for a more complete math module\"\n    }\n  ],\n  \"suggestions\": [\n    \"Add comprehensive docstrings to all public functions\",\n    \"Consider adding type hints for edge cases (e.g., Optional types if None is possible)\",\n    \"Add unit tests to validate function behavior\",\n    \"Consider using a tool like `mypy` for static type checking\"\n  ]\n}\n```",
+        "test_config": {
+          "test_number": 4,
+          "config": {
+            "temperature": 0.3,
+            "model": "openrouter/anthropic/claude-haiku-4.5",
+            "context_size": "full_module",
+            "generation_strategy": "chain_of_thought"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-26T05:47:34.105844Z",
+          "completed_at": "2025-10-26T05:47:39.447766Z",
+          "duration_seconds": 5.341863042005571
+        },
+        "evaluation": {
+          "rubric": {
+            "clarity": {
+              "description": "Is the review easy to follow and understand?",
+              "scale": "1-10"
+            },
+            "accuracy": {
+              "description": "Do the identified issues reflect real problems?",
+              "scale": "1-10"
+            },
+            "completeness": {
+              "description": "Does the review cover important aspects of the code?",
+              "scale": "1-10"
+            }
+          },
+          "raw_response": {
+            "clarity": {
+              "score": 9,
+              "reasoning": "The review is well-structured with clear headings and a logical flow. The issues are described in detail with specific suggestions, making it easy to follow. The use of JSON for findings enhances readability."
+            },
+            "accuracy": {
+              "score": 9,
+              "reasoning": "The identified issues, such as missing docstrings and lack of input validation, are valid and accurately reflect potential problems in the code. The suggestions provided are practical and relevant."
+            },
+            "completeness": {
+              "score": 8,
+              "reasoning": "The review covers key aspects like documentation, type hints, and robustness. However, it could have included a brief mention of performance considerations or more detailed examples of edge cases."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "8f459789b2c0224343a08df901d663b2f364ff4ff4a9f192fb1401a1a9bdc6fb",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-26T05:47:42.235445Z"
+    },
+    {
+      "test_number": 5,
+      "config": {
+        "test_number": 5,
+        "config_values": {
+          "temperature": 0.7,
+          "model": "openrouter/deepseek/deepseek-chat",
+          "context_size": "full_module",
+          "generation_strategy": "standard"
+        },
+        "workflow": "code_review"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "clarity": {
+            "score": 0.9,
+            "reasoning": "The review is well-structured and easy to follow. Each issue and suggestion is clearly stated, and the language is straightforward. The only minor improvement could be slightly more concise phrasing in some areas."
+          },
+          "accuracy": {
+            "score": 1.0,
+            "reasoning": "All identified issues are valid and accurately reflect real problems in the code. The suggestions for improvement are also accurate and relevant to the context."
+          },
+          "completeness": {
+            "score": 0.8,
+            "reasoning": "The review covers most important aspects of the code, including type hints, docstrings, and potential enhancements like error handling and unit tests. However, it could have briefly mentioned the importance of code readability or formatting, if applicable."
+          }
+        },
+        "overall_score": 0.9,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-26T05:47:50.193252Z",
+        "metadata": {
+          "rubric": {
+            "clarity": {
+              "description": "Is the review easy to follow and understand?",
+              "scale": "1-10"
+            },
+            "accuracy": {
+              "description": "Do the identified issues reflect real problems?",
+              "scale": "1-10"
+            },
+            "completeness": {
+              "description": "Does the review cover important aspects of the code?",
+              "scale": "1-10"
+            }
+          },
+          "raw_response": {
+            "clarity": {
+              "score": 9,
+              "reasoning": "The review is well-structured and easy to follow. Each issue and suggestion is clearly stated, and the language is straightforward. The only minor improvement could be slightly more concise phrasing in some areas."
+            },
+            "accuracy": {
+              "score": 10,
+              "reasoning": "All identified issues are valid and accurately reflect real problems in the code. The suggestions for improvement are also accurate and relevant to the context."
+            },
+            "completeness": {
+              "score": 8,
+              "reasoning": "The review covers most important aspects of the code, including type hints, docstrings, and potential enhancements like error handling and unit tests. However, it could have briefly mentioned the importance of code readability or formatting, if applicable."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "78a5780a1675fe4ad8ed31a5cb6d405616839a5c3f452fc1b4d17256a7a61dcf",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 5212.745166994864,
+      "utility": 0.8956699890316546,
+      "workflow_output": "The provided Python module is a simple example showcasing basic math operations. It includes two functions: `add` and `subtract`, both of which take two integers as input and return an integer. The code is straightforward and functional, but there are a few areas for improvement.\nIssues:\n- (low) The type hints for the functions `add` and `subtract` are limited to integers, which may not cover all valid use cases (e.g., floating-point numbers). [line 3] Suggested fix: Consider using `float` or `Union[int, float]` for the type hints to accommodate a broader range of numeric inputs.\n- (low) The functions `add` and `subtract` lack docstrings, which could make it harder for users to understand their purpose and usage. [line 3] Suggested fix: Add docstrings to each function to describe their purpose, parameters, and return values. For example: `\"\"\"Adds two numbers together.\"\"\"`\n- (low) The module docstring is minimal and could provide more context about the module's purpose and usage. [line 1] Suggested fix: Expand the module docstring to include more details, such as example usage or a brief explanation of the functions provided.\nSuggestions:\n- Consider adding error handling to the functions to manage unexpected inputs (e.g., non-numeric types).\n- Include unit tests to verify the correctness of the functions.\n- If the module is intended for broader use, consider adding versioning and a `__all__` list to explicitly define the public API.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.7,
+        "context_size": "full_module",
+        "language": "python",
+        "sample_code_path": "/Users/markr/Documents/aiwriting/TesseractFlow/examples/code_review/sample_code/example1.py",
+        "analysis_prompt": "You are an expert reviewer of python code.\nContext: Consider surrounding module context for the review.\nReview the following snippet and identify issues.\n```python\n\"\"\"Example module showcasing simple math operations.\"\"\"\n\n\ndef add(a: int, b: int) -> int:\n    return a + b\n\n\ndef subtract(a: int, b: int) -> int:\n    return a - b\n```\nReturn JSON with keys 'summary', 'issues', and 'suggestions'. Each issue should include type, severity, description, optional line_number, and suggestion.",
+        "analysis_raw": "```json\n{\n  \"summary\": \"The provided Python module is a simple example showcasing basic math operations. It includes two functions: `add` and `subtract`, both of which take two integers as input and return an integer. The code is straightforward and functional, but there are a few areas for improvement.\",\n  \"issues\": [\n    {\n      \"type\": \"Type Hinting Limitation\",\n      \"severity\": \"low\",\n      \"description\": \"The type hints for the functions `add` and `subtract` are limited to integers, which may not cover all valid use cases (e.g., floating-point numbers).\",\n      \"line_number\": 3,\n      \"suggestion\": \"Consider using `float` or `Union[int, float]` for the type hints to accommodate a broader range of numeric inputs.\"\n    },\n    {\n      \"type\": \"Lack of Docstrings\",\n      \"severity\": \"low\",\n      \"description\": \"The functions `add` and `subtract` lack docstrings, which could make it harder for users to understand their purpose and usage.\",\n      \"line_number\": 3,\n      \"suggestion\": \"Add docstrings to each function to describe their purpose, parameters, and return values. For example: `\\\"\\\"\\\"Adds two numbers together.\\\"\\\"\\\"`\"\n    },\n    {\n      \"type\": \"Module Docstring Improvement\",\n      \"severity\": \"low\",\n      \"description\": \"The module docstring is minimal and could provide more context about the module's purpose and usage.\",\n      \"line_number\": 1,\n      \"suggestion\": \"Expand the module docstring to include more details, such as example usage or a brief explanation of the functions provided.\"\n    }\n  ],\n  \"suggestions\": [\n    \"Consider adding error handling to the functions to manage unexpected inputs (e.g., non-numeric types).\",\n    \"Include unit tests to verify the correctness of the functions.\",\n    \"If the module is intended for broader use, consider adding versioning and a `__all__` list to explicitly define the public API.\"\n  ]\n}\n```",
+        "test_config": {
+          "test_number": 5,
+          "config": {
+            "temperature": 0.7,
+            "model": "openrouter/deepseek/deepseek-chat",
+            "context_size": "full_module",
+            "generation_strategy": "standard"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-26T05:47:42.236534Z",
+          "completed_at": "2025-10-26T05:47:47.449339Z",
+          "duration_seconds": 5.212745166994864
+        },
+        "evaluation": {
+          "rubric": {
+            "clarity": {
+              "description": "Is the review easy to follow and understand?",
+              "scale": "1-10"
+            },
+            "accuracy": {
+              "description": "Do the identified issues reflect real problems?",
+              "scale": "1-10"
+            },
+            "completeness": {
+              "description": "Does the review cover important aspects of the code?",
+              "scale": "1-10"
+            }
+          },
+          "raw_response": {
+            "clarity": {
+              "score": 9,
+              "reasoning": "The review is well-structured and easy to follow. Each issue and suggestion is clearly stated, and the language is straightforward. The only minor improvement could be slightly more concise phrasing in some areas."
+            },
+            "accuracy": {
+              "score": 10,
+              "reasoning": "All identified issues are valid and accurately reflect real problems in the code. The suggestions for improvement are also accurate and relevant to the context."
+            },
+            "completeness": {
+              "score": 8,
+              "reasoning": "The review covers most important aspects of the code, including type hints, docstrings, and potential enhancements like error handling and unit tests. However, it could have briefly mentioned the importance of code readability or formatting, if applicable."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "78a5780a1675fe4ad8ed31a5cb6d405616839a5c3f452fc1b4d17256a7a61dcf",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-26T05:47:50.193356Z"
+    },
+    {
+      "test_number": 6,
+      "config": {
+        "test_number": 6,
+        "config_values": {
+          "temperature": 0.7,
+          "model": "openrouter/deepseek/deepseek-chat",
+          "context_size": "full_module",
+          "generation_strategy": "chain_of_thought"
+        },
+        "workflow": "code_review"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "clarity": {
+            "score": 0.9,
+            "reasoning": "The review is well-structured and easy to follow. Issues and suggestions are clearly separated, and each point is explained concisely. The use of numbered lines and specific examples enhances clarity."
+          },
+          "accuracy": {
+            "score": 1.0,
+            "reasoning": "The identified issues accurately reflect real problems in the code. The suggestions for type hints, docstrings, and error handling are valid and relevant to improving the code."
+          },
+          "completeness": {
+            "score": 0.8,
+            "reasoning": "The review covers important aspects such as type hints, docstrings, and error handling. However, it could be more comprehensive by addressing potential edge cases or providing more detailed examples in the docstrings."
+          }
+        },
+        "overall_score": 0.9,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-26T05:48:00.228970Z",
+        "metadata": {
+          "rubric": {
+            "clarity": {
+              "description": "Is the review easy to follow and understand?",
+              "scale": "1-10"
+            },
+            "accuracy": {
+              "description": "Do the identified issues reflect real problems?",
+              "scale": "1-10"
+            },
+            "completeness": {
+              "description": "Does the review cover important aspects of the code?",
+              "scale": "1-10"
+            }
+          },
+          "raw_response": {
+            "clarity": {
+              "score": 9,
+              "reasoning": "The review is well-structured and easy to follow. Issues and suggestions are clearly separated, and each point is explained concisely. The use of numbered lines and specific examples enhances clarity."
+            },
+            "accuracy": {
+              "score": 10,
+              "reasoning": "The identified issues accurately reflect real problems in the code. The suggestions for type hints, docstrings, and error handling are valid and relevant to improving the code."
+            },
+            "completeness": {
+              "score": 8,
+              "reasoning": "The review covers important aspects such as type hints, docstrings, and error handling. However, it could be more comprehensive by addressing potential edge cases or providing more detailed examples in the docstrings."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "0de1b2efafb86a20fb25fcb2fafe8887441ff3f90f1f9366ea455665d4647d1f",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 6418.7602089950815,
+      "utility": 0.8898931537450169,
+      "workflow_output": "The code snippet is a simple module showcasing basic math operations. It is generally well-written but has room for improvement in terms of flexibility and documentation.\nIssues:\n- (low) The type hints for the functions restrict the input to integers only, which may limit the usability of the functions for other numeric types like floats. [line 3] Suggested fix: Consider using `Union[int, float]` or `float` as type hints to make the functions more flexible.\n- (medium) The functions lack detailed docstrings that explain their purpose, parameters, and return values. [line 3] Suggested fix: Add comprehensive docstrings to each function. For example, for the `add` function: `\"\"\"Add two numbers.\n\nArgs:\n    a (int): The first number.\n    b (int): The second number.\n\nReturns:\n    int: The sum of the two numbers.\n\"\"\"`\n- (low) The module docstring is minimal and does not provide a detailed description of the module's purpose or its functions. [line 1] Suggested fix: Expand the module docstring to include a brief description of the module's purpose and a list of its functions.\nSuggestions:\n- Consider adding error handling for unexpected input types.\n- Include examples in the docstrings to demonstrate how to use the functions.\n- Think about adding more advanced mathematical operations to enhance the module's utility.\n- Consider adding unit tests to ensure the functions work as expected.",
+      "metadata": {
+        "strategy": "chain_of_thought",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.7,
+        "context_size": "full_module",
+        "language": "python",
+        "sample_code_path": "/Users/markr/Documents/aiwriting/TesseractFlow/examples/code_review/sample_code/example1.py",
+        "analysis_prompt": "You are an expert reviewer of python code.\nContext: Consider surrounding module context for the review.\nReview the following snippet and identify issues.\n```python\n\"\"\"Example module showcasing simple math operations.\"\"\"\n\n\ndef add(a: int, b: int) -> int:\n    return a + b\n\n\ndef subtract(a: int, b: int) -> int:\n    return a - b\n```\nReturn JSON with keys 'summary', 'issues', and 'suggestions'. Each issue should include type, severity, description, optional line_number, and suggestion.",
+        "analysis_raw": "```json\n{\n  \"summary\": \"The code snippet is a simple module showcasing basic math operations. It is generally well-written but has room for improvement in terms of flexibility and documentation.\",\n  \"issues\": [\n    {\n      \"type\": \"Type Hint Limitation\",\n      \"severity\": \"Low\",\n      \"description\": \"The type hints for the functions restrict the input to integers only, which may limit the usability of the functions for other numeric types like floats.\",\n      \"line_number\": 3,\n      \"suggestion\": \"Consider using `Union[int, float]` or `float` as type hints to make the functions more flexible.\"\n    },\n    {\n      \"type\": \"Lack of Docstrings\",\n      \"severity\": \"Medium\",\n      \"description\": \"The functions lack detailed docstrings that explain their purpose, parameters, and return values.\",\n      \"line_number\": 3,\n      \"suggestion\": \"Add comprehensive docstrings to each function. For example, for the `add` function: `\\\"\\\"\\\"Add two numbers.\\n\\nArgs:\\n    a (int): The first number.\\n    b (int): The second number.\\n\\nReturns:\\n    int: The sum of the two numbers.\\n\\\"\\\"\\\"`\"\n    },\n    {\n      \"type\": \"Module Docstring Incompleteness\",\n      \"severity\": \"Low\",\n      \"description\": \"The module docstring is minimal and does not provide a detailed description of the module's purpose or its functions.\",\n      \"line_number\": 1,\n      \"suggestion\": \"Expand the module docstring to include a brief description of the module's purpose and a list of its functions.\"\n    }\n  ],\n  \"suggestions\": [\n    \"Consider adding error handling for unexpected input types.\",\n    \"Include examples in the docstrings to demonstrate how to use the functions.\",\n    \"Think about adding more advanced mathematical operations to enhance the module's utility.\",\n    \"Consider adding unit tests to ensure the functions work as expected.\"\n  ]\n}\n```",
+        "test_config": {
+          "test_number": 6,
+          "config": {
+            "temperature": 0.7,
+            "model": "openrouter/deepseek/deepseek-chat",
+            "context_size": "full_module",
+            "generation_strategy": "chain_of_thought"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-26T05:47:50.194054Z",
+          "completed_at": "2025-10-26T05:47:56.612884Z",
+          "duration_seconds": 6.4187602089950815
+        },
+        "evaluation": {
+          "rubric": {
+            "clarity": {
+              "description": "Is the review easy to follow and understand?",
+              "scale": "1-10"
+            },
+            "accuracy": {
+              "description": "Do the identified issues reflect real problems?",
+              "scale": "1-10"
+            },
+            "completeness": {
+              "description": "Does the review cover important aspects of the code?",
+              "scale": "1-10"
+            }
+          },
+          "raw_response": {
+            "clarity": {
+              "score": 9,
+              "reasoning": "The review is well-structured and easy to follow. Issues and suggestions are clearly separated, and each point is explained concisely. The use of numbered lines and specific examples enhances clarity."
+            },
+            "accuracy": {
+              "score": 10,
+              "reasoning": "The identified issues accurately reflect real problems in the code. The suggestions for type hints, docstrings, and error handling are valid and relevant to improving the code."
+            },
+            "completeness": {
+              "score": 8,
+              "reasoning": "The review covers important aspects such as type hints, docstrings, and error handling. However, it could be more comprehensive by addressing potential edge cases or providing more detailed examples in the docstrings."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "0de1b2efafb86a20fb25fcb2fafe8887441ff3f90f1f9366ea455665d4647d1f",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-26T05:48:00.229204Z"
+    },
+    {
+      "test_number": 7,
+      "config": {
+        "test_number": 7,
+        "config_values": {
+          "temperature": 0.7,
+          "model": "openrouter/anthropic/claude-haiku-4.5",
+          "context_size": "file_only",
+          "generation_strategy": "standard"
+        },
+        "workflow": "code_review"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "clarity": {
+            "score": 0.9,
+            "reasoning": "The review is well-structured and easy to follow. Issues are clearly labeled with severity, and suggestions are provided with examples and explanations. The language is concise and professional."
+          },
+          "accuracy": {
+            "score": 1.0,
+            "reasoning": "The identified issues are valid and reflect real problems in the code. The suggestions for improvement are accurate and align with best practices in Python development."
+          },
+          "completeness": {
+            "score": 0.8,
+            "reasoning": "The review covers important aspects such as docstrings, type hints, input validation, and testing. However, it could have mentioned performance considerations or broader architectural implications if applicable."
+          }
+        },
+        "overall_score": 0.9,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-26T05:48:07.616368Z",
+        "metadata": {
+          "rubric": {
+            "clarity": {
+              "description": "Is the review easy to follow and understand?",
+              "scale": "1-10"
+            },
+            "accuracy": {
+              "description": "Do the identified issues reflect real problems?",
+              "scale": "1-10"
+            },
+            "completeness": {
+              "description": "Does the review cover important aspects of the code?",
+              "scale": "1-10"
+            }
+          },
+          "raw_response": {
+            "clarity": {
+              "score": 9,
+              "reasoning": "The review is well-structured and easy to follow. Issues are clearly labeled with severity, and suggestions are provided with examples and explanations. The language is concise and professional."
+            },
+            "accuracy": {
+              "score": 10,
+              "reasoning": "The identified issues are valid and reflect real problems in the code. The suggestions for improvement are accurate and align with best practices in Python development."
+            },
+            "completeness": {
+              "score": 8,
+              "reasoning": "The review covers important aspects such as docstrings, type hints, input validation, and testing. However, it could have mentioned performance considerations or broader architectural implications if applicable."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "85ff1fd6bf5d8072e64c74b44f83fd97b93689cf00708072435438ae1fa4582b",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 4666.819207981462,
+      "utility": 0.8982849848933063,
+      "workflow_output": "The code is well-structured with proper type hints and docstrings. No critical issues detected, but there are minor areas for improvement.\nIssues:\n- (low) Functions lack individual docstrings explaining their purpose, parameters, and return values. Suggested fix: Add docstrings to each function following PEP 257 convention. Example: def add(a: int, b: int) -> int:\n    \"\"\"Add two integers and return the result.\n    \n    Args:\n        a: First integer\n        b: Second integer\n    \n    Returns:\n        The sum of a and b\n    \"\"\"\n    return a + b\n- (low) Type hints restrict input to int only, but the functions would work with float, Decimal, and other numeric types due to Python's duck typing. Suggested fix: Consider using Union types or a numeric Protocol for greater flexibility: from typing import Union\ndef add(a: Union[int, float], b: Union[int, float]) -> Union[int, float]:\n- (low) Functions do not validate inputs or handle edge cases (e.g., None values, invalid types). Suggested fix: Add input validation if strict type enforcement is desired, or rely on type checkers like mypy for static analysis.\nSuggestions:\n- Add unit tests to verify function behavior\n- Consider adding a __all__ variable to define the public API of the module\n- If this module grows, consider organizing functions into classes or submodules",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/anthropic/claude-haiku-4.5",
+        "temperature": 0.7,
+        "context_size": "file_only",
+        "language": "python",
+        "sample_code_path": "/Users/markr/Documents/aiwriting/TesseractFlow/examples/code_review/sample_code/example1.py",
+        "analysis_prompt": "You are an expert reviewer of python code.\nContext: Review limited to the provided file.\nReview the following snippet and identify issues.\n```python\n\"\"\"Example module showcasing simple math operations.\"\"\"\n\n\ndef add(a: int, b: int) -> int:\n    return a + b\n\n\ndef subtract(a: int, b: int) -> int:\n    return a - b\n```\nReturn JSON with keys 'summary', 'issues', and 'suggestions'. Each issue should include type, severity, description, optional line_number, and suggestion.",
+        "analysis_raw": "```json\n{\n  \"summary\": \"The code is well-structured with proper type hints and docstrings. No critical issues detected, but there are minor areas for improvement.\",\n  \"issues\": [\n    {\n      \"type\": \"Missing Docstrings\",\n      \"severity\": \"low\",\n      \"description\": \"Functions lack individual docstrings explaining their purpose, parameters, and return values.\",\n      \"line_number\": [4, 8],\n      \"suggestion\": \"Add docstrings to each function following PEP 257 convention. Example: def add(a: int, b: int) -> int:\\n    \\\"\\\"\\\"Add two integers and return the result.\\n    \\n    Args:\\n        a: First integer\\n        b: Second integer\\n    \\n    Returns:\\n        The sum of a and b\\n    \\\"\\\"\\\"\\n    return a + b\"\n    },\n    {\n      \"type\": \"Limited Type Flexibility\",\n      \"severity\": \"low\",\n      \"description\": \"Type hints restrict input to int only, but the functions would work with float, Decimal, and other numeric types due to Python's duck typing.\",\n      \"line_number\": [4, 8],\n      \"suggestion\": \"Consider using Union types or a numeric Protocol for greater flexibility: from typing import Union\\ndef add(a: Union[int, float], b: Union[int, float]) -> Union[int, float]:\"\n    },\n    {\n      \"type\": \"No Input Validation\",\n      \"severity\": \"low\",\n      \"description\": \"Functions do not validate inputs or handle edge cases (e.g., None values, invalid types).\",\n      \"line_number\": [4, 8],\n      \"suggestion\": \"Add input validation if strict type enforcement is desired, or rely on type checkers like mypy for static analysis.\"\n    }\n  ],\n  \"suggestions\": [\n    \"Add unit tests to verify function behavior\",\n    \"Consider adding a __all__ variable to define the public API of the module\",\n    \"If this module grows, consider organizing functions into classes or submodules\"\n  ]\n}\n```",
+        "test_config": {
+          "test_number": 7,
+          "config": {
+            "temperature": 0.7,
+            "model": "openrouter/anthropic/claude-haiku-4.5",
+            "context_size": "file_only",
+            "generation_strategy": "standard"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-26T05:48:00.230523Z",
+          "completed_at": "2025-10-26T05:48:04.897394Z",
+          "duration_seconds": 4.666819207981462
+        },
+        "evaluation": {
+          "rubric": {
+            "clarity": {
+              "description": "Is the review easy to follow and understand?",
+              "scale": "1-10"
+            },
+            "accuracy": {
+              "description": "Do the identified issues reflect real problems?",
+              "scale": "1-10"
+            },
+            "completeness": {
+              "description": "Does the review cover important aspects of the code?",
+              "scale": "1-10"
+            }
+          },
+          "raw_response": {
+            "clarity": {
+              "score": 9,
+              "reasoning": "The review is well-structured and easy to follow. Issues are clearly labeled with severity, and suggestions are provided with examples and explanations. The language is concise and professional."
+            },
+            "accuracy": {
+              "score": 10,
+              "reasoning": "The identified issues are valid and reflect real problems in the code. The suggestions for improvement are accurate and align with best practices in Python development."
+            },
+            "completeness": {
+              "score": 8,
+              "reasoning": "The review covers important aspects such as docstrings, type hints, input validation, and testing. However, it could have mentioned performance considerations or broader architectural implications if applicable."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "85ff1fd6bf5d8072e64c74b44f83fd97b93689cf00708072435438ae1fa4582b",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-26T05:48:07.616515Z"
+    },
+    {
+      "test_number": 8,
+      "config": {
+        "test_number": 8,
+        "config_values": {
+          "temperature": 0.7,
+          "model": "openrouter/anthropic/claude-haiku-4.5",
+          "context_size": "file_only",
+          "generation_strategy": "chain_of_thought"
+        },
+        "workflow": "code_review"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "clarity": {
+            "score": 0.9,
+            "reasoning": "The review is well-structured, uses clear headings, and provides specific examples and suggestions. The JSON response is organized and easy to follow."
+          },
+          "accuracy": {
+            "score": 0.9,
+            "reasoning": "The identified issues (e.g., lack of docstrings, restrictive type hints) are valid and accurately reflect areas for improvement in the code."
+          },
+          "completeness": {
+            "score": 0.8,
+            "reasoning": "The review covers key aspects such as documentation, type hints, and functionality. However, it could have included more detail on edge cases and error handling."
+          }
+        },
+        "overall_score": 0.8666666666666667,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-26T05:48:16.460956Z",
+        "metadata": {
+          "rubric": {
+            "clarity": {
+              "description": "Is the review easy to follow and understand?",
+              "scale": "1-10"
+            },
+            "accuracy": {
+              "description": "Do the identified issues reflect real problems?",
+              "scale": "1-10"
+            },
+            "completeness": {
+              "description": "Does the review cover important aspects of the code?",
+              "scale": "1-10"
+            }
+          },
+          "raw_response": {
+            "clarity": {
+              "score": 9,
+              "reasoning": "The review is well-structured, uses clear headings, and provides specific examples and suggestions. The JSON response is organized and easy to follow."
+            },
+            "accuracy": {
+              "score": 9,
+              "reasoning": "The identified issues (e.g., lack of docstrings, restrictive type hints) are valid and accurately reflect areas for improvement in the code."
+            },
+            "completeness": {
+              "score": 8,
+              "reasoning": "The review covers key aspects such as documentation, type hints, and functionality. However, it could have included more detail on edge cases and error handling."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "55e905a55a233f7593160bc8de30dc81a30fa08eac9c3474e4c32146b5dc159b",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 5772.94579098816,
+      "utility": 0.859653283916396,
+      "workflow_output": "Let me analyze this Python code step-by-step.\n\n## Analysis\n\n**What the code does:**\n- Defines a module with two simple math functions: `add` and `subtract`\n- Both functions have type hints for parameters and return values\n- Both functions are straightforward implementations\n\n**Checking for issues:**\n\n1. **Type hints correctness**: The type hints are present and correct for basic integer operations\n2. **Documentation**: Module has a docstring, but individual functions lack docstrings\n3. **Edge cases**: No validation of inputs or handling of potential issues\n4. **Functionality**: The implementations are correct\n5. **Code style**: Follows PEP 8 conventions\n6. **Missing elements**: No error handling, no examples in docstrings\n\n**Identified concerns:**\n- Functions lack individual docstrings (documentation best practice)\n- Type hints only accept `int`, but these operations work with `float` and other numeric types\n- No input validation or error handling\n- No usage examples\n\n## JSON Response\n\n```json\n{\n  \"summary\": \"Code is functional and follows basic conventions, but lacks comprehensive documentation and has overly restrictive type hints.\",\n  \"issues\": [\n    {\n      \"type\": \"documentation\",\n      \"severity\": \"low\",\n      \"description\": \"Functions lack docstrings explaining their purpose, parameters, and return values.\",\n      \"line_number\": 5,\n      \"suggestion\": \"Add docstrings to each function. Example: def add(a: int, b: int) -> int:\\n    \\\"\\\"\\\"Return the sum of two integers.\\\"\\\"\\\"\"\n    },\n    {\n      \"type\": \"type_hint\",\n      \"severity\": \"medium\",\n      \"description\": \"Type hints restrict inputs to 'int' only, but the operations work with other numeric types (float, Decimal, etc.). This reduces code reusability.\",\n      \"line_number\": [5, 9],\n      \"suggestion\": \"Use 'Union[int, float]' or a numeric protocol/TypeVar to accept multiple numeric types. Example: from typing import Union\\ndef add(a: Union[int, float], b: Union[int, float]) -> Union[int, float]:\"\n    }\n  ],\n  \"suggestions\": [\n    \"Consider adding type checking with mypy or similar tools\",\n    \"Add usage examples in the module docstring\",\n    \"Consider adding input validation if this module will be used in production\"\n  ]\n}\n```",
+      "metadata": {
+        "strategy": "chain_of_thought",
+        "model": "openrouter/anthropic/claude-haiku-4.5",
+        "temperature": 0.7,
+        "context_size": "file_only",
+        "language": "python",
+        "sample_code_path": "/Users/markr/Documents/aiwriting/TesseractFlow/examples/code_review/sample_code/example1.py",
+        "analysis_prompt": "You are an expert reviewer of python code.\nContext: Review limited to the provided file.\nReview the following snippet and identify issues.\n```python\n\"\"\"Example module showcasing simple math operations.\"\"\"\n\n\ndef add(a: int, b: int) -> int:\n    return a + b\n\n\ndef subtract(a: int, b: int) -> int:\n    return a - b\n```\nReturn JSON with keys 'summary', 'issues', and 'suggestions'. Each issue should include type, severity, description, optional line_number, and suggestion.",
+        "analysis_raw": "Let me analyze this Python code step-by-step.\n\n## Analysis\n\n**What the code does:**\n- Defines a module with two simple math functions: `add` and `subtract`\n- Both functions have type hints for parameters and return values\n- Both functions are straightforward implementations\n\n**Checking for issues:**\n\n1. **Type hints correctness**: The type hints are present and correct for basic integer operations\n2. **Documentation**: Module has a docstring, but individual functions lack docstrings\n3. **Edge cases**: No validation of inputs or handling of potential issues\n4. **Functionality**: The implementations are correct\n5. **Code style**: Follows PEP 8 conventions\n6. **Missing elements**: No error handling, no examples in docstrings\n\n**Identified concerns:**\n- Functions lack individual docstrings (documentation best practice)\n- Type hints only accept `int`, but these operations work with `float` and other numeric types\n- No input validation or error handling\n- No usage examples\n\n## JSON Response\n\n```json\n{\n  \"summary\": \"Code is functional and follows basic conventions, but lacks comprehensive documentation and has overly restrictive type hints.\",\n  \"issues\": [\n    {\n      \"type\": \"documentation\",\n      \"severity\": \"low\",\n      \"description\": \"Functions lack docstrings explaining their purpose, parameters, and return values.\",\n      \"line_number\": 5,\n      \"suggestion\": \"Add docstrings to each function. Example: def add(a: int, b: int) -> int:\\n    \\\"\\\"\\\"Return the sum of two integers.\\\"\\\"\\\"\"\n    },\n    {\n      \"type\": \"type_hint\",\n      \"severity\": \"medium\",\n      \"description\": \"Type hints restrict inputs to 'int' only, but the operations work with other numeric types (float, Decimal, etc.). This reduces code reusability.\",\n      \"line_number\": [5, 9],\n      \"suggestion\": \"Use 'Union[int, float]' or a numeric protocol/TypeVar to accept multiple numeric types. Example: from typing import Union\\ndef add(a: Union[int, float], b: Union[int, float]) -> Union[int, float]:\"\n    }\n  ],\n  \"suggestions\": [\n    \"Consider adding type checking with mypy or similar tools\",\n    \"Add usage examples in the module docstring\",\n    \"Consider adding input validation if this module will be used in production\"\n  ]\n}\n```",
+        "test_config": {
+          "test_number": 8,
+          "config": {
+            "temperature": 0.7,
+            "model": "openrouter/anthropic/claude-haiku-4.5",
+            "context_size": "file_only",
+            "generation_strategy": "chain_of_thought"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-26T05:48:07.617676Z",
+          "completed_at": "2025-10-26T05:48:13.390687Z",
+          "duration_seconds": 5.77294579098816
+        },
+        "evaluation": {
+          "rubric": {
+            "clarity": {
+              "description": "Is the review easy to follow and understand?",
+              "scale": "1-10"
+            },
+            "accuracy": {
+              "description": "Do the identified issues reflect real problems?",
+              "scale": "1-10"
+            },
+            "completeness": {
+              "description": "Does the review cover important aspects of the code?",
+              "scale": "1-10"
+            }
+          },
+          "raw_response": {
+            "clarity": {
+              "score": 9,
+              "reasoning": "The review is well-structured, uses clear headings, and provides specific examples and suggestions. The JSON response is organized and easy to follow."
+            },
+            "accuracy": {
+              "score": 9,
+              "reasoning": "The identified issues (e.g., lack of docstrings, restrictive type hints) are valid and accurately reflect areas for improvement in the code."
+            },
+            "completeness": {
+              "score": 8,
+              "reasoning": "The review covers key aspects such as documentation, type hints, and functionality. However, it could have included more detail on edge cases and error handling."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "55e905a55a233f7593160bc8de30dc81a30fa08eac9c3474e4c32146b5dc159b",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-26T05:48:16.461211Z"
+    }
+  ],
+  "status": "COMPLETED",
+  "started_at": "2025-10-26T05:46:44.241613Z",
+  "completed_at": "2025-10-26T05:48:16.462680Z",
+  "experiment_metadata": {
+    "config_hash": "b45811c3f9ea0431c3c18735daa8624b3db90b54058161d4b6f74a34c2e5db2f",
+    "created_at": "2025-10-26T05:46:44.241459Z",
+    "dependencies": {
+      "pydantic": "2.12.3",
+      "langgraph": "1.0.1",
+      "litellm": "1.79.0"
+    },
+    "non_deterministic_sources": [
+      "llm_sampling"
+    ]
+  },
+  "metadata": {
+    "normalization": {
+      "cost": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "latency": {
+        "min": 4308.779915998457,
+        "max": 14747.151292016497
+      }
+    }
+  },
+  "baseline_test_number": 1,
+  "baseline_config": {
+    "test_number": 1,
+    "config_values": {
+      "temperature": 0.3,
+      "model": "openrouter/deepseek/deepseek-chat",
+      "context_size": "file_only",
+      "generation_strategy": "standard"
+    },
+    "workflow": "code_review"
+  },
+  "baseline_result": {
+    "test_number": 1,
+    "config": {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.3,
+        "model": "openrouter/deepseek/deepseek-chat",
+        "context_size": "file_only",
+        "generation_strategy": "standard"
+      },
+      "workflow": "code_review"
+    },
+    "quality_score": {
+      "dimension_scores": {
+        "clarity": {
+          "score": 0.9,
+          "reasoning": "The review is well-structured and easy to follow. Issues are clearly labeled with severity levels, and suggestions are concise and actionable. Minor improvements could include grouping related issues or using bullet points for better readability."
+        },
+        "accuracy": {
+          "score": 1.0,
+          "reasoning": "All identified issues are valid and reflect real problems in the code. The suggested fixes are appropriate and align with best practices in Python development."
+        },
+        "completeness": {
+          "score": 0.8,
+          "reasoning": "The review covers most important aspects of the code, including type hints, docstrings, error handling, and module documentation. However, it could have mentioned the importance of version control or coding style (e.g., PEP 8 compliance) for a more comprehensive evaluation."
+        }
+      },
+      "overall_score": 0.9,
+      "evaluator_model": "openrouter/deepseek/deepseek-chat",
+      "timestamp": "2025-10-26T05:47:06.127925Z",
+      "metadata": {
+        "rubric": {
+          "clarity": {
+            "description": "Is the review easy to follow and understand?",
+            "scale": "1-10"
+          },
+          "accuracy": {
+            "description": "Do the identified issues reflect real problems?",
+            "scale": "1-10"
+          },
+          "completeness": {
+            "description": "Does the review cover important aspects of the code?",
+            "scale": "1-10"
+          }
+        },
+        "raw_response": {
+          "clarity": {
+            "score": 9,
+            "reasoning": "The review is well-structured and easy to follow. Issues are clearly labeled with severity levels, and suggestions are concise and actionable. Minor improvements could include grouping related issues or using bullet points for better readability."
+          },
+          "accuracy": {
+            "score": 10,
+            "reasoning": "All identified issues are valid and reflect real problems in the code. The suggested fixes are appropriate and align with best practices in Python development."
+          },
+          "completeness": {
+            "score": 8,
+            "reasoning": "The review covers most important aspects of the code, including type hints, docstrings, error handling, and module documentation. However, it could have mentioned the importance of version control or coding style (e.g., PEP 8 compliance) for a more comprehensive evaluation."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "b8bde17b54f361fb9a44f9819d2ea3938e5e0bcc5ec0fa1dea0e518e14f4ba9e",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/deepseek/deepseek-chat"
+      }
+    },
+    "cost": 0.0,
+    "latency": 13378.35250000353,
+    "utility": 0.9,
+    "workflow_output": "The code snippet is a simple module with two basic math operations. Overall it's clean and functional, but has some minor issues that could be improved.\nIssues:\n- (low) The type hints only allow integers, which limits the functions' usefulness for floating-point numbers. [line 4] Suggested fix: Consider using Union[int, float] or float for type hints to support more numeric types.\n- (low) The individual functions lack docstrings explaining their purpose and parameters. [line 4] Suggested fix: Add docstrings following PEP 257 conventions, explaining what each function does and its parameters.\n- (medium) No error handling for cases where non-numeric values are passed. Suggested fix: Consider adding type checking or try-except blocks to handle invalid inputs gracefully.\n- (low) The module docstring is very basic and doesn't explain usage examples. [line 1] Suggested fix: Expand the module docstring to include usage examples and more detailed description.\nSuggestions:\n- Consider adding multiplication and division functions for more complete math operations.\n- Add unit tests to verify the functions work as expected.\n- Consider using @overload if you want to maintain separate type signatures for int vs float inputs.",
+    "metadata": {
+      "strategy": "standard",
+      "model": "openrouter/deepseek/deepseek-chat",
+      "temperature": 0.3,
+      "context_size": "file_only",
+      "language": "python",
+      "sample_code_path": "/Users/markr/Documents/aiwriting/TesseractFlow/examples/code_review/sample_code/example1.py",
+      "analysis_prompt": "You are an expert reviewer of python code.\nContext: Review limited to the provided file.\nReview the following snippet and identify issues.\n```python\n\"\"\"Example module showcasing simple math operations.\"\"\"\n\n\ndef add(a: int, b: int) -> int:\n    return a + b\n\n\ndef subtract(a: int, b: int) -> int:\n    return a - b\n```\nReturn JSON with keys 'summary', 'issues', and 'suggestions'. Each issue should include type, severity, description, optional line_number, and suggestion.",
+      "analysis_raw": "```json\n{\n  \"summary\": \"The code snippet is a simple module with two basic math operations. Overall it's clean and functional, but has some minor issues that could be improved.\",\n  \"issues\": [\n    {\n      \"type\": \"Type Hint Limitation\",\n      \"severity\": \"low\",\n      \"description\": \"The type hints only allow integers, which limits the functions' usefulness for floating-point numbers.\",\n      \"line_number\": 4,\n      \"suggestion\": \"Consider using Union[int, float] or float for type hints to support more numeric types.\"\n    },\n    {\n      \"type\": \"Missing Docstrings\",\n      \"severity\": \"low\",\n      \"description\": \"The individual functions lack docstrings explaining their purpose and parameters.\",\n      \"line_number\": 4,\n      \"suggestion\": \"Add docstrings following PEP 257 conventions, explaining what each function does and its parameters.\"\n    },\n    {\n      \"type\": \"Missing Error Handling\",\n      \"severity\": \"medium\",\n      \"description\": \"No error handling for cases where non-numeric values are passed.\",\n      \"line_number\": null,\n      \"suggestion\": \"Consider adding type checking or try-except blocks to handle invalid inputs gracefully.\"\n    },\n    {\n      \"type\": \"Missing Module Docstring Detail\",\n      \"severity\": \"low\",\n      \"description\": \"The module docstring is very basic and doesn't explain usage examples.\",\n      \"line_number\": 1,\n      \"suggestion\": \"Expand the module docstring to include usage examples and more detailed description.\"\n    }\n  ],\n  \"suggestions\": [\n    \"Consider adding multiplication and division functions for more complete math operations.\",\n    \"Add unit tests to verify the functions work as expected.\",\n    \"Consider using @overload if you want to maintain separate type signatures for int vs float inputs.\"\n  ]\n}\n```",
+      "test_config": {
+        "test_number": 1,
+        "config": {
+          "temperature": 0.3,
+          "model": "openrouter/deepseek/deepseek-chat",
+          "context_size": "file_only",
+          "generation_strategy": "standard"
+        }
+      },
+      "workflow": {
+        "started_at": "2025-10-26T05:46:44.249010Z",
+        "completed_at": "2025-10-26T05:46:57.627508Z",
+        "duration_seconds": 13.37835250000353
+      },
+      "evaluation": {
+        "rubric": {
+          "clarity": {
+            "description": "Is the review easy to follow and understand?",
+            "scale": "1-10"
+          },
+          "accuracy": {
+            "description": "Do the identified issues reflect real problems?",
+            "scale": "1-10"
+          },
+          "completeness": {
+            "description": "Does the review cover important aspects of the code?",
+            "scale": "1-10"
+          }
+        },
+        "raw_response": {
+          "clarity": {
+            "score": 9,
+            "reasoning": "The review is well-structured and easy to follow. Issues are clearly labeled with severity levels, and suggestions are concise and actionable. Minor improvements could include grouping related issues or using bullet points for better readability."
+          },
+          "accuracy": {
+            "score": 10,
+            "reasoning": "All identified issues are valid and reflect real problems in the code. The suggested fixes are appropriate and align with best practices in Python development."
+          },
+          "completeness": {
+            "score": 8,
+            "reasoning": "The review covers most important aspects of the code, including type hints, docstrings, error handling, and module documentation. However, it could have mentioned the importance of version control or coding style (e.g., PEP 8 compliance) for a more comprehensive evaluation."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "b8bde17b54f361fb9a44f9819d2ea3938e5e0bcc5ec0fa1dea0e518e14f4ba9e",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/deepseek/deepseek-chat"
+      }
+    },
+    "timestamp": "2025-10-26T05:47:06.128149Z"
+  },
+  "baseline_quality": 0.9,
+  "quality_improvement_pct": 3.7037037037036904
+}

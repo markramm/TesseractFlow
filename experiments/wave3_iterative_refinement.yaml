@@ -1,0 +1,67 @@
+name: "wave3_iterative_refinement"
+workflow: "iterative_refinement"
+description: "Test DeepSeek R1's ability to iteratively refine and improve outputs through multiple revision cycles"
+
+variables:
+  - name: "refinement_iterations"
+    level_1: "single"         # One-shot generation
+    level_2: "multiple"       # 3 iterations with feedback
+
+  - name: "feedback_type"
+    level_1: "criteria"       # Specific improvement criteria
+    level_2: "comparative"    # Compare to previous version
+
+  - name: "task_domain"
+    level_1: "creative"       # Story/dialogue writing
+    level_2: "analytical"     # Code/analysis tasks
+
+  - name: "improvement_focus"
+    level_1: "quality"        # Improve depth/quality
+    level_2: "conciseness"    # Improve brevity/clarity
+
+  - name: "temperature"
+    level_1: 0.4              # Lower for analytical
+    level_2: 0.8              # Higher for creative
+
+  - name: "critique_source"
+    level_1: "self"           # Model critiques itself
+    level_2: "external"       # Provided critique points
+
+  - name: "convergence_check"
+    level_1: "none"           # No early stopping
+    level_2: "enabled"        # Stop if improvements plateau
+
+utility_weights:
+  quality: 1.0
+  cost: 0.2
+  time: 0.1
+
+workflow_config:
+  evaluator_model: "openrouter/anthropic/claude-haiku-4.5"
+  model: "openrouter/deepseek/deepseek-r1"
+
+  rubric:
+    improvement_trajectory:
+      description: "Quality increases consistently across iterations, not random fluctuations"
+      weight: 0.30
+      scale: "0-100 points"
+
+    final_output_quality:
+      description: "Final output superior to initial version in target dimension"
+      weight: 0.25
+      scale: "0-100 points"
+
+    critique_accuracy:
+      description: "Identifies genuine weaknesses and addresses them in revisions"
+      weight: 0.20
+      scale: "0-100 points"
+
+    efficiency:
+      description: "Reaches high-quality output without excessive iterations"
+      weight: 0.15
+      scale: "0-100 points"
+
+    convergence_awareness:
+      description: "Recognizes when further refinement yields diminishing returns"
+      weight: 0.10
+      scale: "0-100 points"

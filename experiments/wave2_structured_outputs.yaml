@@ -1,0 +1,51 @@
+name: wave2_structured_outputs
+workflow: character_profile_generation
+variables:
+- name: output_format
+  level_1: json
+  level_2: markdown
+- name: schema_strictness
+  level_1: strict
+  level_2: flexible
+- name: nesting_depth
+  level_1: flat
+  level_2: nested
+- name: field_descriptions
+  level_1: present
+  level_2: absent
+- name: validation_strategy
+  level_1: pydantic
+  level_2: none
+- name: example_provided
+  level_1: yes
+  level_2: no
+utility_weights:
+  quality: 0.70
+  cost: 0.20
+  time: 0.10
+workflow_config:
+  sample_code_path: tesseract_flow/workflows/code_review.py
+  language: python
+  evaluator_model: openrouter/deepseek/deepseek-chat
+  evaluator_temperature: 0.1
+  rubric:
+    structural_correctness:
+      description: Valid JSON/Markdown/YAML syntax, properly formatted, no parsing errors
+      scale: 0-100 points
+      weight: 0.30
+    completeness:
+      description: All required fields present, appropriate level of detail for each field
+      scale: 0-100 points
+      weight: 0.25
+    consistency:
+      description: Uniform formatting throughout, consistent style, no contradictions
+      scale: 0-100 points
+      weight: 0.20
+    parseability:
+      description: Can be programmatically consumed, schema-compliant, machine-readable
+      scale: 0-100 points
+      weight: 0.15
+    human_readability:
+      description: Easy to understand, clear organization, appropriate verbosity
+      scale: 0-100 points
+      weight: 0.10

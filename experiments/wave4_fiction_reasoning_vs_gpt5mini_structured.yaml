@@ -1,0 +1,104 @@
+name: wave4_fiction_reasoning_vs_gpt5mini_structured
+workflow: fiction_scene
+variables:
+  - name: temperature
+    level_1: 0.5
+    level_2: 0.9
+  - name: context_depth
+    level_1: minimal
+    level_2: full
+  - name: reasoning_enabled
+    level_1: 'false'
+    level_2: 'true'
+  - name: verbalized_sampling
+    level_1: none
+    level_2: self_consistency
+  - name: n_samples
+    level_1: '3'
+    level_2: '5'
+  - name: reasoning_visibility
+    level_1: visible
+    level_2: hidden
+  - name: max_reasoning_tokens
+    level_1: standard
+    level_2: extended
+
+utility_weights:
+  quality: 0.8
+  cost: 0.15
+  time: 0.05
+
+workflow_config:
+  evaluator_model: openrouter/openai/gpt-5-mini
+  evaluator_temperature: 0.3
+  rubric:
+    technical_craft:
+      description: |
+        Technical prose elements that demonstrate craft mastery:
+        • Sentence variety: Mix of short (5-10 words), medium (15-25 words), long (30+ words) sentences
+        • Sensory detail: Specific appeals to sight, sound, touch, smell, taste (not generic)
+        • POV consistency: Maintains chosen perspective without slips or camera switches
+        • Paragraph structure: Varied lengths, purposeful white space, rhythm
+        • Repetition: Strategic use (anaphora, motifs) vs accidental redundancy
+        • Active vs passive voice: Intentional choices matching narrative intent
+
+        Score 0-25 for each:
+        0-6: Multiple technical errors, monotonous rhythm, no sensory grounding
+        7-12: Basic competence but limited variety or sensory engagement
+        13-18: Solid technical execution with some variety and sensory detail
+        19-25: Masterful sentence variety, rich sensory detail, purposeful repetition
+      scale: 0-25 points
+      weight: 0.25
+
+    show_dont_tell:
+      description: |
+        Ratio of showing (concrete actions, dialogue, sensory detail) vs telling (abstract summaries, explanations):
+        • Character emotion shown through physical cues, not labeled ("hands trembling" not "she was nervous")
+        • Setting conveyed through specific details, not generic descriptions
+        • Relationship dynamics demonstrated through action/dialogue, not exposition
+        • Internal state revealed through behavior, physical sensation, or filtered observation
+        • Avoids unnecessary explanatory tags ("angrily", "sadly", "nervously")
+
+        Score 0-25 for each:
+        0-6: Predominantly abstract telling, frequent emotion labeling, generic descriptions
+        7-12: Mix of showing/telling, some concrete detail but often explains emotions
+        13-18: Primarily shows through action/detail with occasional telling for pacing
+        19-25: Consistently shows through concrete, specific detail; trusts reader inference
+      scale: 0-25 points
+      weight: 0.30
+
+    stylistic_consistency:
+      description: |
+        Coherent voice and intentional stylistic choices throughout:
+        • Diction level: Matches character POV (internal monologue, education, era)
+        • Figurative language: Metaphors/similes fit character worldview and tone
+        • Rhythm/pacing: Sentence flow matches scene tension (staccato for action, flowing for reflection)
+        • Tonal unity: Humor, darkness, lyricism maintained appropriately
+        • Detail selection: What's noticed/described fits character focus and mood
+        • Narrative distance: Consistent closeness/remoteness to POV character
+
+        Score 0-25 for each:
+        0-6: Inconsistent voice, jarring shifts in diction or tone
+        7-12: Generally consistent but occasional mismatched metaphors or rhythm breaks
+        13-18: Strong stylistic coherence with intentional variation for effect
+        19-25: Seamless unity of voice, every detail filtered through consistent perspective
+      scale: 0-25 points
+      weight: 0.25
+
+    scene_structure:
+      description: |
+        Clear scene architecture with purposeful beats:
+        • Opening hook: Grounds reader in situation/conflict within first 2 sentences
+        • Conflict/tension: Clear want vs obstacle driving the scene forward
+        • Rising action: Escalating stakes or complications, not flat repetition
+        • Turning point: Moment of change, decision, or revelation
+        • Resolution/transition: Scene ends with forward momentum or emotional shift
+        • Beat variety: Mix of action, dialogue, interiority, description in service of scene goal
+
+        Score 0-25 for each:
+        0-6: Meandering structure, unclear stakes, flat or missing turning point
+        7-12: Basic scene shape but weak hook or unclear conflict
+        13-18: Solid structure with clear arc and purposeful beats
+        19-25: Masterful scene architecture, every beat serves the arc, strong momentum
+      scale: 0-25 points
+      weight: 0.20

@@ -1,0 +1,443 @@
+{
+  "experiment_id": "cheap_models_test-20251026T053131",
+  "config": {
+    "name": "cheap_models_test",
+    "workflow": "code_review",
+    "variables": [
+      {
+        "name": "temperature",
+        "level_1": 0.3,
+        "level_2": 0.7
+      },
+      {
+        "name": "model",
+        "level_1": "openrouter/deepseek/deepseek-chat",
+        "level_2": "openrouter/anthropic/claude-3-haiku-20240307"
+      },
+      {
+        "name": "context_size",
+        "level_1": "file_only",
+        "level_2": "full_module"
+      },
+      {
+        "name": "generation_strategy",
+        "level_1": "standard",
+        "level_2": "chain_of_thought"
+      }
+    ],
+    "utility_weights": {
+      "quality": 1.0,
+      "cost": 0.3,
+      "time": 0.1
+    },
+    "workflow_config": {
+      "rubric": {
+        "clarity": {
+          "description": "Is the review easy to follow and well-structured?",
+          "scale": "1-10"
+        },
+        "accuracy": {
+          "description": "Are the identified issues legitimate code problems?",
+          "scale": "1-10"
+        },
+        "actionability": {
+          "description": "Do suggestions provide clear next steps?",
+          "scale": "1-10"
+        }
+      },
+      "sample_code_path": "tesseract_flow/core/config.py",
+      "evaluator_model": "openrouter/deepseek/deepseek-chat",
+      "language": "python",
+      "context_descriptions": {
+        "file_only": "Review limited to the provided snippet.",
+        "full_module": "Consider module-level implications during review."
+      }
+    }
+  },
+  "test_configurations": [
+    {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.3,
+        "model": "openrouter/deepseek/deepseek-chat",
+        "context_size": "file_only",
+        "generation_strategy": "standard"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 2,
+      "config_values": {
+        "temperature": 0.3,
+        "model": "openrouter/deepseek/deepseek-chat",
+        "context_size": "file_only",
+        "generation_strategy": "chain_of_thought"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 3,
+      "config_values": {
+        "temperature": 0.3,
+        "model": "openrouter/anthropic/claude-3-haiku-20240307",
+        "context_size": "full_module",
+        "generation_strategy": "standard"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 4,
+      "config_values": {
+        "temperature": 0.3,
+        "model": "openrouter/anthropic/claude-3-haiku-20240307",
+        "context_size": "full_module",
+        "generation_strategy": "chain_of_thought"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 5,
+      "config_values": {
+        "temperature": 0.7,
+        "model": "openrouter/deepseek/deepseek-chat",
+        "context_size": "full_module",
+        "generation_strategy": "standard"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 6,
+      "config_values": {
+        "temperature": 0.7,
+        "model": "openrouter/deepseek/deepseek-chat",
+        "context_size": "full_module",
+        "generation_strategy": "chain_of_thought"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 7,
+      "config_values": {
+        "temperature": 0.7,
+        "model": "openrouter/anthropic/claude-3-haiku-20240307",
+        "context_size": "file_only",
+        "generation_strategy": "standard"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 8,
+      "config_values": {
+        "temperature": 0.7,
+        "model": "openrouter/anthropic/claude-3-haiku-20240307",
+        "context_size": "file_only",
+        "generation_strategy": "chain_of_thought"
+      },
+      "workflow": "code_review"
+    }
+  ],
+  "results": [
+    {
+      "test_number": 1,
+      "config": {
+        "test_number": 1,
+        "config_values": {
+          "temperature": 0.3,
+          "model": "openrouter/deepseek/deepseek-chat",
+          "context_size": "file_only",
+          "generation_strategy": "standard"
+        },
+        "workflow": "code_review"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "clarity": {
+            "score": 0.9,
+            "reasoning": "The review is well-structured and easy to follow. Issues and suggestions are clearly separated, and each point is explained concisely. The use of bullet points and clear headings enhances readability."
+          },
+          "accuracy": {
+            "score": 0.9,
+            "reasoning": "The identified issues are legitimate and relevant to the code. Each issue is accurately described, and the suggested fixes are appropriate. The reviewer demonstrates a good understanding of Python best practices and Pydantic."
+          },
+          "actionability": {
+            "score": 0.8,
+            "reasoning": "The suggestions provide clear next steps for improvement. Each issue is accompanied by a specific fix or enhancement, making it easy for the developer to act on the feedback. However, some suggestions could be slightly more detailed, such as providing example code for the fixes."
+          }
+        },
+        "overall_score": 0.8666666666666667,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-26T05:31:44.829429Z",
+        "metadata": {
+          "rubric": {
+            "clarity": {
+              "description": "Is the review easy to follow and well-structured?",
+              "scale": "1-10"
+            },
+            "accuracy": {
+              "description": "Are the identified issues legitimate code problems?",
+              "scale": "1-10"
+            },
+            "actionability": {
+              "description": "Do suggestions provide clear next steps?",
+              "scale": "1-10"
+            }
+          },
+          "raw_response": {
+            "clarity": {
+              "score": 9,
+              "reasoning": "The review is well-structured and easy to follow. Issues and suggestions are clearly separated, and each point is explained concisely. The use of bullet points and clear headings enhances readability."
+            },
+            "accuracy": {
+              "score": 9,
+              "reasoning": "The identified issues are legitimate and relevant to the code. Each issue is accurately described, and the suggested fixes are appropriate. The reviewer demonstrates a good understanding of Python best practices and Pydantic."
+            },
+            "actionability": {
+              "score": 8,
+              "reasoning": "The suggestions provide clear next steps for improvement. Each issue is accompanied by a specific fix or enhancement, making it easy for the developer to act on the feedback. However, some suggestions could be slightly more detailed, such as providing example code for the fixes."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "b65a9df6764d377d557158923a25014ad48cc38b57dc0773b9aa5fd34a3846ef",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 9680.73550000554,
+      "utility": 0.8666666666666667,
+      "workflow_output": "The provided Python code snippet is well-structured and follows best practices for defining configuration models using Pydantic. However, there are a few issues related to error handling, type hints, and potential improvements in validation logic.\nIssues:\n- (medium) The `from_yaml` method in `ExperimentConfig` catches `OSError` but does not provide a specific error message or context. [line 166] Suggested fix: Consider adding a more descriptive error message or logging the specific file-related issue to aid debugging.\n- (low) The `_coerce_workflow_config` method in `ExperimentConfig` uses `Dict[str, Any]` as the return type, which is not specific enough. [line 183] Suggested fix: Use a more specific type hint, such as `Dict[str, Union[WorkflowConfig, Dict[str, Any]]]`, to clarify the expected return type.\n- (medium) The `_validate_levels` method in `Variable` checks if `level_1` and `level_2` are of the same type, but it does not handle cases where one level is a subclass of the other. [line 58] Suggested fix: Consider using `isinstance` instead of `type` to allow for subclass relationships between levels.\n- (medium) The `mark_failed` method in `ExperimentRun` does not validate the `error` parameter beyond checking if it is non-empty. [line 481] Suggested fix: Add additional validation to ensure the `error` parameter is a string and contains meaningful information.\n- (low) The `_recalculate_utilities` method in `ExperimentRun` uses `Iterable[TestResult]` as the input type, which is less specific than `List[TestResult]`. [line 515] Suggested fix: Use `List[TestResult]` as the input type to clarify that the method expects a list of `TestResult` objects.\nSuggestions:\n- Consider adding more comprehensive unit tests to cover edge cases, especially for validation methods.\n- Use logging to capture detailed information about errors and exceptions, particularly in methods that interact with external resources like file I/O.\n- Review and update type hints to ensure they accurately reflect the expected types and improve code readability.\n- Add more detailed docstrings to methods, especially those that perform complex validation or transformation logic, to aid in understanding and maintainability.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.3,
+        "context_size": "file_only",
+        "language": "python",
+        "sample_code_path": "/Users/markr/Documents/aiwriting/TesseractFlow/tesseract_flow/core/config.py",
+        "analysis_prompt": "You are an expert reviewer of python code.\nContext: Review limited to the provided file.\nReview the following snippet and identify issues.\n```python\n\"\"\"Core configuration models for experiments and workflows.\"\"\"\nfrom __future__ import annotations\n\nimport hashlib\nimport json\nfrom datetime import datetime, timezone\nfrom importlib import metadata as importlib_metadata\nfrom pathlib import Path\nfrom typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence\n\nimport yaml\nfrom pydantic import (\n    BaseModel,\n    ConfigDict,\n    Field,\n    ValidationError,\n    ValidationInfo,\n    field_validator,\n    model_validator,\n)\n\nfrom tesseract_flow.core.exceptions import ConfigurationError\n\nfrom tesseract_flow.evaluation.metrics import QualityScore\nfrom tesseract_flow.optimization.utility import UtilityFunction\n\nfrom .types import ExperimentStatus, RubricDimension, UtilityWeights as UtilityWeightsBase\n\n\nclass Variable(BaseModel):\n    \"\"\"Represents a single experimental variable with two discrete levels.\"\"\"\n\n    name: str = Field(..., min_length=1)\n    level_1: Any\n    level_2: Any\n\n    model_config = ConfigDict(frozen=True)\n\n    @field_validator(\"name\")\n    @classmethod\n    def _validate_name(cls, value: str) -> str:\n        if not value:\n            msg = \"Variable name must be non-empty.\"\n            raise ValueError(msg)\n        if value.strip() != value:\n            msg = \"Variable name must not contain leading or trailing whitespace.\"\n            raise ValueError(msg)\n        if value.startswith(\"_\"):\n            msg = \"Variable name must not start with an underscore.\"\n            raise ValueError(msg)\n        if not value.replace(\"_\", \"\").isalnum():\n            msg = \"Variable name must contain only alphanumeric characters and underscores.\"\n            raise ValueError(msg)\n        return value\n\n    @model_validator(mode=\"after\")\n    def _validate_levels(self) -> \"Variable\":\n        if self.level_1 == self.level_2:\n            msg = \"Variable levels must be distinct.\"\n            raise ValueError(msg)\n        if type(self.level_1) is not type(self.level_2):\n            msg = \"Variable levels must share the same type.\"\n            raise ValueError(msg)\n        return self\n\n\nclass UtilityWeights(UtilityWeightsBase):\n    \"\"\"Utility weight configuration with additional validation.\"\"\"\n\n    @model_validator(mode=\"after\")\n    def _ensure_positive_total(self) -> \"UtilityWeights\":\n        if self.quality == 0.0 and self.cost == 0.0 and self.time == 0.0:\n            msg = \"At least one utility weight must be greater than zero.\"\n            raise ValueError(msg)\n        return self\n\n\nclass WorkflowConfig(BaseModel):\n    \"\"\"Workflow-specific configuration details.\"\"\"\n\n    rubric: Dict[str, RubricDimension] = Field(default_factory=dict)\n    sample_code_path: Optional[str] = None\n\n    model_config = ConfigDict(extra=\"allow\")\n\n    @field_validator(\"sample_code_path\")\n    @classmethod\n    def _validate_sample_code_path(cls, value: Optional[str]) -> Optional[str]:\n        if value is None:\n            return value\n        stripped = value.strip()\n        if not stripped:\n            msg = \"sample_code_path must not be empty if provided.\"\n            raise ValueError(msg)\n        return stripped\n\n\nclass ExperimentConfig(BaseModel):\n    \"\"\"Configuration for executing a Taguchi L8 experiment.\"\"\"\n\n    name: str\n    workflow: str\n    variables: List[Variable]\n    utility_weights: UtilityWeights = Field(default_factory=UtilityWeights)\n    workflow_config: WorkflowConfig | Dict[str, Any] = Field(default_factory=WorkflowConfig)\n    seed: Optional[int] = Field(default=None, ge=0)\n\n    model_config = ConfigDict(validate_assignment=True)\n\n    @field_validator(\"name\", \"workflow\")\n    @classmethod\n    def _validate_identifier(cls, value: str) -> str:\n        if not value:\n            msg = \"Experiment identifiers must be non-empty.\"\n            raise ValueError(msg)\n        if value.strip() != value:\n            msg = \"Experiment identifiers cannot contain leading or trailing whitespace.\"\n            raise ValueError(msg)\n        return value\n\n    @model_validator(mode=\"after\")\n    def _validate_variables(self) -> \"ExperimentConfig\":\n        count = len(self.variables)\n        if count < 4 or count > 7:\n            msg = \"ExperimentConfig requires between 4 and 7 variables.\"\n            raise ValueError(msg)\n\n        names = [variable.name for variable in self.variables]\n        if len(set(names)) != count:\n            msg = \"Variable names must be unique within an experiment.\"\n            raise ValueError(msg)\n        return self\n\n    @model_validator(mode=\"before\")\n    @classmethod\n    def _coerce_workflow_config(cls, data: Dict[str, Any]) -> Dict[str, Any]:\n        workflow_config = data.get(\"workflow_config\")\n        if workflow_config is None:\n            data[\"workflow_config\"] = WorkflowConfig()\n        elif not isinstance(workflow_config, WorkflowConfig):\n            data[\"workflow_config\"] = WorkflowConfig.model_validate(workflow_config)\n        return data\n\n    @classmethod\n    def from_yaml(cls, path: Path | str) -> \"ExperimentConfig\":\n        \"\"\"Load an experiment configuration from a YAML file.\"\"\"\n\n        file_path = Path(path)\n        try:\n            text = file_path.read_text(encoding=\"utf-8\")\n        except OSError:\n            # Surface file issues to caller for contextual handling.\n            raise\n\n        try:\n            data = yaml.safe_load(text)\n        except yaml.YAMLError as exc:\n            details = [_format_yaml_error(exc)] if str(exc).strip() else []\n            message = f\"Failed to parse experiment YAML at {file_path}.\"\n            raise ConfigurationError(message, details=details) from exc\n\n        if not isinstance(data, dict):\n            message = (\n                f\"Experiment configuration in {file_path} must be a mapping of keys to values.\"\n            )\n            raise ConfigurationError(message)\n\n        try:\n            return cls.model_validate(data)\n        except ValidationError as exc:\n            message = f\"Experiment configuration in {file_path} is invalid.\"\n            raise ConfigurationError(message, details=_format_validation_errors(exc)) from exc\n\n    def to_yaml(self, path: Path | str) -> Path:\n        \"\"\"Persist the configuration to a YAML file.\"\"\"\n\n        file_path = Path(path)\n        with file_path.open(\"w\", encoding=\"utf-8\") as handle:\n            yaml.safe_dump(self.model_dump(mode=\"json\"), handle, sort_keys=False)\n        return file_path\n\n\nclass ExperimentMetadata(BaseModel):\n    \"\"\"Metadata describing experiment reproducibility context.\"\"\"\n\n    config_hash: str\n    created_at: datetime = Field(default_factory=lambda: datetime.now(tz=timezone.utc))\n    dependencies: Dict[str, str] = Field(default_factory=dict)\n    non_deterministic_sources: List[str] = Field(default_factory=list)\n    seed: Optional[int] = None\n\n    model_config = ConfigDict(frozen=True)\n\n    @field_validator(\"config_hash\")\n    @classmethod\n    def _validate_config_hash(cls, value: str) -> str:\n        stripped = value.strip()\n        if not stripped:\n            msg = \"config_hash must be a non-empty string.\"\n            raise ValueError(msg)\n        return stripped\n\n    @model_validator(mode=\"before\")\n    @classmethod\n    def _coerce_dependencies(cls, data: Dict[str, Any]) -> Dict[str, Any]:\n        dependencies = data.get(\"dependencies\") or {}\n        if not isinstance(dependencies, Mapping):\n            msg = \"dependencies must be provided as a mapping of package names to versions.\"\n            raise ValueError(msg)\n        data[\"dependencies\"] = {str(name): str(version) for name, version in dependencies.items()}\n\n        sources = data.get(\"non_deterministic_sources\") or []\n        if not isinstance(sources, Sequence) or isinstance(sources, (str, bytes)):\n            msg = \"non_deterministic_sources must be a sequence of strings.\"\n            raise ValueError(msg)\n        normalized_sources = sorted({str(source).strip() for source in sources if str(source).strip()})\n        data[\"non_deterministic_sources\"] = normalized_sources\n        return data\n\n    @classmethod\n    def from_config(\n        cls,\n        config: \"ExperimentConfig\",\n        *,\n        dependencies: Optional[Mapping[str, str]] = None,\n        non_deterministic_sources: Optional[Sequence[str]] = None,\n    ) -> \"ExperimentMetadata\":\n        \"\"\"Create metadata derived from an :class:`ExperimentConfig`.\"\"\"\n\n        payload = config.model_dump(mode=\"json\")\n        serialized = json.dumps(payload, sort_keys=True, separators=(\",\", \":\"))\n        config_hash = hashlib.sha256(serialized.encode(\"utf-8\")).hexdigest()\n        detected_dependencies = {\n            str(name): str(version)\n            for name, version in (dependencies or {}).items()\n            if str(name).strip() and str(version).strip()\n        }\n\n        if not detected_dependencies:\n            detected_dependencies = cls._default_dependency_versions()\n\n        sources = list(non_deterministic_sources or [\"llm_sampling\"])\n        return cls(\n            config_hash=config_hash,\n            dependencies=detected_dependencies,\n            non_deterministic_sources=sources,\n            seed=config.seed,\n        )\n\n    @staticmethod\n    def _default_dependency_versions() -> Dict[str, str]:\n        packages = (\"pydantic\", \"langgraph\", \"litellm\")\n        versions: Dict[str, str] = {}\n        for package in packages:\n            try:\n                versions[package] = importlib_metadata.version(package)\n            except importlib_metadata.PackageNotFoundError:  # pragma: no cover - optional deps\n                continue\n        return versions\n\n\nclass TestConfiguration(BaseModel):\n    \"\"\"Represents a single test generated from the Taguchi L8 array.\"\"\"\n\n    test_number: int = Field(..., ge=1, le=8)\n    config_values: Dict[str, Any]\n    workflow: str\n\n    model_config = ConfigDict(frozen=True)\n\n    @field_validator(\"workflow\")\n    @classmethod\n    def _validate_workflow(cls, value: str) -> str:\n        if not value:\n            msg = \"Workflow identifier must be non-empty.\"\n            raise ValueError(msg)\n        if value.strip() != value:\n            msg = \"Workflow identifier cannot contain leading or trailing whitespace.\"\n            raise ValueError(msg)\n        return value\n\n    @model_validator(mode=\"after\")\n    def _validate_values(self, info: ValidationInfo) -> \"TestConfiguration\":\n        variable_levels = (info.context or {}).get(\"variable_levels\")\n        if not variable_levels:\n            return self\n\n        expected_names = set(variable_levels)\n        provided_names = set(self.config_values)\n        if provided_names != expected_names:\n            missing = expected_names - provided_names\n            extra = provided_names - expected_names\n            details = []\n            if missing:\n                details.append(f\"missing {sorted(missing)}\")\n            if extra:\n                details.append(f\"unexpected {sorted(extra)}\")\n            detail_msg = \", \".join(details)\n            msg = f\"Config values must match experiment variables ({detail_msg}).\"\n            raise ValueError(msg)\n\n        for name, value in self.config_values.items():\n            allowed_values = variable_levels[name]\n            if value not in allowed_values:\n                msg = (\n                    f\"Config value for variable '{name}' must be one of the defined levels.\"\n                )\n                raise ValueError(msg)\n\n        return self\n\n\nclass TestResult(BaseModel):\n    \"\"\"Result from executing a single test configuration.\"\"\"\n\n    test_number: int = Field(..., ge=1, le=8)\n    config: TestConfiguration\n    quality_score: QualityScore\n    cost: float = Field(..., ge=0.0)\n    latency: float = Field(..., ge=0.0)\n    utility: float = 0.0\n    workflow_output: str = Field(default=\"\")\n    metadata: Dict[str, Any] = Field(default_factory=dict)\n    timestamp: datetime = Field(default_factory=lambda: datetime.now(tz=timezone.utc))\n\n    model_config = ConfigDict(validate_assignment=True)\n\n    @field_validator(\"workflow_output\")\n    @classmethod\n    def _normalize_output(cls, value: str) -> str:\n        return value.strip()\n\n    def with_utility(self, utility: float) -> \"TestResult\":\n        \"\"\"Return a copy of the result with an updated utility score.\"\"\"\n\n        return self.model_copy(update={\"utility\": utility})\n\n    def with_metadata(self, **metadata: Any) -> \"TestResult\":\n        \"\"\"Return a copy of the result with merged metadata.\"\"\"\n\n        merged = {**self.metadata, **metadata}\n        return self.model_copy(update={\"metadata\": merged})\n\n\nclass ExperimentRun(BaseModel):\n    \"\"\"Tracks execution progress and results for a Taguchi L8 experiment.\"\"\"\n\n    experiment_id: str\n    config: ExperimentConfig\n    test_configurations: List[TestConfiguration]\n    results: List[TestResult] = Field(default_factory=list)\n    status: ExperimentStatus = \"PENDING\"\n    started_at: Optional[datetime] = None\n    completed_at: Optional[datetime] = None\n    error: Optional[str] = None\n    experiment_metadata: Optional[ExperimentMetadata] = None\n    metadata: Dict[str, Any] = Field(default_factory=dict)\n    baseline_test_number: int = Field(default=1, ge=1, le=8)\n    baseline_config: Optional[TestConfiguration] = None\n    baseline_result: Optional[TestResult] = None\n    baseline_quality: Optional[float] = Field(default=None, ge=0.0, le=1.0)\n    quality_improvement_pct: Optional[float] = None\n\n    model_config = ConfigDict(validate_assignment=True)\n\n    @field_validator(\"experiment_id\")\n    @classmethod\n    def _validate_experiment_id(cls, value: str) -> str:\n        if not value:\n            msg = \"experiment_id must be non-empty.\"\n            raise ValueError(msg)\n        stripped = value.strip()\n        if stripped != value:\n            msg = \"experiment_id cannot contain leading or trailing whitespace.\"\n            raise ValueError(msg)\n        return value\n\n    @model_validator(mode=\"after\")\n    def _validate_state(self) -> \"ExperimentRun\":\n        if len(self.test_configurations) != 8:\n            msg = \"Exactly 8 test configurations are required for an L8 experiment.\"\n            raise ValueError(msg)\n\n        test_numbers = [config.test_number for config in self.test_configurations]\n        if len(set(test_numbers)) != len(test_numbers):\n            msg = \"Test configuration numbers must be unique.\"\n            raise ValueError(msg)\n\n        if len(self.results) > len(self.test_configurations):\n            msg = \"Result count cannot exceed generated test configurations.\"\n            raise ValueError(msg)\n\n        if self.status == \"PENDING\":\n            if self.results:\n                msg = \"Pending experiments cannot contain results.\"\n                raise ValueError(msg)\n            if self.started_at is not None:\n                msg = \"Pending experiments cannot define a start timestamp.\"\n                raise ValueError(msg)\n            if self.completed_at is not None:\n                msg = \"Pending experiments cannot define a completion timestamp.\"\n                raise ValueError(msg)\n            if self.error is not None:\n                msg = \"Pending experiments cannot contain errors.\"\n                raise ValueError(msg)\n\n        if self.status == \"RUNNING\":\n            if not 0 <= len(self.results) <= len(self.test_configurations):\n                msg = \"Running experiments cannot store more results than test configurations.\"\n                raise ValueError(msg)\n            if self.completed_at is not None:\n                msg = \"Running experiments cannot define a completion timestamp.\"\n                raise ValueError(msg)\n            if self.error is not None:\n                msg = \"Running experiments cannot define an error.\"\n                raise ValueError(msg)\n            if self.started_at is None:\n                msg = \"Running experiments must define a start timestamp.\"\n                raise ValueError(msg)\n\n        if self.status == \"COMPLETED\":\n            if len(self.results) != len(self.test_configurations):\n                msg = \"Completed experiments must contain results for all configurations.\"\n                raise ValueError(msg)\n            if self.completed_at is None:\n                msg = \"Completed experiments must define a completion timestamp.\"\n                raise ValueError(msg)\n            if self.error is not None:\n                msg = \"Completed experiments cannot contain an error.\"\n                raise ValueError(msg)\n            if self.started_at is None:\n                msg = \"Completed experiments must define a start timestamp.\"\n                raise ValueError(msg)\n\n        if self.status == \"FAILED\":\n            if self.error is None:\n                msg = \"Failed experiments must include an error message.\"\n                raise ValueError(msg)\n            if self.started_at is None:\n                msg = \"Failed experiments must define a start timestamp.\"\n                raise ValueError(msg)\n\n        first_config = min(self.test_configurations, key=lambda item: item.test_number)\n\n        if self.baseline_test_number != first_config.test_number:\n            object.__setattr__(self, \"baseline_test_number\", first_config.test_number)\n\n        if self.baseline_config is None or self.baseline_config.test_number != first_config.test_number:\n            object.__setattr__(self, \"baseline_config\", first_config)\n\n        if self.baseline_result is not None and self.baseline_result.test_number != first_config.test_number:\n            object.__setattr__(self, \"baseline_result\", None)\n            object.__setattr__(self, \"baseline_quality\", None)\n\n        return self\n\n    def mark_running(self, *, started_at: Optional[datetime] = None) -> \"ExperimentRun\":\n        \"\"\"Transition the experiment to RUNNING state.\"\"\"\n\n        if self.status not in {\"PENDING\", \"FAILED\"}:\n            msg = \"Experiment can only transition to RUNNING from PENDING or FAILED.\"\n            raise ValueError(msg)\n\n        timestamp = started_at or datetime.now(tz=timezone.utc)\n        return self.model_copy(\n            update={\"status\": \"RUNNING\", \"started_at\": timestamp, \"error\": None}\n        )\n\n    def mark_failed(self, error: str) -> \"ExperimentRun\":\n        \"\"\"Transition the experiment to FAILED state.\"\"\"\n\n        if self.status != \"RUNNING\":\n            msg = \"Failed state can only be set from RUNNING.\"\n            raise ValueError(msg)\n        stripped = error.strip()\n        if not stripped:\n            msg = \"Error message must be non-empty.\"\n            raise ValueError(msg)\n\n        return self.model_copy(update={\"status\": \"FAILED\", \"error\": stripped})\n\n    def mark_completed(self, *, completed_at: Optional[datetime] = None) -> \"ExperimentRun\":\n        \"\"\"Transition the experiment to COMPLETED state.\"\"\"\n\n        if self.status != \"RUNNING\":\n            msg = \"Experiment must be RUNNING before completion.\"\n            raise ValueError(msg)\n        if len(self.results) != len(self.test_configurations):\n            msg = \"Cannot complete experiment until all results are recorded.\"\n            raise ValueError(msg)\n\n        timestamp = completed_at or datetime.now(tz=timezone.utc)\n        baseline_result = self.baseline_result\n        if baseline_result is None:\n            baseline_result = next(\n                (item for item in self.results if item.test_number == self.baseline_test_number),\n                None,\n            )\n        baseline_quality = (\n            baseline_result.quality_score.overall_score if baseline_result else self.baseline_quality\n        )\n        improvement = self._calculate_improvement(self.results, baseline_quality)\n\n        return self.model_copy(\n            update={\n                \"status\": \"COMPLETED\",\n                \"completed_at\": timestamp,\n                \"baseline_result\": baseline_result,\n                \"baseline_quality\": baseline_quality,\n                \"quality_improvement_pct\": improvement,\n            }\n        )\n\n    def record_result(self, result: TestResult) -> \"ExperimentRun\":\n        \"\"\"Record a new test result and recalculate utilities.\"\"\"\n\n        if self.status != \"RUNNING\":\n            msg = \"Results can only be recorded while experiment is RUNNING.\"\n            raise ValueError(msg)\n\n        if any(existing.test_number == result.test_number for existing in self.results):\n            msg = \"Result for this test number has already been recorded.\"\n            raise ValueError(msg)\n\n        if len(self.results) >= len(self.test_configurations):\n            msg = \"All test results have already been recorded.\"\n            raise ValueError(msg)\n\n        updated_results = [*self.results, result]\n        recalculated_results, metadata = self._recalculate_utilities(updated_results)\n\n        baseline_result = self.baseline_result\n        if baseline_result is None or result.test_number == self.baseline_test_number:\n            baseline_result = next(\n                (item for item in recalculated_results if item.test_number == self.baseline_test_number),\n                None,\n            )\n\n        baseline_quality = (\n            baseline_result.quality_score.overall_score if baseline_result else self.baseline_quality\n        )\n        improvement = self._calculate_improvement(recalculated_results, baseline_quality)\n\n        updates = {\n            \"results\": recalculated_results,\n            \"metadata\": metadata,\n            \"baseline_result\": baseline_result,\n            \"baseline_quality\": baseline_quality,\n            \"quality_improvement_pct\": improvement,\n        }\n        return self.model_copy(update=updates)\n\n    def _recalculate_utilities(\n        self, results: Iterable[TestResult]\n    ) -> tuple[List[TestResult], Dict[str, Any]]:\n        results_list = sorted(results, key=lambda item: item.test_number)\n        if not results_list:\n            return results_list, self.metadata\n\n        utility_fn = UtilityFunction(self.config.utility_weights)\n        costs = [result.cost for result in results_list]\n        latencies = [result.latency for result in results_list]\n        normalized_costs, cost_stats = UtilityFunction.normalize_metrics(costs)\n        normalized_latencies, latency_stats = UtilityFunction.normalize_metrics(latencies)\n\n        updated_results = []\n        for result, normalized_cost, normalized_latency in zip(\n            results_list, normalized_costs, normalized_latencies\n        ):\n            utility = utility_fn.compute(\n                quality=result.quality_score.overall_score,\n                cost=normalized_cost,\n                latency=normalized_latency,\n            )\n            updated_results.append(result.with_utility(utility))\n\n        metadata = {\n            **self.metadata,\n            \"normalization\": {\n                \"cost\": cost_stats,\n                \"latency\": latency_stats,\n            },\n        }\n        return updated_results, metadata\n\n    @staticmethod\n    def _calculate_improvement(\n        results: Sequence[TestResult], baseline_quality: Optional[float]\n    ) -> Optional[float]:\n        if baseline_quality is None or baseline_quality <= 0.0:\n            return None\n        if not results:\n            return None\n        best_quality = max(result.quality_score.overall_score for result in results)\n        return ((best_quality - baseline_quality) / baseline_quality) * 100.0\n\n\ndef _format_validation_errors(exc: ValidationError) -> List[str]:\n    \"\"\"Return human-friendly strings describing validation failures.\"\"\"\n\n    details: List[str] = []\n    for error in exc.errors():\n        location = \" → \".join(str(segment) for segment in error.get(\"loc\", ()))\n        message = error.get(\"msg\") or \"Invalid value.\"\n        if location:\n            details.append(f\"{location}: {message}\")\n        else:\n            details.append(message)\n    if not details:\n        details.append(str(exc))\n    return details\n\n\ndef _format_yaml_error(error: yaml.YAMLError) -> str:\n    \"\"\"Provide a concise YAML parsing error message for users.\"\"\"\n\n    problem_mark = getattr(error, \"problem_mark\", None)\n    if problem_mark is not None:\n        return (\n            f\"{getattr(error, 'problem', error)} (line {problem_mark.line + 1}, column {problem_mark.column + 1})\"\n        )\n    return str(error)\n```\nReturn JSON with keys 'summary', 'issues', and 'suggestions'. Each issue should include type, severity, description, optional line_number, and suggestion.",
+        "analysis_raw": "```json\n{\n  \"summary\": \"The provided Python code snippet is well-structured and follows best practices for defining configuration models using Pydantic. However, there are a few issues related to error handling, type hints, and potential improvements in validation logic.\",\n  \"issues\": [\n    {\n      \"type\": \"Error Handling\",\n      \"severity\": \"Medium\",\n      \"description\": \"The `from_yaml` method in `ExperimentConfig` catches `OSError` but does not provide a specific error message or context.\",\n      \"line_number\": 166,\n      \"suggestion\": \"Consider adding a more descriptive error message or logging the specific file-related issue to aid debugging.\"\n    },\n    {\n      \"type\": \"Type Hint\",\n      \"severity\": \"Low\",\n      \"description\": \"The `_coerce_workflow_config` method in `ExperimentConfig` uses `Dict[str, Any]` as the return type, which is not specific enough.\",\n      \"line_number\": 183,\n      \"suggestion\": \"Use a more specific type hint, such as `Dict[str, Union[WorkflowConfig, Dict[str, Any]]]`, to clarify the expected return type.\"\n    },\n    {\n      \"type\": \"Validation Logic\",\n      \"severity\": \"Medium\",\n      \"description\": \"The `_validate_levels` method in `Variable` checks if `level_1` and `level_2` are of the same type, but it does not handle cases where one level is a subclass of the other.\",\n      \"line_number\": 58,\n      \"suggestion\": \"Consider using `isinstance` instead of `type` to allow for subclass relationships between levels.\"\n    },\n    {\n      \"type\": \"Error Handling\",\n      \"severity\": \"Medium\",\n      \"description\": \"The `mark_failed` method in `ExperimentRun` does not validate the `error` parameter beyond checking if it is non-empty.\",\n      \"line_number\": 481,\n      \"suggestion\": \"Add additional validation to ensure the `error` parameter is a string and contains meaningful information.\"\n    },\n    {\n      \"type\": \"Type Hint\",\n      \"severity\": \"Low\",\n      \"description\": \"The `_recalculate_utilities` method in `ExperimentRun` uses `Iterable[TestResult]` as the input type, which is less specific than `List[TestResult]`.\",\n      \"line_number\": 515,\n      \"suggestion\": \"Use `List[TestResult]` as the input type to clarify that the method expects a list of `TestResult` objects.\"\n    }\n  ],\n  \"suggestions\": [\n    \"Consider adding more comprehensive unit tests to cover edge cases, especially for validation methods.\",\n    \"Use logging to capture detailed information about errors and exceptions, particularly in methods that interact with external resources like file I/O.\",\n    \"Review and update type hints to ensure they accurately reflect the expected types and improve code readability.\",\n    \"Add more detailed docstrings to methods, especially those that perform complex validation or transformation logic, to aid in understanding and maintainability.\"\n  ]\n}\n```",
+        "test_config": {
+          "test_number": 1,
+          "config": {
+            "temperature": 0.3,
+            "model": "openrouter/deepseek/deepseek-chat",
+            "context_size": "file_only",
+            "generation_strategy": "standard"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-26T05:31:31.830429Z",
+          "completed_at": "2025-10-26T05:31:41.511272Z",
+          "duration_seconds": 9.68073550000554
+        },
+        "evaluation": {
+          "rubric": {
+            "clarity": {
+              "description": "Is the review easy to follow and well-structured?",
+              "scale": "1-10"
+            },
+            "accuracy": {
+              "description": "Are the identified issues legitimate code problems?",
+              "scale": "1-10"
+            },
+            "actionability": {
+              "description": "Do suggestions provide clear next steps?",
+              "scale": "1-10"
+            }
+          },
+          "raw_response": {
+            "clarity": {
+              "score": 9,
+              "reasoning": "The review is well-structured and easy to follow. Issues and suggestions are clearly separated, and each point is explained concisely. The use of bullet points and clear headings enhances readability."
+            },
+            "accuracy": {
+              "score": 9,
+              "reasoning": "The identified issues are legitimate and relevant to the code. Each issue is accurately described, and the suggested fixes are appropriate. The reviewer demonstrates a good understanding of Python best practices and Pydantic."
+            },
+            "actionability": {
+              "score": 8,
+              "reasoning": "The suggestions provide clear next steps for improvement. Each issue is accompanied by a specific fix or enhancement, making it easy for the developer to act on the feedback. However, some suggestions could be slightly more detailed, such as providing example code for the fixes."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "b65a9df6764d377d557158923a25014ad48cc38b57dc0773b9aa5fd34a3846ef",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-26T05:31:44.829726Z"
+    }
+  ],
+  "status": "FAILED",
+  "started_at": "2025-10-26T05:31:31.823319Z",
+  "error": "Workflow execution failed.",
+  "experiment_metadata": {
+    "config_hash": "322329ab255bc72f75afc92bb08d82038cd6171a3215d72faa1ff02bb3a11b2c",
+    "created_at": "2025-10-26T05:31:31.822969Z",
+    "dependencies": {
+      "pydantic": "2.12.3",
+      "langgraph": "1.0.1",
+      "litellm": "1.79.0"
+    },
+    "non_deterministic_sources": [
+      "llm_sampling"
+    ]
+  },
+  "metadata": {
+    "normalization": {
+      "cost": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "latency": {
+        "min": 9680.73550000554,
+        "max": 9680.73550000554
+      }
+    }
+  },
+  "baseline_test_number": 1,
+  "baseline_config": {
+    "test_number": 1,
+    "config_values": {
+      "temperature": 0.3,
+      "model": "openrouter/deepseek/deepseek-chat",
+      "context_size": "file_only",
+      "generation_strategy": "standard"
+    },
+    "workflow": "code_review"
+  },
+  "baseline_result": {
+    "test_number": 1,
+    "config": {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.3,
+        "model": "openrouter/deepseek/deepseek-chat",
+        "context_size": "file_only",
+        "generation_strategy": "standard"
+      },
+      "workflow": "code_review"
+    },
+    "quality_score": {
+      "dimension_scores": {
+        "clarity": {
+          "score": 0.9,
+          "reasoning": "The review is well-structured and easy to follow. Issues and suggestions are clearly separated, and each point is explained concisely. The use of bullet points and clear headings enhances readability."
+        },
+        "accuracy": {
+          "score": 0.9,
+          "reasoning": "The identified issues are legitimate and relevant to the code. Each issue is accurately described, and the suggested fixes are appropriate. The reviewer demonstrates a good understanding of Python best practices and Pydantic."
+        },
+        "actionability": {
+          "score": 0.8,
+          "reasoning": "The suggestions provide clear next steps for improvement. Each issue is accompanied by a specific fix or enhancement, making it easy for the developer to act on the feedback. However, some suggestions could be slightly more detailed, such as providing example code for the fixes."
+        }
+      },
+      "overall_score": 0.8666666666666667,
+      "evaluator_model": "openrouter/deepseek/deepseek-chat",
+      "timestamp": "2025-10-26T05:31:44.829429Z",
+      "metadata": {
+        "rubric": {
+          "clarity": {
+            "description": "Is the review easy to follow and well-structured?",
+            "scale": "1-10"
+          },
+          "accuracy": {
+            "description": "Are the identified issues legitimate code problems?",
+            "scale": "1-10"
+          },
+          "actionability": {
+            "description": "Do suggestions provide clear next steps?",
+            "scale": "1-10"
+          }
+        },
+        "raw_response": {
+          "clarity": {
+            "score": 9,
+            "reasoning": "The review is well-structured and easy to follow. Issues and suggestions are clearly separated, and each point is explained concisely. The use of bullet points and clear headings enhances readability."
+          },
+          "accuracy": {
+            "score": 9,
+            "reasoning": "The identified issues are legitimate and relevant to the code. Each issue is accurately described, and the suggested fixes are appropriate. The reviewer demonstrates a good understanding of Python best practices and Pydantic."
+          },
+          "actionability": {
+            "score": 8,
+            "reasoning": "The suggestions provide clear next steps for improvement. Each issue is accompanied by a specific fix or enhancement, making it easy for the developer to act on the feedback. However, some suggestions could be slightly more detailed, such as providing example code for the fixes."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "b65a9df6764d377d557158923a25014ad48cc38b57dc0773b9aa5fd34a3846ef",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/deepseek/deepseek-chat"
+      }
+    },
+    "cost": 0.0,
+    "latency": 9680.73550000554,
+    "utility": 0.8666666666666667,
+    "workflow_output": "The provided Python code snippet is well-structured and follows best practices for defining configuration models using Pydantic. However, there are a few issues related to error handling, type hints, and potential improvements in validation logic.\nIssues:\n- (medium) The `from_yaml` method in `ExperimentConfig` catches `OSError` but does not provide a specific error message or context. [line 166] Suggested fix: Consider adding a more descriptive error message or logging the specific file-related issue to aid debugging.\n- (low) The `_coerce_workflow_config` method in `ExperimentConfig` uses `Dict[str, Any]` as the return type, which is not specific enough. [line 183] Suggested fix: Use a more specific type hint, such as `Dict[str, Union[WorkflowConfig, Dict[str, Any]]]`, to clarify the expected return type.\n- (medium) The `_validate_levels` method in `Variable` checks if `level_1` and `level_2` are of the same type, but it does not handle cases where one level is a subclass of the other. [line 58] Suggested fix: Consider using `isinstance` instead of `type` to allow for subclass relationships between levels.\n- (medium) The `mark_failed` method in `ExperimentRun` does not validate the `error` parameter beyond checking if it is non-empty. [line 481] Suggested fix: Add additional validation to ensure the `error` parameter is a string and contains meaningful information.\n- (low) The `_recalculate_utilities` method in `ExperimentRun` uses `Iterable[TestResult]` as the input type, which is less specific than `List[TestResult]`. [line 515] Suggested fix: Use `List[TestResult]` as the input type to clarify that the method expects a list of `TestResult` objects.\nSuggestions:\n- Consider adding more comprehensive unit tests to cover edge cases, especially for validation methods.\n- Use logging to capture detailed information about errors and exceptions, particularly in methods that interact with external resources like file I/O.\n- Review and update type hints to ensure they accurately reflect the expected types and improve code readability.\n- Add more detailed docstrings to methods, especially those that perform complex validation or transformation logic, to aid in understanding and maintainability.",
+    "metadata": {
+      "strategy": "standard",
+      "model": "openrouter/deepseek/deepseek-chat",
+      "temperature": 0.3,
+      "context_size": "file_only",
+      "language": "python",
+      "sample_code_path": "/Users/markr/Documents/aiwriting/TesseractFlow/tesseract_flow/core/config.py",
+      "analysis_prompt": "You are an expert reviewer of python code.\nContext: Review limited to the provided file.\nReview the following snippet and identify issues.\n```python\n\"\"\"Core configuration models for experiments and workflows.\"\"\"\nfrom __future__ import annotations\n\nimport hashlib\nimport json\nfrom datetime import datetime, timezone\nfrom importlib import metadata as importlib_metadata\nfrom pathlib import Path\nfrom typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence\n\nimport yaml\nfrom pydantic import (\n    BaseModel,\n    ConfigDict,\n    Field,\n    ValidationError,\n    ValidationInfo,\n    field_validator,\n    model_validator,\n)\n\nfrom tesseract_flow.core.exceptions import ConfigurationError\n\nfrom tesseract_flow.evaluation.metrics import QualityScore\nfrom tesseract_flow.optimization.utility import UtilityFunction\n\nfrom .types import ExperimentStatus, RubricDimension, UtilityWeights as UtilityWeightsBase\n\n\nclass Variable(BaseModel):\n    \"\"\"Represents a single experimental variable with two discrete levels.\"\"\"\n\n    name: str = Field(..., min_length=1)\n    level_1: Any\n    level_2: Any\n\n    model_config = ConfigDict(frozen=True)\n\n    @field_validator(\"name\")\n    @classmethod\n    def _validate_name(cls, value: str) -> str:\n        if not value:\n            msg = \"Variable name must be non-empty.\"\n            raise ValueError(msg)\n        if value.strip() != value:\n            msg = \"Variable name must not contain leading or trailing whitespace.\"\n            raise ValueError(msg)\n        if value.startswith(\"_\"):\n            msg = \"Variable name must not start with an underscore.\"\n            raise ValueError(msg)\n        if not value.replace(\"_\", \"\").isalnum():\n            msg = \"Variable name must contain only alphanumeric characters and underscores.\"\n            raise ValueError(msg)\n        return value\n\n    @model_validator(mode=\"after\")\n    def _validate_levels(self) -> \"Variable\":\n        if self.level_1 == self.level_2:\n            msg = \"Variable levels must be distinct.\"\n            raise ValueError(msg)\n        if type(self.level_1) is not type(self.level_2):\n            msg = \"Variable levels must share the same type.\"\n            raise ValueError(msg)\n        return self\n\n\nclass UtilityWeights(UtilityWeightsBase):\n    \"\"\"Utility weight configuration with additional validation.\"\"\"\n\n    @model_validator(mode=\"after\")\n    def _ensure_positive_total(self) -> \"UtilityWeights\":\n        if self.quality == 0.0 and self.cost == 0.0 and self.time == 0.0:\n            msg = \"At least one utility weight must be greater than zero.\"\n            raise ValueError(msg)\n        return self\n\n\nclass WorkflowConfig(BaseModel):\n    \"\"\"Workflow-specific configuration details.\"\"\"\n\n    rubric: Dict[str, RubricDimension] = Field(default_factory=dict)\n    sample_code_path: Optional[str] = None\n\n    model_config = ConfigDict(extra=\"allow\")\n\n    @field_validator(\"sample_code_path\")\n    @classmethod\n    def _validate_sample_code_path(cls, value: Optional[str]) -> Optional[str]:\n        if value is None:\n            return value\n        stripped = value.strip()\n        if not stripped:\n            msg = \"sample_code_path must not be empty if provided.\"\n            raise ValueError(msg)\n        return stripped\n\n\nclass ExperimentConfig(BaseModel):\n    \"\"\"Configuration for executing a Taguchi L8 experiment.\"\"\"\n\n    name: str\n    workflow: str\n    variables: List[Variable]\n    utility_weights: UtilityWeights = Field(default_factory=UtilityWeights)\n    workflow_config: WorkflowConfig | Dict[str, Any] = Field(default_factory=WorkflowConfig)\n    seed: Optional[int] = Field(default=None, ge=0)\n\n    model_config = ConfigDict(validate_assignment=True)\n\n    @field_validator(\"name\", \"workflow\")\n    @classmethod\n    def _validate_identifier(cls, value: str) -> str:\n        if not value:\n            msg = \"Experiment identifiers must be non-empty.\"\n            raise ValueError(msg)\n        if value.strip() != value:\n            msg = \"Experiment identifiers cannot contain leading or trailing whitespace.\"\n            raise ValueError(msg)\n        return value\n\n    @model_validator(mode=\"after\")\n    def _validate_variables(self) -> \"ExperimentConfig\":\n        count = len(self.variables)\n        if count < 4 or count > 7:\n            msg = \"ExperimentConfig requires between 4 and 7 variables.\"\n            raise ValueError(msg)\n\n        names = [variable.name for variable in self.variables]\n        if len(set(names)) != count:\n            msg = \"Variable names must be unique within an experiment.\"\n            raise ValueError(msg)\n        return self\n\n    @model_validator(mode=\"before\")\n    @classmethod\n    def _coerce_workflow_config(cls, data: Dict[str, Any]) -> Dict[str, Any]:\n        workflow_config = data.get(\"workflow_config\")\n        if workflow_config is None:\n            data[\"workflow_config\"] = WorkflowConfig()\n        elif not isinstance(workflow_config, WorkflowConfig):\n            data[\"workflow_config\"] = WorkflowConfig.model_validate(workflow_config)\n        return data\n\n    @classmethod\n    def from_yaml(cls, path: Path | str) -> \"ExperimentConfig\":\n        \"\"\"Load an experiment configuration from a YAML file.\"\"\"\n\n        file_path = Path(path)\n        try:\n            text = file_path.read_text(encoding=\"utf-8\")\n        except OSError:\n            # Surface file issues to caller for contextual handling.\n            raise\n\n        try:\n            data = yaml.safe_load(text)\n        except yaml.YAMLError as exc:\n            details = [_format_yaml_error(exc)] if str(exc).strip() else []\n            message = f\"Failed to parse experiment YAML at {file_path}.\"\n            raise ConfigurationError(message, details=details) from exc\n\n        if not isinstance(data, dict):\n            message = (\n                f\"Experiment configuration in {file_path} must be a mapping of keys to values.\"\n            )\n            raise ConfigurationError(message)\n\n        try:\n            return cls.model_validate(data)\n        except ValidationError as exc:\n            message = f\"Experiment configuration in {file_path} is invalid.\"\n            raise ConfigurationError(message, details=_format_validation_errors(exc)) from exc\n\n    def to_yaml(self, path: Path | str) -> Path:\n        \"\"\"Persist the configuration to a YAML file.\"\"\"\n\n        file_path = Path(path)\n        with file_path.open(\"w\", encoding=\"utf-8\") as handle:\n            yaml.safe_dump(self.model_dump(mode=\"json\"), handle, sort_keys=False)\n        return file_path\n\n\nclass ExperimentMetadata(BaseModel):\n    \"\"\"Metadata describing experiment reproducibility context.\"\"\"\n\n    config_hash: str\n    created_at: datetime = Field(default_factory=lambda: datetime.now(tz=timezone.utc))\n    dependencies: Dict[str, str] = Field(default_factory=dict)\n    non_deterministic_sources: List[str] = Field(default_factory=list)\n    seed: Optional[int] = None\n\n    model_config = ConfigDict(frozen=True)\n\n    @field_validator(\"config_hash\")\n    @classmethod\n    def _validate_config_hash(cls, value: str) -> str:\n        stripped = value.strip()\n        if not stripped:\n            msg = \"config_hash must be a non-empty string.\"\n            raise ValueError(msg)\n        return stripped\n\n    @model_validator(mode=\"before\")\n    @classmethod\n    def _coerce_dependencies(cls, data: Dict[str, Any]) -> Dict[str, Any]:\n        dependencies = data.get(\"dependencies\") or {}\n        if not isinstance(dependencies, Mapping):\n            msg = \"dependencies must be provided as a mapping of package names to versions.\"\n            raise ValueError(msg)\n        data[\"dependencies\"] = {str(name): str(version) for name, version in dependencies.items()}\n\n        sources = data.get(\"non_deterministic_sources\") or []\n        if not isinstance(sources, Sequence) or isinstance(sources, (str, bytes)):\n            msg = \"non_deterministic_sources must be a sequence of strings.\"\n            raise ValueError(msg)\n        normalized_sources = sorted({str(source).strip() for source in sources if str(source).strip()})\n        data[\"non_deterministic_sources\"] = normalized_sources\n        return data\n\n    @classmethod\n    def from_config(\n        cls,\n        config: \"ExperimentConfig\",\n        *,\n        dependencies: Optional[Mapping[str, str]] = None,\n        non_deterministic_sources: Optional[Sequence[str]] = None,\n    ) -> \"ExperimentMetadata\":\n        \"\"\"Create metadata derived from an :class:`ExperimentConfig`.\"\"\"\n\n        payload = config.model_dump(mode=\"json\")\n        serialized = json.dumps(payload, sort_keys=True, separators=(\",\", \":\"))\n        config_hash = hashlib.sha256(serialized.encode(\"utf-8\")).hexdigest()\n        detected_dependencies = {\n            str(name): str(version)\n            for name, version in (dependencies or {}).items()\n            if str(name).strip() and str(version).strip()\n        }\n\n        if not detected_dependencies:\n            detected_dependencies = cls._default_dependency_versions()\n\n        sources = list(non_deterministic_sources or [\"llm_sampling\"])\n        return cls(\n            config_hash=config_hash,\n            dependencies=detected_dependencies,\n            non_deterministic_sources=sources,\n            seed=config.seed,\n        )\n\n    @staticmethod\n    def _default_dependency_versions() -> Dict[str, str]:\n        packages = (\"pydantic\", \"langgraph\", \"litellm\")\n        versions: Dict[str, str] = {}\n        for package in packages:\n            try:\n                versions[package] = importlib_metadata.version(package)\n            except importlib_metadata.PackageNotFoundError:  # pragma: no cover - optional deps\n                continue\n        return versions\n\n\nclass TestConfiguration(BaseModel):\n    \"\"\"Represents a single test generated from the Taguchi L8 array.\"\"\"\n\n    test_number: int = Field(..., ge=1, le=8)\n    config_values: Dict[str, Any]\n    workflow: str\n\n    model_config = ConfigDict(frozen=True)\n\n    @field_validator(\"workflow\")\n    @classmethod\n    def _validate_workflow(cls, value: str) -> str:\n        if not value:\n            msg = \"Workflow identifier must be non-empty.\"\n            raise ValueError(msg)\n        if value.strip() != value:\n            msg = \"Workflow identifier cannot contain leading or trailing whitespace.\"\n            raise ValueError(msg)\n        return value\n\n    @model_validator(mode=\"after\")\n    def _validate_values(self, info: ValidationInfo) -> \"TestConfiguration\":\n        variable_levels = (info.context or {}).get(\"variable_levels\")\n        if not variable_levels:\n            return self\n\n        expected_names = set(variable_levels)\n        provided_names = set(self.config_values)\n        if provided_names != expected_names:\n            missing = expected_names - provided_names\n            extra = provided_names - expected_names\n            details = []\n            if missing:\n                details.append(f\"missing {sorted(missing)}\")\n            if extra:\n                details.append(f\"unexpected {sorted(extra)}\")\n            detail_msg = \", \".join(details)\n            msg = f\"Config values must match experiment variables ({detail_msg}).\"\n            raise ValueError(msg)\n\n        for name, value in self.config_values.items():\n            allowed_values = variable_levels[name]\n            if value not in allowed_values:\n                msg = (\n                    f\"Config value for variable '{name}' must be one of the defined levels.\"\n                )\n                raise ValueError(msg)\n\n        return self\n\n\nclass TestResult(BaseModel):\n    \"\"\"Result from executing a single test configuration.\"\"\"\n\n    test_number: int = Field(..., ge=1, le=8)\n    config: TestConfiguration\n    quality_score: QualityScore\n    cost: float = Field(..., ge=0.0)\n    latency: float = Field(..., ge=0.0)\n    utility: float = 0.0\n    workflow_output: str = Field(default=\"\")\n    metadata: Dict[str, Any] = Field(default_factory=dict)\n    timestamp: datetime = Field(default_factory=lambda: datetime.now(tz=timezone.utc))\n\n    model_config = ConfigDict(validate_assignment=True)\n\n    @field_validator(\"workflow_output\")\n    @classmethod\n    def _normalize_output(cls, value: str) -> str:\n        return value.strip()\n\n    def with_utility(self, utility: float) -> \"TestResult\":\n        \"\"\"Return a copy of the result with an updated utility score.\"\"\"\n\n        return self.model_copy(update={\"utility\": utility})\n\n    def with_metadata(self, **metadata: Any) -> \"TestResult\":\n        \"\"\"Return a copy of the result with merged metadata.\"\"\"\n\n        merged = {**self.metadata, **metadata}\n        return self.model_copy(update={\"metadata\": merged})\n\n\nclass ExperimentRun(BaseModel):\n    \"\"\"Tracks execution progress and results for a Taguchi L8 experiment.\"\"\"\n\n    experiment_id: str\n    config: ExperimentConfig\n    test_configurations: List[TestConfiguration]\n    results: List[TestResult] = Field(default_factory=list)\n    status: ExperimentStatus = \"PENDING\"\n    started_at: Optional[datetime] = None\n    completed_at: Optional[datetime] = None\n    error: Optional[str] = None\n    experiment_metadata: Optional[ExperimentMetadata] = None\n    metadata: Dict[str, Any] = Field(default_factory=dict)\n    baseline_test_number: int = Field(default=1, ge=1, le=8)\n    baseline_config: Optional[TestConfiguration] = None\n    baseline_result: Optional[TestResult] = None\n    baseline_quality: Optional[float] = Field(default=None, ge=0.0, le=1.0)\n    quality_improvement_pct: Optional[float] = None\n\n    model_config = ConfigDict(validate_assignment=True)\n\n    @field_validator(\"experiment_id\")\n    @classmethod\n    def _validate_experiment_id(cls, value: str) -> str:\n        if not value:\n            msg = \"experiment_id must be non-empty.\"\n            raise ValueError(msg)\n        stripped = value.strip()\n        if stripped != value:\n            msg = \"experiment_id cannot contain leading or trailing whitespace.\"\n            raise ValueError(msg)\n        return value\n\n    @model_validator(mode=\"after\")\n    def _validate_state(self) -> \"ExperimentRun\":\n        if len(self.test_configurations) != 8:\n            msg = \"Exactly 8 test configurations are required for an L8 experiment.\"\n            raise ValueError(msg)\n\n        test_numbers = [config.test_number for config in self.test_configurations]\n        if len(set(test_numbers)) != len(test_numbers):\n            msg = \"Test configuration numbers must be unique.\"\n            raise ValueError(msg)\n\n        if len(self.results) > len(self.test_configurations):\n            msg = \"Result count cannot exceed generated test configurations.\"\n            raise ValueError(msg)\n\n        if self.status == \"PENDING\":\n            if self.results:\n                msg = \"Pending experiments cannot contain results.\"\n                raise ValueError(msg)\n            if self.started_at is not None:\n                msg = \"Pending experiments cannot define a start timestamp.\"\n                raise ValueError(msg)\n            if self.completed_at is not None:\n                msg = \"Pending experiments cannot define a completion timestamp.\"\n                raise ValueError(msg)\n            if self.error is not None:\n                msg = \"Pending experiments cannot contain errors.\"\n                raise ValueError(msg)\n\n        if self.status == \"RUNNING\":\n            if not 0 <= len(self.results) <= len(self.test_configurations):\n                msg = \"Running experiments cannot store more results than test configurations.\"\n                raise ValueError(msg)\n            if self.completed_at is not None:\n                msg = \"Running experiments cannot define a completion timestamp.\"\n                raise ValueError(msg)\n            if self.error is not None:\n                msg = \"Running experiments cannot define an error.\"\n                raise ValueError(msg)\n            if self.started_at is None:\n                msg = \"Running experiments must define a start timestamp.\"\n                raise ValueError(msg)\n\n        if self.status == \"COMPLETED\":\n            if len(self.results) != len(self.test_configurations):\n                msg = \"Completed experiments must contain results for all configurations.\"\n                raise ValueError(msg)\n            if self.completed_at is None:\n                msg = \"Completed experiments must define a completion timestamp.\"\n                raise ValueError(msg)\n            if self.error is not None:\n                msg = \"Completed experiments cannot contain an error.\"\n                raise ValueError(msg)\n            if self.started_at is None:\n                msg = \"Completed experiments must define a start timestamp.\"\n                raise ValueError(msg)\n\n        if self.status == \"FAILED\":\n            if self.error is None:\n                msg = \"Failed experiments must include an error message.\"\n                raise ValueError(msg)\n            if self.started_at is None:\n                msg = \"Failed experiments must define a start timestamp.\"\n                raise ValueError(msg)\n\n        first_config = min(self.test_configurations, key=lambda item: item.test_number)\n\n        if self.baseline_test_number != first_config.test_number:\n            object.__setattr__(self, \"baseline_test_number\", first_config.test_number)\n\n        if self.baseline_config is None or self.baseline_config.test_number != first_config.test_number:\n            object.__setattr__(self, \"baseline_config\", first_config)\n\n        if self.baseline_result is not None and self.baseline_result.test_number != first_config.test_number:\n            object.__setattr__(self, \"baseline_result\", None)\n            object.__setattr__(self, \"baseline_quality\", None)\n\n        return self\n\n    def mark_running(self, *, started_at: Optional[datetime] = None) -> \"ExperimentRun\":\n        \"\"\"Transition the experiment to RUNNING state.\"\"\"\n\n        if self.status not in {\"PENDING\", \"FAILED\"}:\n            msg = \"Experiment can only transition to RUNNING from PENDING or FAILED.\"\n            raise ValueError(msg)\n\n        timestamp = started_at or datetime.now(tz=timezone.utc)\n        return self.model_copy(\n            update={\"status\": \"RUNNING\", \"started_at\": timestamp, \"error\": None}\n        )\n\n    def mark_failed(self, error: str) -> \"ExperimentRun\":\n        \"\"\"Transition the experiment to FAILED state.\"\"\"\n\n        if self.status != \"RUNNING\":\n            msg = \"Failed state can only be set from RUNNING.\"\n            raise ValueError(msg)\n        stripped = error.strip()\n        if not stripped:\n            msg = \"Error message must be non-empty.\"\n            raise ValueError(msg)\n\n        return self.model_copy(update={\"status\": \"FAILED\", \"error\": stripped})\n\n    def mark_completed(self, *, completed_at: Optional[datetime] = None) -> \"ExperimentRun\":\n        \"\"\"Transition the experiment to COMPLETED state.\"\"\"\n\n        if self.status != \"RUNNING\":\n            msg = \"Experiment must be RUNNING before completion.\"\n            raise ValueError(msg)\n        if len(self.results) != len(self.test_configurations):\n            msg = \"Cannot complete experiment until all results are recorded.\"\n            raise ValueError(msg)\n\n        timestamp = completed_at or datetime.now(tz=timezone.utc)\n        baseline_result = self.baseline_result\n        if baseline_result is None:\n            baseline_result = next(\n                (item for item in self.results if item.test_number == self.baseline_test_number),\n                None,\n            )\n        baseline_quality = (\n            baseline_result.quality_score.overall_score if baseline_result else self.baseline_quality\n        )\n        improvement = self._calculate_improvement(self.results, baseline_quality)\n\n        return self.model_copy(\n            update={\n                \"status\": \"COMPLETED\",\n                \"completed_at\": timestamp,\n                \"baseline_result\": baseline_result,\n                \"baseline_quality\": baseline_quality,\n                \"quality_improvement_pct\": improvement,\n            }\n        )\n\n    def record_result(self, result: TestResult) -> \"ExperimentRun\":\n        \"\"\"Record a new test result and recalculate utilities.\"\"\"\n\n        if self.status != \"RUNNING\":\n            msg = \"Results can only be recorded while experiment is RUNNING.\"\n            raise ValueError(msg)\n\n        if any(existing.test_number == result.test_number for existing in self.results):\n            msg = \"Result for this test number has already been recorded.\"\n            raise ValueError(msg)\n\n        if len(self.results) >= len(self.test_configurations):\n            msg = \"All test results have already been recorded.\"\n            raise ValueError(msg)\n\n        updated_results = [*self.results, result]\n        recalculated_results, metadata = self._recalculate_utilities(updated_results)\n\n        baseline_result = self.baseline_result\n        if baseline_result is None or result.test_number == self.baseline_test_number:\n            baseline_result = next(\n                (item for item in recalculated_results if item.test_number == self.baseline_test_number),\n                None,\n            )\n\n        baseline_quality = (\n            baseline_result.quality_score.overall_score if baseline_result else self.baseline_quality\n        )\n        improvement = self._calculate_improvement(recalculated_results, baseline_quality)\n\n        updates = {\n            \"results\": recalculated_results,\n            \"metadata\": metadata,\n            \"baseline_result\": baseline_result,\n            \"baseline_quality\": baseline_quality,\n            \"quality_improvement_pct\": improvement,\n        }\n        return self.model_copy(update=updates)\n\n    def _recalculate_utilities(\n        self, results: Iterable[TestResult]\n    ) -> tuple[List[TestResult], Dict[str, Any]]:\n        results_list = sorted(results, key=lambda item: item.test_number)\n        if not results_list:\n            return results_list, self.metadata\n\n        utility_fn = UtilityFunction(self.config.utility_weights)\n        costs = [result.cost for result in results_list]\n        latencies = [result.latency for result in results_list]\n        normalized_costs, cost_stats = UtilityFunction.normalize_metrics(costs)\n        normalized_latencies, latency_stats = UtilityFunction.normalize_metrics(latencies)\n\n        updated_results = []\n        for result, normalized_cost, normalized_latency in zip(\n            results_list, normalized_costs, normalized_latencies\n        ):\n            utility = utility_fn.compute(\n                quality=result.quality_score.overall_score,\n                cost=normalized_cost,\n                latency=normalized_latency,\n            )\n            updated_results.append(result.with_utility(utility))\n\n        metadata = {\n            **self.metadata,\n            \"normalization\": {\n                \"cost\": cost_stats,\n                \"latency\": latency_stats,\n            },\n        }\n        return updated_results, metadata\n\n    @staticmethod\n    def _calculate_improvement(\n        results: Sequence[TestResult], baseline_quality: Optional[float]\n    ) -> Optional[float]:\n        if baseline_quality is None or baseline_quality <= 0.0:\n            return None\n        if not results:\n            return None\n        best_quality = max(result.quality_score.overall_score for result in results)\n        return ((best_quality - baseline_quality) / baseline_quality) * 100.0\n\n\ndef _format_validation_errors(exc: ValidationError) -> List[str]:\n    \"\"\"Return human-friendly strings describing validation failures.\"\"\"\n\n    details: List[str] = []\n    for error in exc.errors():\n        location = \" → \".join(str(segment) for segment in error.get(\"loc\", ()))\n        message = error.get(\"msg\") or \"Invalid value.\"\n        if location:\n            details.append(f\"{location}: {message}\")\n        else:\n            details.append(message)\n    if not details:\n        details.append(str(exc))\n    return details\n\n\ndef _format_yaml_error(error: yaml.YAMLError) -> str:\n    \"\"\"Provide a concise YAML parsing error message for users.\"\"\"\n\n    problem_mark = getattr(error, \"problem_mark\", None)\n    if problem_mark is not None:\n        return (\n            f\"{getattr(error, 'problem', error)} (line {problem_mark.line + 1}, column {problem_mark.column + 1})\"\n        )\n    return str(error)\n```\nReturn JSON with keys 'summary', 'issues', and 'suggestions'. Each issue should include type, severity, description, optional line_number, and suggestion.",
+      "analysis_raw": "```json\n{\n  \"summary\": \"The provided Python code snippet is well-structured and follows best practices for defining configuration models using Pydantic. However, there are a few issues related to error handling, type hints, and potential improvements in validation logic.\",\n  \"issues\": [\n    {\n      \"type\": \"Error Handling\",\n      \"severity\": \"Medium\",\n      \"description\": \"The `from_yaml` method in `ExperimentConfig` catches `OSError` but does not provide a specific error message or context.\",\n      \"line_number\": 166,\n      \"suggestion\": \"Consider adding a more descriptive error message or logging the specific file-related issue to aid debugging.\"\n    },\n    {\n      \"type\": \"Type Hint\",\n      \"severity\": \"Low\",\n      \"description\": \"The `_coerce_workflow_config` method in `ExperimentConfig` uses `Dict[str, Any]` as the return type, which is not specific enough.\",\n      \"line_number\": 183,\n      \"suggestion\": \"Use a more specific type hint, such as `Dict[str, Union[WorkflowConfig, Dict[str, Any]]]`, to clarify the expected return type.\"\n    },\n    {\n      \"type\": \"Validation Logic\",\n      \"severity\": \"Medium\",\n      \"description\": \"The `_validate_levels` method in `Variable` checks if `level_1` and `level_2` are of the same type, but it does not handle cases where one level is a subclass of the other.\",\n      \"line_number\": 58,\n      \"suggestion\": \"Consider using `isinstance` instead of `type` to allow for subclass relationships between levels.\"\n    },\n    {\n      \"type\": \"Error Handling\",\n      \"severity\": \"Medium\",\n      \"description\": \"The `mark_failed` method in `ExperimentRun` does not validate the `error` parameter beyond checking if it is non-empty.\",\n      \"line_number\": 481,\n      \"suggestion\": \"Add additional validation to ensure the `error` parameter is a string and contains meaningful information.\"\n    },\n    {\n      \"type\": \"Type Hint\",\n      \"severity\": \"Low\",\n      \"description\": \"The `_recalculate_utilities` method in `ExperimentRun` uses `Iterable[TestResult]` as the input type, which is less specific than `List[TestResult]`.\",\n      \"line_number\": 515,\n      \"suggestion\": \"Use `List[TestResult]` as the input type to clarify that the method expects a list of `TestResult` objects.\"\n    }\n  ],\n  \"suggestions\": [\n    \"Consider adding more comprehensive unit tests to cover edge cases, especially for validation methods.\",\n    \"Use logging to capture detailed information about errors and exceptions, particularly in methods that interact with external resources like file I/O.\",\n    \"Review and update type hints to ensure they accurately reflect the expected types and improve code readability.\",\n    \"Add more detailed docstrings to methods, especially those that perform complex validation or transformation logic, to aid in understanding and maintainability.\"\n  ]\n}\n```",
+      "test_config": {
+        "test_number": 1,
+        "config": {
+          "temperature": 0.3,
+          "model": "openrouter/deepseek/deepseek-chat",
+          "context_size": "file_only",
+          "generation_strategy": "standard"
+        }
+      },
+      "workflow": {
+        "started_at": "2025-10-26T05:31:31.830429Z",
+        "completed_at": "2025-10-26T05:31:41.511272Z",
+        "duration_seconds": 9.68073550000554
+      },
+      "evaluation": {
+        "rubric": {
+          "clarity": {
+            "description": "Is the review easy to follow and well-structured?",
+            "scale": "1-10"
+          },
+          "accuracy": {
+            "description": "Are the identified issues legitimate code problems?",
+            "scale": "1-10"
+          },
+          "actionability": {
+            "description": "Do suggestions provide clear next steps?",
+            "scale": "1-10"
+          }
+        },
+        "raw_response": {
+          "clarity": {
+            "score": 9,
+            "reasoning": "The review is well-structured and easy to follow. Issues and suggestions are clearly separated, and each point is explained concisely. The use of bullet points and clear headings enhances readability."
+          },
+          "accuracy": {
+            "score": 9,
+            "reasoning": "The identified issues are legitimate and relevant to the code. Each issue is accurately described, and the suggested fixes are appropriate. The reviewer demonstrates a good understanding of Python best practices and Pydantic."
+          },
+          "actionability": {
+            "score": 8,
+            "reasoning": "The suggestions provide clear next steps for improvement. Each issue is accompanied by a specific fix or enhancement, making it easy for the developer to act on the feedback. However, some suggestions could be slightly more detailed, such as providing example code for the fixes."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "b65a9df6764d377d557158923a25014ad48cc38b57dc0773b9aa5fd34a3846ef",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/deepseek/deepseek-chat"
+      }
+    },
+    "timestamp": "2025-10-26T05:31:44.829726Z"
+  },
+  "baseline_quality": 0.8666666666666667,
+  "quality_improvement_pct": 0.0
+}

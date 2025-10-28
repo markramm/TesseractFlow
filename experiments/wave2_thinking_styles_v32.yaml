@@ -1,0 +1,56 @@
+name: wave2_thinking_styles
+workflow: multi_task_benchmark
+variables:
+- name: generation_strategy
+  level_1: standard
+  level_2: chain_of_thought
+- name: task_type
+  level_1: analytical
+  level_2: creative
+- name: temperature
+  level_1: 0.4
+  level_2: 0.8
+- name: example_count
+  level_1: 0
+  level_2: 2
+- name: reasoning_visibility
+  level_1: silent_thinking
+  level_2: explicit_chain
+- name: output_format
+  level_1: freeform
+  level_2: structured
+utility_weights:
+  quality: 0.8
+  cost: 0.15
+  time: 0.05
+workflow_config:
+  sample_code_path: tesseract_flow/workflows/code_review.py
+  language: python
+  evaluator_model: openrouter/deepseek/deepseek-chat
+  evaluator_temperature: 0.1
+  rubric:
+    task_completion:
+      description: Task successfully completed with correct results and all requirements
+        met
+      scale: 0-100 points
+      weight: 0.3
+    reasoning_quality:
+      description: Sound logical thinking, appropriate methodology, valid conclusions
+        (if visible)
+      scale: 0-100 points
+      weight: 0.25
+    efficiency:
+      description: Concise output without sacrificing completeness, appropriate detail
+        level
+      scale: 0-100 points
+      weight: 0.2
+    format_adherence:
+      description: Follows requested output structure, proper formatting, clear organization
+      scale: 0-100 points
+      weight: 0.15
+    creativity:
+      description: Novel insights, unexpected connections, original perspectives (for
+        creative tasks)
+      scale: 0-100 points
+      weight: 0.1
+  model: openrouter/deepseek/deepseek-v3.2-exp

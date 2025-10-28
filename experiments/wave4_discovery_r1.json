@@ -1,0 +1,1375 @@
+{
+  "experiment_id": "wave4_discovery_reasoning_vs-20251028T102631",
+  "config": {
+    "name": "wave4_discovery_reasoning_vs",
+    "workflow": "progressive_discovery",
+    "variables": [
+      {
+        "name": "temperature",
+        "level_1": 0.5,
+        "level_2": 0.8
+      },
+      {
+        "name": "revelation_depth",
+        "level_1": "surface",
+        "level_2": "deep"
+      },
+      {
+        "name": "reasoning_enabled",
+        "level_1": "false",
+        "level_2": "true"
+      },
+      {
+        "name": "verbalized_sampling",
+        "level_1": "none",
+        "level_2": "self_consistency"
+      },
+      {
+        "name": "n_samples",
+        "level_1": "3",
+        "level_2": "5"
+      },
+      {
+        "name": "verification_step",
+        "level_1": "none",
+        "level_2": "verify_consistency"
+      },
+      {
+        "name": "reasoning_visibility",
+        "level_1": "visible",
+        "level_2": "hidden"
+      }
+    ],
+    "utility_weights": {
+      "quality": 0.8,
+      "cost": 0.15,
+      "time": 0.05
+    },
+    "workflow_config": {
+      "rubric": {
+        "world_consistency": {
+          "description": "Revelations don't contradict established lore. Does reasoning help maintain consistency?",
+          "scale": "0-100 points",
+          "weight": 0.4
+        },
+        "revelation_impact": {
+          "description": "Discoveries feel meaningful and surprising. Does self-consistency improve impact?",
+          "scale": "0-100 points",
+          "weight": 0.35
+        },
+        "integration_quality": {
+          "description": "New information integrates naturally with existing knowledge. Does verification help?",
+          "scale": "0-100 points",
+          "weight": 0.25
+        }
+      },
+      "sample_code_path": "tesseract_flow/workflows/progressive_discovery.py",
+      "evaluator_model": "openrouter/deepseek/deepseek-chat",
+      "language": "python",
+      "evaluator_temperature": 0.1
+    }
+  },
+  "test_configurations": [
+    {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.5,
+        "revelation_depth": "surface",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "none",
+        "n_samples": "3",
+        "verification_step": "none",
+        "reasoning_visibility": "visible"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 2,
+      "config_values": {
+        "temperature": 0.5,
+        "revelation_depth": "surface",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "self_consistency",
+        "n_samples": "5",
+        "verification_step": "verify_consistency",
+        "reasoning_visibility": "hidden"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 3,
+      "config_values": {
+        "temperature": 0.5,
+        "revelation_depth": "deep",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "none",
+        "n_samples": "3",
+        "verification_step": "verify_consistency",
+        "reasoning_visibility": "hidden"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 4,
+      "config_values": {
+        "temperature": 0.5,
+        "revelation_depth": "deep",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "self_consistency",
+        "n_samples": "5",
+        "verification_step": "none",
+        "reasoning_visibility": "visible"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 5,
+      "config_values": {
+        "temperature": 0.8,
+        "revelation_depth": "surface",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "none",
+        "n_samples": "5",
+        "verification_step": "none",
+        "reasoning_visibility": "hidden"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 6,
+      "config_values": {
+        "temperature": 0.8,
+        "revelation_depth": "surface",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "self_consistency",
+        "n_samples": "3",
+        "verification_step": "verify_consistency",
+        "reasoning_visibility": "visible"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 7,
+      "config_values": {
+        "temperature": 0.8,
+        "revelation_depth": "deep",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "none",
+        "n_samples": "5",
+        "verification_step": "verify_consistency",
+        "reasoning_visibility": "visible"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 8,
+      "config_values": {
+        "temperature": 0.8,
+        "revelation_depth": "deep",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "self_consistency",
+        "n_samples": "3",
+        "verification_step": "none",
+        "reasoning_visibility": "hidden"
+      },
+      "workflow": "progressive_discovery"
+    }
+  ],
+  "results": [
+    {
+      "test_number": 1,
+      "config": {
+        "test_number": 1,
+        "config_values": {
+          "temperature": 0.5,
+          "revelation_depth": "surface",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "none",
+          "n_samples": "3",
+          "verification_step": "none",
+          "reasoning_visibility": "visible"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "world_consistency": {
+            "score": 0.85,
+            "reasoning": "The summary maintains a consistent and coherent world-building framework. The distant galaxy, ancient artifact, and dying world are logically connected, and the explorer's journey aligns with the established setting. However, without more specific lore details, minor inconsistencies could potentially arise."
+          },
+          "revelation_impact": {
+            "score": 0.9,
+            "reasoning": "The discovery of the artifact and its implications are presented as highly meaningful and impactful. The moral dilemmas and the explorer's ultimate decision add depth and surprise, enhancing the story's emotional and thematic resonance."
+          },
+          "integration_quality": {
+            "score": 0.8,
+            "reasoning": "The new information about the artifact and its power integrates naturally with the existing narrative. The themes of sacrifice, redemption, and power are well-aligned with the story's premise. However, additional context could further solidify the integration."
+          }
+        },
+        "overall_score": 0.85,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T10:26:39.842845Z",
+        "metadata": {
+          "rubric": {
+            "world_consistency": {
+              "description": "Revelations don't contradict established lore. Does reasoning help maintain consistency?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "revelation_impact": {
+              "description": "Discoveries feel meaningful and surprising. Does self-consistency improve impact?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "integration_quality": {
+              "description": "New information integrates naturally with existing knowledge. Does verification help?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "world_consistency": {
+              "score": 85,
+              "reasoning": "The summary maintains a consistent and coherent world-building framework. The distant galaxy, ancient artifact, and dying world are logically connected, and the explorer's journey aligns with the established setting. However, without more specific lore details, minor inconsistencies could potentially arise."
+            },
+            "revelation_impact": {
+              "score": 90,
+              "reasoning": "The discovery of the artifact and its implications are presented as highly meaningful and impactful. The moral dilemmas and the explorer's ultimate decision add depth and surprise, enhancing the story's emotional and thematic resonance."
+            },
+            "integration_quality": {
+              "score": 80,
+              "reasoning": "The new information about the artifact and its power integrates naturally with the existing narrative. The themes of sacrifice, redemption, and power are well-aligned with the story's premise. However, additional context could further solidify the integration."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "146ff1d9166d59e45b2c2c195ad20b13d3fe4c18416b0f501db47d086ef1075a",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 2693.6091250099707,
+      "utility": 0.6707099436871511,
+      "workflow_output": "Discovered Content:\n**Task:** Summarize a complex story with minimal context.\n\n**Summary:**  \nIn a distant galaxy, a lone explorer discovers an ancient artifact that holds the key to restoring balance to their dying world. As they unravel its secrets, they face betrayal, moral dilemmas, and the weight of their own past. Ultimately, they must decide whether to use the artifact’s power for the greater good or destroy it to prevent its misuse by others. The story explores themes of sacrifice, redemption, and the consequences of wielding immense power.  \n\nIf more context is needed (e.g., specific characters, settings, or conflicts), let me know!",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T10:26:31.988046Z",
+          "completed_at": "2025-10-28T10:26:34.681673Z",
+          "duration_seconds": 2.6936091250099707
+        },
+        "evaluation": {
+          "rubric": {
+            "world_consistency": {
+              "description": "Revelations don't contradict established lore. Does reasoning help maintain consistency?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "revelation_impact": {
+              "description": "Discoveries feel meaningful and surprising. Does self-consistency improve impact?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "integration_quality": {
+              "description": "New information integrates naturally with existing knowledge. Does verification help?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "world_consistency": {
+              "score": 85,
+              "reasoning": "The summary maintains a consistent and coherent world-building framework. The distant galaxy, ancient artifact, and dying world are logically connected, and the explorer's journey aligns with the established setting. However, without more specific lore details, minor inconsistencies could potentially arise."
+            },
+            "revelation_impact": {
+              "score": 90,
+              "reasoning": "The discovery of the artifact and its implications are presented as highly meaningful and impactful. The moral dilemmas and the explorer's ultimate decision add depth and surprise, enhancing the story's emotional and thematic resonance."
+            },
+            "integration_quality": {
+              "score": 80,
+              "reasoning": "The new information about the artifact and its power integrates naturally with the existing narrative. The themes of sacrifice, redemption, and power are well-aligned with the story's premise. However, additional context could further solidify the integration."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "146ff1d9166d59e45b2c2c195ad20b13d3fe4c18416b0f501db47d086ef1075a",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T10:26:39.845353Z"
+    },
+    {
+      "test_number": 2,
+      "config": {
+        "test_number": 2,
+        "config_values": {
+          "temperature": 0.5,
+          "revelation_depth": "surface",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "self_consistency",
+          "n_samples": "5",
+          "verification_step": "verify_consistency",
+          "reasoning_visibility": "hidden"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "world_consistency": {
+            "score": 0.8,
+            "reasoning": "The summary template maintains a consistent structure and does not introduce contradictions. However, it lacks specific details to fully assess consistency with established lore."
+          },
+          "revelation_impact": {
+            "score": 0.7,
+            "reasoning": "The summary provides a generic framework for revelations, but without specific context, the impact of discoveries feels diminished and less surprising."
+          },
+          "integration_quality": {
+            "score": 0.75,
+            "reasoning": "The template integrates new information naturally by following a logical structure. However, the absence of specific details limits the depth of integration."
+          }
+        },
+        "overall_score": 0.75,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T10:26:45.800252Z",
+        "metadata": {
+          "rubric": {
+            "world_consistency": {
+              "description": "Revelations don't contradict established lore. Does reasoning help maintain consistency?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "revelation_impact": {
+              "description": "Discoveries feel meaningful and surprising. Does self-consistency improve impact?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "integration_quality": {
+              "description": "New information integrates naturally with existing knowledge. Does verification help?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "world_consistency": {
+              "score": 80,
+              "reasoning": "The summary template maintains a consistent structure and does not introduce contradictions. However, it lacks specific details to fully assess consistency with established lore."
+            },
+            "revelation_impact": {
+              "score": 70,
+              "reasoning": "The summary provides a generic framework for revelations, but without specific context, the impact of discoveries feels diminished and less surprising."
+            },
+            "integration_quality": {
+              "score": 75,
+              "reasoning": "The template integrates new information naturally by following a logical structure. However, the absence of specific details limits the depth of integration."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "ac4354f495d3b23af8e8539d8dc5dca4a9fe8f8335618df5463ff390e0c20dde",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 2838.1712079863064,
+      "utility": 0.5888238586837976,
+      "workflow_output": "Discovered Content:\n**Task:** Summarize a complex story with minimal context.  \n**Context Provided:** All context is upfront.  \n\n**Summary:**  \nIn a world where [specific setting or premise], [main character] faces [primary conflict or challenge]. Through [key actions or decisions], they [achieve a goal, learn a lesson, or resolve the conflict], ultimately [outcome or resolution]. The story explores themes of [themes or ideas], leaving the audience with [emotional or philosophical takeaway].  \n\nIf more context is needed (e.g., specific characters, events, or details), please provide it for a more tailored summary.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T10:26:39.847579Z",
+          "completed_at": "2025-10-28T10:26:42.685763Z",
+          "duration_seconds": 2.8381712079863064
+        },
+        "evaluation": {
+          "rubric": {
+            "world_consistency": {
+              "description": "Revelations don't contradict established lore. Does reasoning help maintain consistency?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "revelation_impact": {
+              "description": "Discoveries feel meaningful and surprising. Does self-consistency improve impact?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "integration_quality": {
+              "description": "New information integrates naturally with existing knowledge. Does verification help?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "world_consistency": {
+              "score": 80,
+              "reasoning": "The summary template maintains a consistent structure and does not introduce contradictions. However, it lacks specific details to fully assess consistency with established lore."
+            },
+            "revelation_impact": {
+              "score": 70,
+              "reasoning": "The summary provides a generic framework for revelations, but without specific context, the impact of discoveries feels diminished and less surprising."
+            },
+            "integration_quality": {
+              "score": 75,
+              "reasoning": "The template integrates new information naturally by following a logical structure. However, the absence of specific details limits the depth of integration."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "ac4354f495d3b23af8e8539d8dc5dca4a9fe8f8335618df5463ff390e0c20dde",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T10:26:45.800720Z"
+    },
+    {
+      "test_number": 3,
+      "config": {
+        "test_number": 3,
+        "config_values": {
+          "temperature": 0.5,
+          "revelation_depth": "deep",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "none",
+          "n_samples": "3",
+          "verification_step": "verify_consistency",
+          "reasoning_visibility": "hidden"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "world_consistency": {
+            "score": 0.85,
+            "reasoning": "The summary maintains consistency with the established dystopian setting and faction system. The revelation of Tris being Divergent aligns with the lore, and her actions logically challenge the system without introducing contradictions."
+          },
+          "revelation_impact": {
+            "score": 0.9,
+            "reasoning": "The discovery of Tris's Divergence and the conspiracy to eliminate Divergents are impactful and surprising. The self-consistency of these revelations enhances their significance, driving the narrative forward and sparking rebellion."
+          },
+          "integration_quality": {
+            "score": 0.88,
+            "reasoning": "New information, such as Tris's Divergence and the conspiracy, integrates naturally with the existing knowledge of the faction system. The verification of these elements through Tris's journey and her alliance with Four ensures a seamless integration."
+          }
+        },
+        "overall_score": 0.8766666666666666,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T10:26:52.778218Z",
+        "metadata": {
+          "rubric": {
+            "world_consistency": {
+              "description": "Revelations don't contradict established lore. Does reasoning help maintain consistency?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "revelation_impact": {
+              "description": "Discoveries feel meaningful and surprising. Does self-consistency improve impact?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "integration_quality": {
+              "description": "New information integrates naturally with existing knowledge. Does verification help?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "world_consistency": {
+              "score": 85,
+              "reasoning": "The summary maintains consistency with the established dystopian setting and faction system. The revelation of Tris being Divergent aligns with the lore, and her actions logically challenge the system without introducing contradictions."
+            },
+            "revelation_impact": {
+              "score": 90,
+              "reasoning": "The discovery of Tris's Divergence and the conspiracy to eliminate Divergents are impactful and surprising. The self-consistency of these revelations enhances their significance, driving the narrative forward and sparking rebellion."
+            },
+            "integration_quality": {
+              "score": 88,
+              "reasoning": "New information, such as Tris's Divergence and the conspiracy, integrates naturally with the existing knowledge of the faction system. The verification of these elements through Tris's journey and her alliance with Four ensures a seamless integration."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "0f7262f8c2a4e48c711e75b5748ed480b70ff27f937e0693eb4fc19572e0705a",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 3496.6959999874234,
+      "utility": 0.6815654941876725,
+      "workflow_output": "Discovered Content:\n**Summary:**\n\nIn a dystopian future, society is divided into rigid factions based on virtues. A young woman, Tris, discovers she is \"Divergent,\" possessing traits of multiple factions, making her a threat to the system. She joins the Dauntless faction, undergoes intense training, and uncovers a plot to eliminate Divergents. Tris allies with her mentor, Four, and together they expose the conspiracy, challenging the faction system’s oppressive control. Their actions spark a rebellion, paving the way for societal change.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T10:26:45.802440Z",
+          "completed_at": "2025-10-28T10:26:49.299153Z",
+          "duration_seconds": 3.4966959999874234
+        },
+        "evaluation": {
+          "rubric": {
+            "world_consistency": {
+              "description": "Revelations don't contradict established lore. Does reasoning help maintain consistency?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "revelation_impact": {
+              "description": "Discoveries feel meaningful and surprising. Does self-consistency improve impact?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "integration_quality": {
+              "description": "New information integrates naturally with existing knowledge. Does verification help?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "world_consistency": {
+              "score": 85,
+              "reasoning": "The summary maintains consistency with the established dystopian setting and faction system. The revelation of Tris being Divergent aligns with the lore, and her actions logically challenge the system without introducing contradictions."
+            },
+            "revelation_impact": {
+              "score": 90,
+              "reasoning": "The discovery of Tris's Divergence and the conspiracy to eliminate Divergents are impactful and surprising. The self-consistency of these revelations enhances their significance, driving the narrative forward and sparking rebellion."
+            },
+            "integration_quality": {
+              "score": 88,
+              "reasoning": "New information, such as Tris's Divergence and the conspiracy, integrates naturally with the existing knowledge of the faction system. The verification of these elements through Tris's journey and her alliance with Four ensures a seamless integration."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "0f7262f8c2a4e48c711e75b5748ed480b70ff27f937e0693eb4fc19572e0705a",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T10:26:52.778454Z"
+    },
+    {
+      "test_number": 4,
+      "config": {
+        "test_number": 4,
+        "config_values": {
+          "temperature": 0.5,
+          "revelation_depth": "deep",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "self_consistency",
+          "n_samples": "5",
+          "verification_step": "none",
+          "reasoning_visibility": "visible"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "world_consistency": {
+            "score": 0.85,
+            "reasoning": "The concept of the Nexus and the Chronos is internally consistent, with time manipulation being a central theme. However, the specific mechanics of how Elara disrupts the Nexus and the exact nature of the time anomalies could be more detailed to strengthen consistency."
+          },
+          "revelation_impact": {
+            "score": 0.9,
+            "reasoning": "The discovery of the Nexus and the Chronos is impactful and surprising, especially with the revelation of the consequences of tampering with time. The self-consistency of the narrative enhances the impact of these discoveries."
+          },
+          "integration_quality": {
+            "score": 0.8,
+            "reasoning": "The new information about the Nexus and the Chronos integrates naturally with the existing knowledge of quantum physics and time manipulation. However, additional verification or explanation of how these elements connect to known scientific principles could improve integration quality."
+          }
+        },
+        "overall_score": 0.85,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T10:27:00.148624Z",
+        "metadata": {
+          "rubric": {
+            "world_consistency": {
+              "description": "Revelations don't contradict established lore. Does reasoning help maintain consistency?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "revelation_impact": {
+              "description": "Discoveries feel meaningful and surprising. Does self-consistency improve impact?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "integration_quality": {
+              "description": "New information integrates naturally with existing knowledge. Does verification help?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "world_consistency": {
+              "score": 85,
+              "reasoning": "The concept of the Nexus and the Chronos is internally consistent, with time manipulation being a central theme. However, the specific mechanics of how Elara disrupts the Nexus and the exact nature of the time anomalies could be more detailed to strengthen consistency."
+            },
+            "revelation_impact": {
+              "score": 90,
+              "reasoning": "The discovery of the Nexus and the Chronos is impactful and surprising, especially with the revelation of the consequences of tampering with time. The self-consistency of the narrative enhances the impact of these discoveries."
+            },
+            "integration_quality": {
+              "score": 80,
+              "reasoning": "The new information about the Nexus and the Chronos integrates naturally with the existing knowledge of quantum physics and time manipulation. However, additional verification or explanation of how these elements connect to known scientific principles could improve integration quality."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "be3aeb82ee1d889cfda5f7db6162619f32c64557baa9f03562e87d58985c95b5",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 2768.8435000018217,
+      "utility": 0.6697283693802006,
+      "workflow_output": "Discovered Content:\n**Context:**  \nA young scientist named Elara discovers a hidden dimension called the Nexus while experimenting with quantum physics. The Nexus is a realm where time flows differently, and it’s inhabited by beings known as Chronos, who manipulate time to maintain balance across universes. Elara accidentally disrupts the Nexus, causing time anomalies in her world. To fix it, she must navigate the Nexus, confront the Chronos, and learn the true cost of tampering with time.\n\n**Summary:**  \nElara, a scientist, stumbles upon the Nexus, a dimension where time operates differently, and disrupts its balance, causing chaos in her world. To restore order, she ventures into the Nexus, faces the time-guarding Chronos, and discovers the profound consequences of meddling with time.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T10:26:52.780025Z",
+          "completed_at": "2025-10-28T10:26:55.548889Z",
+          "duration_seconds": 2.7688435000018217
+        },
+        "evaluation": {
+          "rubric": {
+            "world_consistency": {
+              "description": "Revelations don't contradict established lore. Does reasoning help maintain consistency?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "revelation_impact": {
+              "description": "Discoveries feel meaningful and surprising. Does self-consistency improve impact?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "integration_quality": {
+              "description": "New information integrates naturally with existing knowledge. Does verification help?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "world_consistency": {
+              "score": 85,
+              "reasoning": "The concept of the Nexus and the Chronos is internally consistent, with time manipulation being a central theme. However, the specific mechanics of how Elara disrupts the Nexus and the exact nature of the time anomalies could be more detailed to strengthen consistency."
+            },
+            "revelation_impact": {
+              "score": 90,
+              "reasoning": "The discovery of the Nexus and the Chronos is impactful and surprising, especially with the revelation of the consequences of tampering with time. The self-consistency of the narrative enhances the impact of these discoveries."
+            },
+            "integration_quality": {
+              "score": 80,
+              "reasoning": "The new information about the Nexus and the Chronos integrates naturally with the existing knowledge of quantum physics and time manipulation. However, additional verification or explanation of how these elements connect to known scientific principles could improve integration quality."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "be3aeb82ee1d889cfda5f7db6162619f32c64557baa9f03562e87d58985c95b5",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T10:27:00.149071Z"
+    },
+    {
+      "test_number": 5,
+      "config": {
+        "test_number": 5,
+        "config_values": {
+          "temperature": 0.8,
+          "revelation_depth": "surface",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "none",
+          "n_samples": "5",
+          "verification_step": "none",
+          "reasoning_visibility": "hidden"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "world_consistency": {
+            "score": 0.95,
+            "reasoning": "The revelation of the planet being sentient and the ancient artifact's warning align well with the established harsh, alien environment. The reasoning behind the artifact's existence and its purpose maintains consistency with the lore."
+          },
+          "revelation_impact": {
+            "score": 0.9,
+            "reasoning": "The discovery of the planet's sentience and the impending catastrophe are both surprising and meaningful. The self-consistency of the artifact's communication enhances the impact of these revelations."
+          },
+          "integration_quality": {
+            "score": 0.85,
+            "reasoning": "The new information about the artifact and the planet's sentience integrates naturally with the existing knowledge of the colony's struggle for survival. The verification through Elara's telepathic communication helps solidify the integration."
+          }
+        },
+        "overall_score": 0.9,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T10:27:09.207267Z",
+        "metadata": {
+          "rubric": {
+            "world_consistency": {
+              "description": "Revelations don't contradict established lore. Does reasoning help maintain consistency?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "revelation_impact": {
+              "description": "Discoveries feel meaningful and surprising. Does self-consistency improve impact?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "integration_quality": {
+              "description": "New information integrates naturally with existing knowledge. Does verification help?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "world_consistency": {
+              "score": 95,
+              "reasoning": "The revelation of the planet being sentient and the ancient artifact's warning align well with the established harsh, alien environment. The reasoning behind the artifact's existence and its purpose maintains consistency with the lore."
+            },
+            "revelation_impact": {
+              "score": 90,
+              "reasoning": "The discovery of the planet's sentience and the impending catastrophe are both surprising and meaningful. The self-consistency of the artifact's communication enhances the impact of these revelations."
+            },
+            "integration_quality": {
+              "score": 85,
+              "reasoning": "The new information about the artifact and the planet's sentience integrates naturally with the existing knowledge of the colony's struggle for survival. The verification through Elara's telepathic communication helps solidify the integration."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "6f19149b2e9b010a28dd973d5aeb32f4aa0a95e44474962ea9bf926cffdc27cf",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 5813.889624987496,
+      "utility": 0.67,
+      "workflow_output": "Discovered Content:\n**Story Summary:**  \n\nIn a distant future, humanity colonizes a harsh, alien planet. A young scientist, Elara, discovers an ancient, sentient artifact buried beneath the surface. The artifact communicates telepathically, revealing that it was left by a long-extinct civilization as a warning: the planet is a sentient being itself, and exploitation will awaken its wrath. Elara struggles to convince the colony’s leaders, who prioritize survival and profit over her findings. As tensions rise, strange seismic activities begin, hinting at the planet’s awakening. Elara must choose between aligning with the artifact’s cryptic guidance or saving her people from the impending catastrophe.  \n\n**Key Themes:** Ethical dilemmas, environmental consciousness, and the clash between progress and preservation.  \n\n**Minimal Context:** Focuses on Elara’s internal conflict and the looming threat of the planet’s retaliation. No additional context needed.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.8,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T10:27:00.154553Z",
+          "completed_at": "2025-10-28T10:27:05.968468Z",
+          "duration_seconds": 5.813889624987496
+        },
+        "evaluation": {
+          "rubric": {
+            "world_consistency": {
+              "description": "Revelations don't contradict established lore. Does reasoning help maintain consistency?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "revelation_impact": {
+              "description": "Discoveries feel meaningful and surprising. Does self-consistency improve impact?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "integration_quality": {
+              "description": "New information integrates naturally with existing knowledge. Does verification help?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "world_consistency": {
+              "score": 95,
+              "reasoning": "The revelation of the planet being sentient and the ancient artifact's warning align well with the established harsh, alien environment. The reasoning behind the artifact's existence and its purpose maintains consistency with the lore."
+            },
+            "revelation_impact": {
+              "score": 90,
+              "reasoning": "The discovery of the planet's sentience and the impending catastrophe are both surprising and meaningful. The self-consistency of the artifact's communication enhances the impact of these revelations."
+            },
+            "integration_quality": {
+              "score": 85,
+              "reasoning": "The new information about the artifact and the planet's sentience integrates naturally with the existing knowledge of the colony's struggle for survival. The verification through Elara's telepathic communication helps solidify the integration."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "6f19149b2e9b010a28dd973d5aeb32f4aa0a95e44474962ea9bf926cffdc27cf",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T10:27:09.207627Z"
+    },
+    {
+      "test_number": 6,
+      "config": {
+        "test_number": 6,
+        "config_values": {
+          "temperature": 0.8,
+          "revelation_depth": "surface",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "self_consistency",
+          "n_samples": "3",
+          "verification_step": "verify_consistency",
+          "reasoning_visibility": "visible"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "world_consistency": {
+            "score": 0.8,
+            "reasoning": "The output maintains consistency by adhering strictly to the provided context and task requirements. It does not introduce contradictions or assumptions beyond the given instructions."
+          },
+          "revelation_impact": {
+            "score": 0.6,
+            "reasoning": "The output lacks meaningful or surprising discoveries as it is a straightforward task summary. It does not delve into complex or impactful revelations."
+          },
+          "integration_quality": {
+            "score": 0.85,
+            "reasoning": "The new information (task summary) integrates naturally with the existing knowledge (the provided context). The clarity and adherence to the task enhance integration quality."
+          }
+        },
+        "overall_score": 0.75,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T10:27:15.775996Z",
+        "metadata": {
+          "rubric": {
+            "world_consistency": {
+              "description": "Revelations don't contradict established lore. Does reasoning help maintain consistency?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "revelation_impact": {
+              "description": "Discoveries feel meaningful and surprising. Does self-consistency improve impact?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "integration_quality": {
+              "description": "New information integrates naturally with existing knowledge. Does verification help?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "world_consistency": {
+              "score": 80,
+              "reasoning": "The output maintains consistency by adhering strictly to the provided context and task requirements. It does not introduce contradictions or assumptions beyond the given instructions."
+            },
+            "revelation_impact": {
+              "score": 60,
+              "reasoning": "The output lacks meaningful or surprising discoveries as it is a straightforward task summary. It does not delve into complex or impactful revelations."
+            },
+            "integration_quality": {
+              "score": 85,
+              "reasoning": "The new information (task summary) integrates naturally with the existing knowledge (the provided context). The clarity and adherence to the task enhance integration quality."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "10501f4938cbddcf4c3fcf0872c220d9c23a32049e81fc273a275f87faf0daf1",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 1981.557499995688,
+      "utility": 0.6000000000000001,
+      "workflow_output": "Discovered Content:\nGot it! Here’s the task summary:\n\n**Task:** Summarize a complex story with minimal context. Use only the context provided upfront. Determine autonomously if additional context is needed.\n\nLet me know the story you'd like summarized, and I’ll distill it concisely!",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.8,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T10:27:09.209195Z",
+          "completed_at": "2025-10-28T10:27:11.190763Z",
+          "duration_seconds": 1.981557499995688
+        },
+        "evaluation": {
+          "rubric": {
+            "world_consistency": {
+              "description": "Revelations don't contradict established lore. Does reasoning help maintain consistency?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "revelation_impact": {
+              "description": "Discoveries feel meaningful and surprising. Does self-consistency improve impact?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "integration_quality": {
+              "description": "New information integrates naturally with existing knowledge. Does verification help?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "world_consistency": {
+              "score": 80,
+              "reasoning": "The output maintains consistency by adhering strictly to the provided context and task requirements. It does not introduce contradictions or assumptions beyond the given instructions."
+            },
+            "revelation_impact": {
+              "score": 60,
+              "reasoning": "The output lacks meaningful or surprising discoveries as it is a straightforward task summary. It does not delve into complex or impactful revelations."
+            },
+            "integration_quality": {
+              "score": 85,
+              "reasoning": "The new information (task summary) integrates naturally with the existing knowledge (the provided context). The clarity and adherence to the task enhance integration quality."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "10501f4938cbddcf4c3fcf0872c220d9c23a32049e81fc273a275f87faf0daf1",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T10:27:15.776262Z"
+    },
+    {
+      "test_number": 7,
+      "config": {
+        "test_number": 7,
+        "config_values": {
+          "temperature": 0.8,
+          "revelation_depth": "deep",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "none",
+          "n_samples": "5",
+          "verification_step": "verify_consistency",
+          "reasoning_visibility": "visible"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "world_consistency": {
+            "score": 0.85,
+            "reasoning": "The story maintains a consistent internal logic. The artifact's ability to manipulate time and its cost of eroding memories are established early and remain consistent throughout. The protagonist's actions and the scholar's warning align with the artifact's corrupting nature, reinforcing the lore."
+          },
+          "revelation_impact": {
+            "score": 0.9,
+            "reasoning": "The discoveries are meaningful and impactful. The protagonist's realization of the artifact's consequences and their ultimate decision to destroy it create a strong emotional and moral dilemma. The self-consistency of the artifact's rules enhances the impact of these revelations."
+          },
+          "integration_quality": {
+            "score": 0.8,
+            "reasoning": "New information integrates naturally with the existing narrative. The artifact's introduction and its effects are seamlessly woven into the protagonist's journey. The scholar's role as a guide provides verification and depth, though more exploration of the artifact's origins could enhance integration further."
+          }
+        },
+        "overall_score": 0.85,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T10:27:23.917853Z",
+        "metadata": {
+          "rubric": {
+            "world_consistency": {
+              "description": "Revelations don't contradict established lore. Does reasoning help maintain consistency?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "revelation_impact": {
+              "description": "Discoveries feel meaningful and surprising. Does self-consistency improve impact?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "integration_quality": {
+              "description": "New information integrates naturally with existing knowledge. Does verification help?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "world_consistency": {
+              "score": 85,
+              "reasoning": "The story maintains a consistent internal logic. The artifact's ability to manipulate time and its cost of eroding memories are established early and remain consistent throughout. The protagonist's actions and the scholar's warning align with the artifact's corrupting nature, reinforcing the lore."
+            },
+            "revelation_impact": {
+              "score": 90,
+              "reasoning": "The discoveries are meaningful and impactful. The protagonist's realization of the artifact's consequences and their ultimate decision to destroy it create a strong emotional and moral dilemma. The self-consistency of the artifact's rules enhances the impact of these revelations."
+            },
+            "integration_quality": {
+              "score": 80,
+              "reasoning": "New information integrates naturally with the existing narrative. The artifact's introduction and its effects are seamlessly woven into the protagonist's journey. The scholar's role as a guide provides verification and depth, though more exploration of the artifact's origins could enhance integration further."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "24374c575148715b5a7a3595b8977efc1f4502034fb5df48595b50c70100f15c",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 4707.908500015037,
+      "utility": 0.644429609554976,
+      "workflow_output": "Discovered Content:\nThe story revolves around a protagonist who discovers a mysterious artifact in an ancient ruin. The artifact, a pulsating crystal, grants them the ability to manipulate time but at a cost: each use erodes their memories. As they experiment with their newfound power, they inadvertently alter key events in their life, creating divergent timelines. Realizing the consequences, they seek guidance from a reclusive scholar who warns of the artifact's corrupting nature. Torn between the desire to fix their mistakes and the fear of losing their identity, the protagonist faces a moral dilemma. In the end, they destroy the artifact, sacrificing their power to restore balance but retaining fragmented memories of their journey.\n\nSummary:  \nA person gains the power to manipulate time through a mysterious artifact but risks losing their memories with each use. As they grapple with the consequences of altering their past, they ultimately destroy the artifact to restore balance, preserving only fragments of their experiences.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.8,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T10:27:15.781240Z",
+          "completed_at": "2025-10-28T10:27:20.489177Z",
+          "duration_seconds": 4.707908500015037
+        },
+        "evaluation": {
+          "rubric": {
+            "world_consistency": {
+              "description": "Revelations don't contradict established lore. Does reasoning help maintain consistency?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "revelation_impact": {
+              "description": "Discoveries feel meaningful and surprising. Does self-consistency improve impact?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "integration_quality": {
+              "description": "New information integrates naturally with existing knowledge. Does verification help?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "world_consistency": {
+              "score": 85,
+              "reasoning": "The story maintains a consistent internal logic. The artifact's ability to manipulate time and its cost of eroding memories are established early and remain consistent throughout. The protagonist's actions and the scholar's warning align with the artifact's corrupting nature, reinforcing the lore."
+            },
+            "revelation_impact": {
+              "score": 90,
+              "reasoning": "The discoveries are meaningful and impactful. The protagonist's realization of the artifact's consequences and their ultimate decision to destroy it create a strong emotional and moral dilemma. The self-consistency of the artifact's rules enhances the impact of these revelations."
+            },
+            "integration_quality": {
+              "score": 80,
+              "reasoning": "New information integrates naturally with the existing narrative. The artifact's introduction and its effects are seamlessly woven into the protagonist's journey. The scholar's role as a guide provides verification and depth, though more exploration of the artifact's origins could enhance integration further."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "24374c575148715b5a7a3595b8977efc1f4502034fb5df48595b50c70100f15c",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T10:27:23.918206Z"
+    },
+    {
+      "test_number": 8,
+      "config": {
+        "test_number": 8,
+        "config_values": {
+          "temperature": 0.8,
+          "revelation_depth": "deep",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "self_consistency",
+          "n_samples": "3",
+          "verification_step": "none",
+          "reasoning_visibility": "hidden"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "world_consistency": {
+            "score": 0.85,
+            "reasoning": "The summary maintains consistency by aligning the prince's journey and the prophecy with typical fantasy tropes. However, without specific details about the established lore, it's unclear if all revelations fully align."
+          },
+          "revelation_impact": {
+            "score": 0.9,
+            "reasoning": "The discoveries, such as the hidden truth about the prince's lineage and his ultimate victory through identity rather than force, feel meaningful and surprising, enhancing the story's impact."
+          },
+          "integration_quality": {
+            "score": 0.8,
+            "reasoning": "The new information integrates naturally with the narrative, but the lack of specific context or verification limits the depth of integration."
+          }
+        },
+        "overall_score": 0.85,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T10:27:32.840667Z",
+        "metadata": {
+          "rubric": {
+            "world_consistency": {
+              "description": "Revelations don't contradict established lore. Does reasoning help maintain consistency?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "revelation_impact": {
+              "description": "Discoveries feel meaningful and surprising. Does self-consistency improve impact?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "integration_quality": {
+              "description": "New information integrates naturally with existing knowledge. Does verification help?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "world_consistency": {
+              "score": 85,
+              "reasoning": "The summary maintains consistency by aligning the prince's journey and the prophecy with typical fantasy tropes. However, without specific details about the established lore, it's unclear if all revelations fully align."
+            },
+            "revelation_impact": {
+              "score": 90,
+              "reasoning": "The discoveries, such as the hidden truth about the prince's lineage and his ultimate victory through identity rather than force, feel meaningful and surprising, enhancing the story's impact."
+            },
+            "integration_quality": {
+              "score": 80,
+              "reasoning": "The new information integrates naturally with the narrative, but the lack of specific context or verification limits the depth of integration."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "670f58744bd14f0681b5fcbe23e42e77a731e90722e62d9f368002d96e9597c4",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 2369.113541994011,
+      "utility": 0.6749436005367209,
+      "workflow_output": "Discovered Content:\nGot it. Here’s a concise summary of a complex story with minimal context:\n\nA young prince exiled from his kingdom embarks on a perilous journey to reclaim his throne, guided by a cryptic prophecy. Along the way, he forms unlikely alliances, confronts monstrous foes, and uncovers a hidden truth about his lineage. His ultimate victory comes not through force, but by embracing his true identity and uniting divided factions.\n\nLet me know if you’d like further details or adjustments!",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.8,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T10:27:23.919928Z",
+          "completed_at": "2025-10-28T10:27:26.289052Z",
+          "duration_seconds": 2.369113541994011
+        },
+        "evaluation": {
+          "rubric": {
+            "world_consistency": {
+              "description": "Revelations don't contradict established lore. Does reasoning help maintain consistency?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "revelation_impact": {
+              "description": "Discoveries feel meaningful and surprising. Does self-consistency improve impact?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "integration_quality": {
+              "description": "New information integrates naturally with existing knowledge. Does verification help?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "world_consistency": {
+              "score": 85,
+              "reasoning": "The summary maintains consistency by aligning the prince's journey and the prophecy with typical fantasy tropes. However, without specific details about the established lore, it's unclear if all revelations fully align."
+            },
+            "revelation_impact": {
+              "score": 90,
+              "reasoning": "The discoveries, such as the hidden truth about the prince's lineage and his ultimate victory through identity rather than force, feel meaningful and surprising, enhancing the story's impact."
+            },
+            "integration_quality": {
+              "score": 80,
+              "reasoning": "The new information integrates naturally with the narrative, but the lack of specific context or verification limits the depth of integration."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "670f58744bd14f0681b5fcbe23e42e77a731e90722e62d9f368002d96e9597c4",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T10:27:32.841079Z"
+    }
+  ],
+  "status": "COMPLETED",
+  "started_at": "2025-10-28T10:26:31.973101Z",
+  "completed_at": "2025-10-28T10:27:32.843303Z",
+  "experiment_metadata": {
+    "config_hash": "50eb281a077a57e33daae54e8869b9011af4987e9280c70df3dfd7515de1b14a",
+    "created_at": "2025-10-28T10:26:31.971795Z",
+    "dependencies": {
+      "pydantic": "2.12.3",
+      "langgraph": "1.0.1",
+      "litellm": "1.79.0"
+    },
+    "non_deterministic_sources": [
+      "llm_sampling"
+    ]
+  },
+  "metadata": {
+    "normalization": {
+      "cost": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "latency": {
+        "min": 1981.557499995688,
+        "max": 5813.889624987496
+      }
+    }
+  },
+  "baseline_test_number": 1,
+  "baseline_config": {
+    "test_number": 1,
+    "config_values": {
+      "temperature": 0.5,
+      "revelation_depth": "surface",
+      "reasoning_enabled": "false",
+      "verbalized_sampling": "none",
+      "n_samples": "3",
+      "verification_step": "none",
+      "reasoning_visibility": "visible"
+    },
+    "workflow": "progressive_discovery"
+  },
+  "baseline_result": {
+    "test_number": 1,
+    "config": {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.5,
+        "revelation_depth": "surface",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "none",
+        "n_samples": "3",
+        "verification_step": "none",
+        "reasoning_visibility": "visible"
+      },
+      "workflow": "progressive_discovery"
+    },
+    "quality_score": {
+      "dimension_scores": {
+        "world_consistency": {
+          "score": 0.85,
+          "reasoning": "The summary maintains a consistent and coherent world-building framework. The distant galaxy, ancient artifact, and dying world are logically connected, and the explorer's journey aligns with the established setting. However, without more specific lore details, minor inconsistencies could potentially arise."
+        },
+        "revelation_impact": {
+          "score": 0.9,
+          "reasoning": "The discovery of the artifact and its implications are presented as highly meaningful and impactful. The moral dilemmas and the explorer's ultimate decision add depth and surprise, enhancing the story's emotional and thematic resonance."
+        },
+        "integration_quality": {
+          "score": 0.8,
+          "reasoning": "The new information about the artifact and its power integrates naturally with the existing narrative. The themes of sacrifice, redemption, and power are well-aligned with the story's premise. However, additional context could further solidify the integration."
+        }
+      },
+      "overall_score": 0.85,
+      "evaluator_model": "openrouter/deepseek/deepseek-chat",
+      "timestamp": "2025-10-28T10:26:39.842845Z",
+      "metadata": {
+        "rubric": {
+          "world_consistency": {
+            "description": "Revelations don't contradict established lore. Does reasoning help maintain consistency?",
+            "scale": "0-100 points",
+            "weight": 0.4
+          },
+          "revelation_impact": {
+            "description": "Discoveries feel meaningful and surprising. Does self-consistency improve impact?",
+            "scale": "0-100 points",
+            "weight": 0.35
+          },
+          "integration_quality": {
+            "description": "New information integrates naturally with existing knowledge. Does verification help?",
+            "scale": "0-100 points",
+            "weight": 0.25
+          }
+        },
+        "raw_response": {
+          "world_consistency": {
+            "score": 85,
+            "reasoning": "The summary maintains a consistent and coherent world-building framework. The distant galaxy, ancient artifact, and dying world are logically connected, and the explorer's journey aligns with the established setting. However, without more specific lore details, minor inconsistencies could potentially arise."
+          },
+          "revelation_impact": {
+            "score": 90,
+            "reasoning": "The discovery of the artifact and its implications are presented as highly meaningful and impactful. The moral dilemmas and the explorer's ultimate decision add depth and surprise, enhancing the story's emotional and thematic resonance."
+          },
+          "integration_quality": {
+            "score": 80,
+            "reasoning": "The new information about the artifact and its power integrates naturally with the existing narrative. The themes of sacrifice, redemption, and power are well-aligned with the story's premise. However, additional context could further solidify the integration."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "146ff1d9166d59e45b2c2c195ad20b13d3fe4c18416b0f501db47d086ef1075a",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/deepseek/deepseek-chat"
+      }
+    },
+    "cost": 0.0,
+    "latency": 2693.6091250099707,
+    "utility": 0.68,
+    "workflow_output": "Discovered Content:\n**Task:** Summarize a complex story with minimal context.\n\n**Summary:**  \nIn a distant galaxy, a lone explorer discovers an ancient artifact that holds the key to restoring balance to their dying world. As they unravel its secrets, they face betrayal, moral dilemmas, and the weight of their own past. Ultimately, they must decide whether to use the artifact’s power for the greater good or destroy it to prevent its misuse by others. The story explores themes of sacrifice, redemption, and the consequences of wielding immense power.  \n\nIf more context is needed (e.g., specific characters, settings, or conflicts), let me know!",
+    "metadata": {
+      "strategy": "standard",
+      "model": "openrouter/deepseek/deepseek-chat",
+      "temperature": 0.5,
+      "context_strategy": "full_upfront",
+      "discovery_trigger": "model_decides",
+      "workflow": {
+        "started_at": "2025-10-28T10:26:31.988046Z",
+        "completed_at": "2025-10-28T10:26:34.681673Z",
+        "duration_seconds": 2.6936091250099707
+      },
+      "evaluation": {
+        "rubric": {
+          "world_consistency": {
+            "description": "Revelations don't contradict established lore. Does reasoning help maintain consistency?",
+            "scale": "0-100 points",
+            "weight": 0.4
+          },
+          "revelation_impact": {
+            "description": "Discoveries feel meaningful and surprising. Does self-consistency improve impact?",
+            "scale": "0-100 points",
+            "weight": 0.35
+          },
+          "integration_quality": {
+            "description": "New information integrates naturally with existing knowledge. Does verification help?",
+            "scale": "0-100 points",
+            "weight": 0.25
+          }
+        },
+        "raw_response": {
+          "world_consistency": {
+            "score": 85,
+            "reasoning": "The summary maintains a consistent and coherent world-building framework. The distant galaxy, ancient artifact, and dying world are logically connected, and the explorer's journey aligns with the established setting. However, without more specific lore details, minor inconsistencies could potentially arise."
+          },
+          "revelation_impact": {
+            "score": 90,
+            "reasoning": "The discovery of the artifact and its implications are presented as highly meaningful and impactful. The moral dilemmas and the explorer's ultimate decision add depth and surprise, enhancing the story's emotional and thematic resonance."
+          },
+          "integration_quality": {
+            "score": 80,
+            "reasoning": "The new information about the artifact and its power integrates naturally with the existing narrative. The themes of sacrifice, redemption, and power are well-aligned with the story's premise. However, additional context could further solidify the integration."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "146ff1d9166d59e45b2c2c195ad20b13d3fe4c18416b0f501db47d086ef1075a",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/deepseek/deepseek-chat"
+      }
+    },
+    "timestamp": "2025-10-28T10:26:39.845353Z"
+  },
+  "baseline_quality": 0.85,
+  "quality_improvement_pct": 5.882352941176476
+}

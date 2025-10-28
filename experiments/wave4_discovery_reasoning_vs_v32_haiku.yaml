@@ -1,0 +1,63 @@
+# Wave 4: Progressive Discovery V3.2 with Reasoning & Verbalized Sampling (Haiku 4.5 Evaluator)
+# Research Question: Test if Haiku 4.5 evaluator shows same score clustering as DeepSeek-Chat
+#
+# EVALUATOR CHANGE: DeepSeek-Chat → Claude Haiku 4.5
+# MODEL: DeepSeek V3.2 Exp (explicit reasoning parameter)
+
+name: wave4_discovery_reasoning_vs_v32_haiku
+workflow: progressive_discovery
+variables:
+  - name: temperature
+    level_1: 0.5
+    level_2: 0.8
+  - name: revelation_depth
+    level_1: surface
+    level_2: deep
+  - name: reasoning_enabled
+    level_1: 'false'
+    level_2: 'true'
+  - name: verbalized_sampling
+    level_1: none
+    level_2: self_consistency
+  - name: n_samples
+    level_1: '3'
+    level_2: '5'
+  - name: verification_step
+    level_1: none
+    level_2: verify_consistency
+  - name: reasoning_visibility
+    level_1: visible
+    level_2: hidden
+
+utility_weights:
+  quality: 0.8
+  cost: 0.15
+  time: 0.05
+
+workflow_config:
+  sample_code_path: tesseract_flow/workflows/code_review.py
+  language: python
+  model: openrouter/deepseek/deepseek-chat
+  evaluator_model: openrouter/anthropic/claude-3.5-haiku
+  evaluator_temperature: 0.3
+  rubric:
+    narrative_tension:
+      description: Revelations create anticipation and engagement
+      scale: 0-100 points
+      weight: 0.30
+    information_pacing:
+      description: Details revealed at optimal dramatic moments
+      scale: 0-100 points
+      weight: 0.30
+    worldbuilding_coherence:
+      description: Discovered elements fit together logically
+      scale: 0-100 points
+      weight: 0.25
+    reader_satisfaction:
+      description: Revelations feel earned and meaningful
+      scale: 0-100 points
+      weight: 0.15
+
+# Expected Learnings:
+# 1. Does V3.2 + Haiku avoid ceiling effects seen with DeepSeek evaluator?
+# 2. Can Haiku provide more granular quality measurement?

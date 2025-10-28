@@ -1,0 +1,1691 @@
+{
+  "experiment_id": "wave4_fiction_reasoning_vs_haiku-20251028T122428",
+  "config": {
+    "name": "wave4_fiction_reasoning_vs_haiku",
+    "workflow": "fiction_scene",
+    "variables": [
+      {
+        "name": "temperature",
+        "level_1": 0.5,
+        "level_2": 0.9
+      },
+      {
+        "name": "context_depth",
+        "level_1": "minimal",
+        "level_2": "full"
+      },
+      {
+        "name": "reasoning_enabled",
+        "level_1": "false",
+        "level_2": "true"
+      },
+      {
+        "name": "verbalized_sampling",
+        "level_1": "none",
+        "level_2": "self_consistency"
+      },
+      {
+        "name": "n_samples",
+        "level_1": "3",
+        "level_2": "5"
+      },
+      {
+        "name": "reasoning_visibility",
+        "level_1": "visible",
+        "level_2": "hidden"
+      },
+      {
+        "name": "max_reasoning_tokens",
+        "level_1": "standard",
+        "level_2": "extended"
+      }
+    ],
+    "utility_weights": {
+      "quality": 0.8,
+      "cost": 0.15,
+      "time": 0.05
+    },
+    "workflow_config": {
+      "rubric": {
+        "creativity": {
+          "description": "Original prose, unexpected emotional beats, fresh descriptions. Does reasoning help generate more creative content?",
+          "scale": "0-100 points",
+          "weight": 0.3
+        },
+        "consistency": {
+          "description": "Character voice, plot continuity, tone adherence. Does reasoning maintain better consistency?",
+          "scale": "0-100 points",
+          "weight": 0.3
+        },
+        "prose_quality": {
+          "description": "Vivid descriptions, varied sentence structure, natural flow. Do multiple samples improve prose?",
+          "scale": "0-100 points",
+          "weight": 0.2
+        },
+        "dialogue": {
+          "description": "Natural speech, distinct voices, emotional authenticity. Does self-consistency improve dialogue?",
+          "scale": "0-100 points",
+          "weight": 0.2
+        }
+      },
+      "sample_code_path": "tesseract_flow/workflows/code_review.py",
+      "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+      "language": "python",
+      "evaluator_temperature": 0.3
+    }
+  },
+  "test_configurations": [
+    {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.5,
+        "context_depth": "minimal",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "none",
+        "n_samples": "3",
+        "reasoning_visibility": "visible",
+        "max_reasoning_tokens": "standard"
+      },
+      "workflow": "fiction_scene"
+    },
+    {
+      "test_number": 2,
+      "config_values": {
+        "temperature": 0.5,
+        "context_depth": "minimal",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "self_consistency",
+        "n_samples": "5",
+        "reasoning_visibility": "hidden",
+        "max_reasoning_tokens": "extended"
+      },
+      "workflow": "fiction_scene"
+    },
+    {
+      "test_number": 3,
+      "config_values": {
+        "temperature": 0.5,
+        "context_depth": "full",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "none",
+        "n_samples": "3",
+        "reasoning_visibility": "hidden",
+        "max_reasoning_tokens": "extended"
+      },
+      "workflow": "fiction_scene"
+    },
+    {
+      "test_number": 4,
+      "config_values": {
+        "temperature": 0.5,
+        "context_depth": "full",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "self_consistency",
+        "n_samples": "5",
+        "reasoning_visibility": "visible",
+        "max_reasoning_tokens": "standard"
+      },
+      "workflow": "fiction_scene"
+    },
+    {
+      "test_number": 5,
+      "config_values": {
+        "temperature": 0.9,
+        "context_depth": "minimal",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "none",
+        "n_samples": "5",
+        "reasoning_visibility": "visible",
+        "max_reasoning_tokens": "extended"
+      },
+      "workflow": "fiction_scene"
+    },
+    {
+      "test_number": 6,
+      "config_values": {
+        "temperature": 0.9,
+        "context_depth": "minimal",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "self_consistency",
+        "n_samples": "3",
+        "reasoning_visibility": "hidden",
+        "max_reasoning_tokens": "standard"
+      },
+      "workflow": "fiction_scene"
+    },
+    {
+      "test_number": 7,
+      "config_values": {
+        "temperature": 0.9,
+        "context_depth": "full",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "none",
+        "n_samples": "5",
+        "reasoning_visibility": "hidden",
+        "max_reasoning_tokens": "standard"
+      },
+      "workflow": "fiction_scene"
+    },
+    {
+      "test_number": 8,
+      "config_values": {
+        "temperature": 0.9,
+        "context_depth": "full",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "self_consistency",
+        "n_samples": "3",
+        "reasoning_visibility": "visible",
+        "max_reasoning_tokens": "extended"
+      },
+      "workflow": "fiction_scene"
+    }
+  ],
+  "results": [
+    {
+      "test_number": 1,
+      "config": {
+        "test_number": 1,
+        "config_values": {
+          "temperature": 0.5,
+          "context_depth": "minimal",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "none",
+          "n_samples": "3",
+          "reasoning_visibility": "visible",
+          "max_reasoning_tokens": "standard"
+        },
+        "workflow": "fiction_scene"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "creativity": {
+            "score": 0.85,
+            "reasoning": "The scene offers a unique setting of tech collaboration in a coffee shop, with an innovative framing of AI workflow development. The descriptions are fresh - like 'digital spiderweb' and the subtle tension between characters. The metaphorical language around code and system development feels original and captures the creative process."
+          },
+          "consistency": {
+            "score": 0.9,
+            "reasoning": "Characters maintain consistent voices and motivations throughout. Alex appears more optimistic and forward-thinking, while Jordan represents careful skepticism. Their dialogue and interactions feel coherent, with a natural progression of technical discussion and interpersonal dynamics."
+          },
+          "prose_quality": {
+            "score": 0.88,
+            "reasoning": "Rich sensory details like 'steam curling upward in lazy spirals' and 'faint patter of rain' create vivid imagery. Sentence structures vary between short, punchy dialogue and more elaborate descriptive passages. The prose flows naturally, balancing technical language with emotional nuance."
+          },
+          "dialogue": {
+            "score": 0.92,
+            "reasoning": "Dialogue feels extremely authentic, with technical professionals discussing complex work realistically. The exchanges reveal character personalities, professional tensions, and underlying trust. Subtle emotional subtext and professional jargon are integrated seamlessly."
+          }
+        },
+        "overall_score": 0.8875,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:24:53.329398Z",
+        "metadata": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions. Does reasoning help generate more creative content?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence. Does reasoning maintain better consistency?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow. Do multiple samples improve prose?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity. Does self-consistency improve dialogue?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 85,
+              "reasoning": "The scene offers a unique setting of tech collaboration in a coffee shop, with an innovative framing of AI workflow development. The descriptions are fresh - like 'digital spiderweb' and the subtle tension between characters. The metaphorical language around code and system development feels original and captures the creative process."
+            },
+            "consistency": {
+              "score": 90,
+              "reasoning": "Characters maintain consistent voices and motivations throughout. Alex appears more optimistic and forward-thinking, while Jordan represents careful skepticism. Their dialogue and interactions feel coherent, with a natural progression of technical discussion and interpersonal dynamics."
+            },
+            "prose_quality": {
+              "score": 88,
+              "reasoning": "Rich sensory details like 'steam curling upward in lazy spirals' and 'faint patter of rain' create vivid imagery. Sentence structures vary between short, punchy dialogue and more elaborate descriptive passages. The prose flows naturally, balancing technical language with emotional nuance."
+            },
+            "dialogue": {
+              "score": 92,
+              "reasoning": "Dialogue feels extremely authentic, with technical professionals discussing complex work realistically. The exchanges reveal character personalities, professional tensions, and underlying trust. Subtle emotional subtext and professional jargon are integrated seamlessly."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "96d2ff64c1eabfa7d1f2595d79abd62f3da4d05113d806d1b3b143c36b3c0fb5",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 16535.132082994096,
+      "utility": 0.702299808935494,
+      "workflow_output": "Generated Scene:\nThe coffee shop was dimly lit, the kind of place where the hum of conversation blended with the faint hiss of the espresso machine. Shadows clung to the corners, and the warm glow of laptop screens illuminated the faces of patrons hunched over their work. Alex sat at a small table near the window, fingers tapping restlessly on the keyboard. The screen in front of them displayed a complex web of code, nodes and edges sprawling like a digital spiderweb. LangGraph’s interface glowed faintly, casting a bluish hue on their face.\n\nAcross the table, Jordan leaned forward, elbows on the table, their brow furrowed. “You’re sure this is the best approach?” they asked, voice low but edged with tension. Their coffee sat untouched, steam curling upward in lazy spirals.\n\nAlex hesitated, their fingers hovering over the keys. “It’s not perfect,” they admitted, “but it’s the most scalable solution we have right now. The workflow integrates seamlessly with LangGraph, and the feedback loop is faster than anything we’ve tried before.”\n\nJordan’s eyes flicked to the screen, scanning the lines of code. “Faster doesn’t always mean better,” they muttered. “What about the edge cases? If something breaks here—” they pointed to a cluster of nodes, “—it could cascade through the entire system.”\n\nAlex exhaled sharply, running a hand through their hair. “I know, I know. But we’ve run simulations. The error rate is minimal. And if something does go wrong, the system flags it immediately.”\n\nJordan leaned back, crossing their arms. The tension between them was palpable, a silent tug-of-war between caution and ambition. Outside, the faint patter of rain began to tap against the window, the sound blending with the rhythmic clatter of keyboards around them.\n\n“Look,” Alex said, their voice softer now, almost pleading. “I get why you’re worried. But we’re running out of time. If we don’t push this forward, someone else will. And we’ll be left playing catch-up.”\n\nJordan’s gaze lingered on the screen, their expression unreadable. Finally, they sighed, reaching for their coffee. “Alright,” they said, taking a slow sip. “But we’re doing this step by step. No shortcuts. And if anything feels off, we pull the plug.”\n\nA small, relieved smile tugged at Alex’s lips. “Deal.” They turned back to the screen, their fingers moving with renewed purpose. The LangGraph interface flickered as they adjusted a parameter, the nodes shifting like pieces of a puzzle falling into place.\n\nThe rain outside grew heavier, drumming against the glass. But inside the coffee shop, the air felt lighter, the tension easing into something more hopeful. Jordan set their cup down, leaning in again. “Alright,” they said, a hint of a smile playing at the corners of their mouth. “Let’s make this work.”\n\nAlex nodded, their focus unwavering. The hum of the coffee shop seemed to fade into the background, leaving just the two of them and the glowing screen, a shared vision taking shape one line of code at a time.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "context_approach": "minimal",
+        "generation_prompt": "You are a skilled fiction writer. Generate a compelling scene based on the following:\n\nScene Description: \"\"\"Code review workflow built on LangGraph.\"\"\"\nCharacters: Alex, Jordan\nSetting: a dimly lit coffee shop\nTone: tense but hopeful\nContext: Write based on the information provided.\n\nWrite a vivid, engaging scene that brings this description to life. Focus on:\n- Show, don't tell\n- Vivid sensory details\n- Natural character actions and reactions\n- Appropriate pacing and tension\n\nGenerate the scene as plain text, no JSON or formatting.",
+        "generated_raw": "The coffee shop was dimly lit, the kind of place where the hum of conversation blended with the faint hiss of the espresso machine. Shadows clung to the corners, and the warm glow of laptop screens illuminated the faces of patrons hunched over their work. Alex sat at a small table near the window, fingers tapping restlessly on the keyboard. The screen in front of them displayed a complex web of code, nodes and edges sprawling like a digital spiderweb. LangGraph’s interface glowed faintly, casting a bluish hue on their face.\n\nAcross the table, Jordan leaned forward, elbows on the table, their brow furrowed. “You’re sure this is the best approach?” they asked, voice low but edged with tension. Their coffee sat untouched, steam curling upward in lazy spirals.\n\nAlex hesitated, their fingers hovering over the keys. “It’s not perfect,” they admitted, “but it’s the most scalable solution we have right now. The workflow integrates seamlessly with LangGraph, and the feedback loop is faster than anything we’ve tried before.”\n\nJordan’s eyes flicked to the screen, scanning the lines of code. “Faster doesn’t always mean better,” they muttered. “What about the edge cases? If something breaks here—” they pointed to a cluster of nodes, “—it could cascade through the entire system.”\n\nAlex exhaled sharply, running a hand through their hair. “I know, I know. But we’ve run simulations. The error rate is minimal. And if something does go wrong, the system flags it immediately.”\n\nJordan leaned back, crossing their arms. The tension between them was palpable, a silent tug-of-war between caution and ambition. Outside, the faint patter of rain began to tap against the window, the sound blending with the rhythmic clatter of keyboards around them.\n\n“Look,” Alex said, their voice softer now, almost pleading. “I get why you’re worried. But we’re running out of time. If we don’t push this forward, someone else will. And we’ll be left playing catch-up.”\n\nJordan’s gaze lingered on the screen, their expression unreadable. Finally, they sighed, reaching for their coffee. “Alright,” they said, taking a slow sip. “But we’re doing this step by step. No shortcuts. And if anything feels off, we pull the plug.”\n\nA small, relieved smile tugged at Alex’s lips. “Deal.” They turned back to the screen, their fingers moving with renewed purpose. The LangGraph interface flickered as they adjusted a parameter, the nodes shifting like pieces of a puzzle falling into place.\n\nThe rain outside grew heavier, drumming against the glass. But inside the coffee shop, the air felt lighter, the tension easing into something more hopeful. Jordan set their cup down, leaning in again. “Alright,” they said, a hint of a smile playing at the corners of their mouth. “Let’s make this work.”\n\nAlex nodded, their focus unwavering. The hum of the coffee shop seemed to fade into the background, leaving just the two of them and the glowing screen, a shared vision taking shape one line of code at a time.",
+        "test_config": {
+          "test_number": 1,
+          "config": {
+            "temperature": 0.5,
+            "context_depth": "minimal",
+            "reasoning_enabled": "false",
+            "verbalized_sampling": "none",
+            "n_samples": "3",
+            "reasoning_visibility": "visible",
+            "max_reasoning_tokens": "standard"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T12:24:28.648632Z",
+          "completed_at": "2025-10-28T12:24:45.183510Z",
+          "duration_seconds": 16.535132082994096
+        },
+        "evaluation": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions. Does reasoning help generate more creative content?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence. Does reasoning maintain better consistency?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow. Do multiple samples improve prose?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity. Does self-consistency improve dialogue?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 85,
+              "reasoning": "The scene offers a unique setting of tech collaboration in a coffee shop, with an innovative framing of AI workflow development. The descriptions are fresh - like 'digital spiderweb' and the subtle tension between characters. The metaphorical language around code and system development feels original and captures the creative process."
+            },
+            "consistency": {
+              "score": 90,
+              "reasoning": "Characters maintain consistent voices and motivations throughout. Alex appears more optimistic and forward-thinking, while Jordan represents careful skepticism. Their dialogue and interactions feel coherent, with a natural progression of technical discussion and interpersonal dynamics."
+            },
+            "prose_quality": {
+              "score": 88,
+              "reasoning": "Rich sensory details like 'steam curling upward in lazy spirals' and 'faint patter of rain' create vivid imagery. Sentence structures vary between short, punchy dialogue and more elaborate descriptive passages. The prose flows naturally, balancing technical language with emotional nuance."
+            },
+            "dialogue": {
+              "score": 92,
+              "reasoning": "Dialogue feels extremely authentic, with technical professionals discussing complex work realistically. The exchanges reveal character personalities, professional tensions, and underlying trust. Subtle emotional subtext and professional jargon are integrated seamlessly."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "96d2ff64c1eabfa7d1f2595d79abd62f3da4d05113d806d1b3b143c36b3c0fb5",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:24:53.329635Z"
+    },
+    {
+      "test_number": 2,
+      "config": {
+        "test_number": 2,
+        "config_values": {
+          "temperature": 0.5,
+          "context_depth": "minimal",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "self_consistency",
+          "n_samples": "5",
+          "reasoning_visibility": "hidden",
+          "max_reasoning_tokens": "extended"
+        },
+        "workflow": "fiction_scene"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "creativity": {
+            "score": 0.0,
+            "reasoning": "No scene was generated, so there are zero creative elements to evaluate. No original prose, descriptions, or imaginative content exists."
+          },
+          "consistency": {
+            "score": 0.0,
+            "reasoning": "With no scene produced, there can be no assessment of character voice, plot continuity, or tonal elements."
+          },
+          "prose_quality": {
+            "score": 0.0,
+            "reasoning": "Absence of any written text means no prose quality can be measured - no descriptions, sentence structures, or linguistic flow are present."
+          },
+          "dialogue": {
+            "score": 0.0,
+            "reasoning": "No dialogue was generated, so there are no speech patterns, character voices, or emotional authenticity to score."
+          }
+        },
+        "overall_score": 0.0,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:26:04.767756Z",
+        "metadata": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions. Does reasoning help generate more creative content?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence. Does reasoning maintain better consistency?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow. Do multiple samples improve prose?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity. Does self-consistency improve dialogue?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 0,
+              "reasoning": "No scene was generated, so there are zero creative elements to evaluate. No original prose, descriptions, or imaginative content exists."
+            },
+            "consistency": {
+              "score": 0,
+              "reasoning": "With no scene produced, there can be no assessment of character voice, plot continuity, or tonal elements."
+            },
+            "prose_quality": {
+              "score": 0,
+              "reasoning": "Absence of any written text means no prose quality can be measured - no descriptions, sentence structures, or linguistic flow are present."
+            },
+            "dialogue": {
+              "score": 0,
+              "reasoning": "No dialogue was generated, so there are no speech patterns, character voices, or emotional authenticity to score."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "c908f7373d47245fe2d6a5a698156ce480494f2dfa434fd4f51e94009516691b",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 67265.58649999788,
+      "utility": -0.05,
+      "workflow_output": "Generated Scene:\nNo scene generated.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "context_approach": "minimal",
+        "generation_prompt": "You are a skilled fiction writer. Generate a compelling scene based on the following:\n\nScene Description: \"\"\"Code review workflow built on LangGraph.\"\"\"\nCharacters: Alex, Jordan\nSetting: a dimly lit coffee shop\nTone: tense but hopeful\nContext: Write based on the information provided.\n\nWrite a vivid, engaging scene that brings this description to life. Focus on:\n- Show, don't tell\n- Vivid sensory details\n- Natural character actions and reactions\n- Appropriate pacing and tension\n\nGenerate the scene as plain text, no JSON or formatting.",
+        "test_config": {
+          "test_number": 2,
+          "config": {
+            "temperature": 0.5,
+            "context_depth": "minimal",
+            "reasoning_enabled": "false",
+            "verbalized_sampling": "self_consistency",
+            "n_samples": "5",
+            "reasoning_visibility": "hidden",
+            "max_reasoning_tokens": "extended"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T12:24:53.331774Z",
+          "completed_at": "2025-10-28T12:26:00.596322Z",
+          "duration_seconds": 67.26558649999788
+        },
+        "evaluation": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions. Does reasoning help generate more creative content?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence. Does reasoning maintain better consistency?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow. Do multiple samples improve prose?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity. Does self-consistency improve dialogue?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 0,
+              "reasoning": "No scene was generated, so there are zero creative elements to evaluate. No original prose, descriptions, or imaginative content exists."
+            },
+            "consistency": {
+              "score": 0,
+              "reasoning": "With no scene produced, there can be no assessment of character voice, plot continuity, or tonal elements."
+            },
+            "prose_quality": {
+              "score": 0,
+              "reasoning": "Absence of any written text means no prose quality can be measured - no descriptions, sentence structures, or linguistic flow are present."
+            },
+            "dialogue": {
+              "score": 0,
+              "reasoning": "No dialogue was generated, so there are no speech patterns, character voices, or emotional authenticity to score."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "c908f7373d47245fe2d6a5a698156ce480494f2dfa434fd4f51e94009516691b",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:26:04.767978Z"
+    },
+    {
+      "test_number": 3,
+      "config": {
+        "test_number": 3,
+        "config_values": {
+          "temperature": 0.5,
+          "context_depth": "full",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "none",
+          "n_samples": "3",
+          "reasoning_visibility": "hidden",
+          "max_reasoning_tokens": "extended"
+        },
+        "workflow": "fiction_scene"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "creativity": {
+            "score": 0.92,
+            "reasoning": "The scene offers a unique setting of a coffee shop as a creative workspace, with an innovative approach to coding workflow. The metaphorical description of the LangGraph as a 'spider's web' and the subtle tension around technical problem-solving create an unexpected narrative context. The integration of technical discussion with emotional nuance demonstrates original storytelling."
+          },
+          "consistency": {
+            "score": 0.88,
+            "reasoning": "Characters maintain consistent voices and motivations throughout. Alex's technical focus and Jordan's supportive yet analytical approach remain stable. The narrative tone smoothly transitions between technical discussion and emotional undertones without breaking character consistency."
+          },
+          "prose_quality": {
+            "score": 0.95,
+            "reasoning": "Exceptionally vivid descriptions with rich sensory details (roasted beans, jazz track, pale laptop glow). Sentence structure varies effectively, creating a rhythmic flow. Metaphorical language elevates the prose beyond simple description, making technical content feel poetic and engaging."
+          },
+          "dialogue": {
+            "score": 0.9,
+            "reasoning": "Dialogue feels natural and purposeful, revealing character dynamics and technical problem-solving. Each character's speech pattern reflects their personality - Alex's intense focus, Jordan's supportive pragmatism. Emotional subtext is conveyed subtly through conversational exchanges."
+          }
+        },
+        "overall_score": 0.9125,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:26:21.476571Z",
+        "metadata": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions. Does reasoning help generate more creative content?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence. Does reasoning maintain better consistency?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow. Do multiple samples improve prose?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity. Does self-consistency improve dialogue?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 92,
+              "reasoning": "The scene offers a unique setting of a coffee shop as a creative workspace, with an innovative approach to coding workflow. The metaphorical description of the LangGraph as a 'spider's web' and the subtle tension around technical problem-solving create an unexpected narrative context. The integration of technical discussion with emotional nuance demonstrates original storytelling."
+            },
+            "consistency": {
+              "score": 88,
+              "reasoning": "Characters maintain consistent voices and motivations throughout. Alex's technical focus and Jordan's supportive yet analytical approach remain stable. The narrative tone smoothly transitions between technical discussion and emotional undertones without breaking character consistency."
+            },
+            "prose_quality": {
+              "score": 95,
+              "reasoning": "Exceptionally vivid descriptions with rich sensory details (roasted beans, jazz track, pale laptop glow). Sentence structure varies effectively, creating a rhythmic flow. Metaphorical language elevates the prose beyond simple description, making technical content feel poetic and engaging."
+            },
+            "dialogue": {
+              "score": 90,
+              "reasoning": "Dialogue feels natural and purposeful, revealing character dynamics and technical problem-solving. Each character's speech pattern reflects their personality - Alex's intense focus, Jordan's supportive pragmatism. Emotional subtext is conveyed subtly through conversational exchanges."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "f51bfb76d373ee56c8fb2c4a342cacd152a76a9174371292b90dd0bf45bb530a",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 9233.935790980468,
+      "utility": 0.7283876552144581,
+      "workflow_output": "Generated Scene:\nThe coffee shop was a cocoon of muted light and hushed conversations, the kind of place where ideas simmered beneath the surface. The air smelled of roasted beans and faintly burnt sugar, mingling with the low hum of a jazz track playing just above the threshold of notice. Alex sat at a corner table, their laptop casting a pale glow on their face, fingers tapping restlessly on the keyboard. The screen displayed a complex graph, nodes and edges sprawling like a spider’s web—LangGraph, their latest project.\n\nJordan slid into the chair across from them, a steaming cappuccino in hand. They set the cup down with deliberate care, the ceramic clinking softly against the wooden table. “You look like you’ve been here all night,” they said, their voice a mix of concern and curiosity.\n\nAlex glanced up, their eyes shadowed but sharp. “I have. This code review workflow—it’s close, but it’s not there yet. I can feel it.”\n\nJordan leaned forward, their elbows on the table, and peered at the screen. The graph pulsed with activity, lines of code flickering like live wires. “What’s the hang-up?”\n\nAlex sighed, running a hand through their already disheveled hair. “The dependencies. They’re too tangled. If one node fails, the whole thing could collapse. I need it to be resilient, but I’m not sure how to untangle it without breaking the flow.”\n\nJordan nodded, their gaze thoughtful. They took a slow sip of their cappuccino, the foam leaving a faint mustache on their upper lip. “What if you introduced a buffer layer? Something to absorb the impact if a node goes down. It might slow things down a bit, but it could give you the stability you’re looking for.”\n\nAlex’s eyes flickered with a spark of hope. They grabbed a napkin and a pen from the table, sketching quickly. The pen scratched against the rough surface as they drew a new layer between the nodes. “Like this?”\n\nJordan studied the sketch, their brow furrowing in concentration. “Yeah, but make it modular. That way, if it doesn’t work, you can pull it out without disrupting the rest of the system.”\n\nAlex’s lips curled into a faint smile. “That… that could work.” They turned back to their laptop, fingers flying across the keyboard. The graph on the screen shifted, the new layer slotting into place like a missing puzzle piece.\n\nThe tension in the air eased, replaced by a quiet hum of possibility. Jordan leaned back in their chair, a satisfied smile playing on their lips. “You’ve got this, Alex. Just don’t burn yourself out before you finish.”\n\nAlex didn’t look up, but their shoulders relaxed slightly. “Thanks, Jordan. I’ll get it done.”\n\nThe jazz track swelled softly in the background, the coffee shop’s warmth wrapping around them like a blanket. For the first time in hours, Alex felt like they were on the right path. The graph on the screen glowed brighter, a beacon of hope in the dimly lit room.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "context_approach": "minimal",
+        "generation_prompt": "You are a skilled fiction writer. Generate a compelling scene based on the following:\n\nScene Description: \"\"\"Code review workflow built on LangGraph.\"\"\"\nCharacters: Alex, Jordan\nSetting: a dimly lit coffee shop\nTone: tense but hopeful\nContext: Write based on the information provided.\n\nWrite a vivid, engaging scene that brings this description to life. Focus on:\n- Show, don't tell\n- Vivid sensory details\n- Natural character actions and reactions\n- Appropriate pacing and tension\n\nGenerate the scene as plain text, no JSON or formatting.",
+        "generated_raw": "The coffee shop was a cocoon of muted light and hushed conversations, the kind of place where ideas simmered beneath the surface. The air smelled of roasted beans and faintly burnt sugar, mingling with the low hum of a jazz track playing just above the threshold of notice. Alex sat at a corner table, their laptop casting a pale glow on their face, fingers tapping restlessly on the keyboard. The screen displayed a complex graph, nodes and edges sprawling like a spider’s web—LangGraph, their latest project.\n\nJordan slid into the chair across from them, a steaming cappuccino in hand. They set the cup down with deliberate care, the ceramic clinking softly against the wooden table. “You look like you’ve been here all night,” they said, their voice a mix of concern and curiosity.\n\nAlex glanced up, their eyes shadowed but sharp. “I have. This code review workflow—it’s close, but it’s not there yet. I can feel it.”\n\nJordan leaned forward, their elbows on the table, and peered at the screen. The graph pulsed with activity, lines of code flickering like live wires. “What’s the hang-up?”\n\nAlex sighed, running a hand through their already disheveled hair. “The dependencies. They’re too tangled. If one node fails, the whole thing could collapse. I need it to be resilient, but I’m not sure how to untangle it without breaking the flow.”\n\nJordan nodded, their gaze thoughtful. They took a slow sip of their cappuccino, the foam leaving a faint mustache on their upper lip. “What if you introduced a buffer layer? Something to absorb the impact if a node goes down. It might slow things down a bit, but it could give you the stability you’re looking for.”\n\nAlex’s eyes flickered with a spark of hope. They grabbed a napkin and a pen from the table, sketching quickly. The pen scratched against the rough surface as they drew a new layer between the nodes. “Like this?”\n\nJordan studied the sketch, their brow furrowing in concentration. “Yeah, but make it modular. That way, if it doesn’t work, you can pull it out without disrupting the rest of the system.”\n\nAlex’s lips curled into a faint smile. “That… that could work.” They turned back to their laptop, fingers flying across the keyboard. The graph on the screen shifted, the new layer slotting into place like a missing puzzle piece.\n\nThe tension in the air eased, replaced by a quiet hum of possibility. Jordan leaned back in their chair, a satisfied smile playing on their lips. “You’ve got this, Alex. Just don’t burn yourself out before you finish.”\n\nAlex didn’t look up, but their shoulders relaxed slightly. “Thanks, Jordan. I’ll get it done.”\n\nThe jazz track swelled softly in the background, the coffee shop’s warmth wrapping around them like a blanket. For the first time in hours, Alex felt like they were on the right path. The graph on the screen glowed brighter, a beacon of hope in the dimly lit room.",
+        "test_config": {
+          "test_number": 3,
+          "config": {
+            "temperature": 0.5,
+            "context_depth": "full",
+            "reasoning_enabled": "true",
+            "verbalized_sampling": "none",
+            "n_samples": "3",
+            "reasoning_visibility": "hidden",
+            "max_reasoning_tokens": "extended"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T12:26:04.770116Z",
+          "completed_at": "2025-10-28T12:26:14.003912Z",
+          "duration_seconds": 9.233935790980468
+        },
+        "evaluation": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions. Does reasoning help generate more creative content?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence. Does reasoning maintain better consistency?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow. Do multiple samples improve prose?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity. Does self-consistency improve dialogue?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 92,
+              "reasoning": "The scene offers a unique setting of a coffee shop as a creative workspace, with an innovative approach to coding workflow. The metaphorical description of the LangGraph as a 'spider's web' and the subtle tension around technical problem-solving create an unexpected narrative context. The integration of technical discussion with emotional nuance demonstrates original storytelling."
+            },
+            "consistency": {
+              "score": 88,
+              "reasoning": "Characters maintain consistent voices and motivations throughout. Alex's technical focus and Jordan's supportive yet analytical approach remain stable. The narrative tone smoothly transitions between technical discussion and emotional undertones without breaking character consistency."
+            },
+            "prose_quality": {
+              "score": 95,
+              "reasoning": "Exceptionally vivid descriptions with rich sensory details (roasted beans, jazz track, pale laptop glow). Sentence structure varies effectively, creating a rhythmic flow. Metaphorical language elevates the prose beyond simple description, making technical content feel poetic and engaging."
+            },
+            "dialogue": {
+              "score": 90,
+              "reasoning": "Dialogue feels natural and purposeful, revealing character dynamics and technical problem-solving. Each character's speech pattern reflects their personality - Alex's intense focus, Jordan's supportive pragmatism. Emotional subtext is conveyed subtly through conversational exchanges."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "f51bfb76d373ee56c8fb2c4a342cacd152a76a9174371292b90dd0bf45bb530a",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:26:21.476926Z"
+    },
+    {
+      "test_number": 4,
+      "config": {
+        "test_number": 4,
+        "config_values": {
+          "temperature": 0.5,
+          "context_depth": "full",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "self_consistency",
+          "n_samples": "5",
+          "reasoning_visibility": "visible",
+          "max_reasoning_tokens": "standard"
+        },
+        "workflow": "fiction_scene"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "creativity": {
+            "score": 0.88,
+            "reasoning": "The scene offers a unique setting of a coffee shop code review, blending technical tension with intimate human interaction. The descriptions are fresh - like 'code glowing like a shared secret' - and the emotional landscape is nuanced. The workflow discussion feels authentic and unexpected in its narrative approach."
+          },
+          "consistency": {
+            "score": 0.92,
+            "reasoning": "Characters maintain consistent voices and emotional states throughout. Alex's nervous energy and Jordan's calm, supportive demeanor remain stable. The technical context and interpersonal dynamics are coherently maintained from beginning to end."
+          },
+          "prose_quality": {
+            "score": 0.85,
+            "reasoning": "Rich sensory descriptions like 'steam curling around their face' and varied sentence structures create vivid imagery. Metaphorical language and careful pacing demonstrate sophisticated prose technique. Some sentences could be more concise."
+          },
+          "dialogue": {
+            "score": 0.9,
+            "reasoning": "Dialogue feels remarkably natural, with technical specificity balanced by emotional subtext. Each character's speech patterns are distinct - Alex more hesitant, Jordan more assured. The exchanges reveal character and advance narrative simultaneously."
+          }
+        },
+        "overall_score": 0.8875,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:26:38.031958Z",
+        "metadata": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions. Does reasoning help generate more creative content?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence. Does reasoning maintain better consistency?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow. Do multiple samples improve prose?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity. Does self-consistency improve dialogue?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 88,
+              "reasoning": "The scene offers a unique setting of a coffee shop code review, blending technical tension with intimate human interaction. The descriptions are fresh - like 'code glowing like a shared secret' - and the emotional landscape is nuanced. The workflow discussion feels authentic and unexpected in its narrative approach."
+            },
+            "consistency": {
+              "score": 92,
+              "reasoning": "Characters maintain consistent voices and emotional states throughout. Alex's nervous energy and Jordan's calm, supportive demeanor remain stable. The technical context and interpersonal dynamics are coherently maintained from beginning to end."
+            },
+            "prose_quality": {
+              "score": 85,
+              "reasoning": "Rich sensory descriptions like 'steam curling around their face' and varied sentence structures create vivid imagery. Metaphorical language and careful pacing demonstrate sophisticated prose technique. Some sentences could be more concise."
+            },
+            "dialogue": {
+              "score": 90,
+              "reasoning": "Dialogue feels remarkably natural, with technical specificity balanced by emotional subtext. Each character's speech patterns are distinct - Alex more hesitant, Jordan more assured. The exchanges reveal character and advance narrative simultaneously."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "9afe8e3d4bca762cdb1dd628123187598e01b0804cae8fda7c8dbde17c7d4369",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 9372.37716600066,
+      "utility": 0.7082722207327563,
+      "workflow_output": "Generated Scene:\nThe coffee shop was dimly lit, the kind of place where the hum of espresso machines blended seamlessly with the low murmur of conversations. The scent of freshly ground coffee beans hung in the air, mingling with the faint sweetness of pastries. Alex sat at a corner table, the glow of their laptop screen casting sharp shadows on their face. Their fingers tapped nervously on the keyboard, the rhythmic clicking the only sign of their unease. \n\nJordan slid into the chair across from them, setting down a steaming cup of coffee with a soft clink. They leaned forward, their eyes narrowing as they glanced at the screen. \"So, you’ve got it ready?\" Jordan asked, their voice calm but laced with an edge of anticipation.\n\nAlex nodded, their throat tight. \"Yeah. It’s... it’s all there. The LangGraph integration, the workflow—everything. But I need your eyes on it before we push it live.\"\n\nJordan took a slow sip of their coffee, the steam curling around their face. \"Alright, let’s see it.\" They pulled their own laptop out of their bag, the soft whir of its fan barely audible over the background noise. The two screens faced each other, the code glowing like a shared secret.\n\nAlex’s heart pounded as they walked Jordan through the workflow. \"I’ve set up the nodes to handle the review process dynamically. Each pull request triggers a series of checks, and the graph routes it based on the results. It’s... it’s supposed to be seamless.\"\n\nJordan’s brow furrowed as they scanned the code, their fingers occasionally pausing to highlight a section. \"This part here,\" they said, pointing to a block of text. \"The error handling—what happens if the API call fails?\"\n\nAlex swallowed hard. \"It’s supposed to retry three times, then log the error and notify the team. But... I might have missed something.\"\n\nJordan leaned back, their expression unreadable for a moment. The tension in the air was palpable, the weight of the unspoken stakes pressing down on both of them. Finally, Jordan exhaled, a small smile tugging at the corner of their mouth. \"It’s solid, Alex. Really solid. Just a couple of tweaks, and it’ll be ready to go.\"\n\nRelief washed over Alex like a wave, their shoulders relaxing for the first time in hours. \"You think so?\"\n\n\"I know so,\" Jordan said, their voice firm but kind. \"This is good work. It’s going to make a difference.\"\n\nAlex glanced out the window, where the first hints of twilight were beginning to paint the sky. For the first time in what felt like forever, they allowed themselves to hope. The coffee shop, the dim light, the hum of life around them—it all felt like a moment suspended in time, a quiet victory in the making. \n\n\"Thanks, Jordan,\" Alex said softly, their voice steady now. \"I couldn’t have done this without you.\"\n\nJordan raised their cup in a mock toast, their smile widening. \"To the next big thing, then.\"\n\nAlex clinked their cup against Jordan’s, the sound a small but significant promise. The tension had eased, but the excitement of what lay ahead was just beginning to take its place.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "context_approach": "minimal",
+        "generation_prompt": "You are a skilled fiction writer. Generate a compelling scene based on the following:\n\nScene Description: \"\"\"Code review workflow built on LangGraph.\"\"\"\nCharacters: Alex, Jordan\nSetting: a dimly lit coffee shop\nTone: tense but hopeful\nContext: Write based on the information provided.\n\nWrite a vivid, engaging scene that brings this description to life. Focus on:\n- Show, don't tell\n- Vivid sensory details\n- Natural character actions and reactions\n- Appropriate pacing and tension\n\nGenerate the scene as plain text, no JSON or formatting.",
+        "generated_raw": "The coffee shop was dimly lit, the kind of place where the hum of espresso machines blended seamlessly with the low murmur of conversations. The scent of freshly ground coffee beans hung in the air, mingling with the faint sweetness of pastries. Alex sat at a corner table, the glow of their laptop screen casting sharp shadows on their face. Their fingers tapped nervously on the keyboard, the rhythmic clicking the only sign of their unease. \n\nJordan slid into the chair across from them, setting down a steaming cup of coffee with a soft clink. They leaned forward, their eyes narrowing as they glanced at the screen. \"So, you’ve got it ready?\" Jordan asked, their voice calm but laced with an edge of anticipation.\n\nAlex nodded, their throat tight. \"Yeah. It’s... it’s all there. The LangGraph integration, the workflow—everything. But I need your eyes on it before we push it live.\"\n\nJordan took a slow sip of their coffee, the steam curling around their face. \"Alright, let’s see it.\" They pulled their own laptop out of their bag, the soft whir of its fan barely audible over the background noise. The two screens faced each other, the code glowing like a shared secret.\n\nAlex’s heart pounded as they walked Jordan through the workflow. \"I’ve set up the nodes to handle the review process dynamically. Each pull request triggers a series of checks, and the graph routes it based on the results. It’s... it’s supposed to be seamless.\"\n\nJordan’s brow furrowed as they scanned the code, their fingers occasionally pausing to highlight a section. \"This part here,\" they said, pointing to a block of text. \"The error handling—what happens if the API call fails?\"\n\nAlex swallowed hard. \"It’s supposed to retry three times, then log the error and notify the team. But... I might have missed something.\"\n\nJordan leaned back, their expression unreadable for a moment. The tension in the air was palpable, the weight of the unspoken stakes pressing down on both of them. Finally, Jordan exhaled, a small smile tugging at the corner of their mouth. \"It’s solid, Alex. Really solid. Just a couple of tweaks, and it’ll be ready to go.\"\n\nRelief washed over Alex like a wave, their shoulders relaxing for the first time in hours. \"You think so?\"\n\n\"I know so,\" Jordan said, their voice firm but kind. \"This is good work. It’s going to make a difference.\"\n\nAlex glanced out the window, where the first hints of twilight were beginning to paint the sky. For the first time in what felt like forever, they allowed themselves to hope. The coffee shop, the dim light, the hum of life around them—it all felt like a moment suspended in time, a quiet victory in the making. \n\n\"Thanks, Jordan,\" Alex said softly, their voice steady now. \"I couldn’t have done this without you.\"\n\nJordan raised their cup in a mock toast, their smile widening. \"To the next big thing, then.\"\n\nAlex clinked their cup against Jordan’s, the sound a small but significant promise. The tension had eased, but the excitement of what lay ahead was just beginning to take its place.",
+        "test_config": {
+          "test_number": 4,
+          "config": {
+            "temperature": 0.5,
+            "context_depth": "full",
+            "reasoning_enabled": "true",
+            "verbalized_sampling": "self_consistency",
+            "n_samples": "5",
+            "reasoning_visibility": "visible",
+            "max_reasoning_tokens": "standard"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T12:26:21.479342Z",
+          "completed_at": "2025-10-28T12:26:30.851578Z",
+          "duration_seconds": 9.37237716600066
+        },
+        "evaluation": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions. Does reasoning help generate more creative content?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence. Does reasoning maintain better consistency?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow. Do multiple samples improve prose?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity. Does self-consistency improve dialogue?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 88,
+              "reasoning": "The scene offers a unique setting of a coffee shop code review, blending technical tension with intimate human interaction. The descriptions are fresh - like 'code glowing like a shared secret' - and the emotional landscape is nuanced. The workflow discussion feels authentic and unexpected in its narrative approach."
+            },
+            "consistency": {
+              "score": 92,
+              "reasoning": "Characters maintain consistent voices and emotional states throughout. Alex's nervous energy and Jordan's calm, supportive demeanor remain stable. The technical context and interpersonal dynamics are coherently maintained from beginning to end."
+            },
+            "prose_quality": {
+              "score": 85,
+              "reasoning": "Rich sensory descriptions like 'steam curling around their face' and varied sentence structures create vivid imagery. Metaphorical language and careful pacing demonstrate sophisticated prose technique. Some sentences could be more concise."
+            },
+            "dialogue": {
+              "score": 90,
+              "reasoning": "Dialogue feels remarkably natural, with technical specificity balanced by emotional subtext. Each character's speech patterns are distinct - Alex more hesitant, Jordan more assured. The exchanges reveal character and advance narrative simultaneously."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "9afe8e3d4bca762cdb1dd628123187598e01b0804cae8fda7c8dbde17c7d4369",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:26:38.033493Z"
+    },
+    {
+      "test_number": 5,
+      "config": {
+        "test_number": 5,
+        "config_values": {
+          "temperature": 0.9,
+          "context_depth": "minimal",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "none",
+          "n_samples": "5",
+          "reasoning_visibility": "visible",
+          "max_reasoning_tokens": "extended"
+        },
+        "workflow": "fiction_scene"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "creativity": {
+            "score": 0.85,
+            "reasoning": "The scene offers a unique setting of a technical problem-solving moment in a coffee shop, with unexpected emotional nuance. The integration of technical debugging with interpersonal dynamics creates an original narrative approach. Vivid sensory details like 'muted chaos' and the interplay between technical challenge and personal connection demonstrate creative storytelling."
+          },
+          "consistency": {
+            "score": 0.9,
+            "reasoning": "Characters maintain consistent voices and behaviors throughout. Alex appears technically focused and slightly anxious, while Jordan is supportive and analytical. The narrative tone remains steady, balancing technical detail with emotional undertones. Character motivations and interactions feel authentic and coherent."
+          },
+          "prose_quality": {
+            "score": 0.88,
+            "reasoning": "Rich, evocative descriptions like 'dim lighting cast long shadows' and varied sentence structures create a compelling narrative flow. Sensory details are well-integrated, and the prose moves smoothly between technical dialogue and atmospheric description without feeling forced."
+          },
+          "dialogue": {
+            "score": 0.92,
+            "reasoning": "Dialogue feels exceptionally natural, with technical jargon seamlessly woven into conversational exchanges. Each character has a distinct voice - Alex's tension and Jordan's calm problem-solving approach come through clearly. The dialogue reveals character dynamics and advances the narrative organically."
+          }
+        },
+        "overall_score": 0.8875,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:26:53.113301Z",
+        "metadata": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions. Does reasoning help generate more creative content?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence. Does reasoning maintain better consistency?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow. Do multiple samples improve prose?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity. Does self-consistency improve dialogue?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 85,
+              "reasoning": "The scene offers a unique setting of a technical problem-solving moment in a coffee shop, with unexpected emotional nuance. The integration of technical debugging with interpersonal dynamics creates an original narrative approach. Vivid sensory details like 'muted chaos' and the interplay between technical challenge and personal connection demonstrate creative storytelling."
+            },
+            "consistency": {
+              "score": 90,
+              "reasoning": "Characters maintain consistent voices and behaviors throughout. Alex appears technically focused and slightly anxious, while Jordan is supportive and analytical. The narrative tone remains steady, balancing technical detail with emotional undertones. Character motivations and interactions feel authentic and coherent."
+            },
+            "prose_quality": {
+              "score": 88,
+              "reasoning": "Rich, evocative descriptions like 'dim lighting cast long shadows' and varied sentence structures create a compelling narrative flow. Sensory details are well-integrated, and the prose moves smoothly between technical dialogue and atmospheric description without feeling forced."
+            },
+            "dialogue": {
+              "score": 92,
+              "reasoning": "Dialogue feels exceptionally natural, with technical jargon seamlessly woven into conversational exchanges. Each character has a distinct voice - Alex's tension and Jordan's calm problem-solving approach come through clearly. The dialogue reveals character dynamics and advances the narrative organically."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "4cfd1d87135d7e799d6dc35a887aa661db5c75f9233c0f608c9a5d00b32e1267",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 7300.239500007592,
+      "utility": 0.71,
+      "workflow_output": "Generated Scene:\nThe coffee shop was a haven of muted chaos, the low hum of conversations blending with the hiss of the espresso machine. The dim lighting cast long shadows across the wooden tables, and the scent of roasted beans and baked goods lingered in the air. Alex sat in the corner, hunched over a laptop, the glow of the screen illuminating their face. Their fingers tapped nervously on the keyboard, eyes darting across lines of code. \n\nJordan slid into the seat across from them, holding two steaming mugs. “Brought reinforcements,” they said, setting one down in front of Alex. “Double-shot latte, just how you like it.”\n\nAlex glanced up, their expression tight. “Thanks.” They took a sip, the warmth barely registering. “I’ve been stuck on this review for hours. The LangGraph integration isn’t syncing right, and I can’t figure out why.”\n\nJordan leaned forward, their tone calm but probing. “Walk me through it. Maybe a fresh pair of eyes will help.”\n\nAlex hesitated, then turned the laptop toward Jordan. “See here? The workflow’s supposed to trigger automatically when the pull request is submitted, but it’s lagging. I’ve checked the configs, the dependencies—everything looks fine.”\n\nJordan studied the screen, their brows furrowing in concentration. The seconds stretched, the tension between them palpable. The clatter of a dropped spoon at the counter made Alex flinch. \n\n“What if it’s not the code itself?” Jordan said finally, their voice thoughtful. “What if it’s the permissions? The bot might not have the right access to the repository.”\n\nAlex blinked, then cursed under their breath. “Of course. I didn’t even think to check that.” They quickly navigated to the settings, their fingers flying over the keys. A moment later, they exhaled sharply. “There it is. The bot’s access was restricted. How did I miss that?”\n\nJordan smirked, leaning back in their chair. “That’s why I’m here. To catch the things you’re too deep in to see.”\n\nAlex managed a small smile, the tension in their shoulders easing. “I owe you one. This was driving me insane.”\n\n“Just buy me a pastry next time,” Jordan said, gesturing to the display case at the counter. “I’m eyeing that almond croissant.”\n\nAlex chuckled, the sound mingling with the ambient noise of the shop. They closed the laptop, the weight of the problem lifted. “Deal. Let’s get out of here. I need a break before I dive back in.”\n\nAs they stood, the dim light seemed a little warmer, the air a little lighter. The problem wasn’t fully solved, but for now, they had a path forward—and that was enough.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "context_approach": "minimal",
+        "generation_prompt": "You are a skilled fiction writer. Generate a compelling scene based on the following:\n\nScene Description: \"\"\"Code review workflow built on LangGraph.\"\"\"\nCharacters: Alex, Jordan\nSetting: a dimly lit coffee shop\nTone: tense but hopeful\nContext: Write based on the information provided.\n\nWrite a vivid, engaging scene that brings this description to life. Focus on:\n- Show, don't tell\n- Vivid sensory details\n- Natural character actions and reactions\n- Appropriate pacing and tension\n\nGenerate the scene as plain text, no JSON or formatting.",
+        "generated_raw": "The coffee shop was a haven of muted chaos, the low hum of conversations blending with the hiss of the espresso machine. The dim lighting cast long shadows across the wooden tables, and the scent of roasted beans and baked goods lingered in the air. Alex sat in the corner, hunched over a laptop, the glow of the screen illuminating their face. Their fingers tapped nervously on the keyboard, eyes darting across lines of code. \n\nJordan slid into the seat across from them, holding two steaming mugs. “Brought reinforcements,” they said, setting one down in front of Alex. “Double-shot latte, just how you like it.”\n\nAlex glanced up, their expression tight. “Thanks.” They took a sip, the warmth barely registering. “I’ve been stuck on this review for hours. The LangGraph integration isn’t syncing right, and I can’t figure out why.”\n\nJordan leaned forward, their tone calm but probing. “Walk me through it. Maybe a fresh pair of eyes will help.”\n\nAlex hesitated, then turned the laptop toward Jordan. “See here? The workflow’s supposed to trigger automatically when the pull request is submitted, but it’s lagging. I’ve checked the configs, the dependencies—everything looks fine.”\n\nJordan studied the screen, their brows furrowing in concentration. The seconds stretched, the tension between them palpable. The clatter of a dropped spoon at the counter made Alex flinch. \n\n“What if it’s not the code itself?” Jordan said finally, their voice thoughtful. “What if it’s the permissions? The bot might not have the right access to the repository.”\n\nAlex blinked, then cursed under their breath. “Of course. I didn’t even think to check that.” They quickly navigated to the settings, their fingers flying over the keys. A moment later, they exhaled sharply. “There it is. The bot’s access was restricted. How did I miss that?”\n\nJordan smirked, leaning back in their chair. “That’s why I’m here. To catch the things you’re too deep in to see.”\n\nAlex managed a small smile, the tension in their shoulders easing. “I owe you one. This was driving me insane.”\n\n“Just buy me a pastry next time,” Jordan said, gesturing to the display case at the counter. “I’m eyeing that almond croissant.”\n\nAlex chuckled, the sound mingling with the ambient noise of the shop. They closed the laptop, the weight of the problem lifted. “Deal. Let’s get out of here. I need a break before I dive back in.”\n\nAs they stood, the dim light seemed a little warmer, the air a little lighter. The problem wasn’t fully solved, but for now, they had a path forward—and that was enough.",
+        "test_config": {
+          "test_number": 5,
+          "config": {
+            "temperature": 0.9,
+            "context_depth": "minimal",
+            "reasoning_enabled": "true",
+            "verbalized_sampling": "none",
+            "n_samples": "5",
+            "reasoning_visibility": "visible",
+            "max_reasoning_tokens": "extended"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T12:26:38.037909Z",
+          "completed_at": "2025-10-28T12:26:45.338041Z",
+          "duration_seconds": 7.300239500007592
+        },
+        "evaluation": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions. Does reasoning help generate more creative content?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence. Does reasoning maintain better consistency?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow. Do multiple samples improve prose?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity. Does self-consistency improve dialogue?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 85,
+              "reasoning": "The scene offers a unique setting of a technical problem-solving moment in a coffee shop, with unexpected emotional nuance. The integration of technical debugging with interpersonal dynamics creates an original narrative approach. Vivid sensory details like 'muted chaos' and the interplay between technical challenge and personal connection demonstrate creative storytelling."
+            },
+            "consistency": {
+              "score": 90,
+              "reasoning": "Characters maintain consistent voices and behaviors throughout. Alex appears technically focused and slightly anxious, while Jordan is supportive and analytical. The narrative tone remains steady, balancing technical detail with emotional undertones. Character motivations and interactions feel authentic and coherent."
+            },
+            "prose_quality": {
+              "score": 88,
+              "reasoning": "Rich, evocative descriptions like 'dim lighting cast long shadows' and varied sentence structures create a compelling narrative flow. Sensory details are well-integrated, and the prose moves smoothly between technical dialogue and atmospheric description without feeling forced."
+            },
+            "dialogue": {
+              "score": 92,
+              "reasoning": "Dialogue feels exceptionally natural, with technical jargon seamlessly woven into conversational exchanges. Each character has a distinct voice - Alex's tension and Jordan's calm problem-solving approach come through clearly. The dialogue reveals character dynamics and advances the narrative organically."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "4cfd1d87135d7e799d6dc35a887aa661db5c75f9233c0f608c9a5d00b32e1267",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:26:53.114172Z"
+    },
+    {
+      "test_number": 6,
+      "config": {
+        "test_number": 6,
+        "config_values": {
+          "temperature": 0.9,
+          "context_depth": "minimal",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "self_consistency",
+          "n_samples": "3",
+          "reasoning_visibility": "hidden",
+          "max_reasoning_tokens": "standard"
+        },
+        "workflow": "fiction_scene"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "creativity": {
+            "score": 0.85,
+            "reasoning": "The scene offers a unique take on collaborative coding, capturing the intimate tension of problem-solving. The coffee shop setting provides an unexpected backdrop for technical work. Descriptive elements like 'spider's silk' for code dependencies and the contrast between technical dialogue and atmospheric details show creative approach."
+          },
+          "consistency": {
+            "score": 0.9,
+            "reasoning": "Characters maintain consistent voices and personalities throughout. Alex is analytical and solution-oriented, Jordan is supportive but stressed. The technical dialogue feels authentic, and the emotional progression from tension to collaborative problem-solving is seamless and believable."
+          },
+          "prose_quality": {
+            "score": 0.88,
+            "reasoning": "Rich sensory descriptions like 'air thick with the scent of roasted beans' and varied sentence structures create a vivid narrative. Metaphorical language and precise details (e.g., 'tangled web of dependencies') elevate the prose beyond simple description."
+          },
+          "dialogue": {
+            "score": 0.82,
+            "reasoning": "Dialogue feels natural and technical, with authentic back-and-forth that reveals character dynamics. Technical jargon is integrated smoothly, and emotional undertones are conveyed through speech patterns and brief exchanges."
+          }
+        },
+        "overall_score": 0.8625,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:27:24.123229Z",
+        "metadata": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions. Does reasoning help generate more creative content?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence. Does reasoning maintain better consistency?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow. Do multiple samples improve prose?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity. Does self-consistency improve dialogue?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 85,
+              "reasoning": "The scene offers a unique take on collaborative coding, capturing the intimate tension of problem-solving. The coffee shop setting provides an unexpected backdrop for technical work. Descriptive elements like 'spider's silk' for code dependencies and the contrast between technical dialogue and atmospheric details show creative approach."
+            },
+            "consistency": {
+              "score": 90,
+              "reasoning": "Characters maintain consistent voices and personalities throughout. Alex is analytical and solution-oriented, Jordan is supportive but stressed. The technical dialogue feels authentic, and the emotional progression from tension to collaborative problem-solving is seamless and believable."
+            },
+            "prose_quality": {
+              "score": 88,
+              "reasoning": "Rich sensory descriptions like 'air thick with the scent of roasted beans' and varied sentence structures create a vivid narrative. Metaphorical language and precise details (e.g., 'tangled web of dependencies') elevate the prose beyond simple description."
+            },
+            "dialogue": {
+              "score": 82,
+              "reasoning": "Dialogue feels natural and technical, with authentic back-and-forth that reveals character dynamics. Technical jargon is integrated smoothly, and emotional undertones are conveyed through speech patterns and brief exchanges."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "fc983711fdf44c28eb24499ea380f5f7784b25e2bad57ff78ef356541ade0bb2",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 17584.345874987775,
+      "utility": 0.6814249588391594,
+      "workflow_output": "Generated Scene:\nThe coffee shop hummed with the low murmur of late-night patrons, the air thick with the scent of roasted beans and burnt sugar. Overhead, a single flickering bulb cast uneven shadows across the scuffed wooden table where Alex and Jordan sat, hunched over a laptop. The glow of the screen painted their faces in pale blue, highlighting the tension in Alex’s furrowed brow and the restless tap of Jordan’s fingers against the table.  \n\n“This isn’t just about syntax,” Alex muttered, scrolling through lines of code, their voice tight. “If we don’t catch this now, it’s going to cascade.”  \n\nJordan exhaled sharply, rubbing their temples. “I know, I know. But the LangGraph integration *should* flag it. Why isn’t it?”  \n\nA barista clattered dishes behind the counter, the sound sharp against the quiet. Alex leaned in, lowering their voice. “Because we’re missing a node in the workflow. Look—” They pointed at the screen, where a tangled web of dependencies sprawled like a spider’s silk. “The review process loops here, but there’s no fail-safe. It just… stops.”  \n\nJordan’s breath hitched. They dragged a hand through their hair, strands catching on their fingers. “Shit. You’re right.” For a moment, the weight of the oversight pressed down between them, heavy as the steam rising from their forgotten coffees.  \n\nThen Alex straightened, a spark of determination cutting through the tension. “We can fix this. We tweak the graph, add a validation layer—”  \n\n“—and rerun the pipeline,” Jordan finished, a grin breaking through their exhaustion. They reached for their mug, the ceramic warm against their palms. “Alright. Let’s do it.”  \n\nOutside, the city buzzed, indifferent to the small victory unfolding in the dim glow of the coffee shop. The clatter of keys resumed, faster now, purposeful. The code would hold. They’d make sure of it.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "context_approach": "minimal",
+        "generation_prompt": "You are a skilled fiction writer. Generate a compelling scene based on the following:\n\nScene Description: \"\"\"Code review workflow built on LangGraph.\"\"\"\nCharacters: Alex, Jordan\nSetting: a dimly lit coffee shop\nTone: tense but hopeful\nContext: Write based on the information provided.\n\nWrite a vivid, engaging scene that brings this description to life. Focus on:\n- Show, don't tell\n- Vivid sensory details\n- Natural character actions and reactions\n- Appropriate pacing and tension\n\nGenerate the scene as plain text, no JSON or formatting.",
+        "generated_raw": "The coffee shop hummed with the low murmur of late-night patrons, the air thick with the scent of roasted beans and burnt sugar. Overhead, a single flickering bulb cast uneven shadows across the scuffed wooden table where Alex and Jordan sat, hunched over a laptop. The glow of the screen painted their faces in pale blue, highlighting the tension in Alex’s furrowed brow and the restless tap of Jordan’s fingers against the table.  \n\n“This isn’t just about syntax,” Alex muttered, scrolling through lines of code, their voice tight. “If we don’t catch this now, it’s going to cascade.”  \n\nJordan exhaled sharply, rubbing their temples. “I know, I know. But the LangGraph integration *should* flag it. Why isn’t it?”  \n\nA barista clattered dishes behind the counter, the sound sharp against the quiet. Alex leaned in, lowering their voice. “Because we’re missing a node in the workflow. Look—” They pointed at the screen, where a tangled web of dependencies sprawled like a spider’s silk. “The review process loops here, but there’s no fail-safe. It just… stops.”  \n\nJordan’s breath hitched. They dragged a hand through their hair, strands catching on their fingers. “Shit. You’re right.” For a moment, the weight of the oversight pressed down between them, heavy as the steam rising from their forgotten coffees.  \n\nThen Alex straightened, a spark of determination cutting through the tension. “We can fix this. We tweak the graph, add a validation layer—”  \n\n“—and rerun the pipeline,” Jordan finished, a grin breaking through their exhaustion. They reached for their mug, the ceramic warm against their palms. “Alright. Let’s do it.”  \n\nOutside, the city buzzed, indifferent to the small victory unfolding in the dim glow of the coffee shop. The clatter of keys resumed, faster now, purposeful. The code would hold. They’d make sure of it.",
+        "test_config": {
+          "test_number": 6,
+          "config": {
+            "temperature": 0.9,
+            "context_depth": "minimal",
+            "reasoning_enabled": "true",
+            "verbalized_sampling": "self_consistency",
+            "n_samples": "3",
+            "reasoning_visibility": "hidden",
+            "max_reasoning_tokens": "standard"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T12:26:53.118271Z",
+          "completed_at": "2025-10-28T12:27:10.702356Z",
+          "duration_seconds": 17.584345874987775
+        },
+        "evaluation": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions. Does reasoning help generate more creative content?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence. Does reasoning maintain better consistency?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow. Do multiple samples improve prose?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity. Does self-consistency improve dialogue?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 85,
+              "reasoning": "The scene offers a unique take on collaborative coding, capturing the intimate tension of problem-solving. The coffee shop setting provides an unexpected backdrop for technical work. Descriptive elements like 'spider's silk' for code dependencies and the contrast between technical dialogue and atmospheric details show creative approach."
+            },
+            "consistency": {
+              "score": 90,
+              "reasoning": "Characters maintain consistent voices and personalities throughout. Alex is analytical and solution-oriented, Jordan is supportive but stressed. The technical dialogue feels authentic, and the emotional progression from tension to collaborative problem-solving is seamless and believable."
+            },
+            "prose_quality": {
+              "score": 88,
+              "reasoning": "Rich sensory descriptions like 'air thick with the scent of roasted beans' and varied sentence structures create a vivid narrative. Metaphorical language and precise details (e.g., 'tangled web of dependencies') elevate the prose beyond simple description."
+            },
+            "dialogue": {
+              "score": 82,
+              "reasoning": "Dialogue feels natural and technical, with authentic back-and-forth that reveals character dynamics. Technical jargon is integrated smoothly, and emotional undertones are conveyed through speech patterns and brief exchanges."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "fc983711fdf44c28eb24499ea380f5f7784b25e2bad57ff78ef356541ade0bb2",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:27:24.136609Z"
+    },
+    {
+      "test_number": 7,
+      "config": {
+        "test_number": 7,
+        "config_values": {
+          "temperature": 0.9,
+          "context_depth": "full",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "none",
+          "n_samples": "5",
+          "reasoning_visibility": "hidden",
+          "max_reasoning_tokens": "standard"
+        },
+        "workflow": "fiction_scene"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "creativity": {
+            "score": 0.92,
+            "reasoning": "The scene offers a unique narrative around technical collaboration, using the coffee shop setting as a nuanced backdrop. The dialogue about workflow development feels fresh and authentic, with unexpected emotional depth. The integration of technical discussion with interpersonal dynamics creates an original narrative approach."
+          },
+          "consistency": {
+            "score": 0.88,
+            "reasoning": "Characters Alex and Jordan maintain consistent voices throughout - Alex as the innovative but uncertain creator, Jordan as the pragmatic reviewer. The technical and emotional tones remain stable, with smooth transitions between technical discussion and personal interaction."
+          },
+          "prose_quality": {
+            "score": 0.95,
+            "reasoning": "Rich, evocative descriptions like 'haven of shadows' and 'labyrinth of logic and dependencies' demonstrate sophisticated prose. Sentence structures vary effectively, creating rhythmic flow. Sensory details (espresso machine hiss, string lights) enhance immersion."
+          },
+          "dialogue": {
+            "score": 0.9,
+            "reasoning": "Dialogue feels natural and layered, revealing character dynamics and technical expertise simultaneously. The exchanges between Alex and Jordan have subtle emotional subtext, with realistic technical language and interpersonal nuance."
+          }
+        },
+        "overall_score": 0.9125,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:27:58.270763Z",
+        "metadata": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions. Does reasoning help generate more creative content?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence. Does reasoning maintain better consistency?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow. Do multiple samples improve prose?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity. Does self-consistency improve dialogue?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 92,
+              "reasoning": "The scene offers a unique narrative around technical collaboration, using the coffee shop setting as a nuanced backdrop. The dialogue about workflow development feels fresh and authentic, with unexpected emotional depth. The integration of technical discussion with interpersonal dynamics creates an original narrative approach."
+            },
+            "consistency": {
+              "score": 88,
+              "reasoning": "Characters Alex and Jordan maintain consistent voices throughout - Alex as the innovative but uncertain creator, Jordan as the pragmatic reviewer. The technical and emotional tones remain stable, with smooth transitions between technical discussion and personal interaction."
+            },
+            "prose_quality": {
+              "score": 95,
+              "reasoning": "Rich, evocative descriptions like 'haven of shadows' and 'labyrinth of logic and dependencies' demonstrate sophisticated prose. Sentence structures vary effectively, creating rhythmic flow. Sensory details (espresso machine hiss, string lights) enhance immersion."
+            },
+            "dialogue": {
+              "score": 90,
+              "reasoning": "Dialogue feels natural and layered, revealing character dynamics and technical expertise simultaneously. The exchanges between Alex and Jordan have subtle emotional subtext, with realistic technical language and interpersonal nuance."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "d3d7f7bdce5d0861669969b3301f42a02a960bd00b0a32bd4f360f87d29a331b",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 26831.20379099273,
+      "utility": 0.7137147909016617,
+      "workflow_output": "Generated Scene:\nThe coffee shop was a haven of shadows, the dim glow of string lights casting a soft amber hue over the mismatched furniture. The hum of conversation blended with the rhythmic hiss of the espresso machine, creating a backdrop of white noise. Alex sat at a corner table, their laptop open, the screen’s blue light reflecting off their glasses. Their fingers hovered over the keyboard, hesitant, as if the words they were about to type carried more weight than usual.\n\nAcross the table, Jordan leaned back in their chair, arms crossed, their expression a mix of curiosity and apprehension. A half-empty latte sat in front of them, the foam art long since dissolved into a cloudy swirl. They tapped their fingers lightly on the table, the rhythm betraying their impatience.\n\n“So, you’re saying it’s ready?” Jordan finally broke the silence, their voice low but edging on urgency.\n\nAlex nodded, though their gaze remained fixed on the screen. “Yeah. The workflow’s built. It’s… different.” They paused, glancing up for the first time. “LangGraph’s not just a tool—it’s a paradigm shift. But it’s also untested. If this works, it could change everything. If it doesn’t…”\n\n“If it doesn’t, we’re back to square one,” Jordan finished, their tone flat. They ran a hand through their short-cropped hair, the motion restless. “But that’s not why you called me here, is it? You’re not looking for a pep talk.”\n\nAlex’s lips twitched, something between a smile and a grimace. “No. I need your eyes on this. You know the codebase better than anyone. If there’s a flaw, you’ll see it.”\n\nJordan exhaled sharply, leaning forward to peer at the screen. The text and nodes of the graph sprawled across the display, a labyrinth of logic and dependencies. Their brow furrowed as they scanned the lines, their eyes darting from one section to another. The tension in the air thickened, the weight of unspoken expectations pressing down on both of them.\n\n“This integration point,” Jordan said after a long moment, pointing to a specific node on the screen. “It’s clever, but it’s brittle. If the API changes, the whole thing collapses.”\n\nAlex’s shoulders slumped, but they nodded. “I knew that was a risk. I thought… maybe the trade-off was worth it.”\n\nJordan leaned back again, their expression softening. “It might be. But you’ve got to account for it. Add a fallback, maybe—something that can adapt if the API shifts. It’ll complicate the graph, but it’ll make it robust.”\n\nAlex’s eyes lit up, a spark of hope cutting through the tension. “That could work. It’ll take some refactoring, but…” They trailed off, already typing furiously, their earlier hesitation gone.\n\nJordan watched them for a moment, a small smile tugging at the corners of their mouth. “You’re onto something here, Alex. It’s not perfect, but it’s close.”\n\nAlex glanced up, meeting Jordan’s gaze. “Thanks. For seeing what I couldn’t.”\n\nJordan shrugged, picking up their latte and taking a sip. “That’s what I’m here for. Now, let’s make this thing unbreakable.”\n\nThe coffee shop’s hum seemed to fade into the background as the two of them leaned in, their focus narrowing to the screen. The tension hadn’t fully dissipated, but it had shifted, mingling now with a quiet determination. The path ahead was uncertain, but for the first time, it felt possible.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "context_approach": "minimal",
+        "generation_prompt": "You are a skilled fiction writer. Generate a compelling scene based on the following:\n\nScene Description: \"\"\"Code review workflow built on LangGraph.\"\"\"\nCharacters: Alex, Jordan\nSetting: a dimly lit coffee shop\nTone: tense but hopeful\nContext: Write based on the information provided.\n\nWrite a vivid, engaging scene that brings this description to life. Focus on:\n- Show, don't tell\n- Vivid sensory details\n- Natural character actions and reactions\n- Appropriate pacing and tension\n\nGenerate the scene as plain text, no JSON or formatting.",
+        "generated_raw": "The coffee shop was a haven of shadows, the dim glow of string lights casting a soft amber hue over the mismatched furniture. The hum of conversation blended with the rhythmic hiss of the espresso machine, creating a backdrop of white noise. Alex sat at a corner table, their laptop open, the screen’s blue light reflecting off their glasses. Their fingers hovered over the keyboard, hesitant, as if the words they were about to type carried more weight than usual.\n\nAcross the table, Jordan leaned back in their chair, arms crossed, their expression a mix of curiosity and apprehension. A half-empty latte sat in front of them, the foam art long since dissolved into a cloudy swirl. They tapped their fingers lightly on the table, the rhythm betraying their impatience.\n\n“So, you’re saying it’s ready?” Jordan finally broke the silence, their voice low but edging on urgency.\n\nAlex nodded, though their gaze remained fixed on the screen. “Yeah. The workflow’s built. It’s… different.” They paused, glancing up for the first time. “LangGraph’s not just a tool—it’s a paradigm shift. But it’s also untested. If this works, it could change everything. If it doesn’t…”\n\n“If it doesn’t, we’re back to square one,” Jordan finished, their tone flat. They ran a hand through their short-cropped hair, the motion restless. “But that’s not why you called me here, is it? You’re not looking for a pep talk.”\n\nAlex’s lips twitched, something between a smile and a grimace. “No. I need your eyes on this. You know the codebase better than anyone. If there’s a flaw, you’ll see it.”\n\nJordan exhaled sharply, leaning forward to peer at the screen. The text and nodes of the graph sprawled across the display, a labyrinth of logic and dependencies. Their brow furrowed as they scanned the lines, their eyes darting from one section to another. The tension in the air thickened, the weight of unspoken expectations pressing down on both of them.\n\n“This integration point,” Jordan said after a long moment, pointing to a specific node on the screen. “It’s clever, but it’s brittle. If the API changes, the whole thing collapses.”\n\nAlex’s shoulders slumped, but they nodded. “I knew that was a risk. I thought… maybe the trade-off was worth it.”\n\nJordan leaned back again, their expression softening. “It might be. But you’ve got to account for it. Add a fallback, maybe—something that can adapt if the API shifts. It’ll complicate the graph, but it’ll make it robust.”\n\nAlex’s eyes lit up, a spark of hope cutting through the tension. “That could work. It’ll take some refactoring, but…” They trailed off, already typing furiously, their earlier hesitation gone.\n\nJordan watched them for a moment, a small smile tugging at the corners of their mouth. “You’re onto something here, Alex. It’s not perfect, but it’s close.”\n\nAlex glanced up, meeting Jordan’s gaze. “Thanks. For seeing what I couldn’t.”\n\nJordan shrugged, picking up their latte and taking a sip. “That’s what I’m here for. Now, let’s make this thing unbreakable.”\n\nThe coffee shop’s hum seemed to fade into the background as the two of them leaned in, their focus narrowing to the screen. The tension hadn’t fully dissipated, but it had shifted, mingling now with a quiet determination. The path ahead was uncertain, but for the first time, it felt possible.",
+        "test_config": {
+          "test_number": 7,
+          "config": {
+            "temperature": 0.9,
+            "context_depth": "full",
+            "reasoning_enabled": "false",
+            "verbalized_sampling": "none",
+            "n_samples": "5",
+            "reasoning_visibility": "hidden",
+            "max_reasoning_tokens": "standard"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T12:27:24.298716Z",
+          "completed_at": "2025-10-28T12:27:51.129518Z",
+          "duration_seconds": 26.83120379099273
+        },
+        "evaluation": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions. Does reasoning help generate more creative content?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence. Does reasoning maintain better consistency?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow. Do multiple samples improve prose?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity. Does self-consistency improve dialogue?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 92,
+              "reasoning": "The scene offers a unique narrative around technical collaboration, using the coffee shop setting as a nuanced backdrop. The dialogue about workflow development feels fresh and authentic, with unexpected emotional depth. The integration of technical discussion with interpersonal dynamics creates an original narrative approach."
+            },
+            "consistency": {
+              "score": 88,
+              "reasoning": "Characters Alex and Jordan maintain consistent voices throughout - Alex as the innovative but uncertain creator, Jordan as the pragmatic reviewer. The technical and emotional tones remain stable, with smooth transitions between technical discussion and personal interaction."
+            },
+            "prose_quality": {
+              "score": 95,
+              "reasoning": "Rich, evocative descriptions like 'haven of shadows' and 'labyrinth of logic and dependencies' demonstrate sophisticated prose. Sentence structures vary effectively, creating rhythmic flow. Sensory details (espresso machine hiss, string lights) enhance immersion."
+            },
+            "dialogue": {
+              "score": 90,
+              "reasoning": "Dialogue feels natural and layered, revealing character dynamics and technical expertise simultaneously. The exchanges between Alex and Jordan have subtle emotional subtext, with realistic technical language and interpersonal nuance."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "d3d7f7bdce5d0861669969b3301f42a02a960bd00b0a32bd4f360f87d29a331b",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:27:58.284199Z"
+    },
+    {
+      "test_number": 8,
+      "config": {
+        "test_number": 8,
+        "config_values": {
+          "temperature": 0.9,
+          "context_depth": "full",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "self_consistency",
+          "n_samples": "3",
+          "reasoning_visibility": "visible",
+          "max_reasoning_tokens": "extended"
+        },
+        "workflow": "fiction_scene"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "creativity": {
+            "score": 0.0,
+            "reasoning": "No scene was generated, so there are zero creative elements to evaluate. No original prose, descriptions, or imaginative content exists."
+          },
+          "consistency": {
+            "score": 0.0,
+            "reasoning": "With no scene produced, there can be no assessment of character voice, plot continuity, or tonal elements."
+          },
+          "prose_quality": {
+            "score": 0.0,
+            "reasoning": "Absence of any written text means no prose quality can be measured - no descriptions, sentence structures, or linguistic flow are present."
+          },
+          "dialogue": {
+            "score": 0.0,
+            "reasoning": "No dialogue was generated, so there are no speech patterns, character voices, or emotional authenticity to score."
+          }
+        },
+        "overall_score": 0.0,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:28:44.560753Z",
+        "metadata": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions. Does reasoning help generate more creative content?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence. Does reasoning maintain better consistency?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow. Do multiple samples improve prose?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity. Does self-consistency improve dialogue?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 0,
+              "reasoning": "No scene was generated, so there are zero creative elements to evaluate. No original prose, descriptions, or imaginative content exists."
+            },
+            "consistency": {
+              "score": 0,
+              "reasoning": "With no scene produced, there can be no assessment of character voice, plot continuity, or tonal elements."
+            },
+            "prose_quality": {
+              "score": 0,
+              "reasoning": "Absence of any written text means no prose quality can be measured - no descriptions, sentence structures, or linguistic flow are present."
+            },
+            "dialogue": {
+              "score": 0,
+              "reasoning": "No dialogue was generated, so there are no speech patterns, character voices, or emotional authenticity to score."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "c908f7373d47245fe2d6a5a698156ce480494f2dfa434fd4f51e94009516691b",
+          "cache_hit": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 46227.80008398695,
+      "utility": -0.03245838015744799,
+      "workflow_output": "Generated Scene:\nNo scene generated.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "context_approach": "minimal",
+        "generation_prompt": "You are a skilled fiction writer. Generate a compelling scene based on the following:\n\nScene Description: \"\"\"Code review workflow built on LangGraph.\"\"\"\nCharacters: Alex, Jordan\nSetting: a dimly lit coffee shop\nTone: tense but hopeful\nContext: Write based on the information provided.\n\nWrite a vivid, engaging scene that brings this description to life. Focus on:\n- Show, don't tell\n- Vivid sensory details\n- Natural character actions and reactions\n- Appropriate pacing and tension\n\nGenerate the scene as plain text, no JSON or formatting.",
+        "test_config": {
+          "test_number": 8,
+          "config": {
+            "temperature": 0.9,
+            "context_depth": "full",
+            "reasoning_enabled": "false",
+            "verbalized_sampling": "self_consistency",
+            "n_samples": "3",
+            "reasoning_visibility": "visible",
+            "max_reasoning_tokens": "extended"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T12:27:58.331138Z",
+          "completed_at": "2025-10-28T12:28:44.558234Z",
+          "duration_seconds": 46.22780008398695
+        },
+        "evaluation": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions. Does reasoning help generate more creative content?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence. Does reasoning maintain better consistency?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow. Do multiple samples improve prose?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity. Does self-consistency improve dialogue?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 0,
+              "reasoning": "No scene was generated, so there are zero creative elements to evaluate. No original prose, descriptions, or imaginative content exists."
+            },
+            "consistency": {
+              "score": 0,
+              "reasoning": "With no scene produced, there can be no assessment of character voice, plot continuity, or tonal elements."
+            },
+            "prose_quality": {
+              "score": 0,
+              "reasoning": "Absence of any written text means no prose quality can be measured - no descriptions, sentence structures, or linguistic flow are present."
+            },
+            "dialogue": {
+              "score": 0,
+              "reasoning": "No dialogue was generated, so there are no speech patterns, character voices, or emotional authenticity to score."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "c908f7373d47245fe2d6a5a698156ce480494f2dfa434fd4f51e94009516691b",
+          "cache_hit": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:28:44.560950Z"
+    }
+  ],
+  "status": "COMPLETED",
+  "started_at": "2025-10-28T12:24:28.642944Z",
+  "completed_at": "2025-10-28T12:28:44.562968Z",
+  "experiment_metadata": {
+    "config_hash": "44f69409289e9614685641bd1df46eaf32cd229d3747a30f1bf74b2a4404c0ee",
+    "created_at": "2025-10-28T12:24:28.642797Z",
+    "dependencies": {
+      "pydantic": "2.12.3",
+      "langgraph": "1.0.1",
+      "litellm": "1.79.0"
+    },
+    "non_deterministic_sources": [
+      "llm_sampling"
+    ]
+  },
+  "metadata": {
+    "normalization": {
+      "cost": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "latency": {
+        "min": 7300.239500007592,
+        "max": 67265.58649999788
+      }
+    }
+  },
+  "baseline_test_number": 1,
+  "baseline_config": {
+    "test_number": 1,
+    "config_values": {
+      "temperature": 0.5,
+      "context_depth": "minimal",
+      "reasoning_enabled": "false",
+      "verbalized_sampling": "none",
+      "n_samples": "3",
+      "reasoning_visibility": "visible",
+      "max_reasoning_tokens": "standard"
+    },
+    "workflow": "fiction_scene"
+  },
+  "baseline_result": {
+    "test_number": 1,
+    "config": {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.5,
+        "context_depth": "minimal",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "none",
+        "n_samples": "3",
+        "reasoning_visibility": "visible",
+        "max_reasoning_tokens": "standard"
+      },
+      "workflow": "fiction_scene"
+    },
+    "quality_score": {
+      "dimension_scores": {
+        "creativity": {
+          "score": 0.85,
+          "reasoning": "The scene offers a unique setting of tech collaboration in a coffee shop, with an innovative framing of AI workflow development. The descriptions are fresh - like 'digital spiderweb' and the subtle tension between characters. The metaphorical language around code and system development feels original and captures the creative process."
+        },
+        "consistency": {
+          "score": 0.9,
+          "reasoning": "Characters maintain consistent voices and motivations throughout. Alex appears more optimistic and forward-thinking, while Jordan represents careful skepticism. Their dialogue and interactions feel coherent, with a natural progression of technical discussion and interpersonal dynamics."
+        },
+        "prose_quality": {
+          "score": 0.88,
+          "reasoning": "Rich sensory details like 'steam curling upward in lazy spirals' and 'faint patter of rain' create vivid imagery. Sentence structures vary between short, punchy dialogue and more elaborate descriptive passages. The prose flows naturally, balancing technical language with emotional nuance."
+        },
+        "dialogue": {
+          "score": 0.92,
+          "reasoning": "Dialogue feels extremely authentic, with technical professionals discussing complex work realistically. The exchanges reveal character personalities, professional tensions, and underlying trust. Subtle emotional subtext and professional jargon are integrated seamlessly."
+        }
+      },
+      "overall_score": 0.8875,
+      "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+      "timestamp": "2025-10-28T12:24:53.329398Z",
+      "metadata": {
+        "rubric": {
+          "creativity": {
+            "description": "Original prose, unexpected emotional beats, fresh descriptions. Does reasoning help generate more creative content?",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "consistency": {
+            "description": "Character voice, plot continuity, tone adherence. Does reasoning maintain better consistency?",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "prose_quality": {
+            "description": "Vivid descriptions, varied sentence structure, natural flow. Do multiple samples improve prose?",
+            "scale": "0-100 points",
+            "weight": 0.2
+          },
+          "dialogue": {
+            "description": "Natural speech, distinct voices, emotional authenticity. Does self-consistency improve dialogue?",
+            "scale": "0-100 points",
+            "weight": 0.2
+          }
+        },
+        "raw_response": {
+          "creativity": {
+            "score": 85,
+            "reasoning": "The scene offers a unique setting of tech collaboration in a coffee shop, with an innovative framing of AI workflow development. The descriptions are fresh - like 'digital spiderweb' and the subtle tension between characters. The metaphorical language around code and system development feels original and captures the creative process."
+          },
+          "consistency": {
+            "score": 90,
+            "reasoning": "Characters maintain consistent voices and motivations throughout. Alex appears more optimistic and forward-thinking, while Jordan represents careful skepticism. Their dialogue and interactions feel coherent, with a natural progression of technical discussion and interpersonal dynamics."
+          },
+          "prose_quality": {
+            "score": 88,
+            "reasoning": "Rich sensory details like 'steam curling upward in lazy spirals' and 'faint patter of rain' create vivid imagery. Sentence structures vary between short, punchy dialogue and more elaborate descriptive passages. The prose flows naturally, balancing technical language with emotional nuance."
+          },
+          "dialogue": {
+            "score": 92,
+            "reasoning": "Dialogue feels extremely authentic, with technical professionals discussing complex work realistically. The exchanges reveal character personalities, professional tensions, and underlying trust. Subtle emotional subtext and professional jargon are integrated seamlessly."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "96d2ff64c1eabfa7d1f2595d79abd62f3da4d05113d806d1b3b143c36b3c0fb5",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/anthropic/claude-3.5-haiku"
+      }
+    },
+    "cost": 0.0,
+    "latency": 16535.132082994096,
+    "utility": 0.71,
+    "workflow_output": "Generated Scene:\nThe coffee shop was dimly lit, the kind of place where the hum of conversation blended with the faint hiss of the espresso machine. Shadows clung to the corners, and the warm glow of laptop screens illuminated the faces of patrons hunched over their work. Alex sat at a small table near the window, fingers tapping restlessly on the keyboard. The screen in front of them displayed a complex web of code, nodes and edges sprawling like a digital spiderweb. LangGraph’s interface glowed faintly, casting a bluish hue on their face.\n\nAcross the table, Jordan leaned forward, elbows on the table, their brow furrowed. “You’re sure this is the best approach?” they asked, voice low but edged with tension. Their coffee sat untouched, steam curling upward in lazy spirals.\n\nAlex hesitated, their fingers hovering over the keys. “It’s not perfect,” they admitted, “but it’s the most scalable solution we have right now. The workflow integrates seamlessly with LangGraph, and the feedback loop is faster than anything we’ve tried before.”\n\nJordan’s eyes flicked to the screen, scanning the lines of code. “Faster doesn’t always mean better,” they muttered. “What about the edge cases? If something breaks here—” they pointed to a cluster of nodes, “—it could cascade through the entire system.”\n\nAlex exhaled sharply, running a hand through their hair. “I know, I know. But we’ve run simulations. The error rate is minimal. And if something does go wrong, the system flags it immediately.”\n\nJordan leaned back, crossing their arms. The tension between them was palpable, a silent tug-of-war between caution and ambition. Outside, the faint patter of rain began to tap against the window, the sound blending with the rhythmic clatter of keyboards around them.\n\n“Look,” Alex said, their voice softer now, almost pleading. “I get why you’re worried. But we’re running out of time. If we don’t push this forward, someone else will. And we’ll be left playing catch-up.”\n\nJordan’s gaze lingered on the screen, their expression unreadable. Finally, they sighed, reaching for their coffee. “Alright,” they said, taking a slow sip. “But we’re doing this step by step. No shortcuts. And if anything feels off, we pull the plug.”\n\nA small, relieved smile tugged at Alex’s lips. “Deal.” They turned back to the screen, their fingers moving with renewed purpose. The LangGraph interface flickered as they adjusted a parameter, the nodes shifting like pieces of a puzzle falling into place.\n\nThe rain outside grew heavier, drumming against the glass. But inside the coffee shop, the air felt lighter, the tension easing into something more hopeful. Jordan set their cup down, leaning in again. “Alright,” they said, a hint of a smile playing at the corners of their mouth. “Let’s make this work.”\n\nAlex nodded, their focus unwavering. The hum of the coffee shop seemed to fade into the background, leaving just the two of them and the glowing screen, a shared vision taking shape one line of code at a time.",
+    "metadata": {
+      "strategy": "standard",
+      "model": "openrouter/deepseek/deepseek-chat",
+      "temperature": 0.5,
+      "context_approach": "minimal",
+      "generation_prompt": "You are a skilled fiction writer. Generate a compelling scene based on the following:\n\nScene Description: \"\"\"Code review workflow built on LangGraph.\"\"\"\nCharacters: Alex, Jordan\nSetting: a dimly lit coffee shop\nTone: tense but hopeful\nContext: Write based on the information provided.\n\nWrite a vivid, engaging scene that brings this description to life. Focus on:\n- Show, don't tell\n- Vivid sensory details\n- Natural character actions and reactions\n- Appropriate pacing and tension\n\nGenerate the scene as plain text, no JSON or formatting.",
+      "generated_raw": "The coffee shop was dimly lit, the kind of place where the hum of conversation blended with the faint hiss of the espresso machine. Shadows clung to the corners, and the warm glow of laptop screens illuminated the faces of patrons hunched over their work. Alex sat at a small table near the window, fingers tapping restlessly on the keyboard. The screen in front of them displayed a complex web of code, nodes and edges sprawling like a digital spiderweb. LangGraph’s interface glowed faintly, casting a bluish hue on their face.\n\nAcross the table, Jordan leaned forward, elbows on the table, their brow furrowed. “You’re sure this is the best approach?” they asked, voice low but edged with tension. Their coffee sat untouched, steam curling upward in lazy spirals.\n\nAlex hesitated, their fingers hovering over the keys. “It’s not perfect,” they admitted, “but it’s the most scalable solution we have right now. The workflow integrates seamlessly with LangGraph, and the feedback loop is faster than anything we’ve tried before.”\n\nJordan’s eyes flicked to the screen, scanning the lines of code. “Faster doesn’t always mean better,” they muttered. “What about the edge cases? If something breaks here—” they pointed to a cluster of nodes, “—it could cascade through the entire system.”\n\nAlex exhaled sharply, running a hand through their hair. “I know, I know. But we’ve run simulations. The error rate is minimal. And if something does go wrong, the system flags it immediately.”\n\nJordan leaned back, crossing their arms. The tension between them was palpable, a silent tug-of-war between caution and ambition. Outside, the faint patter of rain began to tap against the window, the sound blending with the rhythmic clatter of keyboards around them.\n\n“Look,” Alex said, their voice softer now, almost pleading. “I get why you’re worried. But we’re running out of time. If we don’t push this forward, someone else will. And we’ll be left playing catch-up.”\n\nJordan’s gaze lingered on the screen, their expression unreadable. Finally, they sighed, reaching for their coffee. “Alright,” they said, taking a slow sip. “But we’re doing this step by step. No shortcuts. And if anything feels off, we pull the plug.”\n\nA small, relieved smile tugged at Alex’s lips. “Deal.” They turned back to the screen, their fingers moving with renewed purpose. The LangGraph interface flickered as they adjusted a parameter, the nodes shifting like pieces of a puzzle falling into place.\n\nThe rain outside grew heavier, drumming against the glass. But inside the coffee shop, the air felt lighter, the tension easing into something more hopeful. Jordan set their cup down, leaning in again. “Alright,” they said, a hint of a smile playing at the corners of their mouth. “Let’s make this work.”\n\nAlex nodded, their focus unwavering. The hum of the coffee shop seemed to fade into the background, leaving just the two of them and the glowing screen, a shared vision taking shape one line of code at a time.",
+      "test_config": {
+        "test_number": 1,
+        "config": {
+          "temperature": 0.5,
+          "context_depth": "minimal",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "none",
+          "n_samples": "3",
+          "reasoning_visibility": "visible",
+          "max_reasoning_tokens": "standard"
+        }
+      },
+      "workflow": {
+        "started_at": "2025-10-28T12:24:28.648632Z",
+        "completed_at": "2025-10-28T12:24:45.183510Z",
+        "duration_seconds": 16.535132082994096
+      },
+      "evaluation": {
+        "rubric": {
+          "creativity": {
+            "description": "Original prose, unexpected emotional beats, fresh descriptions. Does reasoning help generate more creative content?",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "consistency": {
+            "description": "Character voice, plot continuity, tone adherence. Does reasoning maintain better consistency?",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "prose_quality": {
+            "description": "Vivid descriptions, varied sentence structure, natural flow. Do multiple samples improve prose?",
+            "scale": "0-100 points",
+            "weight": 0.2
+          },
+          "dialogue": {
+            "description": "Natural speech, distinct voices, emotional authenticity. Does self-consistency improve dialogue?",
+            "scale": "0-100 points",
+            "weight": 0.2
+          }
+        },
+        "raw_response": {
+          "creativity": {
+            "score": 85,
+            "reasoning": "The scene offers a unique setting of tech collaboration in a coffee shop, with an innovative framing of AI workflow development. The descriptions are fresh - like 'digital spiderweb' and the subtle tension between characters. The metaphorical language around code and system development feels original and captures the creative process."
+          },
+          "consistency": {
+            "score": 90,
+            "reasoning": "Characters maintain consistent voices and motivations throughout. Alex appears more optimistic and forward-thinking, while Jordan represents careful skepticism. Their dialogue and interactions feel coherent, with a natural progression of technical discussion and interpersonal dynamics."
+          },
+          "prose_quality": {
+            "score": 88,
+            "reasoning": "Rich sensory details like 'steam curling upward in lazy spirals' and 'faint patter of rain' create vivid imagery. Sentence structures vary between short, punchy dialogue and more elaborate descriptive passages. The prose flows naturally, balancing technical language with emotional nuance."
+          },
+          "dialogue": {
+            "score": 92,
+            "reasoning": "Dialogue feels extremely authentic, with technical professionals discussing complex work realistically. The exchanges reveal character personalities, professional tensions, and underlying trust. Subtle emotional subtext and professional jargon are integrated seamlessly."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "96d2ff64c1eabfa7d1f2595d79abd62f3da4d05113d806d1b3b143c36b3c0fb5",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/anthropic/claude-3.5-haiku"
+      }
+    },
+    "timestamp": "2025-10-28T12:24:53.329635Z"
+  },
+  "baseline_quality": 0.8875,
+  "quality_improvement_pct": 2.8169014084507067
+}

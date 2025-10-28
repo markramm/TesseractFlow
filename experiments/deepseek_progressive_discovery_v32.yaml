@@ -1,0 +1,38 @@
+name: deepseek_progressive_discovery
+workflow: progressive_discovery
+variables:
+- name: temperature
+  level_1: 0.5
+  level_2: 0.8
+- name: generation_strategy
+  level_1: standard
+  level_2: chain_of_thought
+- name: context_strategy
+  level_1: full_upfront
+  level_2: progressive_discovery
+- name: discovery_trigger
+  level_1: model_decides
+  level_2: explicit_prompts
+utility_weights:
+  quality: 0.6
+  cost: 0.3
+  time: 0.1
+workflow_config:
+  model: openrouter/deepseek/deepseek-v3.2-exp
+  sample_code_path: tesseract_flow/core/strategies.py
+  language: python
+  evaluator_model: openrouter/deepseek/deepseek-chat
+  evaluator_temperature: 0.1
+  rubric:
+    output_quality:
+      description: Does the output maintain quality with reduced context?
+      scale: 0-100 points
+      weight: 0.4
+    context_efficiency:
+      description: Does it request only relevant context? Avoid unnecessary requests?
+      scale: 0-100 points
+      weight: 0.3
+    consistency:
+      description: Maintains story/character consistency despite minimal context
+      scale: 0-100 points
+      weight: 0.3

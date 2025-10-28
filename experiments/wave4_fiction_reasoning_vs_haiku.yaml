@@ -1,0 +1,63 @@
+# Wave 4: Fiction Scene Generation with Reasoning & Verbalized Sampling (Haiku 4.5 Evaluator)
+# Research Question: Test if Haiku 4.5 evaluator shows same score clustering as DeepSeek-Chat
+#
+# EVALUATOR CHANGE: DeepSeek-Chat → Claude Haiku 4.5
+# Purpose: Validate if 0.923 quality ceiling is evaluator saturation or true model ceiling
+
+name: wave4_fiction_reasoning_vs_haiku
+workflow: fiction_scene
+variables:
+  - name: temperature
+    level_1: 0.5
+    level_2: 0.9
+  - name: context_depth
+    level_1: minimal
+    level_2: full
+  - name: reasoning_enabled
+    level_1: 'false'
+    level_2: 'true'
+  - name: verbalized_sampling
+    level_1: none
+    level_2: self_consistency
+  - name: n_samples
+    level_1: '3'
+    level_2: '5'
+  - name: reasoning_visibility
+    level_1: visible
+    level_2: hidden
+  - name: max_reasoning_tokens
+    level_1: standard
+    level_2: extended
+
+utility_weights:
+  quality: 0.8
+  cost: 0.15
+  time: 0.05
+
+workflow_config:
+  sample_code_path: tesseract_flow/workflows/code_review.py
+  language: python
+  evaluator_model: openrouter/anthropic/claude-3.5-haiku
+  evaluator_temperature: 0.3
+  rubric:
+    creativity:
+      description: Original prose, unexpected emotional beats, fresh descriptions. Does reasoning help generate more creative content?
+      scale: 0-100 points
+      weight: 0.3
+    consistency:
+      description: Character voice, plot continuity, tone adherence. Does reasoning maintain better consistency?
+      scale: 0-100 points
+      weight: 0.3
+    prose_quality:
+      description: Vivid descriptions, varied sentence structure, natural flow. Do multiple samples improve prose?
+      scale: 0-100 points
+      weight: 0.2
+    dialogue:
+      description: Natural speech, distinct voices, emotional authenticity. Does self-consistency improve dialogue?
+      scale: 0-100 points
+      weight: 0.2
+
+# Expected Learnings:
+# 1. Does Haiku 4.5 show same 0.923 clustering as DeepSeek-Chat?
+# 2. Can Haiku distinguish quality differences in 0.88-0.95 range?
+# 3. Does Haiku produce more varied scores (no ceiling artifact)?

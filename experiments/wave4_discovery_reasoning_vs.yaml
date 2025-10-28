@@ -1,0 +1,72 @@
+# Wave 4: Progressive Discovery with Reasoning & Verbalized Sampling
+# Research Question: Do reasoning and verbalized sampling improve world-building revelations?
+#
+# Variable Selection Rationale:
+# KEPT (High Impact):
+#   - temperature: Affects surprise vs consistency in revelations
+#   - revelation_depth: Critical for discovery pacing
+# DROPPED (Low Impact):
+#   - generation_strategy: Replaced by reasoning_enabled
+#   - reveal_frequency: Less impact than depth
+# ADDED (Test Mixins):
+#   - reasoning_enabled: Test ReasoningMixin for logical consistency
+#   - verbalized_sampling: Test VerbalizationMixin (none/self_consistency)
+#   - n_samples: Number of samples for verbalized sampling
+#   - verification_step: Optional verification of logical consistency
+#   - reasoning_visibility: Control reasoning trace output
+
+name: wave4_discovery_reasoning_vs
+workflow: progressive_discovery
+variables:
+  - name: temperature
+    level_1: 0.5
+    level_2: 0.8
+  - name: revelation_depth
+    level_1: surface
+    level_2: deep
+  - name: reasoning_enabled
+    level_1: 'false'
+    level_2: 'true'
+  - name: verbalized_sampling
+    level_1: none
+    level_2: self_consistency
+  - name: n_samples
+    level_1: '3'
+    level_2: '5'
+  - name: verification_step
+    level_1: none
+    level_2: verify_consistency
+  - name: reasoning_visibility
+    level_1: visible
+    level_2: hidden
+
+utility_weights:
+  quality: 0.8
+  cost: 0.15
+  time: 0.05
+
+workflow_config:
+  sample_code_path: tesseract_flow/workflows/progressive_discovery.py
+  language: python
+  evaluator_model: openrouter/deepseek/deepseek-chat
+  evaluator_temperature: 0.1
+  rubric:
+    world_consistency:
+      description: Revelations don't contradict established lore. Does reasoning help maintain consistency?
+      scale: 0-100 points
+      weight: 0.4
+    revelation_impact:
+      description: Discoveries feel meaningful and surprising. Does self-consistency improve impact?
+      scale: 0-100 points
+      weight: 0.35
+    integration_quality:
+      description: New information integrates naturally with existing knowledge. Does verification help?
+      scale: 0-100 points
+      weight: 0.25
+
+# Expected Learnings:
+# 1. Does reasoning help maintain world-building consistency across revelations?
+# 2. Does self-consistency produce more impactful discoveries by selecting common elements?
+# 3. Is the verification step worthwhile for catching logical inconsistencies?
+# 4. Does reasoning visibility affect revelation quality?
+# 5. Do 3 or 5 samples work better for progressive discovery?

@@ -1,0 +1,37 @@
+name: deepseek_dialogue_enhancement
+workflow: dialogue_enhancement
+variables:
+- name: temperature
+  level_1: 0.6
+  level_2: 0.9
+- name: generation_strategy
+  level_1: standard
+  level_2: chain_of_thought
+- name: voice_emphasis
+  level_1: subtle
+  level_2: explicit
+- name: examples_count
+  level_1: '0'
+  level_2: '3'
+utility_weights:
+  quality: 0.7
+  cost: 0.2
+  time: 0.1
+workflow_config:
+  sample_code_path: tesseract_flow/workflows/__init__.py
+  language: python
+  evaluator_model: openrouter/deepseek/deepseek-chat
+  evaluator_temperature: 0.1
+  rubric:
+    voice_distinctiveness:
+      description: Can you identify speaker without attribution? Voice reflects personality?
+      scale: 0-100 points
+      weight: 0.35
+    natural_flow:
+      description: Realistic pacing, natural topic shifts, avoids exposition
+      scale: 0-100 points
+      weight: 0.35
+    emotional_authenticity:
+      description: Dialogue conveys genuine emotions, subtext, character relationships
+      scale: 0-100 points
+      weight: 0.3

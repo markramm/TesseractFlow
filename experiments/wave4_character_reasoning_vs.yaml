@@ -1,0 +1,72 @@
+# Wave 4: Character Development with Reasoning & Verbalized Sampling
+# Research Question: Do reasoning and verbalized sampling maintain better character continuity?
+#
+# Variable Selection Rationale:
+# KEPT (High Impact):
+#   - temperature: Affects trait consistency vs development richness
+#   - revision_strategy: Critical for maintaining continuity
+# DROPPED (Low Impact):
+#   - generation_strategy: Replaced by reasoning_enabled
+#   - output_format: Less impact on character quality
+# ADDED (Test Mixins):
+#   - reasoning_enabled: Test ReasoningMixin for trait consistency
+#   - verbalized_sampling: Test VerbalizationMixin (none/ensemble)
+#   - ensemble_approaches: Different perspective strategies
+#   - n_samples: Number of samples for verbalized sampling
+#   - reasoning_visibility: Control reasoning trace output
+
+name: wave4_character_reasoning_vs
+workflow: character_development
+variables:
+  - name: temperature
+    level_1: 0.4
+    level_2: 0.7
+  - name: revision_strategy
+    level_1: refine
+    level_2: regenerate
+  - name: reasoning_enabled
+    level_1: 'false'
+    level_2: 'true'
+  - name: verbalized_sampling
+    level_1: none
+    level_2: ensemble
+  - name: ensemble_approaches
+    level_1: analytical_creative
+    level_2: analytical_creative_methodical
+  - name: n_samples
+    level_1: '2'
+    level_2: '3'
+  - name: reasoning_visibility
+    level_1: visible
+    level_2: hidden
+
+utility_weights:
+  quality: 0.75
+  cost: 0.15
+  time: 0.1
+
+workflow_config:
+  sample_code_path: tesseract_flow/core/base_workflow.py
+  language: python
+  evaluator_model: openrouter/deepseek/deepseek-chat
+  evaluator_temperature: 0.1
+  rubric:
+    continuity_preservation:
+      description: Maintains established traits that shouldn't change. Does reasoning track traits better?
+      scale: 0-100 points
+      weight: 0.4
+    arc_progression:
+      description: Reflects character growth and development accurately. Does ensemble combine perspectives better?
+      scale: 0-100 points
+      weight: 0.35
+    utility_for_writers:
+      description: Can writers actually use this? Is it helpful? Does verbalized sampling add value?
+      scale: 0-100 points
+      weight: 0.25
+
+# Expected Learnings:
+# 1. Does reasoning help maintain character trait consistency across updates?
+# 2. Does ensemble generation (analytical + creative + methodical) produce richer character development?
+# 3. Is the cost of 2-3 ensemble samples worth the quality improvement?
+# 4. Does reasoning visibility affect character update quality?
+# 5. Which ensemble approach (2 or 3 perspectives) works better?

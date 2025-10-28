@@ -51,8 +51,22 @@ class ExperimentExecutor:
         progress_callback: Optional[Callable[[int, int], None]] = None,
         persist_path: Optional[Path | str] = None,
         extra_instructions: Optional[str] = None,
+        replications: int = 1,
     ) -> ExperimentRun:
-        """Execute all test configurations defined by ``config`` sequentially."""
+        """Execute all test configurations defined by ``config`` sequentially.
+
+        Args:
+            config: Experiment configuration
+            experiment_id: Optional custom experiment ID
+            resume_from: Optional run to resume from
+            progress_callback: Optional callback for progress updates
+            persist_path: Optional path to persist results
+            extra_instructions: Optional additional instructions for the workflow
+            replications: Number of times to replicate each test configuration (default: 1)
+
+        Returns:
+            The completed experiment run
+        """
 
         persistence_path = Path(persist_path) if persist_path is not None else None
 
@@ -68,7 +82,7 @@ class ExperimentExecutor:
                 len(test_configurations),
             )
         else:
-            test_configurations = generate_test_configs(config)
+            test_configurations = generate_test_configs(config, replications=replications)
             metadata = ExperimentMetadata.from_config(
                 config,
                 dependencies=self._dependency_versions,
@@ -167,6 +181,14 @@ class ExperimentExecutor:
     ) -> TestResult:
         """Execute a single test configuration and evaluate its output."""
 
+        # Log test configuration at start
+        config_str = ", ".join(f"{k}={v}" for k, v in test_config.config_values.items())
+        logger.info(
+            "Starting test %d: %s",
+            test_config.test_number,
+            config_str,
+        )
+
         workflow_input = self._prepare_workflow_input(
             workflow_service, test_config, experiment_config
         )
@@ -206,9 +228,16 @@ class ExperimentExecutor:
             duration_ms = float(workflow_metadata["duration_seconds"]) * 1000.0
 
         output_text = self._render_for_evaluation(workflow_output)
+
+        # Extract calibration_examples from workflow config if present
+        calibration_examples = None
+        if experiment_config and experiment_config.workflow_config:
+            calibration_examples = getattr(experiment_config.workflow_config, "calibration_examples", None)
+
         quality_score = await evaluator.evaluate(
             output_text,
             rubric=rubric,
+            calibration_examples=calibration_examples,
             extra_instructions=extra_instructions,
         )
 

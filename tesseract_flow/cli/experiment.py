@@ -78,6 +78,14 @@ def run_experiment(
         "--instructions",
         help="Additional rubric guidance appended to evaluator prompt.",
     ),
+    replications: int = typer.Option(
+        1,
+        "--replications",
+        "-n",
+        min=1,
+        max=100,
+        help="Number of times to repeat each test configuration (for statistical validation).",
+    ),
 ) -> None:
     """Execute the Taguchi experiment defined in *config_file*."""
 
@@ -144,6 +152,7 @@ def run_experiment(
                 config,
                 output_path=resolved_output,
                 resume_from=resume_run,
+                replications=replications,
                 extra_instructions=extra_instructions,
             )
         )
@@ -205,8 +214,15 @@ def analyze_results(
         ])
         raise typer.Exit(code=_IO_ERROR_EXIT) from exc
 
-    if len(run.results) != 8:
-        console.print("[bold red]✗ Error:[/] Completed results with 8 tests are required for analysis.")
+    # Validate results: must be 8 (L8 array) or multiple of 8 (replications)
+    num_results = len(run.results)
+    if num_results < 8 or num_results % 8 != 0:
+        replications = num_results // 8
+        console.print(
+            f"[bold red]✗ Error:[/] Analysis requires exactly 8 results (L8 array) "
+            f"or a multiple of 8 for replicated experiments.\n"
+            f"Got {num_results} results (expected 8, 16, 24, 32, 40, ...)."
+        )
         raise typer.Exit(code=_CONFIG_ERROR_EXIT)
 
     try:
@@ -478,11 +494,51 @@ def _default_cache_dir() -> Path:
 def build_executor(config: ExperimentConfig, evaluator: RubricEvaluator) -> ExperimentExecutor:
     """Construct an ExperimentExecutor for the provided configuration."""
 
-    def resolver(workflow_name: str, experiment_config: ExperimentConfig) -> CodeReviewWorkflow:
+    def resolver(workflow_name: str, experiment_config: ExperimentConfig) -> BaseWorkflowService:
+        from tesseract_flow.workflows import (
+            CharacterDevelopmentWorkflow,
+            CharacterProfileWorkflow,
+            ContextEfficiencyWorkflow,
+            DialogueEnhancementWorkflow,
+            FictionSceneWorkflow,
+            IterativeRefinementWorkflow,
+            LoreExpansionWorkflow,
+            MultiDomainTaskWorkflow,
+            MultiTaskBenchmarkWorkflow,
+            ProgressiveDiscoveryWorkflow,
+            ReasoningTransparencyWorkflow,
+        )
+
         normalized = workflow_name.strip().lower()
+        workflow_config = experiment_config.workflow_config
+
         if normalized == "code_review":
-            workflow_config = experiment_config.workflow_config
             return CodeReviewWorkflow(config=workflow_config)
+        elif normalized == "fiction_scene":
+            return FictionSceneWorkflow(config=workflow_config)
+        elif normalized == "dialogue_enhancement":
+            return DialogueEnhancementWorkflow(config=workflow_config)
+        elif normalized == "character_development":
+            return CharacterDevelopmentWorkflow(config=workflow_config)
+        elif normalized == "progressive_discovery":
+            return ProgressiveDiscoveryWorkflow(config=workflow_config)
+        elif normalized == "lore_expansion":
+            return LoreExpansionWorkflow(config=workflow_config)
+        elif normalized == "multi_task_benchmark":
+            return MultiTaskBenchmarkWorkflow(config=workflow_config)
+        elif normalized == "character_profile_generation":
+            return CharacterProfileWorkflow(config=workflow_config)
+        elif normalized == "multi_domain_tasks":
+            return MultiDomainTaskWorkflow(config=workflow_config)
+        elif normalized == "reasoning_transparency":
+            return ReasoningTransparencyWorkflow(config=workflow_config)
+        elif normalized == "context_efficiency":
+            return ContextEfficiencyWorkflow(config=workflow_config)
+        elif normalized == "iterative_refinement":
+            return IterativeRefinementWorkflow(config=workflow_config)
+        elif normalized == "multi_domain":
+            return MultiDomainTaskWorkflow(config=workflow_config)
+
         msg = f"Unsupported workflow '{workflow_name}'."
         raise ExperimentError(msg)
 
@@ -502,11 +558,12 @@ async def _execute_experiment(
     output_path: Path,
     resume_from: Optional[ExperimentRun],
     extra_instructions: Optional[str],
+    replications: int = 1,
 ) -> ExperimentRun:
     """Execute an experiment with progress reporting."""
 
     logger.info("Executing experiment '%s' via CLI", config.name)
-    total_tests = _determine_total_tests(config, resume_from)
+    total_tests = _determine_total_tests(config, resume_from, replications)
     progress = _progress_renderer()
     task_id = progress.add_task("Running experiment", total=total_tests)
 
@@ -523,6 +580,7 @@ async def _execute_experiment(
             progress_callback=_on_progress,
             persist_path=output_path,
             extra_instructions=extra_instructions,
+            replications=replications,
         )
 
     logger.info(
@@ -534,10 +592,10 @@ async def _execute_experiment(
     return run
 
 
-def _determine_total_tests(config: ExperimentConfig, resume_from: Optional[ExperimentRun]) -> int:
+def _determine_total_tests(config: ExperimentConfig, resume_from: Optional[ExperimentRun], replications: int = 1) -> int:
     if resume_from is not None:
         return len(resume_from.test_configurations)
-    test_configs = generate_test_configs(config)
+    test_configs = generate_test_configs(config, replications=replications)
     return len(test_configs)
 
 
@@ -553,10 +611,125 @@ def _progress_renderer() -> Progress:
 
 
 def _handle_dry_run(config: ExperimentConfig) -> None:
-    console.print("[cyan]• Generating Taguchi L8 test configurations...[/]")
-    test_configs = generate_test_configs(config)
-    console.print(f"[green]✓ Generated {len(test_configs)} test configurations")
+    """
+    Validate experiment configuration without running LLM calls.
+
+    This performs a comprehensive check:
+    1. Config parsing (already done if we reach here)
+    2. Taguchi L8 test generation
+    3. Workflow instantiation
+    4. Workflow-specific validation (e.g., file paths, rubric structure)
+    """
+    console.print("[cyan]• Step 1/3: Validating Taguchi L8 test configurations...[/]")
+
+    try:
+        test_configs = generate_test_configs(config)
+        console.print(f"[green]✓ Generated {len(test_configs)} test configurations")
+    except (ValueError, ConfigurationError) as exc:
+        console.print(f"[bold red]✗ Error generating test configurations:[/] {exc}")
+        raise typer.Exit(code=_CONFIG_ERROR_EXIT) from exc
+
+    console.print("[cyan]• Step 2/3: Instantiating workflow...[/]")
+
+    try:
+        # Build a temporary evaluator (won't be used for actual generation)
+        temp_evaluator = build_evaluator(
+            use_cache=False,
+            record_cache=False,
+            cache_dir=None,
+            evaluator_model=config.workflow_config.evaluator_model if config.workflow_config else None,
+        )
+
+        # Build executor and try to resolve workflow
+        executor = build_executor(config, temp_evaluator)
+
+        # Attempt to instantiate workflow to catch configuration errors
+        workflow = executor._workflow_resolver(config.workflow, config)
+        console.print(f"[green]✓ Workflow '{config.workflow}' instantiated successfully")
+
+        # Validate workflow-specific configuration
+        console.print("[cyan]• Step 3/3: Validating workflow-specific configuration...[/]")
+        _validate_workflow_config(config, workflow)
+
+    except ExperimentError as exc:
+        console.print(f"[bold red]✗ Error instantiating workflow:[/] {exc}")
+        _render_recovery_tips([
+            f"Ensure workflow '{config.workflow}' is a supported workflow type.",
+            "Check that workflow_config matches the expected structure.",
+        ])
+        raise typer.Exit(code=_CONFIG_ERROR_EXIT) from exc
+    except (ConfigurationError, ValueError) as exc:
+        console.print(f"[bold red]✗ Error validating workflow configuration:[/] {exc}")
+        raise typer.Exit(code=_CONFIG_ERROR_EXIT) from exc
+
     _render_test_configuration_table(config, test_configs)
+
+    console.print("\n[green]✅ Dry run complete - configuration is valid and ready to execute[/]")
+    console.print("[cyan]• Remove --dry-run to run the experiment[/]")
+
+
+def _validate_workflow_config(config: ExperimentConfig, workflow) -> None:
+    """Validate workflow-specific configuration."""
+
+    workflow_config = config.workflow_config
+
+    if workflow_config is None:
+        console.print("[yellow]⚠ Warning:[/] No workflow_config provided")
+        return
+
+    # Check rubric
+    rubric = getattr(workflow_config, "rubric", None)
+    if rubric:
+        if not isinstance(rubric, dict):
+            raise ConfigurationError("rubric must be a dictionary")
+
+        if len(rubric) == 0:
+            console.print("[yellow]⚠ Warning:[/] Rubric is empty")
+        else:
+            console.print(f"[green]✓ Rubric has {len(rubric)} dimensions")
+
+            # Validate rubric structure
+            for dimension_name, dimension_config in rubric.items():
+                if not isinstance(dimension_config, dict):
+                    raise ConfigurationError(f"Rubric dimension '{dimension_name}' must be a dictionary")
+
+                required_keys = {"description", "scale", "weight"}
+                missing_keys = required_keys - set(dimension_config.keys())
+                if missing_keys:
+                    raise ConfigurationError(
+                        f"Rubric dimension '{dimension_name}' missing keys: {missing_keys}"
+                    )
+    else:
+        console.print("[yellow]⚠ Warning:[/] No rubric configured")
+
+    # Check sample code path if present
+    sample_code_path = getattr(workflow_config, "sample_code_path", None)
+    if sample_code_path:
+        from pathlib import Path
+        code_path = Path(sample_code_path)
+        if not code_path.exists():
+            console.print(f"[yellow]⚠ Warning:[/] Sample code file not found: {sample_code_path}")
+        else:
+            console.print(f"[green]✓ Sample code file exists: {sample_code_path}")
+
+    # Check evaluator model
+    evaluator_model = getattr(workflow_config, "evaluator_model", None)
+    if evaluator_model:
+        console.print(f"[green]✓ Evaluator model: {evaluator_model}")
+    else:
+        console.print("[yellow]⚠ Warning:[/] No evaluator_model specified (will use default)")
+
+    # Validate evaluator temperature
+    evaluator_temp = getattr(workflow_config, "evaluator_temperature", None)
+    if evaluator_temp is not None:
+        if not isinstance(evaluator_temp, (int, float)):
+            raise ConfigurationError("evaluator_temperature must be a number")
+        if not 0.0 <= evaluator_temp <= 2.0:
+            console.print(f"[yellow]⚠ Warning:[/] evaluator_temperature {evaluator_temp} is outside typical range [0.0, 2.0]")
+        else:
+            console.print(f"[green]✓ Evaluator temperature: {evaluator_temp}")
+
+    console.print("[green]✓ Workflow configuration validated")
 
 
 def _render_test_configuration_table(

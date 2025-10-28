@@ -1,0 +1,573 @@
+{
+  "experiment_id": "simple_deepseek_test-20251026T053445",
+  "config": {
+    "name": "simple_deepseek_test",
+    "workflow": "code_review",
+    "variables": [
+      {
+        "name": "temperature",
+        "level_1": 0.3,
+        "level_2": 0.7
+      },
+      {
+        "name": "model",
+        "level_1": "openrouter/deepseek/deepseek-chat",
+        "level_2": "openrouter/deepseek/deepseek-reasoner"
+      },
+      {
+        "name": "context_size",
+        "level_1": "file_only",
+        "level_2": "full_module"
+      },
+      {
+        "name": "max_tokens",
+        "level_1": 2000,
+        "level_2": 4000
+      }
+    ],
+    "utility_weights": {
+      "quality": 1.0,
+      "cost": 0.3,
+      "time": 0.1
+    },
+    "workflow_config": {
+      "rubric": {
+        "clarity": {
+          "description": "Is the review easy to follow and well-structured?",
+          "scale": "1-10"
+        },
+        "accuracy": {
+          "description": "Are the identified issues legitimate code problems?",
+          "scale": "1-10"
+        },
+        "actionability": {
+          "description": "Do suggestions provide clear next steps?",
+          "scale": "1-10"
+        }
+      },
+      "sample_code_path": "tesseract_flow/optimization/utility.py",
+      "language": "python",
+      "context_descriptions": {
+        "file_only": "Review limited to the provided snippet.",
+        "full_module": "Consider module-level implications during review."
+      }
+    }
+  },
+  "test_configurations": [
+    {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.3,
+        "model": "openrouter/deepseek/deepseek-chat",
+        "context_size": "file_only",
+        "max_tokens": 2000
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 2,
+      "config_values": {
+        "temperature": 0.3,
+        "model": "openrouter/deepseek/deepseek-chat",
+        "context_size": "file_only",
+        "max_tokens": 4000
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 3,
+      "config_values": {
+        "temperature": 0.3,
+        "model": "openrouter/deepseek/deepseek-reasoner",
+        "context_size": "full_module",
+        "max_tokens": 2000
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 4,
+      "config_values": {
+        "temperature": 0.3,
+        "model": "openrouter/deepseek/deepseek-reasoner",
+        "context_size": "full_module",
+        "max_tokens": 4000
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 5,
+      "config_values": {
+        "temperature": 0.7,
+        "model": "openrouter/deepseek/deepseek-chat",
+        "context_size": "full_module",
+        "max_tokens": 2000
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 6,
+      "config_values": {
+        "temperature": 0.7,
+        "model": "openrouter/deepseek/deepseek-chat",
+        "context_size": "full_module",
+        "max_tokens": 4000
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 7,
+      "config_values": {
+        "temperature": 0.7,
+        "model": "openrouter/deepseek/deepseek-reasoner",
+        "context_size": "file_only",
+        "max_tokens": 2000
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 8,
+      "config_values": {
+        "temperature": 0.7,
+        "model": "openrouter/deepseek/deepseek-reasoner",
+        "context_size": "file_only",
+        "max_tokens": 4000
+      },
+      "workflow": "code_review"
+    }
+  ],
+  "results": [
+    {
+      "test_number": 1,
+      "config": {
+        "test_number": 1,
+        "config_values": {
+          "temperature": 0.3,
+          "model": "openrouter/deepseek/deepseek-chat",
+          "context_size": "file_only",
+          "max_tokens": 2000
+        },
+        "workflow": "code_review"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "clarity": {
+            "score": 0.9,
+            "reasoning": "The review is well-structured and easy to follow. Issues are clearly categorized by severity (low, medium), and each issue is accompanied by a suggested fix. The suggestions are also well-organized and actionable."
+          },
+          "accuracy": {
+            "score": 1.0,
+            "reasoning": "The identified issues are legitimate code problems. The review accurately points out inconsistencies, potential errors, and misleading documentation, which are all valid concerns in the code snippet."
+          },
+          "actionability": {
+            "score": 0.9,
+            "reasoning": "The suggestions provide clear next steps for improvement. Each issue is accompanied by a specific recommendation, such as using `Sequence[float]` for consistency, updating error messages, and using named tuples or dataclasses. The additional suggestions for input validation and unit tests are also actionable."
+          }
+        },
+        "overall_score": 0.9333333333333332,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-26T05:34:58.034099Z",
+        "metadata": {
+          "rubric": {
+            "clarity": {
+              "description": "Is the review easy to follow and well-structured?",
+              "scale": "1-10"
+            },
+            "accuracy": {
+              "description": "Are the identified issues legitimate code problems?",
+              "scale": "1-10"
+            },
+            "actionability": {
+              "description": "Do suggestions provide clear next steps?",
+              "scale": "1-10"
+            }
+          },
+          "raw_response": {
+            "clarity": {
+              "score": 9,
+              "reasoning": "The review is well-structured and easy to follow. Issues are clearly categorized by severity (low, medium), and each issue is accompanied by a suggested fix. The suggestions are also well-organized and actionable."
+            },
+            "accuracy": {
+              "score": 10,
+              "reasoning": "The identified issues are legitimate code problems. The review accurately points out inconsistencies, potential errors, and misleading documentation, which are all valid concerns in the code snippet."
+            },
+            "actionability": {
+              "score": 9,
+              "reasoning": "The suggestions provide clear next steps for improvement. Each issue is accompanied by a specific recommendation, such as using `Sequence[float]` for consistency, updating error messages, and using named tuples or dataclasses. The additional suggestions for input validation and unit tests are also actionable."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "f89a98f1cb1286b68826629e629f63399f699fde6261ff67ce40980efd572d06",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 8783.397208026145,
+      "utility": 0.8333333333333333,
+      "workflow_output": "The code snippet defines a `UtilityFunction` class for computing weighted utility scores based on quality, cost, and latency. It includes methods for normalization and utility computation for sequences. Overall, the code is well-structured and follows good practices, but there are a few areas for improvement.\nIssues:\n- (low) The `compute_for_sequences` method uses `Iterable[float]` for `qualities` but `Sequence[float]` for `costs` and `latencies`. This inconsistency can lead to confusion and potential issues if the iterable is not indexable. [line 40] Suggested fix: Consider using `Sequence[float]` for `qualities` to maintain consistency with `costs` and `latencies`.\n- (medium) The `normalize_metrics` method raises a `ValueError` for unsupported normalization methods, but it does not provide a list of supported methods in the error message. [line 23] Suggested fix: Update the error message to include the supported normalization methods, e.g., 'Unsupported normalization method: {method}. Supported methods: min-max'.\n- (low) The `normalize_metrics` method returns a tuple with a list of normalized values and a dictionary of min/max values. The dictionary keys are hardcoded as strings, which could lead to errors if the keys are mistyped. [line 25] Suggested fix: Consider using a named tuple or a dataclass to return the normalized values and the min/max values, which would improve readability and reduce the risk of errors.\n- (low) The docstring for `compute` mentions 'normalized cost and latency values', but the method does not perform normalization internally. This could be misleading. [line 14] Suggested fix: Update the docstring to clarify that the method expects normalized cost and latency values as inputs.\nSuggestions:\n- Consider adding input validation in the `compute` method to ensure that the input values are within expected ranges (e.g., quality between 0 and 1).\n- Add unit tests to cover edge cases, such as empty sequences, sequences with identical values, and sequences with negative values.\n- Consider adding a method to validate the `UtilityWeights` object to ensure that the weights are non-negative and sum to a reasonable value.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.3,
+        "context_size": "file_only",
+        "language": "python",
+        "sample_code_path": "/Users/markr/Documents/aiwriting/TesseractFlow/tesseract_flow/optimization/utility.py",
+        "analysis_prompt": "You are an expert reviewer of python code.\nContext: Review limited to the provided file.\nReview the following snippet and identify issues.\n```python\n\"\"\"Utility calculations for balancing quality, cost, and latency.\"\"\"\nfrom __future__ import annotations\n\nfrom typing import Iterable, List, Sequence, Tuple\n\nfrom tesseract_flow.core.types import UtilityWeights\n\n\nclass UtilityFunction:\n    \"\"\"Compute weighted utility scores for experiment results.\"\"\"\n\n    def __init__(self, weights: UtilityWeights) -> None:\n        self.weights = weights\n\n    def compute(self, *, quality: float, cost: float, latency: float) -> float:\n        \"\"\"Compute utility using normalized cost and latency values.\"\"\"\n\n        return (\n            self.weights.quality * quality\n            - self.weights.cost * cost\n            - self.weights.time * latency\n        )\n\n    @staticmethod\n    def normalize_metrics(\n        values: Sequence[float], method: str = \"min-max\"\n    ) -> Tuple[List[float], dict[str, float]]:\n        \"\"\"Normalize metric values to the [0, 1] range.\"\"\"\n\n        if method != \"min-max\":\n            msg = f\"Unsupported normalization method: {method}\"\n            raise ValueError(msg)\n\n        values_list = list(values)\n        if not values_list:\n            return [], {\"min\": 0.0, \"max\": 0.0}\n\n        minimum = min(values_list)\n        maximum = max(values_list)\n        if maximum == minimum:\n            return [0.0 for _ in values_list], {\"min\": minimum, \"max\": maximum}\n\n        scale = maximum - minimum\n        normalized = [(value - minimum) / scale for value in values_list]\n        return normalized, {\"min\": minimum, \"max\": maximum}\n\n    def compute_for_sequences(\n        self,\n        qualities: Iterable[float],\n        costs: Sequence[float],\n        latencies: Sequence[float],\n    ) -> List[float]:\n        \"\"\"Compute utilities for aligned quality, cost, and latency sequences.\"\"\"\n\n        normalized_costs, _ = self.normalize_metrics(costs)\n        normalized_latencies, _ = self.normalize_metrics(latencies)\n        normalized_len = len(normalized_costs)\n        if normalized_len != len(normalized_latencies):\n            msg = \"Cost and latency sequences must share the same length.\"\n            raise ValueError(msg)\n\n        quality_list = list(qualities)\n        if len(quality_list) != normalized_len:\n            msg = \"Quality, cost, and latency sequences must be aligned.\"\n            raise ValueError(msg)\n\n        return [\n            self.compute(quality=quality, cost=cost_norm, latency=latency_norm)\n            for quality, cost_norm, latency_norm in zip(\n                quality_list, normalized_costs, normalized_latencies\n            )\n        ]\n```\nReturn JSON with keys 'summary', 'issues', and 'suggestions'. Each issue should include type, severity, description, optional line_number, and suggestion.",
+        "analysis_raw": "```json\n{\n  \"summary\": \"The code snippet defines a `UtilityFunction` class for computing weighted utility scores based on quality, cost, and latency. It includes methods for normalization and utility computation for sequences. Overall, the code is well-structured and follows good practices, but there are a few areas for improvement.\",\n  \"issues\": [\n    {\n      \"type\": \"Type Hinting\",\n      \"severity\": \"Low\",\n      \"description\": \"The `compute_for_sequences` method uses `Iterable[float]` for `qualities` but `Sequence[float]` for `costs` and `latencies`. This inconsistency can lead to confusion and potential issues if the iterable is not indexable.\",\n      \"line_number\": 40,\n      \"suggestion\": \"Consider using `Sequence[float]` for `qualities` to maintain consistency with `costs` and `latencies`.\"\n    },\n    {\n      \"type\": \"Error Handling\",\n      \"severity\": \"Medium\",\n      \"description\": \"The `normalize_metrics` method raises a `ValueError` for unsupported normalization methods, but it does not provide a list of supported methods in the error message.\",\n      \"line_number\": 23,\n      \"suggestion\": \"Update the error message to include the supported normalization methods, e.g., 'Unsupported normalization method: {method}. Supported methods: min-max'.\"\n    },\n    {\n      \"type\": \"Code Readability\",\n      \"severity\": \"Low\",\n      \"description\": \"The `normalize_metrics` method returns a tuple with a list of normalized values and a dictionary of min/max values. The dictionary keys are hardcoded as strings, which could lead to errors if the keys are mistyped.\",\n      \"line_number\": 25,\n      \"suggestion\": \"Consider using a named tuple or a dataclass to return the normalized values and the min/max values, which would improve readability and reduce the risk of errors.\"\n    },\n    {\n      \"type\": \"Documentation\",\n      \"severity\": \"Low\",\n      \"description\": \"The docstring for `compute` mentions 'normalized cost and latency values', but the method does not perform normalization internally. This could be misleading.\",\n      \"line_number\": 14,\n      \"suggestion\": \"Update the docstring to clarify that the method expects normalized cost and latency values as inputs.\"\n    }\n  ],\n  \"suggestions\": [\n    \"Consider adding input validation in the `compute` method to ensure that the input values are within expected ranges (e.g., quality between 0 and 1).\",\n    \"Add unit tests to cover edge cases, such as empty sequences, sequences with identical values, and sequences with negative values.\",\n    \"Consider adding a method to validate the `UtilityWeights` object to ensure that the weights are non-negative and sum to a reasonable value.\"\n  ]\n}\n```",
+        "test_config": {
+          "test_number": 1,
+          "config": {
+            "temperature": 0.3,
+            "model": "openrouter/deepseek/deepseek-chat",
+            "context_size": "file_only",
+            "max_tokens": 2000
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-26T05:34:45.371244Z",
+          "completed_at": "2025-10-26T05:34:54.154738Z",
+          "duration_seconds": 8.783397208026145
+        },
+        "evaluation": {
+          "rubric": {
+            "clarity": {
+              "description": "Is the review easy to follow and well-structured?",
+              "scale": "1-10"
+            },
+            "accuracy": {
+              "description": "Are the identified issues legitimate code problems?",
+              "scale": "1-10"
+            },
+            "actionability": {
+              "description": "Do suggestions provide clear next steps?",
+              "scale": "1-10"
+            }
+          },
+          "raw_response": {
+            "clarity": {
+              "score": 9,
+              "reasoning": "The review is well-structured and easy to follow. Issues are clearly categorized by severity (low, medium), and each issue is accompanied by a suggested fix. The suggestions are also well-organized and actionable."
+            },
+            "accuracy": {
+              "score": 10,
+              "reasoning": "The identified issues are legitimate code problems. The review accurately points out inconsistencies, potential errors, and misleading documentation, which are all valid concerns in the code snippet."
+            },
+            "actionability": {
+              "score": 9,
+              "reasoning": "The suggestions provide clear next steps for improvement. Each issue is accompanied by a specific recommendation, such as using `Sequence[float]` for consistency, updating error messages, and using named tuples or dataclasses. The additional suggestions for input validation and unit tests are also actionable."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "f89a98f1cb1286b68826629e629f63399f699fde6261ff67ce40980efd572d06",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-26T05:34:58.034238Z"
+    },
+    {
+      "test_number": 2,
+      "config": {
+        "test_number": 2,
+        "config_values": {
+          "temperature": 0.3,
+          "model": "openrouter/deepseek/deepseek-chat",
+          "context_size": "file_only",
+          "max_tokens": 4000
+        },
+        "workflow": "code_review"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "clarity": {
+            "score": 0.9,
+            "reasoning": "The review is well-structured and easy to follow. Issues and suggestions are clearly separated, and each point is explained concisely. However, the review could be slightly improved by grouping related issues or suggestions together for better flow."
+          },
+          "accuracy": {
+            "score": 1.0,
+            "reasoning": "All identified issues are legitimate code problems. The reviewer accurately points out type hint inconsistencies, redundant code, missing documentation, and potential improvements in error handling and functionality."
+          },
+          "actionability": {
+            "score": 0.9,
+            "reasoning": "The suggestions provide clear next steps for improving the code. Each suggestion is specific and actionable, such as updating type hints, extending error messages, adding unit tests, and considering additional normalization methods. However, some suggestions could be more detailed, such as specifying which normalization methods to add or how to implement logging."
+          }
+        },
+        "overall_score": 0.9333333333333332,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-26T05:35:10.771349Z",
+        "metadata": {
+          "rubric": {
+            "clarity": {
+              "description": "Is the review easy to follow and well-structured?",
+              "scale": "1-10"
+            },
+            "accuracy": {
+              "description": "Are the identified issues legitimate code problems?",
+              "scale": "1-10"
+            },
+            "actionability": {
+              "description": "Do suggestions provide clear next steps?",
+              "scale": "1-10"
+            }
+          },
+          "raw_response": {
+            "clarity": {
+              "score": 9,
+              "reasoning": "The review is well-structured and easy to follow. Issues and suggestions are clearly separated, and each point is explained concisely. However, the review could be slightly improved by grouping related issues or suggestions together for better flow."
+            },
+            "accuracy": {
+              "score": 10,
+              "reasoning": "All identified issues are legitimate code problems. The reviewer accurately points out type hint inconsistencies, redundant code, missing documentation, and potential improvements in error handling and functionality."
+            },
+            "actionability": {
+              "score": 9,
+              "reasoning": "The suggestions provide clear next steps for improving the code. Each suggestion is specific and actionable, such as updating type hints, extending error messages, adding unit tests, and considering additional normalization methods. However, some suggestions could be more detailed, such as specifying which normalization methods to add or how to implement logging."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "aaf9826d4bc010629c004b0aefe9fa9a8622149c921d70344a074ffab44374ac",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 7208.597374992678,
+      "utility": 0.9333333333333332,
+      "workflow_output": "The provided Python code snippet defines a `UtilityFunction` class for computing weighted utility scores based on quality, cost, and latency. The code is generally well-structured and follows good practices, but there are a few issues and areas for improvement.\nIssues:\n- (low) The `normalize_metrics` method returns a tuple containing a list of normalized values and a dictionary of min and max values. The return type hint does not specify the types of the dictionary values. [line 26] Suggested fix: Update the return type hint to `Tuple[List[float], dict[str, float]]` to explicitly indicate that the dictionary values are floats.\n- (medium) The `normalize_metrics` method raises a `ValueError` if the normalization method is not 'min-max'. However, it does not provide guidance on supported methods or suggest alternatives. [line 29] Suggested fix: Consider extending the error message to list supported normalization methods or provide a default fallback method.\n- (low) The `normalize_metrics` method converts the input `values` to a list twice: once in the `values_list = list(values)` line and implicitly in the `min` and `max` functions. [line 32] Suggested fix: Remove the redundant conversion by directly using `values` in the `min` and `max` functions.\n- (low) The docstring for `compute_for_sequences` does not mention that the input sequences must be of the same length, even though this is enforced by the code. [line 49] Suggested fix: Update the docstring to explicitly state that the input sequences must be aligned and of the same length.\nSuggestions:\n- Consider adding more normalization methods to the `normalize_metrics` method to increase flexibility.\n- Add unit tests to ensure that the `compute_for_sequences` method correctly handles sequences of varying lengths and edge cases.\n- Consider adding logging to the `normalize_metrics` method to track normalization operations, especially in a production environment.\n- Evaluate whether the `UtilityWeights` class should enforce constraints on the weights (e.g., ensuring they sum to 1) to maintain consistency in utility calculations.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.3,
+        "context_size": "file_only",
+        "language": "python",
+        "sample_code_path": "/Users/markr/Documents/aiwriting/TesseractFlow/tesseract_flow/optimization/utility.py",
+        "analysis_prompt": "You are an expert reviewer of python code.\nContext: Review limited to the provided file.\nReview the following snippet and identify issues.\n```python\n\"\"\"Utility calculations for balancing quality, cost, and latency.\"\"\"\nfrom __future__ import annotations\n\nfrom typing import Iterable, List, Sequence, Tuple\n\nfrom tesseract_flow.core.types import UtilityWeights\n\n\nclass UtilityFunction:\n    \"\"\"Compute weighted utility scores for experiment results.\"\"\"\n\n    def __init__(self, weights: UtilityWeights) -> None:\n        self.weights = weights\n\n    def compute(self, *, quality: float, cost: float, latency: float) -> float:\n        \"\"\"Compute utility using normalized cost and latency values.\"\"\"\n\n        return (\n            self.weights.quality * quality\n            - self.weights.cost * cost\n            - self.weights.time * latency\n        )\n\n    @staticmethod\n    def normalize_metrics(\n        values: Sequence[float], method: str = \"min-max\"\n    ) -> Tuple[List[float], dict[str, float]]:\n        \"\"\"Normalize metric values to the [0, 1] range.\"\"\"\n\n        if method != \"min-max\":\n            msg = f\"Unsupported normalization method: {method}\"\n            raise ValueError(msg)\n\n        values_list = list(values)\n        if not values_list:\n            return [], {\"min\": 0.0, \"max\": 0.0}\n\n        minimum = min(values_list)\n        maximum = max(values_list)\n        if maximum == minimum:\n            return [0.0 for _ in values_list], {\"min\": minimum, \"max\": maximum}\n\n        scale = maximum - minimum\n        normalized = [(value - minimum) / scale for value in values_list]\n        return normalized, {\"min\": minimum, \"max\": maximum}\n\n    def compute_for_sequences(\n        self,\n        qualities: Iterable[float],\n        costs: Sequence[float],\n        latencies: Sequence[float],\n    ) -> List[float]:\n        \"\"\"Compute utilities for aligned quality, cost, and latency sequences.\"\"\"\n\n        normalized_costs, _ = self.normalize_metrics(costs)\n        normalized_latencies, _ = self.normalize_metrics(latencies)\n        normalized_len = len(normalized_costs)\n        if normalized_len != len(normalized_latencies):\n            msg = \"Cost and latency sequences must share the same length.\"\n            raise ValueError(msg)\n\n        quality_list = list(qualities)\n        if len(quality_list) != normalized_len:\n            msg = \"Quality, cost, and latency sequences must be aligned.\"\n            raise ValueError(msg)\n\n        return [\n            self.compute(quality=quality, cost=cost_norm, latency=latency_norm)\n            for quality, cost_norm, latency_norm in zip(\n                quality_list, normalized_costs, normalized_latencies\n            )\n        ]\n```\nReturn JSON with keys 'summary', 'issues', and 'suggestions'. Each issue should include type, severity, description, optional line_number, and suggestion.",
+        "analysis_raw": "```json\n{\n  \"summary\": \"The provided Python code snippet defines a `UtilityFunction` class for computing weighted utility scores based on quality, cost, and latency. The code is generally well-structured and follows good practices, but there are a few issues and areas for improvement.\",\n  \"issues\": [\n    {\n      \"type\": \"Type Hinting\",\n      \"severity\": \"Low\",\n      \"description\": \"The `normalize_metrics` method returns a tuple containing a list of normalized values and a dictionary of min and max values. The return type hint does not specify the types of the dictionary values.\",\n      \"line_number\": 26,\n      \"suggestion\": \"Update the return type hint to `Tuple[List[float], dict[str, float]]` to explicitly indicate that the dictionary values are floats.\"\n    },\n    {\n      \"type\": \"Error Handling\",\n      \"severity\": \"Medium\",\n      \"description\": \"The `normalize_metrics` method raises a `ValueError` if the normalization method is not 'min-max'. However, it does not provide guidance on supported methods or suggest alternatives.\",\n      \"line_number\": 29,\n      \"suggestion\": \"Consider extending the error message to list supported normalization methods or provide a default fallback method.\"\n    },\n    {\n      \"type\": \"Code Duplication\",\n      \"severity\": \"Low\",\n      \"description\": \"The `normalize_metrics` method converts the input `values` to a list twice: once in the `values_list = list(values)` line and implicitly in the `min` and `max` functions.\",\n      \"line_number\": 32,\n      \"suggestion\": \"Remove the redundant conversion by directly using `values` in the `min` and `max` functions.\"\n    },\n    {\n      \"type\": \"Documentation\",\n      \"severity\": \"Low\",\n      \"description\": \"The docstring for `compute_for_sequences` does not mention that the input sequences must be of the same length, even though this is enforced by the code.\",\n      \"line_number\": 49,\n      \"suggestion\": \"Update the docstring to explicitly state that the input sequences must be aligned and of the same length.\"\n    }\n  ],\n  \"suggestions\": [\n    \"Consider adding more normalization methods to the `normalize_metrics` method to increase flexibility.\",\n    \"Add unit tests to ensure that the `compute_for_sequences` method correctly handles sequences of varying lengths and edge cases.\",\n    \"Consider adding logging to the `normalize_metrics` method to track normalization operations, especially in a production environment.\",\n    \"Evaluate whether the `UtilityWeights` class should enforce constraints on the weights (e.g., ensuring they sum to 1) to maintain consistency in utility calculations.\"\n  ]\n}\n```",
+        "test_config": {
+          "test_number": 2,
+          "config": {
+            "temperature": 0.3,
+            "model": "openrouter/deepseek/deepseek-chat",
+            "context_size": "file_only",
+            "max_tokens": 4000
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-26T05:34:58.035308Z",
+          "completed_at": "2025-10-26T05:35:05.243986Z",
+          "duration_seconds": 7.208597374992678
+        },
+        "evaluation": {
+          "rubric": {
+            "clarity": {
+              "description": "Is the review easy to follow and well-structured?",
+              "scale": "1-10"
+            },
+            "accuracy": {
+              "description": "Are the identified issues legitimate code problems?",
+              "scale": "1-10"
+            },
+            "actionability": {
+              "description": "Do suggestions provide clear next steps?",
+              "scale": "1-10"
+            }
+          },
+          "raw_response": {
+            "clarity": {
+              "score": 9,
+              "reasoning": "The review is well-structured and easy to follow. Issues and suggestions are clearly separated, and each point is explained concisely. However, the review could be slightly improved by grouping related issues or suggestions together for better flow."
+            },
+            "accuracy": {
+              "score": 10,
+              "reasoning": "All identified issues are legitimate code problems. The reviewer accurately points out type hint inconsistencies, redundant code, missing documentation, and potential improvements in error handling and functionality."
+            },
+            "actionability": {
+              "score": 9,
+              "reasoning": "The suggestions provide clear next steps for improving the code. Each suggestion is specific and actionable, such as updating type hints, extending error messages, adding unit tests, and considering additional normalization methods. However, some suggestions could be more detailed, such as specifying which normalization methods to add or how to implement logging."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "aaf9826d4bc010629c004b0aefe9fa9a8622149c921d70344a074ffab44374ac",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-26T05:35:10.771579Z"
+    }
+  ],
+  "status": "FAILED",
+  "started_at": "2025-10-26T05:34:45.364990Z",
+  "error": "Workflow execution failed.",
+  "experiment_metadata": {
+    "config_hash": "23e967f673f1079d778626c8986e1041c1806a78588511abaa68e47bb3d8d8b3",
+    "created_at": "2025-10-26T05:34:45.364868Z",
+    "dependencies": {
+      "pydantic": "2.12.3",
+      "langgraph": "1.0.1",
+      "litellm": "1.79.0"
+    },
+    "non_deterministic_sources": [
+      "llm_sampling"
+    ]
+  },
+  "metadata": {
+    "normalization": {
+      "cost": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "latency": {
+        "min": 7208.597374992678,
+        "max": 8783.397208026145
+      }
+    }
+  },
+  "baseline_test_number": 1,
+  "baseline_config": {
+    "test_number": 1,
+    "config_values": {
+      "temperature": 0.3,
+      "model": "openrouter/deepseek/deepseek-chat",
+      "context_size": "file_only",
+      "max_tokens": 2000
+    },
+    "workflow": "code_review"
+  },
+  "baseline_result": {
+    "test_number": 1,
+    "config": {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.3,
+        "model": "openrouter/deepseek/deepseek-chat",
+        "context_size": "file_only",
+        "max_tokens": 2000
+      },
+      "workflow": "code_review"
+    },
+    "quality_score": {
+      "dimension_scores": {
+        "clarity": {
+          "score": 0.9,
+          "reasoning": "The review is well-structured and easy to follow. Issues are clearly categorized by severity (low, medium), and each issue is accompanied by a suggested fix. The suggestions are also well-organized and actionable."
+        },
+        "accuracy": {
+          "score": 1.0,
+          "reasoning": "The identified issues are legitimate code problems. The review accurately points out inconsistencies, potential errors, and misleading documentation, which are all valid concerns in the code snippet."
+        },
+        "actionability": {
+          "score": 0.9,
+          "reasoning": "The suggestions provide clear next steps for improvement. Each issue is accompanied by a specific recommendation, such as using `Sequence[float]` for consistency, updating error messages, and using named tuples or dataclasses. The additional suggestions for input validation and unit tests are also actionable."
+        }
+      },
+      "overall_score": 0.9333333333333332,
+      "evaluator_model": "openrouter/deepseek/deepseek-chat",
+      "timestamp": "2025-10-26T05:34:58.034099Z",
+      "metadata": {
+        "rubric": {
+          "clarity": {
+            "description": "Is the review easy to follow and well-structured?",
+            "scale": "1-10"
+          },
+          "accuracy": {
+            "description": "Are the identified issues legitimate code problems?",
+            "scale": "1-10"
+          },
+          "actionability": {
+            "description": "Do suggestions provide clear next steps?",
+            "scale": "1-10"
+          }
+        },
+        "raw_response": {
+          "clarity": {
+            "score": 9,
+            "reasoning": "The review is well-structured and easy to follow. Issues are clearly categorized by severity (low, medium), and each issue is accompanied by a suggested fix. The suggestions are also well-organized and actionable."
+          },
+          "accuracy": {
+            "score": 10,
+            "reasoning": "The identified issues are legitimate code problems. The review accurately points out inconsistencies, potential errors, and misleading documentation, which are all valid concerns in the code snippet."
+          },
+          "actionability": {
+            "score": 9,
+            "reasoning": "The suggestions provide clear next steps for improvement. Each issue is accompanied by a specific recommendation, such as using `Sequence[float]` for consistency, updating error messages, and using named tuples or dataclasses. The additional suggestions for input validation and unit tests are also actionable."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "f89a98f1cb1286b68826629e629f63399f699fde6261ff67ce40980efd572d06",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/deepseek/deepseek-chat"
+      }
+    },
+    "cost": 0.0,
+    "latency": 8783.397208026145,
+    "utility": 0.9333333333333332,
+    "workflow_output": "The code snippet defines a `UtilityFunction` class for computing weighted utility scores based on quality, cost, and latency. It includes methods for normalization and utility computation for sequences. Overall, the code is well-structured and follows good practices, but there are a few areas for improvement.\nIssues:\n- (low) The `compute_for_sequences` method uses `Iterable[float]` for `qualities` but `Sequence[float]` for `costs` and `latencies`. This inconsistency can lead to confusion and potential issues if the iterable is not indexable. [line 40] Suggested fix: Consider using `Sequence[float]` for `qualities` to maintain consistency with `costs` and `latencies`.\n- (medium) The `normalize_metrics` method raises a `ValueError` for unsupported normalization methods, but it does not provide a list of supported methods in the error message. [line 23] Suggested fix: Update the error message to include the supported normalization methods, e.g., 'Unsupported normalization method: {method}. Supported methods: min-max'.\n- (low) The `normalize_metrics` method returns a tuple with a list of normalized values and a dictionary of min/max values. The dictionary keys are hardcoded as strings, which could lead to errors if the keys are mistyped. [line 25] Suggested fix: Consider using a named tuple or a dataclass to return the normalized values and the min/max values, which would improve readability and reduce the risk of errors.\n- (low) The docstring for `compute` mentions 'normalized cost and latency values', but the method does not perform normalization internally. This could be misleading. [line 14] Suggested fix: Update the docstring to clarify that the method expects normalized cost and latency values as inputs.\nSuggestions:\n- Consider adding input validation in the `compute` method to ensure that the input values are within expected ranges (e.g., quality between 0 and 1).\n- Add unit tests to cover edge cases, such as empty sequences, sequences with identical values, and sequences with negative values.\n- Consider adding a method to validate the `UtilityWeights` object to ensure that the weights are non-negative and sum to a reasonable value.",
+    "metadata": {
+      "strategy": "standard",
+      "model": "openrouter/deepseek/deepseek-chat",
+      "temperature": 0.3,
+      "context_size": "file_only",
+      "language": "python",
+      "sample_code_path": "/Users/markr/Documents/aiwriting/TesseractFlow/tesseract_flow/optimization/utility.py",
+      "analysis_prompt": "You are an expert reviewer of python code.\nContext: Review limited to the provided file.\nReview the following snippet and identify issues.\n```python\n\"\"\"Utility calculations for balancing quality, cost, and latency.\"\"\"\nfrom __future__ import annotations\n\nfrom typing import Iterable, List, Sequence, Tuple\n\nfrom tesseract_flow.core.types import UtilityWeights\n\n\nclass UtilityFunction:\n    \"\"\"Compute weighted utility scores for experiment results.\"\"\"\n\n    def __init__(self, weights: UtilityWeights) -> None:\n        self.weights = weights\n\n    def compute(self, *, quality: float, cost: float, latency: float) -> float:\n        \"\"\"Compute utility using normalized cost and latency values.\"\"\"\n\n        return (\n            self.weights.quality * quality\n            - self.weights.cost * cost\n            - self.weights.time * latency\n        )\n\n    @staticmethod\n    def normalize_metrics(\n        values: Sequence[float], method: str = \"min-max\"\n    ) -> Tuple[List[float], dict[str, float]]:\n        \"\"\"Normalize metric values to the [0, 1] range.\"\"\"\n\n        if method != \"min-max\":\n            msg = f\"Unsupported normalization method: {method}\"\n            raise ValueError(msg)\n\n        values_list = list(values)\n        if not values_list:\n            return [], {\"min\": 0.0, \"max\": 0.0}\n\n        minimum = min(values_list)\n        maximum = max(values_list)\n        if maximum == minimum:\n            return [0.0 for _ in values_list], {\"min\": minimum, \"max\": maximum}\n\n        scale = maximum - minimum\n        normalized = [(value - minimum) / scale for value in values_list]\n        return normalized, {\"min\": minimum, \"max\": maximum}\n\n    def compute_for_sequences(\n        self,\n        qualities: Iterable[float],\n        costs: Sequence[float],\n        latencies: Sequence[float],\n    ) -> List[float]:\n        \"\"\"Compute utilities for aligned quality, cost, and latency sequences.\"\"\"\n\n        normalized_costs, _ = self.normalize_metrics(costs)\n        normalized_latencies, _ = self.normalize_metrics(latencies)\n        normalized_len = len(normalized_costs)\n        if normalized_len != len(normalized_latencies):\n            msg = \"Cost and latency sequences must share the same length.\"\n            raise ValueError(msg)\n\n        quality_list = list(qualities)\n        if len(quality_list) != normalized_len:\n            msg = \"Quality, cost, and latency sequences must be aligned.\"\n            raise ValueError(msg)\n\n        return [\n            self.compute(quality=quality, cost=cost_norm, latency=latency_norm)\n            for quality, cost_norm, latency_norm in zip(\n                quality_list, normalized_costs, normalized_latencies\n            )\n        ]\n```\nReturn JSON with keys 'summary', 'issues', and 'suggestions'. Each issue should include type, severity, description, optional line_number, and suggestion.",
+      "analysis_raw": "```json\n{\n  \"summary\": \"The code snippet defines a `UtilityFunction` class for computing weighted utility scores based on quality, cost, and latency. It includes methods for normalization and utility computation for sequences. Overall, the code is well-structured and follows good practices, but there are a few areas for improvement.\",\n  \"issues\": [\n    {\n      \"type\": \"Type Hinting\",\n      \"severity\": \"Low\",\n      \"description\": \"The `compute_for_sequences` method uses `Iterable[float]` for `qualities` but `Sequence[float]` for `costs` and `latencies`. This inconsistency can lead to confusion and potential issues if the iterable is not indexable.\",\n      \"line_number\": 40,\n      \"suggestion\": \"Consider using `Sequence[float]` for `qualities` to maintain consistency with `costs` and `latencies`.\"\n    },\n    {\n      \"type\": \"Error Handling\",\n      \"severity\": \"Medium\",\n      \"description\": \"The `normalize_metrics` method raises a `ValueError` for unsupported normalization methods, but it does not provide a list of supported methods in the error message.\",\n      \"line_number\": 23,\n      \"suggestion\": \"Update the error message to include the supported normalization methods, e.g., 'Unsupported normalization method: {method}. Supported methods: min-max'.\"\n    },\n    {\n      \"type\": \"Code Readability\",\n      \"severity\": \"Low\",\n      \"description\": \"The `normalize_metrics` method returns a tuple with a list of normalized values and a dictionary of min/max values. The dictionary keys are hardcoded as strings, which could lead to errors if the keys are mistyped.\",\n      \"line_number\": 25,\n      \"suggestion\": \"Consider using a named tuple or a dataclass to return the normalized values and the min/max values, which would improve readability and reduce the risk of errors.\"\n    },\n    {\n      \"type\": \"Documentation\",\n      \"severity\": \"Low\",\n      \"description\": \"The docstring for `compute` mentions 'normalized cost and latency values', but the method does not perform normalization internally. This could be misleading.\",\n      \"line_number\": 14,\n      \"suggestion\": \"Update the docstring to clarify that the method expects normalized cost and latency values as inputs.\"\n    }\n  ],\n  \"suggestions\": [\n    \"Consider adding input validation in the `compute` method to ensure that the input values are within expected ranges (e.g., quality between 0 and 1).\",\n    \"Add unit tests to cover edge cases, such as empty sequences, sequences with identical values, and sequences with negative values.\",\n    \"Consider adding a method to validate the `UtilityWeights` object to ensure that the weights are non-negative and sum to a reasonable value.\"\n  ]\n}\n```",
+      "test_config": {
+        "test_number": 1,
+        "config": {
+          "temperature": 0.3,
+          "model": "openrouter/deepseek/deepseek-chat",
+          "context_size": "file_only",
+          "max_tokens": 2000
+        }
+      },
+      "workflow": {
+        "started_at": "2025-10-26T05:34:45.371244Z",
+        "completed_at": "2025-10-26T05:34:54.154738Z",
+        "duration_seconds": 8.783397208026145
+      },
+      "evaluation": {
+        "rubric": {
+          "clarity": {
+            "description": "Is the review easy to follow and well-structured?",
+            "scale": "1-10"
+          },
+          "accuracy": {
+            "description": "Are the identified issues legitimate code problems?",
+            "scale": "1-10"
+          },
+          "actionability": {
+            "description": "Do suggestions provide clear next steps?",
+            "scale": "1-10"
+          }
+        },
+        "raw_response": {
+          "clarity": {
+            "score": 9,
+            "reasoning": "The review is well-structured and easy to follow. Issues are clearly categorized by severity (low, medium), and each issue is accompanied by a suggested fix. The suggestions are also well-organized and actionable."
+          },
+          "accuracy": {
+            "score": 10,
+            "reasoning": "The identified issues are legitimate code problems. The review accurately points out inconsistencies, potential errors, and misleading documentation, which are all valid concerns in the code snippet."
+          },
+          "actionability": {
+            "score": 9,
+            "reasoning": "The suggestions provide clear next steps for improvement. Each issue is accompanied by a specific recommendation, such as using `Sequence[float]` for consistency, updating error messages, and using named tuples or dataclasses. The additional suggestions for input validation and unit tests are also actionable."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "f89a98f1cb1286b68826629e629f63399f699fde6261ff67ce40980efd572d06",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/deepseek/deepseek-chat"
+      }
+    },
+    "timestamp": "2025-10-26T05:34:58.034238Z"
+  },
+  "baseline_quality": 0.9333333333333332,
+  "quality_improvement_pct": 0.0
+}

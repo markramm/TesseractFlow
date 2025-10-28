@@ -1,0 +1,1599 @@
+{
+  "experiment_id": "deepseek_fiction_scene_generation-20251028T023442",
+  "config": {
+    "name": "deepseek_fiction_scene_generation",
+    "workflow": "fiction_scene",
+    "variables": [
+      {
+        "name": "temperature",
+        "level_1": 0.5,
+        "level_2": 0.9
+      },
+      {
+        "name": "generation_strategy",
+        "level_1": "standard",
+        "level_2": "chain_of_thought"
+      },
+      {
+        "name": "context_depth",
+        "level_1": "minimal",
+        "level_2": "full"
+      },
+      {
+        "name": "prose_style",
+        "level_1": "concise",
+        "level_2": "lyrical"
+      }
+    ],
+    "utility_weights": {
+      "quality": 0.8,
+      "cost": 0.15,
+      "time": 0.05
+    },
+    "workflow_config": {
+      "rubric": {
+        "creativity": {
+          "description": "Original prose, unexpected emotional beats, fresh descriptions",
+          "scale": "0-100 points",
+          "weight": 0.3
+        },
+        "consistency": {
+          "description": "Character voice, plot continuity, tone adherence",
+          "scale": "0-100 points",
+          "weight": 0.3
+        },
+        "prose_quality": {
+          "description": "Vivid descriptions, varied sentence structure, natural flow",
+          "scale": "0-100 points",
+          "weight": 0.2
+        },
+        "dialogue": {
+          "description": "Natural speech, distinct voices, emotional authenticity",
+          "scale": "0-100 points",
+          "weight": 0.2
+        }
+      },
+      "sample_code_path": "tesseract_flow/workflows/code_review.py",
+      "evaluator_model": "openrouter/deepseek/deepseek-chat",
+      "language": "python",
+      "evaluator_temperature": 0.1
+    }
+  },
+  "test_configurations": [
+    {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.5,
+        "generation_strategy": "standard",
+        "context_depth": "minimal",
+        "prose_style": "concise"
+      },
+      "workflow": "fiction_scene"
+    },
+    {
+      "test_number": 2,
+      "config_values": {
+        "temperature": 0.5,
+        "generation_strategy": "standard",
+        "context_depth": "minimal",
+        "prose_style": "lyrical"
+      },
+      "workflow": "fiction_scene"
+    },
+    {
+      "test_number": 3,
+      "config_values": {
+        "temperature": 0.5,
+        "generation_strategy": "chain_of_thought",
+        "context_depth": "full",
+        "prose_style": "concise"
+      },
+      "workflow": "fiction_scene"
+    },
+    {
+      "test_number": 4,
+      "config_values": {
+        "temperature": 0.5,
+        "generation_strategy": "chain_of_thought",
+        "context_depth": "full",
+        "prose_style": "lyrical"
+      },
+      "workflow": "fiction_scene"
+    },
+    {
+      "test_number": 5,
+      "config_values": {
+        "temperature": 0.9,
+        "generation_strategy": "standard",
+        "context_depth": "full",
+        "prose_style": "concise"
+      },
+      "workflow": "fiction_scene"
+    },
+    {
+      "test_number": 6,
+      "config_values": {
+        "temperature": 0.9,
+        "generation_strategy": "standard",
+        "context_depth": "full",
+        "prose_style": "lyrical"
+      },
+      "workflow": "fiction_scene"
+    },
+    {
+      "test_number": 7,
+      "config_values": {
+        "temperature": 0.9,
+        "generation_strategy": "chain_of_thought",
+        "context_depth": "minimal",
+        "prose_style": "concise"
+      },
+      "workflow": "fiction_scene"
+    },
+    {
+      "test_number": 8,
+      "config_values": {
+        "temperature": 0.9,
+        "generation_strategy": "chain_of_thought",
+        "context_depth": "minimal",
+        "prose_style": "lyrical"
+      },
+      "workflow": "fiction_scene"
+    }
+  ],
+  "results": [
+    {
+      "test_number": 1,
+      "config": {
+        "test_number": 1,
+        "config_values": {
+          "temperature": 0.5,
+          "generation_strategy": "standard",
+          "context_depth": "minimal",
+          "prose_style": "concise"
+        },
+        "workflow": "fiction_scene"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "creativity": {
+            "score": 0.85,
+            "reasoning": "The scene is original with fresh descriptions like 'shadows clung to the corners' and 'the faint tang of anxiety that seemed to radiate from Alex.' Emotional beats are unexpected, such as the shift from tension to cautious optimism."
+          },
+          "consistency": {
+            "score": 0.9,
+            "reasoning": "Character voices are consistent, with Alex's nervousness and Jordan's calm demeanor maintained throughout. The plot flows smoothly from tension to collaboration, and the tone remains steady."
+          },
+          "prose_quality": {
+            "score": 0.88,
+            "reasoning": "Descriptions are vivid, such as 'the glow of the screen casting sharp angles across their face.' Sentence structure is varied, and the narrative flows naturally, enhancing the reader's immersion."
+          },
+          "dialogue": {
+            "score": 0.92,
+            "reasoning": "Dialogue feels natural and authentic, with distinct voices for Alex and Jordan. Emotional authenticity is evident, especially in moments like Jordan's reassurance and Alex's growing confidence."
+          }
+        },
+        "overall_score": 0.8875,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T02:35:11.419971Z",
+        "metadata": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 85,
+              "reasoning": "The scene is original with fresh descriptions like 'shadows clung to the corners' and 'the faint tang of anxiety that seemed to radiate from Alex.' Emotional beats are unexpected, such as the shift from tension to cautious optimism."
+            },
+            "consistency": {
+              "score": 90,
+              "reasoning": "Character voices are consistent, with Alex's nervousness and Jordan's calm demeanor maintained throughout. The plot flows smoothly from tension to collaboration, and the tone remains steady."
+            },
+            "prose_quality": {
+              "score": 88,
+              "reasoning": "Descriptions are vivid, such as 'the glow of the screen casting sharp angles across their face.' Sentence structure is varied, and the narrative flows naturally, enhancing the reader's immersion."
+            },
+            "dialogue": {
+              "score": 92,
+              "reasoning": "Dialogue feels natural and authentic, with distinct voices for Alex and Jordan. Emotional authenticity is evident, especially in moments like Jordan's reassurance and Alex's growing confidence."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "e6a7f1a3a7d98085bbfbf1f53757fe67e4bbd24174dea8a0273d8515a65d840e",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 24895.63650000491,
+      "utility": 0.6766354674760887,
+      "workflow_output": "Generated Scene:\nThe coffee shop was dimly lit, the kind of place where shadows clung to the corners and the hum of conversation blended with the rhythmic hiss of the espresso machine. The faint scent of roasted beans and burnt sugar hung in the air, mingling with the faint tang of anxiety that seemed to radiate from Alex. They sat at a corner table, their laptop open, the glow of the screen casting sharp angles across their face. Their fingers tapped nervously against the edge of the keyboard, the sound barely audible over the low murmur of the shop.\n\nJordan slid into the chair across from them, setting down a steaming cup of black coffee. Their presence was calm, almost grounding, but there was a tension in the way they leaned forward, elbows on the table. \"You ready?\" Jordan asked, their voice low but steady.\n\nAlex nodded, though their jaw tightened. \"Yeah. Let’s do this.\"\n\nJordan pulled out their own laptop, the screen flickering to life. The LangGraph interface greeted them, its clean lines and minimalist design a stark contrast to the chaos Alex felt inside. \"Alright,\" Jordan said, clicking through the workflow. \"Let’s start with the pull request. You’ve got the changes up?\"\n\n\"Yeah,\" Alex replied, their voice slightly hoarse. They cleared their throat and gestured to their screen. \"It’s all there. But I’m not sure if I—\"\n\n\"Hey,\" Jordan interrupted, their tone firm but kind. \"We’re here to figure it out together. No one’s expecting perfection. Just walk me through it.\"\n\nAlex took a deep breath, the scent of coffee grounding them for a moment. They clicked through their code, explaining each change, their voice gaining confidence as they went. Jordan listened intently, occasionally nodding or furrowing their brow. The tension in the air shifted, the weight of uncertainty giving way to a cautious optimism.\n\n\"Okay,\" Jordan said finally, leaning back in their chair. \"I see what you’re going for here. The logic’s solid, but there’s a couple of places where we might need to tighten things up. Let’s go over the graph—see how it flows.\"\n\nAlex’s shoulders relaxed slightly, and they nodded. \"Yeah. That’s what I was worried about.\"\n\nJordan clicked through the LangGraph interface, the nodes and edges of the workflow appearing on the screen. \"Look here,\" they said, pointing to a specific node. \"This is where the bottleneck could happen. If we adjust this, it’ll streamline the whole process.\"\n\nAlex leaned in, their eyes narrowing as they studied the graph. \"You’re right,\" they murmured, their voice tinged with relief. \"That makes sense. I didn’t even see that.\"\n\n\"Nobody sees everything,\" Jordan said with a small smile. \"That’s why we do this. Two heads, right?\"\n\nAlex chuckled softly, the sound easing the tension in the air. \"Right.\"\n\nFor a moment, the coffee shop seemed to fade away, the dim lighting and hushed conversations replaced by the glow of the screens and the quiet rhythm of their collaboration. The tension was still there, but it was different now—less oppressive, more like the kind of tension that comes with stepping into the unknown, armed with the knowledge that you’re not alone.\n\n\"Alright,\" Jordan said, closing their laptop. \"Let’s make those changes and push it through. You’ve got this.\"\n\nAlex nodded, their fingers hovering over the keyboard. \"Thanks, Jordan. I mean it.\"\n\nJordan shrugged, their smile easy. \"Anytime. Now, let’s get this done so we can celebrate with another round of coffee.\"\n\nAlex grinned, the weight lifting from their chest as they turned back to their screen. The coffee shop buzzed around them, but for the first time that evening, Alex felt like they were exactly where they needed to be.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "context_approach": "minimal",
+        "generation_prompt": "You are a skilled fiction writer. Generate a compelling scene based on the following:\n\nScene Description: \"\"\"Code review workflow built on LangGraph.\"\"\"\nCharacters: Alex, Jordan\nSetting: a dimly lit coffee shop\nTone: tense but hopeful\nContext: Write based on the information provided.\n\nWrite a vivid, engaging scene that brings this description to life. Focus on:\n- Show, don't tell\n- Vivid sensory details\n- Natural character actions and reactions\n- Appropriate pacing and tension\n\nGenerate the scene as plain text, no JSON or formatting.",
+        "generated_raw": "The coffee shop was dimly lit, the kind of place where shadows clung to the corners and the hum of conversation blended with the rhythmic hiss of the espresso machine. The faint scent of roasted beans and burnt sugar hung in the air, mingling with the faint tang of anxiety that seemed to radiate from Alex. They sat at a corner table, their laptop open, the glow of the screen casting sharp angles across their face. Their fingers tapped nervously against the edge of the keyboard, the sound barely audible over the low murmur of the shop.\n\nJordan slid into the chair across from them, setting down a steaming cup of black coffee. Their presence was calm, almost grounding, but there was a tension in the way they leaned forward, elbows on the table. \"You ready?\" Jordan asked, their voice low but steady.\n\nAlex nodded, though their jaw tightened. \"Yeah. Let’s do this.\"\n\nJordan pulled out their own laptop, the screen flickering to life. The LangGraph interface greeted them, its clean lines and minimalist design a stark contrast to the chaos Alex felt inside. \"Alright,\" Jordan said, clicking through the workflow. \"Let’s start with the pull request. You’ve got the changes up?\"\n\n\"Yeah,\" Alex replied, their voice slightly hoarse. They cleared their throat and gestured to their screen. \"It’s all there. But I’m not sure if I—\"\n\n\"Hey,\" Jordan interrupted, their tone firm but kind. \"We’re here to figure it out together. No one’s expecting perfection. Just walk me through it.\"\n\nAlex took a deep breath, the scent of coffee grounding them for a moment. They clicked through their code, explaining each change, their voice gaining confidence as they went. Jordan listened intently, occasionally nodding or furrowing their brow. The tension in the air shifted, the weight of uncertainty giving way to a cautious optimism.\n\n\"Okay,\" Jordan said finally, leaning back in their chair. \"I see what you’re going for here. The logic’s solid, but there’s a couple of places where we might need to tighten things up. Let’s go over the graph—see how it flows.\"\n\nAlex’s shoulders relaxed slightly, and they nodded. \"Yeah. That’s what I was worried about.\"\n\nJordan clicked through the LangGraph interface, the nodes and edges of the workflow appearing on the screen. \"Look here,\" they said, pointing to a specific node. \"This is where the bottleneck could happen. If we adjust this, it’ll streamline the whole process.\"\n\nAlex leaned in, their eyes narrowing as they studied the graph. \"You’re right,\" they murmured, their voice tinged with relief. \"That makes sense. I didn’t even see that.\"\n\n\"Nobody sees everything,\" Jordan said with a small smile. \"That’s why we do this. Two heads, right?\"\n\nAlex chuckled softly, the sound easing the tension in the air. \"Right.\"\n\nFor a moment, the coffee shop seemed to fade away, the dim lighting and hushed conversations replaced by the glow of the screens and the quiet rhythm of their collaboration. The tension was still there, but it was different now—less oppressive, more like the kind of tension that comes with stepping into the unknown, armed with the knowledge that you’re not alone.\n\n\"Alright,\" Jordan said, closing their laptop. \"Let’s make those changes and push it through. You’ve got this.\"\n\nAlex nodded, their fingers hovering over the keyboard. \"Thanks, Jordan. I mean it.\"\n\nJordan shrugged, their smile easy. \"Anytime. Now, let’s get this done so we can celebrate with another round of coffee.\"\n\nAlex grinned, the weight lifting from their chest as they turned back to their screen. The coffee shop buzzed around them, but for the first time that evening, Alex felt like they were exactly where they needed to be.",
+        "test_config": {
+          "test_number": 1,
+          "config": {
+            "temperature": 0.5,
+            "generation_strategy": "standard",
+            "context_depth": "minimal",
+            "prose_style": "concise"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T02:34:42.342751Z",
+          "completed_at": "2025-10-28T02:35:07.237977Z",
+          "duration_seconds": 24.895636500004912
+        },
+        "evaluation": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 85,
+              "reasoning": "The scene is original with fresh descriptions like 'shadows clung to the corners' and 'the faint tang of anxiety that seemed to radiate from Alex.' Emotional beats are unexpected, such as the shift from tension to cautious optimism."
+            },
+            "consistency": {
+              "score": 90,
+              "reasoning": "Character voices are consistent, with Alex's nervousness and Jordan's calm demeanor maintained throughout. The plot flows smoothly from tension to collaboration, and the tone remains steady."
+            },
+            "prose_quality": {
+              "score": 88,
+              "reasoning": "Descriptions are vivid, such as 'the glow of the screen casting sharp angles across their face.' Sentence structure is varied, and the narrative flows naturally, enhancing the reader's immersion."
+            },
+            "dialogue": {
+              "score": 92,
+              "reasoning": "Dialogue feels natural and authentic, with distinct voices for Alex and Jordan. Emotional authenticity is evident, especially in moments like Jordan's reassurance and Alex's growing confidence."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "e6a7f1a3a7d98085bbfbf1f53757fe67e4bbd24174dea8a0273d8515a65d840e",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T02:35:11.420102Z"
+    },
+    {
+      "test_number": 2,
+      "config": {
+        "test_number": 2,
+        "config_values": {
+          "temperature": 0.5,
+          "generation_strategy": "standard",
+          "context_depth": "minimal",
+          "prose_style": "lyrical"
+        },
+        "workflow": "fiction_scene"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "creativity": {
+            "score": 0.85,
+            "reasoning": "The scene offers original prose with unexpected emotional beats, such as the shift from tension to collaboration. Descriptions like the 'blue glow of the screen casting sharp shadows' and the 'hum of the coffee shop fading into the background' are fresh and evocative."
+          },
+          "consistency": {
+            "score": 0.9,
+            "reasoning": "Character voices remain distinct and consistent, with Alex's nervous energy and Jordan's measured tone. The plot flows logically, and the tone shifts naturally from tension to resolution, adhering to the scene's emotional arc."
+          },
+          "prose_quality": {
+            "score": 0.88,
+            "reasoning": "The prose is vivid and varied, with sensory details like the 'smell of roasted beans and faintly of cinnamon' and dynamic sentence structures. The flow is natural, guiding the reader through the scene effortlessly."
+          },
+          "dialogue": {
+            "score": 0.92,
+            "reasoning": "The dialogue feels natural and authentic, with distinct voices for Alex and Jordan. Emotional authenticity is evident in their exchanges, particularly in the shift from frustration to collaboration, making the conversation compelling."
+          }
+        },
+        "overall_score": 0.8875,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T02:35:26.438321Z",
+        "metadata": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 85,
+              "reasoning": "The scene offers original prose with unexpected emotional beats, such as the shift from tension to collaboration. Descriptions like the 'blue glow of the screen casting sharp shadows' and the 'hum of the coffee shop fading into the background' are fresh and evocative."
+            },
+            "consistency": {
+              "score": 90,
+              "reasoning": "Character voices remain distinct and consistent, with Alex's nervous energy and Jordan's measured tone. The plot flows logically, and the tone shifts naturally from tension to resolution, adhering to the scene's emotional arc."
+            },
+            "prose_quality": {
+              "score": 88,
+              "reasoning": "The prose is vivid and varied, with sensory details like the 'smell of roasted beans and faintly of cinnamon' and dynamic sentence structures. The flow is natural, guiding the reader through the scene effortlessly."
+            },
+            "dialogue": {
+              "score": 92,
+              "reasoning": "The dialogue feels natural and authentic, with distinct voices for Alex and Jordan. Emotional authenticity is evident in their exchanges, particularly in the shift from frustration to collaboration, making the conversation compelling."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "07dc2d0a08d4495c76ec55eb9a9cf25f1c5c5d28efe6d35411de1298f054aff0",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 10765.084542013938,
+      "utility": 0.71,
+      "workflow_output": "Generated Scene:\nThe coffee shop was dimly lit, the kind of place where the hum of espresso machines blended with the low murmur of conversations. The air smelled of roasted beans and faintly of cinnamon, a comforting contrast to the tension radiating from the corner table. Alex sat hunched over a laptop, the blue glow of the screen casting sharp shadows on their face. Their fingers tapped impatiently on the edge of the keyboard, a staccato rhythm that betrayed their nerves.\n\nAcross the table, Jordan leaned back in their chair, arms crossed, eyes narrowed as they scrolled through the code review on their own device. The silence between them was thick, punctuated only by the occasional clink of a spoon against a ceramic mug. Jordan’s coffee sat untouched, steam long since faded.\n\n“So,” Alex finally broke the silence, their voice tight. “What’s the verdict?”\n\nJordan didn’t look up immediately, their brow furrowed in concentration. The silence stretched, and Alex’s leg began to bounce under the table. The waitress passed by, refilling water glasses, but neither of them noticed.\n\nFinally, Jordan exhaled sharply and set their phone down. “It’s… not bad,” they said, their tone measured. “But there’s a lot of redundancy here. The LangGraph integration could be cleaner. You’re overcomplicating the workflow.”\n\nAlex’s jaw tightened, and they leaned forward, their voice dropping. “I thought the redundancy was necessary for error handling. You’ve seen how the pipeline breaks if we don’t account for edge cases.”\n\nJordan’s eyes flicked up, meeting Alex’s gaze. “I get that, but there’s a difference between robust and bloated. Look at this section here—” they slid the laptop toward Alex, pointing to a block of code. “You’re repeating the same validation checks three times. That’s not efficient.”\n\nAlex’s shoulders stiffened, but they didn’t argue. Instead, they stared at the screen, their mind racing. The hum of the coffee shop seemed to fade into the background as they traced the lines of code, their frustration mingling with a flicker of doubt. Maybe Jordan was right. Maybe they’d been so focused on making it work that they’d missed the bigger picture.\n\nJordan’s voice softened, breaking through Alex’s thoughts. “Look, I’m not saying it’s a lost cause. The foundation is solid. You’ve got the right idea. It just needs… refinement.”\n\nAlex let out a slow breath, their tension easing just slightly. “Okay,” they said, nodding. “Okay. So, how do we fix it?”\n\nJordan’s lips curved into a small, encouraging smile. “We start by simplifying. Let’s break it down step by step. Together.”\n\nFor the first time that evening, Alex felt a glimmer of hope. They grabbed their coffee, now lukewarm, and took a sip, the bitterness grounding them. “Alright,” they said, setting the mug down. “Let’s do this.”\n\nThe tension in the air began to shift, replaced by a sense of purpose. The dim light of the coffee shop no longer felt oppressive but intimate, a cocoon where ideas could take shape. The clatter of dishes and the murmur of voices faded into the background as Alex and Jordan leaned in, their heads close together, diving into the code. The night stretched ahead, long and uncertain, but for the first time, it felt like they were moving in the right direction.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "context_approach": "minimal",
+        "generation_prompt": "You are a skilled fiction writer. Generate a compelling scene based on the following:\n\nScene Description: \"\"\"Code review workflow built on LangGraph.\"\"\"\nCharacters: Alex, Jordan\nSetting: a dimly lit coffee shop\nTone: tense but hopeful\nContext: Write based on the information provided.\n\nWrite a vivid, engaging scene that brings this description to life. Focus on:\n- Show, don't tell\n- Vivid sensory details\n- Natural character actions and reactions\n- Appropriate pacing and tension\n\nGenerate the scene as plain text, no JSON or formatting.",
+        "generated_raw": "The coffee shop was dimly lit, the kind of place where the hum of espresso machines blended with the low murmur of conversations. The air smelled of roasted beans and faintly of cinnamon, a comforting contrast to the tension radiating from the corner table. Alex sat hunched over a laptop, the blue glow of the screen casting sharp shadows on their face. Their fingers tapped impatiently on the edge of the keyboard, a staccato rhythm that betrayed their nerves.\n\nAcross the table, Jordan leaned back in their chair, arms crossed, eyes narrowed as they scrolled through the code review on their own device. The silence between them was thick, punctuated only by the occasional clink of a spoon against a ceramic mug. Jordan’s coffee sat untouched, steam long since faded.\n\n“So,” Alex finally broke the silence, their voice tight. “What’s the verdict?”\n\nJordan didn’t look up immediately, their brow furrowed in concentration. The silence stretched, and Alex’s leg began to bounce under the table. The waitress passed by, refilling water glasses, but neither of them noticed.\n\nFinally, Jordan exhaled sharply and set their phone down. “It’s… not bad,” they said, their tone measured. “But there’s a lot of redundancy here. The LangGraph integration could be cleaner. You’re overcomplicating the workflow.”\n\nAlex’s jaw tightened, and they leaned forward, their voice dropping. “I thought the redundancy was necessary for error handling. You’ve seen how the pipeline breaks if we don’t account for edge cases.”\n\nJordan’s eyes flicked up, meeting Alex’s gaze. “I get that, but there’s a difference between robust and bloated. Look at this section here—” they slid the laptop toward Alex, pointing to a block of code. “You’re repeating the same validation checks three times. That’s not efficient.”\n\nAlex’s shoulders stiffened, but they didn’t argue. Instead, they stared at the screen, their mind racing. The hum of the coffee shop seemed to fade into the background as they traced the lines of code, their frustration mingling with a flicker of doubt. Maybe Jordan was right. Maybe they’d been so focused on making it work that they’d missed the bigger picture.\n\nJordan’s voice softened, breaking through Alex’s thoughts. “Look, I’m not saying it’s a lost cause. The foundation is solid. You’ve got the right idea. It just needs… refinement.”\n\nAlex let out a slow breath, their tension easing just slightly. “Okay,” they said, nodding. “Okay. So, how do we fix it?”\n\nJordan’s lips curved into a small, encouraging smile. “We start by simplifying. Let’s break it down step by step. Together.”\n\nFor the first time that evening, Alex felt a glimmer of hope. They grabbed their coffee, now lukewarm, and took a sip, the bitterness grounding them. “Alright,” they said, setting the mug down. “Let’s do this.”\n\nThe tension in the air began to shift, replaced by a sense of purpose. The dim light of the coffee shop no longer felt oppressive but intimate, a cocoon where ideas could take shape. The clatter of dishes and the murmur of voices faded into the background as Alex and Jordan leaned in, their heads close together, diving into the code. The night stretched ahead, long and uncertain, but for the first time, it felt like they were moving in the right direction.",
+        "test_config": {
+          "test_number": 2,
+          "config": {
+            "temperature": 0.5,
+            "generation_strategy": "standard",
+            "context_depth": "minimal",
+            "prose_style": "lyrical"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T02:35:11.421026Z",
+          "completed_at": "2025-10-28T02:35:22.185936Z",
+          "duration_seconds": 10.765084542013938
+        },
+        "evaluation": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 85,
+              "reasoning": "The scene offers original prose with unexpected emotional beats, such as the shift from tension to collaboration. Descriptions like the 'blue glow of the screen casting sharp shadows' and the 'hum of the coffee shop fading into the background' are fresh and evocative."
+            },
+            "consistency": {
+              "score": 90,
+              "reasoning": "Character voices remain distinct and consistent, with Alex's nervous energy and Jordan's measured tone. The plot flows logically, and the tone shifts naturally from tension to resolution, adhering to the scene's emotional arc."
+            },
+            "prose_quality": {
+              "score": 88,
+              "reasoning": "The prose is vivid and varied, with sensory details like the 'smell of roasted beans and faintly of cinnamon' and dynamic sentence structures. The flow is natural, guiding the reader through the scene effortlessly."
+            },
+            "dialogue": {
+              "score": 92,
+              "reasoning": "The dialogue feels natural and authentic, with distinct voices for Alex and Jordan. Emotional authenticity is evident in their exchanges, particularly in the shift from frustration to collaboration, making the conversation compelling."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "07dc2d0a08d4495c76ec55eb9a9cf25f1c5c5d28efe6d35411de1298f054aff0",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T02:35:26.438517Z"
+    },
+    {
+      "test_number": 3,
+      "config": {
+        "test_number": 3,
+        "config_values": {
+          "temperature": 0.5,
+          "generation_strategy": "chain_of_thought",
+          "context_depth": "full",
+          "prose_style": "concise"
+        },
+        "workflow": "fiction_scene"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "creativity": {
+            "score": 0.85,
+            "reasoning": "The scene is original with fresh descriptions like 'soft, amber haze' and 'labyrinth of logic and syntax.' Emotional beats, such as Alex's relief and Jordan's triumph, are unexpected and engaging."
+          },
+          "consistency": {
+            "score": 0.9,
+            "reasoning": "Character voices are distinct and consistent, with Alex's frustration and Jordan's calm support evident throughout. The plot flows seamlessly, and the tone remains steady, focusing on collaboration and problem-solving."
+          },
+          "prose_quality": {
+            "score": 0.88,
+            "reasoning": "Descriptions are vivid, such as 'the glow of the screen casting sharp shadows on their face.' Sentence structure is varied, and the narrative flows naturally, maintaining reader engagement."
+          },
+          "dialogue": {
+            "score": 0.92,
+            "reasoning": "Dialogue feels natural and authentic, with distinct voices for Alex and Jordan. Emotional authenticity is strong, particularly in moments of concern, realization, and camaraderie."
+          }
+        },
+        "overall_score": 0.8875,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T02:35:42.253665Z",
+        "metadata": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 85,
+              "reasoning": "The scene is original with fresh descriptions like 'soft, amber haze' and 'labyrinth of logic and syntax.' Emotional beats, such as Alex's relief and Jordan's triumph, are unexpected and engaging."
+            },
+            "consistency": {
+              "score": 90,
+              "reasoning": "Character voices are distinct and consistent, with Alex's frustration and Jordan's calm support evident throughout. The plot flows seamlessly, and the tone remains steady, focusing on collaboration and problem-solving."
+            },
+            "prose_quality": {
+              "score": 88,
+              "reasoning": "Descriptions are vivid, such as 'the glow of the screen casting sharp shadows on their face.' Sentence structure is varied, and the narrative flows naturally, maintaining reader engagement."
+            },
+            "dialogue": {
+              "score": 92,
+              "reasoning": "Dialogue feels natural and authentic, with distinct voices for Alex and Jordan. Emotional authenticity is strong, particularly in moments of concern, realization, and camaraderie."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "4113aa00ae605c21cc058c19638dc0a9f027abf37e42152e58ec7cd3f0b00377",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 11783.923375012819,
+      "utility": 0.7075943557278389,
+      "workflow_output": "Generated Scene:\nThe coffee shop was dimly lit, the kind of lighting that made everything feel like it was wrapped in a soft, amber haze. The hum of low conversations blended with the rhythmic hiss of the espresso machine, creating a steady, almost hypnotic backdrop. Alex sat at a corner table, their laptop open, the glow of the screen casting sharp shadows on their face. Their fingers tapped restlessly on the keyboard, the clatter of keys punctuating the silence.\n\nJordan slid into the chair across from them, setting down a steaming cup of coffee. The aroma of roasted beans filled the space between them. \"You look like you've been here all night,\" Jordan said, their voice light but edged with concern.\n\nAlex glanced up, their eyes tired but focused. \"I have. This code review workflow on LangGraph—it’s... not cooperating. I’m stuck on this one node, and it’s throwing everything off.\"\n\nJordan leaned forward, peering at the screen. The lines of code scrolled endlessly, a labyrinth of logic and syntax. \"Let me see,\" they said, their tone calm but probing. They reached for their own laptop, opening it with a practiced ease. \"We’ll figure it out. You’re not alone in this.\"\n\nAlex sighed, running a hand through their hair. \"I just don’t get why it’s not connecting. The graph should flow seamlessly, but it’s like there’s a block somewhere. I’ve gone over it a dozen times.\"\n\nJordan nodded, their fingers already dancing across their own keyboard. \"Sometimes you need a fresh pair of eyes. Let’s break it down step by step.\" They pulled up the same project on their screen, their expression sharpening as they began to trace the logic. \"Okay, start from the beginning. Walk me through your thought process.\"\n\nAlex hesitated, then began to explain, their voice low but steady. As they spoke, Jordan interjected with questions, their dialogue a back-and-forth of ideas and possibilities. The tension in the air was palpable, but it wasn’t the kind that suffocated—it was the tension of two minds working in tandem, pushing against a problem until it gave way.\n\nThe coffee grew cold, forgotten on the table. The hum of the coffee shop faded into the background as the two became absorbed in their work. Finally, Jordan’s eyes lit up. \"Wait, right here,\" they said, pointing to a line of code on Alex’s screen. \"This is where it’s breaking. You’ve got a recursive loop that’s not terminating properly.\"\n\nAlex leaned in, their brow furrowing as they followed Jordan’s finger. \"You’re right,\" they murmured, a spark of realization igniting in their eyes. \"I didn’t even see that. How did I miss it?\"\n\nJordan grinned, a hint of triumph in their expression. \"That’s why we do this together. No one catches everything on their own.\"\n\nAlex exhaled, a mix of relief and gratitude washing over them. \"Thanks, Jordan. I don’t know what I’d do without you.\"\n\nJordan shrugged, their grin softening into a smile. \"You’d figure it out eventually. But hey, that’s what teammates are for, right?\"\n\nAlex nodded, their shoulders relaxing for the first time in hours. They closed their laptop, the weight of the problem finally lifting. \"Let’s get out of here. I think we’ve earned a break.\"\n\nJordan stood, slinging their bag over their shoulder. \"Agreed. But next time, let’s not wait until the last minute, yeah?\"\n\nAlex chuckled, the sound warm and genuine. \"Deal.\"\n\nAs they stepped out into the cool evening air, the tension of the day melted away, replaced by a quiet sense of accomplishment. The problem wasn’t fully solved yet, but they were one step closer—and that was enough for now.",
+      "metadata": {
+        "strategy": "chain_of_thought",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "context_approach": "minimal",
+        "generation_prompt": "You are a skilled fiction writer. Generate a compelling scene based on the following:\n\nScene Description: \"\"\"Code review workflow built on LangGraph.\"\"\"\nCharacters: Alex, Jordan\nSetting: a dimly lit coffee shop\nTone: tense but hopeful\nContext: Write based on the information provided.\n\nWrite a vivid, engaging scene that brings this description to life. Focus on:\n- Show, don't tell\n- Vivid sensory details\n- Natural character actions and reactions\n- Appropriate pacing and tension\n\nGenerate the scene as plain text, no JSON or formatting.",
+        "generated_raw": "The coffee shop was dimly lit, the kind of lighting that made everything feel like it was wrapped in a soft, amber haze. The hum of low conversations blended with the rhythmic hiss of the espresso machine, creating a steady, almost hypnotic backdrop. Alex sat at a corner table, their laptop open, the glow of the screen casting sharp shadows on their face. Their fingers tapped restlessly on the keyboard, the clatter of keys punctuating the silence.\n\nJordan slid into the chair across from them, setting down a steaming cup of coffee. The aroma of roasted beans filled the space between them. \"You look like you've been here all night,\" Jordan said, their voice light but edged with concern.\n\nAlex glanced up, their eyes tired but focused. \"I have. This code review workflow on LangGraph—it’s... not cooperating. I’m stuck on this one node, and it’s throwing everything off.\"\n\nJordan leaned forward, peering at the screen. The lines of code scrolled endlessly, a labyrinth of logic and syntax. \"Let me see,\" they said, their tone calm but probing. They reached for their own laptop, opening it with a practiced ease. \"We’ll figure it out. You’re not alone in this.\"\n\nAlex sighed, running a hand through their hair. \"I just don’t get why it’s not connecting. The graph should flow seamlessly, but it’s like there’s a block somewhere. I’ve gone over it a dozen times.\"\n\nJordan nodded, their fingers already dancing across their own keyboard. \"Sometimes you need a fresh pair of eyes. Let’s break it down step by step.\" They pulled up the same project on their screen, their expression sharpening as they began to trace the logic. \"Okay, start from the beginning. Walk me through your thought process.\"\n\nAlex hesitated, then began to explain, their voice low but steady. As they spoke, Jordan interjected with questions, their dialogue a back-and-forth of ideas and possibilities. The tension in the air was palpable, but it wasn’t the kind that suffocated—it was the tension of two minds working in tandem, pushing against a problem until it gave way.\n\nThe coffee grew cold, forgotten on the table. The hum of the coffee shop faded into the background as the two became absorbed in their work. Finally, Jordan’s eyes lit up. \"Wait, right here,\" they said, pointing to a line of code on Alex’s screen. \"This is where it’s breaking. You’ve got a recursive loop that’s not terminating properly.\"\n\nAlex leaned in, their brow furrowing as they followed Jordan’s finger. \"You’re right,\" they murmured, a spark of realization igniting in their eyes. \"I didn’t even see that. How did I miss it?\"\n\nJordan grinned, a hint of triumph in their expression. \"That’s why we do this together. No one catches everything on their own.\"\n\nAlex exhaled, a mix of relief and gratitude washing over them. \"Thanks, Jordan. I don’t know what I’d do without you.\"\n\nJordan shrugged, their grin softening into a smile. \"You’d figure it out eventually. But hey, that’s what teammates are for, right?\"\n\nAlex nodded, their shoulders relaxing for the first time in hours. They closed their laptop, the weight of the problem finally lifting. \"Let’s get out of here. I think we’ve earned a break.\"\n\nJordan stood, slinging their bag over their shoulder. \"Agreed. But next time, let’s not wait until the last minute, yeah?\"\n\nAlex chuckled, the sound warm and genuine. \"Deal.\"\n\nAs they stepped out into the cool evening air, the tension of the day melted away, replaced by a quiet sense of accomplishment. The problem wasn’t fully solved yet, but they were one step closer—and that was enough for now.",
+        "test_config": {
+          "test_number": 3,
+          "config": {
+            "temperature": 0.5,
+            "generation_strategy": "chain_of_thought",
+            "context_depth": "full",
+            "prose_style": "concise"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T02:35:26.440532Z",
+          "completed_at": "2025-10-28T02:35:38.224264Z",
+          "duration_seconds": 11.783923375012819
+        },
+        "evaluation": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 85,
+              "reasoning": "The scene is original with fresh descriptions like 'soft, amber haze' and 'labyrinth of logic and syntax.' Emotional beats, such as Alex's relief and Jordan's triumph, are unexpected and engaging."
+            },
+            "consistency": {
+              "score": 90,
+              "reasoning": "Character voices are distinct and consistent, with Alex's frustration and Jordan's calm support evident throughout. The plot flows seamlessly, and the tone remains steady, focusing on collaboration and problem-solving."
+            },
+            "prose_quality": {
+              "score": 88,
+              "reasoning": "Descriptions are vivid, such as 'the glow of the screen casting sharp shadows on their face.' Sentence structure is varied, and the narrative flows naturally, maintaining reader engagement."
+            },
+            "dialogue": {
+              "score": 92,
+              "reasoning": "Dialogue feels natural and authentic, with distinct voices for Alex and Jordan. Emotional authenticity is strong, particularly in moments of concern, realization, and camaraderie."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "4113aa00ae605c21cc058c19638dc0a9f027abf37e42152e58ec7cd3f0b00377",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T02:35:42.253864Z"
+    },
+    {
+      "test_number": 4,
+      "config": {
+        "test_number": 4,
+        "config_values": {
+          "temperature": 0.5,
+          "generation_strategy": "chain_of_thought",
+          "context_depth": "full",
+          "prose_style": "lyrical"
+        },
+        "workflow": "fiction_scene"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "creativity": {
+            "score": 0.85,
+            "reasoning": "The scene is original with fresh descriptions (e.g., 'the flicker of a single overhead bulb cast long shadows') and unexpected emotional beats, such as the shift from tension to cautious optimism."
+          },
+          "consistency": {
+            "score": 0.9,
+            "reasoning": "Character voices are distinct and consistent, the plot flows logically, and the tone remains steady throughout, from the initial tension to the resolution."
+          },
+          "prose_quality": {
+            "score": 0.88,
+            "reasoning": "The descriptions are vivid ('the air smelled of roasted beans and faintly burnt sugar'), sentence structure is varied, and the narrative flows naturally, enhancing the scene's atmosphere."
+          },
+          "dialogue": {
+            "score": 0.92,
+            "reasoning": "The dialogue feels natural, with distinct voices for Alex and Jordan, and it authentically conveys their emotions and the evolving dynamic between them."
+          }
+        },
+        "overall_score": 0.8875,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T02:36:15.053594Z",
+        "metadata": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 85,
+              "reasoning": "The scene is original with fresh descriptions (e.g., 'the flicker of a single overhead bulb cast long shadows') and unexpected emotional beats, such as the shift from tension to cautious optimism."
+            },
+            "consistency": {
+              "score": 90,
+              "reasoning": "Character voices are distinct and consistent, the plot flows logically, and the tone remains steady throughout, from the initial tension to the resolution."
+            },
+            "prose_quality": {
+              "score": 88,
+              "reasoning": "The descriptions are vivid ('the air smelled of roasted beans and faintly burnt sugar'), sentence structure is varied, and the narrative flows naturally, enhancing the scene's atmosphere."
+            },
+            "dialogue": {
+              "score": 92,
+              "reasoning": "The dialogue feels natural, with distinct voices for Alex and Jordan, and it authentically conveys their emotions and the evolving dynamic between them."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "5d052c8d85e1b51a2425ba9a5d635f09a944859c1d0092183077e842d08949f4",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 17243.29216699698,
+      "utility": 0.6947038976507802,
+      "workflow_output": "Generated Scene:\nThe coffee shop was dimly lit, the kind of place where the hum of espresso machines blended seamlessly with the low murmur of hushed conversations. The air smelled of roasted beans and faintly burnt sugar, and the flicker of a single overhead bulb cast long shadows across the worn wooden tables. Alex sat in the corner, fingers drumming nervously on the edge of their laptop, the glow of the screen illuminating their furrowed brow. Across from them, Jordan leaned back in their chair, arms crossed, their expression unreadable but their foot tapping a steady rhythm against the floor.\n\n“So,” Alex began, their voice tight, “I’ve been working on integrating the code review workflow into LangGraph. It’s... functional, but I need your eyes on it before we push it live.”\n\nJordan nodded slowly, their gaze shifting to the laptop screen. They reached forward, pulling the device closer, their fingers brushing against the cool metal casing. The silence stretched as Jordan scrolled through lines of code, their eyes darting back and forth, occasionally pausing to squint at a particular section. Alex’s leg bounced under the table, their coffee untouched and growing cold.\n\n“Hmm,” Jordan murmured, their voice low and thoughtful. They tapped the screen with a finger. “This loop here—it’s efficient, but it’s not handling edge cases. If the graph structure changes dynamically, it’ll break.”\n\nAlex leaned forward, their chair creaking softly. “I thought about that,” they said quickly, their words tumbling out. “I added a fallback condition, see? Right here.” They pointed to a block of code, their finger trembling slightly.\n\nJordan tilted their head, studying the addition. A faint smile tugged at the corner of their mouth. “Clever,” they admitted. “But it’s still a bit... brittle. What if we refactor it to use a recursive function instead? It’ll be more robust.”\n\nAlex hesitated, their jaw tightening. “Recursive? That could get messy with larger graphs.”\n\n“True,” Jordan conceded, leaning back again. “But messy is better than broken, don’t you think?”\n\nThe tension between them was palpable, a silent tug-of-war between caution and ambition. Alex stared at the screen, their mind racing. Outside, the rain began to patter against the window, the sound soft but insistent. Jordan watched them, their expression softening slightly.\n\n“Look,” Jordan said, their tone gentler now. “I know you’ve put a lot into this. And it’s good—really good. But if we’re going to build something that lasts, we need to get it right. Even if it takes a little longer.”\n\nAlex exhaled slowly, their shoulders sagging. They glanced at Jordan, then back at the screen. “You’re right,” they said finally, their voice quieter but steadier. “Let’s refactor it. Together.”\n\nJordan smiled, a genuine warmth breaking through their earlier reserve. They slid the laptop back toward Alex. “Good call. Now, let’s order another round of coffee. This might take a while.”\n\nThe tension in the air began to lift, replaced by a cautious optimism. The storm outside continued, but inside the coffee shop, the flicker of the overhead bulb seemed just a little brighter.",
+      "metadata": {
+        "strategy": "chain_of_thought",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "context_approach": "minimal",
+        "generation_prompt": "You are a skilled fiction writer. Generate a compelling scene based on the following:\n\nScene Description: \"\"\"Code review workflow built on LangGraph.\"\"\"\nCharacters: Alex, Jordan\nSetting: a dimly lit coffee shop\nTone: tense but hopeful\nContext: Write based on the information provided.\n\nWrite a vivid, engaging scene that brings this description to life. Focus on:\n- Show, don't tell\n- Vivid sensory details\n- Natural character actions and reactions\n- Appropriate pacing and tension\n\nGenerate the scene as plain text, no JSON or formatting.",
+        "generated_raw": "The coffee shop was dimly lit, the kind of place where the hum of espresso machines blended seamlessly with the low murmur of hushed conversations. The air smelled of roasted beans and faintly burnt sugar, and the flicker of a single overhead bulb cast long shadows across the worn wooden tables. Alex sat in the corner, fingers drumming nervously on the edge of their laptop, the glow of the screen illuminating their furrowed brow. Across from them, Jordan leaned back in their chair, arms crossed, their expression unreadable but their foot tapping a steady rhythm against the floor.\n\n“So,” Alex began, their voice tight, “I’ve been working on integrating the code review workflow into LangGraph. It’s... functional, but I need your eyes on it before we push it live.”\n\nJordan nodded slowly, their gaze shifting to the laptop screen. They reached forward, pulling the device closer, their fingers brushing against the cool metal casing. The silence stretched as Jordan scrolled through lines of code, their eyes darting back and forth, occasionally pausing to squint at a particular section. Alex’s leg bounced under the table, their coffee untouched and growing cold.\n\n“Hmm,” Jordan murmured, their voice low and thoughtful. They tapped the screen with a finger. “This loop here—it’s efficient, but it’s not handling edge cases. If the graph structure changes dynamically, it’ll break.”\n\nAlex leaned forward, their chair creaking softly. “I thought about that,” they said quickly, their words tumbling out. “I added a fallback condition, see? Right here.” They pointed to a block of code, their finger trembling slightly.\n\nJordan tilted their head, studying the addition. A faint smile tugged at the corner of their mouth. “Clever,” they admitted. “But it’s still a bit... brittle. What if we refactor it to use a recursive function instead? It’ll be more robust.”\n\nAlex hesitated, their jaw tightening. “Recursive? That could get messy with larger graphs.”\n\n“True,” Jordan conceded, leaning back again. “But messy is better than broken, don’t you think?”\n\nThe tension between them was palpable, a silent tug-of-war between caution and ambition. Alex stared at the screen, their mind racing. Outside, the rain began to patter against the window, the sound soft but insistent. Jordan watched them, their expression softening slightly.\n\n“Look,” Jordan said, their tone gentler now. “I know you’ve put a lot into this. And it’s good—really good. But if we’re going to build something that lasts, we need to get it right. Even if it takes a little longer.”\n\nAlex exhaled slowly, their shoulders sagging. They glanced at Jordan, then back at the screen. “You’re right,” they said finally, their voice quieter but steadier. “Let’s refactor it. Together.”\n\nJordan smiled, a genuine warmth breaking through their earlier reserve. They slid the laptop back toward Alex. “Good call. Now, let’s order another round of coffee. This might take a while.”\n\nThe tension in the air began to lift, replaced by a cautious optimism. The storm outside continued, but inside the coffee shop, the flicker of the overhead bulb seemed just a little brighter.",
+        "test_config": {
+          "test_number": 4,
+          "config": {
+            "temperature": 0.5,
+            "generation_strategy": "chain_of_thought",
+            "context_depth": "full",
+            "prose_style": "lyrical"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T02:35:42.256162Z",
+          "completed_at": "2025-10-28T02:35:59.499177Z",
+          "duration_seconds": 17.24329216699698
+        },
+        "evaluation": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 85,
+              "reasoning": "The scene is original with fresh descriptions (e.g., 'the flicker of a single overhead bulb cast long shadows') and unexpected emotional beats, such as the shift from tension to cautious optimism."
+            },
+            "consistency": {
+              "score": 90,
+              "reasoning": "Character voices are distinct and consistent, the plot flows logically, and the tone remains steady throughout, from the initial tension to the resolution."
+            },
+            "prose_quality": {
+              "score": 88,
+              "reasoning": "The descriptions are vivid ('the air smelled of roasted beans and faintly burnt sugar'), sentence structure is varied, and the narrative flows naturally, enhancing the scene's atmosphere."
+            },
+            "dialogue": {
+              "score": 92,
+              "reasoning": "The dialogue feels natural, with distinct voices for Alex and Jordan, and it authentically conveys their emotions and the evolving dynamic between them."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "5d052c8d85e1b51a2425ba9a5d635f09a944859c1d0092183077e842d08949f4",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T02:36:15.054040Z"
+    },
+    {
+      "test_number": 5,
+      "config": {
+        "test_number": 5,
+        "config_values": {
+          "temperature": 0.9,
+          "generation_strategy": "standard",
+          "context_depth": "full",
+          "prose_style": "concise"
+        },
+        "workflow": "fiction_scene"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "creativity": {
+            "score": 0.85,
+            "reasoning": "The scene demonstrates originality with its atmospheric descriptions and unexpected emotional beats, such as the tension between Alex and Jordan resolving into cautious optimism. The metaphor of the workflow as a 'blueprint of the machine' is fresh and evocative."
+          },
+          "consistency": {
+            "score": 0.9,
+            "reasoning": "Character voices remain distinct and consistent throughout, with Alex's measured frustration and Jordan's pragmatic skepticism. The plot flows logically, and the tone of tension and eventual relief is well-maintained."
+          },
+          "prose_quality": {
+            "score": 0.88,
+            "reasoning": "Descriptions are vivid and sensory, such as the 'cavern of shadows' and the 'faint scent of bergamot.' Sentence structure is varied, and the narrative flows naturally, enhancing the immersive quality of the scene."
+          },
+          "dialogue": {
+            "score": 0.92,
+            "reasoning": "Dialogue feels natural and authentic, with distinct voices for Alex and Jordan. The emotional tension and eventual resolution are conveyed effectively through their exchanges, making the conversation believable and engaging."
+          }
+        },
+        "overall_score": 0.8875,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T02:36:37.362592Z",
+        "metadata": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 85,
+              "reasoning": "The scene demonstrates originality with its atmospheric descriptions and unexpected emotional beats, such as the tension between Alex and Jordan resolving into cautious optimism. The metaphor of the workflow as a 'blueprint of the machine' is fresh and evocative."
+            },
+            "consistency": {
+              "score": 90,
+              "reasoning": "Character voices remain distinct and consistent throughout, with Alex's measured frustration and Jordan's pragmatic skepticism. The plot flows logically, and the tone of tension and eventual relief is well-maintained."
+            },
+            "prose_quality": {
+              "score": 88,
+              "reasoning": "Descriptions are vivid and sensory, such as the 'cavern of shadows' and the 'faint scent of bergamot.' Sentence structure is varied, and the narrative flows naturally, enhancing the immersive quality of the scene."
+            },
+            "dialogue": {
+              "score": 92,
+              "reasoning": "Dialogue feels natural and authentic, with distinct voices for Alex and Jordan. The emotional tension and eventual resolution are conveyed effectively through their exchanges, making the conversation believable and engaging."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "23629d619b37b4492af4c8bcf3327e2c7a5198a015aa0424874547227cc54725",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 18348.5268750228,
+      "utility": 0.6920942586591746,
+      "workflow_output": "Generated Scene:\nThe coffee shop was a cavern of shadows and muted murmurs, the kind of place where ideas simmered beneath the surface like steam rising from a forgotten cup. Alex sat hunched over a laptop, the glow of the screen casting sharp angles across their face. The air smelled of roasted beans and faintly burnt pastries, the clatter of dishes occasionally punctuating the low hum of conversation.\n\nAcross the table, Jordan leaned forward, their fingers tapping restlessly against the rim of their mug. The tension between them was palpable, a taut wire stretched to its limit. Jordan’s voice broke the silence, low but insistent. \"Look, I get it. LangGraph’s workflow is elegant, but elegant isn’t always practical. We need clarity, not cleverness.\"\n\nAlex’s jaw tightened, their eyes flicking to the screen before locking onto Jordan’s. \"Clarity *is* cleverness,\" they countered, their tone measured but edged with frustration. \"The way it handles the review process—it’s seamless. It’s intuitive. We’re just not used to thinking this way yet.\"\n\nJordan exhaled sharply, running a hand through their disheveled hair. The faint scent of bergamot lingered from their Earl Grey. \"Intuitive for who? Us? Or the devs who have to debug this at 2 a.m. when everything’s on fire?\"\n\nAlex’s fingers twitched, hovering over the keyboard. They hesitated, then clicked a few keys, the soft *tap-tap-tap* echoing in the quiet space between them. The screen illuminated with a flow of nodes and edges, a visual symphony of logic and intent. \"Look,\" they said, their voice softer now, almost pleading. \"Once they see how it connects—how it *flows*—they’ll get it. It’s like… it’s like seeing the blueprint of the machine before you build it.\"\n\nJordan’s eyes narrowed, studying the diagram. The flicker of curiosity betrayed their skepticism. They leaned in closer, their reflection faintly visible in the screen’s glow. \"It’s… not bad,\" they admitted grudgingly. \"But what about the edge cases? What happens when someone skips a step?\"\n\nAlex’s lips curled into a faint, hopeful smile. \"That’s the beauty of it. The workflow self-corrects. It’s built to adapt. Watch.\" Their fingers danced across the keyboard, simulating a mistake, and the graph responded in real time, rerouting seamlessly like a river finding a new path.\n\nJordan’s brow furrowed, then smoothed. They leaned back slowly, their mug cradled in both hands. The tension in their shoulders eased, just a fraction. \"Okay,\" they said finally, their voice quieter now. \"Okay, I see it. But we need to document the hell out of this. No one’s going to trust it unless they understand it.\"\n\nAlex nodded, their relief palpable. \"Agreed. We’ll make it foolproof. Together.\"\n\nThe coffee shop seemed to exhale with them, the ambient noise swelling back into focus. A barista called out an order, and the faint hiss of an espresso machine filled the air. Jordan took a sip of their tea, the tension in the air now tempered with something cautiously optimistic. \"Alright,\" they said, setting the mug down. \"Let’s not screw this up.\"\n\nAlex smirked, closing the laptop with a soft click. \"Deal.\"",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "context_approach": "minimal",
+        "generation_prompt": "You are a skilled fiction writer. Generate a compelling scene based on the following:\n\nScene Description: \"\"\"Code review workflow built on LangGraph.\"\"\"\nCharacters: Alex, Jordan\nSetting: a dimly lit coffee shop\nTone: tense but hopeful\nContext: Write based on the information provided.\n\nWrite a vivid, engaging scene that brings this description to life. Focus on:\n- Show, don't tell\n- Vivid sensory details\n- Natural character actions and reactions\n- Appropriate pacing and tension\n\nGenerate the scene as plain text, no JSON or formatting.",
+        "generated_raw": "The coffee shop was a cavern of shadows and muted murmurs, the kind of place where ideas simmered beneath the surface like steam rising from a forgotten cup. Alex sat hunched over a laptop, the glow of the screen casting sharp angles across their face. The air smelled of roasted beans and faintly burnt pastries, the clatter of dishes occasionally punctuating the low hum of conversation.\n\nAcross the table, Jordan leaned forward, their fingers tapping restlessly against the rim of their mug. The tension between them was palpable, a taut wire stretched to its limit. Jordan’s voice broke the silence, low but insistent. \"Look, I get it. LangGraph’s workflow is elegant, but elegant isn’t always practical. We need clarity, not cleverness.\"\n\nAlex’s jaw tightened, their eyes flicking to the screen before locking onto Jordan’s. \"Clarity *is* cleverness,\" they countered, their tone measured but edged with frustration. \"The way it handles the review process—it’s seamless. It’s intuitive. We’re just not used to thinking this way yet.\"\n\nJordan exhaled sharply, running a hand through their disheveled hair. The faint scent of bergamot lingered from their Earl Grey. \"Intuitive for who? Us? Or the devs who have to debug this at 2 a.m. when everything’s on fire?\"\n\nAlex’s fingers twitched, hovering over the keyboard. They hesitated, then clicked a few keys, the soft *tap-tap-tap* echoing in the quiet space between them. The screen illuminated with a flow of nodes and edges, a visual symphony of logic and intent. \"Look,\" they said, their voice softer now, almost pleading. \"Once they see how it connects—how it *flows*—they’ll get it. It’s like… it’s like seeing the blueprint of the machine before you build it.\"\n\nJordan’s eyes narrowed, studying the diagram. The flicker of curiosity betrayed their skepticism. They leaned in closer, their reflection faintly visible in the screen’s glow. \"It’s… not bad,\" they admitted grudgingly. \"But what about the edge cases? What happens when someone skips a step?\"\n\nAlex’s lips curled into a faint, hopeful smile. \"That’s the beauty of it. The workflow self-corrects. It’s built to adapt. Watch.\" Their fingers danced across the keyboard, simulating a mistake, and the graph responded in real time, rerouting seamlessly like a river finding a new path.\n\nJordan’s brow furrowed, then smoothed. They leaned back slowly, their mug cradled in both hands. The tension in their shoulders eased, just a fraction. \"Okay,\" they said finally, their voice quieter now. \"Okay, I see it. But we need to document the hell out of this. No one’s going to trust it unless they understand it.\"\n\nAlex nodded, their relief palpable. \"Agreed. We’ll make it foolproof. Together.\"\n\nThe coffee shop seemed to exhale with them, the ambient noise swelling back into focus. A barista called out an order, and the faint hiss of an espresso machine filled the air. Jordan took a sip of their tea, the tension in the air now tempered with something cautiously optimistic. \"Alright,\" they said, setting the mug down. \"Let’s not screw this up.\"\n\nAlex smirked, closing the laptop with a soft click. \"Deal.\"",
+        "test_config": {
+          "test_number": 5,
+          "config": {
+            "temperature": 0.9,
+            "generation_strategy": "standard",
+            "context_depth": "full",
+            "prose_style": "concise"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T02:36:15.057542Z",
+          "completed_at": "2025-10-28T02:36:33.405773Z",
+          "duration_seconds": 18.3485268750228
+        },
+        "evaluation": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 85,
+              "reasoning": "The scene demonstrates originality with its atmospheric descriptions and unexpected emotional beats, such as the tension between Alex and Jordan resolving into cautious optimism. The metaphor of the workflow as a 'blueprint of the machine' is fresh and evocative."
+            },
+            "consistency": {
+              "score": 90,
+              "reasoning": "Character voices remain distinct and consistent throughout, with Alex's measured frustration and Jordan's pragmatic skepticism. The plot flows logically, and the tone of tension and eventual relief is well-maintained."
+            },
+            "prose_quality": {
+              "score": 88,
+              "reasoning": "Descriptions are vivid and sensory, such as the 'cavern of shadows' and the 'faint scent of bergamot.' Sentence structure is varied, and the narrative flows naturally, enhancing the immersive quality of the scene."
+            },
+            "dialogue": {
+              "score": 92,
+              "reasoning": "Dialogue feels natural and authentic, with distinct voices for Alex and Jordan. The emotional tension and eventual resolution are conveyed effectively through their exchanges, making the conversation believable and engaging."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "23629d619b37b4492af4c8bcf3327e2c7a5198a015aa0424874547227cc54725",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T02:36:37.362790Z"
+    },
+    {
+      "test_number": 6,
+      "config": {
+        "test_number": 6,
+        "config_values": {
+          "temperature": 0.9,
+          "generation_strategy": "standard",
+          "context_depth": "full",
+          "prose_style": "lyrical"
+        },
+        "workflow": "fiction_scene"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "creativity": {
+            "score": 0.85,
+            "reasoning": "The scene is original with unexpected emotional beats, such as the shift from tension to optimism. Descriptions like 'the blue light of the screen casting sharp shadows on their face' are fresh and evocative."
+          },
+          "consistency": {
+            "score": 0.9,
+            "reasoning": "Character voices are consistent, with Alex's frustration and Jordan's supportive tone maintained throughout. The plot flows logically, and the tone of quiet intensity is adhered to."
+          },
+          "prose_quality": {
+            "score": 0.88,
+            "reasoning": "Descriptions are vivid, such as 'the hum of espresso machines and the faint clinking of porcelain cups.' Sentence structure is varied, and the narrative flows naturally."
+          },
+          "dialogue": {
+            "score": 0.87,
+            "reasoning": "Dialogue feels natural and distinct, with Alex's technical jargon contrasting with Jordan's more casual tone. Emotional authenticity is evident, especially in the exchange about the workflow issues."
+          }
+        },
+        "overall_score": 0.875,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T02:37:13.113597Z",
+        "metadata": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 85,
+              "reasoning": "The scene is original with unexpected emotional beats, such as the shift from tension to optimism. Descriptions like 'the blue light of the screen casting sharp shadows on their face' are fresh and evocative."
+            },
+            "consistency": {
+              "score": 90,
+              "reasoning": "Character voices are consistent, with Alex's frustration and Jordan's supportive tone maintained throughout. The plot flows logically, and the tone of quiet intensity is adhered to."
+            },
+            "prose_quality": {
+              "score": 88,
+              "reasoning": "Descriptions are vivid, such as 'the hum of espresso machines and the faint clinking of porcelain cups.' Sentence structure is varied, and the narrative flows naturally."
+            },
+            "dialogue": {
+              "score": 87,
+              "reasoning": "Dialogue feels natural and distinct, with Alex's technical jargon contrasting with Jordan's more casual tone. Emotional authenticity is evident, especially in the exchange about the workflow issues."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "ad965ba8cecf862536f249dbdae557d9c452070d4909803db08a703947ecd237",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 31941.092249995563,
+      "utility": 0.65,
+      "workflow_output": "Generated Scene:\nThe coffee shop was bathed in a warm, dim glow, the kind of light that made the world feel smaller and more intimate. The hum of espresso machines and the faint clinking of porcelain cups filled the air, punctuated by the occasional burst of laughter from a corner table. Alex sat at a small round table near the window, their laptop open, the blue light of the screen casting sharp shadows on their face. Their fingers tapped nervously on the keyboard, the sound barely audible over the ambient noise.\n\nJordan slid into the chair across from them, setting down a steaming mug of black coffee. \"You look like you're about to rewrite the entire codebase,\" they said, their tone light but laced with concern.\n\nAlex didn’t look up. \"Not rewrite. Just... fix. LangGraph’s workflow isn’t integrating right. The nodes are overlapping, and the edges—\" They cut themselves off, running a hand through their hair. \"It’s a mess.\"\n\nJordan leaned forward, their eyes scanning the screen. The flicker of code reflected in their glasses. \"Okay, let’s break it down. What’s the core issue?\"\n\nAlex exhaled sharply, their breath fogging the edge of their own untouched coffee. \"The review process is supposed to be seamless, but it’s like the system’s fighting itself. It’s not catching the inconsistencies. And if we can’t trust the workflow, then...\" Their voice trailed off, but the implication hung heavy between them.\n\nJordan nodded slowly, their expression thoughtful. They took a sip of their coffee, the steam rising in soft curls. \"Alright. So, we start with the nodes. Let’s map them out again, see where the overlaps are happening. Maybe we’re missing a connection somewhere.\"\n\nAlex hesitated, then finally met Jordan’s gaze. There was a flicker of hope in their eyes, like a spark trying to catch flame. \"You think it’s that simple?\"\n\nJordan smirked. \"Simple? No. But fixable? Definitely.\" They pulled out their own laptop, the soft glow of their screen joining Alex’s. \"We’ll figure it out. We always do.\"\n\nThe tension in Alex’s shoulders eased, just slightly. They turned back to their laptop, their fingers moving with more purpose now. The two of them worked in silence for a while, the only sound the rhythmic tapping of keys and the occasional murmur of ideas. Outside, the city buzzed with life, but inside the coffee shop, it felt like the world had narrowed to just this moment, just this problem, just the two of them.\n\nAs the minutes ticked by, the lines of code began to align, the workflow taking shape with a clarity that hadn’t been there before. Alex let out a small laugh, the sound surprising even them. \"Okay, this... this might actually work.\"\n\nJordan leaned back in their chair, a satisfied smile playing on their lips. \"Told you. All it takes is a fresh set of eyes and a lot of caffeine.\"\n\nAlex chuckled, finally picking up their coffee and taking a sip. It was cold now, but they didn’t seem to care. \"Yeah, well, don’t let it go to your head.\"\n\nThe tension had lifted, replaced by a quiet optimism. They weren’t out of the woods yet, but for the first time in hours—maybe days—Alex felt like they were on the right path. And with Jordan by their side, they knew they’d get there.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "context_approach": "minimal",
+        "generation_prompt": "You are a skilled fiction writer. Generate a compelling scene based on the following:\n\nScene Description: \"\"\"Code review workflow built on LangGraph.\"\"\"\nCharacters: Alex, Jordan\nSetting: a dimly lit coffee shop\nTone: tense but hopeful\nContext: Write based on the information provided.\n\nWrite a vivid, engaging scene that brings this description to life. Focus on:\n- Show, don't tell\n- Vivid sensory details\n- Natural character actions and reactions\n- Appropriate pacing and tension\n\nGenerate the scene as plain text, no JSON or formatting.",
+        "generated_raw": "The coffee shop was bathed in a warm, dim glow, the kind of light that made the world feel smaller and more intimate. The hum of espresso machines and the faint clinking of porcelain cups filled the air, punctuated by the occasional burst of laughter from a corner table. Alex sat at a small round table near the window, their laptop open, the blue light of the screen casting sharp shadows on their face. Their fingers tapped nervously on the keyboard, the sound barely audible over the ambient noise.\n\nJordan slid into the chair across from them, setting down a steaming mug of black coffee. \"You look like you're about to rewrite the entire codebase,\" they said, their tone light but laced with concern.\n\nAlex didn’t look up. \"Not rewrite. Just... fix. LangGraph’s workflow isn’t integrating right. The nodes are overlapping, and the edges—\" They cut themselves off, running a hand through their hair. \"It’s a mess.\"\n\nJordan leaned forward, their eyes scanning the screen. The flicker of code reflected in their glasses. \"Okay, let’s break it down. What’s the core issue?\"\n\nAlex exhaled sharply, their breath fogging the edge of their own untouched coffee. \"The review process is supposed to be seamless, but it’s like the system’s fighting itself. It’s not catching the inconsistencies. And if we can’t trust the workflow, then...\" Their voice trailed off, but the implication hung heavy between them.\n\nJordan nodded slowly, their expression thoughtful. They took a sip of their coffee, the steam rising in soft curls. \"Alright. So, we start with the nodes. Let’s map them out again, see where the overlaps are happening. Maybe we’re missing a connection somewhere.\"\n\nAlex hesitated, then finally met Jordan’s gaze. There was a flicker of hope in their eyes, like a spark trying to catch flame. \"You think it’s that simple?\"\n\nJordan smirked. \"Simple? No. But fixable? Definitely.\" They pulled out their own laptop, the soft glow of their screen joining Alex’s. \"We’ll figure it out. We always do.\"\n\nThe tension in Alex’s shoulders eased, just slightly. They turned back to their laptop, their fingers moving with more purpose now. The two of them worked in silence for a while, the only sound the rhythmic tapping of keys and the occasional murmur of ideas. Outside, the city buzzed with life, but inside the coffee shop, it felt like the world had narrowed to just this moment, just this problem, just the two of them.\n\nAs the minutes ticked by, the lines of code began to align, the workflow taking shape with a clarity that hadn’t been there before. Alex let out a small laugh, the sound surprising even them. \"Okay, this... this might actually work.\"\n\nJordan leaned back in their chair, a satisfied smile playing on their lips. \"Told you. All it takes is a fresh set of eyes and a lot of caffeine.\"\n\nAlex chuckled, finally picking up their coffee and taking a sip. It was cold now, but they didn’t seem to care. \"Yeah, well, don’t let it go to your head.\"\n\nThe tension had lifted, replaced by a quiet optimism. They weren’t out of the woods yet, but for the first time in hours—maybe days—Alex felt like they were on the right path. And with Jordan by their side, they knew they’d get there.",
+        "test_config": {
+          "test_number": 6,
+          "config": {
+            "temperature": 0.9,
+            "generation_strategy": "standard",
+            "context_depth": "full",
+            "prose_style": "lyrical"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T02:36:37.365280Z",
+          "completed_at": "2025-10-28T02:37:09.305852Z",
+          "duration_seconds": 31.941092249995563
+        },
+        "evaluation": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 85,
+              "reasoning": "The scene is original with unexpected emotional beats, such as the shift from tension to optimism. Descriptions like 'the blue light of the screen casting sharp shadows on their face' are fresh and evocative."
+            },
+            "consistency": {
+              "score": 90,
+              "reasoning": "Character voices are consistent, with Alex's frustration and Jordan's supportive tone maintained throughout. The plot flows logically, and the tone of quiet intensity is adhered to."
+            },
+            "prose_quality": {
+              "score": 88,
+              "reasoning": "Descriptions are vivid, such as 'the hum of espresso machines and the faint clinking of porcelain cups.' Sentence structure is varied, and the narrative flows naturally."
+            },
+            "dialogue": {
+              "score": 87,
+              "reasoning": "Dialogue feels natural and distinct, with Alex's technical jargon contrasting with Jordan's more casual tone. Emotional authenticity is evident, especially in the exchange about the workflow issues."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "ad965ba8cecf862536f249dbdae557d9c452070d4909803db08a703947ecd237",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T02:37:13.113770Z"
+    },
+    {
+      "test_number": 7,
+      "config": {
+        "test_number": 7,
+        "config_values": {
+          "temperature": 0.9,
+          "generation_strategy": "chain_of_thought",
+          "context_depth": "minimal",
+          "prose_style": "concise"
+        },
+        "workflow": "fiction_scene"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "creativity": {
+            "score": 0.85,
+            "reasoning": "The scene is original with fresh descriptions like 'haven of shadows' and 'cocoon of white noise.' Unexpected emotional beats, such as the tension between Alex and Jordan, add depth. The integration of a technical element (LangGraph-based code review workflow) is innovative and unexpected in a coffee shop setting."
+          },
+          "consistency": {
+            "score": 0.9,
+            "reasoning": "Character voices are distinct and maintained throughout. The plot flows logically from the setup to the discussion of the workflow. The tone remains consistent, blending tension with a subtle undercurrent of hope."
+          },
+          "prose_quality": {
+            "score": 0.88,
+            "reasoning": "Descriptions are vivid and evocative, such as 'the blue glow of the screen illuminating their furrowed brow.' Sentence structure is varied, enhancing readability. The prose flows naturally, maintaining engagement without feeling forced."
+          },
+          "dialogue": {
+            "score": 0.92,
+            "reasoning": "Dialogue feels natural and authentic, with distinct voices for Alex and Jordan. Emotional authenticity is evident, particularly in Alex's defensiveness and Jordan's supportive yet probing tone. The conversation drives the scene forward effectively."
+          }
+        },
+        "overall_score": 0.8875,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T02:37:52.877352Z",
+        "metadata": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 85,
+              "reasoning": "The scene is original with fresh descriptions like 'haven of shadows' and 'cocoon of white noise.' Unexpected emotional beats, such as the tension between Alex and Jordan, add depth. The integration of a technical element (LangGraph-based code review workflow) is innovative and unexpected in a coffee shop setting."
+            },
+            "consistency": {
+              "score": 90,
+              "reasoning": "Character voices are distinct and maintained throughout. The plot flows logically from the setup to the discussion of the workflow. The tone remains consistent, blending tension with a subtle undercurrent of hope."
+            },
+            "prose_quality": {
+              "score": 88,
+              "reasoning": "Descriptions are vivid and evocative, such as 'the blue glow of the screen illuminating their furrowed brow.' Sentence structure is varied, enhancing readability. The prose flows naturally, maintaining engagement without feeling forced."
+            },
+            "dialogue": {
+              "score": 92,
+              "reasoning": "Dialogue feels natural and authentic, with distinct voices for Alex and Jordan. Emotional authenticity is evident, particularly in Alex's defensiveness and Jordan's supportive yet probing tone. The conversation drives the scene forward effectively."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "f451a02cfc16b4b75f2b66bad7cd44f4dc65c932e525f4b583425d32818cea26",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 31018.058000016026,
+      "utility": 0.662179434062143,
+      "workflow_output": "Generated Scene:\nThe coffee shop was a haven of shadows, the dim overhead lights casting long, wavering streaks across the worn wooden tables. The hum of the espresso machine blended with the low murmur of late-night patrons, creating a cocoon of white noise. Alex sat hunched over a laptop, the blue glow of the screen illuminating their furrowed brow. Jordan slid into the seat across from them, clutching a steaming mug of black coffee. The aroma was sharp, almost medicinal, cutting through the faint scent of stale pastries.\n\n“You’re late,” Alex muttered, not looking up. Their voice was tight, edged with frustration.\n\nJordan took a long sip, the heat grounding them. “Traffic. And you didn’t have to wait.”\n\nAlex’s fingers paused over the keyboard, and they finally glanced up. “Of course I waited. This is a big deal.”\n\nJordan leaned forward, elbows on the table. “So, show me.”\n\nAlex hesitated, their hands hovering over the trackpad. The tension between them was palpable, a silent tug-of-war of uncertainty and anticipation. Finally, they turned the laptop to face Jordan. The screen displayed a complex web of interconnected nodes and edges, a visual representation of the LangGraph-based code review workflow they’d been building for weeks.\n\nJordan’s eyes widened slightly as they took it in. “You’ve been busy.”\n\n“It’s not perfect,” Alex said quickly, their voice tinged with defensiveness. “But I think it’s close. The nodes represent stages of the review process—submission, feedback, revisions. The edges show dependencies and decision points. It’s designed to be iterative, adaptive.”\n\nJordan traced a finger along the screen, following a particularly tangled path. “This loop here—what’s the trigger for that?”\n\nAlex exhaled sharply, leaning back in their chair. “That’s the part I’m stuck on. It’s supposed to handle edge cases, but I’m worried it’s too convoluted.”\n\nJordan nodded slowly, their brow furrowing in concentration. “It’s… ambitious. But maybe that’s not a bad thing.” They looked up, meeting Alex’s gaze. “You’re trying to anticipate every possible scenario. That’s why it feels messy.”\n\nAlex rubbed their temples, the stress evident in the tight lines of their face. “I just don’t want it to break down the first time someone uses it.”\n\n“It won’t,” Jordan said firmly. “You’ve thought this through more than anyone else would. The fact that it’s complex just means it’s thorough.” They paused, then added, “But maybe it doesn’t have to be perfect right now. You can refine it as you go.”\n\nAlex stared at the screen, the tension in their shoulders slowly easing. “Yeah. Maybe.”\n\nThe silence that followed was heavy but not uncomfortable, the kind of quiet that comes when two minds are grappling with the same problem. Jordan tapped the edge of the laptop. “Let’s run a simulation. See where it breaks.”\n\nA small, reluctant smile tugged at Alex’s lips. “You’re relentless.”\n\n“And you’re brilliant. Let’s make this work.”\n\nAlex nodded, their fingers already flying across the keyboard. The coffee shop faded into the background as the two of them dove into the intricacies of the workflow, the dim light and gentle hum of the space wrapping around them like a cocoon. The tension was still there, but it was tinged with something else now—hope.",
+      "metadata": {
+        "strategy": "chain_of_thought",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "context_approach": "minimal",
+        "generation_prompt": "You are a skilled fiction writer. Generate a compelling scene based on the following:\n\nScene Description: \"\"\"Code review workflow built on LangGraph.\"\"\"\nCharacters: Alex, Jordan\nSetting: a dimly lit coffee shop\nTone: tense but hopeful\nContext: Write based on the information provided.\n\nWrite a vivid, engaging scene that brings this description to life. Focus on:\n- Show, don't tell\n- Vivid sensory details\n- Natural character actions and reactions\n- Appropriate pacing and tension\n\nGenerate the scene as plain text, no JSON or formatting.",
+        "generated_raw": "The coffee shop was a haven of shadows, the dim overhead lights casting long, wavering streaks across the worn wooden tables. The hum of the espresso machine blended with the low murmur of late-night patrons, creating a cocoon of white noise. Alex sat hunched over a laptop, the blue glow of the screen illuminating their furrowed brow. Jordan slid into the seat across from them, clutching a steaming mug of black coffee. The aroma was sharp, almost medicinal, cutting through the faint scent of stale pastries.\n\n“You’re late,” Alex muttered, not looking up. Their voice was tight, edged with frustration.\n\nJordan took a long sip, the heat grounding them. “Traffic. And you didn’t have to wait.”\n\nAlex’s fingers paused over the keyboard, and they finally glanced up. “Of course I waited. This is a big deal.”\n\nJordan leaned forward, elbows on the table. “So, show me.”\n\nAlex hesitated, their hands hovering over the trackpad. The tension between them was palpable, a silent tug-of-war of uncertainty and anticipation. Finally, they turned the laptop to face Jordan. The screen displayed a complex web of interconnected nodes and edges, a visual representation of the LangGraph-based code review workflow they’d been building for weeks.\n\nJordan’s eyes widened slightly as they took it in. “You’ve been busy.”\n\n“It’s not perfect,” Alex said quickly, their voice tinged with defensiveness. “But I think it’s close. The nodes represent stages of the review process—submission, feedback, revisions. The edges show dependencies and decision points. It’s designed to be iterative, adaptive.”\n\nJordan traced a finger along the screen, following a particularly tangled path. “This loop here—what’s the trigger for that?”\n\nAlex exhaled sharply, leaning back in their chair. “That’s the part I’m stuck on. It’s supposed to handle edge cases, but I’m worried it’s too convoluted.”\n\nJordan nodded slowly, their brow furrowing in concentration. “It’s… ambitious. But maybe that’s not a bad thing.” They looked up, meeting Alex’s gaze. “You’re trying to anticipate every possible scenario. That’s why it feels messy.”\n\nAlex rubbed their temples, the stress evident in the tight lines of their face. “I just don’t want it to break down the first time someone uses it.”\n\n“It won’t,” Jordan said firmly. “You’ve thought this through more than anyone else would. The fact that it’s complex just means it’s thorough.” They paused, then added, “But maybe it doesn’t have to be perfect right now. You can refine it as you go.”\n\nAlex stared at the screen, the tension in their shoulders slowly easing. “Yeah. Maybe.”\n\nThe silence that followed was heavy but not uncomfortable, the kind of quiet that comes when two minds are grappling with the same problem. Jordan tapped the edge of the laptop. “Let’s run a simulation. See where it breaks.”\n\nA small, reluctant smile tugged at Alex’s lips. “You’re relentless.”\n\n“And you’re brilliant. Let’s make this work.”\n\nAlex nodded, their fingers already flying across the keyboard. The coffee shop faded into the background as the two of them dove into the intricacies of the workflow, the dim light and gentle hum of the space wrapping around them like a cocoon. The tension was still there, but it was tinged with something else now—hope.",
+        "test_config": {
+          "test_number": 7,
+          "config": {
+            "temperature": 0.9,
+            "generation_strategy": "chain_of_thought",
+            "context_depth": "minimal",
+            "prose_style": "concise"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T02:37:13.116095Z",
+          "completed_at": "2025-10-28T02:37:44.133644Z",
+          "duration_seconds": 31.018058000016026
+        },
+        "evaluation": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 85,
+              "reasoning": "The scene is original with fresh descriptions like 'haven of shadows' and 'cocoon of white noise.' Unexpected emotional beats, such as the tension between Alex and Jordan, add depth. The integration of a technical element (LangGraph-based code review workflow) is innovative and unexpected in a coffee shop setting."
+            },
+            "consistency": {
+              "score": 90,
+              "reasoning": "Character voices are distinct and maintained throughout. The plot flows logically from the setup to the discussion of the workflow. The tone remains consistent, blending tension with a subtle undercurrent of hope."
+            },
+            "prose_quality": {
+              "score": 88,
+              "reasoning": "Descriptions are vivid and evocative, such as 'the blue glow of the screen illuminating their furrowed brow.' Sentence structure is varied, enhancing readability. The prose flows naturally, maintaining engagement without feeling forced."
+            },
+            "dialogue": {
+              "score": 92,
+              "reasoning": "Dialogue feels natural and authentic, with distinct voices for Alex and Jordan. Emotional authenticity is evident, particularly in Alex's defensiveness and Jordan's supportive yet probing tone. The conversation drives the scene forward effectively."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "f451a02cfc16b4b75f2b66bad7cd44f4dc65c932e525f4b583425d32818cea26",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T02:37:52.877653Z"
+    },
+    {
+      "test_number": 8,
+      "config": {
+        "test_number": 8,
+        "config_values": {
+          "temperature": 0.9,
+          "generation_strategy": "chain_of_thought",
+          "context_depth": "minimal",
+          "prose_style": "lyrical"
+        },
+        "workflow": "fiction_scene"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "creativity": {
+            "score": 0.85,
+            "reasoning": "The scene is original with unexpected emotional beats, such as the shift from tension to collaboration. Descriptions like 'the air thick with the scent of espresso and burnt sugar' and 'lit by screens and stubborn hope' are fresh and evocative."
+          },
+          "consistency": {
+            "score": 0.9,
+            "reasoning": "Character voices are distinct and consistent, with Alex's frustration and Jordan's supportive demeanor clear throughout. The plot flows logically, and the tone remains steady, focusing on the quiet intensity of the moment."
+          },
+          "prose_quality": {
+            "score": 0.88,
+            "reasoning": "The prose is vivid, with varied sentence structure and a natural flow. Descriptions like 'the blue light casting sharp angles across their face' and 'the clink of a spoon against ceramic' enhance the scene's atmosphere."
+          },
+          "dialogue": {
+            "score": 0.92,
+            "reasoning": "Dialogue feels natural and authentic, with distinct voices for Alex and Jordan. Emotional authenticity is strong, particularly in lines like 'You look like you’ve been staring at that screen for hours' and 'We’ve untangled worse.'"
+          }
+        },
+        "overall_score": 0.8875,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T02:38:13.227190Z",
+        "metadata": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 85,
+              "reasoning": "The scene is original with unexpected emotional beats, such as the shift from tension to collaboration. Descriptions like 'the air thick with the scent of espresso and burnt sugar' and 'lit by screens and stubborn hope' are fresh and evocative."
+            },
+            "consistency": {
+              "score": 90,
+              "reasoning": "Character voices are distinct and consistent, with Alex's frustration and Jordan's supportive demeanor clear throughout. The plot flows logically, and the tone remains steady, focusing on the quiet intensity of the moment."
+            },
+            "prose_quality": {
+              "score": 88,
+              "reasoning": "The prose is vivid, with varied sentence structure and a natural flow. Descriptions like 'the blue light casting sharp angles across their face' and 'the clink of a spoon against ceramic' enhance the scene's atmosphere."
+            },
+            "dialogue": {
+              "score": 92,
+              "reasoning": "Dialogue feels natural and authentic, with distinct voices for Alex and Jordan. Emotional authenticity is strong, particularly in lines like 'You look like you’ve been staring at that screen for hours' and 'We’ve untangled worse.'"
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "89e24349b19413744e09c70cb00e76f20e4f2b09684f573c6b6a7410d8731371",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 14972.905875009019,
+      "utility": 0.7000646491278687,
+      "workflow_output": "Generated Scene:\nThe coffee shop hummed with the low murmur of late-night conversations, the air thick with the scent of espresso and burnt sugar. Overhead, a single flickering bulb cast uneven shadows across the wooden tables, painting the room in a dim, amber glow. Alex hunched over their laptop, fingers tapping restlessly against the keyboard, their reflection a ghostly blur in the dark window beside them.  \n\nJordan slid into the chair across from them, setting down two steaming mugs—black coffee for Alex, something frothy and sweet for themselves. \"You look like you’ve been staring at that screen for hours,\" they said, voice low but edged with concern.  \n\nAlex didn’t look up. \"It’s the LangGraph integration. The pull request is a mess.\" Their jaw tightened as they scrolled through lines of code, the blue light casting sharp angles across their face.  \n\nJordan leaned in, peering at the screen. \"Let me see.\"  \n\nFor a moment, the only sounds were the clink of a spoon against ceramic and the distant hiss of the espresso machine. Then Jordan exhaled sharply. \"Okay. Yeah. This is rough.\" They rubbed their temple, thinking. \"But it’s not unsalvageable. We can refactor the workflow—break it down step by step.\"  \n\nAlex finally lifted their gaze, eyes tired but sharp. \"You think?\"  \n\nJordan met their stare, nodding slowly. \"I do. We’ve untangled worse.\" They reached for their laptop, flipping it open with a determined click. \"Let’s go through it together.\"  \n\nThe tension in Alex’s shoulders eased, just slightly. They took a sip of coffee, the bitterness grounding them. Around them, the coffee shop buzzed on, oblivious to the quiet battle being waged over lines of code. But in that dim corner, lit by screens and stubborn hope, something shifted—the weight of the problem no longer resting on one set of shoulders alone.  \n\nJordan cracked their knuckles, grinning. \"Alright. Let’s fix this.\"  \n\nAnd with that, they got to work.",
+      "metadata": {
+        "strategy": "chain_of_thought",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "context_approach": "minimal",
+        "generation_prompt": "You are a skilled fiction writer. Generate a compelling scene based on the following:\n\nScene Description: \"\"\"Code review workflow built on LangGraph.\"\"\"\nCharacters: Alex, Jordan\nSetting: a dimly lit coffee shop\nTone: tense but hopeful\nContext: Write based on the information provided.\n\nWrite a vivid, engaging scene that brings this description to life. Focus on:\n- Show, don't tell\n- Vivid sensory details\n- Natural character actions and reactions\n- Appropriate pacing and tension\n\nGenerate the scene as plain text, no JSON or formatting.",
+        "generated_raw": "The coffee shop hummed with the low murmur of late-night conversations, the air thick with the scent of espresso and burnt sugar. Overhead, a single flickering bulb cast uneven shadows across the wooden tables, painting the room in a dim, amber glow. Alex hunched over their laptop, fingers tapping restlessly against the keyboard, their reflection a ghostly blur in the dark window beside them.  \n\nJordan slid into the chair across from them, setting down two steaming mugs—black coffee for Alex, something frothy and sweet for themselves. \"You look like you’ve been staring at that screen for hours,\" they said, voice low but edged with concern.  \n\nAlex didn’t look up. \"It’s the LangGraph integration. The pull request is a mess.\" Their jaw tightened as they scrolled through lines of code, the blue light casting sharp angles across their face.  \n\nJordan leaned in, peering at the screen. \"Let me see.\"  \n\nFor a moment, the only sounds were the clink of a spoon against ceramic and the distant hiss of the espresso machine. Then Jordan exhaled sharply. \"Okay. Yeah. This is rough.\" They rubbed their temple, thinking. \"But it’s not unsalvageable. We can refactor the workflow—break it down step by step.\"  \n\nAlex finally lifted their gaze, eyes tired but sharp. \"You think?\"  \n\nJordan met their stare, nodding slowly. \"I do. We’ve untangled worse.\" They reached for their laptop, flipping it open with a determined click. \"Let’s go through it together.\"  \n\nThe tension in Alex’s shoulders eased, just slightly. They took a sip of coffee, the bitterness grounding them. Around them, the coffee shop buzzed on, oblivious to the quiet battle being waged over lines of code. But in that dim corner, lit by screens and stubborn hope, something shifted—the weight of the problem no longer resting on one set of shoulders alone.  \n\nJordan cracked their knuckles, grinning. \"Alright. Let’s fix this.\"  \n\nAnd with that, they got to work.",
+        "test_config": {
+          "test_number": 8,
+          "config": {
+            "temperature": 0.9,
+            "generation_strategy": "chain_of_thought",
+            "context_depth": "minimal",
+            "prose_style": "lyrical"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T02:37:52.885358Z",
+          "completed_at": "2025-10-28T02:38:07.858033Z",
+          "duration_seconds": 14.972905875009019
+        },
+        "evaluation": {
+          "rubric": {
+            "creativity": {
+              "description": "Original prose, unexpected emotional beats, fresh descriptions",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Character voice, plot continuity, tone adherence",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "prose_quality": {
+              "description": "Vivid descriptions, varied sentence structure, natural flow",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "dialogue": {
+              "description": "Natural speech, distinct voices, emotional authenticity",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "creativity": {
+              "score": 85,
+              "reasoning": "The scene is original with unexpected emotional beats, such as the shift from tension to collaboration. Descriptions like 'the air thick with the scent of espresso and burnt sugar' and 'lit by screens and stubborn hope' are fresh and evocative."
+            },
+            "consistency": {
+              "score": 90,
+              "reasoning": "Character voices are distinct and consistent, with Alex's frustration and Jordan's supportive demeanor clear throughout. The plot flows logically, and the tone remains steady, focusing on the quiet intensity of the moment."
+            },
+            "prose_quality": {
+              "score": 88,
+              "reasoning": "The prose is vivid, with varied sentence structure and a natural flow. Descriptions like 'the blue light casting sharp angles across their face' and 'the clink of a spoon against ceramic' enhance the scene's atmosphere."
+            },
+            "dialogue": {
+              "score": 92,
+              "reasoning": "Dialogue feels natural and authentic, with distinct voices for Alex and Jordan. Emotional authenticity is strong, particularly in lines like 'You look like you’ve been staring at that screen for hours' and 'We’ve untangled worse.'"
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "89e24349b19413744e09c70cb00e76f20e4f2b09684f573c6b6a7410d8731371",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T02:38:13.227640Z"
+    }
+  ],
+  "status": "COMPLETED",
+  "started_at": "2025-10-28T02:34:42.339103Z",
+  "completed_at": "2025-10-28T02:38:13.230230Z",
+  "experiment_metadata": {
+    "config_hash": "73202b734eff85d21a23658134d43ffa9f816553e5618292f5515ee548cb08e8",
+    "created_at": "2025-10-28T02:34:42.339050Z",
+    "dependencies": {
+      "pydantic": "2.12.3",
+      "langgraph": "1.0.1",
+      "litellm": "1.79.0"
+    },
+    "non_deterministic_sources": [
+      "llm_sampling"
+    ]
+  },
+  "metadata": {
+    "normalization": {
+      "cost": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "latency": {
+        "min": 10765.084542013938,
+        "max": 31941.092249995563
+      }
+    }
+  },
+  "baseline_test_number": 1,
+  "baseline_config": {
+    "test_number": 1,
+    "config_values": {
+      "temperature": 0.5,
+      "generation_strategy": "standard",
+      "context_depth": "minimal",
+      "prose_style": "concise"
+    },
+    "workflow": "fiction_scene"
+  },
+  "baseline_result": {
+    "test_number": 1,
+    "config": {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.5,
+        "generation_strategy": "standard",
+        "context_depth": "minimal",
+        "prose_style": "concise"
+      },
+      "workflow": "fiction_scene"
+    },
+    "quality_score": {
+      "dimension_scores": {
+        "creativity": {
+          "score": 0.85,
+          "reasoning": "The scene is original with fresh descriptions like 'shadows clung to the corners' and 'the faint tang of anxiety that seemed to radiate from Alex.' Emotional beats are unexpected, such as the shift from tension to cautious optimism."
+        },
+        "consistency": {
+          "score": 0.9,
+          "reasoning": "Character voices are consistent, with Alex's nervousness and Jordan's calm demeanor maintained throughout. The plot flows smoothly from tension to collaboration, and the tone remains steady."
+        },
+        "prose_quality": {
+          "score": 0.88,
+          "reasoning": "Descriptions are vivid, such as 'the glow of the screen casting sharp angles across their face.' Sentence structure is varied, and the narrative flows naturally, enhancing the reader's immersion."
+        },
+        "dialogue": {
+          "score": 0.92,
+          "reasoning": "Dialogue feels natural and authentic, with distinct voices for Alex and Jordan. Emotional authenticity is evident, especially in moments like Jordan's reassurance and Alex's growing confidence."
+        }
+      },
+      "overall_score": 0.8875,
+      "evaluator_model": "openrouter/deepseek/deepseek-chat",
+      "timestamp": "2025-10-28T02:35:11.419971Z",
+      "metadata": {
+        "rubric": {
+          "creativity": {
+            "description": "Original prose, unexpected emotional beats, fresh descriptions",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "consistency": {
+            "description": "Character voice, plot continuity, tone adherence",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "prose_quality": {
+            "description": "Vivid descriptions, varied sentence structure, natural flow",
+            "scale": "0-100 points",
+            "weight": 0.2
+          },
+          "dialogue": {
+            "description": "Natural speech, distinct voices, emotional authenticity",
+            "scale": "0-100 points",
+            "weight": 0.2
+          }
+        },
+        "raw_response": {
+          "creativity": {
+            "score": 85,
+            "reasoning": "The scene is original with fresh descriptions like 'shadows clung to the corners' and 'the faint tang of anxiety that seemed to radiate from Alex.' Emotional beats are unexpected, such as the shift from tension to cautious optimism."
+          },
+          "consistency": {
+            "score": 90,
+            "reasoning": "Character voices are consistent, with Alex's nervousness and Jordan's calm demeanor maintained throughout. The plot flows smoothly from tension to collaboration, and the tone remains steady."
+          },
+          "prose_quality": {
+            "score": 88,
+            "reasoning": "Descriptions are vivid, such as 'the glow of the screen casting sharp angles across their face.' Sentence structure is varied, and the narrative flows naturally, enhancing the reader's immersion."
+          },
+          "dialogue": {
+            "score": 92,
+            "reasoning": "Dialogue feels natural and authentic, with distinct voices for Alex and Jordan. Emotional authenticity is evident, especially in moments like Jordan's reassurance and Alex's growing confidence."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "e6a7f1a3a7d98085bbfbf1f53757fe67e4bbd24174dea8a0273d8515a65d840e",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/deepseek/deepseek-chat"
+      }
+    },
+    "cost": 0.0,
+    "latency": 24895.63650000491,
+    "utility": 0.71,
+    "workflow_output": "Generated Scene:\nThe coffee shop was dimly lit, the kind of place where shadows clung to the corners and the hum of conversation blended with the rhythmic hiss of the espresso machine. The faint scent of roasted beans and burnt sugar hung in the air, mingling with the faint tang of anxiety that seemed to radiate from Alex. They sat at a corner table, their laptop open, the glow of the screen casting sharp angles across their face. Their fingers tapped nervously against the edge of the keyboard, the sound barely audible over the low murmur of the shop.\n\nJordan slid into the chair across from them, setting down a steaming cup of black coffee. Their presence was calm, almost grounding, but there was a tension in the way they leaned forward, elbows on the table. \"You ready?\" Jordan asked, their voice low but steady.\n\nAlex nodded, though their jaw tightened. \"Yeah. Let’s do this.\"\n\nJordan pulled out their own laptop, the screen flickering to life. The LangGraph interface greeted them, its clean lines and minimalist design a stark contrast to the chaos Alex felt inside. \"Alright,\" Jordan said, clicking through the workflow. \"Let’s start with the pull request. You’ve got the changes up?\"\n\n\"Yeah,\" Alex replied, their voice slightly hoarse. They cleared their throat and gestured to their screen. \"It’s all there. But I’m not sure if I—\"\n\n\"Hey,\" Jordan interrupted, their tone firm but kind. \"We’re here to figure it out together. No one’s expecting perfection. Just walk me through it.\"\n\nAlex took a deep breath, the scent of coffee grounding them for a moment. They clicked through their code, explaining each change, their voice gaining confidence as they went. Jordan listened intently, occasionally nodding or furrowing their brow. The tension in the air shifted, the weight of uncertainty giving way to a cautious optimism.\n\n\"Okay,\" Jordan said finally, leaning back in their chair. \"I see what you’re going for here. The logic’s solid, but there’s a couple of places where we might need to tighten things up. Let’s go over the graph—see how it flows.\"\n\nAlex’s shoulders relaxed slightly, and they nodded. \"Yeah. That’s what I was worried about.\"\n\nJordan clicked through the LangGraph interface, the nodes and edges of the workflow appearing on the screen. \"Look here,\" they said, pointing to a specific node. \"This is where the bottleneck could happen. If we adjust this, it’ll streamline the whole process.\"\n\nAlex leaned in, their eyes narrowing as they studied the graph. \"You’re right,\" they murmured, their voice tinged with relief. \"That makes sense. I didn’t even see that.\"\n\n\"Nobody sees everything,\" Jordan said with a small smile. \"That’s why we do this. Two heads, right?\"\n\nAlex chuckled softly, the sound easing the tension in the air. \"Right.\"\n\nFor a moment, the coffee shop seemed to fade away, the dim lighting and hushed conversations replaced by the glow of the screens and the quiet rhythm of their collaboration. The tension was still there, but it was different now—less oppressive, more like the kind of tension that comes with stepping into the unknown, armed with the knowledge that you’re not alone.\n\n\"Alright,\" Jordan said, closing their laptop. \"Let’s make those changes and push it through. You’ve got this.\"\n\nAlex nodded, their fingers hovering over the keyboard. \"Thanks, Jordan. I mean it.\"\n\nJordan shrugged, their smile easy. \"Anytime. Now, let’s get this done so we can celebrate with another round of coffee.\"\n\nAlex grinned, the weight lifting from their chest as they turned back to their screen. The coffee shop buzzed around them, but for the first time that evening, Alex felt like they were exactly where they needed to be.",
+    "metadata": {
+      "strategy": "standard",
+      "model": "openrouter/deepseek/deepseek-chat",
+      "temperature": 0.5,
+      "context_approach": "minimal",
+      "generation_prompt": "You are a skilled fiction writer. Generate a compelling scene based on the following:\n\nScene Description: \"\"\"Code review workflow built on LangGraph.\"\"\"\nCharacters: Alex, Jordan\nSetting: a dimly lit coffee shop\nTone: tense but hopeful\nContext: Write based on the information provided.\n\nWrite a vivid, engaging scene that brings this description to life. Focus on:\n- Show, don't tell\n- Vivid sensory details\n- Natural character actions and reactions\n- Appropriate pacing and tension\n\nGenerate the scene as plain text, no JSON or formatting.",
+      "generated_raw": "The coffee shop was dimly lit, the kind of place where shadows clung to the corners and the hum of conversation blended with the rhythmic hiss of the espresso machine. The faint scent of roasted beans and burnt sugar hung in the air, mingling with the faint tang of anxiety that seemed to radiate from Alex. They sat at a corner table, their laptop open, the glow of the screen casting sharp angles across their face. Their fingers tapped nervously against the edge of the keyboard, the sound barely audible over the low murmur of the shop.\n\nJordan slid into the chair across from them, setting down a steaming cup of black coffee. Their presence was calm, almost grounding, but there was a tension in the way they leaned forward, elbows on the table. \"You ready?\" Jordan asked, their voice low but steady.\n\nAlex nodded, though their jaw tightened. \"Yeah. Let’s do this.\"\n\nJordan pulled out their own laptop, the screen flickering to life. The LangGraph interface greeted them, its clean lines and minimalist design a stark contrast to the chaos Alex felt inside. \"Alright,\" Jordan said, clicking through the workflow. \"Let’s start with the pull request. You’ve got the changes up?\"\n\n\"Yeah,\" Alex replied, their voice slightly hoarse. They cleared their throat and gestured to their screen. \"It’s all there. But I’m not sure if I—\"\n\n\"Hey,\" Jordan interrupted, their tone firm but kind. \"We’re here to figure it out together. No one’s expecting perfection. Just walk me through it.\"\n\nAlex took a deep breath, the scent of coffee grounding them for a moment. They clicked through their code, explaining each change, their voice gaining confidence as they went. Jordan listened intently, occasionally nodding or furrowing their brow. The tension in the air shifted, the weight of uncertainty giving way to a cautious optimism.\n\n\"Okay,\" Jordan said finally, leaning back in their chair. \"I see what you’re going for here. The logic’s solid, but there’s a couple of places where we might need to tighten things up. Let’s go over the graph—see how it flows.\"\n\nAlex’s shoulders relaxed slightly, and they nodded. \"Yeah. That’s what I was worried about.\"\n\nJordan clicked through the LangGraph interface, the nodes and edges of the workflow appearing on the screen. \"Look here,\" they said, pointing to a specific node. \"This is where the bottleneck could happen. If we adjust this, it’ll streamline the whole process.\"\n\nAlex leaned in, their eyes narrowing as they studied the graph. \"You’re right,\" they murmured, their voice tinged with relief. \"That makes sense. I didn’t even see that.\"\n\n\"Nobody sees everything,\" Jordan said with a small smile. \"That’s why we do this. Two heads, right?\"\n\nAlex chuckled softly, the sound easing the tension in the air. \"Right.\"\n\nFor a moment, the coffee shop seemed to fade away, the dim lighting and hushed conversations replaced by the glow of the screens and the quiet rhythm of their collaboration. The tension was still there, but it was different now—less oppressive, more like the kind of tension that comes with stepping into the unknown, armed with the knowledge that you’re not alone.\n\n\"Alright,\" Jordan said, closing their laptop. \"Let’s make those changes and push it through. You’ve got this.\"\n\nAlex nodded, their fingers hovering over the keyboard. \"Thanks, Jordan. I mean it.\"\n\nJordan shrugged, their smile easy. \"Anytime. Now, let’s get this done so we can celebrate with another round of coffee.\"\n\nAlex grinned, the weight lifting from their chest as they turned back to their screen. The coffee shop buzzed around them, but for the first time that evening, Alex felt like they were exactly where they needed to be.",
+      "test_config": {
+        "test_number": 1,
+        "config": {
+          "temperature": 0.5,
+          "generation_strategy": "standard",
+          "context_depth": "minimal",
+          "prose_style": "concise"
+        }
+      },
+      "workflow": {
+        "started_at": "2025-10-28T02:34:42.342751Z",
+        "completed_at": "2025-10-28T02:35:07.237977Z",
+        "duration_seconds": 24.895636500004912
+      },
+      "evaluation": {
+        "rubric": {
+          "creativity": {
+            "description": "Original prose, unexpected emotional beats, fresh descriptions",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "consistency": {
+            "description": "Character voice, plot continuity, tone adherence",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "prose_quality": {
+            "description": "Vivid descriptions, varied sentence structure, natural flow",
+            "scale": "0-100 points",
+            "weight": 0.2
+          },
+          "dialogue": {
+            "description": "Natural speech, distinct voices, emotional authenticity",
+            "scale": "0-100 points",
+            "weight": 0.2
+          }
+        },
+        "raw_response": {
+          "creativity": {
+            "score": 85,
+            "reasoning": "The scene is original with fresh descriptions like 'shadows clung to the corners' and 'the faint tang of anxiety that seemed to radiate from Alex.' Emotional beats are unexpected, such as the shift from tension to cautious optimism."
+          },
+          "consistency": {
+            "score": 90,
+            "reasoning": "Character voices are consistent, with Alex's nervousness and Jordan's calm demeanor maintained throughout. The plot flows smoothly from tension to collaboration, and the tone remains steady."
+          },
+          "prose_quality": {
+            "score": 88,
+            "reasoning": "Descriptions are vivid, such as 'the glow of the screen casting sharp angles across their face.' Sentence structure is varied, and the narrative flows naturally, enhancing the reader's immersion."
+          },
+          "dialogue": {
+            "score": 92,
+            "reasoning": "Dialogue feels natural and authentic, with distinct voices for Alex and Jordan. Emotional authenticity is evident, especially in moments like Jordan's reassurance and Alex's growing confidence."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "e6a7f1a3a7d98085bbfbf1f53757fe67e4bbd24174dea8a0273d8515a65d840e",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/deepseek/deepseek-chat"
+      }
+    },
+    "timestamp": "2025-10-28T02:35:11.420102Z"
+  },
+  "baseline_quality": 0.8875,
+  "quality_improvement_pct": 0.0
+}

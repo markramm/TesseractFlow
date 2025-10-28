@@ -261,9 +261,13 @@ class ExperimentMetadata(BaseModel):
 
 
 class TestConfiguration(BaseModel):
-    """Represents a single test generated from the Taguchi L8 array."""
+    """Represents a single test generated from the Taguchi L8 array.
 
-    test_number: int = Field(..., ge=1, le=8)
+    Note: test_number can exceed 8 when using replications (n > 1).
+    With replications, the same 8 L8 configurations are repeated multiple times.
+    """
+
+    test_number: int = Field(..., ge=1)
     config_values: Dict[str, Any]
     workflow: str
 
@@ -312,9 +316,13 @@ class TestConfiguration(BaseModel):
 
 
 class TestResult(BaseModel):
-    """Result from executing a single test configuration."""
+    """Result from executing a single test configuration.
 
-    test_number: int = Field(..., ge=1, le=8)
+    Note: test_number can exceed 8 when using replications (n > 1).
+    With replications, the same 8 L8 configurations are repeated multiple times.
+    """
+
+    test_number: int = Field(..., ge=1)
     config: TestConfiguration
     quality_score: QualityScore
     cost: float = Field(..., ge=0.0)
@@ -356,7 +364,7 @@ class ExperimentRun(BaseModel):
     error: Optional[str] = None
     experiment_metadata: Optional[ExperimentMetadata] = None
     metadata: Dict[str, Any] = Field(default_factory=dict)
-    baseline_test_number: int = Field(default=1, ge=1, le=8)
+    baseline_test_number: int = Field(default=1, ge=1)
     baseline_config: Optional[TestConfiguration] = None
     baseline_result: Optional[TestResult] = None
     baseline_quality: Optional[float] = Field(default=None, ge=0.0, le=1.0)
@@ -378,8 +386,12 @@ class ExperimentRun(BaseModel):
 
     @model_validator(mode="after")
     def _validate_state(self) -> "ExperimentRun":
-        if len(self.test_configurations) != 8:
-            msg = "Exactly 8 test configurations are required for an L8 experiment."
+        num_configs = len(self.test_configurations)
+        if num_configs < 8 or num_configs % 8 != 0:
+            msg = (
+                f"L8 experiment requires exactly 8 test configurations or a multiple of 8 "
+                f"(for replications). Got {num_configs} configurations."
+            )
             raise ValueError(msg)
 
         test_numbers = [config.test_number for config in self.test_configurations]

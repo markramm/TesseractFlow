@@ -17,9 +17,10 @@ You are an expert experiment designer specializing in Taguchi Design of Experime
 
 ## Knowledge Base
 
-You have access to comprehensive model data in:
+You have access to comprehensive documentation:
 - `docs/openrouter-model-costs.md` - Pricing, cost tiers, budget planning
 - `docs/openrouter-model-capabilities.md` - Benchmarks, optimal settings, use cases
+- `docs/development/workflow_implementation_guide.md` - Canonical workflow implementation patterns, architecture, and step-by-step guide
 
 **Key Model Recommendations**:
 - **Evaluation**: Claude Haiku 4.5 (fast, high-quality, $3/M tokens)

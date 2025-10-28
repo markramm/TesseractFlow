@@ -1,0 +1,72 @@
+# Wave 4: Dialogue Enhancement with Reasoning & Verbalized Sampling
+# Research Question: Do reasoning and verbalized sampling improve dialogue naturalness and voice distinctiveness?
+#
+# Variable Selection Rationale:
+# KEPT (High Impact):
+#   - temperature: Affects dialogue spontaneity vs consistency
+#   - voice_emphasis: Critical for character voice
+# DROPPED (Low Impact):
+#   - generation_strategy: Replaced by reasoning_enabled
+#   - examples_count: Minimal impact on quality
+# ADDED (Test Mixins):
+#   - reasoning_enabled: Test ReasoningMixin for dialogue logic
+#   - verbalized_sampling: Test VerbalizationMixin (none/self_consistency/sample_and_rank)
+#   - n_samples: Number of samples for verbalized sampling
+#   - ranking_criteria: Criteria for sample-and-rank
+#   - reasoning_visibility: Control reasoning trace output
+
+name: wave4_dialogue_reasoning_vs
+workflow: dialogue_enhancement
+variables:
+  - name: temperature
+    level_1: 0.6
+    level_2: 0.9
+  - name: voice_emphasis
+    level_1: subtle
+    level_2: explicit
+  - name: reasoning_enabled
+    level_1: 'false'
+    level_2: 'true'
+  - name: verbalized_sampling
+    level_1: none
+    level_2: sample_and_rank
+  - name: n_samples
+    level_1: '3'
+    level_2: '5'
+  - name: ranking_criteria
+    level_1: naturalness_and_voice
+    level_2: emotional_authenticity
+  - name: reasoning_visibility
+    level_1: visible
+    level_2: hidden
+
+utility_weights:
+  quality: 0.7
+  cost: 0.2
+  time: 0.1
+
+workflow_config:
+  sample_code_path: tesseract_flow/workflows/__init__.py
+  language: python
+  evaluator_model: openrouter/deepseek/deepseek-chat
+  evaluator_temperature: 0.1
+  rubric:
+    voice_distinctiveness:
+      description: Can you identify speaker without attribution? Does reasoning help maintain character voice?
+      scale: 0-100 points
+      weight: 0.35
+    natural_flow:
+      description: Realistic pacing, natural topic shifts, avoids exposition. Does sample-and-rank select better flow?
+      scale: 0-100 points
+      weight: 0.35
+    emotional_authenticity:
+      description: Dialogue conveys genuine emotions, subtext, relationships. Do multiple samples improve authenticity?
+      scale: 0-100 points
+      weight: 0.3
+
+# Expected Learnings:
+# 1. Does reasoning help maintain character voice consistency across dialogue?
+# 2. Does sample-and-rank select more natural-sounding dialogue?
+# 3. Which ranking criteria (naturalness vs emotional authenticity) works better?
+# 4. Is the cost of generating 3-5 samples worth the quality improvement?
+# 5. Does reasoning visibility affect dialogue quality?

@@ -1,0 +1,1578 @@
+{
+  "experiment_id": "wave4_discovery_reasoning_vs_gpt5mini-20251028T133444",
+  "config": {
+    "name": "wave4_discovery_reasoning_vs_gpt5mini",
+    "workflow": "progressive_discovery",
+    "variables": [
+      {
+        "name": "temperature",
+        "level_1": 0.5,
+        "level_2": 0.9
+      },
+      {
+        "name": "context_depth",
+        "level_1": "minimal",
+        "level_2": "full"
+      },
+      {
+        "name": "reasoning_enabled",
+        "level_1": "false",
+        "level_2": "true"
+      },
+      {
+        "name": "verbalized_sampling",
+        "level_1": "none",
+        "level_2": "self_consistency"
+      },
+      {
+        "name": "n_samples",
+        "level_1": "3",
+        "level_2": "5"
+      },
+      {
+        "name": "reasoning_visibility",
+        "level_1": "visible",
+        "level_2": "hidden"
+      },
+      {
+        "name": "max_reasoning_tokens",
+        "level_1": "standard",
+        "level_2": "extended"
+      }
+    ],
+    "utility_weights": {
+      "quality": 0.8,
+      "cost": 0.15,
+      "time": 0.05
+    },
+    "workflow_config": {
+      "rubric": {
+        "revelation_pacing": {
+          "description": "Information revealed at natural moments, maintains curiosity without frustration",
+          "scale": "0-100 points",
+          "weight": 0.3
+        },
+        "tension_building": {
+          "description": "Suspense escalates believably, stakes feel real, reader investment grows",
+          "scale": "0-100 points",
+          "weight": 0.3
+        },
+        "mystery_coherence": {
+          "description": "Clues make sense in retrospect, no contradictions, fair play with reader",
+          "scale": "0-100 points",
+          "weight": 0.2
+        },
+        "emotional_impact": {
+          "description": "Discoveries feel earned, surprising yet inevitable, meaningful to characters",
+          "scale": "0-100 points",
+          "weight": 0.2
+        }
+      },
+      "sample_code_path": "tesseract_flow/workflows/code_review.py",
+      "evaluator_model": "openrouter/openai/gpt-5-mini",
+      "language": "python",
+      "evaluator_temperature": 0.3
+    }
+  },
+  "test_configurations": [
+    {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.5,
+        "context_depth": "minimal",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "none",
+        "n_samples": "3",
+        "reasoning_visibility": "visible",
+        "max_reasoning_tokens": "standard"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 2,
+      "config_values": {
+        "temperature": 0.5,
+        "context_depth": "minimal",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "self_consistency",
+        "n_samples": "5",
+        "reasoning_visibility": "hidden",
+        "max_reasoning_tokens": "extended"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 3,
+      "config_values": {
+        "temperature": 0.5,
+        "context_depth": "full",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "none",
+        "n_samples": "3",
+        "reasoning_visibility": "hidden",
+        "max_reasoning_tokens": "extended"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 4,
+      "config_values": {
+        "temperature": 0.5,
+        "context_depth": "full",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "self_consistency",
+        "n_samples": "5",
+        "reasoning_visibility": "visible",
+        "max_reasoning_tokens": "standard"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 5,
+      "config_values": {
+        "temperature": 0.9,
+        "context_depth": "minimal",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "none",
+        "n_samples": "5",
+        "reasoning_visibility": "visible",
+        "max_reasoning_tokens": "extended"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 6,
+      "config_values": {
+        "temperature": 0.9,
+        "context_depth": "minimal",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "self_consistency",
+        "n_samples": "3",
+        "reasoning_visibility": "hidden",
+        "max_reasoning_tokens": "standard"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 7,
+      "config_values": {
+        "temperature": 0.9,
+        "context_depth": "full",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "none",
+        "n_samples": "5",
+        "reasoning_visibility": "hidden",
+        "max_reasoning_tokens": "standard"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 8,
+      "config_values": {
+        "temperature": 0.9,
+        "context_depth": "full",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "self_consistency",
+        "n_samples": "3",
+        "reasoning_visibility": "visible",
+        "max_reasoning_tokens": "extended"
+      },
+      "workflow": "progressive_discovery"
+    }
+  ],
+  "results": [
+    {
+      "test_number": 1,
+      "config": {
+        "test_number": 1,
+        "config_values": {
+          "temperature": 0.5,
+          "context_depth": "minimal",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "none",
+          "n_samples": "3",
+          "reasoning_visibility": "visible",
+          "max_reasoning_tokens": "standard"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "revelation_pacing": {
+            "score": 0.65,
+            "reasoning": "The workflow outlines high-level rules (identify core elements, condense causality, preserve ambiguity) that support revealing information at natural moments, but it lacks concrete guidance on när to space reveals or how to modulate pacing, so practical implementation may be uneven."
+          },
+          "tension_building": {
+            "score": 0.55,
+            "reasoning": "The output emphasizes central conflict and stakes in summaries, which helps tension, but it does not describe escalation techniques, beat structure, or how to sustain suspense across a narrative, yielding a modest score."
+          },
+          "mystery_coherence": {
+            "score": 0.8,
+            "reasoning": "Explicit focus on condensing causality and noting contextual gaps supports retrospective coherence and fair play with readers; the approach actively preserves ambiguity while flagging missing info, though it doesn't demonstrate handling complex contradictory clues."
+          },
+          "emotional_impact": {
+            "score": 0.7,
+            "reasoning": "The method prioritizes core characters and meaningful conflicts and the example shows an emotionally resonant core, but the workflow stops short of specifying how to ensure discoveries feel earned through character development and pacing."
+          }
+        },
+        "overall_score": 0.675,
+        "evaluator_model": "openrouter/openai/gpt-5-mini",
+        "timestamp": "2025-10-28T13:35:18.424963Z",
+        "metadata": {
+          "rubric": {
+            "revelation_pacing": {
+              "description": "Information revealed at natural moments, maintains curiosity without frustration",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "tension_building": {
+              "description": "Suspense escalates believably, stakes feel real, reader investment grows",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "mystery_coherence": {
+              "description": "Clues make sense in retrospect, no contradictions, fair play with reader",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_impact": {
+              "description": "Discoveries feel earned, surprising yet inevitable, meaningful to characters",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "revelation_pacing": {
+              "score": 65,
+              "reasoning": "The workflow outlines high-level rules (identify core elements, condense causality, preserve ambiguity) that support revealing information at natural moments, but it lacks concrete guidance on när to space reveals or how to modulate pacing, so practical implementation may be uneven."
+            },
+            "tension_building": {
+              "score": 55,
+              "reasoning": "The output emphasizes central conflict and stakes in summaries, which helps tension, but it does not describe escalation techniques, beat structure, or how to sustain suspense across a narrative, yielding a modest score."
+            },
+            "mystery_coherence": {
+              "score": 80,
+              "reasoning": "Explicit focus on condensing causality and noting contextual gaps supports retrospective coherence and fair play with readers; the approach actively preserves ambiguity while flagging missing info, though it doesn't demonstrate handling complex contradictory clues."
+            },
+            "emotional_impact": {
+              "score": 70,
+              "reasoning": "The method prioritizes core characters and meaningful conflicts and the example shows an emotionally resonant core, but the workflow stops short of specifying how to ensure discoveries feel earned through character development and pacing."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "ffb40923c913971b3dcafef08db37f03603637bb015acb59074a4ab7923af8c9",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "cost": 0.0,
+      "latency": 10989.429457986262,
+      "utility": 0.49000000000000005,
+      "workflow_output": "Discovered Content:\nUnderstood! To summarize a complex story with minimal context, I'll:  \n\n1. **Identify Core Elements**: Extract key characters, central conflict, and major plot turns.  \n2. **Condense Causality**: Focus on cause-and-effect relationships driving the narrative.  \n3. **Prune Details**: Omit subplots or world-building unless critical to the main arc.  \n4. **Preserve Ambiguity**: If context is intentionally sparse (e.g., surreal or experimental stories), reflect that in the summary.  \n\n**Example**:  \n*Original*: A scientist discovers time travel, alters a childhood event to avoid trauma, and returns to a dystopian present where their actions erased a key invention. They must reconcile with their past self to restore the timeline.  \n*Summary*: A time-traveling scientist’s attempt to fix their past backfires, forcing a collaboration with their younger self to undo catastrophic changes.  \n\nIf the story’s complexity hinges on unclear context (e.g., unreliable narration, abstract themes), I’ll note gaps:  \n*\"Summary unclear—missing context on whether the protagonist’s visions are real or delusional.\"*  \n\nLet me know the story, and I’ll distill it accordingly!",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T13:34:44.730486Z",
+          "completed_at": "2025-10-28T13:34:55.719918Z",
+          "duration_seconds": 10.989429457986262
+        },
+        "evaluation": {
+          "rubric": {
+            "revelation_pacing": {
+              "description": "Information revealed at natural moments, maintains curiosity without frustration",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "tension_building": {
+              "description": "Suspense escalates believably, stakes feel real, reader investment grows",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "mystery_coherence": {
+              "description": "Clues make sense in retrospect, no contradictions, fair play with reader",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_impact": {
+              "description": "Discoveries feel earned, surprising yet inevitable, meaningful to characters",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "revelation_pacing": {
+              "score": 65,
+              "reasoning": "The workflow outlines high-level rules (identify core elements, condense causality, preserve ambiguity) that support revealing information at natural moments, but it lacks concrete guidance on när to space reveals or how to modulate pacing, so practical implementation may be uneven."
+            },
+            "tension_building": {
+              "score": 55,
+              "reasoning": "The output emphasizes central conflict and stakes in summaries, which helps tension, but it does not describe escalation techniques, beat structure, or how to sustain suspense across a narrative, yielding a modest score."
+            },
+            "mystery_coherence": {
+              "score": 80,
+              "reasoning": "Explicit focus on condensing causality and noting contextual gaps supports retrospective coherence and fair play with readers; the approach actively preserves ambiguity while flagging missing info, though it doesn't demonstrate handling complex contradictory clues."
+            },
+            "emotional_impact": {
+              "score": 70,
+              "reasoning": "The method prioritizes core characters and meaningful conflicts and the example shows an emotionally resonant core, but the workflow stops short of specifying how to ensure discoveries feel earned through character development and pacing."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "ffb40923c913971b3dcafef08db37f03603637bb015acb59074a4ab7923af8c9",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "timestamp": "2025-10-28T13:35:18.425572Z"
+    },
+    {
+      "test_number": 2,
+      "config": {
+        "test_number": 2,
+        "config_values": {
+          "temperature": 0.5,
+          "context_depth": "minimal",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "self_consistency",
+          "n_samples": "5",
+          "reasoning_visibility": "hidden",
+          "max_reasoning_tokens": "extended"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "revelation_pacing": {
+            "score": 0.45,
+            "reasoning": "The workflow prioritizes core elements and resolution which can prevent over-revealing, but it gives no concrete guidance on when or how to space revelations or build beats, so pacing responsibility is left to the implementer."
+          },
+          "tension_building": {
+            "score": 0.3,
+            "reasoning": "The template focuses on summarization mechanics (core elements, relationships, resolution) but lacks instructions to escalate stakes or structure rising tension, making believable suspense unlikely without additional guidance."
+          },
+          "mystery_coherence": {
+            "score": 0.5,
+            "reasoning": "By recommending omission of tangents and condensing relationships, the workflow supports a coherent through-line; however it offers no explicit method for planting or resolving clues, so retrospective coherence is not guaranteed."
+          },
+          "emotional_impact": {
+            "score": 0.4,
+            "reasoning": "The approach mentions themes and outcomes which can aid emotional resonance, but its generic template and emphasis on minimal context risk producing summaries that feel abbreviated rather than emotionally earned."
+          }
+        },
+        "overall_score": 0.4125,
+        "evaluator_model": "openrouter/openai/gpt-5-mini",
+        "timestamp": "2025-10-28T13:35:39.520604Z",
+        "metadata": {
+          "rubric": {
+            "revelation_pacing": {
+              "description": "Information revealed at natural moments, maintains curiosity without frustration",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "tension_building": {
+              "description": "Suspense escalates believably, stakes feel real, reader investment grows",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "mystery_coherence": {
+              "description": "Clues make sense in retrospect, no contradictions, fair play with reader",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_impact": {
+              "description": "Discoveries feel earned, surprising yet inevitable, meaningful to characters",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "revelation_pacing": {
+              "score": 45,
+              "reasoning": "The workflow prioritizes core elements and resolution which can prevent over-revealing, but it gives no concrete guidance on when or how to space revelations or build beats, so pacing responsibility is left to the implementer."
+            },
+            "tension_building": {
+              "score": 30,
+              "reasoning": "The template focuses on summarization mechanics (core elements, relationships, resolution) but lacks instructions to escalate stakes or structure rising tension, making believable suspense unlikely without additional guidance."
+            },
+            "mystery_coherence": {
+              "score": 50,
+              "reasoning": "By recommending omission of tangents and condensing relationships, the workflow supports a coherent through-line; however it offers no explicit method for planting or resolving clues, so retrospective coherence is not guaranteed."
+            },
+            "emotional_impact": {
+              "score": 40,
+              "reasoning": "The approach mentions themes and outcomes which can aid emotional resonance, but its generic template and emphasis on minimal context risk producing summaries that feel abbreviated rather than emotionally earned."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "1a5dd458e17af891da7e1cdda3af9aaa895008fcc07788b13af5edb4400ebf95",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "cost": 0.0,
+      "latency": 9599.200291006127,
+      "utility": 0.28861559122044256,
+      "workflow_output": "Discovered Content:\nUnderstood! To summarize a complex story with minimal context, I'll proceed as follows:  \n\n1. **Extract Core Elements**: Identify the central plot, key characters, and major turning points.  \n2. **Simplify Relationships**: Condense character dynamics and motivations into broad strokes.  \n3. **Focus on Resolution**: Highlight how the main conflict is resolved (or left unresolved).  \n4. **Omit Tangents**: Exclude subplots or secondary details unless critical to the main narrative.  \n\n**Example Summary (Generic Template)**:  \n*A [protagonist] pursues [goal] despite [obstacle]. After [key events], they confront [antagonist/force], leading to [outcome]. The story explores themes of [theme].*  \n\nIf the story is provided, I’ll refine this further. Let me know if you'd like a specific example or have a story in mind!",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T13:35:18.427578Z",
+          "completed_at": "2025-10-28T13:35:28.026782Z",
+          "duration_seconds": 9.599200291006127
+        },
+        "evaluation": {
+          "rubric": {
+            "revelation_pacing": {
+              "description": "Information revealed at natural moments, maintains curiosity without frustration",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "tension_building": {
+              "description": "Suspense escalates believably, stakes feel real, reader investment grows",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "mystery_coherence": {
+              "description": "Clues make sense in retrospect, no contradictions, fair play with reader",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_impact": {
+              "description": "Discoveries feel earned, surprising yet inevitable, meaningful to characters",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "revelation_pacing": {
+              "score": 45,
+              "reasoning": "The workflow prioritizes core elements and resolution which can prevent over-revealing, but it gives no concrete guidance on when or how to space revelations or build beats, so pacing responsibility is left to the implementer."
+            },
+            "tension_building": {
+              "score": 30,
+              "reasoning": "The template focuses on summarization mechanics (core elements, relationships, resolution) but lacks instructions to escalate stakes or structure rising tension, making believable suspense unlikely without additional guidance."
+            },
+            "mystery_coherence": {
+              "score": 50,
+              "reasoning": "By recommending omission of tangents and condensing relationships, the workflow supports a coherent through-line; however it offers no explicit method for planting or resolving clues, so retrospective coherence is not guaranteed."
+            },
+            "emotional_impact": {
+              "score": 40,
+              "reasoning": "The approach mentions themes and outcomes which can aid emotional resonance, but its generic template and emphasis on minimal context risk producing summaries that feel abbreviated rather than emotionally earned."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "1a5dd458e17af891da7e1cdda3af9aaa895008fcc07788b13af5edb4400ebf95",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "timestamp": "2025-10-28T13:35:39.520804Z"
+    },
+    {
+      "test_number": 3,
+      "config": {
+        "test_number": 3,
+        "config_values": {
+          "temperature": 0.5,
+          "context_depth": "full",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "none",
+          "n_samples": "3",
+          "reasoning_visibility": "hidden",
+          "max_reasoning_tokens": "extended"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "revelation_pacing": {
+            "score": 0.75,
+            "reasoning": "Key revelations occur at natural, logical moments (discovery of magic, school entry, plot uncovering, confrontation) and sustain curiosity, but the summary compresses events so some pacing nuance and gradual reveals are lost."
+          },
+          "tension_building": {
+            "score": 0.7,
+            "reasoning": "Stakes escalate credibly from discovery to confrontation and future conflict, creating believable tension; however, the brief summary flattens the gradual suspense and diminishing incremental escalation."
+          },
+          "mystery_coherence": {
+            "score": 0.85,
+            "reasoning": "The core clues and connections (stone, Voldemort, parents' sacrifice) are coherent and consistent in retrospect, providing fair-play resolution with no obvious contradictions."
+          },
+          "emotional_impact": {
+            "score": 0.8,
+            "reasoning": "Emotional beats (friendship, parental sacrifice, destiny) are meaningful and feel earned in context, though the condensed presentation reduces some of the depth and affective buildup."
+          }
+        },
+        "overall_score": 0.775,
+        "evaluator_model": "openrouter/openai/gpt-5-mini",
+        "timestamp": "2025-10-28T13:35:56.409888Z",
+        "metadata": {
+          "rubric": {
+            "revelation_pacing": {
+              "description": "Information revealed at natural moments, maintains curiosity without frustration",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "tension_building": {
+              "description": "Suspense escalates believably, stakes feel real, reader investment grows",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "mystery_coherence": {
+              "description": "Clues make sense in retrospect, no contradictions, fair play with reader",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_impact": {
+              "description": "Discoveries feel earned, surprising yet inevitable, meaningful to characters",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "revelation_pacing": {
+              "score": 75,
+              "reasoning": "Key revelations occur at natural, logical moments (discovery of magic, school entry, plot uncovering, confrontation) and sustain curiosity, but the summary compresses events so some pacing nuance and gradual reveals are lost."
+            },
+            "tension_building": {
+              "score": 70,
+              "reasoning": "Stakes escalate credibly from discovery to confrontation and future conflict, creating believable tension; however, the brief summary flattens the gradual suspense and diminishing incremental escalation."
+            },
+            "mystery_coherence": {
+              "score": 85,
+              "reasoning": "The core clues and connections (stone, Voldemort, parents' sacrifice) are coherent and consistent in retrospect, providing fair-play resolution with no obvious contradictions."
+            },
+            "emotional_impact": {
+              "score": 80,
+              "reasoning": "Emotional beats (friendship, parental sacrifice, destiny) are meaningful and feel earned in context, though the condensed presentation reduces some of the depth and affective buildup."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "322af75eb2121a19006552091ecef55338561722ae13574fcfcbc064b1cc2d48",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "cost": 0.0,
+      "latency": 3695.1289169956,
+      "utility": 0.6152045700039083,
+      "workflow_output": "Discovered Content:\nA young orphan, Harry Potter, discovers he is a wizard and enrolls at Hogwarts School of Witchcraft and Wizardry. There, he befriends Hermione and Ron, uncovers a plot involving the Sorcerer's Stone, and confronts the dark wizard Voldemort, who seeks immortality. Harry learns of his parents' sacrifice and his own destiny to oppose Voldemort, setting the stage for a larger battle between good and evil.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T13:35:39.522303Z",
+          "completed_at": "2025-10-28T13:35:43.217435Z",
+          "duration_seconds": 3.6951289169956
+        },
+        "evaluation": {
+          "rubric": {
+            "revelation_pacing": {
+              "description": "Information revealed at natural moments, maintains curiosity without frustration",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "tension_building": {
+              "description": "Suspense escalates believably, stakes feel real, reader investment grows",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "mystery_coherence": {
+              "description": "Clues make sense in retrospect, no contradictions, fair play with reader",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_impact": {
+              "description": "Discoveries feel earned, surprising yet inevitable, meaningful to characters",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "revelation_pacing": {
+              "score": 75,
+              "reasoning": "Key revelations occur at natural, logical moments (discovery of magic, school entry, plot uncovering, confrontation) and sustain curiosity, but the summary compresses events so some pacing nuance and gradual reveals are lost."
+            },
+            "tension_building": {
+              "score": 70,
+              "reasoning": "Stakes escalate credibly from discovery to confrontation and future conflict, creating believable tension; however, the brief summary flattens the gradual suspense and diminishing incremental escalation."
+            },
+            "mystery_coherence": {
+              "score": 85,
+              "reasoning": "The core clues and connections (stone, Voldemort, parents' sacrifice) are coherent and consistent in retrospect, providing fair-play resolution with no obvious contradictions."
+            },
+            "emotional_impact": {
+              "score": 80,
+              "reasoning": "Emotional beats (friendship, parental sacrifice, destiny) are meaningful and feel earned in context, though the condensed presentation reduces some of the depth and affective buildup."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "322af75eb2121a19006552091ecef55338561722ae13574fcfcbc064b1cc2d48",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "timestamp": "2025-10-28T13:35:56.409965Z"
+    },
+    {
+      "test_number": 4,
+      "config": {
+        "test_number": 4,
+        "config_values": {
+          "temperature": 0.5,
+          "context_depth": "full",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "self_consistency",
+          "n_samples": "5",
+          "reasoning_visibility": "visible",
+          "max_reasoning_tokens": "standard"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "revelation_pacing": {
+            "score": 0.8,
+            "reasoning": "The workflow outlines a clear, efficient approach to reveal core plot points and ambiguity at appropriate moments (as in the Inception example); it is well-suited to maintain curiosity without overloading, though it may compress nuance in longer narratives."
+          },
+          "tension_building": {
+            "score": 0.6,
+            "reasoning": "As a summarization method it preserves key stakes and conflict but does not inherently build escalating suspense across a narrative arc; the example conveys tension tersely rather than letting it unfold progressively."
+          },
+          "mystery_coherence": {
+            "score": 0.85,
+            "reasoning": "The procedure emphasizes condensing cause-and-effect and pruning irrelevant details, and the example summary presents clues and outcomes coherently with no contradictions, supporting fair-play retrospection."
+          },
+          "emotional_impact": {
+            "score": 0.7,
+            "reasoning": "The workflow explicitly aims to preserve themes and character meaning (the example notes the protagonist's haunting and moral stakes), but the necessary brevity of summaries can reduce the depth of emotional payoff compared with full narratives."
+          }
+        },
+        "overall_score": 0.7375,
+        "evaluator_model": "openrouter/openai/gpt-5-mini",
+        "timestamp": "2025-10-28T13:36:16.792185Z",
+        "metadata": {
+          "rubric": {
+            "revelation_pacing": {
+              "description": "Information revealed at natural moments, maintains curiosity without frustration",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "tension_building": {
+              "description": "Suspense escalates believably, stakes feel real, reader investment grows",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "mystery_coherence": {
+              "description": "Clues make sense in retrospect, no contradictions, fair play with reader",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_impact": {
+              "description": "Discoveries feel earned, surprising yet inevitable, meaningful to characters",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "revelation_pacing": {
+              "score": 80,
+              "reasoning": "The workflow outlines a clear, efficient approach to reveal core plot points and ambiguity at appropriate moments (as in the Inception example); it is well-suited to maintain curiosity without overloading, though it may compress nuance in longer narratives."
+            },
+            "tension_building": {
+              "score": 60,
+              "reasoning": "As a summarization method it preserves key stakes and conflict but does not inherently build escalating suspense across a narrative arc; the example conveys tension tersely rather than letting it unfold progressively."
+            },
+            "mystery_coherence": {
+              "score": 85,
+              "reasoning": "The procedure emphasizes condensing cause-and-effect and pruning irrelevant details, and the example summary presents clues and outcomes coherently with no contradictions, supporting fair-play retrospection."
+            },
+            "emotional_impact": {
+              "score": 70,
+              "reasoning": "The workflow explicitly aims to preserve themes and character meaning (the example notes the protagonist's haunting and moral stakes), but the necessary brevity of summaries can reduce the depth of emotional payoff compared with full narratives."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "5eeb4600995c449d17daacce2654ddddd62b394f2fea0b5e68c526ddb6f5042c",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "cost": 0.0,
+      "latency": 8360.564958013128,
+      "utility": 0.556291718260307,
+      "workflow_output": "Discovered Content:\nUnderstood! To summarize a complex story with minimal context, I'll proceed as follows:  \n\n1. **Extract Core Elements**: Identify key characters, central conflict, and major plot turns.  \n2. **Condense Logic**: Simplify cause-and-effect chains without losing coherence.  \n3. **Prune Details**: Omit tangential subplots or secondary characters unless critical.  \n4. **Preserve Themes**: Ensure the summary reflects the story's overarching message or tone.  \n\n**Example** (if given a story like *Inception* with minimal context):  \n*A thief infiltrates minds through shared dreams to plant ideas. Haunted by his wife’s memory, he takes a job offering redemption but risks losing himself in a layered dreamscape. The mission succeeds, but reality remains ambiguous.*  \n\nIf the story is unclear, I’ll request specifics (e.g., \"Who is the protagonist?\" or \"What’s the central goal?\"). Otherwise, I’ll proceed with the summary.  \n\nProvide the story, and I’ll distill it!",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T13:35:56.410654Z",
+          "completed_at": "2025-10-28T13:36:04.771225Z",
+          "duration_seconds": 8.360564958013128
+        },
+        "evaluation": {
+          "rubric": {
+            "revelation_pacing": {
+              "description": "Information revealed at natural moments, maintains curiosity without frustration",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "tension_building": {
+              "description": "Suspense escalates believably, stakes feel real, reader investment grows",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "mystery_coherence": {
+              "description": "Clues make sense in retrospect, no contradictions, fair play with reader",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_impact": {
+              "description": "Discoveries feel earned, surprising yet inevitable, meaningful to characters",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "revelation_pacing": {
+              "score": 80,
+              "reasoning": "The workflow outlines a clear, efficient approach to reveal core plot points and ambiguity at appropriate moments (as in the Inception example); it is well-suited to maintain curiosity without overloading, though it may compress nuance in longer narratives."
+            },
+            "tension_building": {
+              "score": 60,
+              "reasoning": "As a summarization method it preserves key stakes and conflict but does not inherently build escalating suspense across a narrative arc; the example conveys tension tersely rather than letting it unfold progressively."
+            },
+            "mystery_coherence": {
+              "score": 85,
+              "reasoning": "The procedure emphasizes condensing cause-and-effect and pruning irrelevant details, and the example summary presents clues and outcomes coherently with no contradictions, supporting fair-play retrospection."
+            },
+            "emotional_impact": {
+              "score": 70,
+              "reasoning": "The workflow explicitly aims to preserve themes and character meaning (the example notes the protagonist's haunting and moral stakes), but the necessary brevity of summaries can reduce the depth of emotional payoff compared with full narratives."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "5eeb4600995c449d17daacce2654ddddd62b394f2fea0b5e68c526ddb6f5042c",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "timestamp": "2025-10-28T13:36:16.792555Z"
+    },
+    {
+      "test_number": 5,
+      "config": {
+        "test_number": 5,
+        "config_values": {
+          "temperature": 0.9,
+          "context_depth": "minimal",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "none",
+          "n_samples": "5",
+          "reasoning_visibility": "visible",
+          "max_reasoning_tokens": "extended"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "revelation_pacing": {
+            "score": 0.6,
+            "reasoning": "The summary outlines natural narrative beats (trap, discovery of conspiracy, repair, climax) so revelations could land at appropriate moments, but it provides no specifics about timing or scene structure, leaving pacing plausible but under-specified."
+          },
+          "tension_building": {
+            "score": 0.65,
+            "reasoning": "There is an evident escalation (repeating day -> uncovering a manipulative organization -> race to prevent collapse), giving believable stakes; however the summary lacks detail about obstacles, mounting consequences, or how suspense is maintained over time."
+          },
+          "mystery_coherence": {
+            "score": 0.45,
+            "reasoning": "The premise (time manipulation for profit) is coherent at a high level, but no clues, links, or mechanisms are provided to judge retrospective sense-making or fair play, so coherence and non-contradiction are unverified and suspect."
+          },
+          "emotional_impact": {
+            "score": 0.5,
+            "reasoning": "Themes (free will, consequences, existence) suggest potential for strong emotional payoff, yet the summary does not show how discoveries are earned through character development or sacrifice, leaving emotional impact plausible but unproven."
+          }
+        },
+        "overall_score": 0.55,
+        "evaluator_model": "openrouter/openai/gpt-5-mini",
+        "timestamp": "2025-10-28T13:36:42.482698Z",
+        "metadata": {
+          "rubric": {
+            "revelation_pacing": {
+              "description": "Information revealed at natural moments, maintains curiosity without frustration",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "tension_building": {
+              "description": "Suspense escalates believably, stakes feel real, reader investment grows",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "mystery_coherence": {
+              "description": "Clues make sense in retrospect, no contradictions, fair play with reader",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_impact": {
+              "description": "Discoveries feel earned, surprising yet inevitable, meaningful to characters",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "revelation_pacing": {
+              "score": 60,
+              "reasoning": "The summary outlines natural narrative beats (trap, discovery of conspiracy, repair, climax) so revelations could land at appropriate moments, but it provides no specifics about timing or scene structure, leaving pacing plausible but under-specified."
+            },
+            "tension_building": {
+              "score": 65,
+              "reasoning": "There is an evident escalation (repeating day -> uncovering a manipulative organization -> race to prevent collapse), giving believable stakes; however the summary lacks detail about obstacles, mounting consequences, or how suspense is maintained over time."
+            },
+            "mystery_coherence": {
+              "score": 45,
+              "reasoning": "The premise (time manipulation for profit) is coherent at a high level, but no clues, links, or mechanisms are provided to judge retrospective sense-making or fair play, so coherence and non-contradiction are unverified and suspect."
+            },
+            "emotional_impact": {
+              "score": 50,
+              "reasoning": "Themes (free will, consequences, existence) suggest potential for strong emotional payoff, yet the summary does not show how discoveries are earned through character development or sacrifice, leaving emotional impact plausible but unproven."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "41bf0e8c8b1686c0a1f1650d315b9896dbad42f19054d74cccc8c1bd87363431",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "cost": 0.0,
+      "latency": 2921.328666008776,
+      "utility": 0.44000000000000006,
+      "workflow_output": "Discovered Content:\n**Summary Request:**\nSummarize a complex story with minimal context. All necessary context is provided upfront. If more context is needed, decide autonomously.\n\n**Task Summary:**\nA young inventor creates a time-travel device but accidentally traps themselves in a loop of reliving the same day. As they try to escape, they uncover a conspiracy involving a shadowy organization manipulating time for profit. The inventor must outsmart the organization, repair the device, and break the loop before time itself collapses. Key themes include free will, consequences of technology, and the nature of existence.\n\n**If further context is needed (e.g., specific characters, events, or resolutions), please specify.**",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T13:36:16.794960Z",
+          "completed_at": "2025-10-28T13:36:19.716293Z",
+          "duration_seconds": 2.921328666008776
+        },
+        "evaluation": {
+          "rubric": {
+            "revelation_pacing": {
+              "description": "Information revealed at natural moments, maintains curiosity without frustration",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "tension_building": {
+              "description": "Suspense escalates believably, stakes feel real, reader investment grows",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "mystery_coherence": {
+              "description": "Clues make sense in retrospect, no contradictions, fair play with reader",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_impact": {
+              "description": "Discoveries feel earned, surprising yet inevitable, meaningful to characters",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "revelation_pacing": {
+              "score": 60,
+              "reasoning": "The summary outlines natural narrative beats (trap, discovery of conspiracy, repair, climax) so revelations could land at appropriate moments, but it provides no specifics about timing or scene structure, leaving pacing plausible but under-specified."
+            },
+            "tension_building": {
+              "score": 65,
+              "reasoning": "There is an evident escalation (repeating day -> uncovering a manipulative organization -> race to prevent collapse), giving believable stakes; however the summary lacks detail about obstacles, mounting consequences, or how suspense is maintained over time."
+            },
+            "mystery_coherence": {
+              "score": 45,
+              "reasoning": "The premise (time manipulation for profit) is coherent at a high level, but no clues, links, or mechanisms are provided to judge retrospective sense-making or fair play, so coherence and non-contradiction are unverified and suspect."
+            },
+            "emotional_impact": {
+              "score": 50,
+              "reasoning": "Themes (free will, consequences, existence) suggest potential for strong emotional payoff, yet the summary does not show how discoveries are earned through character development or sacrifice, leaving emotional impact plausible but unproven."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "41bf0e8c8b1686c0a1f1650d315b9896dbad42f19054d74cccc8c1bd87363431",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "timestamp": "2025-10-28T13:36:42.482803Z"
+    },
+    {
+      "test_number": 6,
+      "config": {
+        "test_number": 6,
+        "config_values": {
+          "temperature": 0.9,
+          "context_depth": "minimal",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "self_consistency",
+          "n_samples": "3",
+          "reasoning_visibility": "hidden",
+          "max_reasoning_tokens": "standard"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "revelation_pacing": {
+            "score": 0.3,
+            "reasoning": "The output is a concise summary that reveals the core revelations up front rather than unfolding them at natural narrative moments. As a summary this is efficient, but it sacrifices gradual revelation and sustained curiosity that a paced narrative would provide."
+          },
+          "tension_building": {
+            "score": 0.25,
+            "reasoning": "The summary mentions challenges and journey elements but does not convey escalating stakes or a believable buildup of suspense. Reader investment and rising tension are minimal in this condensed form."
+          },
+          "mystery_coherence": {
+            "score": 0.8,
+            "reasoning": "The central twist (treasure found where the journey began) is coherent and consistent with the rest of the summary; there are no apparent contradictions and the clues implied align with the retrospective explanation."
+          },
+          "emotional_impact": {
+            "score": 0.6,
+            "reasoning": "The emotional payoff — self-discovery and wisdom as the true treasure — is thematically clear and potentially meaningful, but the summary provides limited detail to make the discoveries feel fully earned or deeply affecting."
+          }
+        },
+        "overall_score": 0.4875,
+        "evaluator_model": "openrouter/openai/gpt-5-mini",
+        "timestamp": "2025-10-28T13:36:57.225941Z",
+        "metadata": {
+          "rubric": {
+            "revelation_pacing": {
+              "description": "Information revealed at natural moments, maintains curiosity without frustration",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "tension_building": {
+              "description": "Suspense escalates believably, stakes feel real, reader investment grows",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "mystery_coherence": {
+              "description": "Clues make sense in retrospect, no contradictions, fair play with reader",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_impact": {
+              "description": "Discoveries feel earned, surprising yet inevitable, meaningful to characters",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "revelation_pacing": {
+              "score": 30,
+              "reasoning": "The output is a concise summary that reveals the core revelations up front rather than unfolding them at natural narrative moments. As a summary this is efficient, but it sacrifices gradual revelation and sustained curiosity that a paced narrative would provide."
+            },
+            "tension_building": {
+              "score": 25,
+              "reasoning": "The summary mentions challenges and journey elements but does not convey escalating stakes or a believable buildup of suspense. Reader investment and rising tension are minimal in this condensed form."
+            },
+            "mystery_coherence": {
+              "score": 80,
+              "reasoning": "The central twist (treasure found where the journey began) is coherent and consistent with the rest of the summary; there are no apparent contradictions and the clues implied align with the retrospective explanation."
+            },
+            "emotional_impact": {
+              "score": 60,
+              "reasoning": "The emotional payoff — self-discovery and wisdom as the true treasure — is thematically clear and potentially meaningful, but the summary provides limited detail to make the discoveries feel fully earned or deeply affecting."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "e9d258a96ac14a27f6c733cb376db5db4c71216ddf78ee5527e51c5f9b5e56db",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "cost": 0.0,
+      "latency": 3275.347832997795,
+      "utility": 0.38780605636867455,
+      "workflow_output": "Discovered Content:\nGot it! Here's a concise summary of a complex story with minimal context:\n\nA young shepherd boy discovers a recurring dream about a hidden treasure at the Egyptian pyramids. He embarks on a journey across the desert, facing numerous challenges and meeting a variety of people who guide him toward self-discovery. Along the way, he learns to listen to his heart and interpret the \"Language of the World.\" Ultimately, he finds the treasure not at the pyramids but in the place where his journey began, realizing the true treasure was the wisdom and growth he gained through the adventure.\n\nThis story is a simplified summary of *The Alchemist* by Paulo Coelho, focusing on its core themes of self-discovery and pursuing one's dreams.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T13:36:42.483666Z",
+          "completed_at": "2025-10-28T13:36:45.759016Z",
+          "duration_seconds": 3.275347832997795
+        },
+        "evaluation": {
+          "rubric": {
+            "revelation_pacing": {
+              "description": "Information revealed at natural moments, maintains curiosity without frustration",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "tension_building": {
+              "description": "Suspense escalates believably, stakes feel real, reader investment grows",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "mystery_coherence": {
+              "description": "Clues make sense in retrospect, no contradictions, fair play with reader",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_impact": {
+              "description": "Discoveries feel earned, surprising yet inevitable, meaningful to characters",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "revelation_pacing": {
+              "score": 30,
+              "reasoning": "The output is a concise summary that reveals the core revelations up front rather than unfolding them at natural narrative moments. As a summary this is efficient, but it sacrifices gradual revelation and sustained curiosity that a paced narrative would provide."
+            },
+            "tension_building": {
+              "score": 25,
+              "reasoning": "The summary mentions challenges and journey elements but does not convey escalating stakes or a believable buildup of suspense. Reader investment and rising tension are minimal in this condensed form."
+            },
+            "mystery_coherence": {
+              "score": 80,
+              "reasoning": "The central twist (treasure found where the journey began) is coherent and consistent with the rest of the summary; there are no apparent contradictions and the clues implied align with the retrospective explanation."
+            },
+            "emotional_impact": {
+              "score": 60,
+              "reasoning": "The emotional payoff — self-discovery and wisdom as the true treasure — is thematically clear and potentially meaningful, but the summary provides limited detail to make the discoveries feel fully earned or deeply affecting."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "e9d258a96ac14a27f6c733cb376db5db4c71216ddf78ee5527e51c5f9b5e56db",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "timestamp": "2025-10-28T13:36:57.226455Z"
+    },
+    {
+      "test_number": 7,
+      "config": {
+        "test_number": 7,
+        "config_values": {
+          "temperature": 0.9,
+          "context_depth": "full",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "none",
+          "n_samples": "5",
+          "reasoning_visibility": "hidden",
+          "max_reasoning_tokens": "standard"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "revelation_pacing": {
+            "score": 0.25,
+            "reasoning": "The summary presents the key revelations all at once (discovery, friendship, looming darkness, choice) with no sense of staged reveal or timing; this flattens pacing and limits curiosity-building."
+          },
+          "tension_building": {
+            "score": 0.3,
+            "reasoning": "Stakes are stated (threatened world, consequential choice) but there is no depiction of escalating suspense or progression that would make tension feel earned or believable."
+          },
+          "mystery_coherence": {
+            "score": 0.65,
+            "reasoning": "The premise is internally coherent and contains no contradictions; however, the summary provides few clues or developments to judge fair-play or retrospective logic, limiting a higher score."
+          },
+          "emotional_impact": {
+            "score": 0.3,
+            "reasoning": "Emotional stakes are implied (friendship, sacrifice) but the summary offers no detail showing character development or earned discoveries, so emotional impact is minimal."
+          }
+        },
+        "overall_score": 0.375,
+        "evaluator_model": "openrouter/openai/gpt-5-mini",
+        "timestamp": "2025-10-28T13:37:15.933142Z",
+        "metadata": {
+          "rubric": {
+            "revelation_pacing": {
+              "description": "Information revealed at natural moments, maintains curiosity without frustration",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "tension_building": {
+              "description": "Suspense escalates believably, stakes feel real, reader investment grows",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "mystery_coherence": {
+              "description": "Clues make sense in retrospect, no contradictions, fair play with reader",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_impact": {
+              "description": "Discoveries feel earned, surprising yet inevitable, meaningful to characters",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "revelation_pacing": {
+              "score": 25,
+              "reasoning": "The summary presents the key revelations all at once (discovery, friendship, looming darkness, choice) with no sense of staged reveal or timing; this flattens pacing and limits curiosity-building."
+            },
+            "tension_building": {
+              "score": 30,
+              "reasoning": "Stakes are stated (threatened world, consequential choice) but there is no depiction of escalating suspense or progression that would make tension feel earned or believable."
+            },
+            "mystery_coherence": {
+              "score": 65,
+              "reasoning": "The premise is internally coherent and contains no contradictions; however, the summary provides few clues or developments to judge fair-play or retrospective logic, limiting a higher score."
+            },
+            "emotional_impact": {
+              "score": 30,
+              "reasoning": "Emotional stakes are implied (friendship, sacrifice) but the summary offers no detail showing character development or earned discoveries, so emotional impact is minimal."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "24d516f85e5e012de06d9d78841eba2b5cce0bda77fae180f00268c203282e44",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "cost": 0.0,
+      "latency": 2924.9884170130827,
+      "utility": 0.2999773196251593,
+      "workflow_output": "Discovered Content:\n**Task:** Summarize a complex story with minimal context.  \n**Context Provided:** A story about a boy who discovers a hidden world inside his grandfather’s old clock. He befriends a group of magical creatures, but their existence is threatened by a looming darkness. The boy must navigate this new world, uncover its secrets, and decide whether to stay in the safety of his own reality or risk everything to save his new friends.\n\n**Summary:**  \nA boy finds a hidden magical world inside his grandfather’s clock, befriending its inhabitants. When their world is threatened by darkness, he must choose between returning to his ordinary life or risking it all to protect his new friends.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T13:36:57.229123Z",
+          "completed_at": "2025-10-28T13:37:00.154122Z",
+          "duration_seconds": 2.9249884170130827
+        },
+        "evaluation": {
+          "rubric": {
+            "revelation_pacing": {
+              "description": "Information revealed at natural moments, maintains curiosity without frustration",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "tension_building": {
+              "description": "Suspense escalates believably, stakes feel real, reader investment grows",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "mystery_coherence": {
+              "description": "Clues make sense in retrospect, no contradictions, fair play with reader",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_impact": {
+              "description": "Discoveries feel earned, surprising yet inevitable, meaningful to characters",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "revelation_pacing": {
+              "score": 25,
+              "reasoning": "The summary presents the key revelations all at once (discovery, friendship, looming darkness, choice) with no sense of staged reveal or timing; this flattens pacing and limits curiosity-building."
+            },
+            "tension_building": {
+              "score": 30,
+              "reasoning": "Stakes are stated (threatened world, consequential choice) but there is no depiction of escalating suspense or progression that would make tension feel earned or believable."
+            },
+            "mystery_coherence": {
+              "score": 65,
+              "reasoning": "The premise is internally coherent and contains no contradictions; however, the summary provides few clues or developments to judge fair-play or retrospective logic, limiting a higher score."
+            },
+            "emotional_impact": {
+              "score": 30,
+              "reasoning": "Emotional stakes are implied (friendship, sacrifice) but the summary offers no detail showing character development or earned discoveries, so emotional impact is minimal."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "24d516f85e5e012de06d9d78841eba2b5cce0bda77fae180f00268c203282e44",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "timestamp": "2025-10-28T13:37:15.933410Z"
+    },
+    {
+      "test_number": 8,
+      "config": {
+        "test_number": 8,
+        "config_values": {
+          "temperature": 0.9,
+          "context_depth": "full",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "self_consistency",
+          "n_samples": "3",
+          "reasoning_visibility": "visible",
+          "max_reasoning_tokens": "extended"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "revelation_pacing": {
+            "score": 0.85,
+            "reasoning": "Information is revealed steadily through layered narratives (Walton, Victor, the creature), maintaining curiosity and unfolding key developments at natural moments, though the novel's reflective digressions can slow momentum for some readers."
+          },
+          "tension_building": {
+            "score": 0.88,
+            "reasoning": "Suspense escalates believably from creation to personal vengeance and Arctic pursuit, with rising stakes tied to intimate losses; occasional philosophical asides temper immediate suspense but do not undercut the overall escalation."
+          },
+          "mystery_coherence": {
+            "score": 0.92,
+            "reasoning": "Clues and character motivations cohere in retrospect—causal links between abandonment, social rejection, and revenge are clear—so the narrative feels internally consistent and fair to the reader."
+          },
+          "emotional_impact": {
+            "score": 0.94,
+            "reasoning": "Discoveries and tragedies feel earned and morally resonant; the novel elicits sustained sympathy and horror through believable consequences of ambition and isolation, producing a powerful, lasting emotional effect."
+          }
+        },
+        "overall_score": 0.8975,
+        "evaluator_model": "openrouter/openai/gpt-5-mini",
+        "timestamp": "2025-10-28T13:37:33.525998Z",
+        "metadata": {
+          "rubric": {
+            "revelation_pacing": {
+              "description": "Information revealed at natural moments, maintains curiosity without frustration",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "tension_building": {
+              "description": "Suspense escalates believably, stakes feel real, reader investment grows",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "mystery_coherence": {
+              "description": "Clues make sense in retrospect, no contradictions, fair play with reader",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_impact": {
+              "description": "Discoveries feel earned, surprising yet inevitable, meaningful to characters",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "revelation_pacing": {
+              "score": 85,
+              "reasoning": "Information is revealed steadily through layered narratives (Walton, Victor, the creature), maintaining curiosity and unfolding key developments at natural moments, though the novel's reflective digressions can slow momentum for some readers."
+            },
+            "tension_building": {
+              "score": 88,
+              "reasoning": "Suspense escalates believably from creation to personal vengeance and Arctic pursuit, with rising stakes tied to intimate losses; occasional philosophical asides temper immediate suspense but do not undercut the overall escalation."
+            },
+            "mystery_coherence": {
+              "score": 92,
+              "reasoning": "Clues and character motivations cohere in retrospect—causal links between abandonment, social rejection, and revenge are clear—so the narrative feels internally consistent and fair to the reader."
+            },
+            "emotional_impact": {
+              "score": 94,
+              "reasoning": "Discoveries and tragedies feel earned and morally resonant; the novel elicits sustained sympathy and horror through believable consequences of ambition and isolation, producing a powerful, lasting emotional effect."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "56a763fa611be66c23b65bc417eb01ea3463df74db877ff10455b86e159947fd",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "cost": 0.0,
+      "latency": 3377.8637920040637,
+      "utility": 0.7151707398199013,
+      "workflow_output": "Discovered Content:\nThe story revolves around a man named **Victor Frankenstein**, a scientist who becomes obsessed with the idea of creating life. He succeeds in animating a creature using stolen body parts and unconventional science. However, upon seeing the grotesque appearance of his creation, Victor is horrified and abandons it. The creature, lonely and rejected, seeks acceptance but is met with fear and violence from society. It learns to speak and reason, eventually confronting Victor, demanding that he create a companion for it. When Victor refuses, the creature vows revenge, leading to a series of tragic events, including the deaths of Victor’s loved ones. The story explores themes of ambition, responsibility, isolation, and the consequences of playing god. Victor pursues the creature to the Arctic, where he dies, and the creature, remorseful, disappears into the icy wilderness.\n\nThis is a summary of **Mary Shelley’s *Frankenstein***.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T13:37:15.935055Z",
+          "completed_at": "2025-10-28T13:37:19.312921Z",
+          "duration_seconds": 3.3778637920040637
+        },
+        "evaluation": {
+          "rubric": {
+            "revelation_pacing": {
+              "description": "Information revealed at natural moments, maintains curiosity without frustration",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "tension_building": {
+              "description": "Suspense escalates believably, stakes feel real, reader investment grows",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "mystery_coherence": {
+              "description": "Clues make sense in retrospect, no contradictions, fair play with reader",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_impact": {
+              "description": "Discoveries feel earned, surprising yet inevitable, meaningful to characters",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "revelation_pacing": {
+              "score": 85,
+              "reasoning": "Information is revealed steadily through layered narratives (Walton, Victor, the creature), maintaining curiosity and unfolding key developments at natural moments, though the novel's reflective digressions can slow momentum for some readers."
+            },
+            "tension_building": {
+              "score": 88,
+              "reasoning": "Suspense escalates believably from creation to personal vengeance and Arctic pursuit, with rising stakes tied to intimate losses; occasional philosophical asides temper immediate suspense but do not undercut the overall escalation."
+            },
+            "mystery_coherence": {
+              "score": 92,
+              "reasoning": "Clues and character motivations cohere in retrospect—causal links between abandonment, social rejection, and revenge are clear—so the narrative feels internally consistent and fair to the reader."
+            },
+            "emotional_impact": {
+              "score": 94,
+              "reasoning": "Discoveries and tragedies feel earned and morally resonant; the novel elicits sustained sympathy and horror through believable consequences of ambition and isolation, producing a powerful, lasting emotional effect."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "56a763fa611be66c23b65bc417eb01ea3463df74db877ff10455b86e159947fd",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "timestamp": "2025-10-28T13:37:33.526144Z"
+    }
+  ],
+  "status": "COMPLETED",
+  "started_at": "2025-10-28T13:34:44.723182Z",
+  "completed_at": "2025-10-28T13:37:33.527020Z",
+  "experiment_metadata": {
+    "config_hash": "6991ab9dc8543e97aa6b38958b53998b79289571a1e17184c0a3428dbe0099ba",
+    "created_at": "2025-10-28T13:34:44.722893Z",
+    "dependencies": {
+      "pydantic": "2.12.3",
+      "langgraph": "1.0.1",
+      "litellm": "1.79.0"
+    },
+    "non_deterministic_sources": [
+      "llm_sampling"
+    ]
+  },
+  "metadata": {
+    "normalization": {
+      "cost": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "latency": {
+        "min": 2921.328666008776,
+        "max": 10989.429457986262
+      }
+    }
+  },
+  "baseline_test_number": 1,
+  "baseline_config": {
+    "test_number": 1,
+    "config_values": {
+      "temperature": 0.5,
+      "context_depth": "minimal",
+      "reasoning_enabled": "false",
+      "verbalized_sampling": "none",
+      "n_samples": "3",
+      "reasoning_visibility": "visible",
+      "max_reasoning_tokens": "standard"
+    },
+    "workflow": "progressive_discovery"
+  },
+  "baseline_result": {
+    "test_number": 1,
+    "config": {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.5,
+        "context_depth": "minimal",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "none",
+        "n_samples": "3",
+        "reasoning_visibility": "visible",
+        "max_reasoning_tokens": "standard"
+      },
+      "workflow": "progressive_discovery"
+    },
+    "quality_score": {
+      "dimension_scores": {
+        "revelation_pacing": {
+          "score": 0.65,
+          "reasoning": "The workflow outlines high-level rules (identify core elements, condense causality, preserve ambiguity) that support revealing information at natural moments, but it lacks concrete guidance on när to space reveals or how to modulate pacing, so practical implementation may be uneven."
+        },
+        "tension_building": {
+          "score": 0.55,
+          "reasoning": "The output emphasizes central conflict and stakes in summaries, which helps tension, but it does not describe escalation techniques, beat structure, or how to sustain suspense across a narrative, yielding a modest score."
+        },
+        "mystery_coherence": {
+          "score": 0.8,
+          "reasoning": "Explicit focus on condensing causality and noting contextual gaps supports retrospective coherence and fair play with readers; the approach actively preserves ambiguity while flagging missing info, though it doesn't demonstrate handling complex contradictory clues."
+        },
+        "emotional_impact": {
+          "score": 0.7,
+          "reasoning": "The method prioritizes core characters and meaningful conflicts and the example shows an emotionally resonant core, but the workflow stops short of specifying how to ensure discoveries feel earned through character development and pacing."
+        }
+      },
+      "overall_score": 0.675,
+      "evaluator_model": "openrouter/openai/gpt-5-mini",
+      "timestamp": "2025-10-28T13:35:18.424963Z",
+      "metadata": {
+        "rubric": {
+          "revelation_pacing": {
+            "description": "Information revealed at natural moments, maintains curiosity without frustration",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "tension_building": {
+            "description": "Suspense escalates believably, stakes feel real, reader investment grows",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "mystery_coherence": {
+            "description": "Clues make sense in retrospect, no contradictions, fair play with reader",
+            "scale": "0-100 points",
+            "weight": 0.2
+          },
+          "emotional_impact": {
+            "description": "Discoveries feel earned, surprising yet inevitable, meaningful to characters",
+            "scale": "0-100 points",
+            "weight": 0.2
+          }
+        },
+        "raw_response": {
+          "revelation_pacing": {
+            "score": 65,
+            "reasoning": "The workflow outlines high-level rules (identify core elements, condense causality, preserve ambiguity) that support revealing information at natural moments, but it lacks concrete guidance on när to space reveals or how to modulate pacing, so practical implementation may be uneven."
+          },
+          "tension_building": {
+            "score": 55,
+            "reasoning": "The output emphasizes central conflict and stakes in summaries, which helps tension, but it does not describe escalation techniques, beat structure, or how to sustain suspense across a narrative, yielding a modest score."
+          },
+          "mystery_coherence": {
+            "score": 80,
+            "reasoning": "Explicit focus on condensing causality and noting contextual gaps supports retrospective coherence and fair play with readers; the approach actively preserves ambiguity while flagging missing info, though it doesn't demonstrate handling complex contradictory clues."
+          },
+          "emotional_impact": {
+            "score": 70,
+            "reasoning": "The method prioritizes core characters and meaningful conflicts and the example shows an emotionally resonant core, but the workflow stops short of specifying how to ensure discoveries feel earned through character development and pacing."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "ffb40923c913971b3dcafef08db37f03603637bb015acb59074a4ab7923af8c9",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/openai/gpt-5-mini"
+      }
+    },
+    "cost": 0.0,
+    "latency": 10989.429457986262,
+    "utility": 0.54,
+    "workflow_output": "Discovered Content:\nUnderstood! To summarize a complex story with minimal context, I'll:  \n\n1. **Identify Core Elements**: Extract key characters, central conflict, and major plot turns.  \n2. **Condense Causality**: Focus on cause-and-effect relationships driving the narrative.  \n3. **Prune Details**: Omit subplots or world-building unless critical to the main arc.  \n4. **Preserve Ambiguity**: If context is intentionally sparse (e.g., surreal or experimental stories), reflect that in the summary.  \n\n**Example**:  \n*Original*: A scientist discovers time travel, alters a childhood event to avoid trauma, and returns to a dystopian present where their actions erased a key invention. They must reconcile with their past self to restore the timeline.  \n*Summary*: A time-traveling scientist’s attempt to fix their past backfires, forcing a collaboration with their younger self to undo catastrophic changes.  \n\nIf the story’s complexity hinges on unclear context (e.g., unreliable narration, abstract themes), I’ll note gaps:  \n*\"Summary unclear—missing context on whether the protagonist’s visions are real or delusional.\"*  \n\nLet me know the story, and I’ll distill it accordingly!",
+    "metadata": {
+      "strategy": "standard",
+      "model": "openrouter/deepseek/deepseek-chat",
+      "temperature": 0.5,
+      "context_strategy": "full_upfront",
+      "discovery_trigger": "model_decides",
+      "workflow": {
+        "started_at": "2025-10-28T13:34:44.730486Z",
+        "completed_at": "2025-10-28T13:34:55.719918Z",
+        "duration_seconds": 10.989429457986262
+      },
+      "evaluation": {
+        "rubric": {
+          "revelation_pacing": {
+            "description": "Information revealed at natural moments, maintains curiosity without frustration",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "tension_building": {
+            "description": "Suspense escalates believably, stakes feel real, reader investment grows",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "mystery_coherence": {
+            "description": "Clues make sense in retrospect, no contradictions, fair play with reader",
+            "scale": "0-100 points",
+            "weight": 0.2
+          },
+          "emotional_impact": {
+            "description": "Discoveries feel earned, surprising yet inevitable, meaningful to characters",
+            "scale": "0-100 points",
+            "weight": 0.2
+          }
+        },
+        "raw_response": {
+          "revelation_pacing": {
+            "score": 65,
+            "reasoning": "The workflow outlines high-level rules (identify core elements, condense causality, preserve ambiguity) that support revealing information at natural moments, but it lacks concrete guidance on när to space reveals or how to modulate pacing, so practical implementation may be uneven."
+          },
+          "tension_building": {
+            "score": 55,
+            "reasoning": "The output emphasizes central conflict and stakes in summaries, which helps tension, but it does not describe escalation techniques, beat structure, or how to sustain suspense across a narrative, yielding a modest score."
+          },
+          "mystery_coherence": {
+            "score": 80,
+            "reasoning": "Explicit focus on condensing causality and noting contextual gaps supports retrospective coherence and fair play with readers; the approach actively preserves ambiguity while flagging missing info, though it doesn't demonstrate handling complex contradictory clues."
+          },
+          "emotional_impact": {
+            "score": 70,
+            "reasoning": "The method prioritizes core characters and meaningful conflicts and the example shows an emotionally resonant core, but the workflow stops short of specifying how to ensure discoveries feel earned through character development and pacing."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "ffb40923c913971b3dcafef08db37f03603637bb015acb59074a4ab7923af8c9",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/openai/gpt-5-mini"
+      }
+    },
+    "timestamp": "2025-10-28T13:35:18.425572Z"
+  },
+  "baseline_quality": 0.675,
+  "quality_improvement_pct": 32.96296296296295
+}

@@ -1,0 +1,54 @@
+name: wave2_lore_expansion
+workflow: lore_expansion
+variables:
+- name: temperature
+  level_1: 0.5
+  level_2: 0.8
+- name: generation_strategy
+  level_1: standard
+  level_2: chain_of_thought
+- name: expansion_type
+  level_1: comprehensive
+  level_2: targeted
+- name: context_inclusion
+  level_1: scene_only
+  level_2: full_story
+- name: output_structure
+  level_1: json
+  level_2: natural_language
+- name: entity_detection
+  level_1: explicit_prompt
+  level_2: implicit
+- name: relationship_depth
+  level_1: basic
+  level_2: detailed
+utility_weights:
+  quality: 0.75
+  cost: 0.20
+  time: 0.05
+workflow_config:
+  sample_code_path: tesseract_flow/workflows/code_review.py
+  language: python
+  evaluator_model: openrouter/deepseek/deepseek-chat
+  evaluator_temperature: 0.1
+  rubric:
+    entity_completeness:
+      description: All relevant characters and locations extracted from source material
+      scale: 0-100 points
+      weight: 0.30
+    accuracy:
+      description: Details consistent with source text, no hallucinations or contradictions
+      scale: 0-100 points
+      weight: 0.25
+    relationship_mapping:
+      description: Character connections and dynamics accurately identified and described
+      scale: 0-100 points
+      weight: 0.20
+    structured_output:
+      description: Well-formed JSON (if applicable), proper field population, parseable
+      scale: 0-100 points
+      weight: 0.15
+    consistency:
+      description: No internal contradictions, maintains canon with source material
+      scale: 0-100 points
+      weight: 0.10

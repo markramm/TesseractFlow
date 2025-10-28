@@ -1,0 +1,167 @@
+{
+  "experiment_id": "deepseek_character_development-20251028T015906",
+  "config": {
+    "name": "deepseek_character_development",
+    "workflow": "code_review",
+    "variables": [
+      {
+        "name": "temperature",
+        "level_1": 0.4,
+        "level_2": 0.7
+      },
+      {
+        "name": "generation_strategy",
+        "level_1": "standard",
+        "level_2": "chain_of_thought"
+      },
+      {
+        "name": "revision_strategy",
+        "level_1": "refine",
+        "level_2": "regenerate"
+      },
+      {
+        "name": "output_format",
+        "level_1": "freeform",
+        "level_2": "structured_json"
+      }
+    ],
+    "utility_weights": {
+      "quality": 0.75,
+      "cost": 0.15,
+      "time": 0.1
+    },
+    "workflow_config": {
+      "rubric": {
+        "continuity_preservation": {
+          "description": "Maintains established traits that shouldn't change",
+          "scale": "0-100 points",
+          "weight": 0.4
+        },
+        "arc_progression": {
+          "description": "Reflects character growth and development accurately",
+          "scale": "0-100 points",
+          "weight": 0.35
+        },
+        "utility_for_writers": {
+          "description": "Can writers actually use this? Is it helpful?",
+          "scale": "0-100 points",
+          "weight": 0.25
+        }
+      },
+      "sample_code_path": "tesseract_flow/core/base_workflow.py",
+      "evaluator_model": "openrouter/deepseek/deepseek-chat",
+      "language": "python",
+      "evaluator_temperature": 0.1
+    }
+  },
+  "test_configurations": [
+    {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.4,
+        "generation_strategy": "standard",
+        "revision_strategy": "refine",
+        "output_format": "freeform"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 2,
+      "config_values": {
+        "temperature": 0.4,
+        "generation_strategy": "standard",
+        "revision_strategy": "refine",
+        "output_format": "structured_json"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 3,
+      "config_values": {
+        "temperature": 0.4,
+        "generation_strategy": "chain_of_thought",
+        "revision_strategy": "regenerate",
+        "output_format": "freeform"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 4,
+      "config_values": {
+        "temperature": 0.4,
+        "generation_strategy": "chain_of_thought",
+        "revision_strategy": "regenerate",
+        "output_format": "structured_json"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 5,
+      "config_values": {
+        "temperature": 0.7,
+        "generation_strategy": "standard",
+        "revision_strategy": "regenerate",
+        "output_format": "freeform"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 6,
+      "config_values": {
+        "temperature": 0.7,
+        "generation_strategy": "standard",
+        "revision_strategy": "regenerate",
+        "output_format": "structured_json"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 7,
+      "config_values": {
+        "temperature": 0.7,
+        "generation_strategy": "chain_of_thought",
+        "revision_strategy": "refine",
+        "output_format": "freeform"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 8,
+      "config_values": {
+        "temperature": 0.7,
+        "generation_strategy": "chain_of_thought",
+        "revision_strategy": "refine",
+        "output_format": "structured_json"
+      },
+      "workflow": "code_review"
+    }
+  ],
+  "results": [],
+  "status": "FAILED",
+  "started_at": "2025-10-28T01:59:06.887834Z",
+  "error": "Workflow execution failed for test #1: WorkflowExecutionError: Generation strategy failed: Authentication failed for model 'anthropic/claude-3.5-sonnet': litellm.AuthenticationError: Missing Anthropic API Key - A call is being made to anthropic but no key is set either in the environment variables or via params. Please set `ANTHROPIC_API_KEY` in your environment vars",
+  "experiment_metadata": {
+    "config_hash": "f4bd03a620ef1e6f740bd2e6074364c1a2f5e9355097bdd830c2fbe3bf1a8fe7",
+    "created_at": "2025-10-28T01:59:06.887665Z",
+    "dependencies": {
+      "pydantic": "2.12.3",
+      "langgraph": "1.0.1",
+      "litellm": "1.79.0"
+    },
+    "non_deterministic_sources": [
+      "llm_sampling"
+    ]
+  },
+  "metadata": {},
+  "baseline_test_number": 1,
+  "baseline_config": {
+    "test_number": 1,
+    "config_values": {
+      "temperature": 0.4,
+      "generation_strategy": "standard",
+      "revision_strategy": "refine",
+      "output_format": "freeform"
+    },
+    "workflow": "code_review"
+  }
+}

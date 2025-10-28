@@ -1,0 +1,1704 @@
+{
+  "experiment_id": "wave4_dialogue_reasoning_vs_haiku-20251028T122428",
+  "config": {
+    "name": "wave4_dialogue_reasoning_vs_haiku",
+    "workflow": "dialogue_enhancement",
+    "variables": [
+      {
+        "name": "temperature",
+        "level_1": 0.6,
+        "level_2": 0.9
+      },
+      {
+        "name": "voice_emphasis",
+        "level_1": "subtle",
+        "level_2": "explicit"
+      },
+      {
+        "name": "reasoning_enabled",
+        "level_1": "false",
+        "level_2": "true"
+      },
+      {
+        "name": "verbalized_sampling",
+        "level_1": "none",
+        "level_2": "sample_and_rank"
+      },
+      {
+        "name": "n_samples",
+        "level_1": "3",
+        "level_2": "5"
+      },
+      {
+        "name": "ranking_criteria",
+        "level_1": "emotional_authenticity",
+        "level_2": "naturalness_and_voice"
+      },
+      {
+        "name": "reasoning_visibility",
+        "level_1": "visible",
+        "level_2": "hidden"
+      }
+    ],
+    "utility_weights": {
+      "quality": 0.8,
+      "cost": 0.15,
+      "time": 0.05
+    },
+    "workflow_config": {
+      "rubric": {
+        "emotional_authenticity": {
+          "description": "Characters' emotions feel genuine, dialogue reveals inner states naturally",
+          "scale": "0-100 points",
+          "weight": 0.35
+        },
+        "naturalness": {
+          "description": "Speech patterns sound like real people, appropriate to character/setting",
+          "scale": "0-100 points",
+          "weight": 0.3
+        },
+        "voice_distinctiveness": {
+          "description": "Each character has unique speech patterns, vocabulary, cadence",
+          "scale": "0-100 points",
+          "weight": 0.2
+        },
+        "subtext": {
+          "description": "Dialogue implies more than literal meaning, tensions revealed through speech",
+          "scale": "0-100 points",
+          "weight": 0.15
+        }
+      },
+      "sample_code_path": "tesseract_flow/workflows/code_review.py",
+      "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+      "language": "python",
+      "evaluator_temperature": 0.3
+    }
+  },
+  "test_configurations": [
+    {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.6,
+        "voice_emphasis": "subtle",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "none",
+        "n_samples": "3",
+        "ranking_criteria": "emotional_authenticity",
+        "reasoning_visibility": "visible"
+      },
+      "workflow": "dialogue_enhancement"
+    },
+    {
+      "test_number": 2,
+      "config_values": {
+        "temperature": 0.6,
+        "voice_emphasis": "subtle",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "sample_and_rank",
+        "n_samples": "5",
+        "ranking_criteria": "naturalness_and_voice",
+        "reasoning_visibility": "hidden"
+      },
+      "workflow": "dialogue_enhancement"
+    },
+    {
+      "test_number": 3,
+      "config_values": {
+        "temperature": 0.6,
+        "voice_emphasis": "explicit",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "none",
+        "n_samples": "3",
+        "ranking_criteria": "naturalness_and_voice",
+        "reasoning_visibility": "hidden"
+      },
+      "workflow": "dialogue_enhancement"
+    },
+    {
+      "test_number": 4,
+      "config_values": {
+        "temperature": 0.6,
+        "voice_emphasis": "explicit",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "sample_and_rank",
+        "n_samples": "5",
+        "ranking_criteria": "emotional_authenticity",
+        "reasoning_visibility": "visible"
+      },
+      "workflow": "dialogue_enhancement"
+    },
+    {
+      "test_number": 5,
+      "config_values": {
+        "temperature": 0.9,
+        "voice_emphasis": "subtle",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "none",
+        "n_samples": "5",
+        "ranking_criteria": "emotional_authenticity",
+        "reasoning_visibility": "hidden"
+      },
+      "workflow": "dialogue_enhancement"
+    },
+    {
+      "test_number": 6,
+      "config_values": {
+        "temperature": 0.9,
+        "voice_emphasis": "subtle",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "sample_and_rank",
+        "n_samples": "3",
+        "ranking_criteria": "naturalness_and_voice",
+        "reasoning_visibility": "visible"
+      },
+      "workflow": "dialogue_enhancement"
+    },
+    {
+      "test_number": 7,
+      "config_values": {
+        "temperature": 0.9,
+        "voice_emphasis": "explicit",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "none",
+        "n_samples": "5",
+        "ranking_criteria": "naturalness_and_voice",
+        "reasoning_visibility": "visible"
+      },
+      "workflow": "dialogue_enhancement"
+    },
+    {
+      "test_number": 8,
+      "config_values": {
+        "temperature": 0.9,
+        "voice_emphasis": "explicit",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "sample_and_rank",
+        "n_samples": "3",
+        "ranking_criteria": "emotional_authenticity",
+        "reasoning_visibility": "hidden"
+      },
+      "workflow": "dialogue_enhancement"
+    }
+  ],
+  "results": [
+    {
+      "test_number": 1,
+      "config": {
+        "test_number": 1,
+        "config_values": {
+          "temperature": 0.6,
+          "voice_emphasis": "subtle",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "none",
+          "n_samples": "3",
+          "ranking_criteria": "emotional_authenticity",
+          "reasoning_visibility": "visible"
+        },
+        "workflow": "dialogue_enhancement"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "emotional_authenticity": {
+            "score": 0.92,
+            "reasoning": "Characters display nuanced, layered emotions that feel organic. Sarah's frustration, weariness, and cautious resolve are particularly well-rendered. Marcus's shifts between casual bravado and earnest negotiation feel genuine. The emotional subtext of professional tension and personal stakes comes through powerfully."
+          },
+          "naturalness": {
+            "score": 0.88,
+            "reasoning": "Dialogue flows naturally, with realistic conversational rhythms. The language feels contextually appropriate for a high-stakes professional negotiation. Phrases like 'Let's not pretend otherwise' and 'the only guarantee is risk' sound authentic to the setting and characters' roles."
+          },
+          "voice_distinctiveness": {
+            "score": 0.85,
+            "reasoning": "Marcus and Sarah have clearly differentiated voices. Marcus uses more provocative, challenging language with casual undertones, while Sarah's speech is more measured and pragmatic. Their distinct communication styles create a dynamic conversational tension."
+          },
+          "subtext": {
+            "score": 0.95,
+            "reasoning": "Exceptional layered meaning beneath the literal dialogue. The conversation implies complex power dynamics, professional risk, personal stakes, and underlying mutual respect. Each line suggests more than its surface meaning, revealing character motivations and relationship nuances."
+          }
+        },
+        "overall_score": 0.9,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:24:47.945415Z",
+        "metadata": {
+          "rubric": {
+            "emotional_authenticity": {
+              "description": "Characters' emotions feel genuine, dialogue reveals inner states naturally",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "naturalness": {
+              "description": "Speech patterns sound like real people, appropriate to character/setting",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinctiveness": {
+              "description": "Each character has unique speech patterns, vocabulary, cadence",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "subtext": {
+              "description": "Dialogue implies more than literal meaning, tensions revealed through speech",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "emotional_authenticity": {
+              "score": 92,
+              "reasoning": "Characters display nuanced, layered emotions that feel organic. Sarah's frustration, weariness, and cautious resolve are particularly well-rendered. Marcus's shifts between casual bravado and earnest negotiation feel genuine. The emotional subtext of professional tension and personal stakes comes through powerfully."
+            },
+            "naturalness": {
+              "score": 88,
+              "reasoning": "Dialogue flows naturally, with realistic conversational rhythms. The language feels contextually appropriate for a high-stakes professional negotiation. Phrases like 'Let's not pretend otherwise' and 'the only guarantee is risk' sound authentic to the setting and characters' roles."
+            },
+            "voice_distinctiveness": {
+              "score": 85,
+              "reasoning": "Marcus and Sarah have clearly differentiated voices. Marcus uses more provocative, challenging language with casual undertones, while Sarah's speech is more measured and pragmatic. Their distinct communication styles create a dynamic conversational tension."
+            },
+            "subtext": {
+              "score": 95,
+              "reasoning": "Exceptional layered meaning beneath the literal dialogue. The conversation implies complex power dynamics, professional risk, personal stakes, and underlying mutual respect. Each line suggests more than its surface meaning, revealing character motivations and relationship nuances."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "c0a753b1ed1dca611198810a9030be64bf2a8a389d31bc091e5eac883df30dbb",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 11389.205707993824,
+      "utility": 0.7151192524062255,
+      "workflow_output": "Enhanced Dialogue:\nSarah: *leaning forward, her fingers tapping lightly on the desk*  \n\"You’re asking for a lot here, Marcus. More than the numbers justify. You know that.\"  \n\nMarcus: *crossing his arms, leaning back in his chair with a faint smirk*  \n\"And yet, here we are. You wouldn’t be sitting across from me if you didn’t see the potential. Let’s not pretend otherwise.\"  \n\nSarah: *narrowing her eyes, her voice steady but edged with frustration*  \n\"Potential doesn’t pay the bills. You’re pushing for concessions I can’t make. Not without guarantees.\"  \n\nMarcus: *shrugging, his tone casual but with a sharp undercurrent*  \n\"Guarantees? Sarah, in this business, the only guarantee is risk. You want the reward, you take the leap.\"  \n\nSarah: *pausing, her voice softer now, almost weary*  \n\"It’s not just about me, Marcus. There’s a team counting on this. I can’t gamble their futures on a handshake and a prayer.\"  \n\nMarcus: *his smirk fading, leaning forward slightly, his tone more earnest*  \n\"Then give me something to work with. Show me you’re serious. Otherwise, we’re just wasting each other’s time.\"  \n\nSarah: *sighing, running a hand through her hair*  \n\"I’m serious. But I need *you* to meet me halfway. Otherwise, this conversation is over.\"  \n\nMarcus: *holding her gaze, his voice quiet but firm*  \n\"Alright. Let’s talk halfway. But don’t mistake compromise for concession. I’m not backing down.\"  \n\nSarah: *nodding slowly, a hint of resolve in her voice*  \n\"Neither am I. Let’s see if we can find a way forward without leaving everything behind.\"",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.6,
+        "voice_emphasis": "subtle",
+        "examples_count": "0",
+        "enhance_prompt": "You are a dialogue specialist. Enhance the following dialogue to make it more natural, distinctive, and emotionally authentic.\n\nOriginal Dialogue:\n\"\"\"Code review workflow built on LangGraph.\"\"\"\nfrom __future__ import annotations\n\nimport asyncio\nimport json\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Any, Dict, Iterable, List, Mapping, Optional\n\nfrom jinja2 import Template\nfrom langgraph.graph import END, StateGraph\nfrom pydantic import BaseModel, ConfigDict, Field, field_validator\n\nfrom tesseract_flow.core.base_workflow import BaseWorkflowService\nfrom tesseract_flow.core.config import ExperimentConfig, Tes\n\nCharacters: Sarah, Marcus\nScene Context: tense negotiation in a downtown office\nMaintain natural dialogue flow with subtle character voice differences.\n\nEnhance the dialogue focusing on:\n- Voice distinctiveness (can you identify each speaker?)\n- Natural flow (realistic pacing, organic topic shifts)\n- Emotional authenticity (subtext, genuine emotions)\n\nReturn only the enhanced dialogue, no additional commentary.",
+        "enhanced_raw": "Sarah: *leaning forward, her fingers tapping lightly on the desk*  \n\"You’re asking for a lot here, Marcus. More than the numbers justify. You know that.\"  \n\nMarcus: *crossing his arms, leaning back in his chair with a faint smirk*  \n\"And yet, here we are. You wouldn’t be sitting across from me if you didn’t see the potential. Let’s not pretend otherwise.\"  \n\nSarah: *narrowing her eyes, her voice steady but edged with frustration*  \n\"Potential doesn’t pay the bills. You’re pushing for concessions I can’t make. Not without guarantees.\"  \n\nMarcus: *shrugging, his tone casual but with a sharp undercurrent*  \n\"Guarantees? Sarah, in this business, the only guarantee is risk. You want the reward, you take the leap.\"  \n\nSarah: *pausing, her voice softer now, almost weary*  \n\"It’s not just about me, Marcus. There’s a team counting on this. I can’t gamble their futures on a handshake and a prayer.\"  \n\nMarcus: *his smirk fading, leaning forward slightly, his tone more earnest*  \n\"Then give me something to work with. Show me you’re serious. Otherwise, we’re just wasting each other’s time.\"  \n\nSarah: *sighing, running a hand through her hair*  \n\"I’m serious. But I need *you* to meet me halfway. Otherwise, this conversation is over.\"  \n\nMarcus: *holding her gaze, his voice quiet but firm*  \n\"Alright. Let’s talk halfway. But don’t mistake compromise for concession. I’m not backing down.\"  \n\nSarah: *nodding slowly, a hint of resolve in her voice*  \n\"Neither am I. Let’s see if we can find a way forward without leaving everything behind.\"",
+        "test_config": {
+          "test_number": 1,
+          "config": {
+            "temperature": 0.6,
+            "voice_emphasis": "subtle",
+            "reasoning_enabled": "false",
+            "verbalized_sampling": "none",
+            "n_samples": "3",
+            "ranking_criteria": "emotional_authenticity",
+            "reasoning_visibility": "visible"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T12:24:28.569634Z",
+          "completed_at": "2025-10-28T12:24:39.958667Z",
+          "duration_seconds": 11.389205707993824
+        },
+        "evaluation": {
+          "rubric": {
+            "emotional_authenticity": {
+              "description": "Characters' emotions feel genuine, dialogue reveals inner states naturally",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "naturalness": {
+              "description": "Speech patterns sound like real people, appropriate to character/setting",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinctiveness": {
+              "description": "Each character has unique speech patterns, vocabulary, cadence",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "subtext": {
+              "description": "Dialogue implies more than literal meaning, tensions revealed through speech",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "emotional_authenticity": {
+              "score": 92,
+              "reasoning": "Characters display nuanced, layered emotions that feel organic. Sarah's frustration, weariness, and cautious resolve are particularly well-rendered. Marcus's shifts between casual bravado and earnest negotiation feel genuine. The emotional subtext of professional tension and personal stakes comes through powerfully."
+            },
+            "naturalness": {
+              "score": 88,
+              "reasoning": "Dialogue flows naturally, with realistic conversational rhythms. The language feels contextually appropriate for a high-stakes professional negotiation. Phrases like 'Let's not pretend otherwise' and 'the only guarantee is risk' sound authentic to the setting and characters' roles."
+            },
+            "voice_distinctiveness": {
+              "score": 85,
+              "reasoning": "Marcus and Sarah have clearly differentiated voices. Marcus uses more provocative, challenging language with casual undertones, while Sarah's speech is more measured and pragmatic. Their distinct communication styles create a dynamic conversational tension."
+            },
+            "subtext": {
+              "score": 95,
+              "reasoning": "Exceptional layered meaning beneath the literal dialogue. The conversation implies complex power dynamics, professional risk, personal stakes, and underlying mutual respect. Each line suggests more than its surface meaning, revealing character motivations and relationship nuances."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "c0a753b1ed1dca611198810a9030be64bf2a8a389d31bc091e5eac883df30dbb",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:24:47.945592Z"
+    },
+    {
+      "test_number": 2,
+      "config": {
+        "test_number": 2,
+        "config_values": {
+          "temperature": 0.6,
+          "voice_emphasis": "subtle",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "sample_and_rank",
+          "n_samples": "5",
+          "ranking_criteria": "naturalness_and_voice",
+          "reasoning_visibility": "hidden"
+        },
+        "workflow": "dialogue_enhancement"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "emotional_authenticity": {
+            "score": 0.95,
+            "reasoning": "Characters display nuanced, layered emotions that evolve throughout the dialogue. Sarah's controlled frustration and Marcus's defensive posturing feel deeply genuine, with subtle shifts in tone revealing complex inner emotional landscapes. The vulnerability and tension are palpable without feeling forced."
+          },
+          "naturalness": {
+            "score": 0.88,
+            "reasoning": "Dialogue flows organically with realistic interruptions, verbal rhythms, and contextual responses. Phrases like 'running a hand through his hair' and conversational turns feel authentic to a high-stakes professional confrontation. Minor deductions for occasional slightly stylized language."
+          },
+          "voice_distinctiveness": {
+            "score": 0.92,
+            "reasoning": "Sarah and Marcus have clearly differentiated communication styles. Sarah is more measured and analytical, using precise language, while Marcus is more impulsive and reactive. Their vocabulary and sentence structures consistently reinforce their distinct personalities and perspectives."
+          },
+          "subtext": {
+            "score": 0.96,
+            "reasoning": "Rich with unspoken tensions, power dynamics, and underlying professional and personal conflicts. The dialogue masterfully implies deeper issues of trust, leadership philosophy, and interpersonal dynamics beyond the surface-level discussion of a business deal."
+          }
+        },
+        "overall_score": 0.9275,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:25:04.688858Z",
+        "metadata": {
+          "rubric": {
+            "emotional_authenticity": {
+              "description": "Characters' emotions feel genuine, dialogue reveals inner states naturally",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "naturalness": {
+              "description": "Speech patterns sound like real people, appropriate to character/setting",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinctiveness": {
+              "description": "Each character has unique speech patterns, vocabulary, cadence",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "subtext": {
+              "description": "Dialogue implies more than literal meaning, tensions revealed through speech",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "emotional_authenticity": {
+              "score": 95,
+              "reasoning": "Characters display nuanced, layered emotions that evolve throughout the dialogue. Sarah's controlled frustration and Marcus's defensive posturing feel deeply genuine, with subtle shifts in tone revealing complex inner emotional landscapes. The vulnerability and tension are palpable without feeling forced."
+            },
+            "naturalness": {
+              "score": 88,
+              "reasoning": "Dialogue flows organically with realistic interruptions, verbal rhythms, and contextual responses. Phrases like 'running a hand through his hair' and conversational turns feel authentic to a high-stakes professional confrontation. Minor deductions for occasional slightly stylized language."
+            },
+            "voice_distinctiveness": {
+              "score": 92,
+              "reasoning": "Sarah and Marcus have clearly differentiated communication styles. Sarah is more measured and analytical, using precise language, while Marcus is more impulsive and reactive. Their vocabulary and sentence structures consistently reinforce their distinct personalities and perspectives."
+            },
+            "subtext": {
+              "score": 96,
+              "reasoning": "Rich with unspoken tensions, power dynamics, and underlying professional and personal conflicts. The dialogue masterfully implies deeper issues of trust, leadership philosophy, and interpersonal dynamics beyond the surface-level discussion of a business deal."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "03fadf71999fc340b48a04323f44dcc1921fd3456f53a4c7ed791cdfc9daad79",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 10328.801625000779,
+      "utility": 0.742,
+      "workflow_output": "Enhanced Dialogue:\n**Sarah:** (leaning forward, voice calm but firm) \"Marcus, we’ve been over this. The numbers don’t lie. If we push this deal through as it is, we’re setting ourselves up for a disaster. I’m not here to play games—I’m here to protect this company.\"  \n\n**Marcus:** (running a hand through his hair, frustration creeping into his tone) \"Sarah, come on. You’re acting like this is some kind of ticking time bomb. We’ve got wiggle room. We always have. You’re just refusing to see the bigger picture.\"  \n\n**Sarah:** (eyes narrowing, voice steady but with an edge) \"The bigger picture? The bigger picture is that we’re one misstep away from losing everything. You’re so focused on closing the deal that you’re ignoring the risks. That’s not leadership—that’s recklessness.\"  \n\n**Marcus:** (pacing, his voice rising slightly) \"Recklessness? That’s rich, coming from someone who’s been micromanaging this project from day one. You act like you’re the only one who cares about this company. Newsflash, Sarah—I’m here too. And I’m not about to let your paranoia sink this deal.\"  \n\n**Sarah:** (standing, her voice low but piercing) \"My *paranoia*? This isn’t about fear, Marcus. It’s about responsibility. If you can’t see that, then maybe you’re not the right person to be leading this negotiation.\"  \n\n**Marcus:** (stopping in his tracks, his voice dropping to a harsh whisper) \"Careful, Sarah. You’re treading on thin ice. I’ve been in this game longer than you, and I know when to take a risk. You’re so busy playing it safe, you’re going to miss the opportunity of a lifetime.\"  \n\n**Sarah:** (sitting back down, her tone softening but still resolute) \"And you’re so busy chasing opportunities, you’re going to run us straight off a cliff. I’m not asking you to agree with me, Marcus. I’m asking you to listen. For once.\"  \n\n**Marcus:** (sighing, rubbing his temples, his voice weary) \"I *am* listening, Sarah. But I’m also trying to keep this company alive. Sometimes that means taking a leap. You can’t control every variable, no matter how hard you try.\"  \n\n**Sarah:** (quietly, almost to herself) \"Maybe not. But I can sure as hell try to protect us from the ones we *can* control.\"  \n\n**Marcus:** (pausing, his expression softening slightly) \"Look, I get it. You’re scared. But we’re in this together, whether you like it or not. Let’s find a way to make this work—without tearing each other apart in the process.\"  \n\n**Sarah:** (meeting his gaze, her voice steady but with a hint of vulnerability) \"Fine. But if we’re doing this, we’re doing it right. No shortcuts. No blind spots. Agreed?\"  \n\n**Marcus:** (nodding, a reluctant smile tugging at the corners of his mouth) \"Agreed. But you’re buying the coffee when this is over.\"  \n\n**Sarah:** (smirking faintly) \"Deal. But only if we survive this.\"",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.6,
+        "voice_emphasis": "subtle",
+        "examples_count": "0",
+        "enhance_prompt": "You are a dialogue specialist. Enhance the following dialogue to make it more natural, distinctive, and emotionally authentic.\n\nOriginal Dialogue:\n\"\"\"Code review workflow built on LangGraph.\"\"\"\nfrom __future__ import annotations\n\nimport asyncio\nimport json\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Any, Dict, Iterable, List, Mapping, Optional\n\nfrom jinja2 import Template\nfrom langgraph.graph import END, StateGraph\nfrom pydantic import BaseModel, ConfigDict, Field, field_validator\n\nfrom tesseract_flow.core.base_workflow import BaseWorkflowService\nfrom tesseract_flow.core.config import ExperimentConfig, Tes\n\nCharacters: Sarah, Marcus\nScene Context: tense negotiation in a downtown office\nMaintain natural dialogue flow with subtle character voice differences.\n\nEnhance the dialogue focusing on:\n- Voice distinctiveness (can you identify each speaker?)\n- Natural flow (realistic pacing, organic topic shifts)\n- Emotional authenticity (subtext, genuine emotions)\n\nReturn only the enhanced dialogue, no additional commentary.",
+        "enhanced_raw": "**Sarah:** (leaning forward, voice calm but firm) \"Marcus, we’ve been over this. The numbers don’t lie. If we push this deal through as it is, we’re setting ourselves up for a disaster. I’m not here to play games—I’m here to protect this company.\"  \n\n**Marcus:** (running a hand through his hair, frustration creeping into his tone) \"Sarah, come on. You’re acting like this is some kind of ticking time bomb. We’ve got wiggle room. We always have. You’re just refusing to see the bigger picture.\"  \n\n**Sarah:** (eyes narrowing, voice steady but with an edge) \"The bigger picture? The bigger picture is that we’re one misstep away from losing everything. You’re so focused on closing the deal that you’re ignoring the risks. That’s not leadership—that’s recklessness.\"  \n\n**Marcus:** (pacing, his voice rising slightly) \"Recklessness? That’s rich, coming from someone who’s been micromanaging this project from day one. You act like you’re the only one who cares about this company. Newsflash, Sarah—I’m here too. And I’m not about to let your paranoia sink this deal.\"  \n\n**Sarah:** (standing, her voice low but piercing) \"My *paranoia*? This isn’t about fear, Marcus. It’s about responsibility. If you can’t see that, then maybe you’re not the right person to be leading this negotiation.\"  \n\n**Marcus:** (stopping in his tracks, his voice dropping to a harsh whisper) \"Careful, Sarah. You’re treading on thin ice. I’ve been in this game longer than you, and I know when to take a risk. You’re so busy playing it safe, you’re going to miss the opportunity of a lifetime.\"  \n\n**Sarah:** (sitting back down, her tone softening but still resolute) \"And you’re so busy chasing opportunities, you’re going to run us straight off a cliff. I’m not asking you to agree with me, Marcus. I’m asking you to listen. For once.\"  \n\n**Marcus:** (sighing, rubbing his temples, his voice weary) \"I *am* listening, Sarah. But I’m also trying to keep this company alive. Sometimes that means taking a leap. You can’t control every variable, no matter how hard you try.\"  \n\n**Sarah:** (quietly, almost to herself) \"Maybe not. But I can sure as hell try to protect us from the ones we *can* control.\"  \n\n**Marcus:** (pausing, his expression softening slightly) \"Look, I get it. You’re scared. But we’re in this together, whether you like it or not. Let’s find a way to make this work—without tearing each other apart in the process.\"  \n\n**Sarah:** (meeting his gaze, her voice steady but with a hint of vulnerability) \"Fine. But if we’re doing this, we’re doing it right. No shortcuts. No blind spots. Agreed?\"  \n\n**Marcus:** (nodding, a reluctant smile tugging at the corners of his mouth) \"Agreed. But you’re buying the coffee when this is over.\"  \n\n**Sarah:** (smirking faintly) \"Deal. But only if we survive this.\"",
+        "test_config": {
+          "test_number": 2,
+          "config": {
+            "temperature": 0.6,
+            "voice_emphasis": "subtle",
+            "reasoning_enabled": "false",
+            "verbalized_sampling": "sample_and_rank",
+            "n_samples": "5",
+            "ranking_criteria": "naturalness_and_voice",
+            "reasoning_visibility": "hidden"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T12:24:47.946623Z",
+          "completed_at": "2025-10-28T12:24:58.275267Z",
+          "duration_seconds": 10.328801625000779
+        },
+        "evaluation": {
+          "rubric": {
+            "emotional_authenticity": {
+              "description": "Characters' emotions feel genuine, dialogue reveals inner states naturally",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "naturalness": {
+              "description": "Speech patterns sound like real people, appropriate to character/setting",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinctiveness": {
+              "description": "Each character has unique speech patterns, vocabulary, cadence",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "subtext": {
+              "description": "Dialogue implies more than literal meaning, tensions revealed through speech",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "emotional_authenticity": {
+              "score": 95,
+              "reasoning": "Characters display nuanced, layered emotions that evolve throughout the dialogue. Sarah's controlled frustration and Marcus's defensive posturing feel deeply genuine, with subtle shifts in tone revealing complex inner emotional landscapes. The vulnerability and tension are palpable without feeling forced."
+            },
+            "naturalness": {
+              "score": 88,
+              "reasoning": "Dialogue flows organically with realistic interruptions, verbal rhythms, and contextual responses. Phrases like 'running a hand through his hair' and conversational turns feel authentic to a high-stakes professional confrontation. Minor deductions for occasional slightly stylized language."
+            },
+            "voice_distinctiveness": {
+              "score": 92,
+              "reasoning": "Sarah and Marcus have clearly differentiated communication styles. Sarah is more measured and analytical, using precise language, while Marcus is more impulsive and reactive. Their vocabulary and sentence structures consistently reinforce their distinct personalities and perspectives."
+            },
+            "subtext": {
+              "score": 96,
+              "reasoning": "Rich with unspoken tensions, power dynamics, and underlying professional and personal conflicts. The dialogue masterfully implies deeper issues of trust, leadership philosophy, and interpersonal dynamics beyond the surface-level discussion of a business deal."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "03fadf71999fc340b48a04323f44dcc1921fd3456f53a4c7ed791cdfc9daad79",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:25:04.689126Z"
+    },
+    {
+      "test_number": 3,
+      "config": {
+        "test_number": 3,
+        "config_values": {
+          "temperature": 0.6,
+          "voice_emphasis": "explicit",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "none",
+          "n_samples": "3",
+          "ranking_criteria": "naturalness_and_voice",
+          "reasoning_visibility": "hidden"
+        },
+        "workflow": "dialogue_enhancement"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "emotional_authenticity": {
+            "score": 0.9,
+            "reasoning": "The dialogue captures raw, genuine conflict between two professionals with deeply held opposing viewpoints. The emotional progression shows authentic frustration, defensiveness, and underlying mutual respect. Characters reveal vulnerable motivations around risk, responsibility, and organizational survival."
+          },
+          "naturalness": {
+            "score": 0.85,
+            "reasoning": "Speech patterns feel organic and professional, with realistic interruptions, rhetorical challenges, and conversational rhythms. Dialogue reflects genuine workplace tension without feeling overly scripted or artificial."
+          },
+          "voice_distinctiveness": {
+            "score": 0.88,
+            "reasoning": "Marcus uses more aggressive, forward-leaning language ('ambition', 'leap', 'charging ahead'), while Sarah employs more cautious, analytical phrasing ('calculated', 'sustainable'). Clear differentiation in communication styles and philosophical approaches."
+          },
+          "subtext": {
+            "score": 0.92,
+            "reasoning": "Rich layers of unspoken professional dynamics emerge - power struggles, risk tolerance differences, underlying mutual respect despite conflict. Dialogue implies deeper organizational challenges beyond surface disagreement about specific decisions."
+          }
+        },
+        "overall_score": 0.8875,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:25:28.924884Z",
+        "metadata": {
+          "rubric": {
+            "emotional_authenticity": {
+              "description": "Characters' emotions feel genuine, dialogue reveals inner states naturally",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "naturalness": {
+              "description": "Speech patterns sound like real people, appropriate to character/setting",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinctiveness": {
+              "description": "Each character has unique speech patterns, vocabulary, cadence",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "subtext": {
+              "description": "Dialogue implies more than literal meaning, tensions revealed through speech",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "emotional_authenticity": {
+              "score": 90,
+              "reasoning": "The dialogue captures raw, genuine conflict between two professionals with deeply held opposing viewpoints. The emotional progression shows authentic frustration, defensiveness, and underlying mutual respect. Characters reveal vulnerable motivations around risk, responsibility, and organizational survival."
+            },
+            "naturalness": {
+              "score": 85,
+              "reasoning": "Speech patterns feel organic and professional, with realistic interruptions, rhetorical challenges, and conversational rhythms. Dialogue reflects genuine workplace tension without feeling overly scripted or artificial."
+            },
+            "voice_distinctiveness": {
+              "score": 88,
+              "reasoning": "Marcus uses more aggressive, forward-leaning language ('ambition', 'leap', 'charging ahead'), while Sarah employs more cautious, analytical phrasing ('calculated', 'sustainable'). Clear differentiation in communication styles and philosophical approaches."
+            },
+            "subtext": {
+              "score": 92,
+              "reasoning": "Rich layers of unspoken professional dynamics emerge - power struggles, risk tolerance differences, underlying mutual respect despite conflict. Dialogue implies deeper organizational challenges beyond surface disagreement about specific decisions."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "ab5f6efdd3c1af292f2c15e7c8d7003538edb38eeb382eac5529f1706a72da85",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 17748.73199997819,
+      "utility": 0.6758481064865126,
+      "workflow_output": "Enhanced Dialogue:\n\"You’re asking for the moon here, Marcus. You know we can’t just wave a wand and make those numbers work.\"  \n\n\"Sarah, I’m not asking for the moon. I’m asking for what’s *fair*. You’ve got the data. You’ve seen the projections. We’re not pulling these figures out of thin air.\"  \n\n\"Fair? Fair would be acknowledging the constraints we’re under. You’re acting like we’ve got unlimited resources when we’re barely keeping the lights on.\"  \n\n\"Barely keeping the lights on? Come on. That’s a bit dramatic, don’t you think? We both know this company’s not on the brink. You’re just playing it safe, and it’s costing us opportunities.\"  \n\n\"Playing it safe? That’s rich, coming from someone who’s never had to answer for the fallout when things go south. I’m not here to gamble, Marcus. I’m here to build something sustainable.\"  \n\n\"Sustainable, sure. But at what cost? Stagnation? You’re so focused on avoiding risk, you’re missing the bigger picture. Sometimes you’ve got to take a leap to get ahead.\"  \n\n\"And sometimes you leap right off a cliff. I’m not saying we don’t take risks. I’m saying we take smart ones. Calculated. Not whatever this... *rush* is.\"  \n\n\"Smart risks? Sounds like a fancy way of saying no risks at all. Look, I get it. You’ve got your neck on the line. But so do I. And I’m telling you, this is the move. It’s now or never.\"  \n\n\"It’s *never* now or never. That’s the kind of thinking that gets people into trouble. We can’t just throw everything at the wall and hope something sticks. That’s not strategy. That’s desperation.\"  \n\n\"Desperation? No. It’s ambition. Something you might want to try on for size. Because if we keep tiptoeing around like this, we’re going to get left behind. And I’m not willing to let that happen.\"  \n\n\"Neither am I. But I’m also not willing to burn it all down just to prove a point. There’s a middle ground here, Marcus. If you’d just stop pushing so hard for a second and actually look for it.\"  \n\n\"Middle ground. Right. Because that’s where all the great breakthroughs happen—somewhere in the safe, cozy middle. Tell me, Sarah, when has playing it safe ever gotten us anywhere?\"  \n\n\"When has reckless abandon ever gotten us anywhere but deeper into the hole? You’re so focused on the win, you’re not seeing the cost. And I’m not just talking about money.\"  \n\n\"Fine. Then let’s talk about the cost of inaction. Because that’s the price you’re willing to pay, isn’t it? Doing nothing while the world moves on without us.\"  \n\n\"I’m not doing nothing. I’m trying to keep us from making a mistake we can’t undo. But you’re so hell-bent on this, you’re not even listening. You’re just... shouting into the void.\"  \n\n\"And you’re just hiding behind your spreadsheets, pretending that’s enough. You want to talk about costs? Fine. Let’s talk about the cost of missed opportunities. The cost of regret.\"  \n\n\"Regret? I’ll regret a lot of things, Marcus. But I won’t regret protecting what we’ve built. Not for a second. You can call it caution. I call it responsibility.\"  \n\n\"Responsibility. Right. Because that’s what this is about. Not fear. Not hesitation. Responsibility. Funny how that word always seems to justify standing still.\"  \n\n\"And funny how ‘ambition’ always seems to justify charging ahead without a plan. We’re not kids anymore, Marcus. We can’t afford to act like it.\"  \n\n\"No. We can’t afford to act like we’ve already lost, either. But if that’s where you’re at, then maybe this conversation is over.\"  \n\n\"Maybe it is. But don’t for a second think that means I’m giving up. I’m just choosing my battles. And this one? It’s not worth the cost.\"  \n\n\"Not worth the cost. Got it. I’ll keep that in mind when the next opportunity comes knocking. And it will. But by then, it might be too late.\"  \n\n\"Or it might be the right time. Funny how that works, isn’t it? Timing. Something you’ve never been great at.\"  \n\n\"And something you’ve never been willing to risk. Guess that’s where we differ. Always have, always will.\"  \n\n\"Guess so. But that doesn’t mean we can’t find a way forward. Just... not like this. Not at this cost.\"  \n\n\"Not at this cost. Right. Because the cost is always too high for you. Until it’s not. And by then, it’s too late.\"  \n\n\"Or it’s exactly the right time. Funny how that works, isn’t it? Timing. Something you’ve never been great at.\"  \n\n\"And something you’ve never been willing to risk. Guess that’s where we differ. Always have, always will.\"  \n\n\"Guess so. But that doesn’t mean we can’t find a way forward. Just... not like this. Not at this cost.\"  \n\n\"Not at this cost. Right. Because the cost is always too high for you. Until it’s not. And by then, it’s too late.\"",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.6,
+        "voice_emphasis": "explicit",
+        "examples_count": "0",
+        "enhance_prompt": "You are a dialogue specialist. Enhance the following dialogue to make it more natural, distinctive, and emotionally authentic.\n\nOriginal Dialogue:\n\"\"\"Code review workflow built on LangGraph.\"\"\"\nfrom __future__ import annotations\n\nimport asyncio\nimport json\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Any, Dict, Iterable, List, Mapping, Optional\n\nfrom jinja2 import Template\nfrom langgraph.graph import END, StateGraph\nfrom pydantic import BaseModel, ConfigDict, Field, field_validator\n\nfrom tesseract_flow.core.base_workflow import BaseWorkflowService\nfrom tesseract_flow.core.config import ExperimentConfig, Tes\n\nCharacters: Sarah, Marcus\nScene Context: tense negotiation in a downtown office\nFocus heavily on making each character's voice unique and identifiable without attribution. Give each character distinct speech patterns, vocabulary, and rhythm.\n\nEnhance the dialogue focusing on:\n- Voice distinctiveness (can you identify each speaker?)\n- Natural flow (realistic pacing, organic topic shifts)\n- Emotional authenticity (subtext, genuine emotions)\n\nReturn only the enhanced dialogue, no additional commentary.",
+        "enhanced_raw": "\"You’re asking for the moon here, Marcus. You know we can’t just wave a wand and make those numbers work.\"  \n\n\"Sarah, I’m not asking for the moon. I’m asking for what’s *fair*. You’ve got the data. You’ve seen the projections. We’re not pulling these figures out of thin air.\"  \n\n\"Fair? Fair would be acknowledging the constraints we’re under. You’re acting like we’ve got unlimited resources when we’re barely keeping the lights on.\"  \n\n\"Barely keeping the lights on? Come on. That’s a bit dramatic, don’t you think? We both know this company’s not on the brink. You’re just playing it safe, and it’s costing us opportunities.\"  \n\n\"Playing it safe? That’s rich, coming from someone who’s never had to answer for the fallout when things go south. I’m not here to gamble, Marcus. I’m here to build something sustainable.\"  \n\n\"Sustainable, sure. But at what cost? Stagnation? You’re so focused on avoiding risk, you’re missing the bigger picture. Sometimes you’ve got to take a leap to get ahead.\"  \n\n\"And sometimes you leap right off a cliff. I’m not saying we don’t take risks. I’m saying we take smart ones. Calculated. Not whatever this... *rush* is.\"  \n\n\"Smart risks? Sounds like a fancy way of saying no risks at all. Look, I get it. You’ve got your neck on the line. But so do I. And I’m telling you, this is the move. It’s now or never.\"  \n\n\"It’s *never* now or never. That’s the kind of thinking that gets people into trouble. We can’t just throw everything at the wall and hope something sticks. That’s not strategy. That’s desperation.\"  \n\n\"Desperation? No. It’s ambition. Something you might want to try on for size. Because if we keep tiptoeing around like this, we’re going to get left behind. And I’m not willing to let that happen.\"  \n\n\"Neither am I. But I’m also not willing to burn it all down just to prove a point. There’s a middle ground here, Marcus. If you’d just stop pushing so hard for a second and actually look for it.\"  \n\n\"Middle ground. Right. Because that’s where all the great breakthroughs happen—somewhere in the safe, cozy middle. Tell me, Sarah, when has playing it safe ever gotten us anywhere?\"  \n\n\"When has reckless abandon ever gotten us anywhere but deeper into the hole? You’re so focused on the win, you’re not seeing the cost. And I’m not just talking about money.\"  \n\n\"Fine. Then let’s talk about the cost of inaction. Because that’s the price you’re willing to pay, isn’t it? Doing nothing while the world moves on without us.\"  \n\n\"I’m not doing nothing. I’m trying to keep us from making a mistake we can’t undo. But you’re so hell-bent on this, you’re not even listening. You’re just... shouting into the void.\"  \n\n\"And you’re just hiding behind your spreadsheets, pretending that’s enough. You want to talk about costs? Fine. Let’s talk about the cost of missed opportunities. The cost of regret.\"  \n\n\"Regret? I’ll regret a lot of things, Marcus. But I won’t regret protecting what we’ve built. Not for a second. You can call it caution. I call it responsibility.\"  \n\n\"Responsibility. Right. Because that’s what this is about. Not fear. Not hesitation. Responsibility. Funny how that word always seems to justify standing still.\"  \n\n\"And funny how ‘ambition’ always seems to justify charging ahead without a plan. We’re not kids anymore, Marcus. We can’t afford to act like it.\"  \n\n\"No. We can’t afford to act like we’ve already lost, either. But if that’s where you’re at, then maybe this conversation is over.\"  \n\n\"Maybe it is. But don’t for a second think that means I’m giving up. I’m just choosing my battles. And this one? It’s not worth the cost.\"  \n\n\"Not worth the cost. Got it. I’ll keep that in mind when the next opportunity comes knocking. And it will. But by then, it might be too late.\"  \n\n\"Or it might be the right time. Funny how that works, isn’t it? Timing. Something you’ve never been great at.\"  \n\n\"And something you’ve never been willing to risk. Guess that’s where we differ. Always have, always will.\"  \n\n\"Guess so. But that doesn’t mean we can’t find a way forward. Just... not like this. Not at this cost.\"  \n\n\"Not at this cost. Right. Because the cost is always too high for you. Until it’s not. And by then, it’s too late.\"  \n\n\"Or it’s exactly the right time. Funny how that works, isn’t it? Timing. Something you’ve never been great at.\"  \n\n\"And something you’ve never been willing to risk. Guess that’s where we differ. Always have, always will.\"  \n\n\"Guess so. But that doesn’t mean we can’t find a way forward. Just... not like this. Not at this cost.\"  \n\n\"Not at this cost. Right. Because the cost is always too high for you. Until it’s not. And by then, it’s too late.\"",
+        "test_config": {
+          "test_number": 3,
+          "config": {
+            "temperature": 0.6,
+            "voice_emphasis": "explicit",
+            "reasoning_enabled": "true",
+            "verbalized_sampling": "none",
+            "n_samples": "3",
+            "ranking_criteria": "naturalness_and_voice",
+            "reasoning_visibility": "hidden"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T12:25:04.690999Z",
+          "completed_at": "2025-10-28T12:25:22.439458Z",
+          "duration_seconds": 17.74873199997819
+        },
+        "evaluation": {
+          "rubric": {
+            "emotional_authenticity": {
+              "description": "Characters' emotions feel genuine, dialogue reveals inner states naturally",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "naturalness": {
+              "description": "Speech patterns sound like real people, appropriate to character/setting",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinctiveness": {
+              "description": "Each character has unique speech patterns, vocabulary, cadence",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "subtext": {
+              "description": "Dialogue implies more than literal meaning, tensions revealed through speech",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "emotional_authenticity": {
+              "score": 90,
+              "reasoning": "The dialogue captures raw, genuine conflict between two professionals with deeply held opposing viewpoints. The emotional progression shows authentic frustration, defensiveness, and underlying mutual respect. Characters reveal vulnerable motivations around risk, responsibility, and organizational survival."
+            },
+            "naturalness": {
+              "score": 85,
+              "reasoning": "Speech patterns feel organic and professional, with realistic interruptions, rhetorical challenges, and conversational rhythms. Dialogue reflects genuine workplace tension without feeling overly scripted or artificial."
+            },
+            "voice_distinctiveness": {
+              "score": 88,
+              "reasoning": "Marcus uses more aggressive, forward-leaning language ('ambition', 'leap', 'charging ahead'), while Sarah employs more cautious, analytical phrasing ('calculated', 'sustainable'). Clear differentiation in communication styles and philosophical approaches."
+            },
+            "subtext": {
+              "score": 92,
+              "reasoning": "Rich layers of unspoken professional dynamics emerge - power struggles, risk tolerance differences, underlying mutual respect despite conflict. Dialogue implies deeper organizational challenges beyond surface disagreement about specific decisions."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "ab5f6efdd3c1af292f2c15e7c8d7003538edb38eeb382eac5529f1706a72da85",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:25:28.924993Z"
+    },
+    {
+      "test_number": 4,
+      "config": {
+        "test_number": 4,
+        "config_values": {
+          "temperature": 0.6,
+          "voice_emphasis": "explicit",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "sample_and_rank",
+          "n_samples": "5",
+          "ranking_criteria": "emotional_authenticity",
+          "reasoning_visibility": "visible"
+        },
+        "workflow": "dialogue_enhancement"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "emotional_authenticity": {
+            "score": 0.85,
+            "reasoning": "Characters display raw, visceral emotions that feel genuine - frustration, defensiveness, and underlying tension are palpable. The dialogue captures the escalating emotional stakes of a high-pressure negotiation with nuanced reactive exchanges."
+          },
+          "naturalness": {
+            "score": 0.9,
+            "reasoning": "Speech patterns are highly realistic, with interruptions, rhetorical challenges, and conversational rhythms that mirror actual heated professional confrontations. Language feels unscripted and dynamically responsive."
+          },
+          "voice_distinctiveness": {
+            "score": 0.75,
+            "reasoning": "While both characters share an aggressive tone, their voices have subtle differences - one more accusatory and defensive, the other more strategically provocative. Could benefit from more pronounced linguistic individualization."
+          },
+          "subtext": {
+            "score": 0.95,
+            "reasoning": "Exceptional layered communication revealing power dynamics, mutual distrust, negotiation tactics, and underlying professional/personal tensions. Each line implies complex motivations beyond literal meaning."
+          }
+        },
+        "overall_score": 0.8625,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:25:48.771311Z",
+        "metadata": {
+          "rubric": {
+            "emotional_authenticity": {
+              "description": "Characters' emotions feel genuine, dialogue reveals inner states naturally",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "naturalness": {
+              "description": "Speech patterns sound like real people, appropriate to character/setting",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinctiveness": {
+              "description": "Each character has unique speech patterns, vocabulary, cadence",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "subtext": {
+              "description": "Dialogue implies more than literal meaning, tensions revealed through speech",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "emotional_authenticity": {
+              "score": 85,
+              "reasoning": "Characters display raw, visceral emotions that feel genuine - frustration, defensiveness, and underlying tension are palpable. The dialogue captures the escalating emotional stakes of a high-pressure negotiation with nuanced reactive exchanges."
+            },
+            "naturalness": {
+              "score": 90,
+              "reasoning": "Speech patterns are highly realistic, with interruptions, rhetorical challenges, and conversational rhythms that mirror actual heated professional confrontations. Language feels unscripted and dynamically responsive."
+            },
+            "voice_distinctiveness": {
+              "score": 75,
+              "reasoning": "While both characters share an aggressive tone, their voices have subtle differences - one more accusatory and defensive, the other more strategically provocative. Could benefit from more pronounced linguistic individualization."
+            },
+            "subtext": {
+              "score": 95,
+              "reasoning": "Exceptional layered communication revealing power dynamics, mutual distrust, negotiation tactics, and underlying professional/personal tensions. Each line implies complex motivations beyond literal meaning."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "12ee783e8a2ef05e72c7bf968638aefb3c637d10da218365e8c3305ed8aa339d",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 13502.420541015454,
+      "utility": 0.6753927072364945,
+      "workflow_output": "Enhanced Dialogue:\n\"Alright, let’s cut to the chase. You know as well as I do that we’re running out of time. If we don’t lock this down today, it’s over. So, what’s it going to be?\"  \n\n\"Time? Oh, you’re worried about *time* now? Funny, considering it was your team that dragged their feet for weeks. Don’t pin this on me. I’ve been ready since day one.\"  \n\n\"Don’t play the victim. You’ve been throwing obstacles in the way at every turn. Every. Single. Turn. What’s your angle here? What do you really want?\"  \n\n\"My *angle*? I want what we agreed on. Clear terms, no loopholes, no surprises. But you keep dancing around the details like it’s some kind of game. This isn’t a game. Not to me.\"  \n\n\"Details? You’re nitpicking every comma, every clause. It’s not nitpicking—it’s called due diligence. Or do you just expect me to sign whatever you shove across the table?\"  \n\n\"Due diligence? Fine. Then let’s talk about section 4.2. You know, the one you conveniently glossed over. What’s the play there? Hoping I wouldn’t notice?\"  \n\n\"Section 4.2 is standard. Standard. If you’d bothered to read the rest of the contract, you’d see it’s boilerplate. But no, you’re fixated on one line like it’s some grand conspiracy.\"  \n\n\"Standard? Really? Because it sure doesn’t look standard to me. It looks like a backdoor. And if you think I’m walking into that, you’re sorely mistaken.\"  \n\n\"Backdoor? That’s rich. You’re seeing shadows where there aren’t any. But fine, let’s rephrase it. Happy? Or are we going to keep going in circles all day?\"  \n\n\"Circles? That’s all we’ve been doing because you refuse to give an inch. I’m not asking for the moon here. Just a fair deal. Is that too much to ask?\"  \n\n\"Fair? You’ve got a funny definition of fair. But okay, let’s try this again. From the top. And this time, let’s actually get somewhere.\"  \n\n\"Finally. Took you long enough. Let’s talk.\"",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.6,
+        "voice_emphasis": "explicit",
+        "examples_count": "0",
+        "enhance_prompt": "You are a dialogue specialist. Enhance the following dialogue to make it more natural, distinctive, and emotionally authentic.\n\nOriginal Dialogue:\n\"\"\"Code review workflow built on LangGraph.\"\"\"\nfrom __future__ import annotations\n\nimport asyncio\nimport json\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Any, Dict, Iterable, List, Mapping, Optional\n\nfrom jinja2 import Template\nfrom langgraph.graph import END, StateGraph\nfrom pydantic import BaseModel, ConfigDict, Field, field_validator\n\nfrom tesseract_flow.core.base_workflow import BaseWorkflowService\nfrom tesseract_flow.core.config import ExperimentConfig, Tes\n\nCharacters: Sarah, Marcus\nScene Context: tense negotiation in a downtown office\nFocus heavily on making each character's voice unique and identifiable without attribution. Give each character distinct speech patterns, vocabulary, and rhythm.\n\nEnhance the dialogue focusing on:\n- Voice distinctiveness (can you identify each speaker?)\n- Natural flow (realistic pacing, organic topic shifts)\n- Emotional authenticity (subtext, genuine emotions)\n\nReturn only the enhanced dialogue, no additional commentary.",
+        "enhanced_raw": "\"Alright, let’s cut to the chase. You know as well as I do that we’re running out of time. If we don’t lock this down today, it’s over. So, what’s it going to be?\"  \n\n\"Time? Oh, you’re worried about *time* now? Funny, considering it was your team that dragged their feet for weeks. Don’t pin this on me. I’ve been ready since day one.\"  \n\n\"Don’t play the victim. You’ve been throwing obstacles in the way at every turn. Every. Single. Turn. What’s your angle here? What do you really want?\"  \n\n\"My *angle*? I want what we agreed on. Clear terms, no loopholes, no surprises. But you keep dancing around the details like it’s some kind of game. This isn’t a game. Not to me.\"  \n\n\"Details? You’re nitpicking every comma, every clause. It’s not nitpicking—it’s called due diligence. Or do you just expect me to sign whatever you shove across the table?\"  \n\n\"Due diligence? Fine. Then let’s talk about section 4.2. You know, the one you conveniently glossed over. What’s the play there? Hoping I wouldn’t notice?\"  \n\n\"Section 4.2 is standard. Standard. If you’d bothered to read the rest of the contract, you’d see it’s boilerplate. But no, you’re fixated on one line like it’s some grand conspiracy.\"  \n\n\"Standard? Really? Because it sure doesn’t look standard to me. It looks like a backdoor. And if you think I’m walking into that, you’re sorely mistaken.\"  \n\n\"Backdoor? That’s rich. You’re seeing shadows where there aren’t any. But fine, let’s rephrase it. Happy? Or are we going to keep going in circles all day?\"  \n\n\"Circles? That’s all we’ve been doing because you refuse to give an inch. I’m not asking for the moon here. Just a fair deal. Is that too much to ask?\"  \n\n\"Fair? You’ve got a funny definition of fair. But okay, let’s try this again. From the top. And this time, let’s actually get somewhere.\"  \n\n\"Finally. Took you long enough. Let’s talk.\"",
+        "test_config": {
+          "test_number": 4,
+          "config": {
+            "temperature": 0.6,
+            "voice_emphasis": "explicit",
+            "reasoning_enabled": "true",
+            "verbalized_sampling": "sample_and_rank",
+            "n_samples": "5",
+            "ranking_criteria": "emotional_authenticity",
+            "reasoning_visibility": "visible"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T12:25:28.926483Z",
+          "completed_at": "2025-10-28T12:25:42.428697Z",
+          "duration_seconds": 13.502420541015454
+        },
+        "evaluation": {
+          "rubric": {
+            "emotional_authenticity": {
+              "description": "Characters' emotions feel genuine, dialogue reveals inner states naturally",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "naturalness": {
+              "description": "Speech patterns sound like real people, appropriate to character/setting",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinctiveness": {
+              "description": "Each character has unique speech patterns, vocabulary, cadence",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "subtext": {
+              "description": "Dialogue implies more than literal meaning, tensions revealed through speech",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "emotional_authenticity": {
+              "score": 85,
+              "reasoning": "Characters display raw, visceral emotions that feel genuine - frustration, defensiveness, and underlying tension are palpable. The dialogue captures the escalating emotional stakes of a high-pressure negotiation with nuanced reactive exchanges."
+            },
+            "naturalness": {
+              "score": 90,
+              "reasoning": "Speech patterns are highly realistic, with interruptions, rhetorical challenges, and conversational rhythms that mirror actual heated professional confrontations. Language feels unscripted and dynamically responsive."
+            },
+            "voice_distinctiveness": {
+              "score": 75,
+              "reasoning": "While both characters share an aggressive tone, their voices have subtle differences - one more accusatory and defensive, the other more strategically provocative. Could benefit from more pronounced linguistic individualization."
+            },
+            "subtext": {
+              "score": 95,
+              "reasoning": "Exceptional layered communication revealing power dynamics, mutual distrust, negotiation tactics, and underlying professional/personal tensions. Each line implies complex motivations beyond literal meaning."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "12ee783e8a2ef05e72c7bf968638aefb3c637d10da218365e8c3305ed8aa339d",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:25:48.771489Z"
+    },
+    {
+      "test_number": 5,
+      "config": {
+        "test_number": 5,
+        "config_values": {
+          "temperature": 0.9,
+          "voice_emphasis": "subtle",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "none",
+          "n_samples": "5",
+          "ranking_criteria": "emotional_authenticity",
+          "reasoning_visibility": "hidden"
+        },
+        "workflow": "dialogue_enhancement"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "emotional_authenticity": {
+            "score": 0.92,
+            "reasoning": "Characters display nuanced emotional progression from tension to potential resolution. Sarah's frustration and Marcus's defensive stance evolve naturally, showing genuine emotional complexity. Their exchanges reveal underlying pressures and personal stakes without feeling forced."
+          },
+          "naturalness": {
+            "score": 0.88,
+            "reasoning": "Dialogue flows realistically, with interruptions, pauses, and reactive language that mirrors actual workplace confrontations. Phrases like 'running a hand through his hair' and conversational rhythms feel authentic to professional interpersonal dynamics."
+          },
+          "voice_distinctiveness": {
+            "score": 0.85,
+            "reasoning": "Sarah uses sharper, more direct language with pointed challenges, while Marcus employs more defensive, reflective speech. Their distinct communication styles are clear - Sarah is action-oriented, Marcus more process-focused. Vocabulary and tone differ meaningfully."
+          },
+          "subtext": {
+            "score": 0.95,
+            "reasoning": "Rich layers of unspoken tension emerge - professional pressure, potential past conflicts, mutual respect beneath disagreement. The dialogue implies deeper organizational challenges and personal investment beyond surface-level conflict."
+          }
+        },
+        "overall_score": 0.9,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:26:13.869665Z",
+        "metadata": {
+          "rubric": {
+            "emotional_authenticity": {
+              "description": "Characters' emotions feel genuine, dialogue reveals inner states naturally",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "naturalness": {
+              "description": "Speech patterns sound like real people, appropriate to character/setting",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinctiveness": {
+              "description": "Each character has unique speech patterns, vocabulary, cadence",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "subtext": {
+              "description": "Dialogue implies more than literal meaning, tensions revealed through speech",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "emotional_authenticity": {
+              "score": 92,
+              "reasoning": "Characters display nuanced emotional progression from tension to potential resolution. Sarah's frustration and Marcus's defensive stance evolve naturally, showing genuine emotional complexity. Their exchanges reveal underlying pressures and personal stakes without feeling forced."
+            },
+            "naturalness": {
+              "score": 88,
+              "reasoning": "Dialogue flows realistically, with interruptions, pauses, and reactive language that mirrors actual workplace confrontations. Phrases like 'running a hand through his hair' and conversational rhythms feel authentic to professional interpersonal dynamics."
+            },
+            "voice_distinctiveness": {
+              "score": 85,
+              "reasoning": "Sarah uses sharper, more direct language with pointed challenges, while Marcus employs more defensive, reflective speech. Their distinct communication styles are clear - Sarah is action-oriented, Marcus more process-focused. Vocabulary and tone differ meaningfully."
+            },
+            "subtext": {
+              "score": 95,
+              "reasoning": "Rich layers of unspoken tension emerge - professional pressure, potential past conflicts, mutual respect beneath disagreement. The dialogue implies deeper organizational challenges and personal investment beyond surface-level conflict."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "3ca0e7aced935e64844f6a374024ccb259c8bdf44654c70e903dbacbbb3fc3df",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 18336.50525001576,
+      "utility": 0.683142748291636,
+      "workflow_output": "Enhanced Dialogue:\n**Sarah:** (leaning forward, voice steady but with an edge) \"Marcus, we’ve been going in circles for weeks. Your team’s delays are costing us more than just time. I need a concrete answer—today.\"  \n\n**Marcus:** (sighs, running a hand through his hair) \"Sarah, I get it. I do. But rushing this could mean cutting corners. We’re talking about *integrity* here, not just deadlines.\"  \n\n**Sarah:** (narrowing her eyes, tone sharpening) \"Integrity? That’s rich, coming from someone who missed the last three check-ins. Don’t lecture me about priorities when yours are clearly elsewhere.\"  \n\n**Marcus:** (clenching his jaw, leaning back in his chair) \"Look, I’m not here to play the blame game. If you want results, I need breathing room. Otherwise, we’re setting ourselves up for failure.\"  \n\n**Sarah:** (crossing her arms, voice dropping but still firm) \"Breathing room? Marcus, the clock’s ticking. Every day we stall, the competition gains ground. You think they’re taking *breathing room*?\"  \n\n**Marcus:** (leaning forward, voice low but intense) \"And you think pushing harder is the answer? Fine. But when this blows up in our faces, don’t come crying to me about the fallout.\"  \n\n**Sarah:** (pausing, softening slightly but keeping her gaze locked) \"I’m not your enemy here. I just need to know you’re as invested in this as I am. Are you?\"  \n\n**Marcus:** (exhaling deeply, his tone finally easing) \"I am. But we’re not going to win by burning out. Let’s find a middle ground—something that works for both of us.\"  \n\n**Sarah:** (nodding slowly, a faint trace of relief in her voice) \"Alright. But no more excuses. Deal?\"  \n\n**Marcus:** (offering a small, tired smile) \"Deal.\"",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "voice_emphasis": "subtle",
+        "examples_count": "0",
+        "enhance_prompt": "You are a dialogue specialist. Enhance the following dialogue to make it more natural, distinctive, and emotionally authentic.\n\nOriginal Dialogue:\n\"\"\"Code review workflow built on LangGraph.\"\"\"\nfrom __future__ import annotations\n\nimport asyncio\nimport json\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Any, Dict, Iterable, List, Mapping, Optional\n\nfrom jinja2 import Template\nfrom langgraph.graph import END, StateGraph\nfrom pydantic import BaseModel, ConfigDict, Field, field_validator\n\nfrom tesseract_flow.core.base_workflow import BaseWorkflowService\nfrom tesseract_flow.core.config import ExperimentConfig, Tes\n\nCharacters: Sarah, Marcus\nScene Context: tense negotiation in a downtown office\nMaintain natural dialogue flow with subtle character voice differences.\n\nEnhance the dialogue focusing on:\n- Voice distinctiveness (can you identify each speaker?)\n- Natural flow (realistic pacing, organic topic shifts)\n- Emotional authenticity (subtext, genuine emotions)\n\nReturn only the enhanced dialogue, no additional commentary.",
+        "enhanced_raw": "**Sarah:** (leaning forward, voice steady but with an edge) \"Marcus, we’ve been going in circles for weeks. Your team’s delays are costing us more than just time. I need a concrete answer—today.\"  \n\n**Marcus:** (sighs, running a hand through his hair) \"Sarah, I get it. I do. But rushing this could mean cutting corners. We’re talking about *integrity* here, not just deadlines.\"  \n\n**Sarah:** (narrowing her eyes, tone sharpening) \"Integrity? That’s rich, coming from someone who missed the last three check-ins. Don’t lecture me about priorities when yours are clearly elsewhere.\"  \n\n**Marcus:** (clenching his jaw, leaning back in his chair) \"Look, I’m not here to play the blame game. If you want results, I need breathing room. Otherwise, we’re setting ourselves up for failure.\"  \n\n**Sarah:** (crossing her arms, voice dropping but still firm) \"Breathing room? Marcus, the clock’s ticking. Every day we stall, the competition gains ground. You think they’re taking *breathing room*?\"  \n\n**Marcus:** (leaning forward, voice low but intense) \"And you think pushing harder is the answer? Fine. But when this blows up in our faces, don’t come crying to me about the fallout.\"  \n\n**Sarah:** (pausing, softening slightly but keeping her gaze locked) \"I’m not your enemy here. I just need to know you’re as invested in this as I am. Are you?\"  \n\n**Marcus:** (exhaling deeply, his tone finally easing) \"I am. But we’re not going to win by burning out. Let’s find a middle ground—something that works for both of us.\"  \n\n**Sarah:** (nodding slowly, a faint trace of relief in her voice) \"Alright. But no more excuses. Deal?\"  \n\n**Marcus:** (offering a small, tired smile) \"Deal.\"",
+        "test_config": {
+          "test_number": 5,
+          "config": {
+            "temperature": 0.9,
+            "voice_emphasis": "subtle",
+            "reasoning_enabled": "true",
+            "verbalized_sampling": "none",
+            "n_samples": "5",
+            "ranking_criteria": "emotional_authenticity",
+            "reasoning_visibility": "hidden"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T12:25:48.772741Z",
+          "completed_at": "2025-10-28T12:26:07.108964Z",
+          "duration_seconds": 18.33650525001576
+        },
+        "evaluation": {
+          "rubric": {
+            "emotional_authenticity": {
+              "description": "Characters' emotions feel genuine, dialogue reveals inner states naturally",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "naturalness": {
+              "description": "Speech patterns sound like real people, appropriate to character/setting",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinctiveness": {
+              "description": "Each character has unique speech patterns, vocabulary, cadence",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "subtext": {
+              "description": "Dialogue implies more than literal meaning, tensions revealed through speech",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "emotional_authenticity": {
+              "score": 92,
+              "reasoning": "Characters display nuanced emotional progression from tension to potential resolution. Sarah's frustration and Marcus's defensive stance evolve naturally, showing genuine emotional complexity. Their exchanges reveal underlying pressures and personal stakes without feeling forced."
+            },
+            "naturalness": {
+              "score": 88,
+              "reasoning": "Dialogue flows realistically, with interruptions, pauses, and reactive language that mirrors actual workplace confrontations. Phrases like 'running a hand through his hair' and conversational rhythms feel authentic to professional interpersonal dynamics."
+            },
+            "voice_distinctiveness": {
+              "score": 85,
+              "reasoning": "Sarah uses sharper, more direct language with pointed challenges, while Marcus employs more defensive, reflective speech. Their distinct communication styles are clear - Sarah is action-oriented, Marcus more process-focused. Vocabulary and tone differ meaningfully."
+            },
+            "subtext": {
+              "score": 95,
+              "reasoning": "Rich layers of unspoken tension emerge - professional pressure, potential past conflicts, mutual respect beneath disagreement. The dialogue implies deeper organizational challenges and personal investment beyond surface-level conflict."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "3ca0e7aced935e64844f6a374024ccb259c8bdf44654c70e903dbacbbb3fc3df",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:26:13.870019Z"
+    },
+    {
+      "test_number": 6,
+      "config": {
+        "test_number": 6,
+        "config_values": {
+          "temperature": 0.9,
+          "voice_emphasis": "subtle",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "sample_and_rank",
+          "n_samples": "3",
+          "ranking_criteria": "naturalness_and_voice",
+          "reasoning_visibility": "visible"
+        },
+        "workflow": "dialogue_enhancement"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "emotional_authenticity": {
+            "score": 0.92,
+            "reasoning": "Characters display nuanced emotional progression - Sarah moves from tension to strategic empathy, Marcus from defensive to collaborative. Their emotional shifts feel organic and multilayered, revealing genuine internal negotiation processes."
+          },
+          "naturalness": {
+            "score": 0.88,
+            "reasoning": "Dialogue flows realistically, with natural conversational rhythms. Phrases like 'cut through the noise' and reactive responses feel authentic to a high-stakes professional negotiation context."
+          },
+          "voice_distinctiveness": {
+            "score": 0.85,
+            "reasoning": "Marcus uses more direct, confrontational language ('blind trust', 'skin in this game'), while Sarah employs more collaborative framing. Their distinct communication styles are clearly differentiated."
+          },
+          "subtext": {
+            "score": 0.95,
+            "reasoning": "Rich layers of unspoken professional tension, power dynamics, and mutual wariness are masterfully conveyed. The dialogue implies complex organizational relationships beyond literal statements."
+          }
+        },
+        "overall_score": 0.9,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:26:40.783680Z",
+        "metadata": {
+          "rubric": {
+            "emotional_authenticity": {
+              "description": "Characters' emotions feel genuine, dialogue reveals inner states naturally",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "naturalness": {
+              "description": "Speech patterns sound like real people, appropriate to character/setting",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinctiveness": {
+              "description": "Each character has unique speech patterns, vocabulary, cadence",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "subtext": {
+              "description": "Dialogue implies more than literal meaning, tensions revealed through speech",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "emotional_authenticity": {
+              "score": 92,
+              "reasoning": "Characters display nuanced emotional progression - Sarah moves from tension to strategic empathy, Marcus from defensive to collaborative. Their emotional shifts feel organic and multilayered, revealing genuine internal negotiation processes."
+            },
+            "naturalness": {
+              "score": 88,
+              "reasoning": "Dialogue flows realistically, with natural conversational rhythms. Phrases like 'cut through the noise' and reactive responses feel authentic to a high-stakes professional negotiation context."
+            },
+            "voice_distinctiveness": {
+              "score": 85,
+              "reasoning": "Marcus uses more direct, confrontational language ('blind trust', 'skin in this game'), while Sarah employs more collaborative framing. Their distinct communication styles are clearly differentiated."
+            },
+            "subtext": {
+              "score": 95,
+              "reasoning": "Rich layers of unspoken professional tension, power dynamics, and mutual wariness are masterfully conveyed. The dialogue implies complex organizational relationships beyond literal statements."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "5e09787709d48292d5a04d589358d47d86d1202d5f983cefa2c6a32e596748c6",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 21191.93337499746,
+      "utility": 0.67,
+      "workflow_output": "Enhanced Dialogue:\n**Sarah:** (leaning forward, voice steady but edged with tension) \"Marcus, we’ve been circling this for hours. If we don’t find common ground today, both sides lose. Let’s cut through the noise—what’s the *real* sticking point?\"  \n\n**Marcus:** (crossing his arms, tone clipped) \"The sticking point, Sarah, is that your proposal assumes we’ll absorb all the risk. That’s not a negotiation; it’s a one-sided deal.\"  \n\n**Sarah:** (pausing, softening her tone slightly) \"Fair point. But you’ve got to see this from our side too. We’re not just throwing numbers at you—we’re trying to build something sustainable. If we take on too much, it crumbles. And then *nobody* wins.\"  \n\n**Marcus:** (letting out a short, humorless laugh) \"Sustainable for *you*, maybe. But what about us? You’re asking us to bankroll your vision with no guarantees. That’s not a partnership—it’s a gamble.\"  \n\n**Sarah:** (leaning back, frustration creeping into her voice) \"Marcus, we’re not asking for blind trust. We’ve laid out the metrics, the timelines, the contingencies. What more do you need to feel secure?\"  \n\n**Marcus:** (voice rising slightly, gesturing with his hand) \"What I *need* is for you to acknowledge that this isn’t just about your bottom line. Our team has skin in this game too. And right now, it feels like you’re asking us to carry the weight while you call the shots.\"  \n\n**Sarah:** (taking a deep breath, forcing calm) \"Okay. Let’s talk about that. What would it take for you to feel like we’re truly in this together? What’s the missing piece for you?\"  \n\n**Marcus:** (pausing, his tone shifting to something more measured) \"Transparency. If we’re going to share the risk, we need to share the decision-making. Equally. No veiled agendas, no unilateral moves. If we’re partners, we act like it.\"  \n\n**Sarah:** (nodding slowly, a hint of relief in her voice) \"Alright. That’s something we can work with. Let’s draft a framework for shared decision-making. But Marcus—this goes both ways. If we’re in it together, we need to trust each other to make the hard calls when they come.\"  \n\n**Marcus:** (meeting her gaze, a flicker of agreement in his eyes) \"Agreed. But trust’s earned, Sarah. Let’s see if we can build it. Starting now.\"",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "voice_emphasis": "subtle",
+        "examples_count": "0",
+        "enhance_prompt": "You are a dialogue specialist. Enhance the following dialogue to make it more natural, distinctive, and emotionally authentic.\n\nOriginal Dialogue:\n\"\"\"Code review workflow built on LangGraph.\"\"\"\nfrom __future__ import annotations\n\nimport asyncio\nimport json\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Any, Dict, Iterable, List, Mapping, Optional\n\nfrom jinja2 import Template\nfrom langgraph.graph import END, StateGraph\nfrom pydantic import BaseModel, ConfigDict, Field, field_validator\n\nfrom tesseract_flow.core.base_workflow import BaseWorkflowService\nfrom tesseract_flow.core.config import ExperimentConfig, Tes\n\nCharacters: Sarah, Marcus\nScene Context: tense negotiation in a downtown office\nMaintain natural dialogue flow with subtle character voice differences.\n\nEnhance the dialogue focusing on:\n- Voice distinctiveness (can you identify each speaker?)\n- Natural flow (realistic pacing, organic topic shifts)\n- Emotional authenticity (subtext, genuine emotions)\n\nReturn only the enhanced dialogue, no additional commentary.",
+        "enhanced_raw": "**Sarah:** (leaning forward, voice steady but edged with tension) \"Marcus, we’ve been circling this for hours. If we don’t find common ground today, both sides lose. Let’s cut through the noise—what’s the *real* sticking point?\"  \n\n**Marcus:** (crossing his arms, tone clipped) \"The sticking point, Sarah, is that your proposal assumes we’ll absorb all the risk. That’s not a negotiation; it’s a one-sided deal.\"  \n\n**Sarah:** (pausing, softening her tone slightly) \"Fair point. But you’ve got to see this from our side too. We’re not just throwing numbers at you—we’re trying to build something sustainable. If we take on too much, it crumbles. And then *nobody* wins.\"  \n\n**Marcus:** (letting out a short, humorless laugh) \"Sustainable for *you*, maybe. But what about us? You’re asking us to bankroll your vision with no guarantees. That’s not a partnership—it’s a gamble.\"  \n\n**Sarah:** (leaning back, frustration creeping into her voice) \"Marcus, we’re not asking for blind trust. We’ve laid out the metrics, the timelines, the contingencies. What more do you need to feel secure?\"  \n\n**Marcus:** (voice rising slightly, gesturing with his hand) \"What I *need* is for you to acknowledge that this isn’t just about your bottom line. Our team has skin in this game too. And right now, it feels like you’re asking us to carry the weight while you call the shots.\"  \n\n**Sarah:** (taking a deep breath, forcing calm) \"Okay. Let’s talk about that. What would it take for you to feel like we’re truly in this together? What’s the missing piece for you?\"  \n\n**Marcus:** (pausing, his tone shifting to something more measured) \"Transparency. If we’re going to share the risk, we need to share the decision-making. Equally. No veiled agendas, no unilateral moves. If we’re partners, we act like it.\"  \n\n**Sarah:** (nodding slowly, a hint of relief in her voice) \"Alright. That’s something we can work with. Let’s draft a framework for shared decision-making. But Marcus—this goes both ways. If we’re in it together, we need to trust each other to make the hard calls when they come.\"  \n\n**Marcus:** (meeting her gaze, a flicker of agreement in his eyes) \"Agreed. But trust’s earned, Sarah. Let’s see if we can build it. Starting now.\"",
+        "test_config": {
+          "test_number": 6,
+          "config": {
+            "temperature": 0.9,
+            "voice_emphasis": "subtle",
+            "reasoning_enabled": "true",
+            "verbalized_sampling": "sample_and_rank",
+            "n_samples": "3",
+            "ranking_criteria": "naturalness_and_voice",
+            "reasoning_visibility": "visible"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T12:26:13.872441Z",
+          "completed_at": "2025-10-28T12:26:35.064053Z",
+          "duration_seconds": 21.19193337499746
+        },
+        "evaluation": {
+          "rubric": {
+            "emotional_authenticity": {
+              "description": "Characters' emotions feel genuine, dialogue reveals inner states naturally",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "naturalness": {
+              "description": "Speech patterns sound like real people, appropriate to character/setting",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinctiveness": {
+              "description": "Each character has unique speech patterns, vocabulary, cadence",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "subtext": {
+              "description": "Dialogue implies more than literal meaning, tensions revealed through speech",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "emotional_authenticity": {
+              "score": 92,
+              "reasoning": "Characters display nuanced emotional progression - Sarah moves from tension to strategic empathy, Marcus from defensive to collaborative. Their emotional shifts feel organic and multilayered, revealing genuine internal negotiation processes."
+            },
+            "naturalness": {
+              "score": 88,
+              "reasoning": "Dialogue flows realistically, with natural conversational rhythms. Phrases like 'cut through the noise' and reactive responses feel authentic to a high-stakes professional negotiation context."
+            },
+            "voice_distinctiveness": {
+              "score": 85,
+              "reasoning": "Marcus uses more direct, confrontational language ('blind trust', 'skin in this game'), while Sarah employs more collaborative framing. Their distinct communication styles are clearly differentiated."
+            },
+            "subtext": {
+              "score": 95,
+              "reasoning": "Rich layers of unspoken professional tension, power dynamics, and mutual wariness are masterfully conveyed. The dialogue implies complex organizational relationships beyond literal statements."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "5e09787709d48292d5a04d589358d47d86d1202d5f983cefa2c6a32e596748c6",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:26:40.784856Z"
+    },
+    {
+      "test_number": 7,
+      "config": {
+        "test_number": 7,
+        "config_values": {
+          "temperature": 0.9,
+          "voice_emphasis": "explicit",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "none",
+          "n_samples": "5",
+          "ranking_criteria": "naturalness_and_voice",
+          "reasoning_visibility": "visible"
+        },
+        "workflow": "dialogue_enhancement"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "emotional_authenticity": {
+            "score": 0.95,
+            "reasoning": "Characters display nuanced, layered emotions that feel deeply genuine. The tension between professional facade and underlying personal dynamics is masterfully conveyed through subtle vocal inflections and power dynamics. Each line carries emotional weight beyond surface dialogue."
+          },
+          "naturalness": {
+            "score": 0.9,
+            "reasoning": "Dialogue flows with realistic rhythms of professional confrontation. Short, clipped exchanges mirror actual workplace negotiations. Vocabulary and sentence structures feel authentic to high-stakes business interactions, with natural interruptions and power plays."
+          },
+          "voice_distinctiveness": {
+            "score": 0.88,
+            "reasoning": "Marcus and the unnamed female character have distinctly different communication styles. Marcus is more direct and positional, while she uses more strategic, almost playful verbal maneuvering. Each character's voice is clearly differentiated through word choice and tone."
+          },
+          "subtext": {
+            "score": 0.96,
+            "reasoning": "Exceptional layering of meaning beneath literal dialogue. Power dynamics, professional history, and personal tensions are brilliantly implied without explicit statement. The unspoken competitive/potentially romantic undertones create rich narrative complexity."
+          }
+        },
+        "overall_score": 0.9225,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:26:59.945814Z",
+        "metadata": {
+          "rubric": {
+            "emotional_authenticity": {
+              "description": "Characters' emotions feel genuine, dialogue reveals inner states naturally",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "naturalness": {
+              "description": "Speech patterns sound like real people, appropriate to character/setting",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinctiveness": {
+              "description": "Each character has unique speech patterns, vocabulary, cadence",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "subtext": {
+              "description": "Dialogue implies more than literal meaning, tensions revealed through speech",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "emotional_authenticity": {
+              "score": 95,
+              "reasoning": "Characters display nuanced, layered emotions that feel deeply genuine. The tension between professional facade and underlying personal dynamics is masterfully conveyed through subtle vocal inflections and power dynamics. Each line carries emotional weight beyond surface dialogue."
+            },
+            "naturalness": {
+              "score": 90,
+              "reasoning": "Dialogue flows with realistic rhythms of professional confrontation. Short, clipped exchanges mirror actual workplace negotiations. Vocabulary and sentence structures feel authentic to high-stakes business interactions, with natural interruptions and power plays."
+            },
+            "voice_distinctiveness": {
+              "score": 88,
+              "reasoning": "Marcus and the unnamed female character have distinctly different communication styles. Marcus is more direct and positional, while she uses more strategic, almost playful verbal maneuvering. Each character's voice is clearly differentiated through word choice and tone."
+            },
+            "subtext": {
+              "score": 96,
+              "reasoning": "Exceptional layering of meaning beneath literal dialogue. Power dynamics, professional history, and personal tensions are brilliantly implied without explicit statement. The unspoken competitive/potentially romantic undertones create rich narrative complexity."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "624da7161157d2a84b577db64ef5d135e1e495578e5fe5117e3323b00437e0a3",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 12381.88420800725,
+      "utility": 0.7285502269959715,
+      "workflow_output": "Enhanced Dialogue:\n**Enhanced Dialogue:**  \n\n*The hum of the city pulses through the glass walls. Papers rustle. A pen taps—once, twice—against the desk.*  \n\n**\"You’re asking for concessions we can’t afford. Not after last quarter.\"**  \n*—Short. Clipped. Like the words cost something.*  \n\n**\"Last quarter wasn’t my mess to clean up. But here I am—holding the bag while you nickel-and-dime me over margins.\"**  \n*—A laugh, dry as the coffee left cooling in the carafe.*  \n\n**\"Your team missed deadlines. Twice. That’s not ‘nickel-and-dime,’ that’s accountability.\"**  \n*—Fingers drumming leather. A glance at the clock. Impatience simmering.*  \n\n**\"Deadlines you moved. Without notice. Funny how that keeps happening right before reviews.\"**  \n*—Leaning in. Voice dropping, smooth but edged. A blade in velvet.*  \n\n**\"Take the deal or walk. But if you walk, don’t expect the door to be open next time.\"**  \n*—Final. A folder snaps shut.*  \n\n**\"Oh, Marcus. You’d miss me too much.\"**  \n*—A smirk. Chair scraping back. The click of heels toward the exit—pause—*  \n**\"Send the revised terms by five. Or don’t. Either way, I win.\"**  \n\n*The door clicks shut. Silence settles, thick as the humidity pressing against the windows.*",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "voice_emphasis": "explicit",
+        "examples_count": "0",
+        "enhance_prompt": "You are a dialogue specialist. Enhance the following dialogue to make it more natural, distinctive, and emotionally authentic.\n\nOriginal Dialogue:\n\"\"\"Code review workflow built on LangGraph.\"\"\"\nfrom __future__ import annotations\n\nimport asyncio\nimport json\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Any, Dict, Iterable, List, Mapping, Optional\n\nfrom jinja2 import Template\nfrom langgraph.graph import END, StateGraph\nfrom pydantic import BaseModel, ConfigDict, Field, field_validator\n\nfrom tesseract_flow.core.base_workflow import BaseWorkflowService\nfrom tesseract_flow.core.config import ExperimentConfig, Tes\n\nCharacters: Sarah, Marcus\nScene Context: tense negotiation in a downtown office\nFocus heavily on making each character's voice unique and identifiable without attribution. Give each character distinct speech patterns, vocabulary, and rhythm.\n\nEnhance the dialogue focusing on:\n- Voice distinctiveness (can you identify each speaker?)\n- Natural flow (realistic pacing, organic topic shifts)\n- Emotional authenticity (subtext, genuine emotions)\n\nReturn only the enhanced dialogue, no additional commentary.",
+        "enhanced_raw": "**Enhanced Dialogue:**  \n\n*The hum of the city pulses through the glass walls. Papers rustle. A pen taps—once, twice—against the desk.*  \n\n**\"You’re asking for concessions we can’t afford. Not after last quarter.\"**  \n*—Short. Clipped. Like the words cost something.*  \n\n**\"Last quarter wasn’t my mess to clean up. But here I am—holding the bag while you nickel-and-dime me over margins.\"**  \n*—A laugh, dry as the coffee left cooling in the carafe.*  \n\n**\"Your team missed deadlines. Twice. That’s not ‘nickel-and-dime,’ that’s accountability.\"**  \n*—Fingers drumming leather. A glance at the clock. Impatience simmering.*  \n\n**\"Deadlines you moved. Without notice. Funny how that keeps happening right before reviews.\"**  \n*—Leaning in. Voice dropping, smooth but edged. A blade in velvet.*  \n\n**\"Take the deal or walk. But if you walk, don’t expect the door to be open next time.\"**  \n*—Final. A folder snaps shut.*  \n\n**\"Oh, Marcus. You’d miss me too much.\"**  \n*—A smirk. Chair scraping back. The click of heels toward the exit—pause—*  \n**\"Send the revised terms by five. Or don’t. Either way, I win.\"**  \n\n*The door clicks shut. Silence settles, thick as the humidity pressing against the windows.*",
+        "test_config": {
+          "test_number": 7,
+          "config": {
+            "temperature": 0.9,
+            "voice_emphasis": "explicit",
+            "reasoning_enabled": "false",
+            "verbalized_sampling": "none",
+            "n_samples": "5",
+            "ranking_criteria": "naturalness_and_voice",
+            "reasoning_visibility": "visible"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T12:26:40.787880Z",
+          "completed_at": "2025-10-28T12:26:53.169589Z",
+          "duration_seconds": 12.38188420800725
+        },
+        "evaluation": {
+          "rubric": {
+            "emotional_authenticity": {
+              "description": "Characters' emotions feel genuine, dialogue reveals inner states naturally",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "naturalness": {
+              "description": "Speech patterns sound like real people, appropriate to character/setting",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinctiveness": {
+              "description": "Each character has unique speech patterns, vocabulary, cadence",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "subtext": {
+              "description": "Dialogue implies more than literal meaning, tensions revealed through speech",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "emotional_authenticity": {
+              "score": 95,
+              "reasoning": "Characters display nuanced, layered emotions that feel deeply genuine. The tension between professional facade and underlying personal dynamics is masterfully conveyed through subtle vocal inflections and power dynamics. Each line carries emotional weight beyond surface dialogue."
+            },
+            "naturalness": {
+              "score": 90,
+              "reasoning": "Dialogue flows with realistic rhythms of professional confrontation. Short, clipped exchanges mirror actual workplace negotiations. Vocabulary and sentence structures feel authentic to high-stakes business interactions, with natural interruptions and power plays."
+            },
+            "voice_distinctiveness": {
+              "score": 88,
+              "reasoning": "Marcus and the unnamed female character have distinctly different communication styles. Marcus is more direct and positional, while she uses more strategic, almost playful verbal maneuvering. Each character's voice is clearly differentiated through word choice and tone."
+            },
+            "subtext": {
+              "score": 96,
+              "reasoning": "Exceptional layering of meaning beneath literal dialogue. Power dynamics, professional history, and personal tensions are brilliantly implied without explicit statement. The unspoken competitive/potentially romantic undertones create rich narrative complexity."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "624da7161157d2a84b577db64ef5d135e1e495578e5fe5117e3323b00437e0a3",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:26:59.946328Z"
+    },
+    {
+      "test_number": 8,
+      "config": {
+        "test_number": 8,
+        "config_values": {
+          "temperature": 0.9,
+          "voice_emphasis": "explicit",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "sample_and_rank",
+          "n_samples": "3",
+          "ranking_criteria": "emotional_authenticity",
+          "reasoning_visibility": "hidden"
+        },
+        "workflow": "dialogue_enhancement"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "emotional_authenticity": {
+            "score": 0.85,
+            "reasoning": "The dialogue captures raw, escalating tension with believable emotional progression. Characters display genuine frustration, defensiveness, and underlying power dynamics. Emotional states feel nuanced and multi-layered, revealing complex interpersonal history."
+          },
+          "naturalness": {
+            "score": 0.78,
+            "reasoning": "Speech patterns mostly sound conversational, with realistic interruptions and reactive language. Some lines feel slightly stylized, but overall maintain a credible professional confrontation tone. Minor artificiality in more dramatic exchanges."
+          },
+          "voice_distinctiveness": {
+            "score": 0.82,
+            "reasoning": "Marcus and Sarah have differentiated communication styles. Marcus uses more calculated, strategic language, while Sarah is more direct and emotionally charged. Vocabulary and rhetorical approaches clearly distinguish their personalities and perspectives."
+          },
+          "subtext": {
+            "score": 0.9,
+            "reasoning": "Exceptional layered communication revealing unspoken professional and potentially personal tensions. Dialogue implies complex backstory, power struggles, and underlying conflict beyond literal statements. Each line carries multiple potential interpretations and hidden meanings."
+          }
+        },
+        "overall_score": 0.8375,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:27:23.516109Z",
+        "metadata": {
+          "rubric": {
+            "emotional_authenticity": {
+              "description": "Characters' emotions feel genuine, dialogue reveals inner states naturally",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "naturalness": {
+              "description": "Speech patterns sound like real people, appropriate to character/setting",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinctiveness": {
+              "description": "Each character has unique speech patterns, vocabulary, cadence",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "subtext": {
+              "description": "Dialogue implies more than literal meaning, tensions revealed through speech",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "emotional_authenticity": {
+              "score": 85,
+              "reasoning": "The dialogue captures raw, escalating tension with believable emotional progression. Characters display genuine frustration, defensiveness, and underlying power dynamics. Emotional states feel nuanced and multi-layered, revealing complex interpersonal history."
+            },
+            "naturalness": {
+              "score": 78,
+              "reasoning": "Speech patterns mostly sound conversational, with realistic interruptions and reactive language. Some lines feel slightly stylized, but overall maintain a credible professional confrontation tone. Minor artificiality in more dramatic exchanges."
+            },
+            "voice_distinctiveness": {
+              "score": 82,
+              "reasoning": "Marcus and Sarah have differentiated communication styles. Marcus uses more calculated, strategic language, while Sarah is more direct and emotionally charged. Vocabulary and rhetorical approaches clearly distinguish their personalities and perspectives."
+            },
+            "subtext": {
+              "score": 90,
+              "reasoning": "Exceptional layered communication revealing unspoken professional and potentially personal tensions. Dialogue implies complex backstory, power struggles, and underlying conflict beyond literal statements. Each line carries multiple potential interpretations and hidden meanings."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "19c7b77c3b4c7a3cd85398804653297af5f62ff3fdcdf871d599d1f21e8590ff",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 17114.576749998378,
+      "utility": 0.6387669482375574,
+      "workflow_output": "Enhanced Dialogue:\n\"You’ve got a lot of nerve showing up here after last time. Thought you’d just sweep it under the rug, huh?\"  \n\n\"Rug? No, Sarah, I thought we’d address it head-on. That’s why I’m here. But if you’re going to start with accusations, this isn’t going anywhere.\"  \n\n\"Head-on? Please. You’ve been dodging this for weeks. Emails unanswered, calls ignored. Don’t pretend this is some grand gesture of transparency.\"  \n\n\"I’ve been tied up with the merger. You know that. But fine, let’s cut to the chase. What do you want?\"  \n\n\"Tied up? Funny how ‘tied up’ always seems to mean ‘avoiding me.’ What I want is what we agreed on. Plain and simple.\"  \n\n\"Agreed on? Last I checked, agreements require signatures, not just assumptions. You’re operating on wishful thinking, not facts.\"  \n\n\"Facts? You’re really going to play that card? I’ve got emails, notes, conversations—plenty of facts. Or are you going to deny those too?\"  \n\n\"I’m not denying anything. I’m saying you’re twisting them to fit your narrative. That’s not how this works, Sarah.\"  \n\n\"My narrative? God, Marcus, you’re unbelievable. You spin everything until it’s unrecognizable. But fine, let’s make it simple. Either you honor what we discussed, or this ends here.\"  \n\n\"Threats now? Classy. But go ahead. Walk away. See how far that gets you without me.\"  \n\n\"Is that supposed to scare me? You’re not the only player in this game, Marcus. Don’t forget that.\"  \n\n\"Game? That’s what this is to you? No wonder we’re stuck. This isn’t a game. It’s business. Start treating it like one.\"  \n\n\"Business? Funny coming from someone who treats contracts like suggestions. But sure, let’s talk business. Honor your word, or I’ll find someone who will.\"  \n\n\"Your move, Sarah. But don’t come crying to me when you realize what you’re giving up.\"  \n\n\"Crying? Over you? Don’t flatter yourself. This isn’t personal. It’s survival. And if you can’t see that, then you’re already drowning.\"  \n\n\"Survival? Dramatic as always. But fine. Let’s see who swims and who sinks. I’ve got a feeling I know the answer.\"  \n\n\"Keep telling yourself that, Marcus. Reality has a way of catching up, even to you.\"",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "voice_emphasis": "explicit",
+        "examples_count": "0",
+        "enhance_prompt": "You are a dialogue specialist. Enhance the following dialogue to make it more natural, distinctive, and emotionally authentic.\n\nOriginal Dialogue:\n\"\"\"Code review workflow built on LangGraph.\"\"\"\nfrom __future__ import annotations\n\nimport asyncio\nimport json\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Any, Dict, Iterable, List, Mapping, Optional\n\nfrom jinja2 import Template\nfrom langgraph.graph import END, StateGraph\nfrom pydantic import BaseModel, ConfigDict, Field, field_validator\n\nfrom tesseract_flow.core.base_workflow import BaseWorkflowService\nfrom tesseract_flow.core.config import ExperimentConfig, Tes\n\nCharacters: Sarah, Marcus\nScene Context: tense negotiation in a downtown office\nFocus heavily on making each character's voice unique and identifiable without attribution. Give each character distinct speech patterns, vocabulary, and rhythm.\n\nEnhance the dialogue focusing on:\n- Voice distinctiveness (can you identify each speaker?)\n- Natural flow (realistic pacing, organic topic shifts)\n- Emotional authenticity (subtext, genuine emotions)\n\nReturn only the enhanced dialogue, no additional commentary.",
+        "enhanced_raw": "\"You’ve got a lot of nerve showing up here after last time. Thought you’d just sweep it under the rug, huh?\"  \n\n\"Rug? No, Sarah, I thought we’d address it head-on. That’s why I’m here. But if you’re going to start with accusations, this isn’t going anywhere.\"  \n\n\"Head-on? Please. You’ve been dodging this for weeks. Emails unanswered, calls ignored. Don’t pretend this is some grand gesture of transparency.\"  \n\n\"I’ve been tied up with the merger. You know that. But fine, let’s cut to the chase. What do you want?\"  \n\n\"Tied up? Funny how ‘tied up’ always seems to mean ‘avoiding me.’ What I want is what we agreed on. Plain and simple.\"  \n\n\"Agreed on? Last I checked, agreements require signatures, not just assumptions. You’re operating on wishful thinking, not facts.\"  \n\n\"Facts? You’re really going to play that card? I’ve got emails, notes, conversations—plenty of facts. Or are you going to deny those too?\"  \n\n\"I’m not denying anything. I’m saying you’re twisting them to fit your narrative. That’s not how this works, Sarah.\"  \n\n\"My narrative? God, Marcus, you’re unbelievable. You spin everything until it’s unrecognizable. But fine, let’s make it simple. Either you honor what we discussed, or this ends here.\"  \n\n\"Threats now? Classy. But go ahead. Walk away. See how far that gets you without me.\"  \n\n\"Is that supposed to scare me? You’re not the only player in this game, Marcus. Don’t forget that.\"  \n\n\"Game? That’s what this is to you? No wonder we’re stuck. This isn’t a game. It’s business. Start treating it like one.\"  \n\n\"Business? Funny coming from someone who treats contracts like suggestions. But sure, let’s talk business. Honor your word, or I’ll find someone who will.\"  \n\n\"Your move, Sarah. But don’t come crying to me when you realize what you’re giving up.\"  \n\n\"Crying? Over you? Don’t flatter yourself. This isn’t personal. It’s survival. And if you can’t see that, then you’re already drowning.\"  \n\n\"Survival? Dramatic as always. But fine. Let’s see who swims and who sinks. I’ve got a feeling I know the answer.\"  \n\n\"Keep telling yourself that, Marcus. Reality has a way of catching up, even to you.\"",
+        "test_config": {
+          "test_number": 8,
+          "config": {
+            "temperature": 0.9,
+            "voice_emphasis": "explicit",
+            "reasoning_enabled": "false",
+            "verbalized_sampling": "sample_and_rank",
+            "n_samples": "3",
+            "ranking_criteria": "emotional_authenticity",
+            "reasoning_visibility": "hidden"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T12:26:59.953906Z",
+          "completed_at": "2025-10-28T12:27:17.068231Z",
+          "duration_seconds": 17.114576749998378
+        },
+        "evaluation": {
+          "rubric": {
+            "emotional_authenticity": {
+              "description": "Characters' emotions feel genuine, dialogue reveals inner states naturally",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "naturalness": {
+              "description": "Speech patterns sound like real people, appropriate to character/setting",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinctiveness": {
+              "description": "Each character has unique speech patterns, vocabulary, cadence",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "subtext": {
+              "description": "Dialogue implies more than literal meaning, tensions revealed through speech",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "emotional_authenticity": {
+              "score": 85,
+              "reasoning": "The dialogue captures raw, escalating tension with believable emotional progression. Characters display genuine frustration, defensiveness, and underlying power dynamics. Emotional states feel nuanced and multi-layered, revealing complex interpersonal history."
+            },
+            "naturalness": {
+              "score": 78,
+              "reasoning": "Speech patterns mostly sound conversational, with realistic interruptions and reactive language. Some lines feel slightly stylized, but overall maintain a credible professional confrontation tone. Minor artificiality in more dramatic exchanges."
+            },
+            "voice_distinctiveness": {
+              "score": 82,
+              "reasoning": "Marcus and Sarah have differentiated communication styles. Marcus uses more calculated, strategic language, while Sarah is more direct and emotionally charged. Vocabulary and rhetorical approaches clearly distinguish their personalities and perspectives."
+            },
+            "subtext": {
+              "score": 90,
+              "reasoning": "Exceptional layered communication revealing unspoken professional and potentially personal tensions. Dialogue implies complex backstory, power struggles, and underlying conflict beyond literal statements. Each line carries multiple potential interpretations and hidden meanings."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "19c7b77c3b4c7a3cd85398804653297af5f62ff3fdcdf871d599d1f21e8590ff",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:27:23.516763Z"
+    }
+  ],
+  "status": "COMPLETED",
+  "started_at": "2025-10-28T12:24:28.560924Z",
+  "completed_at": "2025-10-28T12:27:23.559626Z",
+  "experiment_metadata": {
+    "config_hash": "e0acb1e88b4e312f4ef8573792c4a2f832417326c52814b823cb10be8f86fbc0",
+    "created_at": "2025-10-28T12:24:28.560732Z",
+    "dependencies": {
+      "pydantic": "2.12.3",
+      "langgraph": "1.0.1",
+      "litellm": "1.79.0"
+    },
+    "non_deterministic_sources": [
+      "llm_sampling"
+    ]
+  },
+  "metadata": {
+    "normalization": {
+      "cost": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "latency": {
+        "min": 10328.801625000779,
+        "max": 21191.93337499746
+      }
+    }
+  },
+  "baseline_test_number": 1,
+  "baseline_config": {
+    "test_number": 1,
+    "config_values": {
+      "temperature": 0.6,
+      "voice_emphasis": "subtle",
+      "reasoning_enabled": "false",
+      "verbalized_sampling": "none",
+      "n_samples": "3",
+      "ranking_criteria": "emotional_authenticity",
+      "reasoning_visibility": "visible"
+    },
+    "workflow": "dialogue_enhancement"
+  },
+  "baseline_result": {
+    "test_number": 1,
+    "config": {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.6,
+        "voice_emphasis": "subtle",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "none",
+        "n_samples": "3",
+        "ranking_criteria": "emotional_authenticity",
+        "reasoning_visibility": "visible"
+      },
+      "workflow": "dialogue_enhancement"
+    },
+    "quality_score": {
+      "dimension_scores": {
+        "emotional_authenticity": {
+          "score": 0.92,
+          "reasoning": "Characters display nuanced, layered emotions that feel organic. Sarah's frustration, weariness, and cautious resolve are particularly well-rendered. Marcus's shifts between casual bravado and earnest negotiation feel genuine. The emotional subtext of professional tension and personal stakes comes through powerfully."
+        },
+        "naturalness": {
+          "score": 0.88,
+          "reasoning": "Dialogue flows naturally, with realistic conversational rhythms. The language feels contextually appropriate for a high-stakes professional negotiation. Phrases like 'Let's not pretend otherwise' and 'the only guarantee is risk' sound authentic to the setting and characters' roles."
+        },
+        "voice_distinctiveness": {
+          "score": 0.85,
+          "reasoning": "Marcus and Sarah have clearly differentiated voices. Marcus uses more provocative, challenging language with casual undertones, while Sarah's speech is more measured and pragmatic. Their distinct communication styles create a dynamic conversational tension."
+        },
+        "subtext": {
+          "score": 0.95,
+          "reasoning": "Exceptional layered meaning beneath the literal dialogue. The conversation implies complex power dynamics, professional risk, personal stakes, and underlying mutual respect. Each line suggests more than its surface meaning, revealing character motivations and relationship nuances."
+        }
+      },
+      "overall_score": 0.9,
+      "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+      "timestamp": "2025-10-28T12:24:47.945415Z",
+      "metadata": {
+        "rubric": {
+          "emotional_authenticity": {
+            "description": "Characters' emotions feel genuine, dialogue reveals inner states naturally",
+            "scale": "0-100 points",
+            "weight": 0.35
+          },
+          "naturalness": {
+            "description": "Speech patterns sound like real people, appropriate to character/setting",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "voice_distinctiveness": {
+            "description": "Each character has unique speech patterns, vocabulary, cadence",
+            "scale": "0-100 points",
+            "weight": 0.2
+          },
+          "subtext": {
+            "description": "Dialogue implies more than literal meaning, tensions revealed through speech",
+            "scale": "0-100 points",
+            "weight": 0.15
+          }
+        },
+        "raw_response": {
+          "emotional_authenticity": {
+            "score": 92,
+            "reasoning": "Characters display nuanced, layered emotions that feel organic. Sarah's frustration, weariness, and cautious resolve are particularly well-rendered. Marcus's shifts between casual bravado and earnest negotiation feel genuine. The emotional subtext of professional tension and personal stakes comes through powerfully."
+          },
+          "naturalness": {
+            "score": 88,
+            "reasoning": "Dialogue flows naturally, with realistic conversational rhythms. The language feels contextually appropriate for a high-stakes professional negotiation. Phrases like 'Let's not pretend otherwise' and 'the only guarantee is risk' sound authentic to the setting and characters' roles."
+          },
+          "voice_distinctiveness": {
+            "score": 85,
+            "reasoning": "Marcus and Sarah have clearly differentiated voices. Marcus uses more provocative, challenging language with casual undertones, while Sarah's speech is more measured and pragmatic. Their distinct communication styles create a dynamic conversational tension."
+          },
+          "subtext": {
+            "score": 95,
+            "reasoning": "Exceptional layered meaning beneath the literal dialogue. The conversation implies complex power dynamics, professional risk, personal stakes, and underlying mutual respect. Each line suggests more than its surface meaning, revealing character motivations and relationship nuances."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "c0a753b1ed1dca611198810a9030be64bf2a8a389d31bc091e5eac883df30dbb",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/anthropic/claude-3.5-haiku"
+      }
+    },
+    "cost": 0.0,
+    "latency": 11389.205707993824,
+    "utility": 0.7200000000000001,
+    "workflow_output": "Enhanced Dialogue:\nSarah: *leaning forward, her fingers tapping lightly on the desk*  \n\"You’re asking for a lot here, Marcus. More than the numbers justify. You know that.\"  \n\nMarcus: *crossing his arms, leaning back in his chair with a faint smirk*  \n\"And yet, here we are. You wouldn’t be sitting across from me if you didn’t see the potential. Let’s not pretend otherwise.\"  \n\nSarah: *narrowing her eyes, her voice steady but edged with frustration*  \n\"Potential doesn’t pay the bills. You’re pushing for concessions I can’t make. Not without guarantees.\"  \n\nMarcus: *shrugging, his tone casual but with a sharp undercurrent*  \n\"Guarantees? Sarah, in this business, the only guarantee is risk. You want the reward, you take the leap.\"  \n\nSarah: *pausing, her voice softer now, almost weary*  \n\"It’s not just about me, Marcus. There’s a team counting on this. I can’t gamble their futures on a handshake and a prayer.\"  \n\nMarcus: *his smirk fading, leaning forward slightly, his tone more earnest*  \n\"Then give me something to work with. Show me you’re serious. Otherwise, we’re just wasting each other’s time.\"  \n\nSarah: *sighing, running a hand through her hair*  \n\"I’m serious. But I need *you* to meet me halfway. Otherwise, this conversation is over.\"  \n\nMarcus: *holding her gaze, his voice quiet but firm*  \n\"Alright. Let’s talk halfway. But don’t mistake compromise for concession. I’m not backing down.\"  \n\nSarah: *nodding slowly, a hint of resolve in her voice*  \n\"Neither am I. Let’s see if we can find a way forward without leaving everything behind.\"",
+    "metadata": {
+      "strategy": "standard",
+      "model": "openrouter/deepseek/deepseek-chat",
+      "temperature": 0.6,
+      "voice_emphasis": "subtle",
+      "examples_count": "0",
+      "enhance_prompt": "You are a dialogue specialist. Enhance the following dialogue to make it more natural, distinctive, and emotionally authentic.\n\nOriginal Dialogue:\n\"\"\"Code review workflow built on LangGraph.\"\"\"\nfrom __future__ import annotations\n\nimport asyncio\nimport json\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Any, Dict, Iterable, List, Mapping, Optional\n\nfrom jinja2 import Template\nfrom langgraph.graph import END, StateGraph\nfrom pydantic import BaseModel, ConfigDict, Field, field_validator\n\nfrom tesseract_flow.core.base_workflow import BaseWorkflowService\nfrom tesseract_flow.core.config import ExperimentConfig, Tes\n\nCharacters: Sarah, Marcus\nScene Context: tense negotiation in a downtown office\nMaintain natural dialogue flow with subtle character voice differences.\n\nEnhance the dialogue focusing on:\n- Voice distinctiveness (can you identify each speaker?)\n- Natural flow (realistic pacing, organic topic shifts)\n- Emotional authenticity (subtext, genuine emotions)\n\nReturn only the enhanced dialogue, no additional commentary.",
+      "enhanced_raw": "Sarah: *leaning forward, her fingers tapping lightly on the desk*  \n\"You’re asking for a lot here, Marcus. More than the numbers justify. You know that.\"  \n\nMarcus: *crossing his arms, leaning back in his chair with a faint smirk*  \n\"And yet, here we are. You wouldn’t be sitting across from me if you didn’t see the potential. Let’s not pretend otherwise.\"  \n\nSarah: *narrowing her eyes, her voice steady but edged with frustration*  \n\"Potential doesn’t pay the bills. You’re pushing for concessions I can’t make. Not without guarantees.\"  \n\nMarcus: *shrugging, his tone casual but with a sharp undercurrent*  \n\"Guarantees? Sarah, in this business, the only guarantee is risk. You want the reward, you take the leap.\"  \n\nSarah: *pausing, her voice softer now, almost weary*  \n\"It’s not just about me, Marcus. There’s a team counting on this. I can’t gamble their futures on a handshake and a prayer.\"  \n\nMarcus: *his smirk fading, leaning forward slightly, his tone more earnest*  \n\"Then give me something to work with. Show me you’re serious. Otherwise, we’re just wasting each other’s time.\"  \n\nSarah: *sighing, running a hand through her hair*  \n\"I’m serious. But I need *you* to meet me halfway. Otherwise, this conversation is over.\"  \n\nMarcus: *holding her gaze, his voice quiet but firm*  \n\"Alright. Let’s talk halfway. But don’t mistake compromise for concession. I’m not backing down.\"  \n\nSarah: *nodding slowly, a hint of resolve in her voice*  \n\"Neither am I. Let’s see if we can find a way forward without leaving everything behind.\"",
+      "test_config": {
+        "test_number": 1,
+        "config": {
+          "temperature": 0.6,
+          "voice_emphasis": "subtle",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "none",
+          "n_samples": "3",
+          "ranking_criteria": "emotional_authenticity",
+          "reasoning_visibility": "visible"
+        }
+      },
+      "workflow": {
+        "started_at": "2025-10-28T12:24:28.569634Z",
+        "completed_at": "2025-10-28T12:24:39.958667Z",
+        "duration_seconds": 11.389205707993824
+      },
+      "evaluation": {
+        "rubric": {
+          "emotional_authenticity": {
+            "description": "Characters' emotions feel genuine, dialogue reveals inner states naturally",
+            "scale": "0-100 points",
+            "weight": 0.35
+          },
+          "naturalness": {
+            "description": "Speech patterns sound like real people, appropriate to character/setting",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "voice_distinctiveness": {
+            "description": "Each character has unique speech patterns, vocabulary, cadence",
+            "scale": "0-100 points",
+            "weight": 0.2
+          },
+          "subtext": {
+            "description": "Dialogue implies more than literal meaning, tensions revealed through speech",
+            "scale": "0-100 points",
+            "weight": 0.15
+          }
+        },
+        "raw_response": {
+          "emotional_authenticity": {
+            "score": 92,
+            "reasoning": "Characters display nuanced, layered emotions that feel organic. Sarah's frustration, weariness, and cautious resolve are particularly well-rendered. Marcus's shifts between casual bravado and earnest negotiation feel genuine. The emotional subtext of professional tension and personal stakes comes through powerfully."
+          },
+          "naturalness": {
+            "score": 88,
+            "reasoning": "Dialogue flows naturally, with realistic conversational rhythms. The language feels contextually appropriate for a high-stakes professional negotiation. Phrases like 'Let's not pretend otherwise' and 'the only guarantee is risk' sound authentic to the setting and characters' roles."
+          },
+          "voice_distinctiveness": {
+            "score": 85,
+            "reasoning": "Marcus and Sarah have clearly differentiated voices. Marcus uses more provocative, challenging language with casual undertones, while Sarah's speech is more measured and pragmatic. Their distinct communication styles create a dynamic conversational tension."
+          },
+          "subtext": {
+            "score": 95,
+            "reasoning": "Exceptional layered meaning beneath the literal dialogue. The conversation implies complex power dynamics, professional risk, personal stakes, and underlying mutual respect. Each line suggests more than its surface meaning, revealing character motivations and relationship nuances."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "c0a753b1ed1dca611198810a9030be64bf2a8a389d31bc091e5eac883df30dbb",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/anthropic/claude-3.5-haiku"
+      }
+    },
+    "timestamp": "2025-10-28T12:24:47.945592Z"
+  },
+  "baseline_quality": 0.9,
+  "quality_improvement_pct": 3.055555555555552
+}

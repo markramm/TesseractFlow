@@ -1,0 +1,59 @@
+name: wave3_cross_domain_reasoning
+workflow: multi_domain
+description: Test DeepSeek R1's ability to generate solutions that work across technical,
+  creative, and analytical domains
+variables:
+- name: domain_count
+  level_1: two
+  level_2: three
+- name: domain_balance
+  level_1: equal
+  level_2: primary
+- name: task_type
+  level_1: problem_solving
+  level_2: design
+- name: domain_integration
+  level_1: sequential
+  level_2: synthesized
+- name: temperature
+  level_1: 0.4
+  level_2: 0.8
+- name: output_structure
+  level_1: domain_sections
+  level_2: unified
+- name: example_provision
+  level_1: none
+  level_2: provided
+utility_weights:
+  quality: 1.0
+  cost: 0.2
+  time: 0.1
+workflow_config:
+  evaluator_model: openrouter/anthropic/claude-haiku-4.5
+  model: openrouter/deepseek/deepseek-v3.2-exp
+  rubric:
+    cross_domain_applicability:
+      description: Solution works effectively across all specified domains (technical,
+        creative, analytical)
+      weight: 0.3
+      scale: 0-100 points
+    domain_synthesis:
+      description: Successfully integrates insights from multiple domains into coherent
+        solution
+      weight: 0.25
+      scale: 0-100 points
+    solution_quality:
+      description: Solution is practical, well-reasoned, and demonstrates expertise
+        in each domain
+      weight: 0.2
+      scale: 0-100 points
+    versatility:
+      description: Adapts approach appropriately based on domain requirements and
+        context
+      weight: 0.15
+      scale: 0-100 points
+    innovation:
+      description: Demonstrates creative synthesis across domain boundaries, not just
+        sequential treatment
+      weight: 0.1
+      scale: 0-100 points

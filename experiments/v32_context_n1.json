@@ -1,0 +1,1824 @@
+{
+  "experiment_id": "wave3_context_efficiency-20251028T073612",
+  "config": {
+    "name": "wave3_context_efficiency",
+    "workflow": "context_efficiency",
+    "variables": [
+      {
+        "name": "context_size",
+        "level_1": "small",
+        "level_2": "large"
+      },
+      {
+        "name": "content_type",
+        "level_1": "narrative",
+        "level_2": "technical"
+      },
+      {
+        "name": "retrieval_strategy",
+        "level_1": "full_context",
+        "level_2": "selective"
+      },
+      {
+        "name": "task_complexity",
+        "level_1": "simple",
+        "level_2": "complex"
+      },
+      {
+        "name": "temperature",
+        "level_1": 0.2,
+        "level_2": 0.6
+      },
+      {
+        "name": "position_bias_test",
+        "level_1": "beginning",
+        "level_2": "end"
+      },
+      {
+        "name": "compression_method",
+        "level_1": "none",
+        "level_2": "summarized"
+      }
+    ],
+    "utility_weights": {
+      "quality": 1.0,
+      "cost": 0.15,
+      "time": 0.05
+    },
+    "workflow_config": {
+      "rubric": {
+        "retrieval_accuracy": {
+          "description": "Correctly identifies and retrieves relevant information from context",
+          "scale": "0-100 points",
+          "weight": 0.3
+        },
+        "context_utilization": {
+          "description": "Effectively uses available context without hallucination or omission",
+          "scale": "0-100 points",
+          "weight": 0.25
+        },
+        "answer_completeness": {
+          "description": "Provides complete answer synthesizing all relevant context",
+          "scale": "0-100 points",
+          "weight": 0.2
+        },
+        "efficiency": {
+          "description": "Handles large context efficiently without degradation",
+          "scale": "0-100 points",
+          "weight": 0.15
+        },
+        "position_independence": {
+          "description": "Retrieves information regardless of position in context",
+          "scale": "0-100 points",
+          "weight": 0.1
+        }
+      },
+      "evaluator_model": "openrouter/anthropic/claude-haiku-4.5",
+      "model": "openrouter/deepseek/deepseek-v3.2-exp"
+    }
+  },
+  "test_configurations": [
+    {
+      "test_number": 1,
+      "config_values": {
+        "context_size": "small",
+        "content_type": "narrative",
+        "retrieval_strategy": "full_context",
+        "task_complexity": "simple",
+        "temperature": 0.2,
+        "position_bias_test": "beginning",
+        "compression_method": "none"
+      },
+      "workflow": "context_efficiency"
+    },
+    {
+      "test_number": 2,
+      "config_values": {
+        "context_size": "small",
+        "content_type": "narrative",
+        "retrieval_strategy": "full_context",
+        "task_complexity": "complex",
+        "temperature": 0.6,
+        "position_bias_test": "end",
+        "compression_method": "summarized"
+      },
+      "workflow": "context_efficiency"
+    },
+    {
+      "test_number": 3,
+      "config_values": {
+        "context_size": "small",
+        "content_type": "technical",
+        "retrieval_strategy": "selective",
+        "task_complexity": "simple",
+        "temperature": 0.2,
+        "position_bias_test": "end",
+        "compression_method": "summarized"
+      },
+      "workflow": "context_efficiency"
+    },
+    {
+      "test_number": 4,
+      "config_values": {
+        "context_size": "small",
+        "content_type": "technical",
+        "retrieval_strategy": "selective",
+        "task_complexity": "complex",
+        "temperature": 0.6,
+        "position_bias_test": "beginning",
+        "compression_method": "none"
+      },
+      "workflow": "context_efficiency"
+    },
+    {
+      "test_number": 5,
+      "config_values": {
+        "context_size": "large",
+        "content_type": "narrative",
+        "retrieval_strategy": "selective",
+        "task_complexity": "simple",
+        "temperature": 0.6,
+        "position_bias_test": "beginning",
+        "compression_method": "summarized"
+      },
+      "workflow": "context_efficiency"
+    },
+    {
+      "test_number": 6,
+      "config_values": {
+        "context_size": "large",
+        "content_type": "narrative",
+        "retrieval_strategy": "selective",
+        "task_complexity": "complex",
+        "temperature": 0.2,
+        "position_bias_test": "end",
+        "compression_method": "none"
+      },
+      "workflow": "context_efficiency"
+    },
+    {
+      "test_number": 7,
+      "config_values": {
+        "context_size": "large",
+        "content_type": "technical",
+        "retrieval_strategy": "full_context",
+        "task_complexity": "simple",
+        "temperature": 0.6,
+        "position_bias_test": "end",
+        "compression_method": "none"
+      },
+      "workflow": "context_efficiency"
+    },
+    {
+      "test_number": 8,
+      "config_values": {
+        "context_size": "large",
+        "content_type": "technical",
+        "retrieval_strategy": "full_context",
+        "task_complexity": "complex",
+        "temperature": 0.2,
+        "position_bias_test": "beginning",
+        "compression_method": "summarized"
+      },
+      "workflow": "context_efficiency"
+    }
+  ],
+  "results": [
+    {
+      "test_number": 1,
+      "config": {
+        "test_number": 1,
+        "config_values": {
+          "context_size": "small",
+          "content_type": "narrative",
+          "retrieval_strategy": "full_context",
+          "task_complexity": "simple",
+          "temperature": 0.2,
+          "position_bias_test": "beginning",
+          "compression_method": "none"
+        },
+        "workflow": "context_efficiency"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "retrieval_accuracy": {
+            "score": 0.95,
+            "reasoning": "The output correctly identifies and retrieves all three clues from the context. The information is accurate and directly matches what was requested. Minor deduction only because we cannot verify against the original source document, but the retrieval appears complete and precise."
+          },
+          "context_utilization": {
+            "score": 0.9,
+            "reasoning": "The output effectively uses the available context without hallucination. All three clues are explicitly stated and properly cited as being 'explicitly listed in the context.' No information appears fabricated or omitted. The response stays grounded in the retrieved information."
+          },
+          "answer_completeness": {
+            "score": 0.95,
+            "reasoning": "The answer is comprehensive and complete. It provides all three requested clues with specific details (dates, labels, and content). The response includes both the list and a verification statement confirming these items directly answer the query, demonstrating thorough synthesis."
+          },
+          "efficiency": {
+            "score": 0.85,
+            "reasoning": "Given the small context size and simple task complexity, the output is appropriately concise. However, the rubric emphasizes handling large contexts efficiently. With a small context, this dimension is less critical to evaluate, but the response demonstrates efficient processing without unnecessary elaboration."
+          },
+          "position_independence": {
+            "score": 0.8,
+            "reasoning": "The output successfully retrieves all three clues and presents them in a logical order. However, without evidence of how the system would perform if these clues were scattered throughout a larger document or positioned differently, this score reflects the assumption that the retrieval strategy (full_context) would handle position variations adequately, though this cannot be fully verified from this single example."
+          }
+        },
+        "overall_score": 0.89,
+        "evaluator_model": "openrouter/anthropic/claude-haiku-4.5",
+        "timestamp": "2025-10-28T07:36:57.766052Z",
+        "metadata": {
+          "rubric": {
+            "retrieval_accuracy": {
+              "description": "Correctly identifies and retrieves relevant information from context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "context_utilization": {
+              "description": "Effectively uses available context without hallucination or omission",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "answer_completeness": {
+              "description": "Provides complete answer synthesizing all relevant context",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "efficiency": {
+              "description": "Handles large context efficiently without degradation",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "position_independence": {
+              "description": "Retrieves information regardless of position in context",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "retrieval_accuracy": {
+              "score": 95,
+              "reasoning": "The output correctly identifies and retrieves all three clues from the context. The information is accurate and directly matches what was requested. Minor deduction only because we cannot verify against the original source document, but the retrieval appears complete and precise."
+            },
+            "context_utilization": {
+              "score": 90,
+              "reasoning": "The output effectively uses the available context without hallucination. All three clues are explicitly stated and properly cited as being 'explicitly listed in the context.' No information appears fabricated or omitted. The response stays grounded in the retrieved information."
+            },
+            "answer_completeness": {
+              "score": 95,
+              "reasoning": "The answer is comprehensive and complete. It provides all three requested clues with specific details (dates, labels, and content). The response includes both the list and a verification statement confirming these items directly answer the query, demonstrating thorough synthesis."
+            },
+            "efficiency": {
+              "score": 85,
+              "reasoning": "Given the small context size and simple task complexity, the output is appropriately concise. However, the rubric emphasizes handling large contexts efficiently. With a small context, this dimension is less critical to evaluate, but the response demonstrates efficient processing without unnecessary elaboration."
+            },
+            "position_independence": {
+              "score": 80,
+              "reasoning": "The output successfully retrieves all three clues and presents them in a logical order. However, without evidence of how the system would perform if these clues were scattered throughout a larger document or positioned differently, this score reflects the assumption that the retrieval strategy (full_context) would handle position variations adequately, though this cannot be fully verified from this single example."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "7a591155d8e41e11aa69452fbfe9176df0d9115a1a82c10c7fe202fece1b4786",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "cost": 0.0,
+      "latency": 40390.4152920004,
+      "utility": 0.84,
+      "workflow_output": "Context Size: small\nContent Type: narrative\nRetrieval Strategy: full_context\nTask Complexity: simple\n\nQuery: What three clues did the detective find?\n\nRetrieved Information:\nThe three clues the detective found are:  \n1. **A torn photograph dated March 15th**  \n2. **A key marked \"Storage Unit 42B\"**  \n3. **A handwritten note saying \"Meet me at the old lighthouse at midnight.\"**  \n\nThese are explicitly listed in the context and directly answer the query.\n\nFinal Answer:\nThe three clues the detective found are:  \n1. **A torn photograph dated March 15th**  \n2. **A key marked \"Storage Unit 42B\"**  \n3. **A handwritten note saying \"Meet me at the old lighthouse at midnight.\"**  \n\nThese items are explicitly listed in the retrieved information and directly answer the query.",
+      "metadata": {
+        "test_number": 1,
+        "config_values": {
+          "context_size": "small",
+          "content_type": "narrative",
+          "retrieval_strategy": "full_context",
+          "task_complexity": "simple",
+          "temperature": 0.2,
+          "position_bias_test": "beginning",
+          "compression_method": "none"
+        },
+        "workflow": {
+          "started_at": "2025-10-28T07:36:12.100915Z",
+          "completed_at": "2025-10-28T07:36:52.491316Z",
+          "duration_seconds": 40.3904152920004
+        },
+        "evaluation": {
+          "rubric": {
+            "retrieval_accuracy": {
+              "description": "Correctly identifies and retrieves relevant information from context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "context_utilization": {
+              "description": "Effectively uses available context without hallucination or omission",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "answer_completeness": {
+              "description": "Provides complete answer synthesizing all relevant context",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "efficiency": {
+              "description": "Handles large context efficiently without degradation",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "position_independence": {
+              "description": "Retrieves information regardless of position in context",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "retrieval_accuracy": {
+              "score": 95,
+              "reasoning": "The output correctly identifies and retrieves all three clues from the context. The information is accurate and directly matches what was requested. Minor deduction only because we cannot verify against the original source document, but the retrieval appears complete and precise."
+            },
+            "context_utilization": {
+              "score": 90,
+              "reasoning": "The output effectively uses the available context without hallucination. All three clues are explicitly stated and properly cited as being 'explicitly listed in the context.' No information appears fabricated or omitted. The response stays grounded in the retrieved information."
+            },
+            "answer_completeness": {
+              "score": 95,
+              "reasoning": "The answer is comprehensive and complete. It provides all three requested clues with specific details (dates, labels, and content). The response includes both the list and a verification statement confirming these items directly answer the query, demonstrating thorough synthesis."
+            },
+            "efficiency": {
+              "score": 85,
+              "reasoning": "Given the small context size and simple task complexity, the output is appropriately concise. However, the rubric emphasizes handling large contexts efficiently. With a small context, this dimension is less critical to evaluate, but the response demonstrates efficient processing without unnecessary elaboration."
+            },
+            "position_independence": {
+              "score": 80,
+              "reasoning": "The output successfully retrieves all three clues and presents them in a logical order. However, without evidence of how the system would perform if these clues were scattered throughout a larger document or positioned differently, this score reflects the assumption that the retrieval strategy (full_context) would handle position variations adequately, though this cannot be fully verified from this single example."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "7a591155d8e41e11aa69452fbfe9176df0d9115a1a82c10c7fe202fece1b4786",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "timestamp": "2025-10-28T07:36:57.767974Z"
+    },
+    {
+      "test_number": 2,
+      "config": {
+        "test_number": 2,
+        "config_values": {
+          "context_size": "small",
+          "content_type": "narrative",
+          "retrieval_strategy": "full_context",
+          "task_complexity": "complex",
+          "temperature": 0.6,
+          "position_bias_test": "end",
+          "compression_method": "summarized"
+        },
+        "workflow": "context_efficiency"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "retrieval_accuracy": {
+            "score": 0.95,
+            "reasoning": "The output correctly identifies and retrieves all three clues from the context. The information is accurate and directly matches what was stated in the retrieved information section. Minor deduction only because we cannot verify against the original source document."
+          },
+          "context_utilization": {
+            "score": 0.92,
+            "reasoning": "The response effectively uses the available context without hallucination or omission. All three clues are presented with their full details. The output acknowledges that items were 'explicitly listed on the desk,' demonstrating proper context grounding. No extraneous information is added."
+          },
+          "answer_completeness": {
+            "score": 0.98,
+            "reasoning": "The answer is comprehensive and directly addresses the query. All three clues are provided with complete details (dates, identifiers, and full text). The response includes both the retrieved information and final answer, showing thorough synthesis. The query is fully satisfied."
+          },
+          "efficiency": {
+            "score": 0.88,
+            "reasoning": "Given the small context size and straightforward retrieval strategy (full_context), the response is efficient. However, the output includes both retrieved information and final answer sections, which creates some redundancy. For a small context, this is acceptable but could be streamlined."
+          },
+          "position_independence": {
+            "score": 0.9,
+            "reasoning": "The output demonstrates position independence by successfully retrieving all three clues. The structured list format ensures each clue is equally accessible regardless of its position in the original context. The explicit numbering reinforces this independence."
+          }
+        },
+        "overall_score": 0.9259999999999999,
+        "evaluator_model": "openrouter/anthropic/claude-haiku-4.5",
+        "timestamp": "2025-10-28T07:37:19.047861Z",
+        "metadata": {
+          "rubric": {
+            "retrieval_accuracy": {
+              "description": "Correctly identifies and retrieves relevant information from context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "context_utilization": {
+              "description": "Effectively uses available context without hallucination or omission",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "answer_completeness": {
+              "description": "Provides complete answer synthesizing all relevant context",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "efficiency": {
+              "description": "Handles large context efficiently without degradation",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "position_independence": {
+              "description": "Retrieves information regardless of position in context",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "retrieval_accuracy": {
+              "score": 95,
+              "reasoning": "The output correctly identifies and retrieves all three clues from the context. The information is accurate and directly matches what was stated in the retrieved information section. Minor deduction only because we cannot verify against the original source document."
+            },
+            "context_utilization": {
+              "score": 92,
+              "reasoning": "The response effectively uses the available context without hallucination or omission. All three clues are presented with their full details. The output acknowledges that items were 'explicitly listed on the desk,' demonstrating proper context grounding. No extraneous information is added."
+            },
+            "answer_completeness": {
+              "score": 98,
+              "reasoning": "The answer is comprehensive and directly addresses the query. All three clues are provided with complete details (dates, identifiers, and full text). The response includes both the retrieved information and final answer, showing thorough synthesis. The query is fully satisfied."
+            },
+            "efficiency": {
+              "score": 88,
+              "reasoning": "Given the small context size and straightforward retrieval strategy (full_context), the response is efficient. However, the output includes both retrieved information and final answer sections, which creates some redundancy. For a small context, this is acceptable but could be streamlined."
+            },
+            "position_independence": {
+              "score": 90,
+              "reasoning": "The output demonstrates position independence by successfully retrieving all three clues. The structured list format ensures each clue is equally accessible regardless of its position in the original context. The explicit numbering reinforces this independence."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "7202455cc6140f617faedee6f5dfa023b016d8affaf474465ea35258d03da92e",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "cost": 0.0,
+      "latency": 16915.186833008192,
+      "utility": 0.9259999999999999,
+      "workflow_output": "Context Size: small\nContent Type: narrative\nRetrieval Strategy: full_context\nTask Complexity: complex\n\nQuery: What three clues did the detective find?\n\nRetrieved Information:\nThe three clues the detective found are:  \n1. **A torn photograph dated March 15th**  \n2. **A key marked \"Storage Unit 42B\"**  \n3. **A handwritten note saying \"Meet me at the old lighthouse at midnight\"**  \n\nThese are explicitly listed in the context as the items on the desk, directly answering the query.\n\nFinal Answer:\nThe detective found three key clues:  \n1. **A torn photograph dated March 15th**  \n2. **A key marked \"Storage Unit 42B\"**  \n3. **A handwritten note stating, \"Meet me at the old lighthouse at midnight\"**  \n\nThese items were explicitly listed on the desk and directly answer the query.",
+      "metadata": {
+        "test_number": 2,
+        "config_values": {
+          "context_size": "small",
+          "content_type": "narrative",
+          "retrieval_strategy": "full_context",
+          "task_complexity": "complex",
+          "temperature": 0.6,
+          "position_bias_test": "end",
+          "compression_method": "summarized"
+        },
+        "workflow": {
+          "started_at": "2025-10-28T07:36:57.773218Z",
+          "completed_at": "2025-10-28T07:37:14.688403Z",
+          "duration_seconds": 16.915186833008192
+        },
+        "evaluation": {
+          "rubric": {
+            "retrieval_accuracy": {
+              "description": "Correctly identifies and retrieves relevant information from context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "context_utilization": {
+              "description": "Effectively uses available context without hallucination or omission",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "answer_completeness": {
+              "description": "Provides complete answer synthesizing all relevant context",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "efficiency": {
+              "description": "Handles large context efficiently without degradation",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "position_independence": {
+              "description": "Retrieves information regardless of position in context",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "retrieval_accuracy": {
+              "score": 95,
+              "reasoning": "The output correctly identifies and retrieves all three clues from the context. The information is accurate and directly matches what was stated in the retrieved information section. Minor deduction only because we cannot verify against the original source document."
+            },
+            "context_utilization": {
+              "score": 92,
+              "reasoning": "The response effectively uses the available context without hallucination or omission. All three clues are presented with their full details. The output acknowledges that items were 'explicitly listed on the desk,' demonstrating proper context grounding. No extraneous information is added."
+            },
+            "answer_completeness": {
+              "score": 98,
+              "reasoning": "The answer is comprehensive and directly addresses the query. All three clues are provided with complete details (dates, identifiers, and full text). The response includes both the retrieved information and final answer, showing thorough synthesis. The query is fully satisfied."
+            },
+            "efficiency": {
+              "score": 88,
+              "reasoning": "Given the small context size and straightforward retrieval strategy (full_context), the response is efficient. However, the output includes both retrieved information and final answer sections, which creates some redundancy. For a small context, this is acceptable but could be streamlined."
+            },
+            "position_independence": {
+              "score": 90,
+              "reasoning": "The output demonstrates position independence by successfully retrieving all three clues. The structured list format ensures each clue is equally accessible regardless of its position in the original context. The explicit numbering reinforces this independence."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "7202455cc6140f617faedee6f5dfa023b016d8affaf474465ea35258d03da92e",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "timestamp": "2025-10-28T07:37:19.048021Z"
+    },
+    {
+      "test_number": 3,
+      "config": {
+        "test_number": 3,
+        "config_values": {
+          "context_size": "small",
+          "content_type": "technical",
+          "retrieval_strategy": "selective",
+          "task_complexity": "simple",
+          "temperature": 0.2,
+          "position_bias_test": "end",
+          "compression_method": "summarized"
+        },
+        "workflow": "context_efficiency"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "retrieval_accuracy": {
+            "score": 0.95,
+            "reasoning": "The workflow correctly identified and retrieved the two key pieces of information directly relevant to the query: the return type (auth_token as string) and the error thrown (AuthError). The retrieved information is accurate and directly sourced from the context without misinterpretation."
+          },
+          "context_utilization": {
+            "score": 0.92,
+            "reasoning": "The workflow effectively utilized the available context by extracting only the necessary information without hallucination. No extraneous details were added, and all retrieved statements are grounded in the provided context. Minor deduction because the workflow could have noted whether additional context about error handling or authentication details was available but deemed unnecessary."
+          },
+          "answer_completeness": {
+            "score": 0.9,
+            "reasoning": "The final answer comprehensively addresses both parts of the query (return value and error thrown) with clear formatting and a helpful summary. The answer is well-structured and directly answers what was asked. Minor deduction because the answer doesn't specify conditions under which the error occurs beyond 'invalid credentials,' though this information may not have been in the context."
+          },
+          "efficiency": {
+            "score": 0.98,
+            "reasoning": "Given the small context size and simple task complexity, the workflow handled the retrieval efficiently with a selective retrieval strategy. The response is concise and avoids unnecessary processing. The efficiency is excellent for the stated parameters."
+          },
+          "position_independence": {
+            "score": 0.93,
+            "reasoning": "The workflow successfully retrieved information about both the return value and error, suggesting the retrieval mechanism is not dependent on position. However, without evidence of the actual position of these statements in the original context, a perfect score cannot be assured. The successful dual retrieval suggests good position independence."
+          }
+        },
+        "overall_score": 0.9359999999999999,
+        "evaluator_model": "openrouter/anthropic/claude-haiku-4.5",
+        "timestamp": "2025-10-28T07:37:42.560774Z",
+        "metadata": {
+          "rubric": {
+            "retrieval_accuracy": {
+              "description": "Correctly identifies and retrieves relevant information from context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "context_utilization": {
+              "description": "Effectively uses available context without hallucination or omission",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "answer_completeness": {
+              "description": "Provides complete answer synthesizing all relevant context",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "efficiency": {
+              "description": "Handles large context efficiently without degradation",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "position_independence": {
+              "description": "Retrieves information regardless of position in context",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "retrieval_accuracy": {
+              "score": 95,
+              "reasoning": "The workflow correctly identified and retrieved the two key pieces of information directly relevant to the query: the return type (auth_token as string) and the error thrown (AuthError). The retrieved information is accurate and directly sourced from the context without misinterpretation."
+            },
+            "context_utilization": {
+              "score": 92,
+              "reasoning": "The workflow effectively utilized the available context by extracting only the necessary information without hallucination. No extraneous details were added, and all retrieved statements are grounded in the provided context. Minor deduction because the workflow could have noted whether additional context about error handling or authentication details was available but deemed unnecessary."
+            },
+            "answer_completeness": {
+              "score": 90,
+              "reasoning": "The final answer comprehensively addresses both parts of the query (return value and error thrown) with clear formatting and a helpful summary. The answer is well-structured and directly answers what was asked. Minor deduction because the answer doesn't specify conditions under which the error occurs beyond 'invalid credentials,' though this information may not have been in the context."
+            },
+            "efficiency": {
+              "score": 98,
+              "reasoning": "Given the small context size and simple task complexity, the workflow handled the retrieval efficiently with a selective retrieval strategy. The response is concise and avoids unnecessary processing. The efficiency is excellent for the stated parameters."
+            },
+            "position_independence": {
+              "score": 93,
+              "reasoning": "The workflow successfully retrieved information about both the return value and error, suggesting the retrieval mechanism is not dependent on position. However, without evidence of the actual position of these statements in the original context, a perfect score cannot be assured. The successful dual retrieval suggests good position independence."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "5ab6828f8a4c2ced11bb2466e0011a34def027a5e58df326faaf75741d1a04d1",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "cost": 0.0,
+      "latency": 18235.906291985884,
+      "utility": 0.9331869933847825,
+      "workflow_output": "Context Size: small\nContent Type: technical\nRetrieval Strategy: selective\nTask Complexity: simple\n\nQuery: What does the authenticate function return and what error does it throw?\n\nRetrieved Information:\nThe relevant information from the context to answer the query is:\n\n- **What authenticate returns**:  \n  \"Returns: auth_token (string)\"  \n\n- **Error it throws**:  \n  \"Throws: AuthError if credentials invalid\"  \n\nThese statements directly specify the return value and error type of the `authenticate` function.\n\nFinal Answer:\nThe `authenticate` function **returns** an `auth_token` of type `string` upon successful authentication. If the provided credentials are invalid, the function **throws** an `AuthError`. \n\nIn summary:  \n- **Return value**: `auth_token` (string).  \n- **Error thrown**: `AuthError` when credentials are invalid.",
+      "metadata": {
+        "test_number": 3,
+        "config_values": {
+          "context_size": "small",
+          "content_type": "technical",
+          "retrieval_strategy": "selective",
+          "task_complexity": "simple",
+          "temperature": 0.2,
+          "position_bias_test": "end",
+          "compression_method": "summarized"
+        },
+        "workflow": {
+          "started_at": "2025-10-28T07:37:19.048739Z",
+          "completed_at": "2025-10-28T07:37:37.284646Z",
+          "duration_seconds": 18.235906291985884
+        },
+        "evaluation": {
+          "rubric": {
+            "retrieval_accuracy": {
+              "description": "Correctly identifies and retrieves relevant information from context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "context_utilization": {
+              "description": "Effectively uses available context without hallucination or omission",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "answer_completeness": {
+              "description": "Provides complete answer synthesizing all relevant context",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "efficiency": {
+              "description": "Handles large context efficiently without degradation",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "position_independence": {
+              "description": "Retrieves information regardless of position in context",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "retrieval_accuracy": {
+              "score": 95,
+              "reasoning": "The workflow correctly identified and retrieved the two key pieces of information directly relevant to the query: the return type (auth_token as string) and the error thrown (AuthError). The retrieved information is accurate and directly sourced from the context without misinterpretation."
+            },
+            "context_utilization": {
+              "score": 92,
+              "reasoning": "The workflow effectively utilized the available context by extracting only the necessary information without hallucination. No extraneous details were added, and all retrieved statements are grounded in the provided context. Minor deduction because the workflow could have noted whether additional context about error handling or authentication details was available but deemed unnecessary."
+            },
+            "answer_completeness": {
+              "score": 90,
+              "reasoning": "The final answer comprehensively addresses both parts of the query (return value and error thrown) with clear formatting and a helpful summary. The answer is well-structured and directly answers what was asked. Minor deduction because the answer doesn't specify conditions under which the error occurs beyond 'invalid credentials,' though this information may not have been in the context."
+            },
+            "efficiency": {
+              "score": 98,
+              "reasoning": "Given the small context size and simple task complexity, the workflow handled the retrieval efficiently with a selective retrieval strategy. The response is concise and avoids unnecessary processing. The efficiency is excellent for the stated parameters."
+            },
+            "position_independence": {
+              "score": 93,
+              "reasoning": "The workflow successfully retrieved information about both the return value and error, suggesting the retrieval mechanism is not dependent on position. However, without evidence of the actual position of these statements in the original context, a perfect score cannot be assured. The successful dual retrieval suggests good position independence."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "5ab6828f8a4c2ced11bb2466e0011a34def027a5e58df326faaf75741d1a04d1",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "timestamp": "2025-10-28T07:37:42.560977Z"
+    },
+    {
+      "test_number": 4,
+      "config": {
+        "test_number": 4,
+        "config_values": {
+          "context_size": "small",
+          "content_type": "technical",
+          "retrieval_strategy": "selective",
+          "task_complexity": "complex",
+          "temperature": 0.6,
+          "position_bias_test": "beginning",
+          "compression_method": "none"
+        },
+        "workflow": "context_efficiency"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "retrieval_accuracy": {
+            "score": 0.95,
+            "reasoning": "The output correctly identifies and retrieves the two key pieces of information requested: the return value (auth_token as string) and the error thrown (AuthError). The retrieved information is directly relevant and accurately represents what was asked. Minor deduction only because we cannot verify against the actual source context provided."
+          },
+          "context_utilization": {
+            "score": 0.9,
+            "reasoning": "The output effectively uses the available context without introducing hallucinations or omitting relevant details. Both the return value and error information are presented clearly. The response stays focused on what was retrieved without adding unsupported claims. Slight deduction because the output could have included additional context about when/why AuthError is thrown (e.g., specific credential validation logic) if available."
+          },
+          "answer_completeness": {
+            "score": 0.92,
+            "reasoning": "The answer comprehensively addresses both parts of the query: what the function returns and what error it throws. The response includes a helpful summary section that organizes the information clearly. The answer is complete for the specific questions asked, though additional implementation details could enhance understanding if available in context."
+          },
+          "efficiency": {
+            "score": 0.88,
+            "reasoning": "Given the small context size and selective retrieval strategy, the output efficiently extracts and presents only the necessary information without unnecessary elaboration. The structured format (bullet points and summary) demonstrates good information organization. Slight deduction because with a small context size, efficiency gains are less demonstrable."
+          },
+          "position_independence": {
+            "score": 0.85,
+            "reasoning": "The output successfully retrieves information about the authenticate function's return value and error handling. However, without visibility into the actual context structure and where this information was positioned, it's difficult to fully assess position independence. The selective retrieval strategy suggests targeted extraction, which is positive, but this dimension cannot be fully validated."
+          }
+        },
+        "overall_score": 0.9,
+        "evaluator_model": "openrouter/anthropic/claude-haiku-4.5",
+        "timestamp": "2025-10-28T07:38:08.962069Z",
+        "metadata": {
+          "rubric": {
+            "retrieval_accuracy": {
+              "description": "Correctly identifies and retrieves relevant information from context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "context_utilization": {
+              "description": "Effectively uses available context without hallucination or omission",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "answer_completeness": {
+              "description": "Provides complete answer synthesizing all relevant context",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "efficiency": {
+              "description": "Handles large context efficiently without degradation",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "position_independence": {
+              "description": "Retrieves information regardless of position in context",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "retrieval_accuracy": {
+              "score": 95,
+              "reasoning": "The output correctly identifies and retrieves the two key pieces of information requested: the return value (auth_token as string) and the error thrown (AuthError). The retrieved information is directly relevant and accurately represents what was asked. Minor deduction only because we cannot verify against the actual source context provided."
+            },
+            "context_utilization": {
+              "score": 90,
+              "reasoning": "The output effectively uses the available context without introducing hallucinations or omitting relevant details. Both the return value and error information are presented clearly. The response stays focused on what was retrieved without adding unsupported claims. Slight deduction because the output could have included additional context about when/why AuthError is thrown (e.g., specific credential validation logic) if available."
+            },
+            "answer_completeness": {
+              "score": 92,
+              "reasoning": "The answer comprehensively addresses both parts of the query: what the function returns and what error it throws. The response includes a helpful summary section that organizes the information clearly. The answer is complete for the specific questions asked, though additional implementation details could enhance understanding if available in context."
+            },
+            "efficiency": {
+              "score": 88,
+              "reasoning": "Given the small context size and selective retrieval strategy, the output efficiently extracts and presents only the necessary information without unnecessary elaboration. The structured format (bullet points and summary) demonstrates good information organization. Slight deduction because with a small context size, efficiency gains are less demonstrable."
+            },
+            "position_independence": {
+              "score": 85,
+              "reasoning": "The output successfully retrieves information about the authenticate function's return value and error handling. However, without visibility into the actual context structure and where this information was positioned, it's difficult to fully assess position independence. The selective retrieval strategy suggests targeted extraction, which is positive, but this dimension cannot be fully validated."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "07d43aa183041157192195a7af41a3a87e19c7b6ef24bd3d14cea71803f05125",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "cost": 0.0,
+      "latency": 21588.4040830133,
+      "utility": 0.8900464925013009,
+      "workflow_output": "Context Size: small\nContent Type: technical\nRetrieval Strategy: selective\nTask Complexity: complex\n\nQuery: What does the authenticate function return and what error does it throw?\n\nRetrieved Information:\nThe relevant information from the context that directly answers the query is:\n\n- **What authenticate returns**:  \n  `Returns: auth_token (string)`  \n\n- **Error it throws**:  \n  `Throws: AuthError if credentials invalid`  \n\nThese lines explicitly state the return value and the specific error thrown by the `authenticate` function.\n\nFinal Answer:\nThe `authenticate` function **returns** an `auth_token` (a string) upon successful authentication. \n\nIf the provided credentials are invalid, the function **throws** an `AuthError`. \n\nIn summary:  \n- **Return value**: `auth_token` (string)  \n- **Error thrown**: `AuthError` (when credentials are invalid)",
+      "metadata": {
+        "test_number": 4,
+        "config_values": {
+          "context_size": "small",
+          "content_type": "technical",
+          "retrieval_strategy": "selective",
+          "task_complexity": "complex",
+          "temperature": 0.6,
+          "position_bias_test": "beginning",
+          "compression_method": "none"
+        },
+        "workflow": {
+          "started_at": "2025-10-28T07:37:42.562157Z",
+          "completed_at": "2025-10-28T07:38:04.150559Z",
+          "duration_seconds": 21.5884040830133
+        },
+        "evaluation": {
+          "rubric": {
+            "retrieval_accuracy": {
+              "description": "Correctly identifies and retrieves relevant information from context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "context_utilization": {
+              "description": "Effectively uses available context without hallucination or omission",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "answer_completeness": {
+              "description": "Provides complete answer synthesizing all relevant context",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "efficiency": {
+              "description": "Handles large context efficiently without degradation",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "position_independence": {
+              "description": "Retrieves information regardless of position in context",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "retrieval_accuracy": {
+              "score": 95,
+              "reasoning": "The output correctly identifies and retrieves the two key pieces of information requested: the return value (auth_token as string) and the error thrown (AuthError). The retrieved information is directly relevant and accurately represents what was asked. Minor deduction only because we cannot verify against the actual source context provided."
+            },
+            "context_utilization": {
+              "score": 90,
+              "reasoning": "The output effectively uses the available context without introducing hallucinations or omitting relevant details. Both the return value and error information are presented clearly. The response stays focused on what was retrieved without adding unsupported claims. Slight deduction because the output could have included additional context about when/why AuthError is thrown (e.g., specific credential validation logic) if available."
+            },
+            "answer_completeness": {
+              "score": 92,
+              "reasoning": "The answer comprehensively addresses both parts of the query: what the function returns and what error it throws. The response includes a helpful summary section that organizes the information clearly. The answer is complete for the specific questions asked, though additional implementation details could enhance understanding if available in context."
+            },
+            "efficiency": {
+              "score": 88,
+              "reasoning": "Given the small context size and selective retrieval strategy, the output efficiently extracts and presents only the necessary information without unnecessary elaboration. The structured format (bullet points and summary) demonstrates good information organization. Slight deduction because with a small context size, efficiency gains are less demonstrable."
+            },
+            "position_independence": {
+              "score": 85,
+              "reasoning": "The output successfully retrieves information about the authenticate function's return value and error handling. However, without visibility into the actual context structure and where this information was positioned, it's difficult to fully assess position independence. The selective retrieval strategy suggests targeted extraction, which is positive, but this dimension cannot be fully validated."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "07d43aa183041157192195a7af41a3a87e19c7b6ef24bd3d14cea71803f05125",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "timestamp": "2025-10-28T07:38:08.962472Z"
+    },
+    {
+      "test_number": 5,
+      "config": {
+        "test_number": 5,
+        "config_values": {
+          "context_size": "large",
+          "content_type": "narrative",
+          "retrieval_strategy": "selective",
+          "task_complexity": "simple",
+          "temperature": 0.6,
+          "position_bias_test": "beginning",
+          "compression_method": "summarized"
+        },
+        "workflow": "context_efficiency"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "retrieval_accuracy": {
+            "score": 0.85,
+            "reasoning": "The output correctly identifies both key pieces of evidence: the torn photograph and the handwritten note. The specific details (two people, old lighthouse, midnight meeting) are accurately extracted. However, without access to the original context, there's a minor uncertainty about whether all relevant details from March 15th were captured or if additional context existed."
+          },
+          "context_utilization": {
+            "score": 0.88,
+            "reasoning": "The response effectively synthesizes the retrieved information without apparent hallucination. It presents both the photograph and note details clearly and connects them logically to the crime scene. No contradictions or unsupported claims are evident. The output stays grounded in the retrieved information provided."
+          },
+          "answer_completeness": {
+            "score": 0.82,
+            "reasoning": "The answer addresses both parts of the query (key evidence and note content) comprehensively. It provides direct answers followed by synthesis. However, completeness is slightly limited by the lack of additional context about the investigation's significance, timeline implications, or other corroborating details that might exist in the larger context."
+          },
+          "efficiency": {
+            "score": 0.9,
+            "reasoning": "Despite the large context size noted, the output efficiently extracts and presents only the most relevant information without unnecessary elaboration. The response is well-structured with clear sections and avoids redundancy while maintaining clarity. The selective retrieval strategy appears well-executed."
+          },
+          "position_independence": {
+            "score": 0.8,
+            "reasoning": "The output successfully retrieves information about both the photograph and note, suggesting position-independent retrieval. However, without knowing the actual positions of these details in the original context, this assessment is somewhat limited. The fact that two distinct pieces of evidence are captured suggests reasonable position independence."
+          }
+        },
+        "overall_score": 0.85,
+        "evaluator_model": "openrouter/anthropic/claude-haiku-4.5",
+        "timestamp": "2025-10-28T07:38:37.400887Z",
+        "metadata": {
+          "rubric": {
+            "retrieval_accuracy": {
+              "description": "Correctly identifies and retrieves relevant information from context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "context_utilization": {
+              "description": "Effectively uses available context without hallucination or omission",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "answer_completeness": {
+              "description": "Provides complete answer synthesizing all relevant context",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "efficiency": {
+              "description": "Handles large context efficiently without degradation",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "position_independence": {
+              "description": "Retrieves information regardless of position in context",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "retrieval_accuracy": {
+              "score": 85,
+              "reasoning": "The output correctly identifies both key pieces of evidence: the torn photograph and the handwritten note. The specific details (two people, old lighthouse, midnight meeting) are accurately extracted. However, without access to the original context, there's a minor uncertainty about whether all relevant details from March 15th were captured or if additional context existed."
+            },
+            "context_utilization": {
+              "score": 88,
+              "reasoning": "The response effectively synthesizes the retrieved information without apparent hallucination. It presents both the photograph and note details clearly and connects them logically to the crime scene. No contradictions or unsupported claims are evident. The output stays grounded in the retrieved information provided."
+            },
+            "answer_completeness": {
+              "score": 82,
+              "reasoning": "The answer addresses both parts of the query (key evidence and note content) comprehensively. It provides direct answers followed by synthesis. However, completeness is slightly limited by the lack of additional context about the investigation's significance, timeline implications, or other corroborating details that might exist in the larger context."
+            },
+            "efficiency": {
+              "score": 90,
+              "reasoning": "Despite the large context size noted, the output efficiently extracts and presents only the most relevant information without unnecessary elaboration. The response is well-structured with clear sections and avoids redundancy while maintaining clarity. The selective retrieval strategy appears well-executed."
+            },
+            "position_independence": {
+              "score": 80,
+              "reasoning": "The output successfully retrieves information about both the photograph and note, suggesting position-independent retrieval. However, without knowing the actual positions of these details in the original context, this assessment is somewhat limited. The fact that two distinct pieces of evidence are captured suggests reasonable position independence."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "f288c0b4b35f81256ebbe2264b030808c7102548198701f0752932f591c07f1c",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "cost": 0.0,
+      "latency": 24194.779125013156,
+      "utility": 0.8344951619859177,
+      "workflow_output": "Context Size: large\nContent Type: narrative\nRetrieval Strategy: selective\nTask Complexity: simple\n\nQuery: What was the key evidence found on March 15th and what did the note say?\n\nRetrieved Information:\n**Relevant Information Extracted:**\n\n- **Key Evidence Found on March 15th:**  \n  A torn photograph was discovered at the crime scene. The photograph depicted two people standing in front of the old lighthouse.  \n\n- **Content of the Note:**  \n  The handwritten note read: *\"Meet me at the old lighthouse at midnight.\"*  \n\n**Direct Answer:**  \nThe key evidence found on March 15th was a torn photograph of two people in front of the old lighthouse. The note discovered later said, *\"Meet me at the old lighthouse at midnight.\"*\n\nFinal Answer:\nThe key evidence discovered on March 15th was a **torn photograph** depicting two individuals standing in front of the old lighthouse. Additionally, a handwritten note was later found, which explicitly stated: *\"Meet me at the old lighthouse at midnight.\"* These pieces of evidence directly link the crime scene to the old lighthouse and suggest a planned meeting there.",
+      "metadata": {
+        "test_number": 5,
+        "config_values": {
+          "context_size": "large",
+          "content_type": "narrative",
+          "retrieval_strategy": "selective",
+          "task_complexity": "simple",
+          "temperature": 0.6,
+          "position_bias_test": "beginning",
+          "compression_method": "summarized"
+        },
+        "workflow": {
+          "started_at": "2025-10-28T07:38:08.964775Z",
+          "completed_at": "2025-10-28T07:38:33.159553Z",
+          "duration_seconds": 24.194779125013156
+        },
+        "evaluation": {
+          "rubric": {
+            "retrieval_accuracy": {
+              "description": "Correctly identifies and retrieves relevant information from context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "context_utilization": {
+              "description": "Effectively uses available context without hallucination or omission",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "answer_completeness": {
+              "description": "Provides complete answer synthesizing all relevant context",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "efficiency": {
+              "description": "Handles large context efficiently without degradation",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "position_independence": {
+              "description": "Retrieves information regardless of position in context",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "retrieval_accuracy": {
+              "score": 85,
+              "reasoning": "The output correctly identifies both key pieces of evidence: the torn photograph and the handwritten note. The specific details (two people, old lighthouse, midnight meeting) are accurately extracted. However, without access to the original context, there's a minor uncertainty about whether all relevant details from March 15th were captured or if additional context existed."
+            },
+            "context_utilization": {
+              "score": 88,
+              "reasoning": "The response effectively synthesizes the retrieved information without apparent hallucination. It presents both the photograph and note details clearly and connects them logically to the crime scene. No contradictions or unsupported claims are evident. The output stays grounded in the retrieved information provided."
+            },
+            "answer_completeness": {
+              "score": 82,
+              "reasoning": "The answer addresses both parts of the query (key evidence and note content) comprehensively. It provides direct answers followed by synthesis. However, completeness is slightly limited by the lack of additional context about the investigation's significance, timeline implications, or other corroborating details that might exist in the larger context."
+            },
+            "efficiency": {
+              "score": 90,
+              "reasoning": "Despite the large context size noted, the output efficiently extracts and presents only the most relevant information without unnecessary elaboration. The response is well-structured with clear sections and avoids redundancy while maintaining clarity. The selective retrieval strategy appears well-executed."
+            },
+            "position_independence": {
+              "score": 80,
+              "reasoning": "The output successfully retrieves information about both the photograph and note, suggesting position-independent retrieval. However, without knowing the actual positions of these details in the original context, this assessment is somewhat limited. The fact that two distinct pieces of evidence are captured suggests reasonable position independence."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "f288c0b4b35f81256ebbe2264b030808c7102548198701f0752932f591c07f1c",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "timestamp": "2025-10-28T07:38:37.401146Z"
+    },
+    {
+      "test_number": 6,
+      "config": {
+        "test_number": 6,
+        "config_values": {
+          "context_size": "large",
+          "content_type": "narrative",
+          "retrieval_strategy": "selective",
+          "task_complexity": "complex",
+          "temperature": 0.2,
+          "position_bias_test": "end",
+          "compression_method": "none"
+        },
+        "workflow": "context_efficiency"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "retrieval_accuracy": {
+            "score": 0.85,
+            "reasoning": "The output correctly identifies both key pieces of evidence (torn photograph and handwritten note) with specific details matching the query. However, the final answer appears incomplete—it cuts off mid-sentence at 'Chapter' without finishing the citation, suggesting potential retrieval truncation or incomplete source attribution."
+          },
+          "context_utilization": {
+            "score": 0.8,
+            "reasoning": "The output effectively uses context from Chapter 3 and provides relevant details without apparent hallucination. The structured extraction of key information demonstrates good context organization. The incomplete final sentence slightly undermines confidence in complete context utilization, though no false information is evident."
+          },
+          "answer_completeness": {
+            "score": 0.75,
+            "reasoning": "The answer addresses both parts of the query (evidence found and note content) with appropriate detail. However, the response is technically incomplete due to the truncated final sentence ending at 'Chapter.' This prevents full assessment of whether all relevant context was synthesized, though the substantive content appears comprehensive."
+          },
+          "efficiency": {
+            "score": 0.88,
+            "reasoning": "Despite the large context size and complex task, the output demonstrates efficient retrieval by directly pinpointing relevant information from Chapter 3 without unnecessary elaboration. The selective retrieval strategy appears well-executed, though the truncation suggests potential processing inefficiency at the conclusion."
+          },
+          "position_independence": {
+            "score": 0.82,
+            "reasoning": "The output successfully retrieves information from Chapter 3 and integrates it coherently, suggesting the system can locate relevant content regardless of position. The structured extraction and direct sourcing indicate position-independent retrieval capability, though the incomplete ending raises minor questions about consistent performance."
+          }
+        },
+        "overall_score": 0.82,
+        "evaluator_model": "openrouter/anthropic/claude-haiku-4.5",
+        "timestamp": "2025-10-28T07:39:08.671326Z",
+        "metadata": {
+          "rubric": {
+            "retrieval_accuracy": {
+              "description": "Correctly identifies and retrieves relevant information from context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "context_utilization": {
+              "description": "Effectively uses available context without hallucination or omission",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "answer_completeness": {
+              "description": "Provides complete answer synthesizing all relevant context",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "efficiency": {
+              "description": "Handles large context efficiently without degradation",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "position_independence": {
+              "description": "Retrieves information regardless of position in context",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "retrieval_accuracy": {
+              "score": 85,
+              "reasoning": "The output correctly identifies both key pieces of evidence (torn photograph and handwritten note) with specific details matching the query. However, the final answer appears incomplete—it cuts off mid-sentence at 'Chapter' without finishing the citation, suggesting potential retrieval truncation or incomplete source attribution."
+            },
+            "context_utilization": {
+              "score": 80,
+              "reasoning": "The output effectively uses context from Chapter 3 and provides relevant details without apparent hallucination. The structured extraction of key information demonstrates good context organization. The incomplete final sentence slightly undermines confidence in complete context utilization, though no false information is evident."
+            },
+            "answer_completeness": {
+              "score": 75,
+              "reasoning": "The answer addresses both parts of the query (evidence found and note content) with appropriate detail. However, the response is technically incomplete due to the truncated final sentence ending at 'Chapter.' This prevents full assessment of whether all relevant context was synthesized, though the substantive content appears comprehensive."
+            },
+            "efficiency": {
+              "score": 88,
+              "reasoning": "Despite the large context size and complex task, the output demonstrates efficient retrieval by directly pinpointing relevant information from Chapter 3 without unnecessary elaboration. The selective retrieval strategy appears well-executed, though the truncation suggests potential processing inefficiency at the conclusion."
+            },
+            "position_independence": {
+              "score": 82,
+              "reasoning": "The output successfully retrieves information from Chapter 3 and integrates it coherently, suggesting the system can locate relevant content regardless of position. The structured extraction and direct sourcing indicate position-independent retrieval capability, though the incomplete ending raises minor questions about consistent performance."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "f8c45dd8a9f9109c3ecadbbaf04803aae2917a8de629995b2c72f03e872eb49a",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "cost": 0.0,
+      "latency": 26765.902624989394,
+      "utility": 0.7990189138964313,
+      "workflow_output": "Context Size: large\nContent Type: narrative\nRetrieval Strategy: selective\nTask Complexity: complex\n\nQuery: What was the key evidence found on March 15th and what did the note say?\n\nRetrieved Information:\n**Key Information Extracted:**  \n- **Key Evidence Found on March 15th**: A torn photograph was discovered at the crime scene. The photograph depicted two people standing in front of the old lighthouse.  \n- **Content of the Note**: The handwritten note read: *\"Meet me at the old lighthouse at midnight.\"*  \n\n**Direct Source**: Chapter 3 (\"The Key Evidence\") explicitly states both the torn photograph (March 15th) and the note's message.\n\nFinal Answer:\nThe key evidence found on March 15th was a **torn photograph** discovered at the crime scene, depicting two individuals standing in front of the old lighthouse. Additionally, a **handwritten note** was recovered, which explicitly stated: *\"Meet me at the old lighthouse at midnight.\"*  \n\nBoth pieces of evidence are directly referenced in Chapter",
+      "metadata": {
+        "test_number": 6,
+        "config_values": {
+          "context_size": "large",
+          "content_type": "narrative",
+          "retrieval_strategy": "selective",
+          "task_complexity": "complex",
+          "temperature": 0.2,
+          "position_bias_test": "end",
+          "compression_method": "none"
+        },
+        "workflow": {
+          "started_at": "2025-10-28T07:38:37.403290Z",
+          "completed_at": "2025-10-28T07:39:04.169198Z",
+          "duration_seconds": 26.765902624989394
+        },
+        "evaluation": {
+          "rubric": {
+            "retrieval_accuracy": {
+              "description": "Correctly identifies and retrieves relevant information from context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "context_utilization": {
+              "description": "Effectively uses available context without hallucination or omission",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "answer_completeness": {
+              "description": "Provides complete answer synthesizing all relevant context",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "efficiency": {
+              "description": "Handles large context efficiently without degradation",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "position_independence": {
+              "description": "Retrieves information regardless of position in context",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "retrieval_accuracy": {
+              "score": 85,
+              "reasoning": "The output correctly identifies both key pieces of evidence (torn photograph and handwritten note) with specific details matching the query. However, the final answer appears incomplete—it cuts off mid-sentence at 'Chapter' without finishing the citation, suggesting potential retrieval truncation or incomplete source attribution."
+            },
+            "context_utilization": {
+              "score": 80,
+              "reasoning": "The output effectively uses context from Chapter 3 and provides relevant details without apparent hallucination. The structured extraction of key information demonstrates good context organization. The incomplete final sentence slightly undermines confidence in complete context utilization, though no false information is evident."
+            },
+            "answer_completeness": {
+              "score": 75,
+              "reasoning": "The answer addresses both parts of the query (evidence found and note content) with appropriate detail. However, the response is technically incomplete due to the truncated final sentence ending at 'Chapter.' This prevents full assessment of whether all relevant context was synthesized, though the substantive content appears comprehensive."
+            },
+            "efficiency": {
+              "score": 88,
+              "reasoning": "Despite the large context size and complex task, the output demonstrates efficient retrieval by directly pinpointing relevant information from Chapter 3 without unnecessary elaboration. The selective retrieval strategy appears well-executed, though the truncation suggests potential processing inefficiency at the conclusion."
+            },
+            "position_independence": {
+              "score": 82,
+              "reasoning": "The output successfully retrieves information from Chapter 3 and integrates it coherently, suggesting the system can locate relevant content regardless of position. The structured extraction and direct sourcing indicate position-independent retrieval capability, though the incomplete ending raises minor questions about consistent performance."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "f8c45dd8a9f9109c3ecadbbaf04803aae2917a8de629995b2c72f03e872eb49a",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "timestamp": "2025-10-28T07:39:08.671443Z"
+    },
+    {
+      "test_number": 7,
+      "config": {
+        "test_number": 7,
+        "config_values": {
+          "context_size": "large",
+          "content_type": "technical",
+          "retrieval_strategy": "full_context",
+          "task_complexity": "simple",
+          "temperature": 0.6,
+          "position_bias_test": "end",
+          "compression_method": "none"
+        },
+        "workflow": "context_efficiency"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "retrieval_accuracy": {
+            "score": 0.85,
+            "reasoning": "The output correctly identifies the core requirements (valid auth_token, permission to access user_id) and all three error types (AuthError, PermissionError, NotFoundError) from the documentation. However, the final answer appears truncated mid-sentence ('The requesting user' is incomplete), suggesting the retrieval process was interrupted or the answer was not fully synthesized."
+          },
+          "context_utilization": {
+            "score": 0.8,
+            "reasoning": "The retrieved information section effectively extracts relevant details from the documentation without hallucination. The output explicitly notes it excluded unrelated details from other endpoints, demonstrating disciplined context use. However, the incomplete final answer suggests the context was not fully utilized to complete the response comprehensively."
+          },
+          "answer_completeness": {
+            "score": 0.65,
+            "reasoning": "The retrieved information section is complete and well-structured, covering all requirements and errors. However, the 'Final Answer' section is incomplete—it cuts off mid-sentence after 'The requesting user' without finishing the requirements list or addressing the errors section at all. This represents a significant gap in answer completeness."
+          },
+          "efficiency": {
+            "score": 0.88,
+            "reasoning": "Despite the large context size, the retrieval strategy (full_context) was applied efficiently. The output demonstrates selective extraction of relevant information and explicitly excludes unrelated endpoint details, indicating good performance handling the large context without degradation."
+          },
+          "position_independence": {
+            "score": 0.9,
+            "reasoning": "The output successfully retrieves information from specific sections ('Requires' and 'Throws') of the documentation, suggesting the retrieval mechanism is not dependent on information position within the context. The ability to extract from labeled sections demonstrates position-independent retrieval capability."
+          }
+        },
+        "overall_score": 0.8160000000000001,
+        "evaluator_model": "openrouter/anthropic/claude-haiku-4.5",
+        "timestamp": "2025-10-28T07:39:35.952489Z",
+        "metadata": {
+          "rubric": {
+            "retrieval_accuracy": {
+              "description": "Correctly identifies and retrieves relevant information from context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "context_utilization": {
+              "description": "Effectively uses available context without hallucination or omission",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "answer_completeness": {
+              "description": "Provides complete answer synthesizing all relevant context",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "efficiency": {
+              "description": "Handles large context efficiently without degradation",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "position_independence": {
+              "description": "Retrieves information regardless of position in context",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "retrieval_accuracy": {
+              "score": 85,
+              "reasoning": "The output correctly identifies the core requirements (valid auth_token, permission to access user_id) and all three error types (AuthError, PermissionError, NotFoundError) from the documentation. However, the final answer appears truncated mid-sentence ('The requesting user' is incomplete), suggesting the retrieval process was interrupted or the answer was not fully synthesized."
+            },
+            "context_utilization": {
+              "score": 80,
+              "reasoning": "The retrieved information section effectively extracts relevant details from the documentation without hallucination. The output explicitly notes it excluded unrelated details from other endpoints, demonstrating disciplined context use. However, the incomplete final answer suggests the context was not fully utilized to complete the response comprehensively."
+            },
+            "answer_completeness": {
+              "score": 65,
+              "reasoning": "The retrieved information section is complete and well-structured, covering all requirements and errors. However, the 'Final Answer' section is incomplete—it cuts off mid-sentence after 'The requesting user' without finishing the requirements list or addressing the errors section at all. This represents a significant gap in answer completeness."
+            },
+            "efficiency": {
+              "score": 88,
+              "reasoning": "Despite the large context size, the retrieval strategy (full_context) was applied efficiently. The output demonstrates selective extraction of relevant information and explicitly excludes unrelated endpoint details, indicating good performance handling the large context without degradation."
+            },
+            "position_independence": {
+              "score": 90,
+              "reasoning": "The output successfully retrieves information from specific sections ('Requires' and 'Throws') of the documentation, suggesting the retrieval mechanism is not dependent on information position within the context. The ability to extract from labeled sections demonstrates position-independent retrieval capability."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "369dfce9141dc3c9fa0650c1953e86869623d5893bdcf29455ee9776afb4f707",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "cost": 0.0,
+      "latency": 23070.852792006917,
+      "utility": 0.802889017992409,
+      "workflow_output": "Context Size: large\nContent Type: technical\nRetrieval Strategy: full_context\nTask Complexity: simple\n\nQuery: What does get_user_data require and what errors can it throw?\n\nRetrieved Information:\nThe `get_user_data` endpoint requires:\n- A **valid auth_token** obtained from `authenticate()`\n- The user to have **permission to access the requested user_id**\n\nPossible errors it can throw:\n- **AuthError**: If token is invalid/expired\n- **PermissionError**: If user lacks access rights\n- **NotFoundError**: If the specified user_id doesn't exist\n\n(Extracted directly from the \"Requires\" and \"Throws\" sections under the `get_user_data` documentation in the context, excluding unrelated details from other endpoints.)\n\nFinal Answer:\nThe `get_user_data` endpoint has the following requirements and potential errors:\n\n**Requires:**  \n- A **valid auth_token** obtained via the `authenticate()` method.  \n- The requesting user",
+      "metadata": {
+        "test_number": 7,
+        "config_values": {
+          "context_size": "large",
+          "content_type": "technical",
+          "retrieval_strategy": "full_context",
+          "task_complexity": "simple",
+          "temperature": 0.6,
+          "position_bias_test": "end",
+          "compression_method": "none"
+        },
+        "workflow": {
+          "started_at": "2025-10-28T07:39:08.672204Z",
+          "completed_at": "2025-10-28T07:39:31.743052Z",
+          "duration_seconds": 23.070852792006917
+        },
+        "evaluation": {
+          "rubric": {
+            "retrieval_accuracy": {
+              "description": "Correctly identifies and retrieves relevant information from context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "context_utilization": {
+              "description": "Effectively uses available context without hallucination or omission",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "answer_completeness": {
+              "description": "Provides complete answer synthesizing all relevant context",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "efficiency": {
+              "description": "Handles large context efficiently without degradation",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "position_independence": {
+              "description": "Retrieves information regardless of position in context",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "retrieval_accuracy": {
+              "score": 85,
+              "reasoning": "The output correctly identifies the core requirements (valid auth_token, permission to access user_id) and all three error types (AuthError, PermissionError, NotFoundError) from the documentation. However, the final answer appears truncated mid-sentence ('The requesting user' is incomplete), suggesting the retrieval process was interrupted or the answer was not fully synthesized."
+            },
+            "context_utilization": {
+              "score": 80,
+              "reasoning": "The retrieved information section effectively extracts relevant details from the documentation without hallucination. The output explicitly notes it excluded unrelated details from other endpoints, demonstrating disciplined context use. However, the incomplete final answer suggests the context was not fully utilized to complete the response comprehensively."
+            },
+            "answer_completeness": {
+              "score": 65,
+              "reasoning": "The retrieved information section is complete and well-structured, covering all requirements and errors. However, the 'Final Answer' section is incomplete—it cuts off mid-sentence after 'The requesting user' without finishing the requirements list or addressing the errors section at all. This represents a significant gap in answer completeness."
+            },
+            "efficiency": {
+              "score": 88,
+              "reasoning": "Despite the large context size, the retrieval strategy (full_context) was applied efficiently. The output demonstrates selective extraction of relevant information and explicitly excludes unrelated endpoint details, indicating good performance handling the large context without degradation."
+            },
+            "position_independence": {
+              "score": 90,
+              "reasoning": "The output successfully retrieves information from specific sections ('Requires' and 'Throws') of the documentation, suggesting the retrieval mechanism is not dependent on information position within the context. The ability to extract from labeled sections demonstrates position-independent retrieval capability."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "369dfce9141dc3c9fa0650c1953e86869623d5893bdcf29455ee9776afb4f707",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "timestamp": "2025-10-28T07:39:35.952672Z"
+    },
+    {
+      "test_number": 8,
+      "config": {
+        "test_number": 8,
+        "config_values": {
+          "context_size": "large",
+          "content_type": "technical",
+          "retrieval_strategy": "full_context",
+          "task_complexity": "complex",
+          "temperature": 0.2,
+          "position_bias_test": "beginning",
+          "compression_method": "summarized"
+        },
+        "workflow": "context_efficiency"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "retrieval_accuracy": {
+            "score": 0.95,
+            "reasoning": "The output accurately identifies and retrieves all relevant information from the documented 'Requires' and 'Throws' subsections. Requirements (valid auth_token, user permission) and all three error types (AuthError, PermissionError, NotFoundError) are correctly extracted with precise descriptions. Minor deduction only because source attribution could be more explicit about exact documentation section names."
+          },
+          "context_utilization": {
+            "score": 0.92,
+            "reasoning": "The response effectively uses the available context without hallucination or omission. All stated requirements and errors are incorporated. The answer adds helpful context (e.g., explaining when each error occurs) that is logically derived from the retrieved information rather than fabricated. No contradictions or unsupported claims detected."
+          },
+          "answer_completeness": {
+            "score": 0.96,
+            "reasoning": "The answer comprehensively addresses the query by providing both requirements and errors in organized sections. All three error types are documented with clear trigger conditions. Requirements are listed with necessary context about the authenticate() dependency. The concluding statement reinforces the purpose of these constraints, demonstrating synthesis of the information."
+          },
+          "efficiency": {
+            "score": 0.94,
+            "reasoning": "Despite the large context size, the retrieval strategy (full_context) and response remain focused and well-organized. The output avoids unnecessary verbosity while maintaining clarity. Information is presented in scannable format with clear headers and bullet points, making it efficient for the user to process despite the complex technical nature."
+          },
+          "position_independence": {
+            "score": 0.9,
+            "reasoning": "The output demonstrates strong position independence by correctly retrieving information from specific subsections ('Requires' and 'Throws') within the documentation structure. The explicit reference to these subsections suggests the system located relevant information regardless of its position in the larger context. Minor deduction because we cannot fully verify position independence without seeing alternative context arrangements."
+          }
+        },
+        "overall_score": 0.9339999999999999,
+        "evaluator_model": "openrouter/anthropic/claude-haiku-4.5",
+        "timestamp": "2025-10-28T07:40:08.509430Z",
+        "metadata": {
+          "rubric": {
+            "retrieval_accuracy": {
+              "description": "Correctly identifies and retrieves relevant information from context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "context_utilization": {
+              "description": "Effectively uses available context without hallucination or omission",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "answer_completeness": {
+              "description": "Provides complete answer synthesizing all relevant context",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "efficiency": {
+              "description": "Handles large context efficiently without degradation",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "position_independence": {
+              "description": "Retrieves information regardless of position in context",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "retrieval_accuracy": {
+              "score": 95,
+              "reasoning": "The output accurately identifies and retrieves all relevant information from the documented 'Requires' and 'Throws' subsections. Requirements (valid auth_token, user permission) and all three error types (AuthError, PermissionError, NotFoundError) are correctly extracted with precise descriptions. Minor deduction only because source attribution could be more explicit about exact documentation section names."
+            },
+            "context_utilization": {
+              "score": 92,
+              "reasoning": "The response effectively uses the available context without hallucination or omission. All stated requirements and errors are incorporated. The answer adds helpful context (e.g., explaining when each error occurs) that is logically derived from the retrieved information rather than fabricated. No contradictions or unsupported claims detected."
+            },
+            "answer_completeness": {
+              "score": 96,
+              "reasoning": "The answer comprehensively addresses the query by providing both requirements and errors in organized sections. All three error types are documented with clear trigger conditions. Requirements are listed with necessary context about the authenticate() dependency. The concluding statement reinforces the purpose of these constraints, demonstrating synthesis of the information."
+            },
+            "efficiency": {
+              "score": 94,
+              "reasoning": "Despite the large context size, the retrieval strategy (full_context) and response remain focused and well-organized. The output avoids unnecessary verbosity while maintaining clarity. Information is presented in scannable format with clear headers and bullet points, making it efficient for the user to process despite the complex technical nature."
+            },
+            "position_independence": {
+              "score": 90,
+              "reasoning": "The output demonstrates strong position independence by correctly retrieving information from specific subsections ('Requires' and 'Throws') within the documentation structure. The explicit reference to these subsections suggests the system located relevant information regardless of its position in the larger context. Minor deduction because we cannot fully verify position independence without seeing alternative context arrangements."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "a653dce16346049fb9c66fac422cef195ad142b384aa0a0a18b44c7fbe74e8c6",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "cost": 0.0,
+      "latency": 27100.171540980227,
+      "utility": 0.9123069529530591,
+      "workflow_output": "Context Size: large\nContent Type: technical\nRetrieval Strategy: full_context\nTask Complexity: complex\n\nQuery: What does get_user_data require and what errors can it throw?\n\nRetrieved Information:\n**Required for get_user_data:**\n- Valid auth_token obtained from authenticate()\n- User must have permission to access the requested user_id\n\n**Errors thrown by get_user_data:**\n- AuthError: If token is invalid or expired\n- PermissionError: If user lacks access rights\n- NotFoundError: If user_id doesn't exist\n\nThis information is directly extracted from the \"Requires\" and \"Throws\" subsections under the `get_user_data` endpoint documentation in the context.\n\nFinal Answer:\nThe `get_user_data` endpoint has the following requirements and potential errors:\n\n**Requirements**:  \n1. A valid `auth_token` obtained from the `authenticate()` function.  \n2. The authenticated user must have explicit permission to access the data associated with the specified `user_id`.  \n\n**Errors**:  \n- **AuthError**: Thrown if the provided `auth_token` is invalid, expired, or otherwise not recognized.  \n- **PermissionError**: Occurs when the authenticated user lacks the necessary access rights to retrieve data for the requested `user_id`.  \n- **NotFoundError**: Triggered if the provided `user_id` does not exist in the system.  \n\nThese requirements and error conditions ensure proper authentication, authorization, and validation when using the `get_user_data` endpoint.",
+      "metadata": {
+        "test_number": 8,
+        "config_values": {
+          "context_size": "large",
+          "content_type": "technical",
+          "retrieval_strategy": "full_context",
+          "task_complexity": "complex",
+          "temperature": 0.2,
+          "position_bias_test": "beginning",
+          "compression_method": "summarized"
+        },
+        "workflow": {
+          "started_at": "2025-10-28T07:39:35.954115Z",
+          "completed_at": "2025-10-28T07:40:03.054284Z",
+          "duration_seconds": 27.100171540980227
+        },
+        "evaluation": {
+          "rubric": {
+            "retrieval_accuracy": {
+              "description": "Correctly identifies and retrieves relevant information from context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "context_utilization": {
+              "description": "Effectively uses available context without hallucination or omission",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "answer_completeness": {
+              "description": "Provides complete answer synthesizing all relevant context",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "efficiency": {
+              "description": "Handles large context efficiently without degradation",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "position_independence": {
+              "description": "Retrieves information regardless of position in context",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "retrieval_accuracy": {
+              "score": 95,
+              "reasoning": "The output accurately identifies and retrieves all relevant information from the documented 'Requires' and 'Throws' subsections. Requirements (valid auth_token, user permission) and all three error types (AuthError, PermissionError, NotFoundError) are correctly extracted with precise descriptions. Minor deduction only because source attribution could be more explicit about exact documentation section names."
+            },
+            "context_utilization": {
+              "score": 92,
+              "reasoning": "The response effectively uses the available context without hallucination or omission. All stated requirements and errors are incorporated. The answer adds helpful context (e.g., explaining when each error occurs) that is logically derived from the retrieved information rather than fabricated. No contradictions or unsupported claims detected."
+            },
+            "answer_completeness": {
+              "score": 96,
+              "reasoning": "The answer comprehensively addresses the query by providing both requirements and errors in organized sections. All three error types are documented with clear trigger conditions. Requirements are listed with necessary context about the authenticate() dependency. The concluding statement reinforces the purpose of these constraints, demonstrating synthesis of the information."
+            },
+            "efficiency": {
+              "score": 94,
+              "reasoning": "Despite the large context size, the retrieval strategy (full_context) and response remain focused and well-organized. The output avoids unnecessary verbosity while maintaining clarity. Information is presented in scannable format with clear headers and bullet points, making it efficient for the user to process despite the complex technical nature."
+            },
+            "position_independence": {
+              "score": 90,
+              "reasoning": "The output demonstrates strong position independence by correctly retrieving information from specific subsections ('Requires' and 'Throws') within the documentation structure. The explicit reference to these subsections suggests the system located relevant information regardless of its position in the larger context. Minor deduction because we cannot fully verify position independence without seeing alternative context arrangements."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "a653dce16346049fb9c66fac422cef195ad142b384aa0a0a18b44c7fbe74e8c6",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "timestamp": "2025-10-28T07:40:08.510814Z"
+    }
+  ],
+  "status": "COMPLETED",
+  "started_at": "2025-10-28T07:36:12.098697Z",
+  "completed_at": "2025-10-28T07:40:08.512230Z",
+  "experiment_metadata": {
+    "config_hash": "0f3c6c95e6107557b8907ec3f92f7010a0cc0cfb827844c691b434d564d5c436",
+    "created_at": "2025-10-28T07:36:12.098620Z",
+    "dependencies": {
+      "pydantic": "2.12.3",
+      "langgraph": "1.0.1",
+      "litellm": "1.79.0"
+    },
+    "non_deterministic_sources": [
+      "llm_sampling"
+    ]
+  },
+  "metadata": {
+    "normalization": {
+      "cost": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "latency": {
+        "min": 16915.186833008192,
+        "max": 40390.4152920004
+      }
+    }
+  },
+  "baseline_test_number": 1,
+  "baseline_config": {
+    "test_number": 1,
+    "config_values": {
+      "context_size": "small",
+      "content_type": "narrative",
+      "retrieval_strategy": "full_context",
+      "task_complexity": "simple",
+      "temperature": 0.2,
+      "position_bias_test": "beginning",
+      "compression_method": "none"
+    },
+    "workflow": "context_efficiency"
+  },
+  "baseline_result": {
+    "test_number": 1,
+    "config": {
+      "test_number": 1,
+      "config_values": {
+        "context_size": "small",
+        "content_type": "narrative",
+        "retrieval_strategy": "full_context",
+        "task_complexity": "simple",
+        "temperature": 0.2,
+        "position_bias_test": "beginning",
+        "compression_method": "none"
+      },
+      "workflow": "context_efficiency"
+    },
+    "quality_score": {
+      "dimension_scores": {
+        "retrieval_accuracy": {
+          "score": 0.95,
+          "reasoning": "The output correctly identifies and retrieves all three clues from the context. The information is accurate and directly matches what was requested. Minor deduction only because we cannot verify against the original source document, but the retrieval appears complete and precise."
+        },
+        "context_utilization": {
+          "score": 0.9,
+          "reasoning": "The output effectively uses the available context without hallucination. All three clues are explicitly stated and properly cited as being 'explicitly listed in the context.' No information appears fabricated or omitted. The response stays grounded in the retrieved information."
+        },
+        "answer_completeness": {
+          "score": 0.95,
+          "reasoning": "The answer is comprehensive and complete. It provides all three requested clues with specific details (dates, labels, and content). The response includes both the list and a verification statement confirming these items directly answer the query, demonstrating thorough synthesis."
+        },
+        "efficiency": {
+          "score": 0.85,
+          "reasoning": "Given the small context size and simple task complexity, the output is appropriately concise. However, the rubric emphasizes handling large contexts efficiently. With a small context, this dimension is less critical to evaluate, but the response demonstrates efficient processing without unnecessary elaboration."
+        },
+        "position_independence": {
+          "score": 0.8,
+          "reasoning": "The output successfully retrieves all three clues and presents them in a logical order. However, without evidence of how the system would perform if these clues were scattered throughout a larger document or positioned differently, this score reflects the assumption that the retrieval strategy (full_context) would handle position variations adequately, though this cannot be fully verified from this single example."
+        }
+      },
+      "overall_score": 0.89,
+      "evaluator_model": "openrouter/anthropic/claude-haiku-4.5",
+      "timestamp": "2025-10-28T07:36:57.766052Z",
+      "metadata": {
+        "rubric": {
+          "retrieval_accuracy": {
+            "description": "Correctly identifies and retrieves relevant information from context",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "context_utilization": {
+            "description": "Effectively uses available context without hallucination or omission",
+            "scale": "0-100 points",
+            "weight": 0.25
+          },
+          "answer_completeness": {
+            "description": "Provides complete answer synthesizing all relevant context",
+            "scale": "0-100 points",
+            "weight": 0.2
+          },
+          "efficiency": {
+            "description": "Handles large context efficiently without degradation",
+            "scale": "0-100 points",
+            "weight": 0.15
+          },
+          "position_independence": {
+            "description": "Retrieves information regardless of position in context",
+            "scale": "0-100 points",
+            "weight": 0.1
+          }
+        },
+        "raw_response": {
+          "retrieval_accuracy": {
+            "score": 95,
+            "reasoning": "The output correctly identifies and retrieves all three clues from the context. The information is accurate and directly matches what was requested. Minor deduction only because we cannot verify against the original source document, but the retrieval appears complete and precise."
+          },
+          "context_utilization": {
+            "score": 90,
+            "reasoning": "The output effectively uses the available context without hallucination. All three clues are explicitly stated and properly cited as being 'explicitly listed in the context.' No information appears fabricated or omitted. The response stays grounded in the retrieved information."
+          },
+          "answer_completeness": {
+            "score": 95,
+            "reasoning": "The answer is comprehensive and complete. It provides all three requested clues with specific details (dates, labels, and content). The response includes both the list and a verification statement confirming these items directly answer the query, demonstrating thorough synthesis."
+          },
+          "efficiency": {
+            "score": 85,
+            "reasoning": "Given the small context size and simple task complexity, the output is appropriately concise. However, the rubric emphasizes handling large contexts efficiently. With a small context, this dimension is less critical to evaluate, but the response demonstrates efficient processing without unnecessary elaboration."
+          },
+          "position_independence": {
+            "score": 80,
+            "reasoning": "The output successfully retrieves all three clues and presents them in a logical order. However, without evidence of how the system would perform if these clues were scattered throughout a larger document or positioned differently, this score reflects the assumption that the retrieval strategy (full_context) would handle position variations adequately, though this cannot be fully verified from this single example."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "7a591155d8e41e11aa69452fbfe9176df0d9115a1a82c10c7fe202fece1b4786",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/anthropic/claude-haiku-4.5"
+      }
+    },
+    "cost": 0.0,
+    "latency": 40390.4152920004,
+    "utility": 0.89,
+    "workflow_output": "Context Size: small\nContent Type: narrative\nRetrieval Strategy: full_context\nTask Complexity: simple\n\nQuery: What three clues did the detective find?\n\nRetrieved Information:\nThe three clues the detective found are:  \n1. **A torn photograph dated March 15th**  \n2. **A key marked \"Storage Unit 42B\"**  \n3. **A handwritten note saying \"Meet me at the old lighthouse at midnight.\"**  \n\nThese are explicitly listed in the context and directly answer the query.\n\nFinal Answer:\nThe three clues the detective found are:  \n1. **A torn photograph dated March 15th**  \n2. **A key marked \"Storage Unit 42B\"**  \n3. **A handwritten note saying \"Meet me at the old lighthouse at midnight.\"**  \n\nThese items are explicitly listed in the retrieved information and directly answer the query.",
+    "metadata": {
+      "test_number": 1,
+      "config_values": {
+        "context_size": "small",
+        "content_type": "narrative",
+        "retrieval_strategy": "full_context",
+        "task_complexity": "simple",
+        "temperature": 0.2,
+        "position_bias_test": "beginning",
+        "compression_method": "none"
+      },
+      "workflow": {
+        "started_at": "2025-10-28T07:36:12.100915Z",
+        "completed_at": "2025-10-28T07:36:52.491316Z",
+        "duration_seconds": 40.3904152920004
+      },
+      "evaluation": {
+        "rubric": {
+          "retrieval_accuracy": {
+            "description": "Correctly identifies and retrieves relevant information from context",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "context_utilization": {
+            "description": "Effectively uses available context without hallucination or omission",
+            "scale": "0-100 points",
+            "weight": 0.25
+          },
+          "answer_completeness": {
+            "description": "Provides complete answer synthesizing all relevant context",
+            "scale": "0-100 points",
+            "weight": 0.2
+          },
+          "efficiency": {
+            "description": "Handles large context efficiently without degradation",
+            "scale": "0-100 points",
+            "weight": 0.15
+          },
+          "position_independence": {
+            "description": "Retrieves information regardless of position in context",
+            "scale": "0-100 points",
+            "weight": 0.1
+          }
+        },
+        "raw_response": {
+          "retrieval_accuracy": {
+            "score": 95,
+            "reasoning": "The output correctly identifies and retrieves all three clues from the context. The information is accurate and directly matches what was requested. Minor deduction only because we cannot verify against the original source document, but the retrieval appears complete and precise."
+          },
+          "context_utilization": {
+            "score": 90,
+            "reasoning": "The output effectively uses the available context without hallucination. All three clues are explicitly stated and properly cited as being 'explicitly listed in the context.' No information appears fabricated or omitted. The response stays grounded in the retrieved information."
+          },
+          "answer_completeness": {
+            "score": 95,
+            "reasoning": "The answer is comprehensive and complete. It provides all three requested clues with specific details (dates, labels, and content). The response includes both the list and a verification statement confirming these items directly answer the query, demonstrating thorough synthesis."
+          },
+          "efficiency": {
+            "score": 85,
+            "reasoning": "Given the small context size and simple task complexity, the output is appropriately concise. However, the rubric emphasizes handling large contexts efficiently. With a small context, this dimension is less critical to evaluate, but the response demonstrates efficient processing without unnecessary elaboration."
+          },
+          "position_independence": {
+            "score": 80,
+            "reasoning": "The output successfully retrieves all three clues and presents them in a logical order. However, without evidence of how the system would perform if these clues were scattered throughout a larger document or positioned differently, this score reflects the assumption that the retrieval strategy (full_context) would handle position variations adequately, though this cannot be fully verified from this single example."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "7a591155d8e41e11aa69452fbfe9176df0d9115a1a82c10c7fe202fece1b4786",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/anthropic/claude-haiku-4.5"
+      }
+    },
+    "timestamp": "2025-10-28T07:36:57.767974Z"
+  },
+  "baseline_quality": 0.89,
+  "quality_improvement_pct": 5.168539325842689
+}

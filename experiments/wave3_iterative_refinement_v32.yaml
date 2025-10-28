@@ -1,0 +1,54 @@
+name: wave3_iterative_refinement
+workflow: iterative_refinement
+description: Test DeepSeek R1's ability to iteratively refine and improve outputs
+  through multiple revision cycles
+variables:
+- name: refinement_iterations
+  level_1: single
+  level_2: multiple
+- name: feedback_type
+  level_1: criteria
+  level_2: comparative
+- name: task_domain
+  level_1: creative
+  level_2: analytical
+- name: improvement_focus
+  level_1: quality
+  level_2: conciseness
+- name: temperature
+  level_1: 0.4
+  level_2: 0.8
+- name: critique_source
+  level_1: self
+  level_2: external
+- name: convergence_check
+  level_1: none
+  level_2: enabled
+utility_weights:
+  quality: 1.0
+  cost: 0.2
+  time: 0.1
+workflow_config:
+  evaluator_model: openrouter/anthropic/claude-haiku-4.5
+  model: openrouter/deepseek/deepseek-v3.2-exp
+  rubric:
+    improvement_trajectory:
+      description: Quality increases consistently across iterations, not random fluctuations
+      weight: 0.3
+      scale: 0-100 points
+    final_output_quality:
+      description: Final output superior to initial version in target dimension
+      weight: 0.25
+      scale: 0-100 points
+    critique_accuracy:
+      description: Identifies genuine weaknesses and addresses them in revisions
+      weight: 0.2
+      scale: 0-100 points
+    efficiency:
+      description: Reaches high-quality output without excessive iterations
+      weight: 0.15
+      scale: 0-100 points
+    convergence_awareness:
+      description: Recognizes when further refinement yields diminishing returns
+      weight: 0.1
+      scale: 0-100 points

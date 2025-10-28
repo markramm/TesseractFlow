@@ -1,0 +1,55 @@
+name: wave3_reasoning_transparency
+workflow: reasoning_transparency
+description: Test DeepSeek R1's native reasoning vs. prompted Chain-of-Thought across
+  problem complexity levels
+variables:
+- name: reasoning_mode
+  level_1: native_r1
+  level_2: prompted_cot
+- name: problem_complexity
+  level_1: simple
+  level_2: complex
+- name: reasoning_visibility
+  level_1: visible
+  level_2: hidden
+- name: task_type
+  level_1: analytical
+  level_2: creative
+- name: temperature
+  level_1: 0.3
+  level_2: 0.7
+- name: max_reasoning_tokens
+  level_1: standard
+  level_2: extended
+- name: verification_step
+  level_1: none
+  level_2: required
+utility_weights:
+  quality: 1.0
+  cost: 0.1
+  time: 0.05
+workflow_config:
+  evaluator_model: openrouter/anthropic/claude-haiku-4.5
+  model: openrouter/deepseek/deepseek-v3.2-exp
+  rubric:
+    reasoning_quality:
+      description: Logical coherence, step-by-step clarity, identification of key
+        assumptions
+      weight: 0.3
+      scale: 0-100 points
+    solution_correctness:
+      description: Accuracy of final answer, completeness of solution
+      weight: 0.25
+      scale: 0-100 points
+    reasoning_efficiency:
+      description: Conciseness without sacrificing clarity, avoids circular logic
+      weight: 0.2
+      scale: 0-100 points
+    insight_depth:
+      description: Identifies non-obvious connections, demonstrates true understanding
+      weight: 0.15
+      scale: 0-100 points
+    transparency_value:
+      description: Reasoning trace helps human understand the solution process
+      weight: 0.1
+      scale: 0-100 points

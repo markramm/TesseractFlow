@@ -1,0 +1,1704 @@
+{
+  "experiment_id": "wave4_dialogue_reasoning_vs_gpt5mini-20251028T133444",
+  "config": {
+    "name": "wave4_dialogue_reasoning_vs_gpt5mini",
+    "workflow": "dialogue_enhancement",
+    "variables": [
+      {
+        "name": "temperature",
+        "level_1": 0.5,
+        "level_2": 0.9
+      },
+      {
+        "name": "context_depth",
+        "level_1": "minimal",
+        "level_2": "full"
+      },
+      {
+        "name": "reasoning_enabled",
+        "level_1": "false",
+        "level_2": "true"
+      },
+      {
+        "name": "verbalized_sampling",
+        "level_1": "none",
+        "level_2": "self_consistency"
+      },
+      {
+        "name": "n_samples",
+        "level_1": "3",
+        "level_2": "5"
+      },
+      {
+        "name": "reasoning_visibility",
+        "level_1": "visible",
+        "level_2": "hidden"
+      },
+      {
+        "name": "max_reasoning_tokens",
+        "level_1": "standard",
+        "level_2": "extended"
+      }
+    ],
+    "utility_weights": {
+      "quality": 0.8,
+      "cost": 0.15,
+      "time": 0.05
+    },
+    "workflow_config": {
+      "rubric": {
+        "naturalness": {
+          "description": "Does dialogue sound like real speech? Contractions, interruptions, natural rhythms?",
+          "scale": "0-100 points",
+          "weight": 0.3
+        },
+        "subtext": {
+          "description": "Do characters have hidden agendas? Emotional layers beneath words?",
+          "scale": "0-100 points",
+          "weight": 0.3
+        },
+        "voice_distinction": {
+          "description": "Can you tell characters apart by speech patterns alone?",
+          "scale": "0-100 points",
+          "weight": 0.2
+        },
+        "emotional_authenticity": {
+          "description": "Do emotions feel genuine and earned by the scene context?",
+          "scale": "0-100 points",
+          "weight": 0.2
+        }
+      },
+      "sample_code_path": "tesseract_flow/workflows/code_review.py",
+      "evaluator_model": "openrouter/openai/gpt-5-mini",
+      "language": "python",
+      "evaluator_temperature": 0.3
+    }
+  },
+  "test_configurations": [
+    {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.5,
+        "context_depth": "minimal",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "none",
+        "n_samples": "3",
+        "reasoning_visibility": "visible",
+        "max_reasoning_tokens": "standard"
+      },
+      "workflow": "dialogue_enhancement"
+    },
+    {
+      "test_number": 2,
+      "config_values": {
+        "temperature": 0.5,
+        "context_depth": "minimal",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "self_consistency",
+        "n_samples": "5",
+        "reasoning_visibility": "hidden",
+        "max_reasoning_tokens": "extended"
+      },
+      "workflow": "dialogue_enhancement"
+    },
+    {
+      "test_number": 3,
+      "config_values": {
+        "temperature": 0.5,
+        "context_depth": "full",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "none",
+        "n_samples": "3",
+        "reasoning_visibility": "hidden",
+        "max_reasoning_tokens": "extended"
+      },
+      "workflow": "dialogue_enhancement"
+    },
+    {
+      "test_number": 4,
+      "config_values": {
+        "temperature": 0.5,
+        "context_depth": "full",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "self_consistency",
+        "n_samples": "5",
+        "reasoning_visibility": "visible",
+        "max_reasoning_tokens": "standard"
+      },
+      "workflow": "dialogue_enhancement"
+    },
+    {
+      "test_number": 5,
+      "config_values": {
+        "temperature": 0.9,
+        "context_depth": "minimal",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "none",
+        "n_samples": "5",
+        "reasoning_visibility": "visible",
+        "max_reasoning_tokens": "extended"
+      },
+      "workflow": "dialogue_enhancement"
+    },
+    {
+      "test_number": 6,
+      "config_values": {
+        "temperature": 0.9,
+        "context_depth": "minimal",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "self_consistency",
+        "n_samples": "3",
+        "reasoning_visibility": "hidden",
+        "max_reasoning_tokens": "standard"
+      },
+      "workflow": "dialogue_enhancement"
+    },
+    {
+      "test_number": 7,
+      "config_values": {
+        "temperature": 0.9,
+        "context_depth": "full",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "none",
+        "n_samples": "5",
+        "reasoning_visibility": "hidden",
+        "max_reasoning_tokens": "standard"
+      },
+      "workflow": "dialogue_enhancement"
+    },
+    {
+      "test_number": 8,
+      "config_values": {
+        "temperature": 0.9,
+        "context_depth": "full",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "self_consistency",
+        "n_samples": "3",
+        "reasoning_visibility": "visible",
+        "max_reasoning_tokens": "extended"
+      },
+      "workflow": "dialogue_enhancement"
+    }
+  ],
+  "results": [
+    {
+      "test_number": 1,
+      "config": {
+        "test_number": 1,
+        "config_values": {
+          "temperature": 0.5,
+          "context_depth": "minimal",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "none",
+          "n_samples": "3",
+          "reasoning_visibility": "visible",
+          "max_reasoning_tokens": "standard"
+        },
+        "workflow": "dialogue_enhancement"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "naturalness": {
+            "score": 0.8,
+            "reasoning": "Uses contractions and realistic turn-taking with interruptions and beats, but reads slightly staged/heightened for dramatic clarity rather than fully conversationally natural."
+          },
+          "subtext": {
+            "score": 0.9,
+            "reasoning": "Clear hidden agendas and stakes (risk vs. caution, reputation, deadlines) drive the lines; much of the meaning is conveyed beneath explicit statements."
+          },
+          "voice_distinction": {
+            "score": 0.85,
+            "reasoning": "Sarah and Marcus have distinct tones and rhetorical moves (strategic urgency vs. skeptical guardedness), though both remain within a similar corporate register."
+          },
+          "emotional_authenticity": {
+            "score": 0.88,
+            "reasoning": "Emotional beats (frustration, softening, guarded relief) feel earned and coherent with the conflict, slightly heightened for dramatic effect but believable."
+          }
+        },
+        "overall_score": 0.8575,
+        "evaluator_model": "openrouter/openai/gpt-5-mini",
+        "timestamp": "2025-10-28T13:35:17.458666Z",
+        "metadata": {
+          "rubric": {
+            "naturalness": {
+              "description": "Does dialogue sound like real speech? Contractions, interruptions, natural rhythms?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "subtext": {
+              "description": "Do characters have hidden agendas? Emotional layers beneath words?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinction": {
+              "description": "Can you tell characters apart by speech patterns alone?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_authenticity": {
+              "description": "Do emotions feel genuine and earned by the scene context?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "naturalness": {
+              "score": 80,
+              "reasoning": "Uses contractions and realistic turn-taking with interruptions and beats, but reads slightly staged/heightened for dramatic clarity rather than fully conversationally natural."
+            },
+            "subtext": {
+              "score": 90,
+              "reasoning": "Clear hidden agendas and stakes (risk vs. caution, reputation, deadlines) drive the lines; much of the meaning is conveyed beneath explicit statements."
+            },
+            "voice_distinction": {
+              "score": 85,
+              "reasoning": "Sarah and Marcus have distinct tones and rhetorical moves (strategic urgency vs. skeptical guardedness), though both remain within a similar corporate register."
+            },
+            "emotional_authenticity": {
+              "score": 88,
+              "reasoning": "Emotional beats (frustration, softening, guarded relief) feel earned and coherent with the conflict, slightly heightened for dramatic effect but believable."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "215bcd195abc14075f643f1f43f7f7d606f4258db13d9e04b24817bb8edfa3e4",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "cost": 0.0,
+      "latency": 20418.58262498863,
+      "utility": 0.6478639442564885,
+      "workflow_output": "Enhanced Dialogue:\n**Sarah:** (leaning forward, voice steady but with an edge) \"Marcus, we’ve been circling this for hours. The numbers don’t lie. You’re asking for concessions we can’t justify.\"  \n\n**Marcus:** (crossing his arms, tone clipped) \"Justify? Sarah, your projections are optimistic at best. We’re not here to fund your wishful thinking.\"  \n\n**Sarah:** (pausing, softening slightly) \"It’s not wishful thinking. It’s strategy. If we don’t invest now, we’ll be playing catch-up in six months. You know that.\"  \n\n**Marcus:** (leaning back, a faint smirk) \"Strategy’s great, but it doesn’t pay the bills. What’s your fallback if this doesn’t pan out? Because I’m not signing off on a gamble.\"  \n\n**Sarah:** (voice tightening, frustration seeping through) \"It’s not a gamble. It’s calculated risk. And if you’re not willing to take risks, Marcus, you’re already falling behind.\"  \n\n**Marcus:** (raising an eyebrow, tone sharpening) \"Falling behind? That’s rich, coming from a team that missed last quarter’s targets by a mile.\"  \n\n**Sarah:** (taking a deep breath, regaining composure) \"We’ve addressed that. This is about the future, not the past. Are you in, or are you going to let this opportunity slip away?\"  \n\n**Marcus:** (silent for a moment, then leaning in, voice low) \"I’ll consider it. But don’t expect me to roll over. I need guarantees, Sarah. Real ones.\"  \n\n**Sarah:** (nodding, a hint of relief) \"Fair enough. Let’s hammer out the details. But time’s running out, Marcus. We need to move.\"  \n\n**Marcus:** (standing, a wry smile) \"Then let’s move. But don’t think for a second I’m not watching every step.\"  \n\n**Sarah:** (standing as well, meeting his gaze) \"Wouldn’t expect anything less.\"",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "voice_emphasis": "subtle",
+        "examples_count": "0",
+        "enhance_prompt": "You are a dialogue specialist. Enhance the following dialogue to make it more natural, distinctive, and emotionally authentic.\n\nOriginal Dialogue:\n\"\"\"Code review workflow built on LangGraph.\"\"\"\nfrom __future__ import annotations\n\nimport asyncio\nimport json\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Any, Dict, Iterable, List, Mapping, Optional\n\nfrom jinja2 import Template\nfrom langgraph.graph import END, StateGraph\nfrom pydantic import BaseModel, ConfigDict, Field, field_validator\n\nfrom tesseract_flow.core.base_workflow import BaseWorkflowService\nfrom tesseract_flow.core.config import ExperimentConfig, Tes\n\nCharacters: Sarah, Marcus\nScene Context: tense negotiation in a downtown office\nMaintain natural dialogue flow with subtle character voice differences.\n\nEnhance the dialogue focusing on:\n- Voice distinctiveness (can you identify each speaker?)\n- Natural flow (realistic pacing, organic topic shifts)\n- Emotional authenticity (subtext, genuine emotions)\n\nReturn only the enhanced dialogue, no additional commentary.",
+        "enhanced_raw": "**Sarah:** (leaning forward, voice steady but with an edge) \"Marcus, we’ve been circling this for hours. The numbers don’t lie. You’re asking for concessions we can’t justify.\"  \n\n**Marcus:** (crossing his arms, tone clipped) \"Justify? Sarah, your projections are optimistic at best. We’re not here to fund your wishful thinking.\"  \n\n**Sarah:** (pausing, softening slightly) \"It’s not wishful thinking. It’s strategy. If we don’t invest now, we’ll be playing catch-up in six months. You know that.\"  \n\n**Marcus:** (leaning back, a faint smirk) \"Strategy’s great, but it doesn’t pay the bills. What’s your fallback if this doesn’t pan out? Because I’m not signing off on a gamble.\"  \n\n**Sarah:** (voice tightening, frustration seeping through) \"It’s not a gamble. It’s calculated risk. And if you’re not willing to take risks, Marcus, you’re already falling behind.\"  \n\n**Marcus:** (raising an eyebrow, tone sharpening) \"Falling behind? That’s rich, coming from a team that missed last quarter’s targets by a mile.\"  \n\n**Sarah:** (taking a deep breath, regaining composure) \"We’ve addressed that. This is about the future, not the past. Are you in, or are you going to let this opportunity slip away?\"  \n\n**Marcus:** (silent for a moment, then leaning in, voice low) \"I’ll consider it. But don’t expect me to roll over. I need guarantees, Sarah. Real ones.\"  \n\n**Sarah:** (nodding, a hint of relief) \"Fair enough. Let’s hammer out the details. But time’s running out, Marcus. We need to move.\"  \n\n**Marcus:** (standing, a wry smile) \"Then let’s move. But don’t think for a second I’m not watching every step.\"  \n\n**Sarah:** (standing as well, meeting his gaze) \"Wouldn’t expect anything less.\"",
+        "test_config": {
+          "test_number": 1,
+          "config": {
+            "temperature": 0.5,
+            "context_depth": "minimal",
+            "reasoning_enabled": "false",
+            "verbalized_sampling": "none",
+            "n_samples": "3",
+            "reasoning_visibility": "visible",
+            "max_reasoning_tokens": "standard"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T13:34:44.732170Z",
+          "completed_at": "2025-10-28T13:35:05.150755Z",
+          "duration_seconds": 20.41858262498863
+        },
+        "evaluation": {
+          "rubric": {
+            "naturalness": {
+              "description": "Does dialogue sound like real speech? Contractions, interruptions, natural rhythms?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "subtext": {
+              "description": "Do characters have hidden agendas? Emotional layers beneath words?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinction": {
+              "description": "Can you tell characters apart by speech patterns alone?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_authenticity": {
+              "description": "Do emotions feel genuine and earned by the scene context?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "naturalness": {
+              "score": 80,
+              "reasoning": "Uses contractions and realistic turn-taking with interruptions and beats, but reads slightly staged/heightened for dramatic clarity rather than fully conversationally natural."
+            },
+            "subtext": {
+              "score": 90,
+              "reasoning": "Clear hidden agendas and stakes (risk vs. caution, reputation, deadlines) drive the lines; much of the meaning is conveyed beneath explicit statements."
+            },
+            "voice_distinction": {
+              "score": 85,
+              "reasoning": "Sarah and Marcus have distinct tones and rhetorical moves (strategic urgency vs. skeptical guardedness), though both remain within a similar corporate register."
+            },
+            "emotional_authenticity": {
+              "score": 88,
+              "reasoning": "Emotional beats (frustration, softening, guarded relief) feel earned and coherent with the conflict, slightly heightened for dramatic effect but believable."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "215bcd195abc14075f643f1f43f7f7d606f4258db13d9e04b24817bb8edfa3e4",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "timestamp": "2025-10-28T13:35:17.459059Z"
+    },
+    {
+      "test_number": 2,
+      "config": {
+        "test_number": 2,
+        "config_values": {
+          "temperature": 0.5,
+          "context_depth": "minimal",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "self_consistency",
+          "n_samples": "5",
+          "reasoning_visibility": "hidden",
+          "max_reasoning_tokens": "extended"
+        },
+        "workflow": "dialogue_enhancement"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "naturalness": {
+            "score": 0.85,
+            "reasoning": "Dialogue uses contractions, interruptions, and realistic back-and-forth (e.g., Sarah cutting him off, parenthetical actions) and generally reads like a workplace exchange; slightly polished and on-the-nose in places but overall believable."
+          },
+          "subtext": {
+            "score": 0.8,
+            "reasoning": "Clear hidden agendas and stakes (Sarah protecting her credibility with the board; Marcus prioritizing growth and risk-taking). Emotional layers are present (fear, pride, responsibility), though some lines state motives fairly directly rather than implying them subtly."
+          },
+          "voice_distinction": {
+            "score": 0.8,
+            "reasoning": "Characters are distinguishable: Sarah is pragmatic, risk-averse and board-focused; Marcus is idealistic and growth-driven. Differences are consistent but both share a similar professional register, limiting stronger contrast."
+          },
+          "emotional_authenticity": {
+            "score": 0.85,
+            "reasoning": "Emotions (frustration, vulnerability, restraint) feel earned by the scene—progresses naturally from confrontation to a tentative compromise. A few moments lean toward theatrical phrasing, but emotional beats remain convincing."
+          }
+        },
+        "overall_score": 0.825,
+        "evaluator_model": "openrouter/openai/gpt-5-mini",
+        "timestamp": "2025-10-28T13:35:54.418376Z",
+        "metadata": {
+          "rubric": {
+            "naturalness": {
+              "description": "Does dialogue sound like real speech? Contractions, interruptions, natural rhythms?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "subtext": {
+              "description": "Do characters have hidden agendas? Emotional layers beneath words?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinction": {
+              "description": "Can you tell characters apart by speech patterns alone?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_authenticity": {
+              "description": "Do emotions feel genuine and earned by the scene context?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "naturalness": {
+              "score": 85,
+              "reasoning": "Dialogue uses contractions, interruptions, and realistic back-and-forth (e.g., Sarah cutting him off, parenthetical actions) and generally reads like a workplace exchange; slightly polished and on-the-nose in places but overall believable."
+            },
+            "subtext": {
+              "score": 80,
+              "reasoning": "Clear hidden agendas and stakes (Sarah protecting her credibility with the board; Marcus prioritizing growth and risk-taking). Emotional layers are present (fear, pride, responsibility), though some lines state motives fairly directly rather than implying them subtly."
+            },
+            "voice_distinction": {
+              "score": 80,
+              "reasoning": "Characters are distinguishable: Sarah is pragmatic, risk-averse and board-focused; Marcus is idealistic and growth-driven. Differences are consistent but both share a similar professional register, limiting stronger contrast."
+            },
+            "emotional_authenticity": {
+              "score": 85,
+              "reasoning": "Emotions (frustration, vulnerability, restraint) feel earned by the scene—progresses naturally from confrontation to a tentative compromise. A few moments lean toward theatrical phrasing, but emotional beats remain convincing."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "de1734dd21110346bcad82b80fb7a7ffc784bc3789006b58cec308eb5cf736de",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "cost": 0.0,
+      "latency": 24667.905875016004,
+      "utility": 0.61,
+      "workflow_output": "Enhanced Dialogue:\n**Sarah:** \"Marcus, let’s not dance around this. Your team’s proposal—it’s ambitious, I’ll give you that. But ambitious doesn’t always mean *feasible.*\"  \n**Marcus:** \"Feasible? Sarah, innovation isn’t about playing it safe. It’s about pushing boundaries. You’re acting like we’re asking for the moon.\"  \n**Sarah:** \"And you’re acting like we’ve got an unlimited budget and zero risk. Look, I’m not against pushing boundaries, but I need something concrete. Something I can take to my board without them laughing me out of the room.\"  \n**Marcus:** (leaning forward, voice steady but edged) \"Your board? Sarah, this isn’t about appeasing them. This is about *growth.* If we don’t take this leap now, we’ll be stuck playing catch-up while our competitors leave us in the dust.\"  \n**Sarah:** (sighs, rubbing her temples) \"I get that. I do. But Marcus, you’re asking me to sign off on a plan that’s half-baked at best. Where’s the contingency? Where’s the fallback if this—if *we*—fail?\"  \n**Marcus:** (pausing, softer now) \"Sometimes, Sarah, you’ve got to trust the process. Trust the team. We’ve done the groundwork. We’ve crunched the numbers. This isn’t a shot in the dark—it’s a calculated risk.\"  \n**Sarah:** (meeting his gaze, voice low) \"And if the calculation’s wrong? What then? I’m the one who’ll have to clean up the mess. Not you. Not your team. *Me.*\"  \n**Marcus:** (leaning back, a flicker of frustration) \"You’re not in this alone, Sarah. We’re partners. If this goes south, we’ll handle it together. But if we don’t even try—\"  \n**Sarah:** (cutting him off) \"—we’ll never know. Yeah, I’ve heard that before. But ‘what if’ isn’t a strategy, Marcus. I need more than optimism to sell this.\"  \n**Marcus:** (quietly, almost to himself) \"Sometimes, optimism’s all we’ve got.\"  \n**Sarah:** (softening slightly) \"And sometimes, it’s not enough. Look, I’m not saying no. I’m saying… give me something I can work with. Something that doesn’t feel like a gamble.\"  \n**Marcus:** (nodding slowly) \"Alright. I’ll go back to the team. We’ll tighten it up. But Sarah… don’t let fear of failure keep us from something great.\"  \n**Sarah:** (smiling faintly) \"And don’t let your confidence blind you to the risks. Deal?\"  \n**Marcus:** (extending a hand) \"Deal.\"",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "voice_emphasis": "subtle",
+        "examples_count": "0",
+        "enhance_prompt": "You are a dialogue specialist. Enhance the following dialogue to make it more natural, distinctive, and emotionally authentic.\n\nOriginal Dialogue:\n\"\"\"Code review workflow built on LangGraph.\"\"\"\nfrom __future__ import annotations\n\nimport asyncio\nimport json\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Any, Dict, Iterable, List, Mapping, Optional\n\nfrom jinja2 import Template\nfrom langgraph.graph import END, StateGraph\nfrom pydantic import BaseModel, ConfigDict, Field, field_validator\n\nfrom tesseract_flow.core.base_workflow import BaseWorkflowService\nfrom tesseract_flow.core.config import ExperimentConfig, Tes\n\nCharacters: Sarah, Marcus\nScene Context: tense negotiation in a downtown office\nMaintain natural dialogue flow with subtle character voice differences.\n\nEnhance the dialogue focusing on:\n- Voice distinctiveness (can you identify each speaker?)\n- Natural flow (realistic pacing, organic topic shifts)\n- Emotional authenticity (subtext, genuine emotions)\n\nReturn only the enhanced dialogue, no additional commentary.",
+        "enhanced_raw": "**Sarah:** \"Marcus, let’s not dance around this. Your team’s proposal—it’s ambitious, I’ll give you that. But ambitious doesn’t always mean *feasible.*\"  \n**Marcus:** \"Feasible? Sarah, innovation isn’t about playing it safe. It’s about pushing boundaries. You’re acting like we’re asking for the moon.\"  \n**Sarah:** \"And you’re acting like we’ve got an unlimited budget and zero risk. Look, I’m not against pushing boundaries, but I need something concrete. Something I can take to my board without them laughing me out of the room.\"  \n**Marcus:** (leaning forward, voice steady but edged) \"Your board? Sarah, this isn’t about appeasing them. This is about *growth.* If we don’t take this leap now, we’ll be stuck playing catch-up while our competitors leave us in the dust.\"  \n**Sarah:** (sighs, rubbing her temples) \"I get that. I do. But Marcus, you’re asking me to sign off on a plan that’s half-baked at best. Where’s the contingency? Where’s the fallback if this—if *we*—fail?\"  \n**Marcus:** (pausing, softer now) \"Sometimes, Sarah, you’ve got to trust the process. Trust the team. We’ve done the groundwork. We’ve crunched the numbers. This isn’t a shot in the dark—it’s a calculated risk.\"  \n**Sarah:** (meeting his gaze, voice low) \"And if the calculation’s wrong? What then? I’m the one who’ll have to clean up the mess. Not you. Not your team. *Me.*\"  \n**Marcus:** (leaning back, a flicker of frustration) \"You’re not in this alone, Sarah. We’re partners. If this goes south, we’ll handle it together. But if we don’t even try—\"  \n**Sarah:** (cutting him off) \"—we’ll never know. Yeah, I’ve heard that before. But ‘what if’ isn’t a strategy, Marcus. I need more than optimism to sell this.\"  \n**Marcus:** (quietly, almost to himself) \"Sometimes, optimism’s all we’ve got.\"  \n**Sarah:** (softening slightly) \"And sometimes, it’s not enough. Look, I’m not saying no. I’m saying… give me something I can work with. Something that doesn’t feel like a gamble.\"  \n**Marcus:** (nodding slowly) \"Alright. I’ll go back to the team. We’ll tighten it up. But Sarah… don’t let fear of failure keep us from something great.\"  \n**Sarah:** (smiling faintly) \"And don’t let your confidence blind you to the risks. Deal?\"  \n**Marcus:** (extending a hand) \"Deal.\"",
+        "test_config": {
+          "test_number": 2,
+          "config": {
+            "temperature": 0.5,
+            "context_depth": "minimal",
+            "reasoning_enabled": "false",
+            "verbalized_sampling": "self_consistency",
+            "n_samples": "5",
+            "reasoning_visibility": "hidden",
+            "max_reasoning_tokens": "extended"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T13:35:17.461480Z",
+          "completed_at": "2025-10-28T13:35:42.129391Z",
+          "duration_seconds": 24.667905875016004
+        },
+        "evaluation": {
+          "rubric": {
+            "naturalness": {
+              "description": "Does dialogue sound like real speech? Contractions, interruptions, natural rhythms?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "subtext": {
+              "description": "Do characters have hidden agendas? Emotional layers beneath words?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinction": {
+              "description": "Can you tell characters apart by speech patterns alone?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_authenticity": {
+              "description": "Do emotions feel genuine and earned by the scene context?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "naturalness": {
+              "score": 85,
+              "reasoning": "Dialogue uses contractions, interruptions, and realistic back-and-forth (e.g., Sarah cutting him off, parenthetical actions) and generally reads like a workplace exchange; slightly polished and on-the-nose in places but overall believable."
+            },
+            "subtext": {
+              "score": 80,
+              "reasoning": "Clear hidden agendas and stakes (Sarah protecting her credibility with the board; Marcus prioritizing growth and risk-taking). Emotional layers are present (fear, pride, responsibility), though some lines state motives fairly directly rather than implying them subtly."
+            },
+            "voice_distinction": {
+              "score": 80,
+              "reasoning": "Characters are distinguishable: Sarah is pragmatic, risk-averse and board-focused; Marcus is idealistic and growth-driven. Differences are consistent but both share a similar professional register, limiting stronger contrast."
+            },
+            "emotional_authenticity": {
+              "score": 85,
+              "reasoning": "Emotions (frustration, vulnerability, restraint) feel earned by the scene—progresses naturally from confrontation to a tentative compromise. A few moments lean toward theatrical phrasing, but emotional beats remain convincing."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "de1734dd21110346bcad82b80fb7a7ffc784bc3789006b58cec308eb5cf736de",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "timestamp": "2025-10-28T13:35:54.418524Z"
+    },
+    {
+      "test_number": 3,
+      "config": {
+        "test_number": 3,
+        "config_values": {
+          "temperature": 0.5,
+          "context_depth": "full",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "none",
+          "n_samples": "3",
+          "reasoning_visibility": "hidden",
+          "max_reasoning_tokens": "extended"
+        },
+        "workflow": "dialogue_enhancement"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "naturalness": {
+            "score": 0.8,
+            "reasoning": "Dialogue uses contractions, interruptions via stage directions, and idiomatic phrases that read like real speech, though a few lines feel slightly polished/theatrical rather than fully colloquial."
+          },
+          "subtext": {
+            "score": 0.75,
+            "reasoning": "Clear underlying agendas around resources, deadlines, and trust drive the exchange, but much of the tension is stated overtly rather than deeply implied, limiting layered ambiguity."
+          },
+          "voice_distinction": {
+            "score": 0.7,
+            "reasoning": "Speakers are distinguishable—Sarah is firmer and pragmatic, Marcus more conciliatory and rhetorical—but their sentence rhythms and diction are similar enough that differentiation could be stronger."
+          },
+          "emotional_authenticity": {
+            "score": 0.78,
+            "reasoning": "Emotional beats (frustration, guardedness, relief) feel appropriate and earned by the negotiation context, though occasional theatrical phrasing slightly reduces raw authenticity."
+          }
+        },
+        "overall_score": 0.7575000000000001,
+        "evaluator_model": "openrouter/openai/gpt-5-mini",
+        "timestamp": "2025-10-28T13:36:12.466075Z",
+        "metadata": {
+          "rubric": {
+            "naturalness": {
+              "description": "Does dialogue sound like real speech? Contractions, interruptions, natural rhythms?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "subtext": {
+              "description": "Do characters have hidden agendas? Emotional layers beneath words?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinction": {
+              "description": "Can you tell characters apart by speech patterns alone?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_authenticity": {
+              "description": "Do emotions feel genuine and earned by the scene context?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "naturalness": {
+              "score": 80,
+              "reasoning": "Dialogue uses contractions, interruptions via stage directions, and idiomatic phrases that read like real speech, though a few lines feel slightly polished/theatrical rather than fully colloquial."
+            },
+            "subtext": {
+              "score": 75,
+              "reasoning": "Clear underlying agendas around resources, deadlines, and trust drive the exchange, but much of the tension is stated overtly rather than deeply implied, limiting layered ambiguity."
+            },
+            "voice_distinction": {
+              "score": 70,
+              "reasoning": "Speakers are distinguishable—Sarah is firmer and pragmatic, Marcus more conciliatory and rhetorical—but their sentence rhythms and diction are similar enough that differentiation could be stronger."
+            },
+            "emotional_authenticity": {
+              "score": 78,
+              "reasoning": "Emotional beats (frustration, guardedness, relief) feel appropriate and earned by the negotiation context, though occasional theatrical phrasing slightly reduces raw authenticity."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "2ded82e8c84b4df0e7ea3b658dd690a22b618e523b83ba44f1e2aaf8c2b4e17c",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "cost": 0.0,
+      "latency": 7198.109166987706,
+      "utility": 0.6047749888914428,
+      "workflow_output": "Enhanced Dialogue:\nSarah: *leaning forward, fingers tapping the desk* \"Marcus, we’ve been circling this for hours. The numbers don’t lie. You’re asking for concessions we can’t afford to make.\"  \n\nMarcus: *crossing his arms, voice calm but edged with steel* \"And I’ve told you, Sarah, this isn’t just about numbers. It’s about trust. Your team’s track record hasn’t exactly inspired confidence.\"  \n\nSarah: *pausing, her tone softening but still firm* \"Fair point. But trust goes both ways. We’ve delivered on every deadline this quarter. What more do you need to see?\"  \n\nMarcus: *leaning back, a faint smirk playing on his lips* \"A little flexibility wouldn’t hurt. You’re acting like this is a zero-sum game. It doesn’t have to be.\"  \n\nSarah: *sighing, running a hand through her hair* \"Marcus, I’m not trying to be rigid. But we’re stretched thin as it is. If we bend any further, something’s going to break.\"  \n\nMarcus: *leaning in, his voice dropping slightly* \"Then maybe it’s time to rethink the structure. Push back the timeline, reallocate resources. I’m not asking for miracles—just a partnership that works for both of us.\"  \n\nSarah: *meeting his gaze, her voice steady but tinged with frustration* \"And I’m telling you, we’re already at capacity. If we push this any further, it’s not just our team that suffers—it’s the entire project.\"  \n\nMarcus: *nodding slowly, his tone more conciliatory* \"Alright. Let’s table the timeline for now. But we need to address the resource issue. I can’t keep selling this to my team if they’re feeling the pinch too.\"  \n\nSarah: *exhaling deeply, a hint of relief in her voice* \"Agreed. Let’s focus on that. But Marcus—this has to be a two-way street. If we’re going to make this work, we both need to give a little.\"  \n\nMarcus: *smiling faintly, extending a hand* \"Deal. Let’s find that middle ground.\"  \n\nSarah: *shaking his hand, a small smile breaking through* \"Deal. Now, let’s get to work.\"",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "voice_emphasis": "subtle",
+        "examples_count": "0",
+        "enhance_prompt": "You are a dialogue specialist. Enhance the following dialogue to make it more natural, distinctive, and emotionally authentic.\n\nOriginal Dialogue:\n\"\"\"Code review workflow built on LangGraph.\"\"\"\nfrom __future__ import annotations\n\nimport asyncio\nimport json\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Any, Dict, Iterable, List, Mapping, Optional\n\nfrom jinja2 import Template\nfrom langgraph.graph import END, StateGraph\nfrom pydantic import BaseModel, ConfigDict, Field, field_validator\n\nfrom tesseract_flow.core.base_workflow import BaseWorkflowService\nfrom tesseract_flow.core.config import ExperimentConfig, Tes\n\nCharacters: Sarah, Marcus\nScene Context: tense negotiation in a downtown office\nMaintain natural dialogue flow with subtle character voice differences.\n\nEnhance the dialogue focusing on:\n- Voice distinctiveness (can you identify each speaker?)\n- Natural flow (realistic pacing, organic topic shifts)\n- Emotional authenticity (subtext, genuine emotions)\n\nReturn only the enhanced dialogue, no additional commentary.",
+        "enhanced_raw": "Sarah: *leaning forward, fingers tapping the desk* \"Marcus, we’ve been circling this for hours. The numbers don’t lie. You’re asking for concessions we can’t afford to make.\"  \n\nMarcus: *crossing his arms, voice calm but edged with steel* \"And I’ve told you, Sarah, this isn’t just about numbers. It’s about trust. Your team’s track record hasn’t exactly inspired confidence.\"  \n\nSarah: *pausing, her tone softening but still firm* \"Fair point. But trust goes both ways. We’ve delivered on every deadline this quarter. What more do you need to see?\"  \n\nMarcus: *leaning back, a faint smirk playing on his lips* \"A little flexibility wouldn’t hurt. You’re acting like this is a zero-sum game. It doesn’t have to be.\"  \n\nSarah: *sighing, running a hand through her hair* \"Marcus, I’m not trying to be rigid. But we’re stretched thin as it is. If we bend any further, something’s going to break.\"  \n\nMarcus: *leaning in, his voice dropping slightly* \"Then maybe it’s time to rethink the structure. Push back the timeline, reallocate resources. I’m not asking for miracles—just a partnership that works for both of us.\"  \n\nSarah: *meeting his gaze, her voice steady but tinged with frustration* \"And I’m telling you, we’re already at capacity. If we push this any further, it’s not just our team that suffers—it’s the entire project.\"  \n\nMarcus: *nodding slowly, his tone more conciliatory* \"Alright. Let’s table the timeline for now. But we need to address the resource issue. I can’t keep selling this to my team if they’re feeling the pinch too.\"  \n\nSarah: *exhaling deeply, a hint of relief in her voice* \"Agreed. Let’s focus on that. But Marcus—this has to be a two-way street. If we’re going to make this work, we both need to give a little.\"  \n\nMarcus: *smiling faintly, extending a hand* \"Deal. Let’s find that middle ground.\"  \n\nSarah: *shaking his hand, a small smile breaking through* \"Deal. Now, let’s get to work.\"",
+        "test_config": {
+          "test_number": 3,
+          "config": {
+            "temperature": 0.5,
+            "context_depth": "full",
+            "reasoning_enabled": "true",
+            "verbalized_sampling": "none",
+            "n_samples": "3",
+            "reasoning_visibility": "hidden",
+            "max_reasoning_tokens": "extended"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T13:35:54.419709Z",
+          "completed_at": "2025-10-28T13:36:01.617826Z",
+          "duration_seconds": 7.198109166987706
+        },
+        "evaluation": {
+          "rubric": {
+            "naturalness": {
+              "description": "Does dialogue sound like real speech? Contractions, interruptions, natural rhythms?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "subtext": {
+              "description": "Do characters have hidden agendas? Emotional layers beneath words?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinction": {
+              "description": "Can you tell characters apart by speech patterns alone?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_authenticity": {
+              "description": "Do emotions feel genuine and earned by the scene context?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "naturalness": {
+              "score": 80,
+              "reasoning": "Dialogue uses contractions, interruptions via stage directions, and idiomatic phrases that read like real speech, though a few lines feel slightly polished/theatrical rather than fully colloquial."
+            },
+            "subtext": {
+              "score": 75,
+              "reasoning": "Clear underlying agendas around resources, deadlines, and trust drive the exchange, but much of the tension is stated overtly rather than deeply implied, limiting layered ambiguity."
+            },
+            "voice_distinction": {
+              "score": 70,
+              "reasoning": "Speakers are distinguishable—Sarah is firmer and pragmatic, Marcus more conciliatory and rhetorical—but their sentence rhythms and diction are similar enough that differentiation could be stronger."
+            },
+            "emotional_authenticity": {
+              "score": 78,
+              "reasoning": "Emotional beats (frustration, guardedness, relief) feel appropriate and earned by the negotiation context, though occasional theatrical phrasing slightly reduces raw authenticity."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "2ded82e8c84b4df0e7ea3b658dd690a22b618e523b83ba44f1e2aaf8c2b4e17c",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "timestamp": "2025-10-28T13:36:12.466442Z"
+    },
+    {
+      "test_number": 4,
+      "config": {
+        "test_number": 4,
+        "config_values": {
+          "temperature": 0.5,
+          "context_depth": "full",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "self_consistency",
+          "n_samples": "5",
+          "reasoning_visibility": "visible",
+          "max_reasoning_tokens": "standard"
+        },
+        "workflow": "dialogue_enhancement"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "naturalness": {
+            "score": 0.8,
+            "reasoning": "Reads like a realistic negotiation with contractions, physical beats, and back-and-forth rhythm; occasionally a touch theatrical and on-the-nose."
+          },
+          "subtext": {
+            "score": 0.75,
+            "reasoning": "Clear underlying agendas (trust vs. risk, proving value) and power tension are present, but many emotions are stated directly rather than implied, reducing subtlety."
+          },
+          "voice_distinction": {
+            "score": 0.78,
+            "reasoning": "Speakers are distinguishable—Marcus is blunt/skeptical, Sarah more conciliatory/assertive—but their registers overlap and could be more idiosyncratic."
+          },
+          "emotional_authenticity": {
+            "score": 0.85,
+            "reasoning": "Emotional progression (frustration to tentative reconciliation) feels believable and motivated by the scene, though a few lines are explicit rather than deeply nuanced."
+          }
+        },
+        "overall_score": 0.795,
+        "evaluator_model": "openrouter/openai/gpt-5-mini",
+        "timestamp": "2025-10-28T13:36:45.243991Z",
+        "metadata": {
+          "rubric": {
+            "naturalness": {
+              "description": "Does dialogue sound like real speech? Contractions, interruptions, natural rhythms?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "subtext": {
+              "description": "Do characters have hidden agendas? Emotional layers beneath words?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinction": {
+              "description": "Can you tell characters apart by speech patterns alone?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_authenticity": {
+              "description": "Do emotions feel genuine and earned by the scene context?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "naturalness": {
+              "score": 80,
+              "reasoning": "Reads like a realistic negotiation with contractions, physical beats, and back-and-forth rhythm; occasionally a touch theatrical and on-the-nose."
+            },
+            "subtext": {
+              "score": 75,
+              "reasoning": "Clear underlying agendas (trust vs. risk, proving value) and power tension are present, but many emotions are stated directly rather than implied, reducing subtlety."
+            },
+            "voice_distinction": {
+              "score": 78,
+              "reasoning": "Speakers are distinguishable—Marcus is blunt/skeptical, Sarah more conciliatory/assertive—but their registers overlap and could be more idiosyncratic."
+            },
+            "emotional_authenticity": {
+              "score": 85,
+              "reasoning": "Emotional progression (frustration to tentative reconciliation) feels believable and motivated by the scene, though a few lines are explicit rather than deeply nuanced."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "647c2c89a3f202e57d90449943c5127d03c31e4ada7d9852056ac8a90619fe1d",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "cost": 0.0,
+      "latency": 8633.400749997236,
+      "utility": 0.6307677109484144,
+      "workflow_output": "Enhanced Dialogue:\n**Sarah:** \"Marcus, we’ve been circling this for hours. Let’s cut to the chase. Your offer doesn’t reflect the value we’re bringing to the table.\"  \n\n**Marcus:** *leans back, crossing his arms* \"Value? Sarah, your projections are optimistic at best. I’m not here to fund a dream. I need hard numbers, not wishful thinking.\"  \n\n**Sarah:** *leans forward, her voice steady but edged with frustration* \"Optimistic? We’ve exceeded every benchmark we set last quarter. You’re dismissing the data because it doesn’t fit your narrative.\"  \n\n**Marcus:** *raises an eyebrow, his tone clipped* \"Your benchmarks are irrelevant if the market’s shifting. I’m not risking capital on a strategy that’s already outdated.\"  \n\n**Sarah:** *pauses, taking a breath to steady herself* \"Outdated? Or are you just unwilling to adapt? Because I’m not seeing flexibility here, Marcus. I’m seeing fear.\"  \n\n**Marcus:** *narrows his eyes, his voice lowering* \"Careful, Sarah. This isn’t about fear. It’s about responsibility. I won’t gamble on a plan that’s half-baked.\"  \n\n**Sarah:** *softens slightly, her tone more conciliatory* \"Then let’s refine it. Together. I’m not asking for blind faith. I’m asking for a partnership.\"  \n\n**Marcus:** *sighs, rubbing his temples* \"Partnerships require trust. And right now, I’m not sure I trust where this is headed.\"  \n\n**Sarah:** *meets his gaze, her voice firm but calm* \"Then let’s rebuild that trust. But it starts with you meeting me halfway. Otherwise, we’re both wasting our time.\"  \n\n**Marcus:** *pauses, considering her words* \"Fine. Let’s revisit the numbers. But Sarah—no more games. I need transparency.\"  \n\n**Sarah:** *nods, a faint smile breaking through* \"Transparency goes both ways. Let’s make this work.\"",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "voice_emphasis": "subtle",
+        "examples_count": "0",
+        "enhance_prompt": "You are a dialogue specialist. Enhance the following dialogue to make it more natural, distinctive, and emotionally authentic.\n\nOriginal Dialogue:\n\"\"\"Code review workflow built on LangGraph.\"\"\"\nfrom __future__ import annotations\n\nimport asyncio\nimport json\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Any, Dict, Iterable, List, Mapping, Optional\n\nfrom jinja2 import Template\nfrom langgraph.graph import END, StateGraph\nfrom pydantic import BaseModel, ConfigDict, Field, field_validator\n\nfrom tesseract_flow.core.base_workflow import BaseWorkflowService\nfrom tesseract_flow.core.config import ExperimentConfig, Tes\n\nCharacters: Sarah, Marcus\nScene Context: tense negotiation in a downtown office\nMaintain natural dialogue flow with subtle character voice differences.\n\nEnhance the dialogue focusing on:\n- Voice distinctiveness (can you identify each speaker?)\n- Natural flow (realistic pacing, organic topic shifts)\n- Emotional authenticity (subtext, genuine emotions)\n\nReturn only the enhanced dialogue, no additional commentary.",
+        "enhanced_raw": "**Sarah:** \"Marcus, we’ve been circling this for hours. Let’s cut to the chase. Your offer doesn’t reflect the value we’re bringing to the table.\"  \n\n**Marcus:** *leans back, crossing his arms* \"Value? Sarah, your projections are optimistic at best. I’m not here to fund a dream. I need hard numbers, not wishful thinking.\"  \n\n**Sarah:** *leans forward, her voice steady but edged with frustration* \"Optimistic? We’ve exceeded every benchmark we set last quarter. You’re dismissing the data because it doesn’t fit your narrative.\"  \n\n**Marcus:** *raises an eyebrow, his tone clipped* \"Your benchmarks are irrelevant if the market’s shifting. I’m not risking capital on a strategy that’s already outdated.\"  \n\n**Sarah:** *pauses, taking a breath to steady herself* \"Outdated? Or are you just unwilling to adapt? Because I’m not seeing flexibility here, Marcus. I’m seeing fear.\"  \n\n**Marcus:** *narrows his eyes, his voice lowering* \"Careful, Sarah. This isn’t about fear. It’s about responsibility. I won’t gamble on a plan that’s half-baked.\"  \n\n**Sarah:** *softens slightly, her tone more conciliatory* \"Then let’s refine it. Together. I’m not asking for blind faith. I’m asking for a partnership.\"  \n\n**Marcus:** *sighs, rubbing his temples* \"Partnerships require trust. And right now, I’m not sure I trust where this is headed.\"  \n\n**Sarah:** *meets his gaze, her voice firm but calm* \"Then let’s rebuild that trust. But it starts with you meeting me halfway. Otherwise, we’re both wasting our time.\"  \n\n**Marcus:** *pauses, considering her words* \"Fine. Let’s revisit the numbers. But Sarah—no more games. I need transparency.\"  \n\n**Sarah:** *nods, a faint smile breaking through* \"Transparency goes both ways. Let’s make this work.\"",
+        "test_config": {
+          "test_number": 4,
+          "config": {
+            "temperature": 0.5,
+            "context_depth": "full",
+            "reasoning_enabled": "true",
+            "verbalized_sampling": "self_consistency",
+            "n_samples": "5",
+            "reasoning_visibility": "visible",
+            "max_reasoning_tokens": "standard"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T13:36:12.469380Z",
+          "completed_at": "2025-10-28T13:36:21.102783Z",
+          "duration_seconds": 8.633400749997236
+        },
+        "evaluation": {
+          "rubric": {
+            "naturalness": {
+              "description": "Does dialogue sound like real speech? Contractions, interruptions, natural rhythms?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "subtext": {
+              "description": "Do characters have hidden agendas? Emotional layers beneath words?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinction": {
+              "description": "Can you tell characters apart by speech patterns alone?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_authenticity": {
+              "description": "Do emotions feel genuine and earned by the scene context?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "naturalness": {
+              "score": 80,
+              "reasoning": "Reads like a realistic negotiation with contractions, physical beats, and back-and-forth rhythm; occasionally a touch theatrical and on-the-nose."
+            },
+            "subtext": {
+              "score": 75,
+              "reasoning": "Clear underlying agendas (trust vs. risk, proving value) and power tension are present, but many emotions are stated directly rather than implied, reducing subtlety."
+            },
+            "voice_distinction": {
+              "score": 78,
+              "reasoning": "Speakers are distinguishable—Marcus is blunt/skeptical, Sarah more conciliatory/assertive—but their registers overlap and could be more idiosyncratic."
+            },
+            "emotional_authenticity": {
+              "score": 85,
+              "reasoning": "Emotional progression (frustration to tentative reconciliation) feels believable and motivated by the scene, though a few lines are explicit rather than deeply nuanced."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "647c2c89a3f202e57d90449943c5127d03c31e4ada7d9852056ac8a90619fe1d",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "timestamp": "2025-10-28T13:36:45.244226Z"
+    },
+    {
+      "test_number": 5,
+      "config": {
+        "test_number": 5,
+        "config_values": {
+          "temperature": 0.9,
+          "context_depth": "minimal",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "none",
+          "n_samples": "5",
+          "reasoning_visibility": "visible",
+          "max_reasoning_tokens": "extended"
+        },
+        "workflow": "dialogue_enhancement"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "naturalness": {
+            "score": 0.82,
+            "reasoning": "Dialogue uses contractions and plausible negotiation rhythms, but reads slightly theatrical and polished with few interruptions or clipped overlaps that occur in real speech."
+          },
+          "subtext": {
+            "score": 0.88,
+            "reasoning": "Clear hidden agendas and stakes (risk vs. guarantees) inform lines beneath surface bargaining; emotional layers are present though occasionally made explicit rather than fully implied."
+          },
+          "voice_distinction": {
+            "score": 0.7,
+            "reasoning": "Characters have distinguishable attitudes (Sarah direct/firm, Marcus wry/cautious) but their lexical choices and sentence structures are similar, limiting strong, consistent vocal signatures."
+          },
+          "emotional_authenticity": {
+            "score": 0.85,
+            "reasoning": "Emotional progression (frustration → de-escalation → compromise) feels believable and earned in context, though some phrasing leans a touch theatrical."
+          }
+        },
+        "overall_score": 0.8125,
+        "evaluator_model": "openrouter/openai/gpt-5-mini",
+        "timestamp": "2025-10-28T13:37:06.829722Z",
+        "metadata": {
+          "rubric": {
+            "naturalness": {
+              "description": "Does dialogue sound like real speech? Contractions, interruptions, natural rhythms?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "subtext": {
+              "description": "Do characters have hidden agendas? Emotional layers beneath words?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinction": {
+              "description": "Can you tell characters apart by speech patterns alone?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_authenticity": {
+              "description": "Do emotions feel genuine and earned by the scene context?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "naturalness": {
+              "score": 82,
+              "reasoning": "Dialogue uses contractions and plausible negotiation rhythms, but reads slightly theatrical and polished with few interruptions or clipped overlaps that occur in real speech."
+            },
+            "subtext": {
+              "score": 88,
+              "reasoning": "Clear hidden agendas and stakes (risk vs. guarantees) inform lines beneath surface bargaining; emotional layers are present though occasionally made explicit rather than fully implied."
+            },
+            "voice_distinction": {
+              "score": 70,
+              "reasoning": "Characters have distinguishable attitudes (Sarah direct/firm, Marcus wry/cautious) but their lexical choices and sentence structures are similar, limiting strong, consistent vocal signatures."
+            },
+            "emotional_authenticity": {
+              "score": 85,
+              "reasoning": "Emotional progression (frustration → de-escalation → compromise) feels believable and earned in context, though some phrasing leans a touch theatrical."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "6c7ec2add35b8992221f4fb9315be4d5a81ab423e0fc76c303cef49e08c10f24",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "cost": 0.0,
+      "latency": 7160.508666012902,
+      "utility": 0.6488799680190198,
+      "workflow_output": "Enhanced Dialogue:\n**Sarah**: (leaning forward, her voice steady but with an edge) \"Marcus, we’ve been circling this for hours. The numbers don’t lie. If we don’t adjust the terms, this deal collapses. And neither of us wants that.\"  \n\n**Marcus**: (leaning back, tapping his pen against the table, a faint smirk playing on his lips) \"Numbers? Sure, Sarah, they’re straightforward. But they’re not the whole story. You’re asking for concessions we can’t afford. Not without guarantees on your end.\"  \n\n**Sarah**: (narrowing her eyes, her tone sharpening) \"Guarantees? You’re the one who came to us, remember? We’ve bent over backward to accommodate your timelines. And now you’re holding out on the one thing that makes this viable?\"  \n\n**Marcus**: (pausing, the smirk fading, his voice dropping to a quieter, more serious tone) \"Look, I get it. You’re frustrated. But this isn’t just about timelines or numbers. It’s about risk. Your proposal shifts too much of it onto us. I can’t sign off on that.\"  \n\n**Sarah**: (taking a deep breath, her voice softening slightly but still firm) \"Then tell me what you need. Because walking away isn’t an option for either of us. We’re too far in for that.\"  \n\n**Marcus**: (sighing, running a hand through his hair, his voice tinged with exhaustion) \"I need more than promises, Sarah. Something concrete. Something that doesn’t leave us exposed if things go south.\"  \n\n**Sarah**: (nodding slowly, her tone more measured now) \"Alright. Let’s talk specifics. But understand this—I’m not here to renegotiate the entire deal. We’re adjusting, not rewriting.\"  \n\n**Marcus**: (leaning forward again, his expression serious, a flicker of relief in his eyes) \"Fair enough. Let’s get to work. But don’t expect me to roll over just because the clock’s ticking.\"  \n\n**Sarah**: (smiling faintly, though her eyes remain sharp) \"I wouldn’t dream of it, Marcus. Let’s make this work.\"",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "voice_emphasis": "subtle",
+        "examples_count": "0",
+        "enhance_prompt": "You are a dialogue specialist. Enhance the following dialogue to make it more natural, distinctive, and emotionally authentic.\n\nOriginal Dialogue:\n\"\"\"Code review workflow built on LangGraph.\"\"\"\nfrom __future__ import annotations\n\nimport asyncio\nimport json\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Any, Dict, Iterable, List, Mapping, Optional\n\nfrom jinja2 import Template\nfrom langgraph.graph import END, StateGraph\nfrom pydantic import BaseModel, ConfigDict, Field, field_validator\n\nfrom tesseract_flow.core.base_workflow import BaseWorkflowService\nfrom tesseract_flow.core.config import ExperimentConfig, Tes\n\nCharacters: Sarah, Marcus\nScene Context: tense negotiation in a downtown office\nMaintain natural dialogue flow with subtle character voice differences.\n\nEnhance the dialogue focusing on:\n- Voice distinctiveness (can you identify each speaker?)\n- Natural flow (realistic pacing, organic topic shifts)\n- Emotional authenticity (subtext, genuine emotions)\n\nReturn only the enhanced dialogue, no additional commentary.",
+        "enhanced_raw": "**Sarah**: (leaning forward, her voice steady but with an edge) \"Marcus, we’ve been circling this for hours. The numbers don’t lie. If we don’t adjust the terms, this deal collapses. And neither of us wants that.\"  \n\n**Marcus**: (leaning back, tapping his pen against the table, a faint smirk playing on his lips) \"Numbers? Sure, Sarah, they’re straightforward. But they’re not the whole story. You’re asking for concessions we can’t afford. Not without guarantees on your end.\"  \n\n**Sarah**: (narrowing her eyes, her tone sharpening) \"Guarantees? You’re the one who came to us, remember? We’ve bent over backward to accommodate your timelines. And now you’re holding out on the one thing that makes this viable?\"  \n\n**Marcus**: (pausing, the smirk fading, his voice dropping to a quieter, more serious tone) \"Look, I get it. You’re frustrated. But this isn’t just about timelines or numbers. It’s about risk. Your proposal shifts too much of it onto us. I can’t sign off on that.\"  \n\n**Sarah**: (taking a deep breath, her voice softening slightly but still firm) \"Then tell me what you need. Because walking away isn’t an option for either of us. We’re too far in for that.\"  \n\n**Marcus**: (sighing, running a hand through his hair, his voice tinged with exhaustion) \"I need more than promises, Sarah. Something concrete. Something that doesn’t leave us exposed if things go south.\"  \n\n**Sarah**: (nodding slowly, her tone more measured now) \"Alright. Let’s talk specifics. But understand this—I’m not here to renegotiate the entire deal. We’re adjusting, not rewriting.\"  \n\n**Marcus**: (leaning forward again, his expression serious, a flicker of relief in his eyes) \"Fair enough. Let’s get to work. But don’t expect me to roll over just because the clock’s ticking.\"  \n\n**Sarah**: (smiling faintly, though her eyes remain sharp) \"I wouldn’t dream of it, Marcus. Let’s make this work.\"",
+        "test_config": {
+          "test_number": 5,
+          "config": {
+            "temperature": 0.9,
+            "context_depth": "minimal",
+            "reasoning_enabled": "true",
+            "verbalized_sampling": "none",
+            "n_samples": "5",
+            "reasoning_visibility": "visible",
+            "max_reasoning_tokens": "extended"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T13:36:45.246176Z",
+          "completed_at": "2025-10-28T13:36:52.406687Z",
+          "duration_seconds": 7.160508666012902
+        },
+        "evaluation": {
+          "rubric": {
+            "naturalness": {
+              "description": "Does dialogue sound like real speech? Contractions, interruptions, natural rhythms?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "subtext": {
+              "description": "Do characters have hidden agendas? Emotional layers beneath words?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinction": {
+              "description": "Can you tell characters apart by speech patterns alone?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_authenticity": {
+              "description": "Do emotions feel genuine and earned by the scene context?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "naturalness": {
+              "score": 82,
+              "reasoning": "Dialogue uses contractions and plausible negotiation rhythms, but reads slightly theatrical and polished with few interruptions or clipped overlaps that occur in real speech."
+            },
+            "subtext": {
+              "score": 88,
+              "reasoning": "Clear hidden agendas and stakes (risk vs. guarantees) inform lines beneath surface bargaining; emotional layers are present though occasionally made explicit rather than fully implied."
+            },
+            "voice_distinction": {
+              "score": 70,
+              "reasoning": "Characters have distinguishable attitudes (Sarah direct/firm, Marcus wry/cautious) but their lexical choices and sentence structures are similar, limiting strong, consistent vocal signatures."
+            },
+            "emotional_authenticity": {
+              "score": 85,
+              "reasoning": "Emotional progression (frustration → de-escalation → compromise) feels believable and earned in context, though some phrasing leans a touch theatrical."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "6c7ec2add35b8992221f4fb9315be4d5a81ab423e0fc76c303cef49e08c10f24",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "timestamp": "2025-10-28T13:37:06.830105Z"
+    },
+    {
+      "test_number": 6,
+      "config": {
+        "test_number": 6,
+        "config_values": {
+          "temperature": 0.9,
+          "context_depth": "minimal",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "self_consistency",
+          "n_samples": "3",
+          "reasoning_visibility": "hidden",
+          "max_reasoning_tokens": "standard"
+        },
+        "workflow": "dialogue_enhancement"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "naturalness": {
+            "score": 0.85,
+            "reasoning": "Dialogue uses contractions, interruptions and rhythmic beats that read as spoken negotiation. Stage directions are slightly theatrical, making it a bit more polished than everyday banter, but overall it rings natural."
+          },
+          "subtext": {
+            "score": 0.88,
+            "reasoning": "Clear hidden agendas and power dynamics (board constraints, pressure to concede, persistence vs. protection) create strong emotional layers beneath the surface bargaining language."
+          },
+          "voice_distinction": {
+            "score": 0.75,
+            "reasoning": "Sarah and Marcus have identifiable stances (persistent/assertive vs. defensive/guarded), but their diction and cadence are similar; greater variation in syntax or lexical choices would improve separation."
+          },
+          "emotional_authenticity": {
+            "score": 0.85,
+            "reasoning": "Frustration, respect, and reluctant compromise feel believable and earned by the scene context, though a couple of lines verge on theatricality rather than raw realism."
+          }
+        },
+        "overall_score": 0.8325,
+        "evaluator_model": "openrouter/openai/gpt-5-mini",
+        "timestamp": "2025-10-28T13:37:26.421315Z",
+        "metadata": {
+          "rubric": {
+            "naturalness": {
+              "description": "Does dialogue sound like real speech? Contractions, interruptions, natural rhythms?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "subtext": {
+              "description": "Do characters have hidden agendas? Emotional layers beneath words?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinction": {
+              "description": "Can you tell characters apart by speech patterns alone?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_authenticity": {
+              "description": "Do emotions feel genuine and earned by the scene context?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "naturalness": {
+              "score": 85,
+              "reasoning": "Dialogue uses contractions, interruptions and rhythmic beats that read as spoken negotiation. Stage directions are slightly theatrical, making it a bit more polished than everyday banter, but overall it rings natural."
+            },
+            "subtext": {
+              "score": 88,
+              "reasoning": "Clear hidden agendas and power dynamics (board constraints, pressure to concede, persistence vs. protection) create strong emotional layers beneath the surface bargaining language."
+            },
+            "voice_distinction": {
+              "score": 75,
+              "reasoning": "Sarah and Marcus have identifiable stances (persistent/assertive vs. defensive/guarded), but their diction and cadence are similar; greater variation in syntax or lexical choices would improve separation."
+            },
+            "emotional_authenticity": {
+              "score": 85,
+              "reasoning": "Frustration, respect, and reluctant compromise feel believable and earned by the scene context, though a couple of lines verge on theatricality rather than raw realism."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "92853aed4c1ff84c604862cf26c4565f3ff6a13f6a7903e7d5d9b0622927c937",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "cost": 0.0,
+      "latency": 6759.345458005555,
+      "utility": 0.666,
+      "workflow_output": "Enhanced Dialogue:\n**Sarah:** (leaning forward, voice calm but firm) \"Marcus, we’ve been circling this for hours. The numbers don’t lie. Your offer’s a good start, but it’s not enough to close the gap.\"  \n\n**Marcus:** (sits back, crossing arms, tone measured but with an edge) \"Sarah, I’ve given you my best. You’re asking for concessions I can’t justify. Not to my team. Not to the board.\"  \n\n**Sarah:** (pauses, tapping a pen on the table, eyes narrowing slightly) \"Then maybe we’re not aligned on what *justification* looks like. Because from where I’m sitting, your ‘best’ feels like a half-step. We’re not here to tread water, Marcus.\"  \n\n**Marcus:** (leans in, voice lower, more intense) \"And I’m not here to bleed dry just to meet your expectations. There’s a line, Sarah. I’m willing to move, but I won’t cross it.\"  \n\n**Sarah:** (sighs, setting the pen down, softer but still resolute) \"Look, I respect your position. I do. But if we can’t find a way to bridge this, we’re both walking away with nothing. Is that what you want?\"  \n\n**Marcus:** (runs a hand through his hair, frustration creeping in) \"Of course not. But I need something from you, too. A little flexibility. A sign that you’re not just here to squeeze every last drop.\"  \n\n**Sarah:** (nods slowly, a faint smile playing at her lips) \"Fair enough. Let’s talk flexibility. But Marcus, don’t mistake my persistence for greed. I’m here to make this work. For both of us.\"  \n\n**Marcus:** (leans back again, exhaling, tone softening slightly) \"Alright. Let’s… let’s try this again. But this time, let’s keep the knives sheathed, yeah?\"  \n\n**Sarah:** (chuckles lightly, genuine warmth in her voice) \"Knives sheathed. Agreed. Now, let’s see if we can finally find some common ground.\"",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "voice_emphasis": "subtle",
+        "examples_count": "0",
+        "enhance_prompt": "You are a dialogue specialist. Enhance the following dialogue to make it more natural, distinctive, and emotionally authentic.\n\nOriginal Dialogue:\n\"\"\"Code review workflow built on LangGraph.\"\"\"\nfrom __future__ import annotations\n\nimport asyncio\nimport json\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Any, Dict, Iterable, List, Mapping, Optional\n\nfrom jinja2 import Template\nfrom langgraph.graph import END, StateGraph\nfrom pydantic import BaseModel, ConfigDict, Field, field_validator\n\nfrom tesseract_flow.core.base_workflow import BaseWorkflowService\nfrom tesseract_flow.core.config import ExperimentConfig, Tes\n\nCharacters: Sarah, Marcus\nScene Context: tense negotiation in a downtown office\nMaintain natural dialogue flow with subtle character voice differences.\n\nEnhance the dialogue focusing on:\n- Voice distinctiveness (can you identify each speaker?)\n- Natural flow (realistic pacing, organic topic shifts)\n- Emotional authenticity (subtext, genuine emotions)\n\nReturn only the enhanced dialogue, no additional commentary.",
+        "enhanced_raw": "**Sarah:** (leaning forward, voice calm but firm) \"Marcus, we’ve been circling this for hours. The numbers don’t lie. Your offer’s a good start, but it’s not enough to close the gap.\"  \n\n**Marcus:** (sits back, crossing arms, tone measured but with an edge) \"Sarah, I’ve given you my best. You’re asking for concessions I can’t justify. Not to my team. Not to the board.\"  \n\n**Sarah:** (pauses, tapping a pen on the table, eyes narrowing slightly) \"Then maybe we’re not aligned on what *justification* looks like. Because from where I’m sitting, your ‘best’ feels like a half-step. We’re not here to tread water, Marcus.\"  \n\n**Marcus:** (leans in, voice lower, more intense) \"And I’m not here to bleed dry just to meet your expectations. There’s a line, Sarah. I’m willing to move, but I won’t cross it.\"  \n\n**Sarah:** (sighs, setting the pen down, softer but still resolute) \"Look, I respect your position. I do. But if we can’t find a way to bridge this, we’re both walking away with nothing. Is that what you want?\"  \n\n**Marcus:** (runs a hand through his hair, frustration creeping in) \"Of course not. But I need something from you, too. A little flexibility. A sign that you’re not just here to squeeze every last drop.\"  \n\n**Sarah:** (nods slowly, a faint smile playing at her lips) \"Fair enough. Let’s talk flexibility. But Marcus, don’t mistake my persistence for greed. I’m here to make this work. For both of us.\"  \n\n**Marcus:** (leans back again, exhaling, tone softening slightly) \"Alright. Let’s… let’s try this again. But this time, let’s keep the knives sheathed, yeah?\"  \n\n**Sarah:** (chuckles lightly, genuine warmth in her voice) \"Knives sheathed. Agreed. Now, let’s see if we can finally find some common ground.\"",
+        "test_config": {
+          "test_number": 6,
+          "config": {
+            "temperature": 0.9,
+            "context_depth": "minimal",
+            "reasoning_enabled": "true",
+            "verbalized_sampling": "self_consistency",
+            "n_samples": "3",
+            "reasoning_visibility": "hidden",
+            "max_reasoning_tokens": "standard"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T13:37:06.832118Z",
+          "completed_at": "2025-10-28T13:37:13.591466Z",
+          "duration_seconds": 6.759345458005555
+        },
+        "evaluation": {
+          "rubric": {
+            "naturalness": {
+              "description": "Does dialogue sound like real speech? Contractions, interruptions, natural rhythms?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "subtext": {
+              "description": "Do characters have hidden agendas? Emotional layers beneath words?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinction": {
+              "description": "Can you tell characters apart by speech patterns alone?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_authenticity": {
+              "description": "Do emotions feel genuine and earned by the scene context?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "naturalness": {
+              "score": 85,
+              "reasoning": "Dialogue uses contractions, interruptions and rhythmic beats that read as spoken negotiation. Stage directions are slightly theatrical, making it a bit more polished than everyday banter, but overall it rings natural."
+            },
+            "subtext": {
+              "score": 88,
+              "reasoning": "Clear hidden agendas and power dynamics (board constraints, pressure to concede, persistence vs. protection) create strong emotional layers beneath the surface bargaining language."
+            },
+            "voice_distinction": {
+              "score": 75,
+              "reasoning": "Sarah and Marcus have identifiable stances (persistent/assertive vs. defensive/guarded), but their diction and cadence are similar; greater variation in syntax or lexical choices would improve separation."
+            },
+            "emotional_authenticity": {
+              "score": 85,
+              "reasoning": "Frustration, respect, and reluctant compromise feel believable and earned by the scene context, though a couple of lines verge on theatricality rather than raw realism."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "92853aed4c1ff84c604862cf26c4565f3ff6a13f6a7903e7d5d9b0622927c937",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "timestamp": "2025-10-28T13:37:26.421514Z"
+    },
+    {
+      "test_number": 7,
+      "config": {
+        "test_number": 7,
+        "config_values": {
+          "temperature": 0.9,
+          "context_depth": "full",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "none",
+          "n_samples": "5",
+          "reasoning_visibility": "hidden",
+          "max_reasoning_tokens": "standard"
+        },
+        "workflow": "dialogue_enhancement"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "naturalness": {
+            "score": 0.75,
+            "reasoning": "Dialogue uses contractions and realistic turns but reads slightly theatrical due to stage directions and polished lines; interruptions/overlaps are minimal, making it more scripted than casual speech."
+          },
+          "subtext": {
+            "score": 0.9,
+            "reasoning": "Strong underlying agendas and power dynamics (leverage, fairness, patience) are consistently implied beneath the surface exchanges, giving clear emotional and strategic layers."
+          },
+          "voice_distinction": {
+            "score": 0.8,
+            "reasoning": "Characters are distinguishable—Sarah is composed/solution-focused, Marcus is clipped/combative—but their sentence rhythms and diction are similar enough that distinction could be sharpened."
+          },
+          "emotional_authenticity": {
+            "score": 0.85,
+            "reasoning": "Emotions (frustration, guardedness, determination) feel earned and consistent with the negotiation context, though a few lines verge on theatrical phrasing rather than raw realism."
+          }
+        },
+        "overall_score": 0.825,
+        "evaluator_model": "openrouter/openai/gpt-5-mini",
+        "timestamp": "2025-10-28T13:37:46.677296Z",
+        "metadata": {
+          "rubric": {
+            "naturalness": {
+              "description": "Does dialogue sound like real speech? Contractions, interruptions, natural rhythms?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "subtext": {
+              "description": "Do characters have hidden agendas? Emotional layers beneath words?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinction": {
+              "description": "Can you tell characters apart by speech patterns alone?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_authenticity": {
+              "description": "Do emotions feel genuine and earned by the scene context?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "naturalness": {
+              "score": 75,
+              "reasoning": "Dialogue uses contractions and realistic turns but reads slightly theatrical due to stage directions and polished lines; interruptions/overlaps are minimal, making it more scripted than casual speech."
+            },
+            "subtext": {
+              "score": 90,
+              "reasoning": "Strong underlying agendas and power dynamics (leverage, fairness, patience) are consistently implied beneath the surface exchanges, giving clear emotional and strategic layers."
+            },
+            "voice_distinction": {
+              "score": 80,
+              "reasoning": "Characters are distinguishable—Sarah is composed/solution-focused, Marcus is clipped/combative—but their sentence rhythms and diction are similar enough that distinction could be sharpened."
+            },
+            "emotional_authenticity": {
+              "score": 85,
+              "reasoning": "Emotions (frustration, guardedness, determination) feel earned and consistent with the negotiation context, though a few lines verge on theatrical phrasing rather than raw realism."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "1d900e66136df83d6991210902513eb620ef509be86f7d79b2a737625cf6c4be",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "cost": 0.0,
+      "latency": 7720.440374978352,
+      "utility": 0.6573166605952875,
+      "workflow_output": "Enhanced Dialogue:\n**Sarah:** (leaning forward, her voice calm but edged with steel) \"Marcus, we’ve been circling this for hours. The numbers aren’t going to change themselves. What’s it going to take for you to see this as a win-win?\"  \n\n**Marcus:** (crossing his arms, his tone clipped) \"A win-win? Sarah, you’re asking me to bend over backwards while you barely budge. Don’t dress this up like it’s mutual.\"  \n\n**Sarah:** (pausing, her gaze steady) \"I’m not dressing anything up. I’m offering solutions. But you’re so focused on what you’re losing, you’re blind to what you’re gaining.\"  \n\n**Marcus:** (letting out a short, humorless laugh) \"Gaining? You mean the crumbs you’re throwing my way? I’m not looking for charity, Sarah. I’m looking for fairness.\"  \n\n**Sarah:** (softening her tone, leaning back slightly) \"Fairness goes both ways, Marcus. And right now, it feels like you’re holding the whole deal hostage over one clause.\"  \n\n**Marcus:** (his voice rising, then reining it in) \"That ‘one clause’ is the backbone of my leverage. You know that. Don’t pretend it’s trivial.\"  \n\n**Sarah:** (sighing, rubbing her temples) \"I’m not. But if we keep nitpicking, we’re going to lose the bigger picture. And you know as well as I do, neither of us can afford that.\"  \n\n**Marcus:** (silent for a moment, his jaw tight) \"Fine. But if we’re talking ‘bigger picture,’ then let’s talk real concessions. Not just lip service.\"  \n\n**Sarah:** (nodding slowly, her eyes narrowing) \"Alright. Let’s talk. But keep in mind, Marcus—my patience isn’t infinite. And neither is yours.\"  \n\n**Marcus:** (matching her gaze, a hint of challenge in his voice) \"Then let’s stop wasting time. What’s your next move?\"  \n\n**Sarah:** (smiling faintly, a glint of determination in her eyes) \"I was hoping you’d ask.\"",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "voice_emphasis": "subtle",
+        "examples_count": "0",
+        "enhance_prompt": "You are a dialogue specialist. Enhance the following dialogue to make it more natural, distinctive, and emotionally authentic.\n\nOriginal Dialogue:\n\"\"\"Code review workflow built on LangGraph.\"\"\"\nfrom __future__ import annotations\n\nimport asyncio\nimport json\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Any, Dict, Iterable, List, Mapping, Optional\n\nfrom jinja2 import Template\nfrom langgraph.graph import END, StateGraph\nfrom pydantic import BaseModel, ConfigDict, Field, field_validator\n\nfrom tesseract_flow.core.base_workflow import BaseWorkflowService\nfrom tesseract_flow.core.config import ExperimentConfig, Tes\n\nCharacters: Sarah, Marcus\nScene Context: tense negotiation in a downtown office\nMaintain natural dialogue flow with subtle character voice differences.\n\nEnhance the dialogue focusing on:\n- Voice distinctiveness (can you identify each speaker?)\n- Natural flow (realistic pacing, organic topic shifts)\n- Emotional authenticity (subtext, genuine emotions)\n\nReturn only the enhanced dialogue, no additional commentary.",
+        "enhanced_raw": "**Sarah:** (leaning forward, her voice calm but edged with steel) \"Marcus, we’ve been circling this for hours. The numbers aren’t going to change themselves. What’s it going to take for you to see this as a win-win?\"  \n\n**Marcus:** (crossing his arms, his tone clipped) \"A win-win? Sarah, you’re asking me to bend over backwards while you barely budge. Don’t dress this up like it’s mutual.\"  \n\n**Sarah:** (pausing, her gaze steady) \"I’m not dressing anything up. I’m offering solutions. But you’re so focused on what you’re losing, you’re blind to what you’re gaining.\"  \n\n**Marcus:** (letting out a short, humorless laugh) \"Gaining? You mean the crumbs you’re throwing my way? I’m not looking for charity, Sarah. I’m looking for fairness.\"  \n\n**Sarah:** (softening her tone, leaning back slightly) \"Fairness goes both ways, Marcus. And right now, it feels like you’re holding the whole deal hostage over one clause.\"  \n\n**Marcus:** (his voice rising, then reining it in) \"That ‘one clause’ is the backbone of my leverage. You know that. Don’t pretend it’s trivial.\"  \n\n**Sarah:** (sighing, rubbing her temples) \"I’m not. But if we keep nitpicking, we’re going to lose the bigger picture. And you know as well as I do, neither of us can afford that.\"  \n\n**Marcus:** (silent for a moment, his jaw tight) \"Fine. But if we’re talking ‘bigger picture,’ then let’s talk real concessions. Not just lip service.\"  \n\n**Sarah:** (nodding slowly, her eyes narrowing) \"Alright. Let’s talk. But keep in mind, Marcus—my patience isn’t infinite. And neither is yours.\"  \n\n**Marcus:** (matching her gaze, a hint of challenge in his voice) \"Then let’s stop wasting time. What’s your next move?\"  \n\n**Sarah:** (smiling faintly, a glint of determination in her eyes) \"I was hoping you’d ask.\"",
+        "test_config": {
+          "test_number": 7,
+          "config": {
+            "temperature": 0.9,
+            "context_depth": "full",
+            "reasoning_enabled": "false",
+            "verbalized_sampling": "none",
+            "n_samples": "5",
+            "reasoning_visibility": "hidden",
+            "max_reasoning_tokens": "standard"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T13:37:26.424731Z",
+          "completed_at": "2025-10-28T13:37:34.145179Z",
+          "duration_seconds": 7.720440374978352
+        },
+        "evaluation": {
+          "rubric": {
+            "naturalness": {
+              "description": "Does dialogue sound like real speech? Contractions, interruptions, natural rhythms?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "subtext": {
+              "description": "Do characters have hidden agendas? Emotional layers beneath words?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinction": {
+              "description": "Can you tell characters apart by speech patterns alone?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_authenticity": {
+              "description": "Do emotions feel genuine and earned by the scene context?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "naturalness": {
+              "score": 75,
+              "reasoning": "Dialogue uses contractions and realistic turns but reads slightly theatrical due to stage directions and polished lines; interruptions/overlaps are minimal, making it more scripted than casual speech."
+            },
+            "subtext": {
+              "score": 90,
+              "reasoning": "Strong underlying agendas and power dynamics (leverage, fairness, patience) are consistently implied beneath the surface exchanges, giving clear emotional and strategic layers."
+            },
+            "voice_distinction": {
+              "score": 80,
+              "reasoning": "Characters are distinguishable—Sarah is composed/solution-focused, Marcus is clipped/combative—but their sentence rhythms and diction are similar enough that distinction could be sharpened."
+            },
+            "emotional_authenticity": {
+              "score": 85,
+              "reasoning": "Emotions (frustration, guardedness, determination) feel earned and consistent with the negotiation context, though a few lines verge on theatrical phrasing rather than raw realism."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "1d900e66136df83d6991210902513eb620ef509be86f7d79b2a737625cf6c4be",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "timestamp": "2025-10-28T13:37:46.677478Z"
+    },
+    {
+      "test_number": 8,
+      "config": {
+        "test_number": 8,
+        "config_values": {
+          "temperature": 0.9,
+          "context_depth": "full",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "self_consistency",
+          "n_samples": "3",
+          "reasoning_visibility": "visible",
+          "max_reasoning_tokens": "extended"
+        },
+        "workflow": "dialogue_enhancement"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "naturalness": {
+            "score": 0.75,
+            "reasoning": "Dialogue uses contractions and conversational rhythms but leans theatrical with layered metaphors and stagey beats, making it slightly heightened rather than purely natural."
+          },
+          "subtext": {
+            "score": 0.9,
+            "reasoning": "Strong hidden agendas and power dynamics are clear (financial peril, survival vs. risk, personal history), giving the lines rich emotional and strategic undercurrents."
+          },
+          "voice_distinction": {
+            "score": 0.8,
+            "reasoning": "Characters are distinguishable—Sarah is terse, decisive; Marcus is more sardonic and metaphorical—though both share a similar register and education level."
+          },
+          "emotional_authenticity": {
+            "score": 0.85,
+            "reasoning": "Emotions feel warranted and build tension credibly, though a few lines verge on on-the-nose phrasing that slightly undercuts subtlety."
+          }
+        },
+        "overall_score": 0.825,
+        "evaluator_model": "openrouter/openai/gpt-5-mini",
+        "timestamp": "2025-10-28T13:38:09.147198Z",
+        "metadata": {
+          "rubric": {
+            "naturalness": {
+              "description": "Does dialogue sound like real speech? Contractions, interruptions, natural rhythms?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "subtext": {
+              "description": "Do characters have hidden agendas? Emotional layers beneath words?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinction": {
+              "description": "Can you tell characters apart by speech patterns alone?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_authenticity": {
+              "description": "Do emotions feel genuine and earned by the scene context?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "naturalness": {
+              "score": 75,
+              "reasoning": "Dialogue uses contractions and conversational rhythms but leans theatrical with layered metaphors and stagey beats, making it slightly heightened rather than purely natural."
+            },
+            "subtext": {
+              "score": 90,
+              "reasoning": "Strong hidden agendas and power dynamics are clear (financial peril, survival vs. risk, personal history), giving the lines rich emotional and strategic undercurrents."
+            },
+            "voice_distinction": {
+              "score": 80,
+              "reasoning": "Characters are distinguishable—Sarah is terse, decisive; Marcus is more sardonic and metaphorical—though both share a similar register and education level."
+            },
+            "emotional_authenticity": {
+              "score": 85,
+              "reasoning": "Emotions feel warranted and build tension credibly, though a few lines verge on on-the-nose phrasing that slightly undercuts subtlety."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "f326ed0f8701eb0e0a38dafd523703563fd6d322a43d9a24c1ad64b7092e2e7c",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "cost": 0.0,
+      "latency": 12091.477457986912,
+      "utility": 0.6451128960792498,
+      "workflow_output": "Enhanced Dialogue:\n**Enhanced Dialogue:**  \n\n**Sarah:** (tapping her pen) \"Marcus, we both know how this ends. The numbers don’t lie—your proposal’s got more holes than a sieve.\"  \n\n**Marcus:** (leaning forward, voice low) \"Funny. Last I checked, sieves still hold water if you use them right. Maybe you’re just not looking at the right angle.\"  \n\n**Sarah:** (sharp exhale) \"Right angle? That’s rich. You’re asking for a blank check while your projections bleed red.\"  \n\n**Marcus:** (smirking, but eyes tense) \"Bleeding’s temporary. You cut off the arm now, you lose the whole body later.\"  \n\n**Sarah:** (pausing, fingers tightening around her coffee cup) \"Or we stop the infection before it spreads. Your call.\"  \n\n**Marcus:** (quiet, deliberate) \"Sarah. You really want to be the one holding the scalpel when this flatlines?\"  \n\n**Sarah:** (meeting his gaze) \"If it keeps us alive? Yeah. I do.\"  \n\n*(A beat. The hum of the AC fills the silence.)*  \n\n**Marcus:** (softly, almost amused) \"Always liked that about you. Ruthless.\"  \n\n**Sarah:** (not smiling) \"Learned from the best.\"",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "voice_emphasis": "subtle",
+        "examples_count": "0",
+        "enhance_prompt": "You are a dialogue specialist. Enhance the following dialogue to make it more natural, distinctive, and emotionally authentic.\n\nOriginal Dialogue:\n\"\"\"Code review workflow built on LangGraph.\"\"\"\nfrom __future__ import annotations\n\nimport asyncio\nimport json\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Any, Dict, Iterable, List, Mapping, Optional\n\nfrom jinja2 import Template\nfrom langgraph.graph import END, StateGraph\nfrom pydantic import BaseModel, ConfigDict, Field, field_validator\n\nfrom tesseract_flow.core.base_workflow import BaseWorkflowService\nfrom tesseract_flow.core.config import ExperimentConfig, Tes\n\nCharacters: Sarah, Marcus\nScene Context: tense negotiation in a downtown office\nMaintain natural dialogue flow with subtle character voice differences.\n\nEnhance the dialogue focusing on:\n- Voice distinctiveness (can you identify each speaker?)\n- Natural flow (realistic pacing, organic topic shifts)\n- Emotional authenticity (subtext, genuine emotions)\n\nReturn only the enhanced dialogue, no additional commentary.",
+        "enhanced_raw": "**Enhanced Dialogue:**  \n\n**Sarah:** (tapping her pen) \"Marcus, we both know how this ends. The numbers don’t lie—your proposal’s got more holes than a sieve.\"  \n\n**Marcus:** (leaning forward, voice low) \"Funny. Last I checked, sieves still hold water if you use them right. Maybe you’re just not looking at the right angle.\"  \n\n**Sarah:** (sharp exhale) \"Right angle? That’s rich. You’re asking for a blank check while your projections bleed red.\"  \n\n**Marcus:** (smirking, but eyes tense) \"Bleeding’s temporary. You cut off the arm now, you lose the whole body later.\"  \n\n**Sarah:** (pausing, fingers tightening around her coffee cup) \"Or we stop the infection before it spreads. Your call.\"  \n\n**Marcus:** (quiet, deliberate) \"Sarah. You really want to be the one holding the scalpel when this flatlines?\"  \n\n**Sarah:** (meeting his gaze) \"If it keeps us alive? Yeah. I do.\"  \n\n*(A beat. The hum of the AC fills the silence.)*  \n\n**Marcus:** (softly, almost amused) \"Always liked that about you. Ruthless.\"  \n\n**Sarah:** (not smiling) \"Learned from the best.\"",
+        "test_config": {
+          "test_number": 8,
+          "config": {
+            "temperature": 0.9,
+            "context_depth": "full",
+            "reasoning_enabled": "false",
+            "verbalized_sampling": "self_consistency",
+            "n_samples": "3",
+            "reasoning_visibility": "visible",
+            "max_reasoning_tokens": "extended"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T13:37:46.679267Z",
+          "completed_at": "2025-10-28T13:37:58.770759Z",
+          "duration_seconds": 12.091477457986912
+        },
+        "evaluation": {
+          "rubric": {
+            "naturalness": {
+              "description": "Does dialogue sound like real speech? Contractions, interruptions, natural rhythms?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "subtext": {
+              "description": "Do characters have hidden agendas? Emotional layers beneath words?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "voice_distinction": {
+              "description": "Can you tell characters apart by speech patterns alone?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "emotional_authenticity": {
+              "description": "Do emotions feel genuine and earned by the scene context?",
+              "scale": "0-100 points",
+              "weight": 0.2
+            }
+          },
+          "raw_response": {
+            "naturalness": {
+              "score": 75,
+              "reasoning": "Dialogue uses contractions and conversational rhythms but leans theatrical with layered metaphors and stagey beats, making it slightly heightened rather than purely natural."
+            },
+            "subtext": {
+              "score": 90,
+              "reasoning": "Strong hidden agendas and power dynamics are clear (financial peril, survival vs. risk, personal history), giving the lines rich emotional and strategic undercurrents."
+            },
+            "voice_distinction": {
+              "score": 80,
+              "reasoning": "Characters are distinguishable—Sarah is terse, decisive; Marcus is more sardonic and metaphorical—though both share a similar register and education level."
+            },
+            "emotional_authenticity": {
+              "score": 85,
+              "reasoning": "Emotions feel warranted and build tension credibly, though a few lines verge on on-the-nose phrasing that slightly undercuts subtlety."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "f326ed0f8701eb0e0a38dafd523703563fd6d322a43d9a24c1ad64b7092e2e7c",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/openai/gpt-5-mini"
+        }
+      },
+      "timestamp": "2025-10-28T13:38:09.147669Z"
+    }
+  ],
+  "status": "COMPLETED",
+  "started_at": "2025-10-28T13:34:44.724015Z",
+  "completed_at": "2025-10-28T13:38:09.149943Z",
+  "experiment_metadata": {
+    "config_hash": "41a593a0901e9afe0b74f47581da6b98eb1e46168c44b040d90800d7b14fe6c7",
+    "created_at": "2025-10-28T13:34:44.723858Z",
+    "dependencies": {
+      "pydantic": "2.12.3",
+      "langgraph": "1.0.1",
+      "litellm": "1.79.0"
+    },
+    "non_deterministic_sources": [
+      "llm_sampling"
+    ]
+  },
+  "metadata": {
+    "normalization": {
+      "cost": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "latency": {
+        "min": 6759.345458005555,
+        "max": 24667.905875016004
+      }
+    }
+  },
+  "baseline_test_number": 1,
+  "baseline_config": {
+    "test_number": 1,
+    "config_values": {
+      "temperature": 0.5,
+      "context_depth": "minimal",
+      "reasoning_enabled": "false",
+      "verbalized_sampling": "none",
+      "n_samples": "3",
+      "reasoning_visibility": "visible",
+      "max_reasoning_tokens": "standard"
+    },
+    "workflow": "dialogue_enhancement"
+  },
+  "baseline_result": {
+    "test_number": 1,
+    "config": {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.5,
+        "context_depth": "minimal",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "none",
+        "n_samples": "3",
+        "reasoning_visibility": "visible",
+        "max_reasoning_tokens": "standard"
+      },
+      "workflow": "dialogue_enhancement"
+    },
+    "quality_score": {
+      "dimension_scores": {
+        "naturalness": {
+          "score": 0.8,
+          "reasoning": "Uses contractions and realistic turn-taking with interruptions and beats, but reads slightly staged/heightened for dramatic clarity rather than fully conversationally natural."
+        },
+        "subtext": {
+          "score": 0.9,
+          "reasoning": "Clear hidden agendas and stakes (risk vs. caution, reputation, deadlines) drive the lines; much of the meaning is conveyed beneath explicit statements."
+        },
+        "voice_distinction": {
+          "score": 0.85,
+          "reasoning": "Sarah and Marcus have distinct tones and rhetorical moves (strategic urgency vs. skeptical guardedness), though both remain within a similar corporate register."
+        },
+        "emotional_authenticity": {
+          "score": 0.88,
+          "reasoning": "Emotional beats (frustration, softening, guarded relief) feel earned and coherent with the conflict, slightly heightened for dramatic effect but believable."
+        }
+      },
+      "overall_score": 0.8575,
+      "evaluator_model": "openrouter/openai/gpt-5-mini",
+      "timestamp": "2025-10-28T13:35:17.458666Z",
+      "metadata": {
+        "rubric": {
+          "naturalness": {
+            "description": "Does dialogue sound like real speech? Contractions, interruptions, natural rhythms?",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "subtext": {
+            "description": "Do characters have hidden agendas? Emotional layers beneath words?",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "voice_distinction": {
+            "description": "Can you tell characters apart by speech patterns alone?",
+            "scale": "0-100 points",
+            "weight": 0.2
+          },
+          "emotional_authenticity": {
+            "description": "Do emotions feel genuine and earned by the scene context?",
+            "scale": "0-100 points",
+            "weight": 0.2
+          }
+        },
+        "raw_response": {
+          "naturalness": {
+            "score": 80,
+            "reasoning": "Uses contractions and realistic turn-taking with interruptions and beats, but reads slightly staged/heightened for dramatic clarity rather than fully conversationally natural."
+          },
+          "subtext": {
+            "score": 90,
+            "reasoning": "Clear hidden agendas and stakes (risk vs. caution, reputation, deadlines) drive the lines; much of the meaning is conveyed beneath explicit statements."
+          },
+          "voice_distinction": {
+            "score": 85,
+            "reasoning": "Sarah and Marcus have distinct tones and rhetorical moves (strategic urgency vs. skeptical guardedness), though both remain within a similar corporate register."
+          },
+          "emotional_authenticity": {
+            "score": 88,
+            "reasoning": "Emotional beats (frustration, softening, guarded relief) feel earned and coherent with the conflict, slightly heightened for dramatic effect but believable."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "215bcd195abc14075f643f1f43f7f7d606f4258db13d9e04b24817bb8edfa3e4",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/openai/gpt-5-mini"
+      }
+    },
+    "cost": 0.0,
+    "latency": 20418.58262498863,
+    "utility": 0.686,
+    "workflow_output": "Enhanced Dialogue:\n**Sarah:** (leaning forward, voice steady but with an edge) \"Marcus, we’ve been circling this for hours. The numbers don’t lie. You’re asking for concessions we can’t justify.\"  \n\n**Marcus:** (crossing his arms, tone clipped) \"Justify? Sarah, your projections are optimistic at best. We’re not here to fund your wishful thinking.\"  \n\n**Sarah:** (pausing, softening slightly) \"It’s not wishful thinking. It’s strategy. If we don’t invest now, we’ll be playing catch-up in six months. You know that.\"  \n\n**Marcus:** (leaning back, a faint smirk) \"Strategy’s great, but it doesn’t pay the bills. What’s your fallback if this doesn’t pan out? Because I’m not signing off on a gamble.\"  \n\n**Sarah:** (voice tightening, frustration seeping through) \"It’s not a gamble. It’s calculated risk. And if you’re not willing to take risks, Marcus, you’re already falling behind.\"  \n\n**Marcus:** (raising an eyebrow, tone sharpening) \"Falling behind? That’s rich, coming from a team that missed last quarter’s targets by a mile.\"  \n\n**Sarah:** (taking a deep breath, regaining composure) \"We’ve addressed that. This is about the future, not the past. Are you in, or are you going to let this opportunity slip away?\"  \n\n**Marcus:** (silent for a moment, then leaning in, voice low) \"I’ll consider it. But don’t expect me to roll over. I need guarantees, Sarah. Real ones.\"  \n\n**Sarah:** (nodding, a hint of relief) \"Fair enough. Let’s hammer out the details. But time’s running out, Marcus. We need to move.\"  \n\n**Marcus:** (standing, a wry smile) \"Then let’s move. But don’t think for a second I’m not watching every step.\"  \n\n**Sarah:** (standing as well, meeting his gaze) \"Wouldn’t expect anything less.\"",
+    "metadata": {
+      "strategy": "standard",
+      "model": "openrouter/deepseek/deepseek-chat",
+      "temperature": 0.5,
+      "voice_emphasis": "subtle",
+      "examples_count": "0",
+      "enhance_prompt": "You are a dialogue specialist. Enhance the following dialogue to make it more natural, distinctive, and emotionally authentic.\n\nOriginal Dialogue:\n\"\"\"Code review workflow built on LangGraph.\"\"\"\nfrom __future__ import annotations\n\nimport asyncio\nimport json\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Any, Dict, Iterable, List, Mapping, Optional\n\nfrom jinja2 import Template\nfrom langgraph.graph import END, StateGraph\nfrom pydantic import BaseModel, ConfigDict, Field, field_validator\n\nfrom tesseract_flow.core.base_workflow import BaseWorkflowService\nfrom tesseract_flow.core.config import ExperimentConfig, Tes\n\nCharacters: Sarah, Marcus\nScene Context: tense negotiation in a downtown office\nMaintain natural dialogue flow with subtle character voice differences.\n\nEnhance the dialogue focusing on:\n- Voice distinctiveness (can you identify each speaker?)\n- Natural flow (realistic pacing, organic topic shifts)\n- Emotional authenticity (subtext, genuine emotions)\n\nReturn only the enhanced dialogue, no additional commentary.",
+      "enhanced_raw": "**Sarah:** (leaning forward, voice steady but with an edge) \"Marcus, we’ve been circling this for hours. The numbers don’t lie. You’re asking for concessions we can’t justify.\"  \n\n**Marcus:** (crossing his arms, tone clipped) \"Justify? Sarah, your projections are optimistic at best. We’re not here to fund your wishful thinking.\"  \n\n**Sarah:** (pausing, softening slightly) \"It’s not wishful thinking. It’s strategy. If we don’t invest now, we’ll be playing catch-up in six months. You know that.\"  \n\n**Marcus:** (leaning back, a faint smirk) \"Strategy’s great, but it doesn’t pay the bills. What’s your fallback if this doesn’t pan out? Because I’m not signing off on a gamble.\"  \n\n**Sarah:** (voice tightening, frustration seeping through) \"It’s not a gamble. It’s calculated risk. And if you’re not willing to take risks, Marcus, you’re already falling behind.\"  \n\n**Marcus:** (raising an eyebrow, tone sharpening) \"Falling behind? That’s rich, coming from a team that missed last quarter’s targets by a mile.\"  \n\n**Sarah:** (taking a deep breath, regaining composure) \"We’ve addressed that. This is about the future, not the past. Are you in, or are you going to let this opportunity slip away?\"  \n\n**Marcus:** (silent for a moment, then leaning in, voice low) \"I’ll consider it. But don’t expect me to roll over. I need guarantees, Sarah. Real ones.\"  \n\n**Sarah:** (nodding, a hint of relief) \"Fair enough. Let’s hammer out the details. But time’s running out, Marcus. We need to move.\"  \n\n**Marcus:** (standing, a wry smile) \"Then let’s move. But don’t think for a second I’m not watching every step.\"  \n\n**Sarah:** (standing as well, meeting his gaze) \"Wouldn’t expect anything less.\"",
+      "test_config": {
+        "test_number": 1,
+        "config": {
+          "temperature": 0.5,
+          "context_depth": "minimal",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "none",
+          "n_samples": "3",
+          "reasoning_visibility": "visible",
+          "max_reasoning_tokens": "standard"
+        }
+      },
+      "workflow": {
+        "started_at": "2025-10-28T13:34:44.732170Z",
+        "completed_at": "2025-10-28T13:35:05.150755Z",
+        "duration_seconds": 20.41858262498863
+      },
+      "evaluation": {
+        "rubric": {
+          "naturalness": {
+            "description": "Does dialogue sound like real speech? Contractions, interruptions, natural rhythms?",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "subtext": {
+            "description": "Do characters have hidden agendas? Emotional layers beneath words?",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "voice_distinction": {
+            "description": "Can you tell characters apart by speech patterns alone?",
+            "scale": "0-100 points",
+            "weight": 0.2
+          },
+          "emotional_authenticity": {
+            "description": "Do emotions feel genuine and earned by the scene context?",
+            "scale": "0-100 points",
+            "weight": 0.2
+          }
+        },
+        "raw_response": {
+          "naturalness": {
+            "score": 80,
+            "reasoning": "Uses contractions and realistic turn-taking with interruptions and beats, but reads slightly staged/heightened for dramatic clarity rather than fully conversationally natural."
+          },
+          "subtext": {
+            "score": 90,
+            "reasoning": "Clear hidden agendas and stakes (risk vs. caution, reputation, deadlines) drive the lines; much of the meaning is conveyed beneath explicit statements."
+          },
+          "voice_distinction": {
+            "score": 85,
+            "reasoning": "Sarah and Marcus have distinct tones and rhetorical moves (strategic urgency vs. skeptical guardedness), though both remain within a similar corporate register."
+          },
+          "emotional_authenticity": {
+            "score": 88,
+            "reasoning": "Emotional beats (frustration, softening, guarded relief) feel earned and coherent with the conflict, slightly heightened for dramatic effect but believable."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "215bcd195abc14075f643f1f43f7f7d606f4258db13d9e04b24817bb8edfa3e4",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/openai/gpt-5-mini"
+      }
+    },
+    "timestamp": "2025-10-28T13:35:17.459059Z"
+  },
+  "baseline_quality": 0.8575,
+  "quality_improvement_pct": 0.0
+}

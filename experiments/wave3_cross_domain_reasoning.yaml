@@ -1,0 +1,67 @@
+name: "wave3_cross_domain_reasoning"
+workflow: "multi_domain"
+description: "Test DeepSeek R1's ability to generate solutions that work across technical, creative, and analytical domains"
+
+variables:
+  - name: "domain_count"
+    level_1: "two"           # Two domains (e.g., technical + creative)
+    level_2: "three"         # Three domains (technical + creative + analytical)
+
+  - name: "domain_balance"
+    level_1: "equal"         # Equal weight to all domains
+    level_2: "primary"       # One primary domain, others secondary
+
+  - name: "task_type"
+    level_1: "problem_solving"  # Solve a cross-domain problem
+    level_2: "design"           # Design a cross-domain solution
+
+  - name: "domain_integration"
+    level_1: "sequential"    # Address domains in sequence
+    level_2: "synthesized"   # Blend domains into unified solution
+
+  - name: "temperature"
+    level_1: 0.4             # Lower for analytical synthesis
+    level_2: 0.8             # Higher for creative synthesis
+
+  - name: "output_structure"
+    level_1: "domain_sections"  # Separate section per domain
+    level_2: "unified"          # Single integrated output
+
+  - name: "example_provision"
+    level_1: "none"          # No examples provided
+    level_2: "provided"      # Cross-domain example given
+
+utility_weights:
+  quality: 1.0
+  cost: 0.2
+  time: 0.1
+
+workflow_config:
+  evaluator_model: "openrouter/anthropic/claude-haiku-4.5"
+  model: "openrouter/deepseek/deepseek-r1"
+
+  rubric:
+    cross_domain_applicability:
+      description: "Solution works effectively across all specified domains (technical, creative, analytical)"
+      weight: 0.30
+      scale: "0-100 points"
+
+    domain_synthesis:
+      description: "Successfully integrates insights from multiple domains into coherent solution"
+      weight: 0.25
+      scale: "0-100 points"
+
+    solution_quality:
+      description: "Solution is practical, well-reasoned, and demonstrates expertise in each domain"
+      weight: 0.20
+      scale: "0-100 points"
+
+    versatility:
+      description: "Adapts approach appropriately based on domain requirements and context"
+      weight: 0.15
+      scale: "0-100 points"
+
+    innovation:
+      description: "Demonstrates creative synthesis across domain boundaries, not just sequential treatment"
+      weight: 0.10
+      scale: "0-100 points"

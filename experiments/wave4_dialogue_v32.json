@@ -1,0 +1,1501 @@
+{
+  "experiment_id": "wave4_dialogue_reasoning_vs_v32-20251028T102631",
+  "config": {
+    "name": "wave4_dialogue_reasoning_vs_v32",
+    "workflow": "dialogue_enhancement",
+    "variables": [
+      {
+        "name": "temperature",
+        "level_1": 0.6,
+        "level_2": 0.9
+      },
+      {
+        "name": "voice_emphasis",
+        "level_1": "subtle",
+        "level_2": "explicit"
+      },
+      {
+        "name": "reasoning_enabled",
+        "level_1": "false",
+        "level_2": "true"
+      },
+      {
+        "name": "verbalized_sampling",
+        "level_1": "none",
+        "level_2": "sample_and_rank"
+      },
+      {
+        "name": "n_samples",
+        "level_1": "3",
+        "level_2": "5"
+      },
+      {
+        "name": "ranking_criteria",
+        "level_1": "naturalness_and_voice",
+        "level_2": "emotional_authenticity"
+      },
+      {
+        "name": "reasoning_visibility",
+        "level_1": "visible",
+        "level_2": "hidden"
+      }
+    ],
+    "utility_weights": {
+      "quality": 0.7,
+      "cost": 0.2,
+      "time": 0.1
+    },
+    "workflow_config": {
+      "rubric": {
+        "voice_distinctiveness": {
+          "description": "Can you identify speaker without attribution? Does reasoning help maintain character voice?",
+          "scale": "0-100 points",
+          "weight": 0.35
+        },
+        "natural_flow": {
+          "description": "Realistic pacing, natural topic shifts, avoids exposition. Does sample-and-rank select better flow?",
+          "scale": "0-100 points",
+          "weight": 0.35
+        },
+        "emotional_authenticity": {
+          "description": "Dialogue conveys genuine emotions, subtext, relationships. Do multiple samples improve authenticity?",
+          "scale": "0-100 points",
+          "weight": 0.3
+        }
+      },
+      "sample_code_path": "tesseract_flow/workflows/__init__.py",
+      "evaluator_model": "openrouter/deepseek/deepseek-chat",
+      "language": "python",
+      "evaluator_temperature": 0.1
+    }
+  },
+  "test_configurations": [
+    {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.6,
+        "voice_emphasis": "subtle",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "none",
+        "n_samples": "3",
+        "ranking_criteria": "naturalness_and_voice",
+        "reasoning_visibility": "visible"
+      },
+      "workflow": "dialogue_enhancement"
+    },
+    {
+      "test_number": 2,
+      "config_values": {
+        "temperature": 0.6,
+        "voice_emphasis": "subtle",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "sample_and_rank",
+        "n_samples": "5",
+        "ranking_criteria": "emotional_authenticity",
+        "reasoning_visibility": "hidden"
+      },
+      "workflow": "dialogue_enhancement"
+    },
+    {
+      "test_number": 3,
+      "config_values": {
+        "temperature": 0.6,
+        "voice_emphasis": "explicit",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "none",
+        "n_samples": "3",
+        "ranking_criteria": "emotional_authenticity",
+        "reasoning_visibility": "hidden"
+      },
+      "workflow": "dialogue_enhancement"
+    },
+    {
+      "test_number": 4,
+      "config_values": {
+        "temperature": 0.6,
+        "voice_emphasis": "explicit",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "sample_and_rank",
+        "n_samples": "5",
+        "ranking_criteria": "naturalness_and_voice",
+        "reasoning_visibility": "visible"
+      },
+      "workflow": "dialogue_enhancement"
+    },
+    {
+      "test_number": 5,
+      "config_values": {
+        "temperature": 0.9,
+        "voice_emphasis": "subtle",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "none",
+        "n_samples": "5",
+        "ranking_criteria": "naturalness_and_voice",
+        "reasoning_visibility": "hidden"
+      },
+      "workflow": "dialogue_enhancement"
+    },
+    {
+      "test_number": 6,
+      "config_values": {
+        "temperature": 0.9,
+        "voice_emphasis": "subtle",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "sample_and_rank",
+        "n_samples": "3",
+        "ranking_criteria": "emotional_authenticity",
+        "reasoning_visibility": "visible"
+      },
+      "workflow": "dialogue_enhancement"
+    },
+    {
+      "test_number": 7,
+      "config_values": {
+        "temperature": 0.9,
+        "voice_emphasis": "explicit",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "none",
+        "n_samples": "5",
+        "ranking_criteria": "emotional_authenticity",
+        "reasoning_visibility": "visible"
+      },
+      "workflow": "dialogue_enhancement"
+    },
+    {
+      "test_number": 8,
+      "config_values": {
+        "temperature": 0.9,
+        "voice_emphasis": "explicit",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "sample_and_rank",
+        "n_samples": "3",
+        "ranking_criteria": "naturalness_and_voice",
+        "reasoning_visibility": "hidden"
+      },
+      "workflow": "dialogue_enhancement"
+    }
+  ],
+  "results": [
+    {
+      "test_number": 1,
+      "config": {
+        "test_number": 1,
+        "config_values": {
+          "temperature": 0.6,
+          "voice_emphasis": "subtle",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "none",
+          "n_samples": "3",
+          "ranking_criteria": "naturalness_and_voice",
+          "reasoning_visibility": "visible"
+        },
+        "workflow": "dialogue_enhancement"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "voice_distinctiveness": {
+            "score": 0.85,
+            "reasoning": "The dialogue effectively distinguishes between Sarah and Marcus through tone, word choice, and body language cues. Sarah’s steady but tense voice contrasts with Marcus’s measured defensiveness, making it possible to identify them without attribution. However, the reasoning behind their stances could be slightly more nuanced to further enhance distinctiveness."
+          },
+          "natural_flow": {
+            "score": 0.9,
+            "reasoning": "The conversation flows naturally, with realistic pacing and smooth topic shifts. The dialogue avoids exposition and feels like a genuine exchange. The progression from tension to a tentative resolution is well-handled, making it engaging and believable."
+          },
+          "emotional_authenticity": {
+            "score": 0.88,
+            "reasoning": "The dialogue conveys genuine emotions and subtext, particularly in the tension and defensiveness between Sarah and Marcus. Their relationship dynamics are clear, and the emotional shifts—from frustration to concession—feel authentic. However, the emotional depth could be slightly deepened to enhance authenticity further."
+          }
+        },
+        "overall_score": 0.8766666666666666,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T10:26:43.167580Z",
+        "metadata": {
+          "rubric": {
+            "voice_distinctiveness": {
+              "description": "Can you identify speaker without attribution? Does reasoning help maintain character voice?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "natural_flow": {
+              "description": "Realistic pacing, natural topic shifts, avoids exposition. Does sample-and-rank select better flow?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "emotional_authenticity": {
+              "description": "Dialogue conveys genuine emotions, subtext, relationships. Do multiple samples improve authenticity?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "voice_distinctiveness": {
+              "score": 85,
+              "reasoning": "The dialogue effectively distinguishes between Sarah and Marcus through tone, word choice, and body language cues. Sarah’s steady but tense voice contrasts with Marcus’s measured defensiveness, making it possible to identify them without attribution. However, the reasoning behind their stances could be slightly more nuanced to further enhance distinctiveness."
+            },
+            "natural_flow": {
+              "score": 90,
+              "reasoning": "The conversation flows naturally, with realistic pacing and smooth topic shifts. The dialogue avoids exposition and feels like a genuine exchange. The progression from tension to a tentative resolution is well-handled, making it engaging and believable."
+            },
+            "emotional_authenticity": {
+              "score": 88,
+              "reasoning": "The dialogue conveys genuine emotions and subtext, particularly in the tension and defensiveness between Sarah and Marcus. Their relationship dynamics are clear, and the emotional shifts—from frustration to concession—feel authentic. However, the emotional depth could be slightly deepened to enhance authenticity further."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "58ab69b09268202802be9207757267359bb801d238a2f0a58609edceee035956",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 7700.089292018674,
+      "utility": 0.5895682127556509,
+      "workflow_output": "Enhanced Dialogue:\n**Sarah**: (leaning forward, voice steady but edged with tension) \"Marcus, we’ve been circling this for hours. TesseractFlow’s workflows are solid—CharacterDevelopment, CodeReview, the whole suite. You know the value. What’s the real hold-up?\"  \n\n**Marcus**: (leaning back, crossing his arms, tone measured but with a hint of defensiveness) \"Solid doesn’t cut it, Sarah. We’re talking about integration across multiple platforms. One misstep, and we’re looking at delays, inefficiencies—costs you can’t just brush off.\"  \n\n**Sarah**: (sighs, running a hand through her hair, frustration creeping in) \"I’m not brushing anything off. But you’re acting like we’re starting from scratch. We’ve got ContextEfficiency baked in. It’s designed to handle exactly what you’re worried about.\"  \n\n**Marcus**: (narrowing his eyes, voice sharpening) \"Designed, sure. But designed doesn’t mean proven. I’ve seen too many ‘designed’ solutions fall apart under pressure. I need guarantees, not just promises.\"  \n\n**Sarah**: (pausing, softening her tone slightly, trying to bridge the gap) \"Marcus, I get it. You’re looking out for your team. But we’re not just throwing buzzwords at you. The CharacterProfile workflow alone has cut onboarding time by 30% for our other clients. That’s not a promise—it’s data.\"  \n\n**Marcus**: (uncrossing his arms, leaning forward slightly, voice quieter but still wary) \"Data’s good. But data doesn’t account for the human factor. My team’s got their own way of doing things. I need to know this won’t just work—it’ll work *for them*.\"  \n\n**Sarah**: (nodding, voice earnest) \"Fair point. That’s why we’ve built in flexibility. The CodeReview workflow, for example—it’s adaptable. It’s not about overhauling your process; it’s about enhancing it. Let’s pilot it. Small scale. No strings. Prove it to you.\"  \n\n**Marcus**: (hesitating, then sighing, a flicker of concession in his tone) \"A pilot. No strings.\"  \n\n**Sarah**: (smiling faintly, relief barely showing) \"No strings. Let’s make this work—for both of us.\"",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.6,
+        "voice_emphasis": "subtle",
+        "examples_count": "0",
+        "enhance_prompt": "You are a dialogue specialist. Enhance the following dialogue to make it more natural, distinctive, and emotionally authentic.\n\nOriginal Dialogue:\n\"\"\"Workflow implementations shipped with TesseractFlow.\"\"\"\nfrom .character_development import (\n    CharacterDevelopmentInput,\n    CharacterDevelopmentOutput,\n    CharacterDevelopmentWorkflow,\n)\nfrom .character_profile import (\n    CharacterProfileInput,\n    CharacterProfileOutput,\n    CharacterProfileWorkflow,\n)\nfrom .code_review import CodeIssue, CodeReviewInput, CodeReviewOutput, CodeReviewWorkflow\nfrom .context_efficiency import (\n    ContextEfficiencyInput,\n    ContextEfficiencyOutput,\n\nCharacters: Sarah, Marcus\nScene Context: tense negotiation in a downtown office\nMaintain natural dialogue flow with subtle character voice differences.\n\nEnhance the dialogue focusing on:\n- Voice distinctiveness (can you identify each speaker?)\n- Natural flow (realistic pacing, organic topic shifts)\n- Emotional authenticity (subtext, genuine emotions)\n\nReturn only the enhanced dialogue, no additional commentary.",
+        "enhanced_raw": "**Sarah**: (leaning forward, voice steady but edged with tension) \"Marcus, we’ve been circling this for hours. TesseractFlow’s workflows are solid—CharacterDevelopment, CodeReview, the whole suite. You know the value. What’s the real hold-up?\"  \n\n**Marcus**: (leaning back, crossing his arms, tone measured but with a hint of defensiveness) \"Solid doesn’t cut it, Sarah. We’re talking about integration across multiple platforms. One misstep, and we’re looking at delays, inefficiencies—costs you can’t just brush off.\"  \n\n**Sarah**: (sighs, running a hand through her hair, frustration creeping in) \"I’m not brushing anything off. But you’re acting like we’re starting from scratch. We’ve got ContextEfficiency baked in. It’s designed to handle exactly what you’re worried about.\"  \n\n**Marcus**: (narrowing his eyes, voice sharpening) \"Designed, sure. But designed doesn’t mean proven. I’ve seen too many ‘designed’ solutions fall apart under pressure. I need guarantees, not just promises.\"  \n\n**Sarah**: (pausing, softening her tone slightly, trying to bridge the gap) \"Marcus, I get it. You’re looking out for your team. But we’re not just throwing buzzwords at you. The CharacterProfile workflow alone has cut onboarding time by 30% for our other clients. That’s not a promise—it’s data.\"  \n\n**Marcus**: (uncrossing his arms, leaning forward slightly, voice quieter but still wary) \"Data’s good. But data doesn’t account for the human factor. My team’s got their own way of doing things. I need to know this won’t just work—it’ll work *for them*.\"  \n\n**Sarah**: (nodding, voice earnest) \"Fair point. That’s why we’ve built in flexibility. The CodeReview workflow, for example—it’s adaptable. It’s not about overhauling your process; it’s about enhancing it. Let’s pilot it. Small scale. No strings. Prove it to you.\"  \n\n**Marcus**: (hesitating, then sighing, a flicker of concession in his tone) \"A pilot. No strings.\"  \n\n**Sarah**: (smiling faintly, relief barely showing) \"No strings. Let’s make this work—for both of us.\"",
+        "test_config": {
+          "test_number": 1,
+          "config": {
+            "temperature": 0.6,
+            "voice_emphasis": "subtle",
+            "reasoning_enabled": "false",
+            "verbalized_sampling": "none",
+            "n_samples": "3",
+            "ranking_criteria": "naturalness_and_voice",
+            "reasoning_visibility": "visible"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T10:26:31.802801Z",
+          "completed_at": "2025-10-28T10:26:39.502930Z",
+          "duration_seconds": 7.700089292018674
+        },
+        "evaluation": {
+          "rubric": {
+            "voice_distinctiveness": {
+              "description": "Can you identify speaker without attribution? Does reasoning help maintain character voice?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "natural_flow": {
+              "description": "Realistic pacing, natural topic shifts, avoids exposition. Does sample-and-rank select better flow?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "emotional_authenticity": {
+              "description": "Dialogue conveys genuine emotions, subtext, relationships. Do multiple samples improve authenticity?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "voice_distinctiveness": {
+              "score": 85,
+              "reasoning": "The dialogue effectively distinguishes between Sarah and Marcus through tone, word choice, and body language cues. Sarah’s steady but tense voice contrasts with Marcus’s measured defensiveness, making it possible to identify them without attribution. However, the reasoning behind their stances could be slightly more nuanced to further enhance distinctiveness."
+            },
+            "natural_flow": {
+              "score": 90,
+              "reasoning": "The conversation flows naturally, with realistic pacing and smooth topic shifts. The dialogue avoids exposition and feels like a genuine exchange. The progression from tension to a tentative resolution is well-handled, making it engaging and believable."
+            },
+            "emotional_authenticity": {
+              "score": 88,
+              "reasoning": "The dialogue conveys genuine emotions and subtext, particularly in the tension and defensiveness between Sarah and Marcus. Their relationship dynamics are clear, and the emotional shifts—from frustration to concession—feel authentic. However, the emotional depth could be slightly deepened to enhance authenticity further."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "58ab69b09268202802be9207757267359bb801d238a2f0a58609edceee035956",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T10:26:43.168264Z"
+    },
+    {
+      "test_number": 2,
+      "config": {
+        "test_number": 2,
+        "config_values": {
+          "temperature": 0.6,
+          "voice_emphasis": "subtle",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "sample_and_rank",
+          "n_samples": "5",
+          "ranking_criteria": "emotional_authenticity",
+          "reasoning_visibility": "hidden"
+        },
+        "workflow": "dialogue_enhancement"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "voice_distinctiveness": {
+            "score": 0.9,
+            "reasoning": "Sarah and Marcus have distinct voices and reasoning styles. Sarah is cautious, logical, and emphasizes responsibility, while Marcus is more risk-taking, dismissive, and focused on strategy. Their dialogue maintains these characteristics consistently, making it easy to identify them without attribution."
+          },
+          "natural_flow": {
+            "score": 0.85,
+            "reasoning": "The dialogue flows naturally with realistic pacing and topic shifts. The conversation evolves organically from frustration to compromise, avoiding exposition. The back-and-forth feels authentic, though some transitions could be slightly smoother."
+          },
+          "emotional_authenticity": {
+            "score": 0.88,
+            "reasoning": "The dialogue effectively conveys genuine emotions and subtext, reflecting their professional relationship and underlying tension. Sarah's concern and Marcus's confidence are palpable, and their eventual compromise feels authentic. Multiple samples would likely enhance this further."
+          }
+        },
+        "overall_score": 0.8766666666666666,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T10:26:58.108006Z",
+        "metadata": {
+          "rubric": {
+            "voice_distinctiveness": {
+              "description": "Can you identify speaker without attribution? Does reasoning help maintain character voice?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "natural_flow": {
+              "description": "Realistic pacing, natural topic shifts, avoids exposition. Does sample-and-rank select better flow?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "emotional_authenticity": {
+              "description": "Dialogue conveys genuine emotions, subtext, relationships. Do multiple samples improve authenticity?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "voice_distinctiveness": {
+              "score": 90,
+              "reasoning": "Sarah and Marcus have distinct voices and reasoning styles. Sarah is cautious, logical, and emphasizes responsibility, while Marcus is more risk-taking, dismissive, and focused on strategy. Their dialogue maintains these characteristics consistently, making it easy to identify them without attribution."
+            },
+            "natural_flow": {
+              "score": 85,
+              "reasoning": "The dialogue flows naturally with realistic pacing and topic shifts. The conversation evolves organically from frustration to compromise, avoiding exposition. The back-and-forth feels authentic, though some transitions could be slightly smoother."
+            },
+            "emotional_authenticity": {
+              "score": 88,
+              "reasoning": "The dialogue effectively conveys genuine emotions and subtext, reflecting their professional relationship and underlying tension. Sarah's concern and Marcus's confidence are palpable, and their eventual compromise feels authentic. Multiple samples would likely enhance this further."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "b994a705646703c5e96c52d7c89459af7b41bb3412ae9e822a2517ae4973f3d0",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 7999.993458011886,
+      "utility": 0.5867328653420777,
+      "workflow_output": "Enhanced Dialogue:\n**Sarah:** (leaning forward, voice steady but edged with frustration) \"Marcus, we’ve been over this. The numbers don’t lie. If we push this deal now, we’re setting ourselves up for a disaster. I’m not just being cautious—I’m trying to save us both the headache.\"  \n\n**Marcus:** (crossing his arms, tone dismissive) \"Headache? Sarah, the only headache I’m seeing is your reluctance to take a calculated risk. You’re acting like this is some kind of gamble. It’s not. It’s strategy.\"  \n\n**Sarah:** (narrowing her eyes, voice sharpening) \"Strategy? Marcus, strategy requires foresight, not blind optimism. You’re so focused on the win, you’re not seeing the cracks in the foundation.\"  \n\n**Marcus:** (leaning back, smirking) \"Cracks? Or are you just afraid to take a leap? You’ve been playing it safe for so long, I’m starting to wonder if you’ve forgotten how to take a chance.\"  \n\n**Sarah:** (voice rising slightly, but controlled) \"This isn’t about fear, Marcus. It’s about responsibility. To the team, to the company, to *us*. If this falls apart, it’s not just your reputation on the line—it’s mine too.\"  \n\n**Marcus:** (pausing, softening slightly) \"Look, I get it. You’re protective. But sometimes, protection becomes a cage. We’ve got the tools, the resources—why not use them? Why not trust the process?\"  \n\n**Sarah:** (sighing, voice quieter but firm) \"Because the process isn’t foolproof. And neither are we. I’m not saying we scrap it—I’m saying we tighten it. Let’s not rush into something we can’t control.\"  \n\n**Marcus:** (nodding slowly, conceding) \"Fine. We’ll tighten it. But Sarah, at some point, we’ve got to stop second-guessing and start moving. Otherwise, we’re just spinning our wheels.\"  \n\n**Sarah:** (meeting his gaze, resolute) \"Agreed. But let’s make sure those wheels are moving in the right direction. Deal?\"  \n\n**Marcus:** (smirking, extending a hand) \"Deal. But don’t think this means I’m letting you off the hook for next time.\"  \n\n**Sarah:** (shaking his hand, a small smile breaking through) \"Wouldn’t dream of it.\"",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.6,
+        "voice_emphasis": "subtle",
+        "examples_count": "0",
+        "enhance_prompt": "You are a dialogue specialist. Enhance the following dialogue to make it more natural, distinctive, and emotionally authentic.\n\nOriginal Dialogue:\n\"\"\"Workflow implementations shipped with TesseractFlow.\"\"\"\nfrom .character_development import (\n    CharacterDevelopmentInput,\n    CharacterDevelopmentOutput,\n    CharacterDevelopmentWorkflow,\n)\nfrom .character_profile import (\n    CharacterProfileInput,\n    CharacterProfileOutput,\n    CharacterProfileWorkflow,\n)\nfrom .code_review import CodeIssue, CodeReviewInput, CodeReviewOutput, CodeReviewWorkflow\nfrom .context_efficiency import (\n    ContextEfficiencyInput,\n    ContextEfficiencyOutput,\n\nCharacters: Sarah, Marcus\nScene Context: tense negotiation in a downtown office\nMaintain natural dialogue flow with subtle character voice differences.\n\nEnhance the dialogue focusing on:\n- Voice distinctiveness (can you identify each speaker?)\n- Natural flow (realistic pacing, organic topic shifts)\n- Emotional authenticity (subtext, genuine emotions)\n\nReturn only the enhanced dialogue, no additional commentary.",
+        "enhanced_raw": "**Sarah:** (leaning forward, voice steady but edged with frustration) \"Marcus, we’ve been over this. The numbers don’t lie. If we push this deal now, we’re setting ourselves up for a disaster. I’m not just being cautious—I’m trying to save us both the headache.\"  \n\n**Marcus:** (crossing his arms, tone dismissive) \"Headache? Sarah, the only headache I’m seeing is your reluctance to take a calculated risk. You’re acting like this is some kind of gamble. It’s not. It’s strategy.\"  \n\n**Sarah:** (narrowing her eyes, voice sharpening) \"Strategy? Marcus, strategy requires foresight, not blind optimism. You’re so focused on the win, you’re not seeing the cracks in the foundation.\"  \n\n**Marcus:** (leaning back, smirking) \"Cracks? Or are you just afraid to take a leap? You’ve been playing it safe for so long, I’m starting to wonder if you’ve forgotten how to take a chance.\"  \n\n**Sarah:** (voice rising slightly, but controlled) \"This isn’t about fear, Marcus. It’s about responsibility. To the team, to the company, to *us*. If this falls apart, it’s not just your reputation on the line—it’s mine too.\"  \n\n**Marcus:** (pausing, softening slightly) \"Look, I get it. You’re protective. But sometimes, protection becomes a cage. We’ve got the tools, the resources—why not use them? Why not trust the process?\"  \n\n**Sarah:** (sighing, voice quieter but firm) \"Because the process isn’t foolproof. And neither are we. I’m not saying we scrap it—I’m saying we tighten it. Let’s not rush into something we can’t control.\"  \n\n**Marcus:** (nodding slowly, conceding) \"Fine. We’ll tighten it. But Sarah, at some point, we’ve got to stop second-guessing and start moving. Otherwise, we’re just spinning our wheels.\"  \n\n**Sarah:** (meeting his gaze, resolute) \"Agreed. But let’s make sure those wheels are moving in the right direction. Deal?\"  \n\n**Marcus:** (smirking, extending a hand) \"Deal. But don’t think this means I’m letting you off the hook for next time.\"  \n\n**Sarah:** (shaking his hand, a small smile breaking through) \"Wouldn’t dream of it.\"",
+        "test_config": {
+          "test_number": 2,
+          "config": {
+            "temperature": 0.6,
+            "voice_emphasis": "subtle",
+            "reasoning_enabled": "false",
+            "verbalized_sampling": "sample_and_rank",
+            "n_samples": "5",
+            "ranking_criteria": "emotional_authenticity",
+            "reasoning_visibility": "hidden"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T10:26:43.172381Z",
+          "completed_at": "2025-10-28T10:26:51.172409Z",
+          "duration_seconds": 7.999993458011886
+        },
+        "evaluation": {
+          "rubric": {
+            "voice_distinctiveness": {
+              "description": "Can you identify speaker without attribution? Does reasoning help maintain character voice?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "natural_flow": {
+              "description": "Realistic pacing, natural topic shifts, avoids exposition. Does sample-and-rank select better flow?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "emotional_authenticity": {
+              "description": "Dialogue conveys genuine emotions, subtext, relationships. Do multiple samples improve authenticity?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "voice_distinctiveness": {
+              "score": 90,
+              "reasoning": "Sarah and Marcus have distinct voices and reasoning styles. Sarah is cautious, logical, and emphasizes responsibility, while Marcus is more risk-taking, dismissive, and focused on strategy. Their dialogue maintains these characteristics consistently, making it easy to identify them without attribution."
+            },
+            "natural_flow": {
+              "score": 85,
+              "reasoning": "The dialogue flows naturally with realistic pacing and topic shifts. The conversation evolves organically from frustration to compromise, avoiding exposition. The back-and-forth feels authentic, though some transitions could be slightly smoother."
+            },
+            "emotional_authenticity": {
+              "score": 88,
+              "reasoning": "The dialogue effectively conveys genuine emotions and subtext, reflecting their professional relationship and underlying tension. Sarah's concern and Marcus's confidence are palpable, and their eventual compromise feels authentic. Multiple samples would likely enhance this further."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "b994a705646703c5e96c52d7c89459af7b41bb3412ae9e822a2517ae4973f3d0",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T10:26:58.115099Z"
+    },
+    {
+      "test_number": 3,
+      "config": {
+        "test_number": 3,
+        "config_values": {
+          "temperature": 0.6,
+          "voice_emphasis": "explicit",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "none",
+          "n_samples": "3",
+          "ranking_criteria": "emotional_authenticity",
+          "reasoning_visibility": "hidden"
+        },
+        "workflow": "dialogue_enhancement"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "voice_distinctiveness": {
+            "score": 0.85,
+            "reasoning": "The speakers are distinguishable through their tone and reasoning. One emphasizes caution and integrity, while the other focuses on efficiency and innovation. Their distinct perspectives help maintain their individual voices."
+          },
+          "natural_flow": {
+            "score": 0.9,
+            "reasoning": "The dialogue flows naturally with realistic pacing and smooth topic shifts. The exchange avoids unnecessary exposition and maintains a conversational rhythm that feels authentic."
+          },
+          "emotional_authenticity": {
+            "score": 0.88,
+            "reasoning": "The dialogue conveys genuine emotions and subtext, reflecting a tense but professional relationship. The speakers' frustrations and convictions are palpable, adding depth to their interaction."
+          }
+        },
+        "overall_score": 0.8766666666666666,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T10:27:08.096066Z",
+        "metadata": {
+          "rubric": {
+            "voice_distinctiveness": {
+              "description": "Can you identify speaker without attribution? Does reasoning help maintain character voice?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "natural_flow": {
+              "description": "Realistic pacing, natural topic shifts, avoids exposition. Does sample-and-rank select better flow?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "emotional_authenticity": {
+              "description": "Dialogue conveys genuine emotions, subtext, relationships. Do multiple samples improve authenticity?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "voice_distinctiveness": {
+              "score": 85,
+              "reasoning": "The speakers are distinguishable through their tone and reasoning. One emphasizes caution and integrity, while the other focuses on efficiency and innovation. Their distinct perspectives help maintain their individual voices."
+            },
+            "natural_flow": {
+              "score": 90,
+              "reasoning": "The dialogue flows naturally with realistic pacing and smooth topic shifts. The exchange avoids unnecessary exposition and maintains a conversational rhythm that feels authentic."
+            },
+            "emotional_authenticity": {
+              "score": 88,
+              "reasoning": "The dialogue conveys genuine emotions and subtext, reflecting a tense but professional relationship. The speakers' frustrations and convictions are palpable, adding depth to their interaction."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "449aefe38eb44763b0e32b99fbcc76e27936f62ddd8c501aad61890b58d9d961",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 7095.817832974717,
+      "utility": 0.5952811027811105,
+      "workflow_output": "Enhanced Dialogue:\n\"Look, I get it. You’re trying to streamline the process, but cutting corners here? That’s not going to fly. We need the full workflow, not some half-baked shortcut.\"  \n\n\"Half-baked? That’s rich. You’re the one who keeps dragging us into these endless meetings instead of just letting the team do their jobs. Efficiency isn’t a crime, you know.\"  \n\n\"Efficiency without integrity is just a ticking time bomb. You’re so focused on speed that you’re ignoring the risks. We’ve got standards for a reason.\"  \n\n\"Standards that haven’t been updated since the Stone Age. You’re clinging to a system that’s bloated and outdated. If we don’t adapt, we’ll get left behind.\"  \n\n\"Adapting doesn’t mean throwing caution to the wind. I’m not against progress, but I won’t sign off on something that could blow up in our faces. That’s not leadership—that’s recklessness.\"  \n\n\"Leadership is knowing when to take calculated risks. You’re so risk-averse it’s paralyzing. We’ve got data, we’ve got tools, and we’ve got a team that’s ready to innovate. What’s your excuse?\"  \n\n\"My *excuse* is protecting the integrity of what we’re building. You’re talking about innovation like it’s some magic wand, but without a solid foundation, it’s just smoke and mirrors.\"  \n\n\"Solid foundation? We’ve got that. What we don’t have is time. The market’s moving faster than ever, and if we don’t keep up, we’re irrelevant. Is that what you want? To be irrelevant?\"  \n\n\"Of course not. But I’d rather be late and right than on time and wrong. You’re so desperate to hit deadlines you’re forgetting why we’re here in the first place.\"  \n\n\"And you’re so obsessed with perfection you’re forgetting that ‘good enough’ can still win the race. We’re not building a monument—we’re solving problems. Let’s act like it.\"",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.6,
+        "voice_emphasis": "explicit",
+        "examples_count": "0",
+        "enhance_prompt": "You are a dialogue specialist. Enhance the following dialogue to make it more natural, distinctive, and emotionally authentic.\n\nOriginal Dialogue:\n\"\"\"Workflow implementations shipped with TesseractFlow.\"\"\"\nfrom .character_development import (\n    CharacterDevelopmentInput,\n    CharacterDevelopmentOutput,\n    CharacterDevelopmentWorkflow,\n)\nfrom .character_profile import (\n    CharacterProfileInput,\n    CharacterProfileOutput,\n    CharacterProfileWorkflow,\n)\nfrom .code_review import CodeIssue, CodeReviewInput, CodeReviewOutput, CodeReviewWorkflow\nfrom .context_efficiency import (\n    ContextEfficiencyInput,\n    ContextEfficiencyOutput,\n\nCharacters: Sarah, Marcus\nScene Context: tense negotiation in a downtown office\nFocus heavily on making each character's voice unique and identifiable without attribution. Give each character distinct speech patterns, vocabulary, and rhythm.\n\nEnhance the dialogue focusing on:\n- Voice distinctiveness (can you identify each speaker?)\n- Natural flow (realistic pacing, organic topic shifts)\n- Emotional authenticity (subtext, genuine emotions)\n\nReturn only the enhanced dialogue, no additional commentary.",
+        "enhanced_raw": "\"Look, I get it. You’re trying to streamline the process, but cutting corners here? That’s not going to fly. We need the full workflow, not some half-baked shortcut.\"  \n\n\"Half-baked? That’s rich. You’re the one who keeps dragging us into these endless meetings instead of just letting the team do their jobs. Efficiency isn’t a crime, you know.\"  \n\n\"Efficiency without integrity is just a ticking time bomb. You’re so focused on speed that you’re ignoring the risks. We’ve got standards for a reason.\"  \n\n\"Standards that haven’t been updated since the Stone Age. You’re clinging to a system that’s bloated and outdated. If we don’t adapt, we’ll get left behind.\"  \n\n\"Adapting doesn’t mean throwing caution to the wind. I’m not against progress, but I won’t sign off on something that could blow up in our faces. That’s not leadership—that’s recklessness.\"  \n\n\"Leadership is knowing when to take calculated risks. You’re so risk-averse it’s paralyzing. We’ve got data, we’ve got tools, and we’ve got a team that’s ready to innovate. What’s your excuse?\"  \n\n\"My *excuse* is protecting the integrity of what we’re building. You’re talking about innovation like it’s some magic wand, but without a solid foundation, it’s just smoke and mirrors.\"  \n\n\"Solid foundation? We’ve got that. What we don’t have is time. The market’s moving faster than ever, and if we don’t keep up, we’re irrelevant. Is that what you want? To be irrelevant?\"  \n\n\"Of course not. But I’d rather be late and right than on time and wrong. You’re so desperate to hit deadlines you’re forgetting why we’re here in the first place.\"  \n\n\"And you’re so obsessed with perfection you’re forgetting that ‘good enough’ can still win the race. We’re not building a monument—we’re solving problems. Let’s act like it.\"",
+        "test_config": {
+          "test_number": 3,
+          "config": {
+            "temperature": 0.6,
+            "voice_emphasis": "explicit",
+            "reasoning_enabled": "true",
+            "verbalized_sampling": "none",
+            "n_samples": "3",
+            "ranking_criteria": "emotional_authenticity",
+            "reasoning_visibility": "hidden"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T10:26:58.138470Z",
+          "completed_at": "2025-10-28T10:27:05.234329Z",
+          "duration_seconds": 7.095817832974717
+        },
+        "evaluation": {
+          "rubric": {
+            "voice_distinctiveness": {
+              "description": "Can you identify speaker without attribution? Does reasoning help maintain character voice?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "natural_flow": {
+              "description": "Realistic pacing, natural topic shifts, avoids exposition. Does sample-and-rank select better flow?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "emotional_authenticity": {
+              "description": "Dialogue conveys genuine emotions, subtext, relationships. Do multiple samples improve authenticity?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "voice_distinctiveness": {
+              "score": 85,
+              "reasoning": "The speakers are distinguishable through their tone and reasoning. One emphasizes caution and integrity, while the other focuses on efficiency and innovation. Their distinct perspectives help maintain their individual voices."
+            },
+            "natural_flow": {
+              "score": 90,
+              "reasoning": "The dialogue flows naturally with realistic pacing and smooth topic shifts. The exchange avoids unnecessary exposition and maintains a conversational rhythm that feels authentic."
+            },
+            "emotional_authenticity": {
+              "score": 88,
+              "reasoning": "The dialogue conveys genuine emotions and subtext, reflecting a tense but professional relationship. The speakers' frustrations and convictions are palpable, adding depth to their interaction."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "449aefe38eb44763b0e32b99fbcc76e27936f62ddd8c501aad61890b58d9d961",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T10:27:08.096354Z"
+    },
+    {
+      "test_number": 4,
+      "config": {
+        "test_number": 4,
+        "config_values": {
+          "temperature": 0.6,
+          "voice_emphasis": "explicit",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "sample_and_rank",
+          "n_samples": "5",
+          "ranking_criteria": "naturalness_and_voice",
+          "reasoning_visibility": "visible"
+        },
+        "workflow": "dialogue_enhancement"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "voice_distinctiveness": {
+            "score": 0.85,
+            "reasoning": "The speakers are distinct without explicit attribution due to their tone, word choice, and mannerisms (e.g., Marcus’s confident smirk vs. the other speaker’s icy tone). However, some lines could benefit from stronger differentiation to make voices unmistakable."
+          },
+          "natural_flow": {
+            "score": 0.9,
+            "reasoning": "The dialogue flows naturally with realistic pacing and topic shifts. The tension builds organically, and the exchange avoids exposition, maintaining a conversational rhythm. The folder reveal feels like a natural pivot in the negotiation."
+          },
+          "emotional_authenticity": {
+            "score": 0.88,
+            "reasoning": "The dialogue conveys genuine emotions and subtext, such as frustration, skepticism, and strategic maneuvering. The relationship dynamics are clear, and the tension feels authentic. Multiple samples could further refine the emotional depth."
+          }
+        },
+        "overall_score": 0.8766666666666666,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T10:27:31.380481Z",
+        "metadata": {
+          "rubric": {
+            "voice_distinctiveness": {
+              "description": "Can you identify speaker without attribution? Does reasoning help maintain character voice?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "natural_flow": {
+              "description": "Realistic pacing, natural topic shifts, avoids exposition. Does sample-and-rank select better flow?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "emotional_authenticity": {
+              "description": "Dialogue conveys genuine emotions, subtext, relationships. Do multiple samples improve authenticity?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "voice_distinctiveness": {
+              "score": 85,
+              "reasoning": "The speakers are distinct without explicit attribution due to their tone, word choice, and mannerisms (e.g., Marcus’s confident smirk vs. the other speaker’s icy tone). However, some lines could benefit from stronger differentiation to make voices unmistakable."
+            },
+            "natural_flow": {
+              "score": 90,
+              "reasoning": "The dialogue flows naturally with realistic pacing and topic shifts. The tension builds organically, and the exchange avoids exposition, maintaining a conversational rhythm. The folder reveal feels like a natural pivot in the negotiation."
+            },
+            "emotional_authenticity": {
+              "score": 88,
+              "reasoning": "The dialogue conveys genuine emotions and subtext, such as frustration, skepticism, and strategic maneuvering. The relationship dynamics are clear, and the tension feels authentic. Multiple samples could further refine the emotional depth."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "97dd5ceeab60e0d7746c1276bef54e162ff3d27f45d501ea0c297c6b74db7e2e",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 15728.449332993478,
+      "utility": 0.5136666666666666,
+      "workflow_output": "Enhanced Dialogue:\n**Enhanced Dialogue:**  \n\n*The air hums with tension, the city’s skyline pressing against the glass walls.*  \n\n**\"You’re asking for concessions we can’t possibly justify. Not after last quarter’s numbers.\"** *A deliberate pause, fingers tapping the mahogany desk.* **\"Unless you’ve got something up your sleeve—something *real*—this ends here.\"**  \n\n**\"Numbers don’t lie, but they don’t tell the whole story either.\"** *Leaning forward, elbows on knees, voice low but razor-sharp.* **\"You want justification? Fine. Supply chain bottlenecks, labor shortages—hell, even the weather played dirty. But we *adapted*. That’s the value you’re buying.\"**  \n\n**\"Adaptation isn’t a line item, Marcus. It’s expectation.\"** *A brittle laugh, nails clicking against a tablet.* **\"You want me to sell ‘we tried’ to the board? They’ll laugh me out of the room.\"**  \n\n**\"Then let’s give ‘em something better to chew on.\" *Pulling a folder from his briefcase, sliding it across the table.* **\"New distribution hubs. Faster turnaround. Same cost structure—*if* you commit now.\"**  \n\n*Silence. The folder sits untouched.*  \n\n**\"…You held this back.\"** *Eyes narrowing, voice icy.* **\"That’s not negotiation. That’s ambush.\"**  \n\n**\"Call it what you want. But it’s the only play that gets us both what we need.\"** *A slow smirk, leaning back.* **\"So. Are we talking, or are we done?\"**",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.6,
+        "voice_emphasis": "explicit",
+        "examples_count": "0",
+        "enhance_prompt": "You are a dialogue specialist. Enhance the following dialogue to make it more natural, distinctive, and emotionally authentic.\n\nOriginal Dialogue:\n\"\"\"Workflow implementations shipped with TesseractFlow.\"\"\"\nfrom .character_development import (\n    CharacterDevelopmentInput,\n    CharacterDevelopmentOutput,\n    CharacterDevelopmentWorkflow,\n)\nfrom .character_profile import (\n    CharacterProfileInput,\n    CharacterProfileOutput,\n    CharacterProfileWorkflow,\n)\nfrom .code_review import CodeIssue, CodeReviewInput, CodeReviewOutput, CodeReviewWorkflow\nfrom .context_efficiency import (\n    ContextEfficiencyInput,\n    ContextEfficiencyOutput,\n\nCharacters: Sarah, Marcus\nScene Context: tense negotiation in a downtown office\nFocus heavily on making each character's voice unique and identifiable without attribution. Give each character distinct speech patterns, vocabulary, and rhythm.\n\nEnhance the dialogue focusing on:\n- Voice distinctiveness (can you identify each speaker?)\n- Natural flow (realistic pacing, organic topic shifts)\n- Emotional authenticity (subtext, genuine emotions)\n\nReturn only the enhanced dialogue, no additional commentary.",
+        "enhanced_raw": "**Enhanced Dialogue:**  \n\n*The air hums with tension, the city’s skyline pressing against the glass walls.*  \n\n**\"You’re asking for concessions we can’t possibly justify. Not after last quarter’s numbers.\"** *A deliberate pause, fingers tapping the mahogany desk.* **\"Unless you’ve got something up your sleeve—something *real*—this ends here.\"**  \n\n**\"Numbers don’t lie, but they don’t tell the whole story either.\"** *Leaning forward, elbows on knees, voice low but razor-sharp.* **\"You want justification? Fine. Supply chain bottlenecks, labor shortages—hell, even the weather played dirty. But we *adapted*. That’s the value you’re buying.\"**  \n\n**\"Adaptation isn’t a line item, Marcus. It’s expectation.\"** *A brittle laugh, nails clicking against a tablet.* **\"You want me to sell ‘we tried’ to the board? They’ll laugh me out of the room.\"**  \n\n**\"Then let’s give ‘em something better to chew on.\" *Pulling a folder from his briefcase, sliding it across the table.* **\"New distribution hubs. Faster turnaround. Same cost structure—*if* you commit now.\"**  \n\n*Silence. The folder sits untouched.*  \n\n**\"…You held this back.\"** *Eyes narrowing, voice icy.* **\"That’s not negotiation. That’s ambush.\"**  \n\n**\"Call it what you want. But it’s the only play that gets us both what we need.\"** *A slow smirk, leaning back.* **\"So. Are we talking, or are we done?\"**",
+        "test_config": {
+          "test_number": 4,
+          "config": {
+            "temperature": 0.6,
+            "voice_emphasis": "explicit",
+            "reasoning_enabled": "true",
+            "verbalized_sampling": "sample_and_rank",
+            "n_samples": "5",
+            "ranking_criteria": "naturalness_and_voice",
+            "reasoning_visibility": "visible"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T10:27:08.098078Z",
+          "completed_at": "2025-10-28T10:27:23.826590Z",
+          "duration_seconds": 15.728449332993478
+        },
+        "evaluation": {
+          "rubric": {
+            "voice_distinctiveness": {
+              "description": "Can you identify speaker without attribution? Does reasoning help maintain character voice?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "natural_flow": {
+              "description": "Realistic pacing, natural topic shifts, avoids exposition. Does sample-and-rank select better flow?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "emotional_authenticity": {
+              "description": "Dialogue conveys genuine emotions, subtext, relationships. Do multiple samples improve authenticity?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "voice_distinctiveness": {
+              "score": 85,
+              "reasoning": "The speakers are distinct without explicit attribution due to their tone, word choice, and mannerisms (e.g., Marcus’s confident smirk vs. the other speaker’s icy tone). However, some lines could benefit from stronger differentiation to make voices unmistakable."
+            },
+            "natural_flow": {
+              "score": 90,
+              "reasoning": "The dialogue flows naturally with realistic pacing and topic shifts. The tension builds organically, and the exchange avoids exposition, maintaining a conversational rhythm. The folder reveal feels like a natural pivot in the negotiation."
+            },
+            "emotional_authenticity": {
+              "score": 88,
+              "reasoning": "The dialogue conveys genuine emotions and subtext, such as frustration, skepticism, and strategic maneuvering. The relationship dynamics are clear, and the tension feels authentic. Multiple samples could further refine the emotional depth."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "97dd5ceeab60e0d7746c1276bef54e162ff3d27f45d501ea0c297c6b74db7e2e",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T10:27:31.381333Z"
+    },
+    {
+      "test_number": 5,
+      "config": {
+        "test_number": 5,
+        "config_values": {
+          "temperature": 0.9,
+          "voice_emphasis": "subtle",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "none",
+          "n_samples": "5",
+          "ranking_criteria": "naturalness_and_voice",
+          "reasoning_visibility": "hidden"
+        },
+        "workflow": "dialogue_enhancement"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "voice_distinctiveness": {
+            "score": 0.95,
+            "reasoning": "The dialogue clearly distinguishes Sarah and Marcus through tone, word choice, and demeanor. Sarah’s protectiveness and frustration contrast sharply with Marcus’s calculated detachment and condescension, making it easy to identify each speaker without attribution."
+          },
+          "natural_flow": {
+            "score": 0.9,
+            "reasoning": "The conversation flows organically, with realistic pacing and natural topic shifts. The tension escalates smoothly, and the dialogue avoids unnecessary exposition, maintaining a dynamic and engaging rhythm."
+          },
+          "emotional_authenticity": {
+            "score": 0.92,
+            "reasoning": "The dialogue effectively conveys genuine emotions and subtext, reflecting the characters’ relationship and underlying tensions. Sarah’s protectiveness and Marcus’s detachment feel authentic, adding depth to their interaction."
+          }
+        },
+        "overall_score": 0.9233333333333333,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T10:27:45.282431Z",
+        "metadata": {
+          "rubric": {
+            "voice_distinctiveness": {
+              "description": "Can you identify speaker without attribution? Does reasoning help maintain character voice?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "natural_flow": {
+              "description": "Realistic pacing, natural topic shifts, avoids exposition. Does sample-and-rank select better flow?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "emotional_authenticity": {
+              "description": "Dialogue conveys genuine emotions, subtext, relationships. Do multiple samples improve authenticity?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "voice_distinctiveness": {
+              "score": 95,
+              "reasoning": "The dialogue clearly distinguishes Sarah and Marcus through tone, word choice, and demeanor. Sarah’s protectiveness and frustration contrast sharply with Marcus’s calculated detachment and condescension, making it easy to identify each speaker without attribution."
+            },
+            "natural_flow": {
+              "score": 90,
+              "reasoning": "The conversation flows organically, with realistic pacing and natural topic shifts. The tension escalates smoothly, and the dialogue avoids unnecessary exposition, maintaining a dynamic and engaging rhythm."
+            },
+            "emotional_authenticity": {
+              "score": 92,
+              "reasoning": "The dialogue effectively conveys genuine emotions and subtext, reflecting the characters’ relationship and underlying tensions. Sarah’s protectiveness and Marcus’s detachment feel authentic, adding depth to their interaction."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "296433e81a23e3250ebf151923e1485c465118757d18f393ff9909e187941350",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 10353.353292011889,
+      "utility": 0.5971504488843375,
+      "workflow_output": "Enhanced Dialogue:\nHere’s the enhanced dialogue with distinct voices, natural flow, and emotional authenticity:  \n\n---  \n\n**Sarah** (leaning forward, fingers drumming the table): *\"Marcus, we both know the numbers. Your offer’s a slap in the face—cutting margins like this puts my team at risk.\"*  \n\n**Marcus** (cool, adjusting his cufflinks): *\"Risk implies uncertainty, Sarah. Our projections are solid. You’re overestimating the variables.\"*  \n\n**Sarah** (sharp laugh): *\"Variables? Try payroll. Try deadlines. Your ‘projections’ don’t account for real people.\"*  \n\n**Marcus** (smooth, unflinching): *\"People adapt. Or they don’t. That’s business.\"*  \n\n**Sarah** (voice dropping, steel beneath): *\"Then maybe we’re not in the same business.\"*  \n\n**Marcus** (pausing, studying her): *\"...You’re emotional. That’s not like you.\"*  \n\n**Sarah** (standing, gathering files): *\"No, Marcus. I’m awake. Call me when you are.\"*  \n\n---  \n\n(Note: Sarah’s dialogue is direct, charged with protectiveness and frustration; Marcus is calculated, detached, with a hint of condescension. The tension escalates organically.)",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "voice_emphasis": "subtle",
+        "examples_count": "0",
+        "enhance_prompt": "You are a dialogue specialist. Enhance the following dialogue to make it more natural, distinctive, and emotionally authentic.\n\nOriginal Dialogue:\n\"\"\"Workflow implementations shipped with TesseractFlow.\"\"\"\nfrom .character_development import (\n    CharacterDevelopmentInput,\n    CharacterDevelopmentOutput,\n    CharacterDevelopmentWorkflow,\n)\nfrom .character_profile import (\n    CharacterProfileInput,\n    CharacterProfileOutput,\n    CharacterProfileWorkflow,\n)\nfrom .code_review import CodeIssue, CodeReviewInput, CodeReviewOutput, CodeReviewWorkflow\nfrom .context_efficiency import (\n    ContextEfficiencyInput,\n    ContextEfficiencyOutput,\n\nCharacters: Sarah, Marcus\nScene Context: tense negotiation in a downtown office\nMaintain natural dialogue flow with subtle character voice differences.\n\nEnhance the dialogue focusing on:\n- Voice distinctiveness (can you identify each speaker?)\n- Natural flow (realistic pacing, organic topic shifts)\n- Emotional authenticity (subtext, genuine emotions)\n\nReturn only the enhanced dialogue, no additional commentary.",
+        "enhanced_raw": "Here’s the enhanced dialogue with distinct voices, natural flow, and emotional authenticity:  \n\n---  \n\n**Sarah** (leaning forward, fingers drumming the table): *\"Marcus, we both know the numbers. Your offer’s a slap in the face—cutting margins like this puts my team at risk.\"*  \n\n**Marcus** (cool, adjusting his cufflinks): *\"Risk implies uncertainty, Sarah. Our projections are solid. You’re overestimating the variables.\"*  \n\n**Sarah** (sharp laugh): *\"Variables? Try payroll. Try deadlines. Your ‘projections’ don’t account for real people.\"*  \n\n**Marcus** (smooth, unflinching): *\"People adapt. Or they don’t. That’s business.\"*  \n\n**Sarah** (voice dropping, steel beneath): *\"Then maybe we’re not in the same business.\"*  \n\n**Marcus** (pausing, studying her): *\"...You’re emotional. That’s not like you.\"*  \n\n**Sarah** (standing, gathering files): *\"No, Marcus. I’m awake. Call me when you are.\"*  \n\n---  \n\n(Note: Sarah’s dialogue is direct, charged with protectiveness and frustration; Marcus is calculated, detached, with a hint of condescension. The tension escalates organically.)",
+        "test_config": {
+          "test_number": 5,
+          "config": {
+            "temperature": 0.9,
+            "voice_emphasis": "subtle",
+            "reasoning_enabled": "true",
+            "verbalized_sampling": "none",
+            "n_samples": "5",
+            "ranking_criteria": "naturalness_and_voice",
+            "reasoning_visibility": "hidden"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T10:27:31.389071Z",
+          "completed_at": "2025-10-28T10:27:41.742473Z",
+          "duration_seconds": 10.353353292011889
+        },
+        "evaluation": {
+          "rubric": {
+            "voice_distinctiveness": {
+              "description": "Can you identify speaker without attribution? Does reasoning help maintain character voice?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "natural_flow": {
+              "description": "Realistic pacing, natural topic shifts, avoids exposition. Does sample-and-rank select better flow?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "emotional_authenticity": {
+              "description": "Dialogue conveys genuine emotions, subtext, relationships. Do multiple samples improve authenticity?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "voice_distinctiveness": {
+              "score": 95,
+              "reasoning": "The dialogue clearly distinguishes Sarah and Marcus through tone, word choice, and demeanor. Sarah’s protectiveness and frustration contrast sharply with Marcus’s calculated detachment and condescension, making it easy to identify each speaker without attribution."
+            },
+            "natural_flow": {
+              "score": 90,
+              "reasoning": "The conversation flows organically, with realistic pacing and natural topic shifts. The tension escalates smoothly, and the dialogue avoids unnecessary exposition, maintaining a dynamic and engaging rhythm."
+            },
+            "emotional_authenticity": {
+              "score": 92,
+              "reasoning": "The dialogue effectively conveys genuine emotions and subtext, reflecting the characters’ relationship and underlying tensions. Sarah’s protectiveness and Marcus’s detachment feel authentic, adding depth to their interaction."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "296433e81a23e3250ebf151923e1485c465118757d18f393ff9909e187941350",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T10:27:45.296954Z"
+    },
+    {
+      "test_number": 6,
+      "config": {
+        "test_number": 6,
+        "config_values": {
+          "temperature": 0.9,
+          "voice_emphasis": "subtle",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "sample_and_rank",
+          "n_samples": "3",
+          "ranking_criteria": "emotional_authenticity",
+          "reasoning_visibility": "visible"
+        },
+        "workflow": "dialogue_enhancement"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "voice_distinctiveness": {
+            "score": 0.95,
+            "reasoning": "The dialogue effectively distinguishes Sarah and Marcus through their tone, word choice, and reasoning. Sarah’s focus on metrics and deliverables contrasts with Marcus’s emphasis on team capacity and autonomy, making their voices distinct even without attribution."
+          },
+          "natural_flow": {
+            "score": 0.9,
+            "reasoning": "The conversation flows naturally, with realistic pacing and logical topic shifts. The dialogue avoids exposition and maintains a dynamic back-and-forth that feels authentic to a workplace negotiation."
+          },
+          "emotional_authenticity": {
+            "score": 0.92,
+            "reasoning": "The dialogue conveys genuine emotions and subtext, such as Sarah’s frustration and Marcus’s defensiveness, which evolve into a tense yet pragmatic resolution. The relationship dynamics and emotional undertones are well-captured."
+          }
+        },
+        "overall_score": 0.9233333333333333,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T10:28:04.296683Z",
+        "metadata": {
+          "rubric": {
+            "voice_distinctiveness": {
+              "description": "Can you identify speaker without attribution? Does reasoning help maintain character voice?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "natural_flow": {
+              "description": "Realistic pacing, natural topic shifts, avoids exposition. Does sample-and-rank select better flow?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "emotional_authenticity": {
+              "description": "Dialogue conveys genuine emotions, subtext, relationships. Do multiple samples improve authenticity?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "voice_distinctiveness": {
+              "score": 95,
+              "reasoning": "The dialogue effectively distinguishes Sarah and Marcus through their tone, word choice, and reasoning. Sarah’s focus on metrics and deliverables contrasts with Marcus’s emphasis on team capacity and autonomy, making their voices distinct even without attribution."
+            },
+            "natural_flow": {
+              "score": 90,
+              "reasoning": "The conversation flows naturally, with realistic pacing and logical topic shifts. The dialogue avoids exposition and maintains a dynamic back-and-forth that feels authentic to a workplace negotiation."
+            },
+            "emotional_authenticity": {
+              "score": 92,
+              "reasoning": "The dialogue conveys genuine emotions and subtext, such as Sarah’s frustration and Marcus’s defensiveness, which evolve into a tense yet pragmatic resolution. The relationship dynamics and emotional undertones are well-captured."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "fd30e98d92d7845956e5603a85eafa9c681e6cf1fbec81611e69a48f05eb7a54",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 12844.841999991331,
+      "utility": 0.5735954707775106,
+      "workflow_output": "Enhanced Dialogue:\nHere’s the enhanced dialogue with distinct voices, natural flow, and emotional authenticity:  \n\n---  \n\n**Sarah** (leaning forward, fingers tapping the desk): *\"Marcus, we both know the numbers don’t lie. Your team’s efficiency metrics are dragging this project down. What’s the holdup?\"*  \n\n**Marcus** (crossing arms, voice low but edged): *\"Sarah, you’re looking at spreadsheets, not people. My team’s stretched thin—cutting corners now means bugs later. You really want that?\"*  \n\n**Sarah** (scoffs, but her grip tightens on her pen): *\"I want deliverables. If your devs can’t handle the pace, maybe we reallocate resources.\"*  \n\n**Marcus** (a sharp laugh, eyes narrowing): *\"Oh, so now it’s threats? Fine. Pull my people, but don’t come crying when QA drowns in regression hell.\"*  \n\n**Sarah** (pauses, exhales through her nose—calculating): *\"...Alright. What do you need?\"*  \n\n**Marcus** (leans in, voice dropping—less heat, more grit): *\"Two more weeks. And autonomy on the refactor. No micromanaging sprint quotas.\"*  \n\n**Sarah** (quiet for a beat, then nods once): *\"One week. And I want daily standup summaries. That’s the deal.\"*  \n\n**Marcus** (grinds his teeth, but extends a hand): *\"Deal. But Sarah? Push us like this again, and next time I walk.\"*  \n\n---  \n\n(Note: The original text appeared to be code imports, so I crafted a fresh dialogue based on the described scene context.)",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "voice_emphasis": "subtle",
+        "examples_count": "0",
+        "enhance_prompt": "You are a dialogue specialist. Enhance the following dialogue to make it more natural, distinctive, and emotionally authentic.\n\nOriginal Dialogue:\n\"\"\"Workflow implementations shipped with TesseractFlow.\"\"\"\nfrom .character_development import (\n    CharacterDevelopmentInput,\n    CharacterDevelopmentOutput,\n    CharacterDevelopmentWorkflow,\n)\nfrom .character_profile import (\n    CharacterProfileInput,\n    CharacterProfileOutput,\n    CharacterProfileWorkflow,\n)\nfrom .code_review import CodeIssue, CodeReviewInput, CodeReviewOutput, CodeReviewWorkflow\nfrom .context_efficiency import (\n    ContextEfficiencyInput,\n    ContextEfficiencyOutput,\n\nCharacters: Sarah, Marcus\nScene Context: tense negotiation in a downtown office\nMaintain natural dialogue flow with subtle character voice differences.\n\nEnhance the dialogue focusing on:\n- Voice distinctiveness (can you identify each speaker?)\n- Natural flow (realistic pacing, organic topic shifts)\n- Emotional authenticity (subtext, genuine emotions)\n\nReturn only the enhanced dialogue, no additional commentary.",
+        "enhanced_raw": "Here’s the enhanced dialogue with distinct voices, natural flow, and emotional authenticity:  \n\n---  \n\n**Sarah** (leaning forward, fingers tapping the desk): *\"Marcus, we both know the numbers don’t lie. Your team’s efficiency metrics are dragging this project down. What’s the holdup?\"*  \n\n**Marcus** (crossing arms, voice low but edged): *\"Sarah, you’re looking at spreadsheets, not people. My team’s stretched thin—cutting corners now means bugs later. You really want that?\"*  \n\n**Sarah** (scoffs, but her grip tightens on her pen): *\"I want deliverables. If your devs can’t handle the pace, maybe we reallocate resources.\"*  \n\n**Marcus** (a sharp laugh, eyes narrowing): *\"Oh, so now it’s threats? Fine. Pull my people, but don’t come crying when QA drowns in regression hell.\"*  \n\n**Sarah** (pauses, exhales through her nose—calculating): *\"...Alright. What do you need?\"*  \n\n**Marcus** (leans in, voice dropping—less heat, more grit): *\"Two more weeks. And autonomy on the refactor. No micromanaging sprint quotas.\"*  \n\n**Sarah** (quiet for a beat, then nods once): *\"One week. And I want daily standup summaries. That’s the deal.\"*  \n\n**Marcus** (grinds his teeth, but extends a hand): *\"Deal. But Sarah? Push us like this again, and next time I walk.\"*  \n\n---  \n\n(Note: The original text appeared to be code imports, so I crafted a fresh dialogue based on the described scene context.)",
+        "test_config": {
+          "test_number": 6,
+          "config": {
+            "temperature": 0.9,
+            "voice_emphasis": "subtle",
+            "reasoning_enabled": "true",
+            "verbalized_sampling": "sample_and_rank",
+            "n_samples": "3",
+            "ranking_criteria": "emotional_authenticity",
+            "reasoning_visibility": "visible"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T10:27:45.325095Z",
+          "completed_at": "2025-10-28T10:27:58.169999Z",
+          "duration_seconds": 12.844841999991331
+        },
+        "evaluation": {
+          "rubric": {
+            "voice_distinctiveness": {
+              "description": "Can you identify speaker without attribution? Does reasoning help maintain character voice?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "natural_flow": {
+              "description": "Realistic pacing, natural topic shifts, avoids exposition. Does sample-and-rank select better flow?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "emotional_authenticity": {
+              "description": "Dialogue conveys genuine emotions, subtext, relationships. Do multiple samples improve authenticity?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "voice_distinctiveness": {
+              "score": 95,
+              "reasoning": "The dialogue effectively distinguishes Sarah and Marcus through their tone, word choice, and reasoning. Sarah’s focus on metrics and deliverables contrasts with Marcus’s emphasis on team capacity and autonomy, making their voices distinct even without attribution."
+            },
+            "natural_flow": {
+              "score": 90,
+              "reasoning": "The conversation flows naturally, with realistic pacing and logical topic shifts. The dialogue avoids exposition and maintains a dynamic back-and-forth that feels authentic to a workplace negotiation."
+            },
+            "emotional_authenticity": {
+              "score": 92,
+              "reasoning": "The dialogue conveys genuine emotions and subtext, such as Sarah’s frustration and Marcus’s defensiveness, which evolve into a tense yet pragmatic resolution. The relationship dynamics and emotional undertones are well-captured."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "fd30e98d92d7845956e5603a85eafa9c681e6cf1fbec81611e69a48f05eb7a54",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T10:28:04.297026Z"
+    },
+    {
+      "test_number": 7,
+      "config": {
+        "test_number": 7,
+        "config_values": {
+          "temperature": 0.9,
+          "voice_emphasis": "explicit",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "none",
+          "n_samples": "5",
+          "ranking_criteria": "emotional_authenticity",
+          "reasoning_visibility": "visible"
+        },
+        "workflow": "dialogue_enhancement"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "voice_distinctiveness": {
+            "score": 0.9,
+            "reasoning": "The dialogue effectively distinguishes between Sarah and Marcus through their tone, word choice, and body language. Sarah's emotional intensity and Marcus's measured pragmatism are clear without needing attribution."
+          },
+          "natural_flow": {
+            "score": 0.85,
+            "reasoning": "The conversation flows naturally with realistic pacing and topic shifts. The back-and-forth feels organic, though some lines could benefit from smoother transitions to avoid abruptness."
+          },
+          "emotional_authenticity": {
+            "score": 0.88,
+            "reasoning": "The dialogue conveys genuine emotions and subtext, reflecting the tension and differing perspectives between the characters. Their relationship dynamics are effectively portrayed, adding depth to the exchange."
+          }
+        },
+        "overall_score": 0.8766666666666666,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T10:28:20.746071Z",
+        "metadata": {
+          "rubric": {
+            "voice_distinctiveness": {
+              "description": "Can you identify speaker without attribution? Does reasoning help maintain character voice?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "natural_flow": {
+              "description": "Realistic pacing, natural topic shifts, avoids exposition. Does sample-and-rank select better flow?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "emotional_authenticity": {
+              "description": "Dialogue conveys genuine emotions, subtext, relationships. Do multiple samples improve authenticity?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "voice_distinctiveness": {
+              "score": 90,
+              "reasoning": "The dialogue effectively distinguishes between Sarah and Marcus through their tone, word choice, and body language. Sarah's emotional intensity and Marcus's measured pragmatism are clear without needing attribution."
+            },
+            "natural_flow": {
+              "score": 85,
+              "reasoning": "The conversation flows naturally with realistic pacing and topic shifts. The back-and-forth feels organic, though some lines could benefit from smoother transitions to avoid abruptness."
+            },
+            "emotional_authenticity": {
+              "score": 88,
+              "reasoning": "The dialogue conveys genuine emotions and subtext, reflecting the tension and differing perspectives between the characters. Their relationship dynamics are effectively portrayed, adding depth to the exchange."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "2be595fbe9f807d82578906e3907eca68b3c4e6e144873b97b855dbc44f82745",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 13384.85641698935,
+      "utility": 0.5358234116083528,
+      "workflow_output": "Enhanced Dialogue:\n**Enhanced Dialogue:**  \n\n**Sarah:** *[leaning forward, fingers tapping the desk]* You know what your problem is? You see everything in black and white—like it’s all just numbers on a spreadsheet. But this isn’t just about margins. It’s about people. Real people.  \n\n**Marcus:** *[crossing arms, voice low and measured]* And you think I don’t know that? Every decision I make has consequences. But someone’s got to keep the lights on while you’re busy playing savior.  \n\n**Sarah:** *[sharp laugh]* Oh, that’s rich. “Playing savior.” Because wanting fair wages is just—what, charity now?  \n\n**Marcus:** *[pausing, jaw tight]* You twist everything. I never said that. But if we hemorrhage cash on every feel-good policy, there won’t *be* jobs to save.  \n\n**Sarah:** *[voice dropping, intense]* Then find another way. That’s *your* job—to figure it out. Not just slash and burn.  \n\n**Marcus:** *[standing, tone clipped]* Easy to say when it’s not your neck on the line.  \n\n**Sarah:** *[muttering, shaking her head]* Always the martyr.  \n\n**Marcus:** *[cold, turning away]* And you’re always the critic. Funny how that works.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "voice_emphasis": "explicit",
+        "examples_count": "0",
+        "enhance_prompt": "You are a dialogue specialist. Enhance the following dialogue to make it more natural, distinctive, and emotionally authentic.\n\nOriginal Dialogue:\n\"\"\"Workflow implementations shipped with TesseractFlow.\"\"\"\nfrom .character_development import (\n    CharacterDevelopmentInput,\n    CharacterDevelopmentOutput,\n    CharacterDevelopmentWorkflow,\n)\nfrom .character_profile import (\n    CharacterProfileInput,\n    CharacterProfileOutput,\n    CharacterProfileWorkflow,\n)\nfrom .code_review import CodeIssue, CodeReviewInput, CodeReviewOutput, CodeReviewWorkflow\nfrom .context_efficiency import (\n    ContextEfficiencyInput,\n    ContextEfficiencyOutput,\n\nCharacters: Sarah, Marcus\nScene Context: tense negotiation in a downtown office\nFocus heavily on making each character's voice unique and identifiable without attribution. Give each character distinct speech patterns, vocabulary, and rhythm.\n\nEnhance the dialogue focusing on:\n- Voice distinctiveness (can you identify each speaker?)\n- Natural flow (realistic pacing, organic topic shifts)\n- Emotional authenticity (subtext, genuine emotions)\n\nReturn only the enhanced dialogue, no additional commentary.",
+        "enhanced_raw": "**Enhanced Dialogue:**  \n\n**Sarah:** *[leaning forward, fingers tapping the desk]* You know what your problem is? You see everything in black and white—like it’s all just numbers on a spreadsheet. But this isn’t just about margins. It’s about people. Real people.  \n\n**Marcus:** *[crossing arms, voice low and measured]* And you think I don’t know that? Every decision I make has consequences. But someone’s got to keep the lights on while you’re busy playing savior.  \n\n**Sarah:** *[sharp laugh]* Oh, that’s rich. “Playing savior.” Because wanting fair wages is just—what, charity now?  \n\n**Marcus:** *[pausing, jaw tight]* You twist everything. I never said that. But if we hemorrhage cash on every feel-good policy, there won’t *be* jobs to save.  \n\n**Sarah:** *[voice dropping, intense]* Then find another way. That’s *your* job—to figure it out. Not just slash and burn.  \n\n**Marcus:** *[standing, tone clipped]* Easy to say when it’s not your neck on the line.  \n\n**Sarah:** *[muttering, shaking her head]* Always the martyr.  \n\n**Marcus:** *[cold, turning away]* And you’re always the critic. Funny how that works.",
+        "test_config": {
+          "test_number": 7,
+          "config": {
+            "temperature": 0.9,
+            "voice_emphasis": "explicit",
+            "reasoning_enabled": "false",
+            "verbalized_sampling": "none",
+            "n_samples": "5",
+            "ranking_criteria": "emotional_authenticity",
+            "reasoning_visibility": "visible"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T10:28:04.299580Z",
+          "completed_at": "2025-10-28T10:28:17.684493Z",
+          "duration_seconds": 13.38485641698935
+        },
+        "evaluation": {
+          "rubric": {
+            "voice_distinctiveness": {
+              "description": "Can you identify speaker without attribution? Does reasoning help maintain character voice?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "natural_flow": {
+              "description": "Realistic pacing, natural topic shifts, avoids exposition. Does sample-and-rank select better flow?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "emotional_authenticity": {
+              "description": "Dialogue conveys genuine emotions, subtext, relationships. Do multiple samples improve authenticity?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "voice_distinctiveness": {
+              "score": 90,
+              "reasoning": "The dialogue effectively distinguishes between Sarah and Marcus through their tone, word choice, and body language. Sarah's emotional intensity and Marcus's measured pragmatism are clear without needing attribution."
+            },
+            "natural_flow": {
+              "score": 85,
+              "reasoning": "The conversation flows naturally with realistic pacing and topic shifts. The back-and-forth feels organic, though some lines could benefit from smoother transitions to avoid abruptness."
+            },
+            "emotional_authenticity": {
+              "score": 88,
+              "reasoning": "The dialogue conveys genuine emotions and subtext, reflecting the tension and differing perspectives between the characters. Their relationship dynamics are effectively portrayed, adding depth to the exchange."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "2be595fbe9f807d82578906e3907eca68b3c4e6e144873b97b855dbc44f82745",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T10:28:20.750332Z"
+    },
+    {
+      "test_number": 8,
+      "config": {
+        "test_number": 8,
+        "config_values": {
+          "temperature": 0.9,
+          "voice_emphasis": "explicit",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "sample_and_rank",
+          "n_samples": "3",
+          "ranking_criteria": "naturalness_and_voice",
+          "reasoning_visibility": "hidden"
+        },
+        "workflow": "dialogue_enhancement"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "voice_distinctiveness": {
+            "score": 0.85,
+            "reasoning": "The speakers are easily distinguishable without attribution due to their distinct tones and reasoning styles. One speaker emphasizes human impact and integrity, while the other focuses on business pragmatism and realism."
+          },
+          "natural_flow": {
+            "score": 0.9,
+            "reasoning": "The dialogue has a realistic pacing and natural topic shifts. The back-and-forth feels organic, with each response logically following the previous one, avoiding unnecessary exposition."
+          },
+          "emotional_authenticity": {
+            "score": 0.88,
+            "reasoning": "The dialogue effectively conveys genuine emotions and subtext, reflecting the tension and differing perspectives between the speakers. The emotional stakes and relationships are clear and compelling."
+          }
+        },
+        "overall_score": 0.8766666666666666,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T10:28:28.761165Z",
+        "metadata": {
+          "rubric": {
+            "voice_distinctiveness": {
+              "description": "Can you identify speaker without attribution? Does reasoning help maintain character voice?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "natural_flow": {
+              "description": "Realistic pacing, natural topic shifts, avoids exposition. Does sample-and-rank select better flow?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "emotional_authenticity": {
+              "description": "Dialogue conveys genuine emotions, subtext, relationships. Do multiple samples improve authenticity?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "voice_distinctiveness": {
+              "score": 85,
+              "reasoning": "The speakers are easily distinguishable without attribution due to their distinct tones and reasoning styles. One speaker emphasizes human impact and integrity, while the other focuses on business pragmatism and realism."
+            },
+            "natural_flow": {
+              "score": 90,
+              "reasoning": "The dialogue has a realistic pacing and natural topic shifts. The back-and-forth feels organic, with each response logically following the previous one, avoiding unnecessary exposition."
+            },
+            "emotional_authenticity": {
+              "score": 88,
+              "reasoning": "The dialogue effectively conveys genuine emotions and subtext, reflecting the tension and differing perspectives between the speakers. The emotional stakes and relationships are clear and compelling."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "dcf5e4f9920ffcb23463de5c80ec40cbbb4e0fd8be4d9de80d5a87b01551d864",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 5151.115333021153,
+      "utility": 0.6136666666666666,
+      "workflow_output": "Enhanced Dialogue:\n\"Look, I get it. You’re here to protect your client’s interests. But let’s not pretend this is just about numbers. There’s a human cost here, and I’m not going to let you sweep that under the rug.\"  \n\n\"Human cost? That’s rich. You’re talking about a business decision, not a charity case. My client’s bottom line *is* the human cost—for hundreds of employees relying on this deal. Don’t moralize at me.\"  \n\n\"Bottom line? Really? That’s your go-to? This isn’t about some abstract spreadsheet. People’s lives are on the line. Jobs, homes—you’re acting like this is all just a math problem.\"  \n\n\"And you’re acting like emotions pay the bills. I’m not here to play the villain in your little drama. I’m here to negotiate a deal that works for everyone—not just the sob story you’re selling.\"  \n\n\"Wow. Sob story. That’s how you see it? Real classy. Maybe if you spent less time insulting me and more time actually *listening*, we’d get somewhere.\"  \n\n\"Fine. Let’s talk numbers. But don’t expect me to apologize for being realistic. This isn’t personal—it’s business. And in business, you can’t let sentiment cloud your judgment.\"  \n\n\"Sentiment? It’s called integrity. Something you might want to look up. But sure, let’s talk numbers—just don’t be shocked when I fight harder than you expect.\"  \n\n\"Good. At least we’re on the same page now. Let’s see if you can keep up.\"",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "voice_emphasis": "explicit",
+        "examples_count": "0",
+        "enhance_prompt": "You are a dialogue specialist. Enhance the following dialogue to make it more natural, distinctive, and emotionally authentic.\n\nOriginal Dialogue:\n\"\"\"Workflow implementations shipped with TesseractFlow.\"\"\"\nfrom .character_development import (\n    CharacterDevelopmentInput,\n    CharacterDevelopmentOutput,\n    CharacterDevelopmentWorkflow,\n)\nfrom .character_profile import (\n    CharacterProfileInput,\n    CharacterProfileOutput,\n    CharacterProfileWorkflow,\n)\nfrom .code_review import CodeIssue, CodeReviewInput, CodeReviewOutput, CodeReviewWorkflow\nfrom .context_efficiency import (\n    ContextEfficiencyInput,\n    ContextEfficiencyOutput,\n\nCharacters: Sarah, Marcus\nScene Context: tense negotiation in a downtown office\nFocus heavily on making each character's voice unique and identifiable without attribution. Give each character distinct speech patterns, vocabulary, and rhythm.\n\nEnhance the dialogue focusing on:\n- Voice distinctiveness (can you identify each speaker?)\n- Natural flow (realistic pacing, organic topic shifts)\n- Emotional authenticity (subtext, genuine emotions)\n\nReturn only the enhanced dialogue, no additional commentary.",
+        "enhanced_raw": "\"Look, I get it. You’re here to protect your client’s interests. But let’s not pretend this is just about numbers. There’s a human cost here, and I’m not going to let you sweep that under the rug.\"  \n\n\"Human cost? That’s rich. You’re talking about a business decision, not a charity case. My client’s bottom line *is* the human cost—for hundreds of employees relying on this deal. Don’t moralize at me.\"  \n\n\"Bottom line? Really? That’s your go-to? This isn’t about some abstract spreadsheet. People’s lives are on the line. Jobs, homes—you’re acting like this is all just a math problem.\"  \n\n\"And you’re acting like emotions pay the bills. I’m not here to play the villain in your little drama. I’m here to negotiate a deal that works for everyone—not just the sob story you’re selling.\"  \n\n\"Wow. Sob story. That’s how you see it? Real classy. Maybe if you spent less time insulting me and more time actually *listening*, we’d get somewhere.\"  \n\n\"Fine. Let’s talk numbers. But don’t expect me to apologize for being realistic. This isn’t personal—it’s business. And in business, you can’t let sentiment cloud your judgment.\"  \n\n\"Sentiment? It’s called integrity. Something you might want to look up. But sure, let’s talk numbers—just don’t be shocked when I fight harder than you expect.\"  \n\n\"Good. At least we’re on the same page now. Let’s see if you can keep up.\"",
+        "test_config": {
+          "test_number": 8,
+          "config": {
+            "temperature": 0.9,
+            "voice_emphasis": "explicit",
+            "reasoning_enabled": "false",
+            "verbalized_sampling": "sample_and_rank",
+            "n_samples": "3",
+            "ranking_criteria": "naturalness_and_voice",
+            "reasoning_visibility": "hidden"
+          }
+        },
+        "workflow": {
+          "started_at": "2025-10-28T10:28:20.765176Z",
+          "completed_at": "2025-10-28T10:28:25.916317Z",
+          "duration_seconds": 5.151115333021153
+        },
+        "evaluation": {
+          "rubric": {
+            "voice_distinctiveness": {
+              "description": "Can you identify speaker without attribution? Does reasoning help maintain character voice?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "natural_flow": {
+              "description": "Realistic pacing, natural topic shifts, avoids exposition. Does sample-and-rank select better flow?",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "emotional_authenticity": {
+              "description": "Dialogue conveys genuine emotions, subtext, relationships. Do multiple samples improve authenticity?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "voice_distinctiveness": {
+              "score": 85,
+              "reasoning": "The speakers are easily distinguishable without attribution due to their distinct tones and reasoning styles. One speaker emphasizes human impact and integrity, while the other focuses on business pragmatism and realism."
+            },
+            "natural_flow": {
+              "score": 90,
+              "reasoning": "The dialogue has a realistic pacing and natural topic shifts. The back-and-forth feels organic, with each response logically following the previous one, avoiding unnecessary exposition."
+            },
+            "emotional_authenticity": {
+              "score": 88,
+              "reasoning": "The dialogue effectively conveys genuine emotions and subtext, reflecting the tension and differing perspectives between the speakers. The emotional stakes and relationships are clear and compelling."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "dcf5e4f9920ffcb23463de5c80ec40cbbb4e0fd8be4d9de80d5a87b01551d864",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T10:28:28.761399Z"
+    }
+  ],
+  "status": "COMPLETED",
+  "started_at": "2025-10-28T10:26:31.784408Z",
+  "completed_at": "2025-10-28T10:28:28.764526Z",
+  "experiment_metadata": {
+    "config_hash": "4eed94dde79aa90efafc4eb2256d024b485b4da1423af794755fc9f5ebb9554c",
+    "created_at": "2025-10-28T10:26:31.735492Z",
+    "dependencies": {
+      "pydantic": "2.12.3",
+      "langgraph": "1.0.1",
+      "litellm": "1.79.0"
+    },
+    "non_deterministic_sources": [
+      "llm_sampling"
+    ]
+  },
+  "metadata": {
+    "normalization": {
+      "cost": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "latency": {
+        "min": 5151.115333021153,
+        "max": 15728.449332993478
+      }
+    }
+  },
+  "baseline_test_number": 1,
+  "baseline_config": {
+    "test_number": 1,
+    "config_values": {
+      "temperature": 0.6,
+      "voice_emphasis": "subtle",
+      "reasoning_enabled": "false",
+      "verbalized_sampling": "none",
+      "n_samples": "3",
+      "ranking_criteria": "naturalness_and_voice",
+      "reasoning_visibility": "visible"
+    },
+    "workflow": "dialogue_enhancement"
+  },
+  "baseline_result": {
+    "test_number": 1,
+    "config": {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.6,
+        "voice_emphasis": "subtle",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "none",
+        "n_samples": "3",
+        "ranking_criteria": "naturalness_and_voice",
+        "reasoning_visibility": "visible"
+      },
+      "workflow": "dialogue_enhancement"
+    },
+    "quality_score": {
+      "dimension_scores": {
+        "voice_distinctiveness": {
+          "score": 0.85,
+          "reasoning": "The dialogue effectively distinguishes between Sarah and Marcus through tone, word choice, and body language cues. Sarah’s steady but tense voice contrasts with Marcus’s measured defensiveness, making it possible to identify them without attribution. However, the reasoning behind their stances could be slightly more nuanced to further enhance distinctiveness."
+        },
+        "natural_flow": {
+          "score": 0.9,
+          "reasoning": "The conversation flows naturally, with realistic pacing and smooth topic shifts. The dialogue avoids exposition and feels like a genuine exchange. The progression from tension to a tentative resolution is well-handled, making it engaging and believable."
+        },
+        "emotional_authenticity": {
+          "score": 0.88,
+          "reasoning": "The dialogue conveys genuine emotions and subtext, particularly in the tension and defensiveness between Sarah and Marcus. Their relationship dynamics are clear, and the emotional shifts—from frustration to concession—feel authentic. However, the emotional depth could be slightly deepened to enhance authenticity further."
+        }
+      },
+      "overall_score": 0.8766666666666666,
+      "evaluator_model": "openrouter/deepseek/deepseek-chat",
+      "timestamp": "2025-10-28T10:26:43.167580Z",
+      "metadata": {
+        "rubric": {
+          "voice_distinctiveness": {
+            "description": "Can you identify speaker without attribution? Does reasoning help maintain character voice?",
+            "scale": "0-100 points",
+            "weight": 0.35
+          },
+          "natural_flow": {
+            "description": "Realistic pacing, natural topic shifts, avoids exposition. Does sample-and-rank select better flow?",
+            "scale": "0-100 points",
+            "weight": 0.35
+          },
+          "emotional_authenticity": {
+            "description": "Dialogue conveys genuine emotions, subtext, relationships. Do multiple samples improve authenticity?",
+            "scale": "0-100 points",
+            "weight": 0.3
+          }
+        },
+        "raw_response": {
+          "voice_distinctiveness": {
+            "score": 85,
+            "reasoning": "The dialogue effectively distinguishes between Sarah and Marcus through tone, word choice, and body language cues. Sarah’s steady but tense voice contrasts with Marcus’s measured defensiveness, making it possible to identify them without attribution. However, the reasoning behind their stances could be slightly more nuanced to further enhance distinctiveness."
+          },
+          "natural_flow": {
+            "score": 90,
+            "reasoning": "The conversation flows naturally, with realistic pacing and smooth topic shifts. The dialogue avoids exposition and feels like a genuine exchange. The progression from tension to a tentative resolution is well-handled, making it engaging and believable."
+          },
+          "emotional_authenticity": {
+            "score": 88,
+            "reasoning": "The dialogue conveys genuine emotions and subtext, particularly in the tension and defensiveness between Sarah and Marcus. Their relationship dynamics are clear, and the emotional shifts—from frustration to concession—feel authentic. However, the emotional depth could be slightly deepened to enhance authenticity further."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "58ab69b09268202802be9207757267359bb801d238a2f0a58609edceee035956",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/deepseek/deepseek-chat"
+      }
+    },
+    "cost": 0.0,
+    "latency": 7700.089292018674,
+    "utility": 0.6136666666666666,
+    "workflow_output": "Enhanced Dialogue:\n**Sarah**: (leaning forward, voice steady but edged with tension) \"Marcus, we’ve been circling this for hours. TesseractFlow’s workflows are solid—CharacterDevelopment, CodeReview, the whole suite. You know the value. What’s the real hold-up?\"  \n\n**Marcus**: (leaning back, crossing his arms, tone measured but with a hint of defensiveness) \"Solid doesn’t cut it, Sarah. We’re talking about integration across multiple platforms. One misstep, and we’re looking at delays, inefficiencies—costs you can’t just brush off.\"  \n\n**Sarah**: (sighs, running a hand through her hair, frustration creeping in) \"I’m not brushing anything off. But you’re acting like we’re starting from scratch. We’ve got ContextEfficiency baked in. It’s designed to handle exactly what you’re worried about.\"  \n\n**Marcus**: (narrowing his eyes, voice sharpening) \"Designed, sure. But designed doesn’t mean proven. I’ve seen too many ‘designed’ solutions fall apart under pressure. I need guarantees, not just promises.\"  \n\n**Sarah**: (pausing, softening her tone slightly, trying to bridge the gap) \"Marcus, I get it. You’re looking out for your team. But we’re not just throwing buzzwords at you. The CharacterProfile workflow alone has cut onboarding time by 30% for our other clients. That’s not a promise—it’s data.\"  \n\n**Marcus**: (uncrossing his arms, leaning forward slightly, voice quieter but still wary) \"Data’s good. But data doesn’t account for the human factor. My team’s got their own way of doing things. I need to know this won’t just work—it’ll work *for them*.\"  \n\n**Sarah**: (nodding, voice earnest) \"Fair point. That’s why we’ve built in flexibility. The CodeReview workflow, for example—it’s adaptable. It’s not about overhauling your process; it’s about enhancing it. Let’s pilot it. Small scale. No strings. Prove it to you.\"  \n\n**Marcus**: (hesitating, then sighing, a flicker of concession in his tone) \"A pilot. No strings.\"  \n\n**Sarah**: (smiling faintly, relief barely showing) \"No strings. Let’s make this work—for both of us.\"",
+    "metadata": {
+      "strategy": "standard",
+      "model": "openrouter/deepseek/deepseek-chat",
+      "temperature": 0.6,
+      "voice_emphasis": "subtle",
+      "examples_count": "0",
+      "enhance_prompt": "You are a dialogue specialist. Enhance the following dialogue to make it more natural, distinctive, and emotionally authentic.\n\nOriginal Dialogue:\n\"\"\"Workflow implementations shipped with TesseractFlow.\"\"\"\nfrom .character_development import (\n    CharacterDevelopmentInput,\n    CharacterDevelopmentOutput,\n    CharacterDevelopmentWorkflow,\n)\nfrom .character_profile import (\n    CharacterProfileInput,\n    CharacterProfileOutput,\n    CharacterProfileWorkflow,\n)\nfrom .code_review import CodeIssue, CodeReviewInput, CodeReviewOutput, CodeReviewWorkflow\nfrom .context_efficiency import (\n    ContextEfficiencyInput,\n    ContextEfficiencyOutput,\n\nCharacters: Sarah, Marcus\nScene Context: tense negotiation in a downtown office\nMaintain natural dialogue flow with subtle character voice differences.\n\nEnhance the dialogue focusing on:\n- Voice distinctiveness (can you identify each speaker?)\n- Natural flow (realistic pacing, organic topic shifts)\n- Emotional authenticity (subtext, genuine emotions)\n\nReturn only the enhanced dialogue, no additional commentary.",
+      "enhanced_raw": "**Sarah**: (leaning forward, voice steady but edged with tension) \"Marcus, we’ve been circling this for hours. TesseractFlow’s workflows are solid—CharacterDevelopment, CodeReview, the whole suite. You know the value. What’s the real hold-up?\"  \n\n**Marcus**: (leaning back, crossing his arms, tone measured but with a hint of defensiveness) \"Solid doesn’t cut it, Sarah. We’re talking about integration across multiple platforms. One misstep, and we’re looking at delays, inefficiencies—costs you can’t just brush off.\"  \n\n**Sarah**: (sighs, running a hand through her hair, frustration creeping in) \"I’m not brushing anything off. But you’re acting like we’re starting from scratch. We’ve got ContextEfficiency baked in. It’s designed to handle exactly what you’re worried about.\"  \n\n**Marcus**: (narrowing his eyes, voice sharpening) \"Designed, sure. But designed doesn’t mean proven. I’ve seen too many ‘designed’ solutions fall apart under pressure. I need guarantees, not just promises.\"  \n\n**Sarah**: (pausing, softening her tone slightly, trying to bridge the gap) \"Marcus, I get it. You’re looking out for your team. But we’re not just throwing buzzwords at you. The CharacterProfile workflow alone has cut onboarding time by 30% for our other clients. That’s not a promise—it’s data.\"  \n\n**Marcus**: (uncrossing his arms, leaning forward slightly, voice quieter but still wary) \"Data’s good. But data doesn’t account for the human factor. My team’s got their own way of doing things. I need to know this won’t just work—it’ll work *for them*.\"  \n\n**Sarah**: (nodding, voice earnest) \"Fair point. That’s why we’ve built in flexibility. The CodeReview workflow, for example—it’s adaptable. It’s not about overhauling your process; it’s about enhancing it. Let’s pilot it. Small scale. No strings. Prove it to you.\"  \n\n**Marcus**: (hesitating, then sighing, a flicker of concession in his tone) \"A pilot. No strings.\"  \n\n**Sarah**: (smiling faintly, relief barely showing) \"No strings. Let’s make this work—for both of us.\"",
+      "test_config": {
+        "test_number": 1,
+        "config": {
+          "temperature": 0.6,
+          "voice_emphasis": "subtle",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "none",
+          "n_samples": "3",
+          "ranking_criteria": "naturalness_and_voice",
+          "reasoning_visibility": "visible"
+        }
+      },
+      "workflow": {
+        "started_at": "2025-10-28T10:26:31.802801Z",
+        "completed_at": "2025-10-28T10:26:39.502930Z",
+        "duration_seconds": 7.700089292018674
+      },
+      "evaluation": {
+        "rubric": {
+          "voice_distinctiveness": {
+            "description": "Can you identify speaker without attribution? Does reasoning help maintain character voice?",
+            "scale": "0-100 points",
+            "weight": 0.35
+          },
+          "natural_flow": {
+            "description": "Realistic pacing, natural topic shifts, avoids exposition. Does sample-and-rank select better flow?",
+            "scale": "0-100 points",
+            "weight": 0.35
+          },
+          "emotional_authenticity": {
+            "description": "Dialogue conveys genuine emotions, subtext, relationships. Do multiple samples improve authenticity?",
+            "scale": "0-100 points",
+            "weight": 0.3
+          }
+        },
+        "raw_response": {
+          "voice_distinctiveness": {
+            "score": 85,
+            "reasoning": "The dialogue effectively distinguishes between Sarah and Marcus through tone, word choice, and body language cues. Sarah’s steady but tense voice contrasts with Marcus’s measured defensiveness, making it possible to identify them without attribution. However, the reasoning behind their stances could be slightly more nuanced to further enhance distinctiveness."
+          },
+          "natural_flow": {
+            "score": 90,
+            "reasoning": "The conversation flows naturally, with realistic pacing and smooth topic shifts. The dialogue avoids exposition and feels like a genuine exchange. The progression from tension to a tentative resolution is well-handled, making it engaging and believable."
+          },
+          "emotional_authenticity": {
+            "score": 88,
+            "reasoning": "The dialogue conveys genuine emotions and subtext, particularly in the tension and defensiveness between Sarah and Marcus. Their relationship dynamics are clear, and the emotional shifts—from frustration to concession—feel authentic. However, the emotional depth could be slightly deepened to enhance authenticity further."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "58ab69b09268202802be9207757267359bb801d238a2f0a58609edceee035956",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/deepseek/deepseek-chat"
+      }
+    },
+    "timestamp": "2025-10-28T10:26:43.168264Z"
+  },
+  "baseline_quality": 0.8766666666666666,
+  "quality_improvement_pct": 5.323193916349819
+}

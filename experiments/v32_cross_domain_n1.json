@@ -1,0 +1,1647 @@
+{
+  "experiment_id": "wave3_cross_domain_reasoning-20251028T073612",
+  "config": {
+    "name": "wave3_cross_domain_reasoning",
+    "workflow": "multi_domain",
+    "variables": [
+      {
+        "name": "domain_count",
+        "level_1": "two",
+        "level_2": "three"
+      },
+      {
+        "name": "domain_balance",
+        "level_1": "equal",
+        "level_2": "primary"
+      },
+      {
+        "name": "task_type",
+        "level_1": "problem_solving",
+        "level_2": "design"
+      },
+      {
+        "name": "domain_integration",
+        "level_1": "sequential",
+        "level_2": "synthesized"
+      },
+      {
+        "name": "temperature",
+        "level_1": 0.4,
+        "level_2": 0.8
+      },
+      {
+        "name": "output_structure",
+        "level_1": "domain_sections",
+        "level_2": "unified"
+      },
+      {
+        "name": "example_provision",
+        "level_1": "none",
+        "level_2": "provided"
+      }
+    ],
+    "utility_weights": {
+      "quality": 1.0,
+      "cost": 0.2,
+      "time": 0.1
+    },
+    "workflow_config": {
+      "rubric": {
+        "cross_domain_applicability": {
+          "description": "Solution works effectively across all specified domains (technical, creative, analytical)",
+          "scale": "0-100 points",
+          "weight": 0.3
+        },
+        "domain_synthesis": {
+          "description": "Successfully integrates insights from multiple domains into coherent solution",
+          "scale": "0-100 points",
+          "weight": 0.25
+        },
+        "solution_quality": {
+          "description": "Solution is practical, well-reasoned, and demonstrates expertise in each domain",
+          "scale": "0-100 points",
+          "weight": 0.2
+        },
+        "versatility": {
+          "description": "Adapts approach appropriately based on domain requirements and context",
+          "scale": "0-100 points",
+          "weight": 0.15
+        },
+        "innovation": {
+          "description": "Demonstrates creative synthesis across domain boundaries, not just sequential treatment",
+          "scale": "0-100 points",
+          "weight": 0.1
+        }
+      },
+      "evaluator_model": "openrouter/anthropic/claude-haiku-4.5",
+      "model": "openrouter/deepseek/deepseek-v3.2-exp"
+    }
+  },
+  "test_configurations": [
+    {
+      "test_number": 1,
+      "config_values": {
+        "domain_count": "two",
+        "domain_balance": "equal",
+        "task_type": "problem_solving",
+        "domain_integration": "sequential",
+        "temperature": 0.4,
+        "output_structure": "domain_sections",
+        "example_provision": "none"
+      },
+      "workflow": "multi_domain"
+    },
+    {
+      "test_number": 2,
+      "config_values": {
+        "domain_count": "two",
+        "domain_balance": "equal",
+        "task_type": "problem_solving",
+        "domain_integration": "synthesized",
+        "temperature": 0.8,
+        "output_structure": "unified",
+        "example_provision": "provided"
+      },
+      "workflow": "multi_domain"
+    },
+    {
+      "test_number": 3,
+      "config_values": {
+        "domain_count": "two",
+        "domain_balance": "primary",
+        "task_type": "design",
+        "domain_integration": "sequential",
+        "temperature": 0.4,
+        "output_structure": "unified",
+        "example_provision": "provided"
+      },
+      "workflow": "multi_domain"
+    },
+    {
+      "test_number": 4,
+      "config_values": {
+        "domain_count": "two",
+        "domain_balance": "primary",
+        "task_type": "design",
+        "domain_integration": "synthesized",
+        "temperature": 0.8,
+        "output_structure": "domain_sections",
+        "example_provision": "none"
+      },
+      "workflow": "multi_domain"
+    },
+    {
+      "test_number": 5,
+      "config_values": {
+        "domain_count": "three",
+        "domain_balance": "equal",
+        "task_type": "design",
+        "domain_integration": "sequential",
+        "temperature": 0.8,
+        "output_structure": "domain_sections",
+        "example_provision": "provided"
+      },
+      "workflow": "multi_domain"
+    },
+    {
+      "test_number": 6,
+      "config_values": {
+        "domain_count": "three",
+        "domain_balance": "equal",
+        "task_type": "design",
+        "domain_integration": "synthesized",
+        "temperature": 0.4,
+        "output_structure": "unified",
+        "example_provision": "none"
+      },
+      "workflow": "multi_domain"
+    },
+    {
+      "test_number": 7,
+      "config_values": {
+        "domain_count": "three",
+        "domain_balance": "primary",
+        "task_type": "problem_solving",
+        "domain_integration": "sequential",
+        "temperature": 0.8,
+        "output_structure": "unified",
+        "example_provision": "none"
+      },
+      "workflow": "multi_domain"
+    },
+    {
+      "test_number": 8,
+      "config_values": {
+        "domain_count": "three",
+        "domain_balance": "primary",
+        "task_type": "problem_solving",
+        "domain_integration": "synthesized",
+        "temperature": 0.4,
+        "output_structure": "domain_sections",
+        "example_provision": "provided"
+      },
+      "workflow": "multi_domain"
+    }
+  ],
+  "results": [
+    {
+      "test_number": 1,
+      "config": {
+        "test_number": 1,
+        "config_values": {
+          "domain_count": "two",
+          "domain_balance": "equal",
+          "task_type": "problem_solving",
+          "domain_integration": "sequential",
+          "temperature": 0.4,
+          "output_structure": "domain_sections",
+          "example_provision": "none"
+        },
+        "workflow": "multi_domain"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "cross_domain_applicability": {
+            "score": 0.15,
+            "reasoning": "This rubric dimension evaluates cross-domain applicability across technical, creative, and analytical domains. The output is a creative writing piece with no technical or analytical components. It does not demonstrate effectiveness across multiple specified domains—it operates solely within creative writing. The rubric appears misaligned with a creative writing task."
+          },
+          "domain_synthesis": {
+            "score": 0.2,
+            "reasoning": "Domain synthesis requires integrating insights from multiple domains into a coherent solution. This output shows no evidence of synthesizing technical, analytical, or other domain insights. It is a single-domain creative work without cross-domain integration. The rubric's expectation of multi-domain synthesis does not apply to this creative writing output."
+          },
+          "solution_quality": {
+            "score": 0.82,
+            "reasoning": "Evaluating the output as a creative writing solution: The scene is well-crafted with strong sensory details (dust, creaking ladder, cedar scent), effective pacing, and emotional resonance. The hidden truth is revealed naturally through discovered artifacts. Character motivation is clear, and the emotional arc is compelling. The writing demonstrates expertise in narrative structure and character development. Minor deduction for somewhat predictable spy-father trope, though execution is solid."
+          },
+          "versatility": {
+            "score": 0.25,
+            "reasoning": "Versatility in the rubric context implies adapting approach based on domain requirements. This output demonstrates no adaptation across domains—it applies a single creative writing approach throughout. There is no evidence of adjusting methodology based on technical, analytical, or other domain contexts. The piece maintains consistent creative writing approach without domain-specific adaptation."
+          },
+          "innovation": {
+            "score": 0.58,
+            "reasoning": "Within creative writing, the output shows competent but conventional storytelling. The spy-father revelation is a familiar trope in literature. However, the execution includes thoughtful details (the ring engraving, the letter's tone, the emotional resolution). The piece demonstrates solid craft but limited originality. No cross-domain creative synthesis is evident, which the rubric appears to expect."
+          }
+        },
+        "overall_score": 0.4,
+        "evaluator_model": "openrouter/anthropic/claude-haiku-4.5",
+        "timestamp": "2025-10-28T07:36:25.646383Z",
+        "metadata": {
+          "rubric": {
+            "cross_domain_applicability": {
+              "description": "Solution works effectively across all specified domains (technical, creative, analytical)",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "domain_synthesis": {
+              "description": "Successfully integrates insights from multiple domains into coherent solution",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "solution_quality": {
+              "description": "Solution is practical, well-reasoned, and demonstrates expertise in each domain",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "versatility": {
+              "description": "Adapts approach appropriately based on domain requirements and context",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "innovation": {
+              "description": "Demonstrates creative synthesis across domain boundaries, not just sequential treatment",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "cross_domain_applicability": {
+              "score": 15,
+              "reasoning": "This rubric dimension evaluates cross-domain applicability across technical, creative, and analytical domains. The output is a creative writing piece with no technical or analytical components. It does not demonstrate effectiveness across multiple specified domains—it operates solely within creative writing. The rubric appears misaligned with a creative writing task."
+            },
+            "domain_synthesis": {
+              "score": 20,
+              "reasoning": "Domain synthesis requires integrating insights from multiple domains into a coherent solution. This output shows no evidence of synthesizing technical, analytical, or other domain insights. It is a single-domain creative work without cross-domain integration. The rubric's expectation of multi-domain synthesis does not apply to this creative writing output."
+            },
+            "solution_quality": {
+              "score": 82,
+              "reasoning": "Evaluating the output as a creative writing solution: The scene is well-crafted with strong sensory details (dust, creaking ladder, cedar scent), effective pacing, and emotional resonance. The hidden truth is revealed naturally through discovered artifacts. Character motivation is clear, and the emotional arc is compelling. The writing demonstrates expertise in narrative structure and character development. Minor deduction for somewhat predictable spy-father trope, though execution is solid."
+            },
+            "versatility": {
+              "score": 25,
+              "reasoning": "Versatility in the rubric context implies adapting approach based on domain requirements. This output demonstrates no adaptation across domains—it applies a single creative writing approach throughout. There is no evidence of adjusting methodology based on technical, analytical, or other domain contexts. The piece maintains consistent creative writing approach without domain-specific adaptation."
+            },
+            "innovation": {
+              "score": 58,
+              "reasoning": "Within creative writing, the output shows competent but conventional storytelling. The spy-father revelation is a familiar trope in literature. However, the execution includes thoughtful details (the ring engraving, the letter's tone, the emotional resolution). The piece demonstrates solid craft but limited originality. No cross-domain creative synthesis is evident, which the rubric appears to expect."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "49a7660c4c665fb89d659fa753ae0f723b9910fdae9e7390a020bcbfaaf3414d",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "cost": 0.0,
+      "latency": 8137.315707979724,
+      "utility": 0.394742269777777,
+      "workflow_output": "Task Domain: creative_writing\nTemperature: 0.4\nTask: Write a scene where a character discovers a hidden truth about their past.\n\nOutput:\nThe attic smelled of dust and forgotten time. Emma climbed the creaking ladder, her fingers brushing against the rough wooden rungs. The single beam of her flashlight cut through the darkness, illuminating motes of dust that danced like tiny ghosts. She hadn’t been up here in years—not since she was a child, when the attic was a kingdom of cardboard castles and moth-eaten costumes.\n\nBut today, she wasn’t here to play.\n\nHer mother’s voice echoed in her mind, strained and trembling over the phone. *“There’s something you need to see. In the attic.”* Emma had pressed for more, but her mother had only said, *“It’s about your father.”*\n\nHer father. The man who had vanished when she was six, leaving behind only a faded photograph and a silence that had stretched for decades.\n\nEmma’s flashlight caught the edge of an old trunk, its leather cracked and buckles rusted. She knelt beside it, her heart pounding in her ears. The lid groaned as she opened it, releasing a scent of cedar and something faintly metallic. Inside, she found a jumble of papers, yellowed and brittle, and a small, velvet box.\n\nHer hands trembled as she lifted the box. Inside was a ring—a simple silver band engraved with a single word: *Always.* Beneath it lay a letter, the handwriting familiar yet foreign.\n\n*“My dearest Emma,”* it began. *“If you’re reading this, it means I’m gone. I never wanted to leave you, but I had no choice. The truth is, I wasn’t who you thought I was. I wasn’t just your father. I was a spy, working to protect our country. When my cover was compromised, I had to disappear to keep you and your mother safe.”*\n\nEmma’s breath caught. She read on, her vision blurring with tears. *“I’ve watched you from afar, proud of the woman you’ve become. I’m sorry I couldn’t be there to see it. But know this: I love you. Always.”*\n\nThe flashlight slipped from her hand, clattering to the floor. Emma sat in the darkness, clutching the letter to her chest. The man she had spent her life resenting, the man she had thought abandoned her, had been protecting her all along.\n\nAnd now, he was gone.\n\nThe attic felt smaller somehow, the weight of the truth pressing down on her. But for the first time in years, Emma felt a strange sense of peace. Her father’s love had never left her. It had been here all along, waiting in the shadows.",
+      "metadata": {
+        "test_number": 1,
+        "config_values": {
+          "domain_count": "two",
+          "domain_balance": "equal",
+          "task_type": "problem_solving",
+          "domain_integration": "sequential",
+          "temperature": 0.4,
+          "output_structure": "domain_sections",
+          "example_provision": "none"
+        },
+        "workflow": {
+          "started_at": "2025-10-28T07:36:12.246223Z",
+          "completed_at": "2025-10-28T07:36:20.383538Z",
+          "duration_seconds": 8.137315707979724
+        },
+        "evaluation": {
+          "rubric": {
+            "cross_domain_applicability": {
+              "description": "Solution works effectively across all specified domains (technical, creative, analytical)",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "domain_synthesis": {
+              "description": "Successfully integrates insights from multiple domains into coherent solution",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "solution_quality": {
+              "description": "Solution is practical, well-reasoned, and demonstrates expertise in each domain",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "versatility": {
+              "description": "Adapts approach appropriately based on domain requirements and context",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "innovation": {
+              "description": "Demonstrates creative synthesis across domain boundaries, not just sequential treatment",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "cross_domain_applicability": {
+              "score": 15,
+              "reasoning": "This rubric dimension evaluates cross-domain applicability across technical, creative, and analytical domains. The output is a creative writing piece with no technical or analytical components. It does not demonstrate effectiveness across multiple specified domains—it operates solely within creative writing. The rubric appears misaligned with a creative writing task."
+            },
+            "domain_synthesis": {
+              "score": 20,
+              "reasoning": "Domain synthesis requires integrating insights from multiple domains into a coherent solution. This output shows no evidence of synthesizing technical, analytical, or other domain insights. It is a single-domain creative work without cross-domain integration. The rubric's expectation of multi-domain synthesis does not apply to this creative writing output."
+            },
+            "solution_quality": {
+              "score": 82,
+              "reasoning": "Evaluating the output as a creative writing solution: The scene is well-crafted with strong sensory details (dust, creaking ladder, cedar scent), effective pacing, and emotional resonance. The hidden truth is revealed naturally through discovered artifacts. Character motivation is clear, and the emotional arc is compelling. The writing demonstrates expertise in narrative structure and character development. Minor deduction for somewhat predictable spy-father trope, though execution is solid."
+            },
+            "versatility": {
+              "score": 25,
+              "reasoning": "Versatility in the rubric context implies adapting approach based on domain requirements. This output demonstrates no adaptation across domains—it applies a single creative writing approach throughout. There is no evidence of adjusting methodology based on technical, analytical, or other domain contexts. The piece maintains consistent creative writing approach without domain-specific adaptation."
+            },
+            "innovation": {
+              "score": 58,
+              "reasoning": "Within creative writing, the output shows competent but conventional storytelling. The spy-father revelation is a familiar trope in literature. However, the execution includes thoughtful details (the ring engraving, the letter's tone, the emotional resolution). The piece demonstrates solid craft but limited originality. No cross-domain creative synthesis is evident, which the rubric appears to expect."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "49a7660c4c665fb89d659fa753ae0f723b9910fdae9e7390a020bcbfaaf3414d",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "timestamp": "2025-10-28T07:36:25.646616Z"
+    },
+    {
+      "test_number": 2,
+      "config": {
+        "test_number": 2,
+        "config_values": {
+          "domain_count": "two",
+          "domain_balance": "equal",
+          "task_type": "problem_solving",
+          "domain_integration": "synthesized",
+          "temperature": 0.8,
+          "output_structure": "unified",
+          "example_provision": "provided"
+        },
+        "workflow": "multi_domain"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "cross_domain_applicability": {
+            "score": 0.15,
+            "reasoning": "This rubric dimension assesses applicability across technical, creative, and analytical domains. The output is a creative writing piece, not a multi-domain solution. It does not demonstrate effectiveness in technical or analytical domains, nor does it bridge across them. The rubric appears misaligned with a single-domain creative writing task."
+          },
+          "domain_synthesis": {
+            "score": 0.2,
+            "reasoning": "This dimension requires integration of insights from multiple domains into a coherent solution. The output is purely creative writing without synthesis of technical, analytical, or other domain perspectives. There is no evidence of multi-domain integration, making this dimension largely inapplicable to the task."
+          },
+          "solution_quality": {
+            "score": 0.82,
+            "reasoning": "Evaluating within the creative_writing domain: The scene demonstrates strong narrative craft with vivid sensory details ('dust and forgotten time'), effective pacing, and emotional authenticity. Character development is clear, dialogue feels natural, and the revelation is handled with appropriate emotional weight. The writing shows expertise in scene construction, though some elements (the 'humming chest') border on cliché. Overall, this is a well-executed creative writing piece."
+          },
+          "versatility": {
+            "score": 0.25,
+            "reasoning": "This dimension assesses adaptation across domain requirements. Since the task is confined to creative_writing with no requirement for technical or analytical approaches, versatility cannot be meaningfully demonstrated. The output shows no adaptation across multiple domain contexts, as only one domain is relevant to the task."
+          },
+          "innovation": {
+            "score": 0.58,
+            "reasoning": "Within creative writing, the piece shows competent but conventional storytelling. The discovery-of-adoption trope is well-executed but familiar. The emotional resolution is satisfying but predictable. There is no cross-domain creative synthesis (the rubric's intent). The writing demonstrates solid craft rather than innovative narrative approaches or unexpected thematic integration."
+          }
+        },
+        "overall_score": 0.4,
+        "evaluator_model": "openrouter/anthropic/claude-haiku-4.5",
+        "timestamp": "2025-10-28T07:36:46.613161Z",
+        "metadata": {
+          "rubric": {
+            "cross_domain_applicability": {
+              "description": "Solution works effectively across all specified domains (technical, creative, analytical)",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "domain_synthesis": {
+              "description": "Successfully integrates insights from multiple domains into coherent solution",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "solution_quality": {
+              "description": "Solution is practical, well-reasoned, and demonstrates expertise in each domain",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "versatility": {
+              "description": "Adapts approach appropriately based on domain requirements and context",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "innovation": {
+              "description": "Demonstrates creative synthesis across domain boundaries, not just sequential treatment",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "cross_domain_applicability": {
+              "score": 15,
+              "reasoning": "This rubric dimension assesses applicability across technical, creative, and analytical domains. The output is a creative writing piece, not a multi-domain solution. It does not demonstrate effectiveness in technical or analytical domains, nor does it bridge across them. The rubric appears misaligned with a single-domain creative writing task."
+            },
+            "domain_synthesis": {
+              "score": 20,
+              "reasoning": "This dimension requires integration of insights from multiple domains into a coherent solution. The output is purely creative writing without synthesis of technical, analytical, or other domain perspectives. There is no evidence of multi-domain integration, making this dimension largely inapplicable to the task."
+            },
+            "solution_quality": {
+              "score": 82,
+              "reasoning": "Evaluating within the creative_writing domain: The scene demonstrates strong narrative craft with vivid sensory details ('dust and forgotten time'), effective pacing, and emotional authenticity. Character development is clear, dialogue feels natural, and the revelation is handled with appropriate emotional weight. The writing shows expertise in scene construction, though some elements (the 'humming chest') border on cliché. Overall, this is a well-executed creative writing piece."
+            },
+            "versatility": {
+              "score": 25,
+              "reasoning": "This dimension assesses adaptation across domain requirements. Since the task is confined to creative_writing with no requirement for technical or analytical approaches, versatility cannot be meaningfully demonstrated. The output shows no adaptation across multiple domain contexts, as only one domain is relevant to the task."
+            },
+            "innovation": {
+              "score": 58,
+              "reasoning": "Within creative writing, the piece shows competent but conventional storytelling. The discovery-of-adoption trope is well-executed but familiar. The emotional resolution is satisfying but predictable. There is no cross-domain creative synthesis (the rubric's intent). The writing demonstrates solid craft rather than innovative narrative approaches or unexpected thematic integration."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "d603f95cfaa60a7fee4e291e1e0291829fc1c3823646ad7b76da0de3368a2289",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "cost": 0.0,
+      "latency": 15244.546709000133,
+      "utility": 0.3570802085610592,
+      "workflow_output": "Task Domain: creative_writing\nTemperature: 0.8\nTask: Write a scene where a character discovers a hidden truth about their past.\n\nOutput:\nThe attic smelled of dust and forgotten time. Emma’s fingers brushed against the edge of an old cedar chest, its surface rough under her touch. She hadn’t meant to snoop—just to clear out space for her mother’s quilting supplies—but the chest seemed to hum faintly, as if calling to her. \n\nShe hesitated, then lifted the lid. Inside lay a stack of yellowed envelopes tied with a faded ribbon. Her name was scrawled across the top one in a handwriting she didn’t recognize. Her pulse quickened as she untied the knot and unfolded the letter.\n\n*“My dearest Emma,”* it began. \n\nHer breath caught. The words were from a woman named Clara, someone who claimed to be her birth mother. Emma’s hands trembled as she read on, the ink blurring as tears welled in her eyes. Clara spoke of a difficult decision, of love and loss, of a life Emma had never known. \n\n“Emma?” Her mother’s voice floated up the stairs, soft and tentative. \n\nEmma turned, the letter clutched to her chest. Her mother stood in the doorway, her face pale, her hands twisting in her apron. \n\n“I was going to tell you,” she whispered, her voice breaking. “I just didn’t know how.” \n\nThe room seemed to tilt. Emma sank to the floor, the letter slipping from her grasp. “Why didn’t you?” \n\nHer mother knelt beside her, tears streaming down her face. “Because I was afraid. Afraid you’d hate me. Afraid you’d leave.” \n\nEmma stared at her, the woman who had raised her, who had kissed her scraped knees and braided her hair. “You’re my mom,” she said, her voice thick. “Nothing will change that.” \n\nHer mother’s shoulders shook as she pulled Emma into a fierce embrace. The attic, with its dust and secrets, felt suddenly warmer, as if the weight of the past had finally been lifted. And for the first time, Emma felt a strange sense of peace, as though she had found a missing piece of herself she hadn’t even known was lost.",
+      "metadata": {
+        "test_number": 2,
+        "config_values": {
+          "domain_count": "two",
+          "domain_balance": "equal",
+          "task_type": "problem_solving",
+          "domain_integration": "synthesized",
+          "temperature": 0.8,
+          "output_structure": "unified",
+          "example_provision": "provided"
+        },
+        "workflow": {
+          "started_at": "2025-10-28T07:36:25.647817Z",
+          "completed_at": "2025-10-28T07:36:40.892362Z",
+          "duration_seconds": 15.244546709000133
+        },
+        "evaluation": {
+          "rubric": {
+            "cross_domain_applicability": {
+              "description": "Solution works effectively across all specified domains (technical, creative, analytical)",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "domain_synthesis": {
+              "description": "Successfully integrates insights from multiple domains into coherent solution",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "solution_quality": {
+              "description": "Solution is practical, well-reasoned, and demonstrates expertise in each domain",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "versatility": {
+              "description": "Adapts approach appropriately based on domain requirements and context",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "innovation": {
+              "description": "Demonstrates creative synthesis across domain boundaries, not just sequential treatment",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "cross_domain_applicability": {
+              "score": 15,
+              "reasoning": "This rubric dimension assesses applicability across technical, creative, and analytical domains. The output is a creative writing piece, not a multi-domain solution. It does not demonstrate effectiveness in technical or analytical domains, nor does it bridge across them. The rubric appears misaligned with a single-domain creative writing task."
+            },
+            "domain_synthesis": {
+              "score": 20,
+              "reasoning": "This dimension requires integration of insights from multiple domains into a coherent solution. The output is purely creative writing without synthesis of technical, analytical, or other domain perspectives. There is no evidence of multi-domain integration, making this dimension largely inapplicable to the task."
+            },
+            "solution_quality": {
+              "score": 82,
+              "reasoning": "Evaluating within the creative_writing domain: The scene demonstrates strong narrative craft with vivid sensory details ('dust and forgotten time'), effective pacing, and emotional authenticity. Character development is clear, dialogue feels natural, and the revelation is handled with appropriate emotional weight. The writing shows expertise in scene construction, though some elements (the 'humming chest') border on cliché. Overall, this is a well-executed creative writing piece."
+            },
+            "versatility": {
+              "score": 25,
+              "reasoning": "This dimension assesses adaptation across domain requirements. Since the task is confined to creative_writing with no requirement for technical or analytical approaches, versatility cannot be meaningfully demonstrated. The output shows no adaptation across multiple domain contexts, as only one domain is relevant to the task."
+            },
+            "innovation": {
+              "score": 58,
+              "reasoning": "Within creative writing, the piece shows competent but conventional storytelling. The discovery-of-adoption trope is well-executed but familiar. The emotional resolution is satisfying but predictable. There is no cross-domain creative synthesis (the rubric's intent). The writing demonstrates solid craft rather than innovative narrative approaches or unexpected thematic integration."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "d603f95cfaa60a7fee4e291e1e0291829fc1c3823646ad7b76da0de3368a2289",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "timestamp": "2025-10-28T07:36:46.613471Z"
+    },
+    {
+      "test_number": 3,
+      "config": {
+        "test_number": 3,
+        "config_values": {
+          "domain_count": "two",
+          "domain_balance": "primary",
+          "task_type": "design",
+          "domain_integration": "sequential",
+          "temperature": 0.4,
+          "output_structure": "unified",
+          "example_provision": "provided"
+        },
+        "workflow": "multi_domain"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "cross_domain_applicability": {
+            "score": 0.15,
+            "reasoning": "This rubric dimension assesses multi-domain applicability (technical, creative, analytical). The output is a creative writing piece for a creative_writing task. It does not demonstrate applicability across technical or analytical domains, nor does it show how the solution could transfer to other domain contexts. The rubric appears misaligned with a single-domain creative writing task."
+          },
+          "domain_synthesis": {
+            "score": 0.2,
+            "reasoning": "This dimension requires integrating insights from multiple domains. The output is purely creative writing without synthesis of technical, analytical, or other domain perspectives. There is no evidence of cross-domain integration—the piece stands as a standalone creative work without multi-domain coherence."
+          },
+          "solution_quality": {
+            "score": 0.88,
+            "reasoning": "Evaluating the output as a creative writing solution: The scene is well-executed with strong sensory details ('dust and forgotten time,' 'creaking ladder'), effective pacing, and emotional authenticity. The discovery unfolds naturally with escalating tension. Character voice is consistent, dialogue feels genuine, and the ending provides thematic resonance. The writing demonstrates expertise in narrative craft, though some might find the final metaphor slightly on-the-nose."
+          },
+          "versatility": {
+            "score": 0.25,
+            "reasoning": "The rubric expects adaptation across domain requirements. This output is a single creative writing piece with no demonstration of adaptability to different domain contexts (technical, analytical, etc.). Within creative writing alone, the approach is somewhat conventional—a straightforward discovery narrative without experimental or varied stylistic approaches that would demonstrate versatility."
+          },
+          "innovation": {
+            "score": 0.62,
+            "reasoning": "The scene uses familiar tropes (attic discovery, hidden identity, mysterious letters) but executes them with solid craft. The emotional core is genuine and the sensory language is evocative. However, there is limited narrative innovation—the structure follows conventional mystery-revelation patterns. The piece is competent but not particularly groundbreaking in its approach to the discovery theme."
+          }
+        },
+        "overall_score": 0.42000000000000004,
+        "evaluator_model": "openrouter/anthropic/claude-haiku-4.5",
+        "timestamp": "2025-10-28T07:36:59.028531Z",
+        "metadata": {
+          "rubric": {
+            "cross_domain_applicability": {
+              "description": "Solution works effectively across all specified domains (technical, creative, analytical)",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "domain_synthesis": {
+              "description": "Successfully integrates insights from multiple domains into coherent solution",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "solution_quality": {
+              "description": "Solution is practical, well-reasoned, and demonstrates expertise in each domain",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "versatility": {
+              "description": "Adapts approach appropriately based on domain requirements and context",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "innovation": {
+              "description": "Demonstrates creative synthesis across domain boundaries, not just sequential treatment",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "cross_domain_applicability": {
+              "score": 15,
+              "reasoning": "This rubric dimension assesses multi-domain applicability (technical, creative, analytical). The output is a creative writing piece for a creative_writing task. It does not demonstrate applicability across technical or analytical domains, nor does it show how the solution could transfer to other domain contexts. The rubric appears misaligned with a single-domain creative writing task."
+            },
+            "domain_synthesis": {
+              "score": 20,
+              "reasoning": "This dimension requires integrating insights from multiple domains. The output is purely creative writing without synthesis of technical, analytical, or other domain perspectives. There is no evidence of cross-domain integration—the piece stands as a standalone creative work without multi-domain coherence."
+            },
+            "solution_quality": {
+              "score": 88,
+              "reasoning": "Evaluating the output as a creative writing solution: The scene is well-executed with strong sensory details ('dust and forgotten time,' 'creaking ladder'), effective pacing, and emotional authenticity. The discovery unfolds naturally with escalating tension. Character voice is consistent, dialogue feels genuine, and the ending provides thematic resonance. The writing demonstrates expertise in narrative craft, though some might find the final metaphor slightly on-the-nose."
+            },
+            "versatility": {
+              "score": 25,
+              "reasoning": "The rubric expects adaptation across domain requirements. This output is a single creative writing piece with no demonstration of adaptability to different domain contexts (technical, analytical, etc.). Within creative writing alone, the approach is somewhat conventional—a straightforward discovery narrative without experimental or varied stylistic approaches that would demonstrate versatility."
+            },
+            "innovation": {
+              "score": 62,
+              "reasoning": "The scene uses familiar tropes (attic discovery, hidden identity, mysterious letters) but executes them with solid craft. The emotional core is genuine and the sensory language is evocative. However, there is limited narrative innovation—the structure follows conventional mystery-revelation patterns. The piece is competent but not particularly groundbreaking in its approach to the discovery theme."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "adb500409172c576e71d55af59e5e636afa66630304eab25f6f4354d055cbda9",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "cost": 0.0,
+      "latency": 7145.126167015405,
+      "utility": 0.42000000000000004,
+      "workflow_output": "Task Domain: creative_writing\nTemperature: 0.4\nTask: Write a scene where a character discovers a hidden truth about their past.\n\nOutput:\nThe attic smelled of dust and forgotten time. Emma climbed the creaking ladder, her fingers brushing against the rough wooden rungs. The beam of her flashlight cut through the dimness, illuminating boxes stacked like ancient ruins. She hadn’t been up here since she was a child, when her mother would shoo her away with a stern, “That’s not for you, Emma.”\n\nBut her mother was gone now, and the house was hers. The weight of that thought pressed on her chest as she stepped onto the warped floorboards. She knelt by the nearest box, her breath catching as she lifted the lid. Inside were photographs, yellowed and curling at the edges. She picked one up, squinting at the image of a young woman with her mother’s smile but unfamiliar eyes. The woman held a baby—Emma?—but the date scrawled on the back was a year before Emma’s supposed birth.\n\nHer heart thudded. “What the hell?” she whispered, her voice swallowed by the attic’s stillness.\n\nShe dug deeper, pulling out a stack of letters tied with a faded ribbon. The handwriting was her mother’s, but the words made no sense. *“I’ll raise her as my own,”* one line read. *“She’ll never know the truth.”*\n\nEmma’s hands trembled. She fumbled for the next letter, her vision blurring as she read. *“I’m sorry, Clara. I couldn’t let her go. She’s all I have left of you.”*\n\nClara. The name echoed in her mind, sharp and unfamiliar. She dropped the letter, her breath coming in shallow gasps. The flashlight slipped from her hand, rolling across the floor and casting jagged shadows on the walls.\n\n“Mom,” she whispered, though the word felt foreign now. “Who am I?”\n\nThe attic offered no answers, only the weight of secrets long buried. Emma sat back on her heels, the letters scattered around her like fallen leaves. She felt untethered, as if the ground beneath her had crumbled away. The woman in the photograph stared back at her, her smile a ghostly echo of the truth Emma had never known.\n\nAnd in that moment, she realized: her life was a story someone else had written, and she was only just beginning to read it.",
+      "metadata": {
+        "test_number": 3,
+        "config_values": {
+          "domain_count": "two",
+          "domain_balance": "primary",
+          "task_type": "design",
+          "domain_integration": "sequential",
+          "temperature": 0.4,
+          "output_structure": "unified",
+          "example_provision": "provided"
+        },
+        "workflow": {
+          "started_at": "2025-10-28T07:36:46.615386Z",
+          "completed_at": "2025-10-28T07:36:53.760515Z",
+          "duration_seconds": 7.145126167015405
+        },
+        "evaluation": {
+          "rubric": {
+            "cross_domain_applicability": {
+              "description": "Solution works effectively across all specified domains (technical, creative, analytical)",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "domain_synthesis": {
+              "description": "Successfully integrates insights from multiple domains into coherent solution",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "solution_quality": {
+              "description": "Solution is practical, well-reasoned, and demonstrates expertise in each domain",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "versatility": {
+              "description": "Adapts approach appropriately based on domain requirements and context",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "innovation": {
+              "description": "Demonstrates creative synthesis across domain boundaries, not just sequential treatment",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "cross_domain_applicability": {
+              "score": 15,
+              "reasoning": "This rubric dimension assesses multi-domain applicability (technical, creative, analytical). The output is a creative writing piece for a creative_writing task. It does not demonstrate applicability across technical or analytical domains, nor does it show how the solution could transfer to other domain contexts. The rubric appears misaligned with a single-domain creative writing task."
+            },
+            "domain_synthesis": {
+              "score": 20,
+              "reasoning": "This dimension requires integrating insights from multiple domains. The output is purely creative writing without synthesis of technical, analytical, or other domain perspectives. There is no evidence of cross-domain integration—the piece stands as a standalone creative work without multi-domain coherence."
+            },
+            "solution_quality": {
+              "score": 88,
+              "reasoning": "Evaluating the output as a creative writing solution: The scene is well-executed with strong sensory details ('dust and forgotten time,' 'creaking ladder'), effective pacing, and emotional authenticity. The discovery unfolds naturally with escalating tension. Character voice is consistent, dialogue feels genuine, and the ending provides thematic resonance. The writing demonstrates expertise in narrative craft, though some might find the final metaphor slightly on-the-nose."
+            },
+            "versatility": {
+              "score": 25,
+              "reasoning": "The rubric expects adaptation across domain requirements. This output is a single creative writing piece with no demonstration of adaptability to different domain contexts (technical, analytical, etc.). Within creative writing alone, the approach is somewhat conventional—a straightforward discovery narrative without experimental or varied stylistic approaches that would demonstrate versatility."
+            },
+            "innovation": {
+              "score": 62,
+              "reasoning": "The scene uses familiar tropes (attic discovery, hidden identity, mysterious letters) but executes them with solid craft. The emotional core is genuine and the sensory language is evocative. However, there is limited narrative innovation—the structure follows conventional mystery-revelation patterns. The piece is competent but not particularly groundbreaking in its approach to the discovery theme."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "adb500409172c576e71d55af59e5e636afa66630304eab25f6f4354d055cbda9",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "timestamp": "2025-10-28T07:36:59.028818Z"
+    },
+    {
+      "test_number": 4,
+      "config": {
+        "test_number": 4,
+        "config_values": {
+          "domain_count": "two",
+          "domain_balance": "primary",
+          "task_type": "design",
+          "domain_integration": "synthesized",
+          "temperature": 0.8,
+          "output_structure": "domain_sections",
+          "example_provision": "none"
+        },
+        "workflow": "multi_domain"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "cross_domain_applicability": {
+            "score": 0.15,
+            "reasoning": "This rubric dimension evaluates multi-domain applicability (technical, creative, analytical). The output is a creative writing piece, which is domain-specific. It does not demonstrate application across technical or analytical domains, nor does it show how creative writing principles transfer to other fields. The rubric appears misaligned with a single-domain creative writing task."
+          },
+          "domain_synthesis": {
+            "score": 0.2,
+            "reasoning": "This dimension requires integration of insights from multiple domains. The output is purely creative writing without synthesis of technical, analytical, or other domain perspectives. There is no evidence of cross-domain integration—the piece stands as a standalone creative work without demonstrating how multiple disciplinary approaches inform the narrative."
+          },
+          "solution_quality": {
+            "score": 0.82,
+            "reasoning": "Evaluating within the creative writing domain: The scene demonstrates strong technical execution with vivid sensory details (dust, lamplight, rain), effective pacing, and emotional resonance. Character voice is authentic, dialogue feels natural, and the revelation is well-structured with escalating tension. The atmospheric writing and foreshadowing (creaking floorboard, grandmother's reaction) show expertise. Minor limitation: the ending, while effective, is somewhat conventional for this trope."
+          },
+          "versatility": {
+            "score": 0.25,
+            "reasoning": "This dimension expects adaptation across domain requirements. The output demonstrates versatility within creative writing (atmospheric description, dialogue, internal monologue, pacing) but does not adapt approach based on multiple domain contexts. The rubric assumes multi-domain application, which is not present in this single-domain task."
+          },
+          "innovation": {
+            "score": 0.6,
+            "reasoning": "Within creative writing, the piece shows competent but not groundbreaking innovation. The hidden truth discovery is a familiar narrative trope. However, execution details are well-crafted: the specific names (Elias, Liora), the physical artifact (tin box), and the final line ('the storm was inside her now') demonstrate thoughtful creative choices. The piece innovates within genre conventions rather than transcending them."
+          }
+        },
+        "overall_score": 0.404,
+        "evaluator_model": "openrouter/anthropic/claude-haiku-4.5",
+        "timestamp": "2025-10-28T07:37:18.638267Z",
+        "metadata": {
+          "rubric": {
+            "cross_domain_applicability": {
+              "description": "Solution works effectively across all specified domains (technical, creative, analytical)",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "domain_synthesis": {
+              "description": "Successfully integrates insights from multiple domains into coherent solution",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "solution_quality": {
+              "description": "Solution is practical, well-reasoned, and demonstrates expertise in each domain",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "versatility": {
+              "description": "Adapts approach appropriately based on domain requirements and context",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "innovation": {
+              "description": "Demonstrates creative synthesis across domain boundaries, not just sequential treatment",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "cross_domain_applicability": {
+              "score": 15,
+              "reasoning": "This rubric dimension evaluates multi-domain applicability (technical, creative, analytical). The output is a creative writing piece, which is domain-specific. It does not demonstrate application across technical or analytical domains, nor does it show how creative writing principles transfer to other fields. The rubric appears misaligned with a single-domain creative writing task."
+            },
+            "domain_synthesis": {
+              "score": 20,
+              "reasoning": "This dimension requires integration of insights from multiple domains. The output is purely creative writing without synthesis of technical, analytical, or other domain perspectives. There is no evidence of cross-domain integration—the piece stands as a standalone creative work without demonstrating how multiple disciplinary approaches inform the narrative."
+            },
+            "solution_quality": {
+              "score": 82,
+              "reasoning": "Evaluating within the creative writing domain: The scene demonstrates strong technical execution with vivid sensory details (dust, lamplight, rain), effective pacing, and emotional resonance. Character voice is authentic, dialogue feels natural, and the revelation is well-structured with escalating tension. The atmospheric writing and foreshadowing (creaking floorboard, grandmother's reaction) show expertise. Minor limitation: the ending, while effective, is somewhat conventional for this trope."
+            },
+            "versatility": {
+              "score": 25,
+              "reasoning": "This dimension expects adaptation across domain requirements. The output demonstrates versatility within creative writing (atmospheric description, dialogue, internal monologue, pacing) but does not adapt approach based on multiple domain contexts. The rubric assumes multi-domain application, which is not present in this single-domain task."
+            },
+            "innovation": {
+              "score": 60,
+              "reasoning": "Within creative writing, the piece shows competent but not groundbreaking innovation. The hidden truth discovery is a familiar narrative trope. However, execution details are well-crafted: the specific names (Elias, Liora), the physical artifact (tin box), and the final line ('the storm was inside her now') demonstrate thoughtful creative choices. The piece innovates within genre conventions rather than transcending them."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "0a57a049d17940db05ce4d7ae70a959b9b990627dadad950587b5ab31f3d3d6c",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "cost": 0.0,
+      "latency": 14195.385040977271,
+      "utility": 0.3666398408512771,
+      "workflow_output": "Task Domain: creative_writing\nTemperature: 0.8\nTask: Write a scene where a character discovers a hidden truth about their past.\n\nOutput:\n**The Box Under the Floorboard**  \n\nThe loose floorboard had always creaked. For years, Mara ignored it—just another quirk of the old house. But tonight, with rain drumming against the windows and the wind howling like a restless ghost, she knelt and pried it up.  \n\nDust swirled in the lamplight. Beneath the wood lay a small tin box, its edges rusted with age. Mara’s fingers trembled as she lifted it. The latch gave with a reluctant click.  \n\nInside, a faded photograph. A woman with Mara’s sharp cheekbones and wild curls, holding a baby. Behind them, a man—tall, unfamiliar, his smile uneasy. On the back, in smudged ink: *Elias, Liora, and you. Always.*  \n\nHer breath hitched. *Liora.* Her mother’s name was supposed to be Clara.  \n\nA folded letter lay beneath the photo. The paper crackled as she opened it.  \n\n*\"If you’re reading this, they never told you the truth. Elias wasn’t just a friend. He was your father. We had to hide you—from them. Forgive us.\"*  \n\nThe rain blurred into a roar. Mara clutched the letter, the past unraveling like a pulled thread. All those years of half-remembered whispers, the way her grandmother stiffened at the name *Elias.*  \n\nA knock at the door. She startled, heart pounding.  \n\n\"Mar?\" Her uncle’s voice, hesitant. \"You okay in there?\"  \n\nMara swallowed, staring at the box. \"Yeah,\" she lied. \"Just the storm.\"  \n\nBut the storm was inside her now. And it was only beginning.",
+      "metadata": {
+        "test_number": 4,
+        "config_values": {
+          "domain_count": "two",
+          "domain_balance": "primary",
+          "task_type": "design",
+          "domain_integration": "synthesized",
+          "temperature": 0.8,
+          "output_structure": "domain_sections",
+          "example_provision": "none"
+        },
+        "workflow": {
+          "started_at": "2025-10-28T07:36:59.033406Z",
+          "completed_at": "2025-10-28T07:37:13.228791Z",
+          "duration_seconds": 14.195385040977271
+        },
+        "evaluation": {
+          "rubric": {
+            "cross_domain_applicability": {
+              "description": "Solution works effectively across all specified domains (technical, creative, analytical)",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "domain_synthesis": {
+              "description": "Successfully integrates insights from multiple domains into coherent solution",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "solution_quality": {
+              "description": "Solution is practical, well-reasoned, and demonstrates expertise in each domain",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "versatility": {
+              "description": "Adapts approach appropriately based on domain requirements and context",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "innovation": {
+              "description": "Demonstrates creative synthesis across domain boundaries, not just sequential treatment",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "cross_domain_applicability": {
+              "score": 15,
+              "reasoning": "This rubric dimension evaluates multi-domain applicability (technical, creative, analytical). The output is a creative writing piece, which is domain-specific. It does not demonstrate application across technical or analytical domains, nor does it show how creative writing principles transfer to other fields. The rubric appears misaligned with a single-domain creative writing task."
+            },
+            "domain_synthesis": {
+              "score": 20,
+              "reasoning": "This dimension requires integration of insights from multiple domains. The output is purely creative writing without synthesis of technical, analytical, or other domain perspectives. There is no evidence of cross-domain integration—the piece stands as a standalone creative work without demonstrating how multiple disciplinary approaches inform the narrative."
+            },
+            "solution_quality": {
+              "score": 82,
+              "reasoning": "Evaluating within the creative writing domain: The scene demonstrates strong technical execution with vivid sensory details (dust, lamplight, rain), effective pacing, and emotional resonance. Character voice is authentic, dialogue feels natural, and the revelation is well-structured with escalating tension. The atmospheric writing and foreshadowing (creaking floorboard, grandmother's reaction) show expertise. Minor limitation: the ending, while effective, is somewhat conventional for this trope."
+            },
+            "versatility": {
+              "score": 25,
+              "reasoning": "This dimension expects adaptation across domain requirements. The output demonstrates versatility within creative writing (atmospheric description, dialogue, internal monologue, pacing) but does not adapt approach based on multiple domain contexts. The rubric assumes multi-domain application, which is not present in this single-domain task."
+            },
+            "innovation": {
+              "score": 60,
+              "reasoning": "Within creative writing, the piece shows competent but not groundbreaking innovation. The hidden truth discovery is a familiar narrative trope. However, execution details are well-crafted: the specific names (Elias, Liora), the physical artifact (tin box), and the final line ('the storm was inside her now') demonstrate thoughtful creative choices. The piece innovates within genre conventions rather than transcending them."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "0a57a049d17940db05ce4d7ae70a959b9b990627dadad950587b5ab31f3d3d6c",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "timestamp": "2025-10-28T07:37:18.638393Z"
+    },
+    {
+      "test_number": 5,
+      "config": {
+        "test_number": 5,
+        "config_values": {
+          "domain_count": "three",
+          "domain_balance": "equal",
+          "task_type": "design",
+          "domain_integration": "sequential",
+          "temperature": 0.8,
+          "output_structure": "domain_sections",
+          "example_provision": "provided"
+        },
+        "workflow": "multi_domain"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "cross_domain_applicability": {
+            "score": 0.15,
+            "reasoning": "This rubric dimension evaluates cross-domain applicability across technical, creative, and analytical domains. The output is a creative writing piece with no technical or analytical components. It does not demonstrate effectiveness across multiple specified domains—it operates solely within creative writing. The rubric appears misaligned with a single-domain creative writing task."
+          },
+          "domain_synthesis": {
+            "score": 0.2,
+            "reasoning": "Domain synthesis requires integrating insights from multiple domains into a coherent solution. This output contains no evidence of synthesizing technical, analytical, or other domain perspectives. It is purely a creative narrative without cross-domain integration. The rubric expectations do not match the task parameters."
+          },
+          "solution_quality": {
+            "score": 0.88,
+            "reasoning": "Within the creative writing domain, the output demonstrates high quality: compelling narrative structure, vivid sensory details ('dust and forgotten things'), strong emotional arc, well-paced revelation, authentic dialogue through the journal entries, and effective use of foreshadowing. The scene accomplishes its stated task—discovering a hidden truth about the character's past—with expertise and polish. However, this score reflects creative writing quality only, not the multi-domain expertise the rubric implies."
+          },
+          "versatility": {
+            "score": 0.25,
+            "reasoning": "Versatility in the rubric context means adapting approach based on domain requirements. The output shows no adaptation across domains because it operates exclusively in creative writing. It does not demonstrate flexibility in approach across technical, analytical, or other domains. The writing itself is versatile in technique (dialogue, internal monologue, description), but this does not address the rubric's cross-domain versatility requirement."
+          },
+          "innovation": {
+            "score": 0.72,
+            "reasoning": "The output shows solid creative innovation within creative writing: the discovery mechanism (journal entries), the emotional layering, and the narrative structure are well-executed. The use of the photograph as a catalyst and the mother's perspective through journal entries demonstrates thoughtful storytelling. However, the rubric seeks 'creative synthesis across domain boundaries,' which this output does not attempt. Innovation is present but confined to a single domain."
+          }
+        },
+        "overall_score": 0.44000000000000006,
+        "evaluator_model": "openrouter/anthropic/claude-haiku-4.5",
+        "timestamp": "2025-10-28T07:37:51.517263Z",
+        "metadata": {
+          "rubric": {
+            "cross_domain_applicability": {
+              "description": "Solution works effectively across all specified domains (technical, creative, analytical)",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "domain_synthesis": {
+              "description": "Successfully integrates insights from multiple domains into coherent solution",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "solution_quality": {
+              "description": "Solution is practical, well-reasoned, and demonstrates expertise in each domain",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "versatility": {
+              "description": "Adapts approach appropriately based on domain requirements and context",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "innovation": {
+              "description": "Demonstrates creative synthesis across domain boundaries, not just sequential treatment",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "cross_domain_applicability": {
+              "score": 15,
+              "reasoning": "This rubric dimension evaluates cross-domain applicability across technical, creative, and analytical domains. The output is a creative writing piece with no technical or analytical components. It does not demonstrate effectiveness across multiple specified domains—it operates solely within creative writing. The rubric appears misaligned with a single-domain creative writing task."
+            },
+            "domain_synthesis": {
+              "score": 20,
+              "reasoning": "Domain synthesis requires integrating insights from multiple domains into a coherent solution. This output contains no evidence of synthesizing technical, analytical, or other domain perspectives. It is purely a creative narrative without cross-domain integration. The rubric expectations do not match the task parameters."
+            },
+            "solution_quality": {
+              "score": 88,
+              "reasoning": "Within the creative writing domain, the output demonstrates high quality: compelling narrative structure, vivid sensory details ('dust and forgotten things'), strong emotional arc, well-paced revelation, authentic dialogue through the journal entries, and effective use of foreshadowing. The scene accomplishes its stated task—discovering a hidden truth about the character's past—with expertise and polish. However, this score reflects creative writing quality only, not the multi-domain expertise the rubric implies."
+            },
+            "versatility": {
+              "score": 25,
+              "reasoning": "Versatility in the rubric context means adapting approach based on domain requirements. The output shows no adaptation across domains because it operates exclusively in creative writing. It does not demonstrate flexibility in approach across technical, analytical, or other domains. The writing itself is versatile in technique (dialogue, internal monologue, description), but this does not address the rubric's cross-domain versatility requirement."
+            },
+            "innovation": {
+              "score": 72,
+              "reasoning": "The output shows solid creative innovation within creative writing: the discovery mechanism (journal entries), the emotional layering, and the narrative structure are well-executed. The use of the photograph as a catalyst and the mother's perspective through journal entries demonstrates thoughtful storytelling. However, the rubric seeks 'creative synthesis across domain boundaries,' which this output does not attempt. Innovation is present but confined to a single domain."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "60ee39d3d40b757c4592464e578e9ceff147cee8999f2c46bd25d3170b2e5034",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "cost": 0.0,
+      "latency": 26016.188375011552,
+      "utility": 0.3400000000000001,
+      "workflow_output": "Task Domain: creative_writing\nTemperature: 0.8\nTask: Write a scene where a character discovers a hidden truth about their past.\n\nOutput:\nThe attic smelled of dust and forgotten things. Emma pulled the chain of the single bulb, its dim light casting long shadows across the stacks of cardboard boxes. She hadn’t been up here in years—not since she was a child, when her mother would shoo her away, saying, “Nothing up there for you, sweetheart.” But now, with her mother gone, the house was hers, and so was whatever lay hidden in its corners.\n\nShe knelt beside a box labeled *Misc. Papers* in her mother’s neat cursive. The tape crackled as she peeled it back. Inside were yellowed envelopes, faded photographs, and a small, leather-bound journal. Her breath caught. She’d never seen it before.\n\nThe journal was soft in her hands, its edges worn smooth. She flipped it open, and a slip of paper fluttered out. A photograph. A baby, swaddled in a hospital blanket, with a note scrawled on the back: *Emma, 3 days old.* She frowned. That was her—she recognized the blanket, the same one her mother had kept in a keepsake box downstairs. But something was off. The handwriting wasn’t her mother’s.\n\nHer pulse quickened as she turned to the first page of the journal. The ink was faded, the letters slanting and hurried.\n\n*June 12th, 1995  \nI held her today. Just for a moment. She’s perfect. Tiny fingers, tiny toes. They told me I couldn’t keep her, but how could I let her go? I named her Emma, after my grandmother. I hope she’ll know, someday, how much I loved her.*\n\nEmma’s hands trembled. The words blurred as tears welled in her eyes. She flipped through the pages, each one a dagger to her heart.\n\n*July 3rd, 1995  \nThey took her today. I signed the papers, but it felt like signing my soul away. The couple seemed kind, but how can I trust them to love her like I would? She’s my daughter. My Emma.*\n\nThe journal slipped from her hands, hitting the floor with a soft thud. She pressed a hand to her mouth, stifling a sob. All her life, she’d believed her parents were her parents. The people who raised her, who tucked her in at night, who sang her lullabies. But this—this was a lie. A beautiful, painful lie.\n\nShe grabbed the photograph again, staring at the baby’s face. *Her* face. Who was the woman who wrote these words? Who was the mother who gave her away?\n\nThe attic felt smaller now, the walls closing in. Emma clutched the journal to her chest, the weight of it heavy against her ribs. She had so many questions, but no one left to answer them. Except, maybe, the woman who’d written these pages.\n\nShe stood, her legs unsteady, and made her way to the stairs. The house was silent, the air thick with the echoes of the past. But for the first time, Emma felt something else stirring beneath the surface—a truth, long buried, waiting to be uncovered. And she was ready to dig.",
+      "metadata": {
+        "test_number": 5,
+        "config_values": {
+          "domain_count": "three",
+          "domain_balance": "equal",
+          "task_type": "design",
+          "domain_integration": "sequential",
+          "temperature": 0.8,
+          "output_structure": "domain_sections",
+          "example_provision": "provided"
+        },
+        "workflow": {
+          "started_at": "2025-10-28T07:37:18.639158Z",
+          "completed_at": "2025-10-28T07:37:44.655346Z",
+          "duration_seconds": 26.016188375011552
+        },
+        "evaluation": {
+          "rubric": {
+            "cross_domain_applicability": {
+              "description": "Solution works effectively across all specified domains (technical, creative, analytical)",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "domain_synthesis": {
+              "description": "Successfully integrates insights from multiple domains into coherent solution",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "solution_quality": {
+              "description": "Solution is practical, well-reasoned, and demonstrates expertise in each domain",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "versatility": {
+              "description": "Adapts approach appropriately based on domain requirements and context",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "innovation": {
+              "description": "Demonstrates creative synthesis across domain boundaries, not just sequential treatment",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "cross_domain_applicability": {
+              "score": 15,
+              "reasoning": "This rubric dimension evaluates cross-domain applicability across technical, creative, and analytical domains. The output is a creative writing piece with no technical or analytical components. It does not demonstrate effectiveness across multiple specified domains—it operates solely within creative writing. The rubric appears misaligned with a single-domain creative writing task."
+            },
+            "domain_synthesis": {
+              "score": 20,
+              "reasoning": "Domain synthesis requires integrating insights from multiple domains into a coherent solution. This output contains no evidence of synthesizing technical, analytical, or other domain perspectives. It is purely a creative narrative without cross-domain integration. The rubric expectations do not match the task parameters."
+            },
+            "solution_quality": {
+              "score": 88,
+              "reasoning": "Within the creative writing domain, the output demonstrates high quality: compelling narrative structure, vivid sensory details ('dust and forgotten things'), strong emotional arc, well-paced revelation, authentic dialogue through the journal entries, and effective use of foreshadowing. The scene accomplishes its stated task—discovering a hidden truth about the character's past—with expertise and polish. However, this score reflects creative writing quality only, not the multi-domain expertise the rubric implies."
+            },
+            "versatility": {
+              "score": 25,
+              "reasoning": "Versatility in the rubric context means adapting approach based on domain requirements. The output shows no adaptation across domains because it operates exclusively in creative writing. It does not demonstrate flexibility in approach across technical, analytical, or other domains. The writing itself is versatile in technique (dialogue, internal monologue, description), but this does not address the rubric's cross-domain versatility requirement."
+            },
+            "innovation": {
+              "score": 72,
+              "reasoning": "The output shows solid creative innovation within creative writing: the discovery mechanism (journal entries), the emotional layering, and the narrative structure are well-executed. The use of the photograph as a catalyst and the mother's perspective through journal entries demonstrates thoughtful storytelling. However, the rubric seeks 'creative synthesis across domain boundaries,' which this output does not attempt. Innovation is present but confined to a single domain."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "60ee39d3d40b757c4592464e578e9ceff147cee8999f2c46bd25d3170b2e5034",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "timestamp": "2025-10-28T07:37:51.517646Z"
+    },
+    {
+      "test_number": 6,
+      "config": {
+        "test_number": 6,
+        "config_values": {
+          "domain_count": "three",
+          "domain_balance": "equal",
+          "task_type": "design",
+          "domain_integration": "synthesized",
+          "temperature": 0.4,
+          "output_structure": "unified",
+          "example_provision": "none"
+        },
+        "workflow": "multi_domain"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "cross_domain_applicability": {
+            "score": 0.15,
+            "reasoning": "This rubric dimension requires solutions to work across technical, creative, and analytical domains. The output is a creative writing piece addressing only the creative domain. It does not demonstrate applicability to technical or analytical domains, nor does it show how the approach could transfer across multiple domains. The rubric appears misaligned with a single-domain creative writing task."
+          },
+          "domain_synthesis": {
+            "score": 0.1,
+            "reasoning": "Domain synthesis requires integrating insights from multiple domains into a coherent solution. This output is purely creative writing with no synthesis of technical, analytical, or other domain perspectives. There is no evidence of cross-domain integration or multi-domain thinking."
+          },
+          "solution_quality": {
+            "score": 0.82,
+            "reasoning": "Within the creative writing domain, the output demonstrates strong quality: compelling narrative structure, effective atmospheric detail ('dust and old paper'), well-paced revelation, authentic emotional resonance, and sophisticated use of mystery and foreshadowing. The dialogue interruption creates effective tension. However, the rubric's emphasis on 'practical' and 'expertise in each domain' suggests expectations beyond creative writing, which this output doesn't address."
+          },
+          "versatility": {
+            "score": 0.2,
+            "reasoning": "Versatility requires adapting approach based on domain requirements and context. The output shows no adaptation across domains—it applies a single creative writing approach throughout. While the writing itself is contextually appropriate for creative fiction, there is no demonstration of versatility across the technical, creative, and analytical domains implied by the rubric."
+          },
+          "innovation": {
+            "score": 0.65,
+            "reasoning": "The output shows solid creative innovation within the writing domain: the discovery mechanism (loose floorboard), the physical artifact (cedar box), the ambiguous photograph, and the cryptic note create an effective narrative hook. The ending question ('And why had they been erased?') demonstrates creative tension. However, there is no cross-domain synthesis or boundary-crossing innovation as the rubric requires."
+          }
+        },
+        "overall_score": 0.384,
+        "evaluator_model": "openrouter/anthropic/claude-haiku-4.5",
+        "timestamp": "2025-10-28T07:38:10.243360Z",
+        "metadata": {
+          "rubric": {
+            "cross_domain_applicability": {
+              "description": "Solution works effectively across all specified domains (technical, creative, analytical)",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "domain_synthesis": {
+              "description": "Successfully integrates insights from multiple domains into coherent solution",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "solution_quality": {
+              "description": "Solution is practical, well-reasoned, and demonstrates expertise in each domain",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "versatility": {
+              "description": "Adapts approach appropriately based on domain requirements and context",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "innovation": {
+              "description": "Demonstrates creative synthesis across domain boundaries, not just sequential treatment",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "cross_domain_applicability": {
+              "score": 15,
+              "reasoning": "This rubric dimension requires solutions to work across technical, creative, and analytical domains. The output is a creative writing piece addressing only the creative domain. It does not demonstrate applicability to technical or analytical domains, nor does it show how the approach could transfer across multiple domains. The rubric appears misaligned with a single-domain creative writing task."
+            },
+            "domain_synthesis": {
+              "score": 10,
+              "reasoning": "Domain synthesis requires integrating insights from multiple domains into a coherent solution. This output is purely creative writing with no synthesis of technical, analytical, or other domain perspectives. There is no evidence of cross-domain integration or multi-domain thinking."
+            },
+            "solution_quality": {
+              "score": 82,
+              "reasoning": "Within the creative writing domain, the output demonstrates strong quality: compelling narrative structure, effective atmospheric detail ('dust and old paper'), well-paced revelation, authentic emotional resonance, and sophisticated use of mystery and foreshadowing. The dialogue interruption creates effective tension. However, the rubric's emphasis on 'practical' and 'expertise in each domain' suggests expectations beyond creative writing, which this output doesn't address."
+            },
+            "versatility": {
+              "score": 20,
+              "reasoning": "Versatility requires adapting approach based on domain requirements and context. The output shows no adaptation across domains—it applies a single creative writing approach throughout. While the writing itself is contextually appropriate for creative fiction, there is no demonstration of versatility across the technical, creative, and analytical domains implied by the rubric."
+            },
+            "innovation": {
+              "score": 65,
+              "reasoning": "The output shows solid creative innovation within the writing domain: the discovery mechanism (loose floorboard), the physical artifact (cedar box), the ambiguous photograph, and the cryptic note create an effective narrative hook. The ending question ('And why had they been erased?') demonstrates creative tension. However, there is no cross-domain synthesis or boundary-crossing innovation as the rubric requires."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "7206590f18d9bdee84754990f6b06f5a4f44be377f959e19bcfd51ad1249b491",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "cost": 0.0,
+      "latency": 12566.714791988488,
+      "utility": 0.3552703579416117,
+      "workflow_output": "Task Domain: creative_writing\nTemperature: 0.4\nTask: Write a scene where a character discovers a hidden truth about their past.\n\nOutput:\n**The Box Under the Floorboard**  \n\nThe attic smelled of dust and old paper, the air thick with the ghosts of forgotten things. Clara knelt beside the loose floorboard, her fingers tracing the rough edge where the wood had warped. She’d found it by accident—just a slight creak underfoot, a hollow sound where there shouldn’t be one.  \n\nHer heart hammered as she pried it up. Inside lay a small cedar box, its surface worn smooth by time. She hesitated, then lifted the lid.  \n\nA photograph. A woman with Clara’s same dark curls, her smile hesitant, her arms wrapped around a baby. Behind them, a man Clara didn’t recognize—tall, broad-shouldered, his face turned slightly away, as if caught mid-step.  \n\n*\"You were loved,\"* read the note tucked beneath, the ink faded. *\"Never doubt that.\"*  \n\nClara’s breath hitched. Her parents—her *real* parents—had never mentioned a box. Never mentioned *him*.  \n\nDownstairs, the front door opened. \"Clara?\" her mother called.  \n\nShe stared at the photo, the truth settling like a stone in her chest.  \n\nWho *were* these people?  \n\nAnd why had they been erased?",
+      "metadata": {
+        "test_number": 6,
+        "config_values": {
+          "domain_count": "three",
+          "domain_balance": "equal",
+          "task_type": "design",
+          "domain_integration": "synthesized",
+          "temperature": 0.4,
+          "output_structure": "unified",
+          "example_provision": "none"
+        },
+        "workflow": {
+          "started_at": "2025-10-28T07:37:51.519783Z",
+          "completed_at": "2025-10-28T07:38:04.086583Z",
+          "duration_seconds": 12.566714791988488
+        },
+        "evaluation": {
+          "rubric": {
+            "cross_domain_applicability": {
+              "description": "Solution works effectively across all specified domains (technical, creative, analytical)",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "domain_synthesis": {
+              "description": "Successfully integrates insights from multiple domains into coherent solution",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "solution_quality": {
+              "description": "Solution is practical, well-reasoned, and demonstrates expertise in each domain",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "versatility": {
+              "description": "Adapts approach appropriately based on domain requirements and context",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "innovation": {
+              "description": "Demonstrates creative synthesis across domain boundaries, not just sequential treatment",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "cross_domain_applicability": {
+              "score": 15,
+              "reasoning": "This rubric dimension requires solutions to work across technical, creative, and analytical domains. The output is a creative writing piece addressing only the creative domain. It does not demonstrate applicability to technical or analytical domains, nor does it show how the approach could transfer across multiple domains. The rubric appears misaligned with a single-domain creative writing task."
+            },
+            "domain_synthesis": {
+              "score": 10,
+              "reasoning": "Domain synthesis requires integrating insights from multiple domains into a coherent solution. This output is purely creative writing with no synthesis of technical, analytical, or other domain perspectives. There is no evidence of cross-domain integration or multi-domain thinking."
+            },
+            "solution_quality": {
+              "score": 82,
+              "reasoning": "Within the creative writing domain, the output demonstrates strong quality: compelling narrative structure, effective atmospheric detail ('dust and old paper'), well-paced revelation, authentic emotional resonance, and sophisticated use of mystery and foreshadowing. The dialogue interruption creates effective tension. However, the rubric's emphasis on 'practical' and 'expertise in each domain' suggests expectations beyond creative writing, which this output doesn't address."
+            },
+            "versatility": {
+              "score": 20,
+              "reasoning": "Versatility requires adapting approach based on domain requirements and context. The output shows no adaptation across domains—it applies a single creative writing approach throughout. While the writing itself is contextually appropriate for creative fiction, there is no demonstration of versatility across the technical, creative, and analytical domains implied by the rubric."
+            },
+            "innovation": {
+              "score": 65,
+              "reasoning": "The output shows solid creative innovation within the writing domain: the discovery mechanism (loose floorboard), the physical artifact (cedar box), the ambiguous photograph, and the cryptic note create an effective narrative hook. The ending question ('And why had they been erased?') demonstrates creative tension. However, there is no cross-domain synthesis or boundary-crossing innovation as the rubric requires."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "7206590f18d9bdee84754990f6b06f5a4f44be377f959e19bcfd51ad1249b491",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "timestamp": "2025-10-28T07:38:10.243741Z"
+    },
+    {
+      "test_number": 7,
+      "config": {
+        "test_number": 7,
+        "config_values": {
+          "domain_count": "three",
+          "domain_balance": "primary",
+          "task_type": "problem_solving",
+          "domain_integration": "sequential",
+          "temperature": 0.8,
+          "output_structure": "unified",
+          "example_provision": "none"
+        },
+        "workflow": "multi_domain"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "cross_domain_applicability": {
+            "score": 0.15,
+            "reasoning": "This rubric dimension evaluates cross-domain applicability across technical, creative, and analytical domains. The output is a creative writing piece with no technical or analytical components. It does not demonstrate effectiveness across multiple specified domains—it operates solely within creative writing. The rubric appears misaligned with a single-domain creative writing task."
+          },
+          "domain_synthesis": {
+            "score": 0.2,
+            "reasoning": "Domain synthesis requires integrating insights from multiple domains into a coherent solution. This output contains no evidence of synthesizing technical, analytical, or other domain perspectives. It is a pure creative writing exercise without cross-domain integration. The rubric dimension is not applicable to this task type."
+          },
+          "solution_quality": {
+            "score": 0.82,
+            "reasoning": "Evaluating the output as a creative writing solution: The scene demonstrates strong technical execution with vivid sensory details ('dust and forgotten things,' 'smooth beneath her touch'), effective pacing, and emotional resonance. The revelation is well-structured with appropriate foreshadowing. The writing shows expertise in narrative craft, character development, and emotional authenticity. Minor areas: the twist is somewhat predictable (adoption reveal), and the ending could explore more complexity. Strong execution within the creative domain."
+          },
+          "versatility": {
+            "score": 0.25,
+            "reasoning": "Versatility in this rubric context means adapting approach based on domain requirements. The output demonstrates versatility within creative writing (sensory description, dialogue, internal monologue, pacing). However, the rubric expects versatility across multiple domains (technical, creative, analytical), which is not demonstrated. The piece does not adapt to or incorporate different domain methodologies."
+          },
+          "innovation": {
+            "score": 0.58,
+            "reasoning": "Innovation within creative writing is moderately present: the use of a misdated journal (written before the character could write) is a clever narrative device, and the emotional restraint in the ending shows sophistication. However, the core plot device (hidden adoption) is conventional in creative writing. The rubric's emphasis on 'creative synthesis across domain boundaries' cannot be assessed here, as no domain boundaries are crossed. Innovation is limited to within-domain creativity."
+          }
+        },
+        "overall_score": 0.4,
+        "evaluator_model": "openrouter/anthropic/claude-haiku-4.5",
+        "timestamp": "2025-10-28T07:38:34.225366Z",
+        "metadata": {
+          "rubric": {
+            "cross_domain_applicability": {
+              "description": "Solution works effectively across all specified domains (technical, creative, analytical)",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "domain_synthesis": {
+              "description": "Successfully integrates insights from multiple domains into coherent solution",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "solution_quality": {
+              "description": "Solution is practical, well-reasoned, and demonstrates expertise in each domain",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "versatility": {
+              "description": "Adapts approach appropriately based on domain requirements and context",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "innovation": {
+              "description": "Demonstrates creative synthesis across domain boundaries, not just sequential treatment",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "cross_domain_applicability": {
+              "score": 15,
+              "reasoning": "This rubric dimension evaluates cross-domain applicability across technical, creative, and analytical domains. The output is a creative writing piece with no technical or analytical components. It does not demonstrate effectiveness across multiple specified domains—it operates solely within creative writing. The rubric appears misaligned with a single-domain creative writing task."
+            },
+            "domain_synthesis": {
+              "score": 20,
+              "reasoning": "Domain synthesis requires integrating insights from multiple domains into a coherent solution. This output contains no evidence of synthesizing technical, analytical, or other domain perspectives. It is a pure creative writing exercise without cross-domain integration. The rubric dimension is not applicable to this task type."
+            },
+            "solution_quality": {
+              "score": 82,
+              "reasoning": "Evaluating the output as a creative writing solution: The scene demonstrates strong technical execution with vivid sensory details ('dust and forgotten things,' 'smooth beneath her touch'), effective pacing, and emotional resonance. The revelation is well-structured with appropriate foreshadowing. The writing shows expertise in narrative craft, character development, and emotional authenticity. Minor areas: the twist is somewhat predictable (adoption reveal), and the ending could explore more complexity. Strong execution within the creative domain."
+            },
+            "versatility": {
+              "score": 25,
+              "reasoning": "Versatility in this rubric context means adapting approach based on domain requirements. The output demonstrates versatility within creative writing (sensory description, dialogue, internal monologue, pacing). However, the rubric expects versatility across multiple domains (technical, creative, analytical), which is not demonstrated. The piece does not adapt to or incorporate different domain methodologies."
+            },
+            "innovation": {
+              "score": 58,
+              "reasoning": "Innovation within creative writing is moderately present: the use of a misdated journal (written before the character could write) is a clever narrative device, and the emotional restraint in the ending shows sophistication. However, the core plot device (hidden adoption) is conventional in creative writing. The rubric's emphasis on 'creative synthesis across domain boundaries' cannot be assessed here, as no domain boundaries are crossed. Innovation is limited to within-domain creativity."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "680cbca7465798bf9109de7a3f74198200725d60548bde0b4c620e8b8363db57",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "cost": 0.0,
+      "latency": 17103.921666013775,
+      "utility": 0.3472271598215676,
+      "workflow_output": "Task Domain: creative_writing\nTemperature: 0.8\nTask: Write a scene where a character discovers a hidden truth about their past.\n\nOutput:\nThe attic smelled of dust and forgotten things. Emma climbed the creaking ladder, her flashlight casting a shaky beam across the rafters. Boxes stacked haphazardly, their corners softened by time, loomed like silent sentinels. She hadn’t been up here since she was a child, when her mother would shoo her away with a stern, “It’s not safe, Emma. Stay out.”\n\nBut her mother was gone now, and the house was hers. And something—some nagging pull—had brought her here tonight.\n\nShe knelt beside a wooden chest, its surface carved with intricate patterns of leaves and vines. Her fingers traced the grooves, the wood smooth beneath her touch. The latch clicked open with a soft groan. Inside, nestled among yellowed lace and moth-eaten fabric, lay a leather-bound journal.\n\nHer breath caught. She didn’t recognize it, but the initials embossed on the cover—E.W.—were hers. Except she’d never owned a journal like this. Her hands trembled as she flipped it open.\n\nThe handwriting was familiar. Her own, but… different. Older. The first entry was dated twenty years ago, long before she could write. \n\n“Today, I met her. My daughter. She looks just like him.”\n\nEmma’s heart thudded in her chest. She flipped to the next page, then the next. Each entry was a letter—to her. From her mother. But not the mother she’d known. \n\n“I couldn’t tell you the truth. Not then. Not ever. But you deserve to know. You’re not mine by blood, but by choice. And I loved you more than anything.”\n\nThe flashlight slipped from her hand, clattering to the floor. Darkness swallowed the attic, but Emma didn’t move. She sat there, the journal clutched to her chest, tears streaming down her face. \n\nThe truth was a weight she hadn’t known she was carrying. And now, it was hers to hold.",
+      "metadata": {
+        "test_number": 7,
+        "config_values": {
+          "domain_count": "three",
+          "domain_balance": "primary",
+          "task_type": "problem_solving",
+          "domain_integration": "sequential",
+          "temperature": 0.8,
+          "output_structure": "unified",
+          "example_provision": "none"
+        },
+        "workflow": {
+          "started_at": "2025-10-28T07:38:10.246076Z",
+          "completed_at": "2025-10-28T07:38:27.349995Z",
+          "duration_seconds": 17.103921666013775
+        },
+        "evaluation": {
+          "rubric": {
+            "cross_domain_applicability": {
+              "description": "Solution works effectively across all specified domains (technical, creative, analytical)",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "domain_synthesis": {
+              "description": "Successfully integrates insights from multiple domains into coherent solution",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "solution_quality": {
+              "description": "Solution is practical, well-reasoned, and demonstrates expertise in each domain",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "versatility": {
+              "description": "Adapts approach appropriately based on domain requirements and context",
+              "scale": "0-100 points",
+              "weight": 0.15
+            },
+            "innovation": {
+              "description": "Demonstrates creative synthesis across domain boundaries, not just sequential treatment",
+              "scale": "0-100 points",
+              "weight": 0.1
+            }
+          },
+          "raw_response": {
+            "cross_domain_applicability": {
+              "score": 15,
+              "reasoning": "This rubric dimension evaluates cross-domain applicability across technical, creative, and analytical domains. The output is a creative writing piece with no technical or analytical components. It does not demonstrate effectiveness across multiple specified domains—it operates solely within creative writing. The rubric appears misaligned with a single-domain creative writing task."
+            },
+            "domain_synthesis": {
+              "score": 20,
+              "reasoning": "Domain synthesis requires integrating insights from multiple domains into a coherent solution. This output contains no evidence of synthesizing technical, analytical, or other domain perspectives. It is a pure creative writing exercise without cross-domain integration. The rubric dimension is not applicable to this task type."
+            },
+            "solution_quality": {
+              "score": 82,
+              "reasoning": "Evaluating the output as a creative writing solution: The scene demonstrates strong technical execution with vivid sensory details ('dust and forgotten things,' 'smooth beneath her touch'), effective pacing, and emotional resonance. The revelation is well-structured with appropriate foreshadowing. The writing shows expertise in narrative craft, character development, and emotional authenticity. Minor areas: the twist is somewhat predictable (adoption reveal), and the ending could explore more complexity. Strong execution within the creative domain."
+            },
+            "versatility": {
+              "score": 25,
+              "reasoning": "Versatility in this rubric context means adapting approach based on domain requirements. The output demonstrates versatility within creative writing (sensory description, dialogue, internal monologue, pacing). However, the rubric expects versatility across multiple domains (technical, creative, analytical), which is not demonstrated. The piece does not adapt to or incorporate different domain methodologies."
+            },
+            "innovation": {
+              "score": 58,
+              "reasoning": "Innovation within creative writing is moderately present: the use of a misdated journal (written before the character could write) is a clever narrative device, and the emotional restraint in the ending shows sophistication. However, the core plot device (hidden adoption) is conventional in creative writing. The rubric's emphasis on 'creative synthesis across domain boundaries' cannot be assessed here, as no domain boundaries are crossed. Innovation is limited to within-domain creativity."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "680cbca7465798bf9109de7a3f74198200725d60548bde0b4c620e8b8363db57",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-haiku-4.5"
+        }
+      },
+      "timestamp": "2025-10-28T07:38:34.225560Z"
+    }
+  ],
+  "status": "FAILED",
+  "started_at": "2025-10-28T07:36:12.243784Z",
+  "error": "Evaluator response was not valid JSON.",
+  "experiment_metadata": {
+    "config_hash": "7cca98e757c58305db88ecb4a9105ba4b4b1cbd059e3aafaa834f0a8d8532bfd",
+    "created_at": "2025-10-28T07:36:12.243697Z",
+    "dependencies": {
+      "pydantic": "2.12.3",
+      "langgraph": "1.0.1",
+      "litellm": "1.79.0"
+    },
+    "non_deterministic_sources": [
+      "llm_sampling"
+    ]
+  },
+  "metadata": {
+    "normalization": {
+      "cost": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "latency": {
+        "min": 7145.126167015405,
+        "max": 26016.188375011552
+      }
+    }
+  },
+  "baseline_test_number": 1,
+  "baseline_config": {
+    "test_number": 1,
+    "config_values": {
+      "domain_count": "two",
+      "domain_balance": "equal",
+      "task_type": "problem_solving",
+      "domain_integration": "sequential",
+      "temperature": 0.4,
+      "output_structure": "domain_sections",
+      "example_provision": "none"
+    },
+    "workflow": "multi_domain"
+  },
+  "baseline_result": {
+    "test_number": 1,
+    "config": {
+      "test_number": 1,
+      "config_values": {
+        "domain_count": "two",
+        "domain_balance": "equal",
+        "task_type": "problem_solving",
+        "domain_integration": "sequential",
+        "temperature": 0.4,
+        "output_structure": "domain_sections",
+        "example_provision": "none"
+      },
+      "workflow": "multi_domain"
+    },
+    "quality_score": {
+      "dimension_scores": {
+        "cross_domain_applicability": {
+          "score": 0.15,
+          "reasoning": "This rubric dimension evaluates cross-domain applicability across technical, creative, and analytical domains. The output is a creative writing piece with no technical or analytical components. It does not demonstrate effectiveness across multiple specified domains—it operates solely within creative writing. The rubric appears misaligned with a creative writing task."
+        },
+        "domain_synthesis": {
+          "score": 0.2,
+          "reasoning": "Domain synthesis requires integrating insights from multiple domains into a coherent solution. This output shows no evidence of synthesizing technical, analytical, or other domain insights. It is a single-domain creative work without cross-domain integration. The rubric's expectation of multi-domain synthesis does not apply to this creative writing output."
+        },
+        "solution_quality": {
+          "score": 0.82,
+          "reasoning": "Evaluating the output as a creative writing solution: The scene is well-crafted with strong sensory details (dust, creaking ladder, cedar scent), effective pacing, and emotional resonance. The hidden truth is revealed naturally through discovered artifacts. Character motivation is clear, and the emotional arc is compelling. The writing demonstrates expertise in narrative structure and character development. Minor deduction for somewhat predictable spy-father trope, though execution is solid."
+        },
+        "versatility": {
+          "score": 0.25,
+          "reasoning": "Versatility in the rubric context implies adapting approach based on domain requirements. This output demonstrates no adaptation across domains—it applies a single creative writing approach throughout. There is no evidence of adjusting methodology based on technical, analytical, or other domain contexts. The piece maintains consistent creative writing approach without domain-specific adaptation."
+        },
+        "innovation": {
+          "score": 0.58,
+          "reasoning": "Within creative writing, the output shows competent but conventional storytelling. The spy-father revelation is a familiar trope in literature. However, the execution includes thoughtful details (the ring engraving, the letter's tone, the emotional resolution). The piece demonstrates solid craft but limited originality. No cross-domain creative synthesis is evident, which the rubric appears to expect."
+        }
+      },
+      "overall_score": 0.4,
+      "evaluator_model": "openrouter/anthropic/claude-haiku-4.5",
+      "timestamp": "2025-10-28T07:36:25.646383Z",
+      "metadata": {
+        "rubric": {
+          "cross_domain_applicability": {
+            "description": "Solution works effectively across all specified domains (technical, creative, analytical)",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "domain_synthesis": {
+            "description": "Successfully integrates insights from multiple domains into coherent solution",
+            "scale": "0-100 points",
+            "weight": 0.25
+          },
+          "solution_quality": {
+            "description": "Solution is practical, well-reasoned, and demonstrates expertise in each domain",
+            "scale": "0-100 points",
+            "weight": 0.2
+          },
+          "versatility": {
+            "description": "Adapts approach appropriately based on domain requirements and context",
+            "scale": "0-100 points",
+            "weight": 0.15
+          },
+          "innovation": {
+            "description": "Demonstrates creative synthesis across domain boundaries, not just sequential treatment",
+            "scale": "0-100 points",
+            "weight": 0.1
+          }
+        },
+        "raw_response": {
+          "cross_domain_applicability": {
+            "score": 15,
+            "reasoning": "This rubric dimension evaluates cross-domain applicability across technical, creative, and analytical domains. The output is a creative writing piece with no technical or analytical components. It does not demonstrate effectiveness across multiple specified domains—it operates solely within creative writing. The rubric appears misaligned with a creative writing task."
+          },
+          "domain_synthesis": {
+            "score": 20,
+            "reasoning": "Domain synthesis requires integrating insights from multiple domains into a coherent solution. This output shows no evidence of synthesizing technical, analytical, or other domain insights. It is a single-domain creative work without cross-domain integration. The rubric's expectation of multi-domain synthesis does not apply to this creative writing output."
+          },
+          "solution_quality": {
+            "score": 82,
+            "reasoning": "Evaluating the output as a creative writing solution: The scene is well-crafted with strong sensory details (dust, creaking ladder, cedar scent), effective pacing, and emotional resonance. The hidden truth is revealed naturally through discovered artifacts. Character motivation is clear, and the emotional arc is compelling. The writing demonstrates expertise in narrative structure and character development. Minor deduction for somewhat predictable spy-father trope, though execution is solid."
+          },
+          "versatility": {
+            "score": 25,
+            "reasoning": "Versatility in the rubric context implies adapting approach based on domain requirements. This output demonstrates no adaptation across domains—it applies a single creative writing approach throughout. There is no evidence of adjusting methodology based on technical, analytical, or other domain contexts. The piece maintains consistent creative writing approach without domain-specific adaptation."
+          },
+          "innovation": {
+            "score": 58,
+            "reasoning": "Within creative writing, the output shows competent but conventional storytelling. The spy-father revelation is a familiar trope in literature. However, the execution includes thoughtful details (the ring engraving, the letter's tone, the emotional resolution). The piece demonstrates solid craft but limited originality. No cross-domain creative synthesis is evident, which the rubric appears to expect."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "49a7660c4c665fb89d659fa753ae0f723b9910fdae9e7390a020bcbfaaf3414d",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/anthropic/claude-haiku-4.5"
+      }
+    },
+    "cost": 0.0,
+    "latency": 8137.315707979724,
+    "utility": 0.4,
+    "workflow_output": "Task Domain: creative_writing\nTemperature: 0.4\nTask: Write a scene where a character discovers a hidden truth about their past.\n\nOutput:\nThe attic smelled of dust and forgotten time. Emma climbed the creaking ladder, her fingers brushing against the rough wooden rungs. The single beam of her flashlight cut through the darkness, illuminating motes of dust that danced like tiny ghosts. She hadn’t been up here in years—not since she was a child, when the attic was a kingdom of cardboard castles and moth-eaten costumes.\n\nBut today, she wasn’t here to play.\n\nHer mother’s voice echoed in her mind, strained and trembling over the phone. *“There’s something you need to see. In the attic.”* Emma had pressed for more, but her mother had only said, *“It’s about your father.”*\n\nHer father. The man who had vanished when she was six, leaving behind only a faded photograph and a silence that had stretched for decades.\n\nEmma’s flashlight caught the edge of an old trunk, its leather cracked and buckles rusted. She knelt beside it, her heart pounding in her ears. The lid groaned as she opened it, releasing a scent of cedar and something faintly metallic. Inside, she found a jumble of papers, yellowed and brittle, and a small, velvet box.\n\nHer hands trembled as she lifted the box. Inside was a ring—a simple silver band engraved with a single word: *Always.* Beneath it lay a letter, the handwriting familiar yet foreign.\n\n*“My dearest Emma,”* it began. *“If you’re reading this, it means I’m gone. I never wanted to leave you, but I had no choice. The truth is, I wasn’t who you thought I was. I wasn’t just your father. I was a spy, working to protect our country. When my cover was compromised, I had to disappear to keep you and your mother safe.”*\n\nEmma’s breath caught. She read on, her vision blurring with tears. *“I’ve watched you from afar, proud of the woman you’ve become. I’m sorry I couldn’t be there to see it. But know this: I love you. Always.”*\n\nThe flashlight slipped from her hand, clattering to the floor. Emma sat in the darkness, clutching the letter to her chest. The man she had spent her life resenting, the man she had thought abandoned her, had been protecting her all along.\n\nAnd now, he was gone.\n\nThe attic felt smaller somehow, the weight of the truth pressing down on her. But for the first time in years, Emma felt a strange sense of peace. Her father’s love had never left her. It had been here all along, waiting in the shadows.",
+    "metadata": {
+      "test_number": 1,
+      "config_values": {
+        "domain_count": "two",
+        "domain_balance": "equal",
+        "task_type": "problem_solving",
+        "domain_integration": "sequential",
+        "temperature": 0.4,
+        "output_structure": "domain_sections",
+        "example_provision": "none"
+      },
+      "workflow": {
+        "started_at": "2025-10-28T07:36:12.246223Z",
+        "completed_at": "2025-10-28T07:36:20.383538Z",
+        "duration_seconds": 8.137315707979724
+      },
+      "evaluation": {
+        "rubric": {
+          "cross_domain_applicability": {
+            "description": "Solution works effectively across all specified domains (technical, creative, analytical)",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "domain_synthesis": {
+            "description": "Successfully integrates insights from multiple domains into coherent solution",
+            "scale": "0-100 points",
+            "weight": 0.25
+          },
+          "solution_quality": {
+            "description": "Solution is practical, well-reasoned, and demonstrates expertise in each domain",
+            "scale": "0-100 points",
+            "weight": 0.2
+          },
+          "versatility": {
+            "description": "Adapts approach appropriately based on domain requirements and context",
+            "scale": "0-100 points",
+            "weight": 0.15
+          },
+          "innovation": {
+            "description": "Demonstrates creative synthesis across domain boundaries, not just sequential treatment",
+            "scale": "0-100 points",
+            "weight": 0.1
+          }
+        },
+        "raw_response": {
+          "cross_domain_applicability": {
+            "score": 15,
+            "reasoning": "This rubric dimension evaluates cross-domain applicability across technical, creative, and analytical domains. The output is a creative writing piece with no technical or analytical components. It does not demonstrate effectiveness across multiple specified domains—it operates solely within creative writing. The rubric appears misaligned with a creative writing task."
+          },
+          "domain_synthesis": {
+            "score": 20,
+            "reasoning": "Domain synthesis requires integrating insights from multiple domains into a coherent solution. This output shows no evidence of synthesizing technical, analytical, or other domain insights. It is a single-domain creative work without cross-domain integration. The rubric's expectation of multi-domain synthesis does not apply to this creative writing output."
+          },
+          "solution_quality": {
+            "score": 82,
+            "reasoning": "Evaluating the output as a creative writing solution: The scene is well-crafted with strong sensory details (dust, creaking ladder, cedar scent), effective pacing, and emotional resonance. The hidden truth is revealed naturally through discovered artifacts. Character motivation is clear, and the emotional arc is compelling. The writing demonstrates expertise in narrative structure and character development. Minor deduction for somewhat predictable spy-father trope, though execution is solid."
+          },
+          "versatility": {
+            "score": 25,
+            "reasoning": "Versatility in the rubric context implies adapting approach based on domain requirements. This output demonstrates no adaptation across domains—it applies a single creative writing approach throughout. There is no evidence of adjusting methodology based on technical, analytical, or other domain contexts. The piece maintains consistent creative writing approach without domain-specific adaptation."
+          },
+          "innovation": {
+            "score": 58,
+            "reasoning": "Within creative writing, the output shows competent but conventional storytelling. The spy-father revelation is a familiar trope in literature. However, the execution includes thoughtful details (the ring engraving, the letter's tone, the emotional resolution). The piece demonstrates solid craft but limited originality. No cross-domain creative synthesis is evident, which the rubric appears to expect."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "49a7660c4c665fb89d659fa753ae0f723b9910fdae9e7390a020bcbfaaf3414d",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/anthropic/claude-haiku-4.5"
+      }
+    },
+    "timestamp": "2025-10-28T07:36:25.646616Z"
+  },
+  "baseline_quality": 0.4,
+  "quality_improvement_pct": 10.000000000000009
+}

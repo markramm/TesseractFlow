@@ -218,3 +218,54 @@ async def test_evaluate_requires_cache_backend_when_requested() -> None:
     evaluator = RubricEvaluator()
     with pytest.raises(EvaluationError):
         await evaluator.evaluate("Output", use_cache=True)
+
+
+def test_load_json_parses_pure_json() -> None:
+    """Test parsing pure JSON (DeepSeek format)."""
+    evaluator = RubricEvaluator()
+    content = '{"clarity": {"score": 80, "reasoning": "Clear output"}}'
+    result = evaluator._load_json(content)
+    assert result["clarity"]["score"] == 80
+
+
+def test_load_json_parses_json_with_preamble() -> None:
+    """Test parsing JSON with preamble text (Haiku format)."""
+    evaluator = RubricEvaluator()
+    content = """I'll carefully evaluate the output against the rubric:
+
+{
+  "clarity": {
+    "score": 70,
+    "reasoning": "Somewhat clear"
+  },
+  "accuracy": {
+    "score": 85,
+    "reasoning": "Mostly accurate"
+  }
+}"""
+    result = evaluator._load_json(content)
+    assert result["clarity"]["score"] == 70
+    assert result["accuracy"]["score"] == 85
+
+
+def test_load_json_parses_markdown_fenced() -> None:
+    """Test parsing JSON wrapped in markdown code fences."""
+    evaluator = RubricEvaluator()
+    content = """```json
+{
+  "clarity": {
+    "score": 90,
+    "reasoning": "Very clear"
+  }
+}
+```"""
+    result = evaluator._load_json(content)
+    assert result["clarity"]["score"] == 90
+
+
+def test_load_json_fails_on_invalid_json() -> None:
+    """Test that invalid JSON raises EvaluationError."""
+    evaluator = RubricEvaluator()
+    content = "This is not JSON at all"
+    with pytest.raises(EvaluationError, match="Evaluator response was not valid JSON"):
+        evaluator._load_json(content)

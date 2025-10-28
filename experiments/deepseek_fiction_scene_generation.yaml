@@ -1,0 +1,41 @@
+name: deepseek_fiction_scene_generation
+workflow: fiction_scene
+variables:
+- name: temperature
+  level_1: 0.5
+  level_2: 0.9
+- name: generation_strategy
+  level_1: standard
+  level_2: chain_of_thought
+- name: context_depth
+  level_1: minimal
+  level_2: full
+- name: prose_style
+  level_1: concise
+  level_2: lyrical
+utility_weights:
+  quality: 0.8
+  cost: 0.15
+  time: 0.05
+workflow_config:
+  sample_code_path: tesseract_flow/workflows/code_review.py
+  language: python
+  evaluator_model: openrouter/deepseek/deepseek-chat
+  evaluator_temperature: 0.1
+  rubric:
+    creativity:
+      description: Original prose, unexpected emotional beats, fresh descriptions
+      scale: 0-100 points
+      weight: 0.3
+    consistency:
+      description: Character voice, plot continuity, tone adherence
+      scale: 0-100 points
+      weight: 0.3
+    prose_quality:
+      description: Vivid descriptions, varied sentence structure, natural flow
+      scale: 0-100 points
+      weight: 0.2
+    dialogue:
+      description: Natural speech, distinct voices, emotional authenticity
+      scale: 0-100 points
+      weight: 0.2

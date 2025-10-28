@@ -1,0 +1,77 @@
+# Wave 4: Fiction Scene Generation with Reasoning & Verbalized Sampling (V3.2)
+# Research Question: Do reasoning and verbalized sampling improve creative fiction generation?
+# Model: DeepSeek V3.2 Exp (uses reasoning.enabled: true parameter)
+#
+# Variable Selection Rationale:
+# KEPT (High Impact):
+#   - temperature: Core creativity/consistency tradeoff
+#   - context_depth: Affects story continuity
+# DROPPED (Low Impact):
+#   - generation_strategy: Replaced by reasoning_enabled
+#   - prose_style: Stylistic preference, less impact on quality
+# ADDED (Test Mixins):
+#   - reasoning_enabled: Test ReasoningMixin with V3.2's reasoning.enabled parameter
+#   - verbalized_sampling: Test VerbalizationMixin (none/self_consistency/sample_and_rank)
+#   - n_samples: Number of samples for verbalized sampling
+#   - reasoning_visibility: Control reasoning trace output
+#   - max_reasoning_tokens: Token budget for reasoning
+
+name: wave4_fiction_reasoning_vs_v32
+workflow: fiction_scene
+variables:
+  - name: temperature
+    level_1: 0.5
+    level_2: 0.9
+  - name: context_depth
+    level_1: minimal
+    level_2: full
+  - name: reasoning_enabled
+    level_1: 'false'
+    level_2: 'true'
+  - name: verbalized_sampling
+    level_1: none
+    level_2: self_consistency
+  - name: n_samples
+    level_1: '3'
+    level_2: '5'
+  - name: reasoning_visibility
+    level_1: visible
+    level_2: hidden
+  - name: max_reasoning_tokens
+    level_1: standard
+    level_2: extended
+
+utility_weights:
+  quality: 0.8
+  cost: 0.15
+  time: 0.05
+
+workflow_config:
+  sample_code_path: tesseract_flow/workflows/code_review.py
+  language: python
+  evaluator_model: openrouter/deepseek/deepseek-chat
+  evaluator_temperature: 0.1
+  rubric:
+    creativity:
+      description: Original prose, unexpected emotional beats, fresh descriptions. Does reasoning help generate more creative content?
+      scale: 0-100 points
+      weight: 0.3
+    consistency:
+      description: Character voice, plot continuity, tone adherence. Does reasoning maintain better consistency?
+      scale: 0-100 points
+      weight: 0.3
+    prose_quality:
+      description: Vivid descriptions, varied sentence structure, natural flow. Do multiple samples improve prose?
+      scale: 0-100 points
+      weight: 0.2
+    dialogue:
+      description: Natural speech, distinct voices, emotional authenticity. Does self-consistency improve dialogue?
+      scale: 0-100 points
+      weight: 0.2
+
+# Expected Learnings:
+# 1. Does reasoning help with narrative structure and story logic?
+# 2. Does self-consistency produce better creative output by averaging multiple samples?
+# 3. Is there a cost/quality tradeoff worth making?
+# 4. Do hidden reasoning traces maintain creativity while reducing output tokens?
+# 5. Is extended reasoning budget worthwhile for complex scenes?

@@ -119,28 +119,67 @@ Both issues were discovered during beta testing with fresh developer installatio
 
 ## [Unreleased]
 
-### Planned for v0.2
+### v0.2.0 - Web UI + API (Target: December 2025)
 
-- Web dashboard for experiment visualization (Streamlit/Gradio)
-- Parallel execution for 8x speedup
-- Additional workflow examples (summarization, data extraction)
-- L16/L18 orthogonal arrays for 6-8 variables
+**Status:** Planning complete, implementation starting
+
+#### Planned - Web UI (Streamlit)
+- Experiment configuration UI (visual builder + YAML editor)
+- Real-time experiment progress (WebSocket updates)
+- Interactive results dashboard (main effects + Pareto charts)
+- Knowledge base explorer (browse, search, vote on insights)
+- Experiment history and comparison
+- User profile and settings
+
+#### Planned - REST API (FastAPI)
+- `POST /api/experiments` - Create and run experiments
+- `GET /api/experiments` - List all experiments
+- `GET /api/experiments/:id` - Get experiment details/status
+- `POST /api/analyze/*` - Run analysis (main effects, Pareto)
+- `GET /api/knowledge/*` - Browse knowledge base
+- `WS /ws/experiments/:id` - Real-time updates
+- OpenAPI/Swagger documentation at `/docs`
+
+#### Planned - Authentication
+- User signup/login with JWT tokens
+- Encrypted API key storage (BYO LLM API keys)
+- Session management
+- User profile management
+
+#### Planned - Database
+- SQLite for local development
+- SQLAlchemy ORM with Alembic migrations
+- Persistent experiment history
+- Knowledge base storage with voting
+
+#### Technical Details
+- **Duration:** 6 weeks (120-150 hours)
+- **Stack:** FastAPI + Uvicorn + Streamlit + SQLAlchemy
+- **Release Plan:**
+  - v0.2.0-alpha (Week 4) - Internal testing
+  - v0.2.0-beta (Week 5) - External beta testers
+  - v0.2.0 (Week 6) - Public release
+
+**Reference:** `specs/002-web-ui-api/`
+
+---
+
+### v0.3.0 - Scale & Collaboration (Future)
+
+- Team workspaces and shared knowledge bases
+- PostgreSQL migration for hosted SaaS
+- Parallel experiment execution (8x speedup)
+- L16/L18 orthogonal arrays (6-8 variables)
 - Experiment comparison tools
+- React migration (if Streamlit proves limiting)
 
-### Planned for v0.3
+### v1.0.0 - SaaS & Enterprise (Future)
 
-- Human-in-the-loop (HITL) approval queue integration
-- PostgreSQL backend for experiment history
-- Advanced evaluators (pairwise comparisons, ensemble judging)
-- Multi-experiment analysis and meta-learning
-
-### Planned for v1.0
-
-- Hosted SaaS version with managed infrastructure
-- Team collaboration features
+- Hosted SaaS platform with managed infrastructure
+- Enterprise features (SSO, audit logs, SLA)
 - CI/CD integrations (GitHub Actions, GitLab CI)
 - Workflow marketplace for sharing configurations
-- Enterprise support offering
+- Advanced evaluators (pairwise A/B, ensemble judging)
 
 ---
 

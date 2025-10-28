@@ -1,0 +1,63 @@
+# Wave 4: Dialogue Enhancement V3.2 with Reasoning & Verbalized Sampling (Haiku 4.5 Evaluator)
+# Research Question: Test if Haiku 4.5 evaluator shows same score clustering as DeepSeek-Chat
+#
+# EVALUATOR CHANGE: DeepSeek-Chat → Claude Haiku 4.5
+# MODEL: DeepSeek V3.2 Exp (explicit reasoning parameter)
+
+name: wave4_dialogue_reasoning_vs_v32_haiku
+workflow: dialogue_enhancement
+variables:
+  - name: temperature
+    level_1: 0.6
+    level_2: 0.9
+  - name: voice_emphasis
+    level_1: subtle
+    level_2: explicit
+  - name: reasoning_enabled
+    level_1: 'false'
+    level_2: 'true'
+  - name: verbalized_sampling
+    level_1: none
+    level_2: sample_and_rank
+  - name: n_samples
+    level_1: '3'
+    level_2: '5'
+  - name: ranking_criteria
+    level_1: emotional_authenticity
+    level_2: naturalness_and_voice
+  - name: reasoning_visibility
+    level_1: visible
+    level_2: hidden
+
+utility_weights:
+  quality: 0.8
+  cost: 0.15
+  time: 0.05
+
+workflow_config:
+  sample_code_path: tesseract_flow/workflows/code_review.py
+  language: python
+  model: openrouter/deepseek/deepseek-chat
+  evaluator_model: openrouter/anthropic/claude-3.5-haiku
+  evaluator_temperature: 0.3
+  rubric:
+    emotional_authenticity:
+      description: Characters' emotions feel genuine, dialogue reveals inner states naturally
+      scale: 0-100 points
+      weight: 0.35
+    naturalness:
+      description: Speech patterns sound like real people, appropriate to character/setting
+      scale: 0-100 points
+      weight: 0.30
+    voice_distinctiveness:
+      description: Each character has unique speech patterns, vocabulary, cadence
+      scale: 0-100 points
+      weight: 0.20
+    subtext:
+      description: Dialogue implies more than literal meaning, tensions revealed through speech
+      scale: 0-100 points
+      weight: 0.15
+
+# Expected Learnings:
+# 1. Does V3.2 + Haiku avoid score clustering?
+# 2. Can Haiku distinguish dialogue nuances better?

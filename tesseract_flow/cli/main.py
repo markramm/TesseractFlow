@@ -58,6 +58,11 @@ def main_callback(
 
     logging.basicConfig(level=getattr(logging, level), force=False)
 
+    # Suppress LiteLLM's verbose INFO logging to prevent stdout spam
+    # LiteLLM logs every completion() call which creates excessive output
+    litellm_logger = logging.getLogger("LiteLLM")
+    litellm_logger.setLevel(logging.WARNING)
+
 
 def main() -> None:
     """Entrypoint executed by the console script."""

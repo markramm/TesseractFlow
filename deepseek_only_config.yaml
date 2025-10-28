@@ -1,0 +1,39 @@
+# DeepSeek-only experiment - ultra cheap
+name: "deepseek_only_test"
+workflow: "code_review"
+
+variables:
+  - name: "temperature"
+    level_1: 0.3
+    level_2: 0.7
+  - name: "model"
+    level_1: "openrouter/deepseek/deepseek-chat"
+    level_2: "openrouter/deepseek/deepseek-reasoner"
+  - name: "context_size"
+    level_1: "file_only"
+    level_2: "full_module"
+  - name: "generation_strategy"
+    level_1: "standard"
+    level_2: "chain_of_thought"
+
+utility_weights:
+  quality: 1.0
+  cost: 0.3
+  time: 0.1
+
+workflow_config:
+  rubric:
+    clarity:
+      description: "Is the review easy to follow and well-structured?"
+      scale: "1-10"
+    accuracy:
+      description: "Are the identified issues legitimate code problems?"
+      scale: "1-10"
+    actionability:
+      description: "Do suggestions provide clear next steps?"
+      scale: "1-10"
+  sample_code_path: "tesseract_flow/core/config.py"
+  language: "python"
+  context_descriptions:
+    file_only: "Review limited to the provided snippet."
+    full_module: "Consider module-level implications during review."

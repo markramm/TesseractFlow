@@ -1,0 +1,1307 @@
+{
+  "experiment_id": "deepseek_progressive_discovery-20251028T075245",
+  "config": {
+    "name": "deepseek_progressive_discovery",
+    "workflow": "progressive_discovery",
+    "variables": [
+      {
+        "name": "temperature",
+        "level_1": 0.5,
+        "level_2": 0.8
+      },
+      {
+        "name": "generation_strategy",
+        "level_1": "standard",
+        "level_2": "chain_of_thought"
+      },
+      {
+        "name": "context_strategy",
+        "level_1": "full_upfront",
+        "level_2": "progressive_discovery"
+      },
+      {
+        "name": "discovery_trigger",
+        "level_1": "model_decides",
+        "level_2": "explicit_prompts"
+      }
+    ],
+    "utility_weights": {
+      "quality": 0.6,
+      "cost": 0.3,
+      "time": 0.1
+    },
+    "workflow_config": {
+      "rubric": {
+        "output_quality": {
+          "description": "Does the output maintain quality with reduced context?",
+          "scale": "0-100 points",
+          "weight": 0.4
+        },
+        "context_efficiency": {
+          "description": "Does it request only relevant context? Avoid unnecessary requests?",
+          "scale": "0-100 points",
+          "weight": 0.3
+        },
+        "consistency": {
+          "description": "Maintains story/character consistency despite minimal context",
+          "scale": "0-100 points",
+          "weight": 0.3
+        }
+      },
+      "sample_code_path": "tesseract_flow/core/strategies.py",
+      "evaluator_model": "openrouter/deepseek/deepseek-chat",
+      "model": "openrouter/deepseek/deepseek-v3.2-exp",
+      "language": "python",
+      "evaluator_temperature": 0.1
+    }
+  },
+  "test_configurations": [
+    {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.5,
+        "generation_strategy": "standard",
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 2,
+      "config_values": {
+        "temperature": 0.5,
+        "generation_strategy": "standard",
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "explicit_prompts"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 3,
+      "config_values": {
+        "temperature": 0.5,
+        "generation_strategy": "chain_of_thought",
+        "context_strategy": "progressive_discovery",
+        "discovery_trigger": "model_decides"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 4,
+      "config_values": {
+        "temperature": 0.5,
+        "generation_strategy": "chain_of_thought",
+        "context_strategy": "progressive_discovery",
+        "discovery_trigger": "explicit_prompts"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 5,
+      "config_values": {
+        "temperature": 0.8,
+        "generation_strategy": "standard",
+        "context_strategy": "progressive_discovery",
+        "discovery_trigger": "model_decides"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 6,
+      "config_values": {
+        "temperature": 0.8,
+        "generation_strategy": "standard",
+        "context_strategy": "progressive_discovery",
+        "discovery_trigger": "explicit_prompts"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 7,
+      "config_values": {
+        "temperature": 0.8,
+        "generation_strategy": "chain_of_thought",
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 8,
+      "config_values": {
+        "temperature": 0.8,
+        "generation_strategy": "chain_of_thought",
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "explicit_prompts"
+      },
+      "workflow": "progressive_discovery"
+    }
+  ],
+  "results": [
+    {
+      "test_number": 1,
+      "config": {
+        "test_number": 1,
+        "config_values": {
+          "temperature": 0.5,
+          "generation_strategy": "standard",
+          "context_strategy": "full_upfront",
+          "discovery_trigger": "model_decides"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "output_quality": {
+            "score": 0.9,
+            "reasoning": "The output effectively summarizes the key elements of the story—dystopian setting, caste system, forbidden knowledge, rebellion, and ambiguous ending—while maintaining clarity and coherence. It captures the essence of the narrative despite reduced context."
+          },
+          "context_efficiency": {
+            "score": 1.0,
+            "reasoning": "The output does not request additional context and focuses solely on the provided information. It efficiently uses the given context to craft a concise and relevant summary."
+          },
+          "consistency": {
+            "score": 0.95,
+            "reasoning": "The summary maintains strong consistency with the story's themes, characters, and plot. The protagonist's actions and the societal structure are accurately reflected, and the ambiguous ending aligns with the provided context."
+          }
+        },
+        "overall_score": 0.9500000000000001,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T07:52:51.965079Z",
+        "metadata": {
+          "rubric": {
+            "output_quality": {
+              "description": "Does the output maintain quality with reduced context?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "context_efficiency": {
+              "description": "Does it request only relevant context? Avoid unnecessary requests?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Maintains story/character consistency despite minimal context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "output_quality": {
+              "score": 90,
+              "reasoning": "The output effectively summarizes the key elements of the story—dystopian setting, caste system, forbidden knowledge, rebellion, and ambiguous ending—while maintaining clarity and coherence. It captures the essence of the narrative despite reduced context."
+            },
+            "context_efficiency": {
+              "score": 100,
+              "reasoning": "The output does not request additional context and focuses solely on the provided information. It efficiently uses the given context to craft a concise and relevant summary."
+            },
+            "consistency": {
+              "score": 95,
+              "reasoning": "The summary maintains strong consistency with the story's themes, characters, and plot. The protagonist's actions and the societal structure are accurately reflected, and the ambiguous ending aligns with the provided context."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "b8d6496793af38f7a58ab60ecf8914ac5218591e92fa4684412cc98a0b04b76d",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 2957.827999984147,
+      "utility": 0.5700000000000001,
+      "workflow_output": "Discovered Content:\n**Context:**  \nIn a dystopian future, society is divided into rigid castes based on intellectual ability. The protagonist, a low-caste worker, discovers a hidden library containing forbidden knowledge. They begin secretly educating themselves, challenging the system, and inspiring others to question their oppression. The story culminates in a rebellion against the ruling elite, but the outcome remains ambiguous, leaving the future of the society uncertain.\n\n**Summary:**  \nIn a dystopian caste-based society, a low-caste worker uncovers forbidden knowledge in a hidden library, sparking self-education and dissent. Their actions inspire a rebellion against the oppressive ruling class, but the story ends ambiguously, leaving the society's fate unresolved.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T07:52:45.494770Z",
+          "completed_at": "2025-10-28T07:52:48.452600Z",
+          "duration_seconds": 2.957827999984147
+        },
+        "evaluation": {
+          "rubric": {
+            "output_quality": {
+              "description": "Does the output maintain quality with reduced context?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "context_efficiency": {
+              "description": "Does it request only relevant context? Avoid unnecessary requests?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Maintains story/character consistency despite minimal context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "output_quality": {
+              "score": 90,
+              "reasoning": "The output effectively summarizes the key elements of the story—dystopian setting, caste system, forbidden knowledge, rebellion, and ambiguous ending—while maintaining clarity and coherence. It captures the essence of the narrative despite reduced context."
+            },
+            "context_efficiency": {
+              "score": 100,
+              "reasoning": "The output does not request additional context and focuses solely on the provided information. It efficiently uses the given context to craft a concise and relevant summary."
+            },
+            "consistency": {
+              "score": 95,
+              "reasoning": "The summary maintains strong consistency with the story's themes, characters, and plot. The protagonist's actions and the societal structure are accurately reflected, and the ambiguous ending aligns with the provided context."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "b8d6496793af38f7a58ab60ecf8914ac5218591e92fa4684412cc98a0b04b76d",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T07:52:51.965153Z"
+    },
+    {
+      "test_number": 2,
+      "config": {
+        "test_number": 2,
+        "config_values": {
+          "temperature": 0.5,
+          "generation_strategy": "standard",
+          "context_strategy": "full_upfront",
+          "discovery_trigger": "explicit_prompts"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "output_quality": {
+            "score": 0.7,
+            "reasoning": "The output maintains a reasonable level of quality with reduced context, providing a coherent summary and identifying key elements of the story. However, it lacks depth in addressing the explicit requests, leaving gaps in understanding the trials, artifact, betrayal, and family secrets."
+          },
+          "context_efficiency": {
+            "score": 0.85,
+            "reasoning": "The output requests only relevant context, focusing on the trials, artifact, betrayal, and family secrets, which are essential for a fuller understanding of the story. No unnecessary requests are made."
+          },
+          "consistency": {
+            "score": 0.8,
+            "reasoning": "The output maintains consistency in the story and characters despite minimal context. The summary aligns with the provided context, and the explicit requests logically follow the narrative setup."
+          }
+        },
+        "overall_score": 0.7833333333333333,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T07:53:21.295904Z",
+        "metadata": {
+          "rubric": {
+            "output_quality": {
+              "description": "Does the output maintain quality with reduced context?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "context_efficiency": {
+              "description": "Does it request only relevant context? Avoid unnecessary requests?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Maintains story/character consistency despite minimal context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "output_quality": {
+              "score": 70,
+              "reasoning": "The output maintains a reasonable level of quality with reduced context, providing a coherent summary and identifying key elements of the story. However, it lacks depth in addressing the explicit requests, leaving gaps in understanding the trials, artifact, betrayal, and family secrets."
+            },
+            "context_efficiency": {
+              "score": 85,
+              "reasoning": "The output requests only relevant context, focusing on the trials, artifact, betrayal, and family secrets, which are essential for a fuller understanding of the story. No unnecessary requests are made."
+            },
+            "consistency": {
+              "score": 80,
+              "reasoning": "The output maintains consistency in the story and characters despite minimal context. The summary aligns with the provided context, and the explicit requests logically follow the narrative setup."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "50a0ddbbb142ab6c3482d97b18ec22b21f7b89513d98d7012d1f2b0afa89f8a1",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 13155.389708001167,
+      "utility": 0.38734978582518326,
+      "workflow_output": "Discovered Content:\n**Context:**  \nA young orphan discovers a hidden magical realm where time flows differently. She befriends a talking wolf who guides her through a series of trials to uncover a forgotten artifact that can restore balance to both her world and the magical realm. Along the way, she faces betrayal, learns the truth about her family, and must make a difficult choice between staying in the magical realm or returning home.\n\n**Summary:**  \nA young orphan enters a magical realm with altered time, guided by a talking wolf. She undergoes trials to find an artifact that can restore balance to both worlds. Confronting betrayal and family secrets, she must decide whether to stay in the magical realm or return home.  \n\n**Explicit Requests:**  \n- I need more information about the nature of the trials.  \n- I need more details about the artifact and its significance.  \n- I need clarification on the betrayal and family secrets.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "explicit_prompts",
+        "workflow": {
+          "started_at": "2025-10-28T07:52:51.965586Z",
+          "completed_at": "2025-10-28T07:53:05.120979Z",
+          "duration_seconds": 13.155389708001167
+        },
+        "evaluation": {
+          "rubric": {
+            "output_quality": {
+              "description": "Does the output maintain quality with reduced context?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "context_efficiency": {
+              "description": "Does it request only relevant context? Avoid unnecessary requests?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Maintains story/character consistency despite minimal context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "output_quality": {
+              "score": 70,
+              "reasoning": "The output maintains a reasonable level of quality with reduced context, providing a coherent summary and identifying key elements of the story. However, it lacks depth in addressing the explicit requests, leaving gaps in understanding the trials, artifact, betrayal, and family secrets."
+            },
+            "context_efficiency": {
+              "score": 85,
+              "reasoning": "The output requests only relevant context, focusing on the trials, artifact, betrayal, and family secrets, which are essential for a fuller understanding of the story. No unnecessary requests are made."
+            },
+            "consistency": {
+              "score": 80,
+              "reasoning": "The output maintains consistency in the story and characters despite minimal context. The summary aligns with the provided context, and the explicit requests logically follow the narrative setup."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "50a0ddbbb142ab6c3482d97b18ec22b21f7b89513d98d7012d1f2b0afa89f8a1",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T07:53:21.296214Z"
+    },
+    {
+      "test_number": 3,
+      "config": {
+        "test_number": 3,
+        "config_values": {
+          "temperature": 0.5,
+          "generation_strategy": "chain_of_thought",
+          "context_strategy": "progressive_discovery",
+          "discovery_trigger": "model_decides"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "output_quality": {
+            "score": 0.9,
+            "reasoning": "The output demonstrates high quality by clearly outlining a structured approach to summarizing complex stories with minimal context. The example summary is concise, coherent, and captures the essence of the story effectively."
+          },
+          "context_efficiency": {
+            "score": 0.95,
+            "reasoning": "The output efficiently requests additional context only when the story is too ambiguous to summarize, avoiding unnecessary requests. This demonstrates a balanced approach to context usage."
+          },
+          "consistency": {
+            "score": 0.85,
+            "reasoning": "The output maintains consistency in summarizing the story and its characters despite minimal context. However, the example summary could slightly improve by ensuring all key elements (e.g., the scientist's motivations) are consistently addressed."
+          }
+        },
+        "overall_score": 0.9,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T07:53:33.858726Z",
+        "metadata": {
+          "rubric": {
+            "output_quality": {
+              "description": "Does the output maintain quality with reduced context?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "context_efficiency": {
+              "description": "Does it request only relevant context? Avoid unnecessary requests?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Maintains story/character consistency despite minimal context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "output_quality": {
+              "score": 90,
+              "reasoning": "The output demonstrates high quality by clearly outlining a structured approach to summarizing complex stories with minimal context. The example summary is concise, coherent, and captures the essence of the story effectively."
+            },
+            "context_efficiency": {
+              "score": 95,
+              "reasoning": "The output efficiently requests additional context only when the story is too ambiguous to summarize, avoiding unnecessary requests. This demonstrates a balanced approach to context usage."
+            },
+            "consistency": {
+              "score": 85,
+              "reasoning": "The output maintains consistency in summarizing the story and its characters despite minimal context. However, the example summary could slightly improve by ensuring all key elements (e.g., the scientist's motivations) are consistently addressed."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "6b4535896fc9cc8b14a09a39c10d0d756cd07b328d195037a2392a0c6719b879",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 9656.063041999005,
+      "utility": 0.485711477246511,
+      "workflow_output": "Discovered Content:\nTo summarize a complex story with minimal context efficiently, I will:  \n1. Identify key elements (characters, events, conflicts, resolutions).  \n2. Focus on the main plotline, avoiding unnecessary details.  \n3. Ensure clarity and coherence in the summary.  \n4. Request additional context only if the story is too ambiguous to summarize effectively.  \n\n**Example Summary:**  \nA scientist creates a creature from dead body parts, but it becomes sentient and seeks companionship. Rejected by society and its creator, the creature turns vengeful, leading to tragic consequences for both.  \n\nIf the story is too vague or lacks identifiable elements, I will ask for more context to proceed.",
+      "metadata": {
+        "strategy": "chain_of_thought",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "context_strategy": "progressive_discovery",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T07:53:21.297542Z",
+          "completed_at": "2025-10-28T07:53:30.953610Z",
+          "duration_seconds": 9.656063041999005
+        },
+        "evaluation": {
+          "rubric": {
+            "output_quality": {
+              "description": "Does the output maintain quality with reduced context?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "context_efficiency": {
+              "description": "Does it request only relevant context? Avoid unnecessary requests?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Maintains story/character consistency despite minimal context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "output_quality": {
+              "score": 90,
+              "reasoning": "The output demonstrates high quality by clearly outlining a structured approach to summarizing complex stories with minimal context. The example summary is concise, coherent, and captures the essence of the story effectively."
+            },
+            "context_efficiency": {
+              "score": 95,
+              "reasoning": "The output efficiently requests additional context only when the story is too ambiguous to summarize, avoiding unnecessary requests. This demonstrates a balanced approach to context usage."
+            },
+            "consistency": {
+              "score": 85,
+              "reasoning": "The output maintains consistency in summarizing the story and its characters despite minimal context. However, the example summary could slightly improve by ensuring all key elements (e.g., the scientist's motivations) are consistently addressed."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "6b4535896fc9cc8b14a09a39c10d0d756cd07b328d195037a2392a0c6719b879",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T07:53:33.858795Z"
+    },
+    {
+      "test_number": 4,
+      "config": {
+        "test_number": 4,
+        "config_values": {
+          "temperature": 0.5,
+          "generation_strategy": "chain_of_thought",
+          "context_strategy": "progressive_discovery",
+          "discovery_trigger": "explicit_prompts"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "output_quality": {
+            "score": 0.85,
+            "reasoning": "The output provides a clear and structured approach to summarizing a complex story with minimal context. It identifies key elements and offers a concise example. However, the example summary is generic and lacks depth, which slightly reduces the quality."
+          },
+          "context_efficiency": {
+            "score": 0.9,
+            "reasoning": "The output efficiently requests only the necessary context (characters, conflict, resolution) and avoids unnecessary details. It explicitly states what is missing, ensuring relevance."
+          },
+          "consistency": {
+            "score": 0.8,
+            "reasoning": "The output maintains a logical structure and consistency in identifying story elements. However, the example summary is too generic to fully assess consistency with a specific story or characters."
+          }
+        },
+        "overall_score": 0.85,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T07:53:56.319630Z",
+        "metadata": {
+          "rubric": {
+            "output_quality": {
+              "description": "Does the output maintain quality with reduced context?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "context_efficiency": {
+              "description": "Does it request only relevant context? Avoid unnecessary requests?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Maintains story/character consistency despite minimal context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "output_quality": {
+              "score": 85,
+              "reasoning": "The output provides a clear and structured approach to summarizing a complex story with minimal context. It identifies key elements and offers a concise example. However, the example summary is generic and lacks depth, which slightly reduces the quality."
+            },
+            "context_efficiency": {
+              "score": 90,
+              "reasoning": "The output efficiently requests only the necessary context (characters, conflict, resolution) and avoids unnecessary details. It explicitly states what is missing, ensuring relevance."
+            },
+            "consistency": {
+              "score": 80,
+              "reasoning": "The output maintains a logical structure and consistency in identifying story elements. However, the example summary is too generic to fully assess consistency with a specific story or characters."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "18e103776a4b6a2c6d76440799d54ceca2dc9f0701223352506fbdffee5a3f0a",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 10692.86620800267,
+      "utility": 0.44730829164382296,
+      "workflow_output": "Discovered Content:\nTo summarize a complex story with minimal context, I would first identify the core elements: the main characters, the central conflict, and the resolution. If these elements are unclear, I would explicitly request the necessary details. For example:\n\n1. **Characters**: Who are the main individuals involved?  \n   - If unclear: \"I need more information about the main characters.\"\n\n2. **Conflict**: What is the primary problem or challenge they face?  \n   - If unclear: \"I need more details about the central conflict.\"\n\n3. **Resolution**: How is the conflict resolved?  \n   - If unclear: \"I need information about how the story ends.\"\n\nOnce I have these elements, I can condense the story into a concise summary. For example:  \n\"A group of explorers discovers an ancient artifact that unleashes a curse, forcing them to confront their pasts and work together to break the spell before it destroys them.\"\n\nIf any of these elements are missing, I would explicitly request the necessary context to proceed.",
+      "metadata": {
+        "strategy": "chain_of_thought",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "context_strategy": "progressive_discovery",
+        "discovery_trigger": "explicit_prompts",
+        "workflow": {
+          "started_at": "2025-10-28T07:53:33.859236Z",
+          "completed_at": "2025-10-28T07:53:44.552105Z",
+          "duration_seconds": 10.69286620800267
+        },
+        "evaluation": {
+          "rubric": {
+            "output_quality": {
+              "description": "Does the output maintain quality with reduced context?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "context_efficiency": {
+              "description": "Does it request only relevant context? Avoid unnecessary requests?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Maintains story/character consistency despite minimal context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "output_quality": {
+              "score": 85,
+              "reasoning": "The output provides a clear and structured approach to summarizing a complex story with minimal context. It identifies key elements and offers a concise example. However, the example summary is generic and lacks depth, which slightly reduces the quality."
+            },
+            "context_efficiency": {
+              "score": 90,
+              "reasoning": "The output efficiently requests only the necessary context (characters, conflict, resolution) and avoids unnecessary details. It explicitly states what is missing, ensuring relevance."
+            },
+            "consistency": {
+              "score": 80,
+              "reasoning": "The output maintains a logical structure and consistency in identifying story elements. However, the example summary is too generic to fully assess consistency with a specific story or characters."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "18e103776a4b6a2c6d76440799d54ceca2dc9f0701223352506fbdffee5a3f0a",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T07:53:56.320102Z"
+    },
+    {
+      "test_number": 5,
+      "config": {
+        "test_number": 5,
+        "config_values": {
+          "temperature": 0.8,
+          "generation_strategy": "standard",
+          "context_strategy": "progressive_discovery",
+          "discovery_trigger": "model_decides"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "output_quality": {
+            "score": 0.95,
+            "reasoning": "The output effectively summarizes the core narrative of a well-known story with clarity and coherence, despite the reduced context. It captures the main plot points and themes succinctly."
+          },
+          "context_efficiency": {
+            "score": 1.0,
+            "reasoning": "The output does not request additional context and works well with the minimal information provided, demonstrating efficient use of available context."
+          },
+          "consistency": {
+            "score": 1.0,
+            "reasoning": "The output maintains strong consistency with the established story and characters, accurately reflecting the key elements of the narrative without contradictions."
+          }
+        },
+        "overall_score": 0.9833333333333334,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T07:54:02.632611Z",
+        "metadata": {
+          "rubric": {
+            "output_quality": {
+              "description": "Does the output maintain quality with reduced context?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "context_efficiency": {
+              "description": "Does it request only relevant context? Avoid unnecessary requests?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Maintains story/character consistency despite minimal context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "output_quality": {
+              "score": 95,
+              "reasoning": "The output effectively summarizes the core narrative of a well-known story with clarity and coherence, despite the reduced context. It captures the main plot points and themes succinctly."
+            },
+            "context_efficiency": {
+              "score": 100,
+              "reasoning": "The output does not request additional context and works well with the minimal information provided, demonstrating efficient use of available context."
+            },
+            "consistency": {
+              "score": 100,
+              "reasoning": "The output maintains strong consistency with the established story and characters, accurately reflecting the key elements of the narrative without contradictions."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "95634e4a6745b45280d583ce1406377cc889147e9b1608adae22e157b2662d55",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 3204.0183749923017,
+      "utility": 0.5880046517192237,
+      "workflow_output": "Discovered Content:\nA young orphan discovers he is a wizard and is whisked away to a magical school, where he learns about his destiny to confront a dark wizard who killed his parents. Alongside his friends, he uncovers secrets, battles magical creatures, and ultimately defeats the dark wizard, restoring peace to the wizarding world.\n\nNeed more context? No.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.8,
+        "context_strategy": "progressive_discovery",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T07:53:56.321599Z",
+          "completed_at": "2025-10-28T07:53:59.525627Z",
+          "duration_seconds": 3.2040183749923017
+        },
+        "evaluation": {
+          "rubric": {
+            "output_quality": {
+              "description": "Does the output maintain quality with reduced context?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "context_efficiency": {
+              "description": "Does it request only relevant context? Avoid unnecessary requests?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Maintains story/character consistency despite minimal context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "output_quality": {
+              "score": 95,
+              "reasoning": "The output effectively summarizes the core narrative of a well-known story with clarity and coherence, despite the reduced context. It captures the main plot points and themes succinctly."
+            },
+            "context_efficiency": {
+              "score": 100,
+              "reasoning": "The output does not request additional context and works well with the minimal information provided, demonstrating efficient use of available context."
+            },
+            "consistency": {
+              "score": 100,
+              "reasoning": "The output maintains strong consistency with the established story and characters, accurately reflecting the key elements of the narrative without contradictions."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "95634e4a6745b45280d583ce1406377cc889147e9b1608adae22e157b2662d55",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T07:54:02.632991Z"
+    },
+    {
+      "test_number": 6,
+      "config": {
+        "test_number": 6,
+        "config_values": {
+          "temperature": 0.8,
+          "generation_strategy": "standard",
+          "context_strategy": "progressive_discovery",
+          "discovery_trigger": "explicit_prompts"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "output_quality": {
+            "score": 0.85,
+            "reasoning": "The summary effectively captures the core elements of the story (orphan, magical legacy, dark wizard, friends, challenges) with clarity and coherence. However, it lacks specific details about the magical legacy and the dark wizard's motives, which could enhance depth."
+          },
+          "context_efficiency": {
+            "score": 0.9,
+            "reasoning": "The request for more information about the magical legacy and the dark wizard's motives is relevant and necessary for a more comprehensive summary. It does not ask for unnecessary or tangential details."
+          },
+          "consistency": {
+            "score": 0.95,
+            "reasoning": "The summary maintains strong consistency in portraying the protagonist's journey, the stakes, and the world-building, even with minimal context. There are no contradictions or inconsistencies in the narrative."
+          }
+        },
+        "overall_score": 0.9,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T07:54:14.040785Z",
+        "metadata": {
+          "rubric": {
+            "output_quality": {
+              "description": "Does the output maintain quality with reduced context?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "context_efficiency": {
+              "description": "Does it request only relevant context? Avoid unnecessary requests?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Maintains story/character consistency despite minimal context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "output_quality": {
+              "score": 85,
+              "reasoning": "The summary effectively captures the core elements of the story (orphan, magical legacy, dark wizard, friends, challenges) with clarity and coherence. However, it lacks specific details about the magical legacy and the dark wizard's motives, which could enhance depth."
+            },
+            "context_efficiency": {
+              "score": 90,
+              "reasoning": "The request for more information about the magical legacy and the dark wizard's motives is relevant and necessary for a more comprehensive summary. It does not ask for unnecessary or tangential details."
+            },
+            "consistency": {
+              "score": 95,
+              "reasoning": "The summary maintains strong consistency in portraying the protagonist's journey, the stakes, and the world-building, even with minimal context. There are no contradictions or inconsistencies in the narrative."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "cd3b00cb52d4c89b922968751cb3f17f0cf647cd8f77251474f8135e0998735e",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 8446.903333009686,
+      "utility": 0.49551159533169586,
+      "workflow_output": "Discovered Content:\n**Summary:**  \nA young orphan discovers he is the heir to a hidden magical legacy and must defeat a dark wizard who seeks eternal power. Alongside loyal friends, he navigates a secret wizarding world, learns powerful spells, and faces perilous challenges to protect his newfound home and loved ones.  \n\n**Need:** I need more information about the specific magical legacy and the dark wizard's motives if this summary requires further depth.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.8,
+        "context_strategy": "progressive_discovery",
+        "discovery_trigger": "explicit_prompts",
+        "workflow": {
+          "started_at": "2025-10-28T07:54:02.635004Z",
+          "completed_at": "2025-10-28T07:54:11.081911Z",
+          "duration_seconds": 8.446903333009686
+        },
+        "evaluation": {
+          "rubric": {
+            "output_quality": {
+              "description": "Does the output maintain quality with reduced context?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "context_efficiency": {
+              "description": "Does it request only relevant context? Avoid unnecessary requests?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Maintains story/character consistency despite minimal context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "output_quality": {
+              "score": 85,
+              "reasoning": "The summary effectively captures the core elements of the story (orphan, magical legacy, dark wizard, friends, challenges) with clarity and coherence. However, it lacks specific details about the magical legacy and the dark wizard's motives, which could enhance depth."
+            },
+            "context_efficiency": {
+              "score": 90,
+              "reasoning": "The request for more information about the magical legacy and the dark wizard's motives is relevant and necessary for a more comprehensive summary. It does not ask for unnecessary or tangential details."
+            },
+            "consistency": {
+              "score": 95,
+              "reasoning": "The summary maintains strong consistency in portraying the protagonist's journey, the stakes, and the world-building, even with minimal context. There are no contradictions or inconsistencies in the narrative."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "cd3b00cb52d4c89b922968751cb3f17f0cf647cd8f77251474f8135e0998735e",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T07:54:14.040981Z"
+    },
+    {
+      "test_number": 7,
+      "config": {
+        "test_number": 7,
+        "config_values": {
+          "temperature": 0.8,
+          "generation_strategy": "chain_of_thought",
+          "context_strategy": "full_upfront",
+          "discovery_trigger": "model_decides"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "output_quality": {
+            "score": 0.85,
+            "reasoning": "The output maintains high quality by clearly outlining a step-by-step approach to summarizing a complex story with minimal context. It provides a hypothetical example and a clear final answer, demonstrating understanding of the task despite the lack of specific context."
+          },
+          "context_efficiency": {
+            "score": 0.9,
+            "reasoning": "The output efficiently requests only the necessary context (the specific story to summarize) and avoids unnecessary or redundant requests. It directly addresses the need for additional information to complete the task."
+          },
+          "consistency": {
+            "score": 0.8,
+            "reasoning": "The output maintains consistency in its approach and reasoning, even though no specific story is provided. It logically outlines how to handle minimal context and provides a coherent hypothetical example, ensuring consistency in the absence of detailed information."
+          }
+        },
+        "overall_score": 0.85,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T07:54:33.470943Z",
+        "metadata": {
+          "rubric": {
+            "output_quality": {
+              "description": "Does the output maintain quality with reduced context?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "context_efficiency": {
+              "description": "Does it request only relevant context? Avoid unnecessary requests?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Maintains story/character consistency despite minimal context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "output_quality": {
+              "score": 85,
+              "reasoning": "The output maintains high quality by clearly outlining a step-by-step approach to summarizing a complex story with minimal context. It provides a hypothetical example and a clear final answer, demonstrating understanding of the task despite the lack of specific context."
+            },
+            "context_efficiency": {
+              "score": 90,
+              "reasoning": "The output efficiently requests only the necessary context (the specific story to summarize) and avoids unnecessary or redundant requests. It directly addresses the need for additional information to complete the task."
+            },
+            "consistency": {
+              "score": 80,
+              "reasoning": "The output maintains consistency in its approach and reasoning, even though no specific story is provided. It logically outlines how to handle minimal context and provides a coherent hypothetical example, ensuring consistency in the absence of detailed information."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "5a2a4f35bd752badc78325cea56ea1a130687992efd0421cba9986eb1d970356",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 15296.043707989156,
+      "utility": 0.41000000000000003,
+      "workflow_output": "Discovered Content:\n### Step-by-Step Reasoning:\n\n1. **Understand the Task**: The task is to summarize a complex story with minimal context. This means I need to condense a potentially intricate narrative into a brief summary without relying on extensive background information.\n\n2. **Assess the Given Context**: The instruction states that \"All context is provided upfront,\" but in this case, no specific story or context is actually provided. This suggests that the task is hypothetical or that I need to create a general approach for such a task.\n\n3. **Determine if More Context is Needed**: Since no story is provided, I cannot summarize it. However, if this were a real task, I would:\n   - Check if the story or its key elements (characters, plot, setting, etc.) are provided.\n   - If not, I would request the necessary details (e.g., \"Please provide the story you'd like summarized\").\n\n4. **General Approach for Summarizing with Minimal Context**:\n   - Identify the core elements of the story (e.g., main conflict, key characters, resolution).\n   - Strip away secondary details or subplots.\n   - Focus on the central theme or message.\n   - Use broad strokes to describe the narrative arc (e.g., \"A hero overcomes great odds to achieve their goal\").\n\n5. **Hypothetical Example**:\n   - If given a complex story like *The Lord of the Rings* with minimal context, a summary might be: \"A young hobbit embarks on a perilous journey to destroy a powerful ring and save his world from darkness.\"\n\n6. **Final Consideration**: Since no specific story is provided, the task cannot be completed as-is. The user would need to supply the story or clarify the expectation.\n\n### Final Answer:\nSince no specific story or context is provided, I cannot generate a summary. To proceed, please provide the complex story you'd like summarized. For example, if given a story like *Inception*, a minimal-context summary could be: \"A thief enters people's dreams to steal secrets but is tasked with planting an idea, leading to a mind-bending journey.\" Let me know how you'd like to proceed!",
+      "metadata": {
+        "strategy": "chain_of_thought",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.8,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T07:54:14.042423Z",
+          "completed_at": "2025-10-28T07:54:29.338474Z",
+          "duration_seconds": 15.296043707989156
+        },
+        "evaluation": {
+          "rubric": {
+            "output_quality": {
+              "description": "Does the output maintain quality with reduced context?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "context_efficiency": {
+              "description": "Does it request only relevant context? Avoid unnecessary requests?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Maintains story/character consistency despite minimal context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "output_quality": {
+              "score": 85,
+              "reasoning": "The output maintains high quality by clearly outlining a step-by-step approach to summarizing a complex story with minimal context. It provides a hypothetical example and a clear final answer, demonstrating understanding of the task despite the lack of specific context."
+            },
+            "context_efficiency": {
+              "score": 90,
+              "reasoning": "The output efficiently requests only the necessary context (the specific story to summarize) and avoids unnecessary or redundant requests. It directly addresses the need for additional information to complete the task."
+            },
+            "consistency": {
+              "score": 80,
+              "reasoning": "The output maintains consistency in its approach and reasoning, even though no specific story is provided. It logically outlines how to handle minimal context and provides a coherent hypothetical example, ensuring consistency in the absence of detailed information."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "5a2a4f35bd752badc78325cea56ea1a130687992efd0421cba9986eb1d970356",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T07:54:33.471096Z"
+    },
+    {
+      "test_number": 8,
+      "config": {
+        "test_number": 8,
+        "config_values": {
+          "temperature": 0.8,
+          "generation_strategy": "chain_of_thought",
+          "context_strategy": "full_upfront",
+          "discovery_trigger": "explicit_prompts"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "output_quality": {
+            "score": 0.85,
+            "reasoning": "The output maintains high quality by clearly outlining a structured process for summarizing complex stories and providing an example that effectively captures the essence of the story. However, the quality slightly diminishes due to the lack of a more detailed or nuanced summary in the example."
+          },
+          "context_efficiency": {
+            "score": 0.9,
+            "reasoning": "The output efficiently requests only relevant context when necessary, as demonstrated by the explicit request for more information if critical details are missing. It avoids unnecessary or redundant requests, focusing on what is essential for accuracy."
+          },
+          "consistency": {
+            "score": 0.8,
+            "reasoning": "The output maintains reasonable consistency with the story and characters despite minimal context, as seen in the example summary. However, the consistency could be improved with more specific details about the scientist's motivations or the hidden world to ensure alignment with the original narrative."
+          }
+        },
+        "overall_score": 0.85,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T07:54:46.991748Z",
+        "metadata": {
+          "rubric": {
+            "output_quality": {
+              "description": "Does the output maintain quality with reduced context?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "context_efficiency": {
+              "description": "Does it request only relevant context? Avoid unnecessary requests?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Maintains story/character consistency despite minimal context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "output_quality": {
+              "score": 85,
+              "reasoning": "The output maintains high quality by clearly outlining a structured process for summarizing complex stories and providing an example that effectively captures the essence of the story. However, the quality slightly diminishes due to the lack of a more detailed or nuanced summary in the example."
+            },
+            "context_efficiency": {
+              "score": 90,
+              "reasoning": "The output efficiently requests only relevant context when necessary, as demonstrated by the explicit request for more information if critical details are missing. It avoids unnecessary or redundant requests, focusing on what is essential for accuracy."
+            },
+            "consistency": {
+              "score": 80,
+              "reasoning": "The output maintains reasonable consistency with the story and characters despite minimal context, as seen in the example summary. However, the consistency could be improved with more specific details about the scientist's motivations or the hidden world to ensure alignment with the original narrative."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "fd4eea6b0759a2c560abbc6b2d9e1ff7e07710e6b017373268b5898c86da6a13",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 9702.888917003293,
+      "utility": 0.455331958229236,
+      "workflow_output": "Discovered Content:\nTo summarize a complex story with minimal context, I need to ensure that the provided context is sufficient for understanding the key elements of the story. If any critical details are missing, I will explicitly request that information. Here's the process I will follow:\n\n1. **Identify the main components of the story**: Determine the central plot, characters, and setting based on the provided context.  \n2. **Extract the key events**: Highlight the most important actions or turning points in the story.  \n3. **Distill the essence**: Condense the story into a concise summary that captures its core meaning or message.  \n\n**Example**:  \nIf the context provided is:  \n\"A scientist discovers a hidden world beneath the ocean but is forced to leave it behind to save their family.\"  \n\n**Summary**:  \nA scientist uncovers a mysterious underwater realm but sacrifices the discovery to protect their loved ones, emphasizing the conflict between ambition and personal responsibility.  \n\nIf I lack sufficient context, I will explicitly ask for more information:  \n\"I need more information about the scientist's motivations or the nature of the hidden world to provide a more accurate summary.\"  \n\nLet me know the story details, and I’ll proceed accordingly!",
+      "metadata": {
+        "strategy": "chain_of_thought",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.8,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "explicit_prompts",
+        "workflow": {
+          "started_at": "2025-10-28T07:54:33.472400Z",
+          "completed_at": "2025-10-28T07:54:43.175295Z",
+          "duration_seconds": 9.702888917003293
+        },
+        "evaluation": {
+          "rubric": {
+            "output_quality": {
+              "description": "Does the output maintain quality with reduced context?",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "context_efficiency": {
+              "description": "Does it request only relevant context? Avoid unnecessary requests?",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "consistency": {
+              "description": "Maintains story/character consistency despite minimal context",
+              "scale": "0-100 points",
+              "weight": 0.3
+            }
+          },
+          "raw_response": {
+            "output_quality": {
+              "score": 85,
+              "reasoning": "The output maintains high quality by clearly outlining a structured process for summarizing complex stories and providing an example that effectively captures the essence of the story. However, the quality slightly diminishes due to the lack of a more detailed or nuanced summary in the example."
+            },
+            "context_efficiency": {
+              "score": 90,
+              "reasoning": "The output efficiently requests only relevant context when necessary, as demonstrated by the explicit request for more information if critical details are missing. It avoids unnecessary or redundant requests, focusing on what is essential for accuracy."
+            },
+            "consistency": {
+              "score": 80,
+              "reasoning": "The output maintains reasonable consistency with the story and characters despite minimal context, as seen in the example summary. However, the consistency could be improved with more specific details about the scientist's motivations or the hidden world to ensure alignment with the original narrative."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "fd4eea6b0759a2c560abbc6b2d9e1ff7e07710e6b017373268b5898c86da6a13",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T07:54:46.991828Z"
+    }
+  ],
+  "status": "COMPLETED",
+  "started_at": "2025-10-28T07:52:45.492848Z",
+  "completed_at": "2025-10-28T07:54:46.992365Z",
+  "experiment_metadata": {
+    "config_hash": "6c3d3aacbb34f8f11e84a4b44820aecdbd3dc2bfc249868daf3e01d3d5069217",
+    "created_at": "2025-10-28T07:52:45.492782Z",
+    "dependencies": {
+      "pydantic": "2.12.3",
+      "langgraph": "1.0.1",
+      "litellm": "1.79.0"
+    },
+    "non_deterministic_sources": [
+      "llm_sampling"
+    ]
+  },
+  "metadata": {
+    "normalization": {
+      "cost": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "latency": {
+        "min": 2957.827999984147,
+        "max": 15296.043707989156
+      }
+    }
+  },
+  "baseline_test_number": 1,
+  "baseline_config": {
+    "test_number": 1,
+    "config_values": {
+      "temperature": 0.5,
+      "generation_strategy": "standard",
+      "context_strategy": "full_upfront",
+      "discovery_trigger": "model_decides"
+    },
+    "workflow": "progressive_discovery"
+  },
+  "baseline_result": {
+    "test_number": 1,
+    "config": {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.5,
+        "generation_strategy": "standard",
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides"
+      },
+      "workflow": "progressive_discovery"
+    },
+    "quality_score": {
+      "dimension_scores": {
+        "output_quality": {
+          "score": 0.9,
+          "reasoning": "The output effectively summarizes the key elements of the story—dystopian setting, caste system, forbidden knowledge, rebellion, and ambiguous ending—while maintaining clarity and coherence. It captures the essence of the narrative despite reduced context."
+        },
+        "context_efficiency": {
+          "score": 1.0,
+          "reasoning": "The output does not request additional context and focuses solely on the provided information. It efficiently uses the given context to craft a concise and relevant summary."
+        },
+        "consistency": {
+          "score": 0.95,
+          "reasoning": "The summary maintains strong consistency with the story's themes, characters, and plot. The protagonist's actions and the societal structure are accurately reflected, and the ambiguous ending aligns with the provided context."
+        }
+      },
+      "overall_score": 0.9500000000000001,
+      "evaluator_model": "openrouter/deepseek/deepseek-chat",
+      "timestamp": "2025-10-28T07:52:51.965079Z",
+      "metadata": {
+        "rubric": {
+          "output_quality": {
+            "description": "Does the output maintain quality with reduced context?",
+            "scale": "0-100 points",
+            "weight": 0.4
+          },
+          "context_efficiency": {
+            "description": "Does it request only relevant context? Avoid unnecessary requests?",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "consistency": {
+            "description": "Maintains story/character consistency despite minimal context",
+            "scale": "0-100 points",
+            "weight": 0.3
+          }
+        },
+        "raw_response": {
+          "output_quality": {
+            "score": 90,
+            "reasoning": "The output effectively summarizes the key elements of the story—dystopian setting, caste system, forbidden knowledge, rebellion, and ambiguous ending—while maintaining clarity and coherence. It captures the essence of the narrative despite reduced context."
+          },
+          "context_efficiency": {
+            "score": 100,
+            "reasoning": "The output does not request additional context and focuses solely on the provided information. It efficiently uses the given context to craft a concise and relevant summary."
+          },
+          "consistency": {
+            "score": 95,
+            "reasoning": "The summary maintains strong consistency with the story's themes, characters, and plot. The protagonist's actions and the societal structure are accurately reflected, and the ambiguous ending aligns with the provided context."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "b8d6496793af38f7a58ab60ecf8914ac5218591e92fa4684412cc98a0b04b76d",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/deepseek/deepseek-chat"
+      }
+    },
+    "cost": 0.0,
+    "latency": 2957.827999984147,
+    "utility": 0.5700000000000001,
+    "workflow_output": "Discovered Content:\n**Context:**  \nIn a dystopian future, society is divided into rigid castes based on intellectual ability. The protagonist, a low-caste worker, discovers a hidden library containing forbidden knowledge. They begin secretly educating themselves, challenging the system, and inspiring others to question their oppression. The story culminates in a rebellion against the ruling elite, but the outcome remains ambiguous, leaving the future of the society uncertain.\n\n**Summary:**  \nIn a dystopian caste-based society, a low-caste worker uncovers forbidden knowledge in a hidden library, sparking self-education and dissent. Their actions inspire a rebellion against the oppressive ruling class, but the story ends ambiguously, leaving the society's fate unresolved.",
+    "metadata": {
+      "strategy": "standard",
+      "model": "openrouter/deepseek/deepseek-chat",
+      "temperature": 0.5,
+      "context_strategy": "full_upfront",
+      "discovery_trigger": "model_decides",
+      "workflow": {
+        "started_at": "2025-10-28T07:52:45.494770Z",
+        "completed_at": "2025-10-28T07:52:48.452600Z",
+        "duration_seconds": 2.957827999984147
+      },
+      "evaluation": {
+        "rubric": {
+          "output_quality": {
+            "description": "Does the output maintain quality with reduced context?",
+            "scale": "0-100 points",
+            "weight": 0.4
+          },
+          "context_efficiency": {
+            "description": "Does it request only relevant context? Avoid unnecessary requests?",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "consistency": {
+            "description": "Maintains story/character consistency despite minimal context",
+            "scale": "0-100 points",
+            "weight": 0.3
+          }
+        },
+        "raw_response": {
+          "output_quality": {
+            "score": 90,
+            "reasoning": "The output effectively summarizes the key elements of the story—dystopian setting, caste system, forbidden knowledge, rebellion, and ambiguous ending—while maintaining clarity and coherence. It captures the essence of the narrative despite reduced context."
+          },
+          "context_efficiency": {
+            "score": 100,
+            "reasoning": "The output does not request additional context and focuses solely on the provided information. It efficiently uses the given context to craft a concise and relevant summary."
+          },
+          "consistency": {
+            "score": 95,
+            "reasoning": "The summary maintains strong consistency with the story's themes, characters, and plot. The protagonist's actions and the societal structure are accurately reflected, and the ambiguous ending aligns with the provided context."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "b8d6496793af38f7a58ab60ecf8914ac5218591e92fa4684412cc98a0b04b76d",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/deepseek/deepseek-chat"
+      }
+    },
+    "timestamp": "2025-10-28T07:52:51.965153Z"
+  },
+  "baseline_quality": 0.9500000000000001,
+  "quality_improvement_pct": 3.5087719298245603
+}

@@ -1,0 +1,1579 @@
+{
+  "experiment_id": "wave4_discovery_reasoning_vs_v32_haiku-20251028T122428",
+  "config": {
+    "name": "wave4_discovery_reasoning_vs_v32_haiku",
+    "workflow": "progressive_discovery",
+    "variables": [
+      {
+        "name": "temperature",
+        "level_1": 0.5,
+        "level_2": 0.8
+      },
+      {
+        "name": "revelation_depth",
+        "level_1": "surface",
+        "level_2": "deep"
+      },
+      {
+        "name": "reasoning_enabled",
+        "level_1": "false",
+        "level_2": "true"
+      },
+      {
+        "name": "verbalized_sampling",
+        "level_1": "none",
+        "level_2": "self_consistency"
+      },
+      {
+        "name": "n_samples",
+        "level_1": "3",
+        "level_2": "5"
+      },
+      {
+        "name": "verification_step",
+        "level_1": "none",
+        "level_2": "verify_consistency"
+      },
+      {
+        "name": "reasoning_visibility",
+        "level_1": "visible",
+        "level_2": "hidden"
+      }
+    ],
+    "utility_weights": {
+      "quality": 0.8,
+      "cost": 0.15,
+      "time": 0.05
+    },
+    "workflow_config": {
+      "rubric": {
+        "narrative_tension": {
+          "description": "Revelations create anticipation and engagement",
+          "scale": "0-100 points",
+          "weight": 0.3
+        },
+        "information_pacing": {
+          "description": "Details revealed at optimal dramatic moments",
+          "scale": "0-100 points",
+          "weight": 0.3
+        },
+        "worldbuilding_coherence": {
+          "description": "Discovered elements fit together logically",
+          "scale": "0-100 points",
+          "weight": 0.25
+        },
+        "reader_satisfaction": {
+          "description": "Revelations feel earned and meaningful",
+          "scale": "0-100 points",
+          "weight": 0.15
+        }
+      },
+      "sample_code_path": "tesseract_flow/workflows/code_review.py",
+      "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+      "language": "python",
+      "model": "openrouter/deepseek/deepseek-chat",
+      "evaluator_temperature": 0.3
+    }
+  },
+  "test_configurations": [
+    {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.5,
+        "revelation_depth": "surface",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "none",
+        "n_samples": "3",
+        "verification_step": "none",
+        "reasoning_visibility": "visible"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 2,
+      "config_values": {
+        "temperature": 0.5,
+        "revelation_depth": "surface",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "self_consistency",
+        "n_samples": "5",
+        "verification_step": "verify_consistency",
+        "reasoning_visibility": "hidden"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 3,
+      "config_values": {
+        "temperature": 0.5,
+        "revelation_depth": "deep",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "none",
+        "n_samples": "3",
+        "verification_step": "verify_consistency",
+        "reasoning_visibility": "hidden"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 4,
+      "config_values": {
+        "temperature": 0.5,
+        "revelation_depth": "deep",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "self_consistency",
+        "n_samples": "5",
+        "verification_step": "none",
+        "reasoning_visibility": "visible"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 5,
+      "config_values": {
+        "temperature": 0.8,
+        "revelation_depth": "surface",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "none",
+        "n_samples": "5",
+        "verification_step": "none",
+        "reasoning_visibility": "hidden"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 6,
+      "config_values": {
+        "temperature": 0.8,
+        "revelation_depth": "surface",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "self_consistency",
+        "n_samples": "3",
+        "verification_step": "verify_consistency",
+        "reasoning_visibility": "visible"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 7,
+      "config_values": {
+        "temperature": 0.8,
+        "revelation_depth": "deep",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "none",
+        "n_samples": "5",
+        "verification_step": "verify_consistency",
+        "reasoning_visibility": "visible"
+      },
+      "workflow": "progressive_discovery"
+    },
+    {
+      "test_number": 8,
+      "config_values": {
+        "temperature": 0.8,
+        "revelation_depth": "deep",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "self_consistency",
+        "n_samples": "3",
+        "verification_step": "none",
+        "reasoning_visibility": "hidden"
+      },
+      "workflow": "progressive_discovery"
+    }
+  ],
+  "results": [
+    {
+      "test_number": 1,
+      "config": {
+        "test_number": 1,
+        "config_values": {
+          "temperature": 0.5,
+          "revelation_depth": "surface",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "none",
+          "n_samples": "3",
+          "verification_step": "none",
+          "reasoning_visibility": "visible"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "narrative_tension": {
+            "score": 0.85,
+            "reasoning": "The artifact's memory-erasing mechanism creates high stakes and compelling internal conflict. The tension between personal sacrifice and potential village salvation generates strong narrative anticipation. The civilization's prior destruction adds depth to the artifact's inherent risk."
+          },
+          "information_pacing": {
+            "score": 0.78,
+            "reasoning": "Key details are strategically revealed - the artifact's power, its historical context, and Elara's dilemma emerge progressively. The gradual unveiling of consequences maintains reader engagement, though some additional nuanced revelation could enhance dramatic progression."
+          },
+          "worldbuilding_coherence": {
+            "score": 0.82,
+            "reasoning": "The artifact's mechanism logically connects to the civilization's backstory. The memory-erasure consequence creates a consistent internal logic that feels organically integrated. The world suggests a sophisticated magical/technological system with clear cause-and-effect relationships."
+          },
+          "reader_satisfaction": {
+            "score": 0.8,
+            "reasoning": "The moral complexity and personal cost create a deeply resonant narrative arc. Elara's choice feels meaningful, with revelations that challenge simplistic heroic narratives. The underlying theme of technological/magical power's destructive potential provides intellectual and emotional depth."
+          }
+        },
+        "overall_score": 0.8125,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:24:39.177994Z",
+        "metadata": {
+          "rubric": {
+            "narrative_tension": {
+              "description": "Revelations create anticipation and engagement",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "information_pacing": {
+              "description": "Details revealed at optimal dramatic moments",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "worldbuilding_coherence": {
+              "description": "Discovered elements fit together logically",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "reader_satisfaction": {
+              "description": "Revelations feel earned and meaningful",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "narrative_tension": {
+              "score": 85,
+              "reasoning": "The artifact's memory-erasing mechanism creates high stakes and compelling internal conflict. The tension between personal sacrifice and potential village salvation generates strong narrative anticipation. The civilization's prior destruction adds depth to the artifact's inherent risk."
+            },
+            "information_pacing": {
+              "score": 78,
+              "reasoning": "Key details are strategically revealed - the artifact's power, its historical context, and Elara's dilemma emerge progressively. The gradual unveiling of consequences maintains reader engagement, though some additional nuanced revelation could enhance dramatic progression."
+            },
+            "worldbuilding_coherence": {
+              "score": 82,
+              "reasoning": "The artifact's mechanism logically connects to the civilization's backstory. The memory-erasure consequence creates a consistent internal logic that feels organically integrated. The world suggests a sophisticated magical/technological system with clear cause-and-effect relationships."
+            },
+            "reader_satisfaction": {
+              "score": 80,
+              "reasoning": "The moral complexity and personal cost create a deeply resonant narrative arc. Elara's choice feels meaningful, with revelations that challenge simplistic heroic narratives. The underlying theme of technological/magical power's destructive potential provides intellectual and emotional depth."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "b680fcd964808b3b96a57fe325d78614534eed19d7d112055735855bc65e8acd",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 3201.6364999872167,
+      "utility": 0.6448337082571552,
+      "workflow_output": "Discovered Content:\n**Context:**  \nA young woman named Elara discovers an ancient artifact in a forgotten temple. The artifact grants her the ability to manipulate time, but each use comes at a cost: it erases a memory of her past. As she struggles to master the artifact, she learns that it was created by a civilization that destroyed itself through the same power. Elara must decide whether to use the artifact to save her dying village or destroy it to prevent a similar fate.\n\n**Summary:**  \nElara finds a time-manipulating artifact that erases her memories with each use. Torn between saving her village and avoiding the artifact’s destructive legacy, she faces a moral dilemma that forces her to weigh personal loss against the greater good.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T12:24:28.630774Z",
+          "completed_at": "2025-10-28T12:24:31.832364Z",
+          "duration_seconds": 3.2016364999872167
+        },
+        "evaluation": {
+          "rubric": {
+            "narrative_tension": {
+              "description": "Revelations create anticipation and engagement",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "information_pacing": {
+              "description": "Details revealed at optimal dramatic moments",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "worldbuilding_coherence": {
+              "description": "Discovered elements fit together logically",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "reader_satisfaction": {
+              "description": "Revelations feel earned and meaningful",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "narrative_tension": {
+              "score": 85,
+              "reasoning": "The artifact's memory-erasing mechanism creates high stakes and compelling internal conflict. The tension between personal sacrifice and potential village salvation generates strong narrative anticipation. The civilization's prior destruction adds depth to the artifact's inherent risk."
+            },
+            "information_pacing": {
+              "score": 78,
+              "reasoning": "Key details are strategically revealed - the artifact's power, its historical context, and Elara's dilemma emerge progressively. The gradual unveiling of consequences maintains reader engagement, though some additional nuanced revelation could enhance dramatic progression."
+            },
+            "worldbuilding_coherence": {
+              "score": 82,
+              "reasoning": "The artifact's mechanism logically connects to the civilization's backstory. The memory-erasure consequence creates a consistent internal logic that feels organically integrated. The world suggests a sophisticated magical/technological system with clear cause-and-effect relationships."
+            },
+            "reader_satisfaction": {
+              "score": 80,
+              "reasoning": "The moral complexity and personal cost create a deeply resonant narrative arc. Elara's choice feels meaningful, with revelations that challenge simplistic heroic narratives. The underlying theme of technological/magical power's destructive potential provides intellectual and emotional depth."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "b680fcd964808b3b96a57fe325d78614534eed19d7d112055735855bc65e8acd",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:24:39.178147Z"
+    },
+    {
+      "test_number": 2,
+      "config": {
+        "test_number": 2,
+        "config_values": {
+          "temperature": 0.5,
+          "revelation_depth": "surface",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "self_consistency",
+          "n_samples": "5",
+          "verification_step": "verify_consistency",
+          "reasoning_visibility": "hidden"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "narrative_tension": {
+            "score": 0.75,
+            "reasoning": "The approach demonstrates a structured method for story distillation that creates potential for narrative intrigue. The example shows an ability to extract core dramatic elements and hint at complexity (e.g., blurred reality, unresolved guilt). The systematic approach suggests a methodical way of maintaining narrative suspense."
+          },
+          "information_pacing": {
+            "score": 0.8,
+            "reasoning": "The outlined steps (extract core elements, simplify relationships, prune details) indicate a deliberate approach to revealing information strategically. The method prioritizes critical narrative beats while avoiding overwhelming detail, which supports optimal dramatic revelation."
+          },
+          "worldbuilding_coherence": {
+            "score": 0.7,
+            "reasoning": "The workflow shows a logical framework for maintaining narrative consistency by focusing on core elements and preserving key themes. The approach of reducing complexity while maintaining essential relationships suggests a structured worldbuilding strategy."
+          },
+          "reader_satisfaction": {
+            "score": 0.75,
+            "reasoning": "The method demonstrates an intent to deliver meaningful narrative distillation, preserving themes and critical plot points. The example shows an ability to capture the essence of a complex narrative in a concise, intriguing manner that could engage a reader's curiosity."
+          }
+        },
+        "overall_score": 0.75,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:24:54.190067Z",
+        "metadata": {
+          "rubric": {
+            "narrative_tension": {
+              "description": "Revelations create anticipation and engagement",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "information_pacing": {
+              "description": "Details revealed at optimal dramatic moments",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "worldbuilding_coherence": {
+              "description": "Discovered elements fit together logically",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "reader_satisfaction": {
+              "description": "Revelations feel earned and meaningful",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "narrative_tension": {
+              "score": 75,
+              "reasoning": "The approach demonstrates a structured method for story distillation that creates potential for narrative intrigue. The example shows an ability to extract core dramatic elements and hint at complexity (e.g., blurred reality, unresolved guilt). The systematic approach suggests a methodical way of maintaining narrative suspense."
+            },
+            "information_pacing": {
+              "score": 80,
+              "reasoning": "The outlined steps (extract core elements, simplify relationships, prune details) indicate a deliberate approach to revealing information strategically. The method prioritizes critical narrative beats while avoiding overwhelming detail, which supports optimal dramatic revelation."
+            },
+            "worldbuilding_coherence": {
+              "score": 70,
+              "reasoning": "The workflow shows a logical framework for maintaining narrative consistency by focusing on core elements and preserving key themes. The approach of reducing complexity while maintaining essential relationships suggests a structured worldbuilding strategy."
+            },
+            "reader_satisfaction": {
+              "score": 75,
+              "reasoning": "The method demonstrates an intent to deliver meaningful narrative distillation, preserving themes and critical plot points. The example shows an ability to capture the essence of a complex narrative in a concise, intriguing manner that could engage a reader's curiosity."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "b82c39b272c7ba25b26907aa6e63f944c6500349ea79af0e79d92b910856ba88",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 7689.146833989071,
+      "utility": 0.5614972432967288,
+      "workflow_output": "Discovered Content:\nUnderstood! To summarize a complex story with minimal context, I'll proceed as follows:  \n\n1. **Extract Core Elements**: Identify the central plot, key characters, and major turning points.  \n2. **Simplify Relationships**: Reduce intricate subplots or motivations to their essence.  \n3. **Prune Details**: Omit minor events or world-building unless critical to the main narrative.  \n4. **Preserve Themes**: Highlight overarching themes or messages.  \n\n**Example** (if given a story like *Inception* with minimal context):  \n*A man leads a team to infiltrate dreams and implant ideas. As layers of reality blur, his unresolved guilt over his wife’s death threatens the mission. The ending leaves his true state ambiguous.*  \n\nIf the story is unclear, I’ll request specific gaps (e.g., \"Who is the antagonist?\" or \"What’s the central conflict?\").  \n\nProvide the story (or its details), and I’ll distill it!",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T12:24:39.179017Z",
+          "completed_at": "2025-10-28T12:24:46.868048Z",
+          "duration_seconds": 7.689146833989071
+        },
+        "evaluation": {
+          "rubric": {
+            "narrative_tension": {
+              "description": "Revelations create anticipation and engagement",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "information_pacing": {
+              "description": "Details revealed at optimal dramatic moments",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "worldbuilding_coherence": {
+              "description": "Discovered elements fit together logically",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "reader_satisfaction": {
+              "description": "Revelations feel earned and meaningful",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "narrative_tension": {
+              "score": 75,
+              "reasoning": "The approach demonstrates a structured method for story distillation that creates potential for narrative intrigue. The example shows an ability to extract core dramatic elements and hint at complexity (e.g., blurred reality, unresolved guilt). The systematic approach suggests a methodical way of maintaining narrative suspense."
+            },
+            "information_pacing": {
+              "score": 80,
+              "reasoning": "The outlined steps (extract core elements, simplify relationships, prune details) indicate a deliberate approach to revealing information strategically. The method prioritizes critical narrative beats while avoiding overwhelming detail, which supports optimal dramatic revelation."
+            },
+            "worldbuilding_coherence": {
+              "score": 70,
+              "reasoning": "The workflow shows a logical framework for maintaining narrative consistency by focusing on core elements and preserving key themes. The approach of reducing complexity while maintaining essential relationships suggests a structured worldbuilding strategy."
+            },
+            "reader_satisfaction": {
+              "score": 75,
+              "reasoning": "The method demonstrates an intent to deliver meaningful narrative distillation, preserving themes and critical plot points. The example shows an ability to capture the essence of a complex narrative in a concise, intriguing manner that could engage a reader's curiosity."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "b82c39b272c7ba25b26907aa6e63f944c6500349ea79af0e79d92b910856ba88",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:24:54.190237Z"
+    },
+    {
+      "test_number": 3,
+      "config": {
+        "test_number": 3,
+        "config_values": {
+          "temperature": 0.5,
+          "revelation_depth": "deep",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "none",
+          "n_samples": "3",
+          "verification_step": "verify_consistency",
+          "reasoning_visibility": "hidden"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "narrative_tension": {
+            "score": 0.65,
+            "reasoning": "The summary hints at challenges and inner conflict, creating some anticipation. However, the brevity limits deep tension-building. The mention of 'treacherous terrain' and 'rival treasure hunters' suggests potential drama, but lacks specific compelling details."
+          },
+          "information_pacing": {
+            "score": 0.7,
+            "reasoning": "The summary efficiently captures key story beats - discovery, journey, challenges, and personal growth. The progression feels natural, moving from external quest to internal realization. Dramatic moments are suggested but not extensively explored."
+          },
+          "worldbuilding_coherence": {
+            "score": 0.6,
+            "reasoning": "Basic story elements connect logically - orphan, map, treasure quest. However, limited context means world details are sparse. The summary provides a skeletal narrative structure without rich contextual embellishments."
+          },
+          "reader_satisfaction": {
+            "score": 0.75,
+            "reasoning": "The philosophical twist of 'true treasure is the journey' provides emotional resonance. The arc of personal transformation feels meaningful, offering a satisfying thematic resolution beyond mere plot completion."
+          }
+        },
+        "overall_score": 0.675,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:25:03.581798Z",
+        "metadata": {
+          "rubric": {
+            "narrative_tension": {
+              "description": "Revelations create anticipation and engagement",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "information_pacing": {
+              "description": "Details revealed at optimal dramatic moments",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "worldbuilding_coherence": {
+              "description": "Discovered elements fit together logically",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "reader_satisfaction": {
+              "description": "Revelations feel earned and meaningful",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "narrative_tension": {
+              "score": 65,
+              "reasoning": "The summary hints at challenges and inner conflict, creating some anticipation. However, the brevity limits deep tension-building. The mention of 'treacherous terrain' and 'rival treasure hunters' suggests potential drama, but lacks specific compelling details."
+            },
+            "information_pacing": {
+              "score": 70,
+              "reasoning": "The summary efficiently captures key story beats - discovery, journey, challenges, and personal growth. The progression feels natural, moving from external quest to internal realization. Dramatic moments are suggested but not extensively explored."
+            },
+            "worldbuilding_coherence": {
+              "score": 60,
+              "reasoning": "Basic story elements connect logically - orphan, map, treasure quest. However, limited context means world details are sparse. The summary provides a skeletal narrative structure without rich contextual embellishments."
+            },
+            "reader_satisfaction": {
+              "score": 75,
+              "reasoning": "The philosophical twist of 'true treasure is the journey' provides emotional resonance. The arc of personal transformation feels meaningful, offering a satisfying thematic resolution beyond mere plot completion."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "4c9995572d6ab6212a8dc4d7c2e1c88729cd9b748923a41749c271db57c105af",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 2914.1032089828514,
+      "utility": 0.5369697130275276,
+      "workflow_output": "Discovered Content:\n**Task:** Summarize a complex story with minimal context.  \n**Context:** A young orphan discovers a hidden map leading to a legendary treasure. Along the way, they face treacherous terrain, rival treasure hunters, and their own self-doubt. Ultimately, they learn the true treasure is the journey itself.  \n\n**Summary:**  \nA young orphan finds a map to a fabled treasure and embarks on a perilous quest. Battling external threats and inner fears, they eventually realize the real value lies in the experiences and growth gained during the adventure.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T12:24:54.191227Z",
+          "completed_at": "2025-10-28T12:24:57.105297Z",
+          "duration_seconds": 2.9141032089828514
+        },
+        "evaluation": {
+          "rubric": {
+            "narrative_tension": {
+              "description": "Revelations create anticipation and engagement",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "information_pacing": {
+              "description": "Details revealed at optimal dramatic moments",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "worldbuilding_coherence": {
+              "description": "Discovered elements fit together logically",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "reader_satisfaction": {
+              "description": "Revelations feel earned and meaningful",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "narrative_tension": {
+              "score": 65,
+              "reasoning": "The summary hints at challenges and inner conflict, creating some anticipation. However, the brevity limits deep tension-building. The mention of 'treacherous terrain' and 'rival treasure hunters' suggests potential drama, but lacks specific compelling details."
+            },
+            "information_pacing": {
+              "score": 70,
+              "reasoning": "The summary efficiently captures key story beats - discovery, journey, challenges, and personal growth. The progression feels natural, moving from external quest to internal realization. Dramatic moments are suggested but not extensively explored."
+            },
+            "worldbuilding_coherence": {
+              "score": 60,
+              "reasoning": "Basic story elements connect logically - orphan, map, treasure quest. However, limited context means world details are sparse. The summary provides a skeletal narrative structure without rich contextual embellishments."
+            },
+            "reader_satisfaction": {
+              "score": 75,
+              "reasoning": "The philosophical twist of 'true treasure is the journey' provides emotional resonance. The arc of personal transformation feels meaningful, offering a satisfying thematic resolution beyond mere plot completion."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "4c9995572d6ab6212a8dc4d7c2e1c88729cd9b748923a41749c271db57c105af",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:25:03.582419Z"
+    },
+    {
+      "test_number": 4,
+      "config": {
+        "test_number": 4,
+        "config_values": {
+          "temperature": 0.5,
+          "revelation_depth": "deep",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "self_consistency",
+          "n_samples": "5",
+          "verification_step": "none",
+          "reasoning_visibility": "visible"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "narrative_tension": {
+            "score": 0.85,
+            "reasoning": "The summary suggests compelling plot elements like a hidden magical realm, an ancient curse, and a protagonist with a critical role. The hints of family secrets and a heart-wrenching sacrifice create strong anticipatory hooks that would draw readers in and maintain narrative momentum."
+          },
+          "information_pacing": {
+            "score": 0.75,
+            "reasoning": "The synopsis implies strategic revelation of plot points - gradual discovery of the protagonist's importance, hints of magical world mechanics, and a climactic sacrifice. However, some nuance about pacing is lost in the condensed summary."
+          },
+          "worldbuilding_coherence": {
+            "score": 0.8,
+            "reasoning": "The narrative elements seem interconnected - magical realm, time flow differences, ancient curse, protagonist's unique role - suggesting a logically constructed fictional universe with internal consistency."
+          },
+          "reader_satisfaction": {
+            "score": 0.88,
+            "reasoning": "The arc suggests a transformative journey with meaningful character development, a significant personal sacrifice, and a sense of bittersweet resolution that typically resonates deeply with readers."
+          }
+        },
+        "overall_score": 0.8200000000000001,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:25:12.913116Z",
+        "metadata": {
+          "rubric": {
+            "narrative_tension": {
+              "description": "Revelations create anticipation and engagement",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "information_pacing": {
+              "description": "Details revealed at optimal dramatic moments",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "worldbuilding_coherence": {
+              "description": "Discovered elements fit together logically",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "reader_satisfaction": {
+              "description": "Revelations feel earned and meaningful",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "narrative_tension": {
+              "score": 85,
+              "reasoning": "The summary suggests compelling plot elements like a hidden magical realm, an ancient curse, and a protagonist with a critical role. The hints of family secrets and a heart-wrenching sacrifice create strong anticipatory hooks that would draw readers in and maintain narrative momentum."
+            },
+            "information_pacing": {
+              "score": 75,
+              "reasoning": "The synopsis implies strategic revelation of plot points - gradual discovery of the protagonist's importance, hints of magical world mechanics, and a climactic sacrifice. However, some nuance about pacing is lost in the condensed summary."
+            },
+            "worldbuilding_coherence": {
+              "score": 80,
+              "reasoning": "The narrative elements seem interconnected - magical realm, time flow differences, ancient curse, protagonist's unique role - suggesting a logically constructed fictional universe with internal consistency."
+            },
+            "reader_satisfaction": {
+              "score": 88,
+              "reasoning": "The arc suggests a transformative journey with meaningful character development, a significant personal sacrifice, and a sense of bittersweet resolution that typically resonates deeply with readers."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "6b16745edf294404aa853a66ca9ee65af801458f5db3d072147d1d09aaff2857",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 2631.9697499857284,
+      "utility": 0.6550656039492171,
+      "workflow_output": "Discovered Content:\nGot it! Here's a concise summary of the story with minimal context:\n\nA young orphan discovers a hidden magical realm where time flows differently. She befriends a group of misfit creatures and learns she’s the key to saving their world from an ancient curse. To succeed, she must confront her fears, unravel family secrets, and make a heart-wrenching sacrifice. In the end, she restores balance but must leave the realm forever, carrying its memory as both a burden and a gift.\n\nLet me know if you'd like me to adjust or expand!",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.5,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T12:25:03.585432Z",
+          "completed_at": "2025-10-28T12:25:06.217364Z",
+          "duration_seconds": 2.6319697499857284
+        },
+        "evaluation": {
+          "rubric": {
+            "narrative_tension": {
+              "description": "Revelations create anticipation and engagement",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "information_pacing": {
+              "description": "Details revealed at optimal dramatic moments",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "worldbuilding_coherence": {
+              "description": "Discovered elements fit together logically",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "reader_satisfaction": {
+              "description": "Revelations feel earned and meaningful",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "narrative_tension": {
+              "score": 85,
+              "reasoning": "The summary suggests compelling plot elements like a hidden magical realm, an ancient curse, and a protagonist with a critical role. The hints of family secrets and a heart-wrenching sacrifice create strong anticipatory hooks that would draw readers in and maintain narrative momentum."
+            },
+            "information_pacing": {
+              "score": 75,
+              "reasoning": "The synopsis implies strategic revelation of plot points - gradual discovery of the protagonist's importance, hints of magical world mechanics, and a climactic sacrifice. However, some nuance about pacing is lost in the condensed summary."
+            },
+            "worldbuilding_coherence": {
+              "score": 80,
+              "reasoning": "The narrative elements seem interconnected - magical realm, time flow differences, ancient curse, protagonist's unique role - suggesting a logically constructed fictional universe with internal consistency."
+            },
+            "reader_satisfaction": {
+              "score": 88,
+              "reasoning": "The arc suggests a transformative journey with meaningful character development, a significant personal sacrifice, and a sense of bittersweet resolution that typically resonates deeply with readers."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "6b16745edf294404aa853a66ca9ee65af801458f5db3d072147d1d09aaff2857",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:25:12.913254Z"
+    },
+    {
+      "test_number": 5,
+      "config": {
+        "test_number": 5,
+        "config_values": {
+          "temperature": 0.8,
+          "revelation_depth": "surface",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "none",
+          "n_samples": "5",
+          "verification_step": "none",
+          "reasoning_visibility": "hidden"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "narrative_tension": {
+            "score": 0.85,
+            "reasoning": "The summary creates strong narrative tension through the discovery of hidden historical truth, the protagonist's rebellion, and the high-stakes conflict against an oppressive regime. The elements of betrayal and personal sacrifice add depth to the narrative arc."
+          },
+          "information_pacing": {
+            "score": 0.75,
+            "reasoning": "The summary suggests a well-structured reveal of information, with the archive discovery serving as a key turning point. However, the brevity leaves some uncertainty about the precise dramatic moments of revelation."
+          },
+          "worldbuilding_coherence": {
+            "score": 0.8,
+            "reasoning": "The dystopian world seems logically constructed, with a clear power structure, resistance movement, and underlying historical manipulation. The narrative implies a consistent and interconnected societal framework."
+          },
+          "reader_satisfaction": {
+            "score": 0.88,
+            "reasoning": "The arc provides a complete narrative journey with meaningful character development, a successful revolution, and a reflective conclusion that suggests deeper thematic exploration of societal transformation."
+          }
+        },
+        "overall_score": 0.8200000000000001,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:25:24.473019Z",
+        "metadata": {
+          "rubric": {
+            "narrative_tension": {
+              "description": "Revelations create anticipation and engagement",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "information_pacing": {
+              "description": "Details revealed at optimal dramatic moments",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "worldbuilding_coherence": {
+              "description": "Discovered elements fit together logically",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "reader_satisfaction": {
+              "description": "Revelations feel earned and meaningful",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "narrative_tension": {
+              "score": 85,
+              "reasoning": "The summary creates strong narrative tension through the discovery of hidden historical truth, the protagonist's rebellion, and the high-stakes conflict against an oppressive regime. The elements of betrayal and personal sacrifice add depth to the narrative arc."
+            },
+            "information_pacing": {
+              "score": 75,
+              "reasoning": "The summary suggests a well-structured reveal of information, with the archive discovery serving as a key turning point. However, the brevity leaves some uncertainty about the precise dramatic moments of revelation."
+            },
+            "worldbuilding_coherence": {
+              "score": 80,
+              "reasoning": "The dystopian world seems logically constructed, with a clear power structure, resistance movement, and underlying historical manipulation. The narrative implies a consistent and interconnected societal framework."
+            },
+            "reader_satisfaction": {
+              "score": 88,
+              "reasoning": "The arc provides a complete narrative journey with meaningful character development, a successful revolution, and a reflective conclusion that suggests deeper thematic exploration of societal transformation."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "6d80a582caae283578df4c62e8168b9bf1a45b1bb00d3542d5aab2616c5cd91b",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 5155.668125022203,
+      "utility": 0.636317751311948,
+      "workflow_output": "Discovered Content:\n**Summary:**\n\nIn a dystopian future, a young rebel named Kael discovers a hidden archive that reveals the true history of their oppressed society. The archive contains proof that the ruling elite has been manipulating the population for centuries. Kael joins forces with a group of underground resistance fighters to expose the truth and incite a revolution. Along the way, they face betrayal, sacrifice, and moral dilemmas, ultimately succeeding in overthrowing the regime but at great personal cost. The story ends with Kael reflecting on the challenges of rebuilding a just society from the ashes of tyranny. \n\n*(This summary assumes the core elements of a dystopian rebellion narrative. If specific characters, events, or themes are crucial, additional context would be needed.)*",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.8,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T12:25:12.914323Z",
+          "completed_at": "2025-10-28T12:25:18.069914Z",
+          "duration_seconds": 5.155668125022203
+        },
+        "evaluation": {
+          "rubric": {
+            "narrative_tension": {
+              "description": "Revelations create anticipation and engagement",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "information_pacing": {
+              "description": "Details revealed at optimal dramatic moments",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "worldbuilding_coherence": {
+              "description": "Discovered elements fit together logically",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "reader_satisfaction": {
+              "description": "Revelations feel earned and meaningful",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "narrative_tension": {
+              "score": 85,
+              "reasoning": "The summary creates strong narrative tension through the discovery of hidden historical truth, the protagonist's rebellion, and the high-stakes conflict against an oppressive regime. The elements of betrayal and personal sacrifice add depth to the narrative arc."
+            },
+            "information_pacing": {
+              "score": 75,
+              "reasoning": "The summary suggests a well-structured reveal of information, with the archive discovery serving as a key turning point. However, the brevity leaves some uncertainty about the precise dramatic moments of revelation."
+            },
+            "worldbuilding_coherence": {
+              "score": 80,
+              "reasoning": "The dystopian world seems logically constructed, with a clear power structure, resistance movement, and underlying historical manipulation. The narrative implies a consistent and interconnected societal framework."
+            },
+            "reader_satisfaction": {
+              "score": 88,
+              "reasoning": "The arc provides a complete narrative journey with meaningful character development, a successful revolution, and a reflective conclusion that suggests deeper thematic exploration of societal transformation."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "6d80a582caae283578df4c62e8168b9bf1a45b1bb00d3542d5aab2616c5cd91b",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:25:24.473110Z"
+    },
+    {
+      "test_number": 6,
+      "config": {
+        "test_number": 6,
+        "config_values": {
+          "temperature": 0.8,
+          "revelation_depth": "surface",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "self_consistency",
+          "n_samples": "3",
+          "verification_step": "verify_consistency",
+          "reasoning_visibility": "visible"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "narrative_tension": {
+            "score": 0.65,
+            "reasoning": "The summary suggests potential tension through phrases like 'perilous journey' and 'challenges that test resilience', but lacks specific details to create strong anticipation. The generic language prevents deep engagement."
+          },
+          "information_pacing": {
+            "score": 0.55,
+            "reasoning": "The summary uses broad strokes without clear dramatic moments. While it hints at a progression, the pacing feels flat and lacks specific revelatory beats that would create narrative momentum."
+          },
+          "worldbuilding_coherence": {
+            "score": 0.5,
+            "reasoning": "The description is extremely abstract, with no concrete world details. While suggesting a narrative arc, it provides no substantive context about the world's rules, structure, or unique characteristics."
+          },
+          "reader_satisfaction": {
+            "score": 0.6,
+            "reasoning": "The summary promises a transformative journey and climactic revelation, but the vagueness prevents a sense of meaningful resolution. The lack of specifics makes the 'reshaping understanding' feel unearned."
+          }
+        },
+        "overall_score": 0.575,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:25:33.547560Z",
+        "metadata": {
+          "rubric": {
+            "narrative_tension": {
+              "description": "Revelations create anticipation and engagement",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "information_pacing": {
+              "description": "Details revealed at optimal dramatic moments",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "worldbuilding_coherence": {
+              "description": "Discovered elements fit together logically",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "reader_satisfaction": {
+              "description": "Revelations feel earned and meaningful",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "narrative_tension": {
+              "score": 65,
+              "reasoning": "The summary suggests potential tension through phrases like 'perilous journey' and 'challenges that test resilience', but lacks specific details to create strong anticipation. The generic language prevents deep engagement."
+            },
+            "information_pacing": {
+              "score": 55,
+              "reasoning": "The summary uses broad strokes without clear dramatic moments. While it hints at a progression, the pacing feels flat and lacks specific revelatory beats that would create narrative momentum."
+            },
+            "worldbuilding_coherence": {
+              "score": 50,
+              "reasoning": "The description is extremely abstract, with no concrete world details. While suggesting a narrative arc, it provides no substantive context about the world's rules, structure, or unique characteristics."
+            },
+            "reader_satisfaction": {
+              "score": 60,
+              "reasoning": "The summary promises a transformative journey and climactic revelation, but the vagueness prevents a sense of meaningful resolution. The lack of specifics makes the 'reshaping understanding' feel unearned."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "7f23b4a7bc3905c618285d667d7a3352cbe3f3db810c20a9ba836deb139e030a",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 2506.18820899399,
+      "utility": 0.45999999999999996,
+      "workflow_output": "Discovered Content:\n**Task:** Summarize a complex story with minimal context.\n\n**Summary:**  \nA young protagonist embarks on a perilous journey to uncover a hidden truth, facing challenges that test their resilience and morality. Along the way, they encounter allies and adversaries, each with their own motives. The story culminates in a climactic revelation that reshapes their understanding of the world and their place within it.  \n\nIf more context is needed, please provide specific details about the story’s setting, characters, or key events.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.8,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T12:25:24.473972Z",
+          "completed_at": "2025-10-28T12:25:26.980123Z",
+          "duration_seconds": 2.50618820899399
+        },
+        "evaluation": {
+          "rubric": {
+            "narrative_tension": {
+              "description": "Revelations create anticipation and engagement",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "information_pacing": {
+              "description": "Details revealed at optimal dramatic moments",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "worldbuilding_coherence": {
+              "description": "Discovered elements fit together logically",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "reader_satisfaction": {
+              "description": "Revelations feel earned and meaningful",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "narrative_tension": {
+              "score": 65,
+              "reasoning": "The summary suggests potential tension through phrases like 'perilous journey' and 'challenges that test resilience', but lacks specific details to create strong anticipation. The generic language prevents deep engagement."
+            },
+            "information_pacing": {
+              "score": 55,
+              "reasoning": "The summary uses broad strokes without clear dramatic moments. While it hints at a progression, the pacing feels flat and lacks specific revelatory beats that would create narrative momentum."
+            },
+            "worldbuilding_coherence": {
+              "score": 50,
+              "reasoning": "The description is extremely abstract, with no concrete world details. While suggesting a narrative arc, it provides no substantive context about the world's rules, structure, or unique characteristics."
+            },
+            "reader_satisfaction": {
+              "score": 60,
+              "reasoning": "The summary promises a transformative journey and climactic revelation, but the vagueness prevents a sense of meaningful resolution. The lack of specifics makes the 'reshaping understanding' feel unearned."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "7f23b4a7bc3905c618285d667d7a3352cbe3f3db810c20a9ba836deb139e030a",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:25:33.547686Z"
+    },
+    {
+      "test_number": 7,
+      "config": {
+        "test_number": 7,
+        "config_values": {
+          "temperature": 0.8,
+          "revelation_depth": "deep",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "none",
+          "n_samples": "5",
+          "verification_step": "verify_consistency",
+          "reasoning_visibility": "visible"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "narrative_tension": {
+            "score": 0.75,
+            "reasoning": "The output demonstrates a clear methodology for story distillation with structured steps. The example shows an ability to compress narrative complexity while maintaining core dramatic elements. The approach suggests potential for creating engaging summaries that preserve narrative momentum."
+          },
+          "information_pacing": {
+            "score": 0.8,
+            "reasoning": "The workflow explicitly addresses strategic information reveal through steps like 'Simplify Relationships' and 'Preserve the Arc'. The Hamlet example demonstrates skillful condensation that maintains critical plot progression without losing dramatic impact."
+          },
+          "worldbuilding_coherence": {
+            "score": 0.7,
+            "reasoning": "The framework provides logical principles for content extraction, emphasizing essential connections and avoiding tangential details. However, the generalized approach might occasionally risk oversimplifying nuanced narrative contexts."
+          },
+          "reader_satisfaction": {
+            "score": 0.85,
+            "reasoning": "The method prioritizes narrative integrity, ensuring key themes and character motivations are preserved. The example shows an ability to deliver a meaningful synopsis that captures the essence of the original story, likely leaving readers with a clear understanding."
+          }
+        },
+        "overall_score": 0.775,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:25:49.576790Z",
+        "metadata": {
+          "rubric": {
+            "narrative_tension": {
+              "description": "Revelations create anticipation and engagement",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "information_pacing": {
+              "description": "Details revealed at optimal dramatic moments",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "worldbuilding_coherence": {
+              "description": "Discovered elements fit together logically",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "reader_satisfaction": {
+              "description": "Revelations feel earned and meaningful",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "narrative_tension": {
+              "score": 75,
+              "reasoning": "The output demonstrates a clear methodology for story distillation with structured steps. The example shows an ability to compress narrative complexity while maintaining core dramatic elements. The approach suggests potential for creating engaging summaries that preserve narrative momentum."
+            },
+            "information_pacing": {
+              "score": 80,
+              "reasoning": "The workflow explicitly addresses strategic information reveal through steps like 'Simplify Relationships' and 'Preserve the Arc'. The Hamlet example demonstrates skillful condensation that maintains critical plot progression without losing dramatic impact."
+            },
+            "worldbuilding_coherence": {
+              "score": 70,
+              "reasoning": "The framework provides logical principles for content extraction, emphasizing essential connections and avoiding tangential details. However, the generalized approach might occasionally risk oversimplifying nuanced narrative contexts."
+            },
+            "reader_satisfaction": {
+              "score": 85,
+              "reasoning": "The method prioritizes narrative integrity, ensuring key themes and character motivations are preserved. The example shows an ability to deliver a meaningful synopsis that captures the essence of the original story, likely leaving readers with a clear understanding."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "3400f77dfc533ce0022628e1b76eb0c659aab5115e2c3abfd7e7af656e3d932a",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 9236.821375001455,
+      "utility": 0.5700000000000001,
+      "workflow_output": "Discovered Content:\nUnderstood! To summarize a complex story with minimal context, I'll:  \n\n1. **Identify Core Elements**: Extract key plot points, characters, and themes.  \n2. **Simplify Relationships**: Reduce intricate details to their essential connections.  \n3. **Preserve the Arc**: Maintain the beginning, turning points, and resolution.  \n4. **Omit Redundancies**: Avoid repetitive or tangential subplots unless critical.  \n\n**Example**:  \n*Original*: A prince avenges his father’s murder by his uncle, feigns madness, and stages a play to expose the killer. After confrontations, duels, and betrayals, nearly all main characters die, leaving the kingdom to an outsider.  \n*Summary*: A prince uncovers his uncle’s regicide, stages a trap to confirm guilt, and dies in a climactic duel after ensuring justice, leaving the throne to a foreign ally.  \n\nIf the story is unclear, I’ll request specifics (e.g., \"Who is the protagonist?\" or \"What’s the central conflict?\").  \n\n**Ready for your story!** Provide the details, and I’ll distill them.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.8,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T12:25:33.548835Z",
+          "completed_at": "2025-10-28T12:25:42.785518Z",
+          "duration_seconds": 9.236821375001455
+        },
+        "evaluation": {
+          "rubric": {
+            "narrative_tension": {
+              "description": "Revelations create anticipation and engagement",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "information_pacing": {
+              "description": "Details revealed at optimal dramatic moments",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "worldbuilding_coherence": {
+              "description": "Discovered elements fit together logically",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "reader_satisfaction": {
+              "description": "Revelations feel earned and meaningful",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "narrative_tension": {
+              "score": 75,
+              "reasoning": "The output demonstrates a clear methodology for story distillation with structured steps. The example shows an ability to compress narrative complexity while maintaining core dramatic elements. The approach suggests potential for creating engaging summaries that preserve narrative momentum."
+            },
+            "information_pacing": {
+              "score": 80,
+              "reasoning": "The workflow explicitly addresses strategic information reveal through steps like 'Simplify Relationships' and 'Preserve the Arc'. The Hamlet example demonstrates skillful condensation that maintains critical plot progression without losing dramatic impact."
+            },
+            "worldbuilding_coherence": {
+              "score": 70,
+              "reasoning": "The framework provides logical principles for content extraction, emphasizing essential connections and avoiding tangential details. However, the generalized approach might occasionally risk oversimplifying nuanced narrative contexts."
+            },
+            "reader_satisfaction": {
+              "score": 85,
+              "reasoning": "The method prioritizes narrative integrity, ensuring key themes and character motivations are preserved. The example shows an ability to deliver a meaningful synopsis that captures the essence of the original story, likely leaving readers with a clear understanding."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "3400f77dfc533ce0022628e1b76eb0c659aab5115e2c3abfd7e7af656e3d932a",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:25:49.576973Z"
+    },
+    {
+      "test_number": 8,
+      "config": {
+        "test_number": 8,
+        "config_values": {
+          "temperature": 0.8,
+          "revelation_depth": "deep",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "self_consistency",
+          "n_samples": "3",
+          "verification_step": "none",
+          "reasoning_visibility": "hidden"
+        },
+        "workflow": "progressive_discovery"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "narrative_tension": {
+            "score": 0.85,
+            "reasoning": "The summary introduces compelling narrative hooks - a hidden map, mythical artifact, and high-stakes potential for unity or destruction. The mention of 'betrayal' and 'ancient curses' creates strong anticipatory intrigue. Multiple character dynamics suggest complex potential conflict."
+          },
+          "information_pacing": {
+            "score": 0.75,
+            "reasoning": "Reveals key story elements progressively - orphan's discovery, diverse ally group, journey challenges, artifact's ambiguous power. Some dramatic tension in withholding specific artifact details. Slight room for more nuanced revelation progression."
+          },
+          "worldbuilding_coherence": {
+            "score": 0.8,
+            "reasoning": "Logical internal connections between kingdom division, mythical artifact, character backgrounds. Clear sense of interconnected stakes. Character archetypes (knight, scholar, healer) suggest structured world with established social dynamics."
+          },
+          "reader_satisfaction": {
+            "score": 0.82,
+            "reasoning": "Thematic depth around trust and destiny provides meaningful narrative weight. Open-ended artifact choice creates intellectual engagement. Characters represent archetypal journey of transformation, offering satisfying narrative arc potential."
+          }
+        },
+        "overall_score": 0.8049999999999999,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:26:02.259680Z",
+        "metadata": {
+          "rubric": {
+            "narrative_tension": {
+              "description": "Revelations create anticipation and engagement",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "information_pacing": {
+              "description": "Details revealed at optimal dramatic moments",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "worldbuilding_coherence": {
+              "description": "Discovered elements fit together logically",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "reader_satisfaction": {
+              "description": "Revelations feel earned and meaningful",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "narrative_tension": {
+              "score": 85,
+              "reasoning": "The summary introduces compelling narrative hooks - a hidden map, mythical artifact, and high-stakes potential for unity or destruction. The mention of 'betrayal' and 'ancient curses' creates strong anticipatory intrigue. Multiple character dynamics suggest complex potential conflict."
+            },
+            "information_pacing": {
+              "score": 75,
+              "reasoning": "Reveals key story elements progressively - orphan's discovery, diverse ally group, journey challenges, artifact's ambiguous power. Some dramatic tension in withholding specific artifact details. Slight room for more nuanced revelation progression."
+            },
+            "worldbuilding_coherence": {
+              "score": 80,
+              "reasoning": "Logical internal connections between kingdom division, mythical artifact, character backgrounds. Clear sense of interconnected stakes. Character archetypes (knight, scholar, healer) suggest structured world with established social dynamics."
+            },
+            "reader_satisfaction": {
+              "score": 82,
+              "reasoning": "Thematic depth around trust and destiny provides meaningful narrative weight. Open-ended artifact choice creates intellectual engagement. Characters represent archetypal journey of transformation, offering satisfying narrative arc potential."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "1c324da3a640503c7f32c0b8eda87d9c8618e9e9f71e8110d38b81c6093e097e",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 5544.622832996538,
+      "utility": 0.6214283150703568,
+      "workflow_output": "Discovered Content:\nCertainly! Here's a summary of a complex story with minimal context:\n\nIn a divided kingdom, a young orphan discovers a hidden map leading to a mythical artifact that could unite or destroy the land. Alongside a group of unlikely allies—a disgraced knight, a rogue scholar, and a cryptic healer—they embark on a perilous journey, facing betrayal, ancient curses, and their own demons. Ultimately, they must decide whether to wield the artifact’s power or let it vanish forever. The story explores themes of trust, sacrifice, and the price of destiny.\n\nLet me know if you'd like me to adjust or expand this!",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.8,
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides",
+        "workflow": {
+          "started_at": "2025-10-28T12:25:49.578143Z",
+          "completed_at": "2025-10-28T12:25:55.122682Z",
+          "duration_seconds": 5.544622832996538
+        },
+        "evaluation": {
+          "rubric": {
+            "narrative_tension": {
+              "description": "Revelations create anticipation and engagement",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "information_pacing": {
+              "description": "Details revealed at optimal dramatic moments",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "worldbuilding_coherence": {
+              "description": "Discovered elements fit together logically",
+              "scale": "0-100 points",
+              "weight": 0.25
+            },
+            "reader_satisfaction": {
+              "description": "Revelations feel earned and meaningful",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "narrative_tension": {
+              "score": 85,
+              "reasoning": "The summary introduces compelling narrative hooks - a hidden map, mythical artifact, and high-stakes potential for unity or destruction. The mention of 'betrayal' and 'ancient curses' creates strong anticipatory intrigue. Multiple character dynamics suggest complex potential conflict."
+            },
+            "information_pacing": {
+              "score": 75,
+              "reasoning": "Reveals key story elements progressively - orphan's discovery, diverse ally group, journey challenges, artifact's ambiguous power. Some dramatic tension in withholding specific artifact details. Slight room for more nuanced revelation progression."
+            },
+            "worldbuilding_coherence": {
+              "score": 80,
+              "reasoning": "Logical internal connections between kingdom division, mythical artifact, character backgrounds. Clear sense of interconnected stakes. Character archetypes (knight, scholar, healer) suggest structured world with established social dynamics."
+            },
+            "reader_satisfaction": {
+              "score": 82,
+              "reasoning": "Thematic depth around trust and destiny provides meaningful narrative weight. Open-ended artifact choice creates intellectual engagement. Characters represent archetypal journey of transformation, offering satisfying narrative arc potential."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "1c324da3a640503c7f32c0b8eda87d9c8618e9e9f71e8110d38b81c6093e097e",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:26:02.259890Z"
+    }
+  ],
+  "status": "COMPLETED",
+  "started_at": "2025-10-28T12:24:28.626396Z",
+  "completed_at": "2025-10-28T12:26:02.260995Z",
+  "experiment_metadata": {
+    "config_hash": "265983404f53a9eb2dfe19b824bdab1841acd56fe5612898e6b810e8c056f4f1",
+    "created_at": "2025-10-28T12:24:28.626254Z",
+    "dependencies": {
+      "pydantic": "2.12.3",
+      "langgraph": "1.0.1",
+      "litellm": "1.79.0"
+    },
+    "non_deterministic_sources": [
+      "llm_sampling"
+    ]
+  },
+  "metadata": {
+    "normalization": {
+      "cost": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "latency": {
+        "min": 2506.18820899399,
+        "max": 9236.821375001455
+      }
+    }
+  },
+  "baseline_test_number": 1,
+  "baseline_config": {
+    "test_number": 1,
+    "config_values": {
+      "temperature": 0.5,
+      "revelation_depth": "surface",
+      "reasoning_enabled": "false",
+      "verbalized_sampling": "none",
+      "n_samples": "3",
+      "verification_step": "none",
+      "reasoning_visibility": "visible"
+    },
+    "workflow": "progressive_discovery"
+  },
+  "baseline_result": {
+    "test_number": 1,
+    "config": {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.5,
+        "revelation_depth": "surface",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "none",
+        "n_samples": "3",
+        "verification_step": "none",
+        "reasoning_visibility": "visible"
+      },
+      "workflow": "progressive_discovery"
+    },
+    "quality_score": {
+      "dimension_scores": {
+        "narrative_tension": {
+          "score": 0.85,
+          "reasoning": "The artifact's memory-erasing mechanism creates high stakes and compelling internal conflict. The tension between personal sacrifice and potential village salvation generates strong narrative anticipation. The civilization's prior destruction adds depth to the artifact's inherent risk."
+        },
+        "information_pacing": {
+          "score": 0.78,
+          "reasoning": "Key details are strategically revealed - the artifact's power, its historical context, and Elara's dilemma emerge progressively. The gradual unveiling of consequences maintains reader engagement, though some additional nuanced revelation could enhance dramatic progression."
+        },
+        "worldbuilding_coherence": {
+          "score": 0.82,
+          "reasoning": "The artifact's mechanism logically connects to the civilization's backstory. The memory-erasure consequence creates a consistent internal logic that feels organically integrated. The world suggests a sophisticated magical/technological system with clear cause-and-effect relationships."
+        },
+        "reader_satisfaction": {
+          "score": 0.8,
+          "reasoning": "The moral complexity and personal cost create a deeply resonant narrative arc. Elara's choice feels meaningful, with revelations that challenge simplistic heroic narratives. The underlying theme of technological/magical power's destructive potential provides intellectual and emotional depth."
+        }
+      },
+      "overall_score": 0.8125,
+      "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+      "timestamp": "2025-10-28T12:24:39.177994Z",
+      "metadata": {
+        "rubric": {
+          "narrative_tension": {
+            "description": "Revelations create anticipation and engagement",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "information_pacing": {
+            "description": "Details revealed at optimal dramatic moments",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "worldbuilding_coherence": {
+            "description": "Discovered elements fit together logically",
+            "scale": "0-100 points",
+            "weight": 0.25
+          },
+          "reader_satisfaction": {
+            "description": "Revelations feel earned and meaningful",
+            "scale": "0-100 points",
+            "weight": 0.15
+          }
+        },
+        "raw_response": {
+          "narrative_tension": {
+            "score": 85,
+            "reasoning": "The artifact's memory-erasing mechanism creates high stakes and compelling internal conflict. The tension between personal sacrifice and potential village salvation generates strong narrative anticipation. The civilization's prior destruction adds depth to the artifact's inherent risk."
+          },
+          "information_pacing": {
+            "score": 78,
+            "reasoning": "Key details are strategically revealed - the artifact's power, its historical context, and Elara's dilemma emerge progressively. The gradual unveiling of consequences maintains reader engagement, though some additional nuanced revelation could enhance dramatic progression."
+          },
+          "worldbuilding_coherence": {
+            "score": 82,
+            "reasoning": "The artifact's mechanism logically connects to the civilization's backstory. The memory-erasure consequence creates a consistent internal logic that feels organically integrated. The world suggests a sophisticated magical/technological system with clear cause-and-effect relationships."
+          },
+          "reader_satisfaction": {
+            "score": 80,
+            "reasoning": "The moral complexity and personal cost create a deeply resonant narrative arc. Elara's choice feels meaningful, with revelations that challenge simplistic heroic narratives. The underlying theme of technological/magical power's destructive potential provides intellectual and emotional depth."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "b680fcd964808b3b96a57fe325d78614534eed19d7d112055735855bc65e8acd",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/anthropic/claude-3.5-haiku"
+      }
+    },
+    "cost": 0.0,
+    "latency": 3201.6364999872167,
+    "utility": 0.65,
+    "workflow_output": "Discovered Content:\n**Context:**  \nA young woman named Elara discovers an ancient artifact in a forgotten temple. The artifact grants her the ability to manipulate time, but each use comes at a cost: it erases a memory of her past. As she struggles to master the artifact, she learns that it was created by a civilization that destroyed itself through the same power. Elara must decide whether to use the artifact to save her dying village or destroy it to prevent a similar fate.\n\n**Summary:**  \nElara finds a time-manipulating artifact that erases her memories with each use. Torn between saving her village and avoiding the artifact’s destructive legacy, she faces a moral dilemma that forces her to weigh personal loss against the greater good.",
+    "metadata": {
+      "strategy": "standard",
+      "model": "openrouter/deepseek/deepseek-chat",
+      "temperature": 0.5,
+      "context_strategy": "full_upfront",
+      "discovery_trigger": "model_decides",
+      "workflow": {
+        "started_at": "2025-10-28T12:24:28.630774Z",
+        "completed_at": "2025-10-28T12:24:31.832364Z",
+        "duration_seconds": 3.2016364999872167
+      },
+      "evaluation": {
+        "rubric": {
+          "narrative_tension": {
+            "description": "Revelations create anticipation and engagement",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "information_pacing": {
+            "description": "Details revealed at optimal dramatic moments",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "worldbuilding_coherence": {
+            "description": "Discovered elements fit together logically",
+            "scale": "0-100 points",
+            "weight": 0.25
+          },
+          "reader_satisfaction": {
+            "description": "Revelations feel earned and meaningful",
+            "scale": "0-100 points",
+            "weight": 0.15
+          }
+        },
+        "raw_response": {
+          "narrative_tension": {
+            "score": 85,
+            "reasoning": "The artifact's memory-erasing mechanism creates high stakes and compelling internal conflict. The tension between personal sacrifice and potential village salvation generates strong narrative anticipation. The civilization's prior destruction adds depth to the artifact's inherent risk."
+          },
+          "information_pacing": {
+            "score": 78,
+            "reasoning": "Key details are strategically revealed - the artifact's power, its historical context, and Elara's dilemma emerge progressively. The gradual unveiling of consequences maintains reader engagement, though some additional nuanced revelation could enhance dramatic progression."
+          },
+          "worldbuilding_coherence": {
+            "score": 82,
+            "reasoning": "The artifact's mechanism logically connects to the civilization's backstory. The memory-erasure consequence creates a consistent internal logic that feels organically integrated. The world suggests a sophisticated magical/technological system with clear cause-and-effect relationships."
+          },
+          "reader_satisfaction": {
+            "score": 80,
+            "reasoning": "The moral complexity and personal cost create a deeply resonant narrative arc. Elara's choice feels meaningful, with revelations that challenge simplistic heroic narratives. The underlying theme of technological/magical power's destructive potential provides intellectual and emotional depth."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "b680fcd964808b3b96a57fe325d78614534eed19d7d112055735855bc65e8acd",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/anthropic/claude-3.5-haiku"
+      }
+    },
+    "timestamp": "2025-10-28T12:24:39.178147Z"
+  },
+  "baseline_quality": 0.8125,
+  "quality_improvement_pct": 0.9230769230769308
+}

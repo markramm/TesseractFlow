@@ -1,0 +1,207 @@
+# Wave 4: Fiction Scene Generation - IMPROVED RUBRIC TEST (n=1)
+# Testing Best Practices 1-3 to reduce score clustering:
+# 1. Low-precision grading scale (1-5 instead of 0-100)
+# 2. Concrete anchor points with observable criteria
+# 3. Few-shot calibration examples
+#
+# NOTE: This is a simplified test version (n=1) to validate the approach before running full experiments.
+
+name: wave4_fiction_improved_rubric_test
+workflow: fiction_scene
+variables:
+  - name: temperature
+    level_1: 0.5
+    level_2: 0.9
+  - name: generation_strategy
+    level_1: standard
+    level_2: chain_of_thought
+  - name: context_depth
+    level_1: minimal
+    level_2: full
+  - name: prose_style
+    level_1: concise
+    level_2: lyrical
+
+utility_weights:
+  quality: 0.8
+  cost: 0.15
+  time: 0.05
+
+workflow_config:
+  sample_code_path: tesseract_flow/workflows/code_review.py
+  language: python
+  evaluator_model: openrouter/anthropic/claude-3.5-haiku
+  evaluator_temperature: 0.3
+
+  # CALIBRATION EXAMPLES (Best Practice #3)
+  # These examples help the evaluator establish a stable internal scoring mechanism
+  calibration_examples: |
+    Before evaluating the scene, review these calibration examples to establish consistent scoring:
+
+    EXAMPLE 1 - SCORE 2/5 (Poor):
+    Scene: "Sarah walked into the room. She felt sad. The room was dark. She sat down and cried."
+
+    Reasoning:
+    - Creativity (2/5): Generic descriptions ("walked," "felt sad"), no unexpected emotional beats
+    - Consistency (3/5): Maintains tone but character voice is flat
+    - Prose Quality (2/5): Repetitive sentence structure (Subject-Verb pattern x4), tells rather than shows
+    - Dialogue (N/A): No dialogue present
+    Overall: Functional but lacks vivid detail and emotional depth
+
+    EXAMPLE 2 - SCORE 3/5 (Fair):
+    Scene: "Sarah hesitated at the threshold, her hand trembling on the doorknob. The apartment smelled like burnt coffee and disappointment. She sank into the couch, letting the worn cushions swallow her grief. 'Why did you leave?' she whispered to the empty walls."
+
+    Reasoning:
+    - Creativity (3/5): Some fresh details ("burnt coffee and disappointment") but still predictable emotional arc
+    - Consistency (3/5): Consistent melancholy tone, character behavior matches emotional state
+    - Prose Quality (4/5): Varied sentence structure, sensory details (smell), strong verb choice ("swallow")
+    - Dialogue (2/5): Single line of dialogue lacks authenticity, feels posed
+    Overall: Solid foundation with sensory details, but emotional beats are conventional
+
+    EXAMPLE 3 - SCORE 5/5 (Excellent):
+    Scene: "Sarah pressed her forehead against the door, counting her breaths. One. Two. Three. Inside, the apartment would still smell like his aftershave—bergamot and lies. She'd told herself she was here for the mail, for the plant she'd forgotten by the window. Not for the ghost of his laugh still hanging in the kitchen, or the indent his head left in her pillow.
+
+    The couch received her like an old friend, springs groaning in recognition. 'I'm fine,' she said aloud, testing the words. They echoed back, hollow. She tried again, slower: 'I will be fine.' The distinction mattered. The couch, at least, seemed to believe her."
+
+    Reasoning:
+    - Creativity (5/5): Unexpected metaphors ("bergamot and lies"), fresh emotional beat (testing words for truth)
+    - Consistency (5/5): Character's self-deception and gradual truth-facing creates coherent arc
+    - Prose Quality (5/5): Rhythm varies from staccato ("One. Two. Three.") to flowing sentences, rich sensory details
+    - Dialogue (5/5): Internal monologue reveals character psychology, repetition shows emotional process
+    Overall: Original imagery, authentic emotional progression, sophisticated prose rhythm
+
+  # IMPROVED RUBRIC with 1-5 Scale + Concrete Anchor Points (Best Practices #1 and #2)
+  rubric:
+    creativity:
+      description: Originality and freshness of emotional beats, descriptions, and narrative choices
+      scale: 1-5
+      weight: 0.3
+      anchor_points:
+        5_excellent: |
+          - Uses 3+ unexpected metaphors or original imagery (e.g., "silence thick as wool")
+          - Emotional beats surprise reader while remaining true to character
+          - Avoids clichés (no "tears streaming down face," "heart pounding," etc.)
+          - Fresh approach to familiar situations
+        4_good: |
+          - Contains 1-2 original descriptions or metaphors
+          - Some unexpected emotional moments
+          - Mostly avoids common clichés
+          - Shows creative effort with occasional conventional choices
+        3_fair: |
+          - Mix of original and conventional descriptions
+          - Emotional beats are predictable but authentic
+          - 1-2 clichés present but not dominating
+          - Serviceable but not memorable
+        2_poor: |
+          - Mostly generic descriptions ("walked," "felt sad")
+          - Emotional beats follow expected patterns
+          - Multiple clichés or stock phrases
+          - Tells emotions rather than showing them
+        1_inadequate: |
+          - Entirely conventional descriptions
+          - No attempt at original imagery
+          - Heavy reliance on clichés
+          - Flat emotional landscape
+
+    consistency:
+      description: Coherence of character voice, plot continuity, and tonal stability
+      scale: 1-5
+      weight: 0.3
+      anchor_points:
+        5_excellent: |
+          - Character voice remains distinct and recognizable throughout
+          - All plot details connect logically (no contradictions)
+          - Tone stays consistent or shifts deliberately with clear motivation
+          - Character actions align with established personality/situation
+        4_good: |
+          - Character voice is mostly consistent with 1 minor slip
+          - Plot details align with no major contradictions
+          - Tone is stable with intentional variations
+          - Character behavior is believable
+        3_fair: |
+          - Character voice wavers but remains identifiable
+          - 1-2 minor plot inconsistencies that don't break immersion
+          - Tone is generally consistent
+          - Character actions are plausible if not always perfectly aligned
+        2_poor: |
+          - Character voice shifts noticeably (e.g., formal to casual)
+          - 2-3 plot contradictions or continuity errors
+          - Tone feels uneven without justification
+          - Character behavior seems inconsistent with established traits
+        1_inadequate: |
+          - Character voice is inconsistent or absent
+          - Major plot contradictions or logical gaps
+          - Tone shifts erratically
+          - Character actions feel random or unmotivated
+
+    prose_quality:
+      description: Vividness of descriptions, sentence rhythm, and natural narrative flow
+      scale: 1-5
+      weight: 0.2
+      anchor_points:
+        5_excellent: |
+          - 5+ specific sensory details (not just sight: include sound, smell, texture)
+          - Sentence length varies deliberately (mix of short punchy and longer flowing)
+          - Strong active verbs (avoid "was," "had," "felt" unless deliberate)
+          - Prose flows naturally when read aloud
+        4_good: |
+          - 3-4 sensory details across 2+ senses
+          - Some sentence variety (not all same structure)
+          - Mostly active verbs with occasional passive voice
+          - Generally smooth flow with minor awkward moments
+        3_fair: |
+          - 2-3 sensory details, primarily visual
+          - Limited sentence variety (mostly subject-verb-object)
+          - Mix of active/passive voice
+          - Readable but not particularly engaging
+        2_poor: |
+          - 0-1 sensory details, mostly abstract
+          - Repetitive sentence structure (3+ consecutive sentences same pattern)
+          - Heavy passive voice or weak verbs
+          - Choppy flow or awkward phrasing in multiple places
+        1_inadequate: |
+          - No sensory details, entirely abstract
+          - Monotonous sentence structure throughout
+          - Weak verbs dominate ("was," "had," "seemed")
+          - Difficult to parse or unnatural flow
+
+    dialogue:
+      description: Natural speech patterns, character voice distinction, and emotional authenticity
+      scale: 1-5
+      weight: 0.2
+      anchor_points:
+        5_excellent: |
+          - Each character has distinctive speech patterns (word choice, rhythm, formality)
+          - Dialogue reveals character psychology without stating it
+          - Subtext present (characters don't say exactly what they mean)
+          - Natural interruptions, pauses, or speech patterns (e.g., trailing off, repeating)
+        4_good: |
+          - Characters have somewhat distinct voices
+          - Dialogue shows some subtext or indirect communication
+          - Mostly natural speech with 1-2 slightly formal moments
+          - Some character-revealing word choices
+        3_fair: |
+          - Characters speak similarly but clearly enough
+          - Dialogue is functional, mostly direct statements
+          - Speech feels slightly formal but not jarring
+          - Conveys necessary information
+        2_poor: |
+          - Characters sound identical or overly formal
+          - Dialogue is entirely on-the-nose (no subtext)
+          - Unnatural speech patterns ("Well, as you know..." or "Hello, my friend whom I've known for ten years")
+          - Feels like exposition rather than conversation
+        1_inadequate: |
+          - Dialogue is robotic or completely unnatural
+          - No character distinction whatsoever
+          - Heavy exposition dumps in speech
+          - Reads like a script instruction rather than human speech
+
+# Expected Outcomes:
+# 1. Reduced score clustering (target: <15% at any single value)
+# 2. More varied distribution across 1-5 range
+# 3. Better discrimination between quality levels
+# 4. Scores should normalize to 0-1 range (1/5 = 0.2, 2/5 = 0.4, etc.)
+#
+# Hypothesis:
+# Concrete anchor points + few-shot examples will help Haiku establish
+# stable scoring mechanisms and avoid saturation at narrow ranges like 0.78-0.82

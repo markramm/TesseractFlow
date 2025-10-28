@@ -1,0 +1,219 @@
+{
+  "experiment_id": "wave2_lore_expansion-20251028T045402",
+  "config": {
+    "name": "wave2_lore_expansion",
+    "workflow": "lore_expansion",
+    "variables": [
+      {
+        "name": "temperature",
+        "level_1": 0.5,
+        "level_2": 0.8
+      },
+      {
+        "name": "generation_strategy",
+        "level_1": "standard",
+        "level_2": "chain_of_thought"
+      },
+      {
+        "name": "expansion_type",
+        "level_1": "comprehensive",
+        "level_2": "targeted"
+      },
+      {
+        "name": "context_inclusion",
+        "level_1": "scene_only",
+        "level_2": "full_story"
+      },
+      {
+        "name": "output_structure",
+        "level_1": "json",
+        "level_2": "natural_language"
+      },
+      {
+        "name": "entity_detection",
+        "level_1": "explicit_prompt",
+        "level_2": "implicit"
+      },
+      {
+        "name": "relationship_depth",
+        "level_1": "basic",
+        "level_2": "detailed"
+      }
+    ],
+    "utility_weights": {
+      "quality": 0.75,
+      "cost": 0.2,
+      "time": 0.05
+    },
+    "workflow_config": {
+      "rubric": {
+        "entity_completeness": {
+          "description": "All relevant characters and locations extracted from source material",
+          "scale": "0-100 points",
+          "weight": 0.3
+        },
+        "accuracy": {
+          "description": "Details consistent with source text, no hallucinations or contradictions",
+          "scale": "0-100 points",
+          "weight": 0.25
+        },
+        "relationship_mapping": {
+          "description": "Character connections and dynamics accurately identified and described",
+          "scale": "0-100 points",
+          "weight": 0.2
+        },
+        "structured_output": {
+          "description": "Well-formed JSON (if applicable), proper field population, parseable",
+          "scale": "0-100 points",
+          "weight": 0.15
+        },
+        "consistency": {
+          "description": "No internal contradictions, maintains canon with source material",
+          "scale": "0-100 points",
+          "weight": 0.1
+        }
+      },
+      "sample_code_path": "tesseract_flow/workflows/code_review.py",
+      "evaluator_model": "openrouter/deepseek/deepseek-chat",
+      "language": "python",
+      "evaluator_temperature": 0.1
+    }
+  },
+  "test_configurations": [
+    {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.5,
+        "generation_strategy": "standard",
+        "expansion_type": "comprehensive",
+        "context_inclusion": "scene_only",
+        "output_structure": "json",
+        "entity_detection": "explicit_prompt",
+        "relationship_depth": "basic"
+      },
+      "workflow": "lore_expansion"
+    },
+    {
+      "test_number": 2,
+      "config_values": {
+        "temperature": 0.5,
+        "generation_strategy": "standard",
+        "expansion_type": "comprehensive",
+        "context_inclusion": "full_story",
+        "output_structure": "natural_language",
+        "entity_detection": "implicit",
+        "relationship_depth": "detailed"
+      },
+      "workflow": "lore_expansion"
+    },
+    {
+      "test_number": 3,
+      "config_values": {
+        "temperature": 0.5,
+        "generation_strategy": "chain_of_thought",
+        "expansion_type": "targeted",
+        "context_inclusion": "scene_only",
+        "output_structure": "json",
+        "entity_detection": "implicit",
+        "relationship_depth": "detailed"
+      },
+      "workflow": "lore_expansion"
+    },
+    {
+      "test_number": 4,
+      "config_values": {
+        "temperature": 0.5,
+        "generation_strategy": "chain_of_thought",
+        "expansion_type": "targeted",
+        "context_inclusion": "full_story",
+        "output_structure": "natural_language",
+        "entity_detection": "explicit_prompt",
+        "relationship_depth": "basic"
+      },
+      "workflow": "lore_expansion"
+    },
+    {
+      "test_number": 5,
+      "config_values": {
+        "temperature": 0.8,
+        "generation_strategy": "standard",
+        "expansion_type": "targeted",
+        "context_inclusion": "scene_only",
+        "output_structure": "natural_language",
+        "entity_detection": "explicit_prompt",
+        "relationship_depth": "detailed"
+      },
+      "workflow": "lore_expansion"
+    },
+    {
+      "test_number": 6,
+      "config_values": {
+        "temperature": 0.8,
+        "generation_strategy": "standard",
+        "expansion_type": "targeted",
+        "context_inclusion": "full_story",
+        "output_structure": "json",
+        "entity_detection": "implicit",
+        "relationship_depth": "basic"
+      },
+      "workflow": "lore_expansion"
+    },
+    {
+      "test_number": 7,
+      "config_values": {
+        "temperature": 0.8,
+        "generation_strategy": "chain_of_thought",
+        "expansion_type": "comprehensive",
+        "context_inclusion": "scene_only",
+        "output_structure": "natural_language",
+        "entity_detection": "implicit",
+        "relationship_depth": "basic"
+      },
+      "workflow": "lore_expansion"
+    },
+    {
+      "test_number": 8,
+      "config_values": {
+        "temperature": 0.8,
+        "generation_strategy": "chain_of_thought",
+        "expansion_type": "comprehensive",
+        "context_inclusion": "full_story",
+        "output_structure": "json",
+        "entity_detection": "explicit_prompt",
+        "relationship_depth": "detailed"
+      },
+      "workflow": "lore_expansion"
+    }
+  ],
+  "results": [],
+  "status": "FAILED",
+  "started_at": "2025-10-28T04:54:02.386915Z",
+  "error": "Workflow execution failed for test #1: KeyError: 'input'",
+  "experiment_metadata": {
+    "config_hash": "97123c10e3917f93a1564d41f8bb1c6188ec71e30ec7c06f61dde5a5cdfb41d7",
+    "created_at": "2025-10-28T04:54:02.386860Z",
+    "dependencies": {
+      "pydantic": "2.12.3",
+      "langgraph": "1.0.1",
+      "litellm": "1.79.0"
+    },
+    "non_deterministic_sources": [
+      "llm_sampling"
+    ]
+  },
+  "metadata": {},
+  "baseline_test_number": 1,
+  "baseline_config": {
+    "test_number": 1,
+    "config_values": {
+      "temperature": 0.5,
+      "generation_strategy": "standard",
+      "expansion_type": "comprehensive",
+      "context_inclusion": "scene_only",
+      "output_structure": "json",
+      "entity_detection": "explicit_prompt",
+      "relationship_depth": "basic"
+    },
+    "workflow": "lore_expansion"
+  }
+}

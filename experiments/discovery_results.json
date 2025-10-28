@@ -1,0 +1,167 @@
+{
+  "experiment_id": "deepseek_progressive_discovery-20251028T015906",
+  "config": {
+    "name": "deepseek_progressive_discovery",
+    "workflow": "code_review",
+    "variables": [
+      {
+        "name": "temperature",
+        "level_1": 0.5,
+        "level_2": 0.8
+      },
+      {
+        "name": "generation_strategy",
+        "level_1": "standard",
+        "level_2": "chain_of_thought"
+      },
+      {
+        "name": "context_strategy",
+        "level_1": "full_upfront",
+        "level_2": "progressive_discovery"
+      },
+      {
+        "name": "discovery_trigger",
+        "level_1": "model_decides",
+        "level_2": "explicit_prompts"
+      }
+    ],
+    "utility_weights": {
+      "quality": 0.6,
+      "cost": 0.3,
+      "time": 0.1
+    },
+    "workflow_config": {
+      "rubric": {
+        "output_quality": {
+          "description": "Does the output maintain quality with reduced context?",
+          "scale": "0-100 points",
+          "weight": 0.4
+        },
+        "context_efficiency": {
+          "description": "Does it request only relevant context? Avoid unnecessary requests?",
+          "scale": "0-100 points",
+          "weight": 0.3
+        },
+        "consistency": {
+          "description": "Maintains story/character consistency despite minimal context",
+          "scale": "0-100 points",
+          "weight": 0.3
+        }
+      },
+      "sample_code_path": "tesseract_flow/core/strategies.py",
+      "evaluator_model": "openrouter/deepseek/deepseek-chat",
+      "language": "python",
+      "evaluator_temperature": 0.1
+    }
+  },
+  "test_configurations": [
+    {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.5,
+        "generation_strategy": "standard",
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 2,
+      "config_values": {
+        "temperature": 0.5,
+        "generation_strategy": "standard",
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "explicit_prompts"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 3,
+      "config_values": {
+        "temperature": 0.5,
+        "generation_strategy": "chain_of_thought",
+        "context_strategy": "progressive_discovery",
+        "discovery_trigger": "model_decides"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 4,
+      "config_values": {
+        "temperature": 0.5,
+        "generation_strategy": "chain_of_thought",
+        "context_strategy": "progressive_discovery",
+        "discovery_trigger": "explicit_prompts"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 5,
+      "config_values": {
+        "temperature": 0.8,
+        "generation_strategy": "standard",
+        "context_strategy": "progressive_discovery",
+        "discovery_trigger": "model_decides"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 6,
+      "config_values": {
+        "temperature": 0.8,
+        "generation_strategy": "standard",
+        "context_strategy": "progressive_discovery",
+        "discovery_trigger": "explicit_prompts"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 7,
+      "config_values": {
+        "temperature": 0.8,
+        "generation_strategy": "chain_of_thought",
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "model_decides"
+      },
+      "workflow": "code_review"
+    },
+    {
+      "test_number": 8,
+      "config_values": {
+        "temperature": 0.8,
+        "generation_strategy": "chain_of_thought",
+        "context_strategy": "full_upfront",
+        "discovery_trigger": "explicit_prompts"
+      },
+      "workflow": "code_review"
+    }
+  ],
+  "results": [],
+  "status": "FAILED",
+  "started_at": "2025-10-28T01:59:06.887632Z",
+  "error": "Workflow execution failed for test #1: WorkflowExecutionError: Generation strategy failed: Authentication failed for model 'anthropic/claude-3.5-sonnet': litellm.AuthenticationError: Missing Anthropic API Key - A call is being made to anthropic but no key is set either in the environment variables or via params. Please set `ANTHROPIC_API_KEY` in your environment vars",
+  "experiment_metadata": {
+    "config_hash": "bdeb62d595a0afd088eed44600a9d8e1f09016107f362ac04bb5cc2aa42b296b",
+    "created_at": "2025-10-28T01:59:06.887509Z",
+    "dependencies": {
+      "pydantic": "2.12.3",
+      "langgraph": "1.0.1",
+      "litellm": "1.79.0"
+    },
+    "non_deterministic_sources": [
+      "llm_sampling"
+    ]
+  },
+  "metadata": {},
+  "baseline_test_number": 1,
+  "baseline_config": {
+    "test_number": 1,
+    "config_values": {
+      "temperature": 0.5,
+      "generation_strategy": "standard",
+      "context_strategy": "full_upfront",
+      "discovery_trigger": "model_decides"
+    },
+    "workflow": "code_review"
+  }
+}

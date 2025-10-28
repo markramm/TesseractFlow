@@ -1,0 +1,54 @@
+name: wave2_temperature_mapping
+workflow: multi_domain_tasks
+variables:
+- name: temperature
+  level_1: 0.3
+  level_2: 0.9
+- name: task_domain
+  level_1: creative_writing
+  level_2: data_extraction
+- name: output_length
+  level_1: short
+  level_2: long
+- name: repetition_penalty
+  level_1: default
+  level_2: high
+- name: top_p
+  level_1: 0.9
+  level_2: 0.95
+- name: presence_penalty
+  level_1: 0.0
+  level_2: 0.6
+- name: frequency_penalty
+  level_1: 0.0
+  level_2: 0.6
+utility_weights:
+  quality: 0.75
+  cost: 0.15
+  time: 0.10
+workflow_config:
+  sample_code_path: tesseract_flow/workflows/code_review.py
+  language: python
+  evaluator_model: openrouter/deepseek/deepseek-chat
+  evaluator_temperature: 0.1
+  rubric:
+    task_appropriateness:
+      description: Temperature and sampling settings appropriate for the task type
+      scale: 0-100 points
+      weight: 0.30
+    output_variability:
+      description: Appropriate level of randomness - creative when needed, precise when required
+      scale: 0-100 points
+      weight: 0.25
+    quality_consistency:
+      description: Stable quality across different temperature settings, no degradation
+      scale: 0-100 points
+      weight: 0.20
+    creativity_precision_balance:
+      description: Right balance between creative exploration and factual accuracy for task
+      scale: 0-100 points
+      weight: 0.15
+    coherence:
+      description: Logical flow maintained, no rambling or incoherence at high temperatures
+      scale: 0-100 points
+      weight: 0.10

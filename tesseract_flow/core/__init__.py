@@ -10,6 +10,11 @@ from tesseract_flow.core.config import (
     UtilityWeights,
     WorkflowConfig,
 )
+from tesseract_flow.core.mixins import (
+    ReasoningAndVerbalizationMixin,
+    ReasoningMixin,
+    VerbalizationMixin,
+)
 from tesseract_flow.core.strategies import (
     GENERATION_STRATEGIES,
     get_strategy,
@@ -28,4 +33,7 @@ __all__ = [
     "GENERATION_STRATEGIES",
     "get_strategy",
     "register_strategy",
+    "ReasoningMixin",
+    "VerbalizationMixin",
+    "ReasoningAndVerbalizationMixin",
 ]

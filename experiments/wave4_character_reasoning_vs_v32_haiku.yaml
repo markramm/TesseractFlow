@@ -1,0 +1,63 @@
+# Wave 4: Character Development V3.2 with Reasoning & Verbalized Sampling (Haiku 4.5 Evaluator)
+# Research Question: Test if Haiku 4.5 evaluator shows same score clustering as DeepSeek-Chat
+#
+# EVALUATOR CHANGE: DeepSeek-Chat → Claude Haiku 4.5
+# MODEL: DeepSeek V3.2 Exp (explicit reasoning parameter)
+
+name: wave4_character_reasoning_vs_v32_haiku
+workflow: character_development
+variables:
+  - name: temperature
+    level_1: 0.7
+    level_2: 0.9
+  - name: arc_complexity
+    level_1: simple
+    level_2: layered
+  - name: reasoning_enabled
+    level_1: 'false'
+    level_2: 'true'
+  - name: verbalized_sampling
+    level_1: none
+    level_2: self_consistency
+  - name: n_samples
+    level_1: '3'
+    level_2: '5'
+  - name: trait_derivation
+    level_1: explicit
+    level_2: show_dont_tell
+  - name: reasoning_visibility
+    level_1: visible
+    level_2: hidden
+
+utility_weights:
+  quality: 0.8
+  cost: 0.15
+  time: 0.05
+
+workflow_config:
+  sample_code_path: tesseract_flow/workflows/code_review.py
+  language: python
+  model: openrouter/deepseek/deepseek-chat
+  evaluator_model: openrouter/anthropic/claude-3.5-haiku
+  evaluator_temperature: 0.3
+  rubric:
+    psychological_depth:
+      description: Character motivations, fears, desires feel authentic and complex
+      scale: 0-100 points
+      weight: 0.35
+    arc_coherence:
+      description: Character growth follows logical emotional progression
+      scale: 0-100 points
+      weight: 0.30
+    behavioral_consistency:
+      description: Actions align with established personality and history
+      scale: 0-100 points
+      weight: 0.20
+    relatability:
+      description: Reader can understand and connect with character journey
+      scale: 0-100 points
+      weight: 0.15
+
+# Expected Learnings:
+# 1. Does V3.2 + Haiku show 75% clustering like V3.2 + DeepSeek?
+# 2. Can Haiku distinguish psychological complexity better?

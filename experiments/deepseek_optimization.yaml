@@ -1,0 +1,150 @@
+# Deep Seek R1 Code Review Optimization
+# Goal: Find optimal configuration for DeepSeek R1 (budget model)
+# Model: FIXED to deepseek/deepseek-chat
+# Est. Cost: ~$0.02 for 8 tests (vs ~$0.15 for Claude)
+
+name: "deepseek_r1_optimization"
+workflow: "code_review"
+
+# Taguchi L8 Variables - Optimizing DeepSeek specifically
+variables:
+  # Variable 1: Temperature - Does DeepSeek need higher temp?
+  - name: "temperature"
+    level_1: 0.3  # Conservative (Claude's sweet spot)
+    level_2: 0.7  # Higher (maybe DeepSeek needs more creativity?)
+
+  # Variable 2: Context - Does DeepSeek benefit from full context?
+  - name: "context_size"
+    level_1: "file_only"      # Minimal context
+    level_2: "full_module"    # Full context
+
+  # Variable 3: Generation Strategy - Does CoT help DeepSeek?
+  - name: "generation_strategy"
+    level_1: "standard"          # Direct prompting
+    level_2: "chain_of_thought"  # Explicit reasoning
+
+  # Variable 4: Model - Fixed to DeepSeek (but need 2 levels for L8)
+  - name: "model"
+    level_1: "openrouter/deepseek/deepseek-chat"           # DeepSeek R1
+    level_2: "openrouter/anthropic/claude-haiku-4.5"       # Haiku as baseline comparison
+
+# Utility Function Weights - Quality is primary
+utility_weights:
+  quality: 0.7  # Most important
+  cost: 0.2     # Important (budget model value prop)
+  time: 0.1     # Less important
+
+# Workflow Configuration
+workflow_config:
+  # Same rubric as Claude experiment for comparison
+  rubric:
+    functionality:
+      description: |
+        Does the code accomplish its intended purpose correctly?
+        - RubricEvaluator properly evaluates workflow outputs
+        - Handles all edge cases (malformed LLM responses, missing scores, etc.)
+        - Score extraction logic is robust
+        - Normalization logic is correct (0-1 range)
+        - Default rubric is well-designed
+      scale: "0-100 points"
+      weight: 0.25
+
+    error_handling:
+      description: |
+        Does the code handle errors and edge cases gracefully?
+        - Appropriate exception handling (EvaluationError)
+        - Defensive programming (validate inputs)
+        - Clear error messages with context
+        - Handles LLM failures gracefully
+        - Proper logging for debugging
+      scale: "0-100 points"
+      weight: 0.20
+
+    code_quality:
+      description: |
+        Is the code well-designed and maintainable?
+        - Clear separation of concerns
+        - Single Responsibility Principle
+        - Appropriate use of type hints
+        - Clean abstractions (no leaky abstractions)
+        - Proper use of Pydantic for validation
+        - Good class/method naming
+      scale: "0-100 points"
+      weight: 0.20
+
+    performance:
+      description: |
+        Is the code efficient and performant?
+        - Minimal unnecessary LLM calls
+        - Efficient regex patterns
+        - Appropriate caching strategy
+        - No obvious performance bottlenecks
+        - Reasonable token usage
+      scale: "0-100 points"
+      weight: 0.15
+
+    testability:
+      description: |
+        Is the code easy to test and well-tested?
+        - Clear interfaces for mocking
+        - Testable methods (pure functions where possible)
+        - Good test coverage potential
+        - Easy to reproduce edge cases
+        - Clear contracts (inputs/outputs)
+      scale: "0-100 points"
+      weight: 0.10
+
+    documentation:
+      description: |
+        Is the code well-documented and clear?
+        - Clear docstrings for public APIs
+        - Inline comments for complex logic
+        - Type hints are accurate
+        - Examples where helpful
+        - Clear variable/method names
+      scale: "0-100 points"
+      weight: 0.10
+
+  # Code to review (same as Claude experiment)
+  sample_code_path: "tesseract_flow/evaluation/rubric.py"
+  language: "python"
+
+  # Additional context files
+  context_files:
+    - "tesseract_flow/evaluation/__init__.py"
+    - "tesseract_flow/evaluation/metrics.py"
+    - "tesseract_flow/evaluation/cache.py"
+    - "tesseract_flow/core/types.py"
+    - "tesseract_flow/core/exceptions.py"
+
+  # Evaluator: Use DeepSeek to evaluate DeepSeek (test self-evaluation capability)
+  evaluator_model: "openrouter/deepseek/deepseek-chat"
+  evaluator_temperature: 0.1  # Low temp for consistent scoring
+
+  # Context descriptions
+  context_descriptions:
+    file_only: "Review limited to the provided file."
+    full_module: "Review with full module context including imports and related files."
+
+  # Strategy descriptions
+  strategy_descriptions:
+    standard: "Review the code directly and provide your assessment."
+    chain_of_thought: |
+      Think step-by-step before providing your assessment:
+      1. First, understand what the code does
+      2. Identify potential issues in each dimension
+      3. Consider severity and impact
+      4. Then provide your final assessment
+
+# Expected Costs:
+# DeepSeek: $0.14/M input, $0.28/M output
+# - File only: ~2K input + 1.5K output per test = $0.0007 per test
+# - Full module: ~5K input + 1.5K output per test = $0.0011 per test
+# - Evaluation: ~3.5K input + 0.5K output = $0.0006 per test
+# Total for L8 (8 tests): ~$0.015-$0.020
+
+# Research Questions:
+# 1. Does DeepSeek need higher temperature than Claude for quality?
+# 2. Does full context help DeepSeek as much as it helps Claude (48%)?
+# 3. Does chain-of-thought help DeepSeek (it hurt Claude by -1.5%)?
+# 4. Can DeepSeek reliably judge its own output?

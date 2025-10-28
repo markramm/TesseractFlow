@@ -1,0 +1,151 @@
+# Wave 4: Fiction Scene Generation - SIMPLIFIED AP RUBRIC TEST (n=1)
+# Testing a more moderate point-based rubric approach
+#
+# Hypothesis: A simplified point-based rubric (10 points per dimension instead of 20)
+# with fewer, clearer criteria will reduce evaluator JSON errors while still
+# maintaining objective countable features to reduce score clustering.
+#
+# Differences from full AP rubric:
+# - 10 points per dimension (instead of 20)
+# - 3-4 criteria per dimension (instead of 8)
+# - Simpler language and shorter anchor points
+# - Clear binary checks (present/absent)
+
+name: wave4_fiction_simplified_ap_test
+workflow: fiction_scene
+variables:
+  - name: temperature
+    level_1: 0.5
+    level_2: 0.9
+  - name: generation_strategy
+    level_1: standard
+    level_2: chain_of_thought
+  - name: context_depth
+    level_1: minimal
+    level_2: full
+  - name: prose_style
+    level_1: concise
+    level_2: lyrical
+
+utility_weights:
+  quality: 0.8
+  cost: 0.15
+  time: 0.05
+
+workflow_config:
+  sample_code_path: tesseract_flow/workflows/code_review.py
+  language: python
+  evaluator_model: openrouter/anthropic/claude-3.5-haiku
+  evaluator_temperature: 0.3
+
+  # SIMPLIFIED SCORING INSTRUCTIONS
+  calibration_examples: |
+    SCORING METHODOLOGY:
+
+    You are scoring like an AP exam grader. Award points ONLY when specific criteria are met.
+    Count features carefully. Be strict: if a criterion is not clearly present, award ZERO points.
+
+    Each dimension has 10 possible points. Award points only for criteria that are clearly present.
+
+  # SIMPLIFIED AP-STYLE RUBRIC (10 points per dimension)
+  rubric:
+    sensory_detail:
+      description: "Concrete, specific sensory descriptions (count and verify)"
+      scale: "0-10 points"
+      weight: 0.3
+      anchor_points:
+        10_points: |
+          □ 3 pts: Contains at least 3 distinct sensory details
+          □ 3 pts: Uses at least 2 senses (not just sight)
+          □ 2 pts: Includes at least one specific detail (not generic)
+          □ 2 pts: No clichés present (no "tears streaming," "heart pounding," etc.)
+
+        5_points: |
+          Typical: 4-6 points
+          - Some sensory details but fewer than 3
+          - Mostly visual sense
+          - Generic descriptions
+          - 1 cliché present
+
+        0_points: |
+          Typical: 0-2 points
+          - No sensory details
+          - Entirely abstract
+          - Multiple clichés
+
+    character_voice:
+      description: "Consistency and distinctness of character voice/behavior"
+      scale: "0-10 points"
+      weight: 0.3
+      anchor_points:
+        10_points: |
+          □ 4 pts: No contradictions in character behavior
+          □ 3 pts: Character actions are motivated (clear cause-and-effect)
+          □ 3 pts: Emotional responses are specific (not just "sad" or "happy")
+
+        5_points: |
+          Typical: 4-6 points
+          - 1 minor inconsistency
+          - Motivations mostly clear
+          - Some generic emotions
+
+        0_points: |
+          Typical: 0-2 points
+          - Multiple contradictions
+          - Unmotivated actions
+          - Entirely generic emotions
+
+    plot_logic:
+      description: "Logical coherence and flow of events"
+      scale: "0-10 points"
+      weight: 0.2
+      anchor_points:
+        10_points: |
+          □ 5 pts: No plot contradictions
+          □ 3 pts: Clear cause-and-effect (events follow logically)
+          □ 2 pts: No unexplained gaps
+
+        5_points: |
+          Typical: 4-6 points
+          - 1 minor plot inconsistency
+          - Mostly logical flow
+          - 1 small gap
+
+        0_points: |
+          Typical: 0-2 points
+          - Major plot holes
+          - Random events
+          - Multiple gaps
+
+    originality:
+      description: "Fresh descriptions and unexpected creative choices"
+      scale: "0-10 points"
+      weight: 0.2
+      anchor_points:
+        10_points: |
+          □ 4 pts: Contains at least 1 unexpected metaphor or description
+          □ 3 pts: Avoids ALL common clichés
+          □ 3 pts: At least one surprising word choice or phrase
+
+        5_points: |
+          Typical: 4-6 points
+          - Mix of original and conventional
+          - 1 cliché present
+          - Mostly predictable
+
+        0_points: |
+          Typical: 0-2 points
+          - Entirely generic
+          - Multiple clichés (3+)
+          - No creative effort
+
+# Expected Outcomes:
+# 1. Reduced JSON parsing errors (simpler rubric)
+# 2. Reduced score clustering through objective counting
+# 3. Scores distributed across 0-10 range per dimension (0-1 normalized)
+# 4. Better than the 81.2% clustering seen with 1-5 Likert scale
+#
+# Success Criteria:
+# - Completes all 8 tests without JSON errors
+# - <15% of scores at any single value
+# - Distribution across at least 50% of possible score range

@@ -9,11 +9,23 @@ from pydantic import BaseModel, ConfigDict, Field
 ExperimentStatus = Literal["PENDING", "RUNNING", "COMPLETED", "FAILED"]
 
 
-class RubricDimension(TypedDict):
-    """Structure describing a rubric dimension used during evaluation."""
+class RubricDimension(TypedDict, total=False):
+    """Structure describing a rubric dimension used during evaluation.
+
+    Required fields:
+        description: Brief description of what this dimension measures
+        scale: The scoring scale (e.g., "1-5 where..." or "0-100 points")
+
+    Optional fields:
+        anchor_points: Dict mapping score levels to concrete criteria
+                      (e.g., {"5_excellent": "...", "3_fair": "...", "1_inadequate": "..."})
+        weight: Relative importance of this dimension (default: 1.0)
+    """
 
     description: str
     scale: str
+    anchor_points: dict[str, str]  # Optional: e.g., {"5_excellent": "criteria...", "1_poor": "..."}
+    weight: float  # Optional: relative importance (default 1.0)
 
 
 class UtilityWeights(BaseModel):

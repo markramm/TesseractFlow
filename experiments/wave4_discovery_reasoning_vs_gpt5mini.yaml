@@ -1,0 +1,65 @@
+# Wave 4: Progressive Discovery with Reasoning & Verbalized Sampling (GPT-5 Mini Evaluator)
+# Research Question: Test if GPT-5 Mini evaluator reduces score clustering below 37.5%
+#
+# EVALUATOR CHANGE: DeepSeek-Chat → GPT-5 Mini (OpenRouter)
+# Purpose: Validate if GPT-5 Mini provides better score discrimination and reduced clustering
+# Cost: 57% cheaper than Haiku 3.5 ($0.06 vs $0.14 for 40 evaluations)
+
+name: wave4_discovery_reasoning_vs_gpt5mini
+workflow: progressive_discovery
+variables:
+  - name: temperature
+    level_1: 0.5
+    level_2: 0.9
+  - name: context_depth
+    level_1: minimal
+    level_2: full
+  - name: reasoning_enabled
+    level_1: 'false'
+    level_2: 'true'
+  - name: verbalized_sampling
+    level_1: none
+    level_2: self_consistency
+  - name: n_samples
+    level_1: '3'
+    level_2: '5'
+  - name: reasoning_visibility
+    level_1: visible
+    level_2: hidden
+  - name: max_reasoning_tokens
+    level_1: standard
+    level_2: extended
+
+utility_weights:
+  quality: 0.8
+  cost: 0.15
+  time: 0.05
+
+workflow_config:
+  sample_code_path: tesseract_flow/workflows/code_review.py
+  language: python
+  evaluator_model: openrouter/openai/gpt-5-mini
+  evaluator_temperature: 0.3
+  rubric:
+    revelation_pacing:
+      description: Information revealed at natural moments, maintains curiosity without frustration
+      scale: 0-100 points
+      weight: 0.3
+    tension_building:
+      description: Suspense escalates believably, stakes feel real, reader investment grows
+      scale: 0-100 points
+      weight: 0.3
+    mystery_coherence:
+      description: Clues make sense in retrospect, no contradictions, fair play with reader
+      scale: 0-100 points
+      weight: 0.2
+    emotional_impact:
+      description: Discoveries feel earned, surprising yet inevitable, meaningful to characters
+      scale: 0-100 points
+      weight: 0.2
+
+# Expected Learnings:
+# 1. Does GPT-5 Mini reduce clustering below 37.5% (Haiku 3.5 baseline)?
+# 2. Can GPT-5 Mini distinguish quality differences in progressive discovery?
+# 3. Does GPT-5 Mini produce more varied scores across full 0-1 range?
+# 4. Is GPT-5 Mini more cost-effective than Haiku 3.5 for evaluation?

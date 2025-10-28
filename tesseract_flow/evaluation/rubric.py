@@ -80,6 +80,7 @@ class RubricEvaluator:
         *,
         model: Optional[str] = None,
         temperature: Optional[float] = None,
+        calibration_examples: Optional[str] = None,
         extra_instructions: Optional[str] = None,
         use_cache: Optional[bool] = None,
         record_cache: Optional[bool] = None,
@@ -110,7 +111,7 @@ class RubricEvaluator:
             msg = "Caching requested but no cache backend configured."
             raise EvaluationError(msg)
 
-        prompt = self._build_prompt(workflow_output, rubric_definition, extra_instructions)
+        prompt = self._build_prompt(workflow_output, rubric_definition, calibration_examples, extra_instructions)
         messages = [
             {"role": "system", "content": self._system_prompt()},
             {"role": "user", "content": prompt},
@@ -230,14 +231,26 @@ class RubricEvaluator:
         self,
         workflow_output: str,
         rubric: Mapping[str, RubricDimension],
+        calibration_examples: Optional[str],
         extra_instructions: Optional[str],
     ) -> str:
         rubric_text = self._format_rubric(rubric.items())
+
+        # Add calibration examples if provided (Best Practice #3)
+        calibration_section = ""
+        if calibration_examples:
+            calibration_section = (
+                "\n\nCALIBRATION EXAMPLES:\n"
+                + calibration_examples.strip()
+                + "\n"
+            )
+
         instructions = "\n" + extra_instructions.strip() if extra_instructions else ""
         return (
             "You are an impartial expert evaluator."
             " Assess the workflow output using the rubric."
             " Think step-by-step before scoring each dimension."
+            + calibration_section +
             "\n\nOUTPUT TO EVALUATE:\n" + workflow_output.strip() +
             "\n\nRUBRIC:\n" + rubric_text +
             "\nINSTRUCTIONS:\n"
@@ -264,9 +277,30 @@ class RubricEvaluator:
     def _format_rubric(self, dimensions: Iterable[tuple[str, RubricDimension]]) -> str:
         lines = []
         for name, metadata in dimensions:
-            lines.append(
-                f"- {name}: {metadata['description']} (Scale: {metadata['scale']})"
-            )
+            # Format basic dimension info
+            line = f"- {name}: {metadata['description']} (Scale: {metadata['scale']})"
+            lines.append(line)
+
+            # Add anchor points if present (Best Practice #2)
+            if "anchor_points" in metadata and metadata["anchor_points"]:
+                lines.append("")  # Blank line for readability
+                anchor_points = metadata["anchor_points"]
+                # Sort anchor points by key to ensure consistent ordering (5->1 or 1->5)
+                sorted_anchors = sorted(anchor_points.items(), key=lambda x: x[0], reverse=True)
+                for anchor_label, anchor_criteria in sorted_anchors:
+                    # Format anchor label (e.g., "5_excellent" -> "  5 (Excellent):")
+                    parts = anchor_label.split("_", 1)
+                    if len(parts) == 2 and parts[0].isdigit():
+                        formatted_label = f"  {parts[0]} ({parts[1].capitalize()}):"
+                    else:
+                        formatted_label = f"  {anchor_label}:"
+                    lines.append(formatted_label)
+                    # Indent criteria text
+                    for criteria_line in anchor_criteria.strip().split("\n"):
+                        if criteria_line.strip():
+                            lines.append(f"    {criteria_line.strip()}")
+                lines.append("")  # Blank line after anchor points
+
         return "\n".join(lines)
 
     def _extract_response_content(self, response: Any) -> str:
@@ -320,6 +354,27 @@ class RubricEvaluator:
         try:
             return json.loads(stripped)
         except json.JSONDecodeError as exc:
+            # Some models (like Haiku) add preamble text before JSON despite json_object mode
+            # Try to extract JSON from the response by finding the first '{' or '['
+            first_brace = stripped.find('{')
+            first_bracket = stripped.find('[')
+
+            # Determine which delimiter appears first (or if either exists)
+            start_pos = -1
+            if first_brace >= 0 and (first_bracket < 0 or first_brace < first_bracket):
+                start_pos = first_brace
+            elif first_bracket >= 0:
+                start_pos = first_bracket
+
+            if start_pos > 0:
+                # Found JSON after some preamble text, extract it
+                json_part = stripped[start_pos:]
+                try:
+                    return json.loads(json_part)
+                except json.JSONDecodeError:
+                    # Still failed, raise original error
+                    pass
+
             msg = "Evaluator response was not valid JSON."
             raise EvaluationError(msg) from exc
 

@@ -52,6 +52,96 @@ variables:
 - Each `level_1`/`level_2` entry is required. Additional keys trigger validation errors.
 - Structured levels are preserved as dictionaries inside `TestConfiguration` instances and emitted in result files.
 
+### Built-in Variables for Reasoning and Verbalized Sampling
+
+TesseractFlow provides mixins that add reasoning and verbalized sampling capabilities to workflows. These variables can be included in any experiment configuration:
+
+#### Reasoning Parameters
+
+```yaml
+variables:
+  reasoning_enabled:
+    level_1: 'false'    # Standard generation (no reasoning traces)
+    level_2: 'true'     # Enable extended reasoning before output
+
+  reasoning_visibility:
+    level_1: visible    # Include reasoning in output
+    level_2: hidden     # Generate reasoning but exclude from output
+
+  max_reasoning_tokens:
+    level_1: standard   # Default token budget for reasoning
+    level_2: extended   # Increased token budget for complex reasoning
+```
+
+**When to use reasoning parameters**:
+- **Fiction/Creative Writing**: Enable reasoning for complex scenes, character development, or discovery workflows
+- **Code Review**: Enable reasoning for architectural analysis or complex refactoring suggestions
+- **Analytical Tasks**: Enable reasoning when tasks require multi-step inference or trade-off evaluation
+
+**Key findings from experiments** (docs/evaluator_comparison_gpt5mini.md:161):
+- Fiction scenes benefit from `reasoning_enabled=true` but `max_reasoning_tokens=standard` (31% contribution)
+- Progressive discovery benefits from `reasoning_enabled=true` with `max_reasoning_tokens=extended` (8.3% contribution)
+- Dialogue enhancement shows minimal benefit from reasoning (<5% contribution)
+
+#### Verbalized Sampling Parameters
+
+```yaml
+variables:
+  verbalized_sampling:
+    level_1: none                 # Single generation (no sampling)
+    level_2: self_consistency     # Generate multiple samples, select best
+
+  n_samples:
+    level_1: '3'    # Generate 3 samples (lower cost, faster)
+    level_2: '5'    # Generate 5 samples (higher quality, slower)
+```
+
+**When to use verbalized sampling**:
+- **Character Development**: Use `n_samples=5` for exploring character motivations and arcs
+- **Discovery Workflows**: Use `n_samples=3` to explore multiple narrative directions
+- **High-Stakes Outputs**: Use when output quality is more important than cost/latency
+
+**Key findings from experiments** (docs/evaluator_comparison_gpt5mini.md:158):
+- `verbalized_sampling=none` recommended for most workflows (strong negative effect in Fiction -36.6%, Character -36.8%)
+- Character development benefits from `n_samples=5` when not using verbalized sampling (33.5% contribution)
+- Progressive discovery optimal at `n_samples=3` (30.7% contribution)
+
+#### Example: Fiction Scene with Reasoning
+
+```yaml
+name: fiction_scene_reasoning_test
+workflow: fiction_scene
+variables:
+  temperature:
+    level_1: 0.5
+    level_2: 0.9
+  context_depth:
+    level_1: minimal
+    level_2: full
+  reasoning_enabled:
+    level_1: 'false'
+    level_2: 'true'
+  verbalized_sampling:
+    level_1: none
+    level_2: self_consistency
+  n_samples:
+    level_1: '3'
+    level_2: '5'
+  reasoning_visibility:
+    level_1: visible
+    level_2: hidden
+  max_reasoning_tokens:
+    level_1: standard
+    level_2: extended
+
+utility_weights:
+  quality: 0.8
+  cost: 0.15
+  time: 0.05
+```
+
+See `experiments/wave4_fiction_reasoning_vs_gpt5mini.yaml` for complete working example.
+
 ---
 
 ## Utility weights

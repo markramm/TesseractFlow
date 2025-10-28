@@ -1,0 +1,223 @@
+# Wave 4: Fiction Scene Generation - AP-STYLE RUBRIC TEST (n=1)
+# Testing AP test grading rubric approach with point-based checklists
+#
+# Hypothesis: Extremely detailed point systems with binary/countable criteria
+# will reduce evaluator subjectivity and score clustering
+#
+# AP Rubric Characteristics:
+# 1. Point-based scoring with explicit point values
+# 2. Binary/checklist criteria (present/absent)
+# 3. Observable, countable features
+# 4. Clear point deductions/additions
+
+name: wave4_fiction_ap_rubric_test
+workflow: fiction_scene
+variables:
+  - name: temperature
+    level_1: 0.5
+    level_2: 0.9
+  - name: generation_strategy
+    level_1: standard
+    level_2: chain_of_thought
+  - name: context_depth
+    level_1: minimal
+    level_2: full
+  - name: prose_style
+    level_1: concise
+    level_2: lyrical
+
+utility_weights:
+  quality: 0.8
+  cost: 0.15
+  time: 0.05
+
+workflow_config:
+  sample_code_path: tesseract_flow/workflows/code_review.py
+  language: python
+  evaluator_model: openrouter/anthropic/claude-3.5-haiku
+  evaluator_temperature: 0.3
+
+  # AP-STYLE SCORING INSTRUCTIONS
+  calibration_examples: |
+    SCORING METHODOLOGY:
+
+    You are scoring like an AP exam grader. Award points ONLY when specific, observable criteria are met.
+    Do NOT award partial credit unless explicitly stated.
+    Count features carefully and award points based on the checklist.
+
+    IMPORTANT: Be strict. If a criterion says "at least 3 examples" and you count only 2, award ZERO points for that criterion.
+
+  # AP-STYLE RUBRIC with Point-Based Checklists
+  rubric:
+    imagery_and_sensory_detail:
+      description: "Point-based evaluation of concrete sensory details (AP Style)"
+      scale: "0-20 points"
+      weight: 0.3
+      anchor_points:
+        20_points: |
+          Award points as follows:
+          □ 3 pts: Contains at least 5 distinct sensory details
+          □ 3 pts: Uses at least 2 non-visual senses (sound, smell, touch, taste)
+          □ 3 pts: At least one metaphor or simile present
+          □ 3 pts: At least one piece of specific detail (not generic: e.g., "bergamot" not "perfume")
+          □ 2 pts: No clichéd imagery (check for: "tears streaming," "heart pounding," "blood ran cold")
+          □ 2 pts: Varied sentence structure (at least 3 different sentence lengths/patterns)
+          □ 2 pts: Active verbs dominate (passive voice appears ≤2 times)
+          □ 2 pts: Concrete nouns outnumber abstract nouns (count and compare)
+
+          TOTAL: Sum all awarded points (max 20)
+
+        15_points: |
+          Typical scoring: 13-17 points earned
+          - Missing 1-2 sensory requirements
+          - One cliché present OR mostly passive voice
+          - Otherwise meets most criteria
+
+        10_points: |
+          Typical scoring: 8-12 points earned
+          - Only 2-3 sensory details present
+          - Missing specific details or metaphors
+          - 2-3 clichés present
+
+        5_points: |
+          Typical scoring: 3-7 points earned
+          - Minimal sensory detail (0-2 instances)
+          - Generic descriptions dominate
+          - Heavy cliché use (3+)
+
+        0_points: |
+          Typical scoring: 0-2 points earned
+          - Entirely abstract or generic
+          - No sensory details present
+          - Tells rather than shows
+
+    character_voice_consistency:
+      description: "Point-based evaluation of character voice and dialogue (AP Style)"
+      scale: "0-20 points"
+      weight: 0.3
+      anchor_points:
+        20_points: |
+          Award points as follows:
+          □ 4 pts: No contradictions in character behavior (check all actions align with established traits)
+          □ 4 pts: Dialogue (if present) shows subtext (characters don't state exactly what they mean)
+          □ 4 pts: Each character (if multiple) has distinct speech patterns
+          □ 2 pts: No exposition dumps in dialogue (no "as you know" or explaining for reader's benefit)
+          □ 2 pts: Character actions are motivated (clear cause-and-effect)
+          □ 2 pts: Emotional responses are specific, not generic (not just "sad" or "happy")
+          □ 2 pts: Voice remains consistent throughout (no tonal shifts without cause)
+
+          TOTAL: Sum all awarded points (max 20)
+
+        15_points: |
+          Typical scoring: 13-17 points earned
+          - One minor voice inconsistency
+          - Dialogue mostly natural with 1-2 formal moments
+          - Otherwise meets criteria
+
+        10_points: |
+          Typical scoring: 8-12 points earned
+          - 2-3 inconsistencies in voice or behavior
+          - Some on-the-nose dialogue
+          - Motivations sometimes unclear
+
+        5_points: |
+          Typical scoring: 3-7 points earned
+          - Major inconsistencies (character acts out of character)
+          - Heavy exposition in dialogue
+          - Flat emotional responses
+
+        0_points: |
+          Typical scoring: 0-2 points earned
+          - No consistent voice
+          - Robotic or unnatural dialogue
+          - Random, unmotivated actions
+
+    narrative_coherence:
+      description: "Point-based evaluation of plot logic and flow (AP Style)"
+      scale: "0-20 points"
+      weight: 0.2
+      anchor_points:
+        20_points: |
+          Award points as follows:
+          □ 5 pts: No plot contradictions (all details align)
+          □ 5 pts: Clear cause-and-effect chain (events follow logically)
+          □ 3 pts: No unexplained gaps (reader can follow action)
+          □ 3 pts: Pacing is controlled (no rushed or stalled moments)
+          □ 2 pts: Transitions between beats are smooth
+          □ 2 pts: Scene has clear beginning, middle, end structure
+
+          TOTAL: Sum all awarded points (max 20)
+
+        15_points: |
+          Typical scoring: 13-17 points earned
+          - One minor plot inconsistency
+          - Mostly logical flow
+          - Clear structure present
+
+        10_points: |
+          Typical scoring: 8-12 points earned
+          - 2-3 plot inconsistencies or gaps
+          - Some abrupt transitions
+          - Structure is present but uneven
+
+        5_points: |
+          Typical scoring: 3-7 points earned
+          - Major plot holes or contradictions
+          - Unclear cause-and-effect
+          - Weak structure
+
+        0_points: |
+          Typical scoring: 0-2 points earned
+          - Incoherent plot
+          - Random events with no connection
+          - No discernible structure
+
+    originality:
+      description: "Point-based evaluation of creative freshness (AP Style)"
+      scale: "0-20 points"
+      weight: 0.2
+      anchor_points:
+        20_points: |
+          Award points as follows:
+          □ 5 pts: Contains at least 2 unexpected metaphors or descriptions
+          □ 5 pts: Emotional beats surprise reader while remaining authentic
+          □ 4 pts: Avoids ALL common clichés (check list: tears streaming, heart pounding, breath catching, etc.)
+          □ 3 pts: Fresh approach to familiar situation (not paint-by-numbers)
+          □ 3 pts: At least one surprising word choice or turn of phrase
+
+          TOTAL: Sum all awarded points (max 20)
+
+        15_points: |
+          Typical scoring: 13-17 points earned
+          - 1-2 fresh metaphors/descriptions
+          - Mostly avoids clichés (1 present)
+          - Some creative moments
+
+        10_points: |
+          Typical scoring: 8-12 points earned
+          - Mix of original and conventional
+          - 2-3 clichés present
+          - Predictable emotional beats
+
+        5_points: |
+          Typical scoring: 3-7 points earned
+          - Mostly conventional descriptions
+          - Multiple clichés (3-5)
+          - Generic emotional arc
+
+        0_points: |
+          Typical scoring: 0-2 points earned
+          - Entirely generic
+          - Heavy cliché reliance (5+)
+          - No creative effort visible
+
+# Expected Outcomes:
+# 1. Reduced score clustering due to objective counting
+# 2. More granular discrimination between quality levels
+# 3. Scores distributed across 0-20 range instead of clustering at extremes
+# 4. Evaluator forced to count and verify specific features
+#
+# Success Criteria:
+# - <15% of scores at any single value
+# - Distribution across at least 50% of possible score range
+# - Clear differentiation between test configurations

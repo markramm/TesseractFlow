@@ -42,28 +42,41 @@ def _build_variable_levels(variables: Iterable[Variable]) -> Dict[str, tuple[obj
     }
 
 
-def generate_test_configs(config: ExperimentConfig) -> List[TestConfiguration]:
-    """Generate :class:`TestConfiguration` objects for the provided experiment config."""
+def generate_test_configs(config: ExperimentConfig, replications: int = 1) -> List[TestConfiguration]:
+    """Generate :class:`TestConfiguration` objects for the provided experiment config.
+
+    Args:
+        config: The experiment configuration
+        replications: Number of times to replicate each test configuration (default: 1)
+
+    Returns:
+        List of test configurations. If replications > 1, each unique configuration
+        will appear `replications` times with sequential test numbers.
+    """
 
     variables = config.variables
     array = generate_l8_array(len(variables))
     variable_levels = _build_variable_levels(variables)
 
     test_configs: List[TestConfiguration] = []
-    for index, row in enumerate(array, start=1):
-        config_values = {
-            variable.name: (variable.level_1 if level == 1 else variable.level_2)
-            for variable, level in zip(variables, row, strict=True)
-        }
-        test_config = TestConfiguration.model_validate(
-            {
-                "test_number": index,
-                "workflow": config.workflow,
-                "config_values": config_values,
-            },
-            context={"variable_levels": variable_levels},
-        )
-        test_configs.append(test_config)
+    test_number = 1
+
+    for _ in range(replications):
+        for row in array:
+            config_values = {
+                variable.name: (variable.level_1 if level == 1 else variable.level_2)
+                for variable, level in zip(variables, row, strict=True)
+            }
+            test_config = TestConfiguration.model_validate(
+                {
+                    "test_number": test_number,
+                    "workflow": config.workflow,
+                    "config_values": config_values,
+                },
+                context={"variable_levels": variable_levels},
+            )
+            test_configs.append(test_config)
+            test_number += 1
 
     return test_configs
 

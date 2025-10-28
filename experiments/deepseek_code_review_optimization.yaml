@@ -1,0 +1,168 @@
+# DeepSeek R1 Code Review Optimization Experiment
+# Goal: Find optimal configuration for DeepSeek R1 on code review tasks
+# Model: FIXED to deepseek/deepseek-chat (R1)
+# Cost: ~$0.02 for 8 tests (vs $0.15 for Claude)
+
+experiment_name: deepseek_r1_code_review_optimization
+workflow: code_review
+
+variables:
+  # Temperature: Does DeepSeek need higher temp for quality?
+  temperature:
+    levels:
+      - 0.3  # Conservative (like we used for Claude)
+      - 0.7  # Higher creativity
+
+  # Context: Does DeepSeek benefit from full context?
+  context_size:
+    levels:
+      - file_only      # Just the file being reviewed
+      - full_module    # File + related imports
+
+  # Generation strategy: Does DeepSeek work better with CoT?
+  generation_strategy:
+    levels:
+      - standard              # Direct prompting
+      - chain_of_thought      # Explicit reasoning steps
+
+  # Verbalized sampling: NEW - Test if multiple reasoning paths help
+  sampling_approach:
+    levels:
+      - single        # Standard single output
+      - verbalized    # Generate 3 reasoning paths, pick best
+
+# Fixed model - we're optimizing FOR DeepSeek, not comparing models
+model: openrouter/deepseek/deepseek-chat
+
+# Code review configuration
+sample_code_path: tesseract_flow/evaluation/rubric.py
+language: python
+
+# Analysis prompt with chain-of-thought option
+analysis_prompt_template: |
+  You are an expert {language} code reviewer following industry best practices.
+  Context: {context_description}
+
+  {strategy_instruction}
+
+  Review the following code systematically across these dimensions:
+  1. **Functionality**: Does it work correctly? Handle edge cases?
+  2. **Code Quality**: Follow standards, naming conventions, design principles?
+  3. **Readability**: Clear, maintainable, well-organized?
+  4. **Error Handling**: Proper exceptions, validation, robustness?
+  5. **Testing**: Testable design, adequate coverage?
+  6. **Performance**: Efficient algorithms, no obvious bottlenecks?
+  7. **Security**: Input validation, no vulnerabilities, safe practices?
+
+  ```{language}
+  {code}
+  ```
+
+strategy_instructions:
+  standard: "Review the code directly and provide your assessment."
+  chain_of_thought: |
+    Think step-by-step before providing your assessment:
+    1. First, understand what the code does
+    2. Identify potential issues in each dimension
+    3. Consider severity and impact
+    4. Then provide your final assessment
+
+context_descriptions:
+  file_only: "Review limited to the provided file."
+  full_module: "Review with full module context including imports and related files."
+
+sampling_instructions:
+  single: ""  # No special instruction
+  verbalized: |
+
+    IMPORTANT: Generate 3 different reasoning paths:
+    - Path 1: Focus on correctness and edge cases
+    - Path 2: Focus on maintainability and design
+    - Path 3: Focus on performance and security
+
+    Then synthesize the best insights from all paths into your final assessment.
+
+# Quality rubric (same as before for comparison)
+rubric:
+  functionality:
+    description: |
+      Does the code accomplish its intended purpose correctly?
+      - RubricEvaluator properly evaluates workflow outputs
+      - Handles all edge cases (malformed LLM responses, missing scores, etc.)
+      - Score extraction logic is robust
+      - Normalization logic is correct (0-1 range)
+      - Default rubric is well-designed
+    scale: "0-100 points"
+    weight: 0.25
+
+  error_handling:
+    description: |
+      Does the code handle errors and edge cases gracefully?
+      - Appropriate exception handling (EvaluationError)
+      - Defensive programming (validate inputs)
+      - Clear error messages with context
+      - Handles LLM failures gracefully
+      - Proper logging for debugging
+    scale: "0-100 points"
+    weight: 0.20
+
+  code_quality:
+    description: |
+      Is the code well-designed and maintainable?
+      - Clear separation of concerns
+      - Single Responsibility Principle
+      - Appropriate use of type hints
+      - Clean abstractions (no leaky abstractions)
+      - Proper use of Pydantic for validation
+      - Good class/method naming
+    scale: "0-100 points"
+    weight: 0.20
+
+  performance:
+    description: |
+      Is the code efficient and performant?
+      - Minimal unnecessary LLM calls
+      - Efficient regex patterns
+      - Appropriate caching strategy
+      - No obvious performance bottlenecks
+      - Reasonable token usage
+    scale: "0-100 points"
+    weight: 0.15
+
+  testability:
+    description: |
+      Is the code easy to test and well-tested?
+      - Clear interfaces for mocking
+      - Testable methods (pure functions where possible)
+      - Good test coverage potential
+      - Easy to reproduce edge cases
+      - Clear contracts (inputs/outputs)
+    scale: "0-100 points"
+    weight: 0.10
+
+  documentation:
+    description: |
+      Is the code well-documented and clear?
+      - Clear docstrings for public APIs
+      - Inline comments for complex logic
+      - Type hints are accurate
+      - Examples where helpful
+      - Clear variable/method names
+    scale: "0-100 points"
+    weight: 0.10
+
+# Evaluation settings
+evaluator:
+  model: openrouter/deepseek/deepseek-chat  # Use DeepSeek to evaluate DeepSeek (test self-evaluation)
+  temperature: 0.1  # Low temp for consistent evaluation
+  use_cache: true
+  record_cache: true
+
+# Optimization objectives
+objectives:
+  quality:
+    weight: 0.7  # Primary focus: quality
+  cost:
+    weight: 0.2  # Secondary: keep costs low
+  latency:
+    weight: 0.1  # Tertiary: speed matters less for code review

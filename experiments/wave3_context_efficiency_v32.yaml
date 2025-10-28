@@ -1,0 +1,54 @@
+name: wave3_context_efficiency
+workflow: context_efficiency
+description: Test DeepSeek R1's 64K context window efficiency across different content
+  types and retrieval strategies
+variables:
+- name: context_size
+  level_1: small
+  level_2: large
+- name: content_type
+  level_1: narrative
+  level_2: technical
+- name: retrieval_strategy
+  level_1: full_context
+  level_2: selective
+- name: task_complexity
+  level_1: simple
+  level_2: complex
+- name: temperature
+  level_1: 0.2
+  level_2: 0.6
+- name: position_bias_test
+  level_1: beginning
+  level_2: end
+- name: compression_method
+  level_1: none
+  level_2: summarized
+utility_weights:
+  quality: 1.0
+  cost: 0.15
+  time: 0.05
+workflow_config:
+  evaluator_model: openrouter/anthropic/claude-haiku-4.5
+  model: openrouter/deepseek/deepseek-v3.2-exp
+  rubric:
+    retrieval_accuracy:
+      description: Correctly identifies and retrieves relevant information from context
+      weight: 0.3
+      scale: 0-100 points
+    context_utilization:
+      description: Effectively uses available context without hallucination or omission
+      weight: 0.25
+      scale: 0-100 points
+    answer_completeness:
+      description: Provides complete answer synthesizing all relevant context
+      weight: 0.2
+      scale: 0-100 points
+    efficiency:
+      description: Handles large context efficiently without degradation
+      weight: 0.15
+      scale: 0-100 points
+    position_independence:
+      description: Retrieves information regardless of position in context
+      weight: 0.1
+      scale: 0-100 points

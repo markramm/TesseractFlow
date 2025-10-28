@@ -1,0 +1,1307 @@
+{
+  "experiment_id": "deepseek_character_development-20251028T075241",
+  "config": {
+    "name": "deepseek_character_development",
+    "workflow": "character_development",
+    "variables": [
+      {
+        "name": "temperature",
+        "level_1": 0.4,
+        "level_2": 0.7
+      },
+      {
+        "name": "generation_strategy",
+        "level_1": "standard",
+        "level_2": "chain_of_thought"
+      },
+      {
+        "name": "revision_strategy",
+        "level_1": "refine",
+        "level_2": "regenerate"
+      },
+      {
+        "name": "output_format",
+        "level_1": "freeform",
+        "level_2": "structured_json"
+      }
+    ],
+    "utility_weights": {
+      "quality": 0.75,
+      "cost": 0.15,
+      "time": 0.1
+    },
+    "workflow_config": {
+      "rubric": {
+        "continuity_preservation": {
+          "description": "Maintains established traits that shouldn't change",
+          "scale": "0-100 points",
+          "weight": 0.4
+        },
+        "arc_progression": {
+          "description": "Reflects character growth and development accurately",
+          "scale": "0-100 points",
+          "weight": 0.35
+        },
+        "utility_for_writers": {
+          "description": "Can writers actually use this? Is it helpful?",
+          "scale": "0-100 points",
+          "weight": 0.25
+        }
+      },
+      "sample_code_path": "tesseract_flow/core/base_workflow.py",
+      "evaluator_model": "openrouter/deepseek/deepseek-chat",
+      "model": "openrouter/deepseek/deepseek-v3.2-exp",
+      "language": "python",
+      "evaluator_temperature": 0.1
+    }
+  },
+  "test_configurations": [
+    {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.4,
+        "generation_strategy": "standard",
+        "revision_strategy": "refine",
+        "output_format": "freeform"
+      },
+      "workflow": "character_development"
+    },
+    {
+      "test_number": 2,
+      "config_values": {
+        "temperature": 0.4,
+        "generation_strategy": "standard",
+        "revision_strategy": "refine",
+        "output_format": "structured_json"
+      },
+      "workflow": "character_development"
+    },
+    {
+      "test_number": 3,
+      "config_values": {
+        "temperature": 0.4,
+        "generation_strategy": "chain_of_thought",
+        "revision_strategy": "regenerate",
+        "output_format": "freeform"
+      },
+      "workflow": "character_development"
+    },
+    {
+      "test_number": 4,
+      "config_values": {
+        "temperature": 0.4,
+        "generation_strategy": "chain_of_thought",
+        "revision_strategy": "regenerate",
+        "output_format": "structured_json"
+      },
+      "workflow": "character_development"
+    },
+    {
+      "test_number": 5,
+      "config_values": {
+        "temperature": 0.7,
+        "generation_strategy": "standard",
+        "revision_strategy": "regenerate",
+        "output_format": "freeform"
+      },
+      "workflow": "character_development"
+    },
+    {
+      "test_number": 6,
+      "config_values": {
+        "temperature": 0.7,
+        "generation_strategy": "standard",
+        "revision_strategy": "regenerate",
+        "output_format": "structured_json"
+      },
+      "workflow": "character_development"
+    },
+    {
+      "test_number": 7,
+      "config_values": {
+        "temperature": 0.7,
+        "generation_strategy": "chain_of_thought",
+        "revision_strategy": "refine",
+        "output_format": "freeform"
+      },
+      "workflow": "character_development"
+    },
+    {
+      "test_number": 8,
+      "config_values": {
+        "temperature": 0.7,
+        "generation_strategy": "chain_of_thought",
+        "revision_strategy": "refine",
+        "output_format": "structured_json"
+      },
+      "workflow": "character_development"
+    }
+  ],
+  "results": [
+    {
+      "test_number": 1,
+      "config": {
+        "test_number": 1,
+        "config_values": {
+          "temperature": 0.4,
+          "generation_strategy": "standard",
+          "revision_strategy": "refine",
+          "output_format": "freeform"
+        },
+        "workflow": "character_development"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "continuity_preservation": {
+            "score": 0.9,
+            "reasoning": "The analysis effectively maintains Elena's established traits, such as her initial idealism and vulnerability, while allowing for natural evolution in response to betrayal. The continuity is strong, as her reactions and decisions are rooted in her core characteristics."
+          },
+          "arc_progression": {
+            "score": 0.95,
+            "reasoning": "The arc progression is well-defined and logical, with clear emotional and behavioral shifts from naivety to resilience or cynicism. The key beats (shock/grief, anger/reassessment, decision point) provide a structured path for her development, ensuring her growth feels earned and impactful."
+          },
+          "utility_for_writers": {
+            "score": 0.92,
+            "reasoning": "The analysis offers practical guidance for writers, including emotional depth, motivation shifts, and relationship dynamics. It provides actionable insights and considerations (e.g., internal conflict, external consequences, foreshadowing) that can be adapted to various genres and themes, making it highly useful."
+          }
+        },
+        "overall_score": 0.9233333333333333,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T07:53:16.726234Z",
+        "metadata": {
+          "rubric": {
+            "continuity_preservation": {
+              "description": "Maintains established traits that shouldn't change",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "arc_progression": {
+              "description": "Reflects character growth and development accurately",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "utility_for_writers": {
+              "description": "Can writers actually use this? Is it helpful?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "continuity_preservation": {
+              "score": 90,
+              "reasoning": "The analysis effectively maintains Elena's established traits, such as her initial idealism and vulnerability, while allowing for natural evolution in response to betrayal. The continuity is strong, as her reactions and decisions are rooted in her core characteristics."
+            },
+            "arc_progression": {
+              "score": 95,
+              "reasoning": "The arc progression is well-defined and logical, with clear emotional and behavioral shifts from naivety to resilience or cynicism. The key beats (shock/grief, anger/reassessment, decision point) provide a structured path for her development, ensuring her growth feels earned and impactful."
+            },
+            "utility_for_writers": {
+              "score": 92,
+              "reasoning": "The analysis offers practical guidance for writers, including emotional depth, motivation shifts, and relationship dynamics. It provides actionable insights and considerations (e.g., internal conflict, external consequences, foreshadowing) that can be adapted to various genres and themes, making it highly useful."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "c01add6a6c73de241e9265f6bb5244aa0f5916c345a491c18b5bd8da818fd85c",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 25556.620415998623,
+      "utility": 0.6482808650124363,
+      "workflow_output": "Character Development:\nCertainly! Below is a natural prose analysis of **Elena’s** character development, focusing on continuity, arc progression, and writer utility.  \n\n---  \n\n### **Character Analysis: Elena – Facing Betrayal**  \n\n#### **Current State: The Catalyst of Betrayal**  \nElena stands at a pivotal moment—her trust has been shattered by someone she deeply believed in. The betrayal may stem from a mentor, a lover, or a close ally, but its impact is visceral. Her worldview, once anchored in loyalty, now fractures under the weight of deception. This moment is crucial for her arc, as it forces her to question not only the betrayer but her own judgment.  \n\n**Writer Utility:**  \n- **Emotional Depth:** Use this moment to explore Elena’s vulnerabilities—does she retreat inward, or does she lash out?  \n- **Motivation Shift:** Betrayal can redefine her goals. Does she seek revenge, redemption, or escape?  \n- **Relationships:** How does this affect her ability to trust others moving forward?  \n\n#### **Arc Progression: From Naivety to Resilience (or Cynicism)**  \nElena’s arc hinges on how she processes betrayal. If she was once idealistic, this event could harden her, making her wary of future alliances. Alternatively, she might emerge more discerning, learning to balance trust with caution.  \n\n**Key Beats for Continuity:**  \n1. **Initial Reaction (Shock/Grief):** She may deny the betrayal at first, clinging to hope that there’s a misunderstanding.  \n2. **Anger/Reassessment:** Once reality sets in, she may cycle through rage, self-blame, or a thirst for justice.  \n3. **Decision Point:** Will she confront the betrayer, cut ties, or use the experience to grow?  \n\n**Writer Utility:**  \n- **Internal Conflict:** Her struggle should feel organic—does she doubt herself, or does she harden into resolve?  \n- **External Consequences:** Does the betrayal alter her role in the story (e.g., a leader losing followers, a spy becoming rogue)?  \n\n#### **Long-Term Development: The Aftermath**  \nThe true test of Elena’s character lies in how she carries this wound forward. If she becomes colder, future relationships may suffer. If she learns from it, she may develop sharper instincts without losing empathy.  \n\n**Continuity Considerations:**  \n- **Triggers:** Small reminders of the betrayal (a phrase, a location) should evoke subtle reactions.  \n- **Growth vs. Regression:** Does she repeat similar mistakes, or does she evolve?  \n\n**Writer Utility:**  \n- **Foreshadowing:** If she becomes vengeful, her actions may lead to moral dilemmas.  \n- **Thematic Reinforcement:** Betrayal can tie into broader themes (power, loyalty, survival).  \n\n#### **Final Notes for the Writer**  \nElena’s betrayal should not exist in isolation—it must ripple through her decisions, relationships, and self-perception. Whether she rises stronger or falls into bitterness, her journey must feel earned. Use this moment to deepen her complexity, making her not just a victim of circumstance but an active force in her own transformation.  \n\n---  \n\nThis structure ensures **continuity** (her reactions remain true to her core traits while evolving), **arc progression** (clear emotional and behavioral shifts), and **writer utility** (flexible enough to adapt to different genres and themes). Would you like to explore a specific aspect of her reaction (e.g., revenge arc, forgiveness arc)?",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.4,
+        "revision_strategy": "refine",
+        "output_format": "freeform",
+        "workflow": {
+          "started_at": "2025-10-28T07:52:41.026289Z",
+          "completed_at": "2025-10-28T07:53:06.582915Z",
+          "duration_seconds": 25.556620415998623
+        },
+        "evaluation": {
+          "rubric": {
+            "continuity_preservation": {
+              "description": "Maintains established traits that shouldn't change",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "arc_progression": {
+              "description": "Reflects character growth and development accurately",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "utility_for_writers": {
+              "description": "Can writers actually use this? Is it helpful?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "continuity_preservation": {
+              "score": 90,
+              "reasoning": "The analysis effectively maintains Elena's established traits, such as her initial idealism and vulnerability, while allowing for natural evolution in response to betrayal. The continuity is strong, as her reactions and decisions are rooted in her core characteristics."
+            },
+            "arc_progression": {
+              "score": 95,
+              "reasoning": "The arc progression is well-defined and logical, with clear emotional and behavioral shifts from naivety to resilience or cynicism. The key beats (shock/grief, anger/reassessment, decision point) provide a structured path for her development, ensuring her growth feels earned and impactful."
+            },
+            "utility_for_writers": {
+              "score": 92,
+              "reasoning": "The analysis offers practical guidance for writers, including emotional depth, motivation shifts, and relationship dynamics. It provides actionable insights and considerations (e.g., internal conflict, external consequences, foreshadowing) that can be adapted to various genres and themes, making it highly useful."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "c01add6a6c73de241e9265f6bb5244aa0f5916c345a491c18b5bd8da818fd85c",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T07:53:16.726569Z"
+    },
+    {
+      "test_number": 2,
+      "config": {
+        "test_number": 2,
+        "config_values": {
+          "temperature": 0.4,
+          "generation_strategy": "standard",
+          "revision_strategy": "refine",
+          "output_format": "structured_json"
+        },
+        "workflow": "character_development"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "continuity_preservation": {
+            "score": 0.9,
+            "reasoning": "The output effectively maintains Elena's core traits (e.g., empathetic, loyal) while allowing for natural evolution. The initial and evolving traits are consistent with her character arc, ensuring continuity."
+          },
+          "arc_progression": {
+            "score": 0.95,
+            "reasoning": "The progression from naive and emotionally dependent to self-aware and assertive is well-defined and realistic. The emotional, psychological, and behavioral growth aligns seamlessly with the character's journey."
+          },
+          "utility_for_writers": {
+            "score": 0.92,
+            "reasoning": "The output provides clear, actionable insights for writers, including conflict, themes, and relationship dynamics. It offers a structured framework for developing Elena's character in a meaningful way."
+          }
+        },
+        "overall_score": 0.9233333333333333,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T07:53:25.338806Z",
+        "metadata": {
+          "rubric": {
+            "continuity_preservation": {
+              "description": "Maintains established traits that shouldn't change",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "arc_progression": {
+              "description": "Reflects character growth and development accurately",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "utility_for_writers": {
+              "description": "Can writers actually use this? Is it helpful?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "continuity_preservation": {
+              "score": 90,
+              "reasoning": "The output effectively maintains Elena's core traits (e.g., empathetic, loyal) while allowing for natural evolution. The initial and evolving traits are consistent with her character arc, ensuring continuity."
+            },
+            "arc_progression": {
+              "score": 95,
+              "reasoning": "The progression from naive and emotionally dependent to self-aware and assertive is well-defined and realistic. The emotional, psychological, and behavioral growth aligns seamlessly with the character's journey."
+            },
+            "utility_for_writers": {
+              "score": 92,
+              "reasoning": "The output provides clear, actionable insights for writers, including conflict, themes, and relationship dynamics. It offers a structured framework for developing Elena's character in a meaningful way."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "43b8788086d80c7fe210b34709018791f6e7c7a1c43b73c4d5474f7b4e6e8c7f",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 5699.565874994732,
+      "utility": 0.6925,
+      "workflow_output": "Character Development:\n```json\n{\n  \"traits\": {\n    \"initial\": [\n      \"trusting\",\n      \"empathetic\",\n      \"optimistic\",\n      \"loyal\",\n      \"self-sacrificing\"\n    ],\n    \"evolving\": [\n      \"cautious\",\n      \"resilient\",\n      \"introspective\",\n      \"assertive\",\n      \"self-preserving\"\n    ]\n  },\n  \"growth\": {\n    \"emotional\": {\n      \"from\": \"naive and emotionally dependent on others' validation\",\n      \"to\": \"emotionally independent and self-aware\"\n    },\n    \"psychological\": {\n      \"from\": \"easily shaken by betrayal, questioning self-worth\",\n      \"to\": \"understanding betrayal as a reflection of the betrayer, not herself\"\n    },\n    \"behavioral\": {\n      \"from\": \"avoiding conflict, seeking harmony at all costs\",\n      \"to\": \"confronting issues head-on, setting boundaries\"\n    }\n  },\n  \"motivations\": {\n    \"initial\": [\n      \"desire for harmony and acceptance\",\n      \"fear of abandonment\",\n      \"need to prove loyalty\"\n    ],\n    \"evolving\": [\n      \"quest for self-discovery and authenticity\",\n      \"desire to rebuild trust in a more selective manner\",\n      \"drive to protect herself from future harm\"\n    ]\n  },\n  \"continuity\": {\n    \"arc_progression\": {\n      \"beginning\": \"Elena is deeply hurt by betrayal, questioning her judgment and relationships.\",\n      \"middle\": \"She begins to reflect on her patterns, seeking to understand why she was betrayed and how to move forward.\",\n      \"end\": \"Elena emerges stronger, with a clearer sense of self and healthier relationships, having learned to balance trust with caution.\"\n    },\n    \"writer_utility\": {\n      \"conflict\": \"Use betrayal as a catalyst for Elena's transformation, creating tension and emotional depth.\",\n      \"themes\": \"Explore themes of trust, self-worth, and resilience, making Elena relatable and inspiring.\",\n      \"relationships\": \"Develop her interactions with others to show her growth, from naive trust to mature discernment.\"\n    }\n  }\n}\n```",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.4,
+        "revision_strategy": "refine",
+        "output_format": "structured_json",
+        "workflow": {
+          "started_at": "2025-10-28T07:53:16.727812Z",
+          "completed_at": "2025-10-28T07:53:22.427382Z",
+          "duration_seconds": 5.699565874994732
+        },
+        "evaluation": {
+          "rubric": {
+            "continuity_preservation": {
+              "description": "Maintains established traits that shouldn't change",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "arc_progression": {
+              "description": "Reflects character growth and development accurately",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "utility_for_writers": {
+              "description": "Can writers actually use this? Is it helpful?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "continuity_preservation": {
+              "score": 90,
+              "reasoning": "The output effectively maintains Elena's core traits (e.g., empathetic, loyal) while allowing for natural evolution. The initial and evolving traits are consistent with her character arc, ensuring continuity."
+            },
+            "arc_progression": {
+              "score": 95,
+              "reasoning": "The progression from naive and emotionally dependent to self-aware and assertive is well-defined and realistic. The emotional, psychological, and behavioral growth aligns seamlessly with the character's journey."
+            },
+            "utility_for_writers": {
+              "score": 92,
+              "reasoning": "The output provides clear, actionable insights for writers, including conflict, themes, and relationship dynamics. It offers a structured framework for developing Elena's character in a meaningful way."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "43b8788086d80c7fe210b34709018791f6e7c7a1c43b73c4d5474f7b4e6e8c7f",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T07:53:25.338937Z"
+    },
+    {
+      "test_number": 3,
+      "config": {
+        "test_number": 3,
+        "config_values": {
+          "temperature": 0.4,
+          "generation_strategy": "chain_of_thought",
+          "revision_strategy": "regenerate",
+          "output_format": "freeform"
+        },
+        "workflow": "character_development"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "continuity_preservation": {
+            "score": 0.95,
+            "reasoning": "The output effectively maintains Elena's established traits, such as her trustfulness and empathy, while aligning her reactions to betrayal with her backstory and values. This ensures her character feels authentic and consistent."
+          },
+          "arc_progression": {
+            "score": 0.9,
+            "reasoning": "Elena's character arc is well-developed, showing clear stages of emotional response, internal conflict, turning point, and resolution. Her growth feels earned and meaningful, reflecting her core values and lessons learned."
+          },
+          "utility_for_writers": {
+            "score": 0.92,
+            "reasoning": "The output provides practical guidance and examples for writers, offering emotional depth, thematic resonance, and plot potential. It is highly useful for crafting a compelling narrative centered around Elena's character."
+          }
+        },
+        "overall_score": 0.9233333333333333,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T07:54:30.163243Z",
+        "metadata": {
+          "rubric": {
+            "continuity_preservation": {
+              "description": "Maintains established traits that shouldn't change",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "arc_progression": {
+              "description": "Reflects character growth and development accurately",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "utility_for_writers": {
+              "description": "Can writers actually use this? Is it helpful?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "continuity_preservation": {
+              "score": 95,
+              "reasoning": "The output effectively maintains Elena's established traits, such as her trustfulness and empathy, while aligning her reactions to betrayal with her backstory and values. This ensures her character feels authentic and consistent."
+            },
+            "arc_progression": {
+              "score": 90,
+              "reasoning": "Elena's character arc is well-developed, showing clear stages of emotional response, internal conflict, turning point, and resolution. Her growth feels earned and meaningful, reflecting her core values and lessons learned."
+            },
+            "utility_for_writers": {
+              "score": 92,
+              "reasoning": "The output provides practical guidance and examples for writers, offering emotional depth, thematic resonance, and plot potential. It is highly useful for crafting a compelling narrative centered around Elena's character."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "246648443e1b75128c98f6f8bc8f5bce28b07518e1eeda999d29614beb02137a",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 50605.58800000581,
+      "utility": 0.5925,
+      "workflow_output": "Character Development:\nCertainly! Let’s break down Elena’s character development step-by-step, focusing on continuity, arc progression, and writer utility as she navigates betrayal.\n\n---\n\n### **1. Establishing Continuity**\nTo ensure continuity, Elena’s response to betrayal must align with her established traits, motivations, and backstory. For example:\n- If Elena is inherently trusting and empathetic, her initial reaction might be disbelief or denial, clinging to the hope that the betrayal is a misunderstanding.\n- If she has a history of abandonment or trauma, the betrayal could trigger old wounds, amplifying her emotional response.\n- Her values (e.g., loyalty, justice) will shape how she processes the betrayal and decides to move forward.\n\n**Writer Utility:** Continuity ensures Elena feels authentic and relatable. It allows the writer to deepen her complexity by showing how her past influences her present.\n\n---\n\n### **2. Arc Progression**\nElena’s arc should show growth or change as a result of the betrayal. Here’s a possible progression:\n- **Initial Reaction:** Shock, hurt, and confusion. She may withdraw or lash out, depending on her personality.\n- **Internal Conflict:** She grapples with questions like “Why did this happen?” or “Could I have prevented it?” This stage reveals her vulnerabilities and strengths.\n- **Turning Point:** Elena decides how to respond—whether to seek revenge, forgive, or focus on self-preservation. This decision should reflect her core values and the lessons she’s learned.\n- **Resolution:** She emerges changed, perhaps more cautious, resilient, or self-aware. Her growth should feel earned and meaningful.\n\n**Writer Utility:** A clear arc keeps the narrative focused and emotionally engaging. It also provides opportunities for thematic exploration (e.g., trust, resilience, forgiveness).\n\n---\n\n### **3. Natural Prose Example**\nHere’s how Elena’s development might unfold in prose:\n\n---\n\nElena stood frozen, the letter trembling in her hands. The words blurred as tears welled in her eyes. *How could he?* Her mind raced, replaying moments she had once cherished—now tainted by deceit. She had trusted him completely, believed in their bond. But this… this was a knife to the heart.\n\nFor days, she wandered in a fog, her thoughts a storm of anger and sorrow. Sleep eluded her, replaced by endless questions. *Was it my fault? Did I miss the signs?* Her friends urged her to confront him, but Elena hesitated. Confrontation meant facing the truth, and she wasn’t sure she was ready.\n\nOne evening, as she sat by the window, a memory surfaced—her grandmother’s voice, soft but firm. “Pain changes us, Elena. But it’s our choice whether it makes us bitter or better.” The words lingered, stirring something deep within her.\n\nSlowly, Elena began to rebuild. She journaled her feelings, sought solace in art, and leaned on her closest friends. She realized that while the betrayal had shattered her trust, it hadn’t destroyed her spirit. She chose not to seek revenge but to focus on healing and growth.\n\nMonths later, Elena stood taller, her eyes reflecting a quiet strength. The betrayal had scarred her, but it had also taught her resilience. She had learned to trust herself above all else—a lesson she would carry forward.\n\n---\n\n### **4. Writer Utility**\n- **Emotional Depth:** The prose allows readers to empathize with Elena’s pain and growth.\n- **Thematic Resonance:** Themes of trust, resilience, and self-discovery are woven into her journey.\n- **Plot Potential:** Elena’s development can drive the narrative forward, influencing her relationships, decisions, and future conflicts.\n\n---\n\nBy maintaining continuity, crafting a compelling arc, and using natural prose, Elena’s character becomes a powerful vehicle for storytelling, resonating with readers and enriching the narrative.",
+      "metadata": {
+        "strategy": "chain_of_thought",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.4,
+        "revision_strategy": "regenerate",
+        "output_format": "freeform",
+        "workflow": {
+          "started_at": "2025-10-28T07:53:25.339798Z",
+          "completed_at": "2025-10-28T07:54:15.945403Z",
+          "duration_seconds": 50.60558800000581
+        },
+        "evaluation": {
+          "rubric": {
+            "continuity_preservation": {
+              "description": "Maintains established traits that shouldn't change",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "arc_progression": {
+              "description": "Reflects character growth and development accurately",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "utility_for_writers": {
+              "description": "Can writers actually use this? Is it helpful?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "continuity_preservation": {
+              "score": 95,
+              "reasoning": "The output effectively maintains Elena's established traits, such as her trustfulness and empathy, while aligning her reactions to betrayal with her backstory and values. This ensures her character feels authentic and consistent."
+            },
+            "arc_progression": {
+              "score": 90,
+              "reasoning": "Elena's character arc is well-developed, showing clear stages of emotional response, internal conflict, turning point, and resolution. Her growth feels earned and meaningful, reflecting her core values and lessons learned."
+            },
+            "utility_for_writers": {
+              "score": 92,
+              "reasoning": "The output provides practical guidance and examples for writers, offering emotional depth, thematic resonance, and plot potential. It is highly useful for crafting a compelling narrative centered around Elena's character."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "246648443e1b75128c98f6f8bc8f5bce28b07518e1eeda999d29614beb02137a",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T07:54:30.163571Z"
+    },
+    {
+      "test_number": 4,
+      "config": {
+        "test_number": 4,
+        "config_values": {
+          "temperature": 0.4,
+          "generation_strategy": "chain_of_thought",
+          "revision_strategy": "regenerate",
+          "output_format": "structured_json"
+        },
+        "workflow": "character_development"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "continuity_preservation": {
+            "score": 0.95,
+            "reasoning": "Elena's core traits of empathy and loyalty are preserved throughout her arc, though they are balanced with newfound pragmatism. This maintains continuity while allowing for natural growth."
+          },
+          "arc_progression": {
+            "score": 0.9,
+            "reasoning": "Elena's progression from a trusting, optimistic individual to a more guarded and resilient character is well-developed and believable. Her emotional, psychological, and social growth are clearly articulated."
+          },
+          "utility_for_writers": {
+            "score": 0.92,
+            "reasoning": "Elena's character development provides rich opportunities for conflict, thematic exploration, and plot advancement. Her internal struggles and decisions offer significant utility for writers in crafting a compelling narrative."
+          }
+        },
+        "overall_score": 0.9233333333333333,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T07:55:06.294039Z",
+        "metadata": {
+          "rubric": {
+            "continuity_preservation": {
+              "description": "Maintains established traits that shouldn't change",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "arc_progression": {
+              "description": "Reflects character growth and development accurately",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "utility_for_writers": {
+              "description": "Can writers actually use this? Is it helpful?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "continuity_preservation": {
+              "score": 95,
+              "reasoning": "Elena's core traits of empathy and loyalty are preserved throughout her arc, though they are balanced with newfound pragmatism. This maintains continuity while allowing for natural growth."
+            },
+            "arc_progression": {
+              "score": 90,
+              "reasoning": "Elena's progression from a trusting, optimistic individual to a more guarded and resilient character is well-developed and believable. Her emotional, psychological, and social growth are clearly articulated."
+            },
+            "utility_for_writers": {
+              "score": 92,
+              "reasoning": "Elena's character development provides rich opportunities for conflict, thematic exploration, and plot advancement. Her internal struggles and decisions offer significant utility for writers in crafting a compelling narrative."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "8a6cd90dc6f31e890af38d6152bbde0ce4e43e11ef665e37b9a29827702a82e0",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 29913.502500014147,
+      "utility": 0.638578642731677,
+      "workflow_output": "Character Development:\n```json\n{\n  \"traits\": {\n    \"initial\": {\n      \"trusting\": \"Elena is inherently trusting, often giving people the benefit of the doubt.\",\n      \"empathetic\": \"She is deeply empathetic, often putting others' needs before her own.\",\n      \"optimistic\": \"Elena maintains a positive outlook, believing in the good in people.\",\n      \"loyal\": \"She is fiercely loyal to those she cares about, often to her own detriment.\"\n    },\n    \"post_betrayal\": {\n      \"guarded\": \"Elena becomes more cautious, less likely to trust others easily.\",\n      \"introspective\": \"She spends more time reflecting on her own actions and decisions.\",\n      \"resilient\": \"Elena develops a stronger inner resilience, learning to rely on herself.\",\n      \"pragmatic\": \"Her optimism is tempered with a more realistic view of human nature.\"\n    }\n  },\n  \"growth\": {\n    \"emotional\": \"Elena evolves from a naive, trusting individual to someone who understands the complexities of human relationships.\",\n    \"psychological\": \"She gains a deeper understanding of her own boundaries and the importance of self-preservation.\",\n    \"social\": \"Elena learns to balance her empathy with the need to protect herself, leading to healthier relationships.\"\n  },\n  \"motivations\": {\n    \"initial\": {\n      \"connection\": \"Elena is driven by a desire to connect deeply with others, seeking meaningful relationships.\",\n      \"altruism\": \"She is motivated by a strong sense of altruism, wanting to help and support those around her.\"\n    },\n    \"post_betrayal\": {\n      \"self_preservation\": \"Her primary motivation shifts to protecting herself from further emotional harm.\",\n      \"justice\": \"Elena seeks to understand the reasons behind the betrayal and, if possible, to rectify the situation.\",\n      \"personal_growth\": \"She is motivated to grow from the experience, becoming a stronger and more self-aware individual.\"\n    }\n  },\n  \"continuity\": {\n    \"consistent_traits\": \"Elena's empathy and loyalty remain core traits, but they are now balanced with a newfound pragmatism.\",\n    \"logical_progression\": \"Her transition from trusting to guarded is a natural response to the betrayal, making her character arc believable.\",\n    \"consistent_motivations\": \"While her motivations shift, they remain rooted in her core values of connection and altruism, now filtered through a lens of self-preservation.\"\n  },\n  \"arc_progression\": {\n    \"initial_state\": \"Elena is in a state of shock and confusion, grappling with the betrayal.\",\n    \"midpoint\": \"She begins to reflect on the betrayal, questioning her own judgment and the nature of her relationships.\",\n    \"climax\": \"Elena confronts the source of the betrayal, either seeking closure or justice.\",\n    \"resolution\": \"She emerges stronger and more self-aware, having learned valuable lessons about trust and self-preservation.\"\n  },\n  \"writer_utility\": {\n    \"conflict\": \"Elena's betrayal provides a rich source of conflict, driving the narrative forward.\",\n    \"character_depth\": \"Her internal struggle and growth add depth to her character, making her more relatable and compelling.\",\n    \"thematic_exploration\": \"Her arc allows for exploration of themes such as trust, resilience, and the complexity of human relationships.\",\n    \"plot_driven\": \"Her actions and decisions post-betrayal can significantly impact the plot, creating opportunities for further development and twists.\"\n  }\n}\n```",
+      "metadata": {
+        "strategy": "chain_of_thought",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.4,
+        "revision_strategy": "regenerate",
+        "output_format": "structured_json",
+        "workflow": {
+          "started_at": "2025-10-28T07:54:30.165182Z",
+          "completed_at": "2025-10-28T07:55:00.078697Z",
+          "duration_seconds": 29.913502500014147
+        },
+        "evaluation": {
+          "rubric": {
+            "continuity_preservation": {
+              "description": "Maintains established traits that shouldn't change",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "arc_progression": {
+              "description": "Reflects character growth and development accurately",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "utility_for_writers": {
+              "description": "Can writers actually use this? Is it helpful?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "continuity_preservation": {
+              "score": 95,
+              "reasoning": "Elena's core traits of empathy and loyalty are preserved throughout her arc, though they are balanced with newfound pragmatism. This maintains continuity while allowing for natural growth."
+            },
+            "arc_progression": {
+              "score": 90,
+              "reasoning": "Elena's progression from a trusting, optimistic individual to a more guarded and resilient character is well-developed and believable. Her emotional, psychological, and social growth are clearly articulated."
+            },
+            "utility_for_writers": {
+              "score": 92,
+              "reasoning": "Elena's character development provides rich opportunities for conflict, thematic exploration, and plot advancement. Her internal struggles and decisions offer significant utility for writers in crafting a compelling narrative."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "8a6cd90dc6f31e890af38d6152bbde0ce4e43e11ef665e37b9a29827702a82e0",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T07:55:06.294269Z"
+    },
+    {
+      "test_number": 5,
+      "config": {
+        "test_number": 5,
+        "config_values": {
+          "temperature": 0.7,
+          "generation_strategy": "standard",
+          "revision_strategy": "regenerate",
+          "output_format": "freeform"
+        },
+        "workflow": "character_development"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "continuity_preservation": {
+            "score": 0.95,
+            "reasoning": "The output effectively maintains Elena's established traits, ensuring her reaction to betrayal aligns with her prior characterization while allowing for growth. It emphasizes continuity by rooting her response in her existing personality, whether she is trusting or guarded."
+          },
+          "arc_progression": {
+            "score": 0.9,
+            "reasoning": "The output thoughtfully outlines Elena's potential growth trajectory, balancing setbacks and triumphs to create a realistic and relatable arc. It suggests a gradual evolution that deepens her complexity and aligns with her core identity."
+          },
+          "utility_for_writers": {
+            "score": 0.92,
+            "reasoning": "The output provides clear and actionable insights for writers, highlighting how Elena's betrayal can serve multiple narrative functions, such as deepening relationships, driving the plot, and exploring thematic elements. It offers practical guidance for integrating her development into the story."
+          }
+        },
+        "overall_score": 0.9233333333333333,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T07:55:21.675110Z",
+        "metadata": {
+          "rubric": {
+            "continuity_preservation": {
+              "description": "Maintains established traits that shouldn't change",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "arc_progression": {
+              "description": "Reflects character growth and development accurately",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "utility_for_writers": {
+              "description": "Can writers actually use this? Is it helpful?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "continuity_preservation": {
+              "score": 95,
+              "reasoning": "The output effectively maintains Elena's established traits, ensuring her reaction to betrayal aligns with her prior characterization while allowing for growth. It emphasizes continuity by rooting her response in her existing personality, whether she is trusting or guarded."
+            },
+            "arc_progression": {
+              "score": 90,
+              "reasoning": "The output thoughtfully outlines Elena's potential growth trajectory, balancing setbacks and triumphs to create a realistic and relatable arc. It suggests a gradual evolution that deepens her complexity and aligns with her core identity."
+            },
+            "utility_for_writers": {
+              "score": 92,
+              "reasoning": "The output provides clear and actionable insights for writers, highlighting how Elena's betrayal can serve multiple narrative functions, such as deepening relationships, driving the plot, and exploring thematic elements. It offers practical guidance for integrating her development into the story."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "0627c628b5c19235926637a1239dd0aa7dec02c2e21e6e9861f81f4bc3859368",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 11892.60741698672,
+      "utility": 0.6787088841341778,
+      "workflow_output": "Character Development:\nElena’s character is at a pivotal moment, facing betrayal—a catalyst that can redefine her arc and deepen her complexity. To ensure continuity, her reaction to betrayal must align with her established traits while pushing her toward growth. If Elena has been portrayed as trusting and idealistic, her initial response might be disbelief, followed by a gradual hardening of her worldview. Conversely, if she’s been wary or guarded, the betrayal could validate her skepticism, pushing her further into isolation or strategic cynicism. This moment must feel earned, rooted in her prior experiences and relationships.\n\nHer arc progression hinges on how she navigates this betrayal. Will she succumb to bitterness, or will she channel her pain into resilience and self-discovery? A compelling trajectory might involve her initially withdrawing, then finding strength in unexpected allies or her own inner resolve. Perhaps she learns to balance her trust with discernment, emerging wiser but not entirely jaded. This evolution should be gradual, marked by setbacks and triumphs, to maintain realism and relatability.\n\nFor writer utility, Elena’s betrayal can serve multiple narrative functions. It can deepen her relationships, as she grapples with trust issues and seeks support or revenge. It can also drive the plot forward, forcing her into new conflicts or alliances. Additionally, her internal struggle can provide rich emotional depth, allowing readers to empathize with her journey. Writers can use her reactions to explore themes of loyalty, forgiveness, and self-worth, making her a vessel for broader storytelling.\n\nUltimately, Elena’s development should feel organic, with her betrayal acting as a fulcrum that shifts her trajectory while staying true to her core identity. This ensures continuity, enriches her arc, and maximizes her utility within the narrative.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.7,
+        "revision_strategy": "regenerate",
+        "output_format": "freeform",
+        "workflow": {
+          "started_at": "2025-10-28T07:55:06.295491Z",
+          "completed_at": "2025-10-28T07:55:18.188111Z",
+          "duration_seconds": 11.89260741698672
+        },
+        "evaluation": {
+          "rubric": {
+            "continuity_preservation": {
+              "description": "Maintains established traits that shouldn't change",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "arc_progression": {
+              "description": "Reflects character growth and development accurately",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "utility_for_writers": {
+              "description": "Can writers actually use this? Is it helpful?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "continuity_preservation": {
+              "score": 95,
+              "reasoning": "The output effectively maintains Elena's established traits, ensuring her reaction to betrayal aligns with her prior characterization while allowing for growth. It emphasizes continuity by rooting her response in her existing personality, whether she is trusting or guarded."
+            },
+            "arc_progression": {
+              "score": 90,
+              "reasoning": "The output thoughtfully outlines Elena's potential growth trajectory, balancing setbacks and triumphs to create a realistic and relatable arc. It suggests a gradual evolution that deepens her complexity and aligns with her core identity."
+            },
+            "utility_for_writers": {
+              "score": 92,
+              "reasoning": "The output provides clear and actionable insights for writers, highlighting how Elena's betrayal can serve multiple narrative functions, such as deepening relationships, driving the plot, and exploring thematic elements. It offers practical guidance for integrating her development into the story."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "0627c628b5c19235926637a1239dd0aa7dec02c2e21e6e9861f81f4bc3859368",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T07:55:21.675304Z"
+    },
+    {
+      "test_number": 6,
+      "config": {
+        "test_number": 6,
+        "config_values": {
+          "temperature": 0.7,
+          "generation_strategy": "standard",
+          "revision_strategy": "regenerate",
+          "output_format": "structured_json"
+        },
+        "workflow": "character_development"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "continuity_preservation": {
+            "score": 0.95,
+            "reasoning": "The output maintains Elena's core traits (e.g., empathetic, loyal) while allowing for natural evolution. Her initial traits are preserved in a way that aligns with her past experiences, ensuring continuity."
+          },
+          "arc_progression": {
+            "score": 0.9,
+            "reasoning": "The progression from initial traits to evolving traits is well-defined and logical. Emotional, psychological, social, and moral growth are clearly articulated, reflecting a coherent character arc."
+          },
+          "utility_for_writers": {
+            "score": 0.92,
+            "reasoning": "The output provides rich material for conflict, theme exploration, dialogue, and plot development. Elena's motivations and growth offer practical tools for writers to craft engaging narratives."
+          }
+        },
+        "overall_score": 0.9233333333333333,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T07:55:40.037806Z",
+        "metadata": {
+          "rubric": {
+            "continuity_preservation": {
+              "description": "Maintains established traits that shouldn't change",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "arc_progression": {
+              "description": "Reflects character growth and development accurately",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "utility_for_writers": {
+              "description": "Can writers actually use this? Is it helpful?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "continuity_preservation": {
+              "score": 95,
+              "reasoning": "The output maintains Elena's core traits (e.g., empathetic, loyal) while allowing for natural evolution. Her initial traits are preserved in a way that aligns with her past experiences, ensuring continuity."
+            },
+            "arc_progression": {
+              "score": 90,
+              "reasoning": "The progression from initial traits to evolving traits is well-defined and logical. Emotional, psychological, social, and moral growth are clearly articulated, reflecting a coherent character arc."
+            },
+            "utility_for_writers": {
+              "score": 92,
+              "reasoning": "The output provides rich material for conflict, theme exploration, dialogue, and plot development. Elena's motivations and growth offer practical tools for writers to craft engaging narratives."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "d220704e119ae99f50e8a9ab1722007e1dfdea98f17a4b29c1cb488a7af62f27",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 13899.747249990469,
+      "utility": 0.6742392389996875,
+      "workflow_output": "Character Development:\n```json\n{\n  \"traits\": {\n    \"initial\": [\n      \"trusting\",\n      \"empathetic\",\n      \"optimistic\",\n      \"loyal\",\n      \"self-sacrificing\"\n    ],\n    \"evolving\": [\n      \"cautious\",\n      \"resilient\",\n      \"introspective\",\n      \"assertive\",\n      \"self-preserving\"\n    ]\n  },\n  \"growth\": {\n    \"emotional\": \"Elena transitions from naivety to a deeper understanding of human complexity, learning to balance trust with discernment.\",\n    \"psychological\": \"She develops resilience, learning to process betrayal without losing her core values.\",\n    \"social\": \"Elena becomes more selective in her relationships, prioritizing mutual respect and honesty.\",\n    \"moral\": \"She grapples with the concept of justice versus forgiveness, evolving her moral compass to include self-respect.\"\n  },\n  \"motivations\": {\n    \"initial\": [\n      \"desire for harmony\",\n      \"need for acceptance\",\n      \"fear of conflict\",\n      \"hope for unconditional love\"\n    ],\n    \"evolving\": [\n      \"pursuit of self-respect\",\n      \"need for authenticity\",\n      \"desire for balanced relationships\",\n      \"drive for personal empowerment\"\n    ]\n  },\n  \"continuity\": {\n    \"past\": \"Elena's trusting nature stems from a stable, loving childhood, where betrayal was rare.\",\n    \"present\": \"Facing betrayal shakes her worldview, forcing her to reassess her relationships and self-worth.\",\n    \"future\": \"Elena emerges stronger, using her experiences to build more genuine connections and advocate for herself.\"\n  },\n  \"arc_progression\": {\n    \"beginning\": \"Elena is deeply hurt by betrayal, questioning her judgment and feeling lost.\",\n    \"middle\": \"She begins to rebuild her self-esteem, seeking understanding and closure.\",\n    \"end\": \"Elena achieves personal growth, finding a new sense of purpose and stronger boundaries.\"\n  },\n  \"writer_utility\": {\n    \"conflict\": \"Elena's journey offers rich conflict opportunities, from internal struggles to external confrontations.\",\n    \"theme\": \"Her story explores themes of trust, resilience, and the complexity of human relationships.\",\n    \"dialogue\": \"Elena's evolving perspective provides diverse dialogue, reflecting her growth from vulnerability to strength.\",\n    \"plot\": \"Her character can drive plot development through her decisions, relationships, and pursuit of personal justice.\"\n  }\n}\n```",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.7,
+        "revision_strategy": "regenerate",
+        "output_format": "structured_json",
+        "workflow": {
+          "started_at": "2025-10-28T07:55:21.677044Z",
+          "completed_at": "2025-10-28T07:55:35.576798Z",
+          "duration_seconds": 13.899747249990469
+        },
+        "evaluation": {
+          "rubric": {
+            "continuity_preservation": {
+              "description": "Maintains established traits that shouldn't change",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "arc_progression": {
+              "description": "Reflects character growth and development accurately",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "utility_for_writers": {
+              "description": "Can writers actually use this? Is it helpful?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "continuity_preservation": {
+              "score": 95,
+              "reasoning": "The output maintains Elena's core traits (e.g., empathetic, loyal) while allowing for natural evolution. Her initial traits are preserved in a way that aligns with her past experiences, ensuring continuity."
+            },
+            "arc_progression": {
+              "score": 90,
+              "reasoning": "The progression from initial traits to evolving traits is well-defined and logical. Emotional, psychological, social, and moral growth are clearly articulated, reflecting a coherent character arc."
+            },
+            "utility_for_writers": {
+              "score": 92,
+              "reasoning": "The output provides rich material for conflict, theme exploration, dialogue, and plot development. Elena's motivations and growth offer practical tools for writers to craft engaging narratives."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "d220704e119ae99f50e8a9ab1722007e1dfdea98f17a4b29c1cb488a7af62f27",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T07:55:40.038086Z"
+    },
+    {
+      "test_number": 7,
+      "config": {
+        "test_number": 7,
+        "config_values": {
+          "temperature": 0.7,
+          "generation_strategy": "chain_of_thought",
+          "revision_strategy": "refine",
+          "output_format": "freeform"
+        },
+        "workflow": "character_development"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "continuity_preservation": {
+            "score": 0.95,
+            "reasoning": "The output effectively maintains Elena's established traits, ensuring her reactions and development align with her personality, whether she is trusting, empathetic, or pragmatic. This alignment enhances authenticity and resonance."
+          },
+          "arc_progression": {
+            "score": 0.9,
+            "reasoning": "Elena's character arc is well-structured, offering clear paths of resilience, cynicism, or redemption. The progression is believable and provides opportunities for meaningful growth or transformation."
+          },
+          "utility_for_writers": {
+            "score": 0.92,
+            "reasoning": "The output is highly practical for writers, offering actionable insights into character development, emotional reactions, and narrative stakes. It provides clear guidance on how to craft a compelling and dynamic character arc."
+          }
+        },
+        "overall_score": 0.9233333333333333,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T07:56:05.720388Z",
+        "metadata": {
+          "rubric": {
+            "continuity_preservation": {
+              "description": "Maintains established traits that shouldn't change",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "arc_progression": {
+              "description": "Reflects character growth and development accurately",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "utility_for_writers": {
+              "description": "Can writers actually use this? Is it helpful?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "continuity_preservation": {
+              "score": 95,
+              "reasoning": "The output effectively maintains Elena's established traits, ensuring her reactions and development align with her personality, whether she is trusting, empathetic, or pragmatic. This alignment enhances authenticity and resonance."
+            },
+            "arc_progression": {
+              "score": 90,
+              "reasoning": "Elena's character arc is well-structured, offering clear paths of resilience, cynicism, or redemption. The progression is believable and provides opportunities for meaningful growth or transformation."
+            },
+            "utility_for_writers": {
+              "score": 92,
+              "reasoning": "The output is highly practical for writers, offering actionable insights into character development, emotional reactions, and narrative stakes. It provides clear guidance on how to craft a compelling and dynamic character arc."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "2372ffd8e30ff9f92708c22ed0a05ae0a7976ba9bbc1ec7a6944147ee6909c5e",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 20842.236458003754,
+      "utility": 0.658779198498468,
+      "workflow_output": "Character Development:\nTo develop Elena’s character arc in the context of facing betrayal, we must first establish her emotional and psychological baseline, ensuring continuity with her established traits while allowing her to evolve in a believable and compelling way. Here’s a step-by-step analysis of her development:\n\n---\n\n### **1. Establishing Continuity**\nElena’s current state—facing betrayal—must align with her existing personality, values, and history. If she is typically trusting, empathetic, or idealistic, the betrayal will hit harder, creating a stark contrast between her expectations and reality. Conversely, if she is guarded or pragmatic, the betrayal might confirm her worldview, deepening her cynicism.  \n**Writer Utility:** By grounding the betrayal in her established traits, the writer ensures that the emotional impact feels authentic and resonates with the audience.\n\n---\n\n### **2. Emotional Reaction**\nInitially, Elena’s reaction to betrayal should reflect her core personality. If she’s emotional, she might experience shock, anger, or grief. If she’s analytical, she might immediately seek to understand the motivations behind the betrayal. This stage is crucial for establishing her emotional stakes.  \n**Writer Utility:** This reaction provides an opportunity to deepen Elena’s characterization by showcasing how she processes pain and conflict.\n\n---\n\n### **3. Arc Progression**\nElena’s journey should involve growth or transformation. Here are potential paths:  \n- **Path of Resilience:** Elena learns to rebuild trust, emerging stronger and more discerning.  \n- **Path of Cynicism:** The betrayal hardens her, leading to guardedness or isolation.  \n- **Path of Redemption:** She confronts the betrayer, seeking closure or forgiveness.  \n**Writer Utility:** Each path offers narrative potential, whether it’s for internal conflict, external action, or thematic exploration.\n\n---\n\n### **4. Conflict and Stakes**\nThe betrayal should have tangible consequences for Elena, affecting her relationships, goals, or worldview. For example, if she was betrayed by a trusted ally, she might struggle to lead a team or pursue a shared mission.  \n**Writer Utility:** Raising the stakes ensures that Elena’s arc has narrative weight and drives the plot forward.\n\n---\n\n### **5. Resolution**\nThe resolution of Elena’s arc should reflect her growth. If she chooses resilience, she might forge new alliances or find inner strength. If she succumbs to cynicism, she might become a more complex, morally ambiguous character.  \n**Writer Utility:** The resolution provides closure while leaving room for future development, ensuring Elena remains a dynamic character.\n\n---\n\n### **Example Prose**\nElena stared at the letter, her hands trembling. The words blurred as betrayal seeped into her chest like a cold, unrelenting tide. She had trusted him—had believed in their shared vision. Now, the foundation of her world cracked, leaving her adrift.  \nAt first, anger burned hot, urging her to confront him, to demand answers. But as the days passed, the fire waned, replaced by a hollow ache. She withdrew, questioning every smile, every promise.  \nYet, in the quiet moments, a spark of defiance flickered. She would not let this define her. Slowly, she began to rebuild, piecing together fragments of trust, not in others, but in herself.  \n\n---\n\n### **Final Answer**\nElena’s character arc, centered on betrayal, can progress naturally by aligning her emotional reactions with her established traits, raising the stakes, and guiding her toward a meaningful resolution. Whether she emerges resilient, cynical, or transformed, her development offers rich narrative potential, ensuring continuity and utility for the writer.",
+      "metadata": {
+        "strategy": "chain_of_thought",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.7,
+        "revision_strategy": "refine",
+        "output_format": "freeform",
+        "workflow": {
+          "started_at": "2025-10-28T07:55:40.039779Z",
+          "completed_at": "2025-10-28T07:56:00.882023Z",
+          "duration_seconds": 20.842236458003754
+        },
+        "evaluation": {
+          "rubric": {
+            "continuity_preservation": {
+              "description": "Maintains established traits that shouldn't change",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "arc_progression": {
+              "description": "Reflects character growth and development accurately",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "utility_for_writers": {
+              "description": "Can writers actually use this? Is it helpful?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "continuity_preservation": {
+              "score": 95,
+              "reasoning": "The output effectively maintains Elena's established traits, ensuring her reactions and development align with her personality, whether she is trusting, empathetic, or pragmatic. This alignment enhances authenticity and resonance."
+            },
+            "arc_progression": {
+              "score": 90,
+              "reasoning": "Elena's character arc is well-structured, offering clear paths of resilience, cynicism, or redemption. The progression is believable and provides opportunities for meaningful growth or transformation."
+            },
+            "utility_for_writers": {
+              "score": 92,
+              "reasoning": "The output is highly practical for writers, offering actionable insights into character development, emotional reactions, and narrative stakes. It provides clear guidance on how to craft a compelling and dynamic character arc."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "2372ffd8e30ff9f92708c22ed0a05ae0a7976ba9bbc1ec7a6944147ee6909c5e",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T07:56:05.720690Z"
+    },
+    {
+      "test_number": 8,
+      "config": {
+        "test_number": 8,
+        "config_values": {
+          "temperature": 0.7,
+          "generation_strategy": "chain_of_thought",
+          "revision_strategy": "refine",
+          "output_format": "structured_json"
+        },
+        "workflow": "character_development"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "continuity_preservation": {
+            "score": 0.95,
+            "reasoning": "Elena's core traits of empathy and loyalty are preserved throughout her development, while new traits like caution and assertiveness are introduced logically. This maintains her character consistency while allowing for growth."
+          },
+          "arc_progression": {
+            "score": 0.9,
+            "reasoning": "Elena's growth follows a clear and logical arc, from initial trust and optimism to caution and resilience post-betrayal. Her development is well-structured and believable, though slightly more detail on her internal struggles could enhance the progression."
+          },
+          "utility_for_writers": {
+            "score": 0.92,
+            "reasoning": "Elena's dynamic character provides rich material for storytelling, with ample opportunities for conflict, thematic depth, and audience engagement. Her evolving traits and motivations are well-defined and offer practical utility for writers."
+          }
+        },
+        "overall_score": 0.9233333333333333,
+        "evaluator_model": "openrouter/deepseek/deepseek-chat",
+        "timestamp": "2025-10-28T07:56:31.099182Z",
+        "metadata": {
+          "rubric": {
+            "continuity_preservation": {
+              "description": "Maintains established traits that shouldn't change",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "arc_progression": {
+              "description": "Reflects character growth and development accurately",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "utility_for_writers": {
+              "description": "Can writers actually use this? Is it helpful?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "continuity_preservation": {
+              "score": 95,
+              "reasoning": "Elena's core traits of empathy and loyalty are preserved throughout her development, while new traits like caution and assertiveness are introduced logically. This maintains her character consistency while allowing for growth."
+            },
+            "arc_progression": {
+              "score": 90,
+              "reasoning": "Elena's growth follows a clear and logical arc, from initial trust and optimism to caution and resilience post-betrayal. Her development is well-structured and believable, though slightly more detail on her internal struggles could enhance the progression."
+            },
+            "utility_for_writers": {
+              "score": 92,
+              "reasoning": "Elena's dynamic character provides rich material for storytelling, with ample opportunities for conflict, thematic depth, and audience engagement. Her evolving traits and motivations are well-defined and offer practical utility for writers."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "d4de86e8e6c9dd9dd232da5ac82af3ebc59a9e1f9043f88af32b35fe6d41d39f",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "cost": 0.0,
+      "latency": 19833.608208980877,
+      "utility": 0.6610252853289047,
+      "workflow_output": "Character Development:\n```json\n{\n  \"traits\": {\n    \"initial\": {\n      \"trusting\": \"Elena has a natural tendency to trust others, often seeing the best in people.\",\n      \"optimistic\": \"She maintains a positive outlook on life, believing in the inherent goodness of others.\",\n      \"empathetic\": \"Elena is deeply empathetic, often putting others' needs before her own.\",\n      \"loyal\": \"She is fiercely loyal to those she cares about, expecting the same in return.\"\n    },\n    \"evolving\": {\n      \"caution\": \"Post-betrayal, Elena begins to question her trust in others, developing a more cautious approach.\",\n      \"resilience\": \"She starts to build emotional resilience, learning to protect herself from potential hurt.\",\n      \"introspective\": \"Elena becomes more introspective, analyzing her relationships and her own role within them.\",\n      \"assertive\": \"She begins to assert her own needs and boundaries more clearly, prioritizing her well-being.\"\n    }\n  },\n  \"growth\": {\n    \"emotional\": \"Elena's emotional growth involves transitioning from naive trust to a more balanced understanding of human nature.\",\n    \"relational\": \"She learns to navigate relationships with a healthier balance of empathy and self-preservation.\",\n    \"personal\": \"Elena's personal growth includes developing a stronger sense of self-worth and independence.\"\n  },\n  \"motivations\": {\n    \"initial\": {\n      \"connection\": \"Elena is motivated by a desire for deep, meaningful connections with others.\",\n      \"harmony\": \"She seeks to maintain harmony in her relationships, often avoiding conflict.\"\n    },\n    \"evolving\": {\n      \"self-preservation\": \"Post-betrayal, Elena is motivated by a need to protect herself from further emotional harm.\",\n      \"truth\": \"She becomes driven by a desire to uncover the truth in her relationships, valuing honesty above superficial harmony.\",\n      \"empowerment\": \"Elena seeks to empower herself, striving to regain control over her life and emotions.\"\n    }\n  },\n  \"continuity\": {\n    \"character_consistency\": \"Elena's core traits of empathy and loyalty remain, but they are tempered by new traits like caution and assertiveness.\",\n    \"logical_progression\": \"Her growth follows a logical arc from trust to caution, maintaining believability in her character development.\"\n  },\n  \"arc_progression\": {\n    \"initial_state\": \"Elena starts as a trusting and optimistic individual, deeply invested in her relationships.\",\n    \"conflict\": \"The betrayal serves as the catalyst for her internal conflict, shaking her foundational beliefs.\",\n    \"development\": \"She undergoes a period of introspection and begins to develop new traits like resilience and assertiveness.\",\n    \"resolution\": \"Elena emerges stronger, with a more balanced approach to trust and relationships, ready to face future challenges.\"\n  },\n  \"writer_utility\": {\n    \"dynamic_character\": \"Elena's transformation from a naive, trusting individual to a more cautious and resilient person provides rich material for character-driven storytelling.\",\n    \"conflict_potential\": \"Her evolving traits create opportunities for conflict and tension in her interactions with other characters.\",\n    \"thematic_depth\": \"Elena's journey can explore themes of trust, betrayal, resilience, and self-discovery, adding depth to the narrative.\",\n    \"audience_engagement\": \"Her relatable struggles and growth can engage the audience, making her a compelling and sympathetic character.\"\n  }\n}\n```",
+      "metadata": {
+        "strategy": "chain_of_thought",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.7,
+        "revision_strategy": "refine",
+        "output_format": "structured_json",
+        "workflow": {
+          "started_at": "2025-10-28T07:56:05.723093Z",
+          "completed_at": "2025-10-28T07:56:25.556710Z",
+          "duration_seconds": 19.833608208980877
+        },
+        "evaluation": {
+          "rubric": {
+            "continuity_preservation": {
+              "description": "Maintains established traits that shouldn't change",
+              "scale": "0-100 points",
+              "weight": 0.4
+            },
+            "arc_progression": {
+              "description": "Reflects character growth and development accurately",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "utility_for_writers": {
+              "description": "Can writers actually use this? Is it helpful?",
+              "scale": "0-100 points",
+              "weight": 0.25
+            }
+          },
+          "raw_response": {
+            "continuity_preservation": {
+              "score": 95,
+              "reasoning": "Elena's core traits of empathy and loyalty are preserved throughout her development, while new traits like caution and assertiveness are introduced logically. This maintains her character consistency while allowing for growth."
+            },
+            "arc_progression": {
+              "score": 90,
+              "reasoning": "Elena's growth follows a clear and logical arc, from initial trust and optimism to caution and resilience post-betrayal. Her development is well-structured and believable, though slightly more detail on her internal struggles could enhance the progression."
+            },
+            "utility_for_writers": {
+              "score": 92,
+              "reasoning": "Elena's dynamic character provides rich material for storytelling, with ample opportunities for conflict, thematic depth, and audience engagement. Her evolving traits and motivations are well-defined and offer practical utility for writers."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "d4de86e8e6c9dd9dd232da5ac82af3ebc59a9e1f9043f88af32b35fe6d41d39f",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/deepseek/deepseek-chat"
+        }
+      },
+      "timestamp": "2025-10-28T07:56:31.099439Z"
+    }
+  ],
+  "status": "COMPLETED",
+  "started_at": "2025-10-28T07:52:41.024627Z",
+  "completed_at": "2025-10-28T07:56:31.100798Z",
+  "experiment_metadata": {
+    "config_hash": "50e0f1b2ba86eab2e52002ec984b060b06c4343a43607bfc4e145d59d40c05c9",
+    "created_at": "2025-10-28T07:52:41.024568Z",
+    "dependencies": {
+      "pydantic": "2.12.3",
+      "langgraph": "1.0.1",
+      "litellm": "1.79.0"
+    },
+    "non_deterministic_sources": [
+      "llm_sampling"
+    ]
+  },
+  "metadata": {
+    "normalization": {
+      "cost": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "latency": {
+        "min": 5699.565874994732,
+        "max": 50605.58800000581
+      }
+    }
+  },
+  "baseline_test_number": 1,
+  "baseline_config": {
+    "test_number": 1,
+    "config_values": {
+      "temperature": 0.4,
+      "generation_strategy": "standard",
+      "revision_strategy": "refine",
+      "output_format": "freeform"
+    },
+    "workflow": "character_development"
+  },
+  "baseline_result": {
+    "test_number": 1,
+    "config": {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.4,
+        "generation_strategy": "standard",
+        "revision_strategy": "refine",
+        "output_format": "freeform"
+      },
+      "workflow": "character_development"
+    },
+    "quality_score": {
+      "dimension_scores": {
+        "continuity_preservation": {
+          "score": 0.9,
+          "reasoning": "The analysis effectively maintains Elena's established traits, such as her initial idealism and vulnerability, while allowing for natural evolution in response to betrayal. The continuity is strong, as her reactions and decisions are rooted in her core characteristics."
+        },
+        "arc_progression": {
+          "score": 0.95,
+          "reasoning": "The arc progression is well-defined and logical, with clear emotional and behavioral shifts from naivety to resilience or cynicism. The key beats (shock/grief, anger/reassessment, decision point) provide a structured path for her development, ensuring her growth feels earned and impactful."
+        },
+        "utility_for_writers": {
+          "score": 0.92,
+          "reasoning": "The analysis offers practical guidance for writers, including emotional depth, motivation shifts, and relationship dynamics. It provides actionable insights and considerations (e.g., internal conflict, external consequences, foreshadowing) that can be adapted to various genres and themes, making it highly useful."
+        }
+      },
+      "overall_score": 0.9233333333333333,
+      "evaluator_model": "openrouter/deepseek/deepseek-chat",
+      "timestamp": "2025-10-28T07:53:16.726234Z",
+      "metadata": {
+        "rubric": {
+          "continuity_preservation": {
+            "description": "Maintains established traits that shouldn't change",
+            "scale": "0-100 points",
+            "weight": 0.4
+          },
+          "arc_progression": {
+            "description": "Reflects character growth and development accurately",
+            "scale": "0-100 points",
+            "weight": 0.35
+          },
+          "utility_for_writers": {
+            "description": "Can writers actually use this? Is it helpful?",
+            "scale": "0-100 points",
+            "weight": 0.25
+          }
+        },
+        "raw_response": {
+          "continuity_preservation": {
+            "score": 90,
+            "reasoning": "The analysis effectively maintains Elena's established traits, such as her initial idealism and vulnerability, while allowing for natural evolution in response to betrayal. The continuity is strong, as her reactions and decisions are rooted in her core characteristics."
+          },
+          "arc_progression": {
+            "score": 95,
+            "reasoning": "The arc progression is well-defined and logical, with clear emotional and behavioral shifts from naivety to resilience or cynicism. The key beats (shock/grief, anger/reassessment, decision point) provide a structured path for her development, ensuring her growth feels earned and impactful."
+          },
+          "utility_for_writers": {
+            "score": 92,
+            "reasoning": "The analysis offers practical guidance for writers, including emotional depth, motivation shifts, and relationship dynamics. It provides actionable insights and considerations (e.g., internal conflict, external consequences, foreshadowing) that can be adapted to various genres and themes, making it highly useful."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "c01add6a6c73de241e9265f6bb5244aa0f5916c345a491c18b5bd8da818fd85c",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/deepseek/deepseek-chat"
+      }
+    },
+    "cost": 0.0,
+    "latency": 25556.620415998623,
+    "utility": 0.6925,
+    "workflow_output": "Character Development:\nCertainly! Below is a natural prose analysis of **Elena’s** character development, focusing on continuity, arc progression, and writer utility.  \n\n---  \n\n### **Character Analysis: Elena – Facing Betrayal**  \n\n#### **Current State: The Catalyst of Betrayal**  \nElena stands at a pivotal moment—her trust has been shattered by someone she deeply believed in. The betrayal may stem from a mentor, a lover, or a close ally, but its impact is visceral. Her worldview, once anchored in loyalty, now fractures under the weight of deception. This moment is crucial for her arc, as it forces her to question not only the betrayer but her own judgment.  \n\n**Writer Utility:**  \n- **Emotional Depth:** Use this moment to explore Elena’s vulnerabilities—does she retreat inward, or does she lash out?  \n- **Motivation Shift:** Betrayal can redefine her goals. Does she seek revenge, redemption, or escape?  \n- **Relationships:** How does this affect her ability to trust others moving forward?  \n\n#### **Arc Progression: From Naivety to Resilience (or Cynicism)**  \nElena’s arc hinges on how she processes betrayal. If she was once idealistic, this event could harden her, making her wary of future alliances. Alternatively, she might emerge more discerning, learning to balance trust with caution.  \n\n**Key Beats for Continuity:**  \n1. **Initial Reaction (Shock/Grief):** She may deny the betrayal at first, clinging to hope that there’s a misunderstanding.  \n2. **Anger/Reassessment:** Once reality sets in, she may cycle through rage, self-blame, or a thirst for justice.  \n3. **Decision Point:** Will she confront the betrayer, cut ties, or use the experience to grow?  \n\n**Writer Utility:**  \n- **Internal Conflict:** Her struggle should feel organic—does she doubt herself, or does she harden into resolve?  \n- **External Consequences:** Does the betrayal alter her role in the story (e.g., a leader losing followers, a spy becoming rogue)?  \n\n#### **Long-Term Development: The Aftermath**  \nThe true test of Elena’s character lies in how she carries this wound forward. If she becomes colder, future relationships may suffer. If she learns from it, she may develop sharper instincts without losing empathy.  \n\n**Continuity Considerations:**  \n- **Triggers:** Small reminders of the betrayal (a phrase, a location) should evoke subtle reactions.  \n- **Growth vs. Regression:** Does she repeat similar mistakes, or does she evolve?  \n\n**Writer Utility:**  \n- **Foreshadowing:** If she becomes vengeful, her actions may lead to moral dilemmas.  \n- **Thematic Reinforcement:** Betrayal can tie into broader themes (power, loyalty, survival).  \n\n#### **Final Notes for the Writer**  \nElena’s betrayal should not exist in isolation—it must ripple through her decisions, relationships, and self-perception. Whether she rises stronger or falls into bitterness, her journey must feel earned. Use this moment to deepen her complexity, making her not just a victim of circumstance but an active force in her own transformation.  \n\n---  \n\nThis structure ensures **continuity** (her reactions remain true to her core traits while evolving), **arc progression** (clear emotional and behavioral shifts), and **writer utility** (flexible enough to adapt to different genres and themes). Would you like to explore a specific aspect of her reaction (e.g., revenge arc, forgiveness arc)?",
+    "metadata": {
+      "strategy": "standard",
+      "model": "openrouter/deepseek/deepseek-chat",
+      "temperature": 0.4,
+      "revision_strategy": "refine",
+      "output_format": "freeform",
+      "workflow": {
+        "started_at": "2025-10-28T07:52:41.026289Z",
+        "completed_at": "2025-10-28T07:53:06.582915Z",
+        "duration_seconds": 25.556620415998623
+      },
+      "evaluation": {
+        "rubric": {
+          "continuity_preservation": {
+            "description": "Maintains established traits that shouldn't change",
+            "scale": "0-100 points",
+            "weight": 0.4
+          },
+          "arc_progression": {
+            "description": "Reflects character growth and development accurately",
+            "scale": "0-100 points",
+            "weight": 0.35
+          },
+          "utility_for_writers": {
+            "description": "Can writers actually use this? Is it helpful?",
+            "scale": "0-100 points",
+            "weight": 0.25
+          }
+        },
+        "raw_response": {
+          "continuity_preservation": {
+            "score": 90,
+            "reasoning": "The analysis effectively maintains Elena's established traits, such as her initial idealism and vulnerability, while allowing for natural evolution in response to betrayal. The continuity is strong, as her reactions and decisions are rooted in her core characteristics."
+          },
+          "arc_progression": {
+            "score": 95,
+            "reasoning": "The arc progression is well-defined and logical, with clear emotional and behavioral shifts from naivety to resilience or cynicism. The key beats (shock/grief, anger/reassessment, decision point) provide a structured path for her development, ensuring her growth feels earned and impactful."
+          },
+          "utility_for_writers": {
+            "score": 92,
+            "reasoning": "The analysis offers practical guidance for writers, including emotional depth, motivation shifts, and relationship dynamics. It provides actionable insights and considerations (e.g., internal conflict, external consequences, foreshadowing) that can be adapted to various genres and themes, making it highly useful."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "c01add6a6c73de241e9265f6bb5244aa0f5916c345a491c18b5bd8da818fd85c",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/deepseek/deepseek-chat"
+      }
+    },
+    "timestamp": "2025-10-28T07:53:16.726569Z"
+  },
+  "baseline_quality": 0.9233333333333333,
+  "quality_improvement_pct": 0.0
+}

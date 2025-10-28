@@ -1,0 +1,1579 @@
+{
+  "experiment_id": "wave4_character_reasoning_vs_v32_haiku-20251028T122428",
+  "config": {
+    "name": "wave4_character_reasoning_vs_v32_haiku",
+    "workflow": "character_development",
+    "variables": [
+      {
+        "name": "temperature",
+        "level_1": 0.7,
+        "level_2": 0.9
+      },
+      {
+        "name": "arc_complexity",
+        "level_1": "simple",
+        "level_2": "layered"
+      },
+      {
+        "name": "reasoning_enabled",
+        "level_1": "false",
+        "level_2": "true"
+      },
+      {
+        "name": "verbalized_sampling",
+        "level_1": "none",
+        "level_2": "self_consistency"
+      },
+      {
+        "name": "n_samples",
+        "level_1": "3",
+        "level_2": "5"
+      },
+      {
+        "name": "trait_derivation",
+        "level_1": "explicit",
+        "level_2": "show_dont_tell"
+      },
+      {
+        "name": "reasoning_visibility",
+        "level_1": "visible",
+        "level_2": "hidden"
+      }
+    ],
+    "utility_weights": {
+      "quality": 0.8,
+      "cost": 0.15,
+      "time": 0.05
+    },
+    "workflow_config": {
+      "rubric": {
+        "psychological_depth": {
+          "description": "Character motivations, fears, desires feel authentic and complex",
+          "scale": "0-100 points",
+          "weight": 0.35
+        },
+        "arc_coherence": {
+          "description": "Character growth follows logical emotional progression",
+          "scale": "0-100 points",
+          "weight": 0.3
+        },
+        "behavioral_consistency": {
+          "description": "Actions align with established personality and history",
+          "scale": "0-100 points",
+          "weight": 0.2
+        },
+        "relatability": {
+          "description": "Reader can understand and connect with character journey",
+          "scale": "0-100 points",
+          "weight": 0.15
+        }
+      },
+      "sample_code_path": "tesseract_flow/workflows/code_review.py",
+      "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+      "language": "python",
+      "model": "openrouter/deepseek/deepseek-chat",
+      "evaluator_temperature": 0.3
+    }
+  },
+  "test_configurations": [
+    {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.7,
+        "arc_complexity": "simple",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "none",
+        "n_samples": "3",
+        "trait_derivation": "explicit",
+        "reasoning_visibility": "visible"
+      },
+      "workflow": "character_development"
+    },
+    {
+      "test_number": 2,
+      "config_values": {
+        "temperature": 0.7,
+        "arc_complexity": "simple",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "self_consistency",
+        "n_samples": "5",
+        "trait_derivation": "show_dont_tell",
+        "reasoning_visibility": "hidden"
+      },
+      "workflow": "character_development"
+    },
+    {
+      "test_number": 3,
+      "config_values": {
+        "temperature": 0.7,
+        "arc_complexity": "layered",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "none",
+        "n_samples": "3",
+        "trait_derivation": "show_dont_tell",
+        "reasoning_visibility": "hidden"
+      },
+      "workflow": "character_development"
+    },
+    {
+      "test_number": 4,
+      "config_values": {
+        "temperature": 0.7,
+        "arc_complexity": "layered",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "self_consistency",
+        "n_samples": "5",
+        "trait_derivation": "explicit",
+        "reasoning_visibility": "visible"
+      },
+      "workflow": "character_development"
+    },
+    {
+      "test_number": 5,
+      "config_values": {
+        "temperature": 0.9,
+        "arc_complexity": "simple",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "none",
+        "n_samples": "5",
+        "trait_derivation": "explicit",
+        "reasoning_visibility": "hidden"
+      },
+      "workflow": "character_development"
+    },
+    {
+      "test_number": 6,
+      "config_values": {
+        "temperature": 0.9,
+        "arc_complexity": "simple",
+        "reasoning_enabled": "true",
+        "verbalized_sampling": "self_consistency",
+        "n_samples": "3",
+        "trait_derivation": "show_dont_tell",
+        "reasoning_visibility": "visible"
+      },
+      "workflow": "character_development"
+    },
+    {
+      "test_number": 7,
+      "config_values": {
+        "temperature": 0.9,
+        "arc_complexity": "layered",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "none",
+        "n_samples": "5",
+        "trait_derivation": "show_dont_tell",
+        "reasoning_visibility": "visible"
+      },
+      "workflow": "character_development"
+    },
+    {
+      "test_number": 8,
+      "config_values": {
+        "temperature": 0.9,
+        "arc_complexity": "layered",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "self_consistency",
+        "n_samples": "3",
+        "trait_derivation": "explicit",
+        "reasoning_visibility": "hidden"
+      },
+      "workflow": "character_development"
+    }
+  ],
+  "results": [
+    {
+      "test_number": 1,
+      "config": {
+        "test_number": 1,
+        "config_values": {
+          "temperature": 0.7,
+          "arc_complexity": "simple",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "none",
+          "n_samples": "3",
+          "trait_derivation": "explicit",
+          "reasoning_visibility": "visible"
+        },
+        "workflow": "character_development"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "psychological_depth": {
+            "score": 0.92,
+            "reasoning": "The analysis reveals multi-layered emotional complexity. Elena's internal conflict demonstrates nuanced psychological exploration - oscillating between anger, grief, and self-doubt. The prose captures intricate emotional states, showing vulnerability and potential for transformation. Depth is enhanced by exploring underlying fears of trust and self-worth."
+          },
+          "arc_coherence": {
+            "score": 0.88,
+            "reasoning": "The character arc follows a clear, logical progression from victimhood towards potential empowerment. The analysis explicitly outlines a structured emotional journey - from initial shock and paralysis to potential self-reclamation. The proposed trajectory feels organic and psychologically credible."
+          },
+          "behavioral_consistency": {
+            "score": 0.85,
+            "reasoning": "The analysis emphasizes maintaining continuity with Elena's established traits. Potential responses are contextualized through her presumed personality and backstory. The recommendation to align her reaction with her typical resilience or impulsiveness demonstrates careful character consideration."
+          },
+          "relatability": {
+            "score": 0.9,
+            "reasoning": "The character development centers on universal human experiences of betrayal, trust, and emotional recovery. The prose example particularly excels in creating an emotionally accessible narrative moment that invites reader empathy and understanding."
+          }
+        },
+        "overall_score": 0.8875,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:24:56.033212Z",
+        "metadata": {
+          "rubric": {
+            "psychological_depth": {
+              "description": "Character motivations, fears, desires feel authentic and complex",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "arc_coherence": {
+              "description": "Character growth follows logical emotional progression",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "behavioral_consistency": {
+              "description": "Actions align with established personality and history",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "relatability": {
+              "description": "Reader can understand and connect with character journey",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "psychological_depth": {
+              "score": 92,
+              "reasoning": "The analysis reveals multi-layered emotional complexity. Elena's internal conflict demonstrates nuanced psychological exploration - oscillating between anger, grief, and self-doubt. The prose captures intricate emotional states, showing vulnerability and potential for transformation. Depth is enhanced by exploring underlying fears of trust and self-worth."
+            },
+            "arc_coherence": {
+              "score": 88,
+              "reasoning": "The character arc follows a clear, logical progression from victimhood towards potential empowerment. The analysis explicitly outlines a structured emotional journey - from initial shock and paralysis to potential self-reclamation. The proposed trajectory feels organic and psychologically credible."
+            },
+            "behavioral_consistency": {
+              "score": 85,
+              "reasoning": "The analysis emphasizes maintaining continuity with Elena's established traits. Potential responses are contextualized through her presumed personality and backstory. The recommendation to align her reaction with her typical resilience or impulsiveness demonstrates careful character consideration."
+            },
+            "relatability": {
+              "score": 90,
+              "reasoning": "The character development centers on universal human experiences of betrayal, trust, and emotional recovery. The prose example particularly excels in creating an emotionally accessible narrative moment that invites reader empathy and understanding."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "ca680dde6eea9c7df4b573b1c65a3b76f60db7c3a41ad1c2dd377a32c507adcc",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 19316.11758400686,
+      "utility": 0.6737989912106925,
+      "workflow_output": "Character Development:\n**Character Development Analysis: Elena**\n\n**Current State:** Elena is reeling from a profound betrayal, a pivotal moment that shatters her trust and reshapes her worldview. This betrayal acts as a catalyst, forcing her to confront vulnerabilities she had long suppressed. Her emotional state is raw, oscillating between anger, grief, and self-doubt. This moment is not just a plot device but a transformative experience that will define her arc.\n\n**Continuity:**  \nTo maintain continuity, Elena’s reaction to betrayal must align with her established traits. If she is typically resilient and pragmatic, her initial response might be to withdraw and analyze the situation logically, even as her emotions simmer beneath the surface. Conversely, if she is more impulsive, she might lash out or seek immediate retribution. Her backstory should inform her reaction—has she faced betrayal before? If so, does this new betrayal reopen old wounds or feel like a pattern she can’t escape? Her relationships with the betrayer(s) should also factor into her response. A betrayal by a close friend or lover will cut deeper than one by a stranger or acquaintance.\n\n**Arc Progression:**  \nElena’s arc should evolve from victimhood to empowerment. Initially, she may feel lost or paralyzed by the betrayal, questioning her judgment and self-worth. This is an opportunity to explore her inner conflicts—does she blame herself, or does she externalize her pain? As the story progresses, she must grapple with her emotions and decide how to move forward. Will she seek revenge, forgiveness, or self-preservation? Her choices should reflect her growth and the lessons she learns. For example, if she initially seeks revenge, she might later realize it only perpetuates her pain, leading her to a more constructive path. Ultimately, her arc should culminate in a stronger, more self-aware version of herself, one who has reclaimed agency over her life.\n\n**Writer Utility:**  \nElena’s betrayal serves multiple narrative functions.  \n- **Conflict:** It introduces high-stakes emotional conflict, driving the plot forward.  \n- **Character Depth:** It reveals Elena’s vulnerabilities, fears, and values, making her more relatable and multidimensional.  \n- **Thematic Exploration:** It allows the writer to explore themes such as trust, resilience, and the human capacity for forgiveness or vengeance.  \n- **Relationships:** It reshapes Elena’s dynamics with other characters, particularly the betrayer(s). Does she sever ties, or does she attempt to rebuild trust? How do other characters react to her changed demeanor?  \n\n**Natural Prose Example:**  \nElena stood in the dimly lit room, the weight of the truth pressing against her chest like a stone. The letter in her hand trembled as she reread the words, each sentence a dagger twisting deeper. *How could they?* The question echoed in her mind, but no answer came. She had trusted them, believed in them, and now that trust lay shattered at her feet. Her breath hitched, and she crumpled the letter, tossing it into the fire. The flames consumed it hungrily, but they couldn’t erase the betrayal etched into her heart. She felt a surge of anger, hot and blinding, but beneath it lurked a colder, more insidious emotion—fear. Fear that she had been a fool, that her judgment was flawed, that she would never trust again. She clenched her fists, nails digging into her palms. No. She wouldn’t let this define her. She would rise, stronger, wiser, and she would not be broken again.  \n\nThis prose captures Elena’s emotional turmoil while hinting at her resilience, setting the stage for her arc to unfold. It maintains continuity by aligning her reaction with her established traits and provides writer utility by deepening her characterization and advancing the plot.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.7,
+        "revision_strategy": "refine",
+        "output_format": "freeform",
+        "workflow": {
+          "started_at": "2025-10-28T12:24:28.569221Z",
+          "completed_at": "2025-10-28T12:24:47.885044Z",
+          "duration_seconds": 19.31611758400686
+        },
+        "evaluation": {
+          "rubric": {
+            "psychological_depth": {
+              "description": "Character motivations, fears, desires feel authentic and complex",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "arc_coherence": {
+              "description": "Character growth follows logical emotional progression",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "behavioral_consistency": {
+              "description": "Actions align with established personality and history",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "relatability": {
+              "description": "Reader can understand and connect with character journey",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "psychological_depth": {
+              "score": 92,
+              "reasoning": "The analysis reveals multi-layered emotional complexity. Elena's internal conflict demonstrates nuanced psychological exploration - oscillating between anger, grief, and self-doubt. The prose captures intricate emotional states, showing vulnerability and potential for transformation. Depth is enhanced by exploring underlying fears of trust and self-worth."
+            },
+            "arc_coherence": {
+              "score": 88,
+              "reasoning": "The character arc follows a clear, logical progression from victimhood towards potential empowerment. The analysis explicitly outlines a structured emotional journey - from initial shock and paralysis to potential self-reclamation. The proposed trajectory feels organic and psychologically credible."
+            },
+            "behavioral_consistency": {
+              "score": 85,
+              "reasoning": "The analysis emphasizes maintaining continuity with Elena's established traits. Potential responses are contextualized through her presumed personality and backstory. The recommendation to align her reaction with her typical resilience or impulsiveness demonstrates careful character consideration."
+            },
+            "relatability": {
+              "score": 90,
+              "reasoning": "The character development centers on universal human experiences of betrayal, trust, and emotional recovery. The prose example particularly excels in creating an emotionally accessible narrative moment that invites reader empathy and understanding."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "ca680dde6eea9c7df4b573b1c65a3b76f60db7c3a41ad1c2dd377a32c507adcc",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:24:56.033422Z"
+    },
+    {
+      "test_number": 2,
+      "config": {
+        "test_number": 2,
+        "config_values": {
+          "temperature": 0.7,
+          "arc_complexity": "simple",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "self_consistency",
+          "n_samples": "5",
+          "trait_derivation": "show_dont_tell",
+          "reasoning_visibility": "hidden"
+        },
+        "workflow": "character_development"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "psychological_depth": {
+            "score": 0.92,
+            "reasoning": "The analysis reveals multi-layered internal conflicts, exploring Elena's complex emotional response to betrayal. The description demonstrates nuanced psychological exploration of potential emotional paths (resilience, forgiveness, retribution), showing deep understanding of her inner psychological landscape."
+          },
+          "arc_coherence": {
+            "score": 0.88,
+            "reasoning": "The character progression is logically structured, with clear potential trajectories that emerge organically from her core experience of betrayal. The proposed paths demonstrate thoughtful, interconnected emotional development that feels authentic and purposeful."
+          },
+          "behavioral_consistency": {
+            "score": 0.85,
+            "reasoning": "The analysis emphasizes maintaining continuity with Elena's established traits, ensuring her responses to betrayal align with her fundamental personality. The exploration of potential paths shows careful consideration of her historical character foundations."
+          },
+          "relatability": {
+            "score": 0.9,
+            "reasoning": "The character's emotional journey through betrayal touches on universal human experiences of trust, vulnerability, and personal transformation. The multiple potential paths provide broad emotional entry points for readers to connect with Elena's experience."
+          }
+        },
+        "overall_score": 0.8875,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:25:25.604535Z",
+        "metadata": {
+          "rubric": {
+            "psychological_depth": {
+              "description": "Character motivations, fears, desires feel authentic and complex",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "arc_coherence": {
+              "description": "Character growth follows logical emotional progression",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "behavioral_consistency": {
+              "description": "Actions align with established personality and history",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "relatability": {
+              "description": "Reader can understand and connect with character journey",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "psychological_depth": {
+              "score": 92,
+              "reasoning": "The analysis reveals multi-layered internal conflicts, exploring Elena's complex emotional response to betrayal. The description demonstrates nuanced psychological exploration of potential emotional paths (resilience, forgiveness, retribution), showing deep understanding of her inner psychological landscape."
+            },
+            "arc_coherence": {
+              "score": 88,
+              "reasoning": "The character progression is logically structured, with clear potential trajectories that emerge organically from her core experience of betrayal. The proposed paths demonstrate thoughtful, interconnected emotional development that feels authentic and purposeful."
+            },
+            "behavioral_consistency": {
+              "score": 85,
+              "reasoning": "The analysis emphasizes maintaining continuity with Elena's established traits, ensuring her responses to betrayal align with her fundamental personality. The exploration of potential paths shows careful consideration of her historical character foundations."
+            },
+            "relatability": {
+              "score": 90,
+              "reasoning": "The character's emotional journey through betrayal touches on universal human experiences of trust, vulnerability, and personal transformation. The multiple potential paths provide broad emotional entry points for readers to connect with Elena's experience."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "33f20d2e2e3a3b8368f6958abd2146545d9fd5c43195f5ab32a41c165eb497a8",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 22163.345915992977,
+      "utility": 0.6636591836713173,
+      "workflow_output": "Character Development:\n### Character Development: Elena\n\n**Current State: Facing Betrayal**\n\nElena stands at a precipice, her world unraveling as the sting of betrayal cuts deep. Once a pillar of trust and loyalty, she now grapples with the shattering of her core beliefs. This moment is pivotal, not just for her emotional state, but for her entire character arc. Her journey from here will define her resilience, her growth, and her eventual transformation.\n\n**Continuity:**\n\nElena’s current state is a natural progression of her established traits. If she has always been someone who values loyalty and integrity, the betrayal she faces now is a direct challenge to her worldview. Her reaction should reflect her history—perhaps she initially withdraws, questioning her judgment, or she lashes out in anger, unable to reconcile the betrayal with her ideals. Continuity ensures that her response feels authentic and grounded in who she is, even as she begins to change.\n\n**Arc Progression:**\n\nThis betrayal serves as the catalyst for Elena’s arc, pushing her into uncharted emotional territory. The progression of her character can take several directions, each offering rich narrative potential:\n\n1. **The Path of Resilience:** Elena could emerge stronger, learning to trust herself more than others. This arc would see her develop a more guarded but self-assured demeanor, her idealism tempered by pragmatism.\n\n2. **The Path of Forgiveness:** Alternatively, she might choose to confront the betrayer and seek reconciliation, leading to a deeper understanding of human frailty and the complexity of relationships. This arc would soften her edges, making her more empathetic and forgiving.\n\n3. **The Path of Retribution:** If driven by anger and a desire for justice, Elena might become more assertive, even ruthless, in her pursuit of retribution. This darker path could lead to her becoming a more complex, morally ambiguous character.\n\nEach of these paths offers opportunities for growth, conflict, and resolution, ensuring that Elena’s arc remains compelling and multifaceted.\n\n**Writer Utility:**\n\nElena’s betrayal provides a wealth of opportunities for narrative development:\n\n- **Conflict and Tension:** The fallout from the betrayal can drive the plot forward, creating tension between characters and within Elena herself. Her struggles can serve as a mirror for the broader themes of the story, such as trust, loyalty, and the cost of ambition.\n\n- **Character Relationships:** How Elena navigates her relationships post-betrayal can deepen her connections with other characters. Allies may rally to her side, while others may distance themselves, fearing her wrath or mistrust. These dynamics can add layers to the story, making the interactions more nuanced and engaging.\n\n- **Internal Struggle:** Elena’s internal conflict—how she processes the betrayal, what she learns about herself, and how she decides to move forward—can provide rich material for introspection and growth. This inner journey can be as compelling as any external plot, offering readers a deep, emotional connection to her character.\n\n**Conclusion:**\n\nElena’s confrontation with betrayal is a defining moment that can shape her character in profound ways. By maintaining continuity in her traits, thoughtfully progressing her arc, and leveraging her emotional turmoil for narrative depth, writers can craft a character who is both relatable and unforgettable. Her journey through betrayal, whether it leads to resilience, forgiveness, or retribution, will resonate with readers, making her a cornerstone of the story’s emotional core.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.7,
+        "revision_strategy": "refine",
+        "output_format": "freeform",
+        "workflow": {
+          "started_at": "2025-10-28T12:24:56.035188Z",
+          "completed_at": "2025-10-28T12:25:18.198195Z",
+          "duration_seconds": 22.163345915992977
+        },
+        "evaluation": {
+          "rubric": {
+            "psychological_depth": {
+              "description": "Character motivations, fears, desires feel authentic and complex",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "arc_coherence": {
+              "description": "Character growth follows logical emotional progression",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "behavioral_consistency": {
+              "description": "Actions align with established personality and history",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "relatability": {
+              "description": "Reader can understand and connect with character journey",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "psychological_depth": {
+              "score": 92,
+              "reasoning": "The analysis reveals multi-layered internal conflicts, exploring Elena's complex emotional response to betrayal. The description demonstrates nuanced psychological exploration of potential emotional paths (resilience, forgiveness, retribution), showing deep understanding of her inner psychological landscape."
+            },
+            "arc_coherence": {
+              "score": 88,
+              "reasoning": "The character progression is logically structured, with clear potential trajectories that emerge organically from her core experience of betrayal. The proposed paths demonstrate thoughtful, interconnected emotional development that feels authentic and purposeful."
+            },
+            "behavioral_consistency": {
+              "score": 85,
+              "reasoning": "The analysis emphasizes maintaining continuity with Elena's established traits, ensuring her responses to betrayal align with her fundamental personality. The exploration of potential paths shows careful consideration of her historical character foundations."
+            },
+            "relatability": {
+              "score": 90,
+              "reasoning": "The character's emotional journey through betrayal touches on universal human experiences of trust, vulnerability, and personal transformation. The multiple potential paths provide broad emotional entry points for readers to connect with Elena's experience."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "33f20d2e2e3a3b8368f6958abd2146545d9fd5c43195f5ab32a41c165eb497a8",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:25:25.604795Z"
+    },
+    {
+      "test_number": 3,
+      "config": {
+        "test_number": 3,
+        "config_values": {
+          "temperature": 0.7,
+          "arc_complexity": "layered",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "none",
+          "n_samples": "3",
+          "trait_derivation": "show_dont_tell",
+          "reasoning_visibility": "hidden"
+        },
+        "workflow": "character_development"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "psychological_depth": {
+            "score": 0.9,
+            "reasoning": "The analysis demonstrates nuanced exploration of Elena's inner emotional landscape, showing multiple layers of psychological response to betrayal. The breakdown includes complex emotional stages like denial, anger, self-reflection, and empowerment, revealing sophisticated internal mechanisms."
+          },
+          "arc_coherence": {
+            "score": 0.95,
+            "reasoning": "The progression is meticulously structured with a clear, logical emotional trajectory. Each stage (shock, anger, self-reflection, empowerment) builds naturally and demonstrates intentional character development with a coherent psychological progression."
+          },
+          "behavioral_consistency": {
+            "score": 0.88,
+            "reasoning": "The analysis emphasizes maintaining core personality traits while allowing organic evolution. The recommendation to avoid abrupt personality shifts and ground responses in backstory shows careful attention to maintaining character integrity."
+          },
+          "relatability": {
+            "score": 0.92,
+            "reasoning": "The character development approach focuses on universal emotional experiences of betrayal, vulnerability, and resilience. The proposed arc creates multiple points of potential reader empathy and emotional connection."
+          }
+        },
+        "overall_score": 0.9125,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:25:41.088521Z",
+        "metadata": {
+          "rubric": {
+            "psychological_depth": {
+              "description": "Character motivations, fears, desires feel authentic and complex",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "arc_coherence": {
+              "description": "Character growth follows logical emotional progression",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "behavioral_consistency": {
+              "description": "Actions align with established personality and history",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "relatability": {
+              "description": "Reader can understand and connect with character journey",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "psychological_depth": {
+              "score": 90,
+              "reasoning": "The analysis demonstrates nuanced exploration of Elena's inner emotional landscape, showing multiple layers of psychological response to betrayal. The breakdown includes complex emotional stages like denial, anger, self-reflection, and empowerment, revealing sophisticated internal mechanisms."
+            },
+            "arc_coherence": {
+              "score": 95,
+              "reasoning": "The progression is meticulously structured with a clear, logical emotional trajectory. Each stage (shock, anger, self-reflection, empowerment) builds naturally and demonstrates intentional character development with a coherent psychological progression."
+            },
+            "behavioral_consistency": {
+              "score": 88,
+              "reasoning": "The analysis emphasizes maintaining core personality traits while allowing organic evolution. The recommendation to avoid abrupt personality shifts and ground responses in backstory shows careful attention to maintaining character integrity."
+            },
+            "relatability": {
+              "score": 92,
+              "reasoning": "The character development approach focuses on universal emotional experiences of betrayal, vulnerability, and resilience. The proposed arc creates multiple points of potential reader empathy and emotional connection."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "e62458ccaeb96116e8aa2f4389e87d90cf171ac15b4e58d29220914ac9d1d751",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 9150.980083009927,
+      "utility": 0.73,
+      "workflow_output": "Character Development:\nElena’s character development in the face of betrayal is a rich opportunity to explore emotional depth, growth, and transformation. Her journey can be crafted to resonate with readers through continuity, a compelling arc, and utility in driving the narrative forward. Here's an analysis of how to develop her effectively:\n\n---\n\n### **Continuity**  \nElena’s established traits and history must remain consistent while evolving in response to betrayal. If she was initially trusting and optimistic, her core personality shouldn’t abruptly shift to cynicism overnight. Instead, her reactions should feel organic—perhaps she initially denies the betrayal, clings to hope, or tries to rationalize the actions of the betrayer. Her backstory (e.g., past experiences with trust or abandonment) can inform her response, adding layers to her character. For example, if she’s been betrayed before, this new event might trigger unresolved trauma, making her struggle feel more authentic.\n\n---\n\n### **Arc Progression**  \nElena’s arc should follow a clear emotional trajectory, moving from vulnerability to resilience. Here’s a possible progression:  \n\n1. **Shock and Disbelief**: Initially, Elena is blindsided. She may defend the betrayer or question her own judgment, showcasing her humanity and relatability.  \n\n2. **Anger and Grief**: As reality sets in, she grapples with anger, sadness, and a sense of loss. This stage allows for raw, emotional scenes that deepen reader connection.  \n\n3. **Self-Reflection**: Elena begins to question her role in the situation. Does she blame herself? Does she recognize patterns in her relationships? This introspection can lead to personal growth.  \n\n4. **Empowerment and Action**: Ultimately, Elena transforms her pain into strength. She may set boundaries, seek justice, or channel her emotions into a new purpose. This stage solidifies her growth and provides a satisfying resolution to her arc.  \n\n---\n\n### **Writer Utility**  \nElena’s betrayal can serve multiple narrative functions:  \n\n- **Plot Catalyst**: Her reaction can drive the story forward. For instance, her quest for answers or revenge might uncover larger secrets or conflicts.  \n\n- **Thematic Depth**: Her journey can explore themes like trust, resilience, and the complexity of human relationships, enriching the story’s philosophical underpinnings.  \n\n- **Relationship Dynamics**: Her interactions with other characters can shift dramatically. Allies may rally to support her, or she might push them away in her pain, creating tension and conflict.  \n\n- **Reader Engagement**: By portraying Elena’s vulnerability and growth, writers can evoke empathy and investment from readers, making her a memorable and impactful character.  \n\n---\n\n### **Example Scene (Utility in Action)**  \nElena confronts the betrayer in a tense, emotionally charged scene. Her dialogue reveals her hurt and anger, but also her growing resolve. This moment not only resolves her emotional arc but also exposes critical information that propels the plot. Her decision to walk away—or to fight back—shows her transformation and sets the stage for future developments.  \n\n---\n\n### **Conclusion**  \nElena’s journey through betrayal is a powerful tool for character development. By maintaining continuity, crafting a meaningful arc, and utilizing her emotional journey to enhance the story, writers can create a character who feels real, relatable, and integral to the narrative. Her resilience in the face of pain can inspire readers, making her story both compelling and unforgettable.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.7,
+        "revision_strategy": "refine",
+        "output_format": "freeform",
+        "workflow": {
+          "started_at": "2025-10-28T12:25:25.606134Z",
+          "completed_at": "2025-10-28T12:25:34.756975Z",
+          "duration_seconds": 9.150980083009927
+        },
+        "evaluation": {
+          "rubric": {
+            "psychological_depth": {
+              "description": "Character motivations, fears, desires feel authentic and complex",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "arc_coherence": {
+              "description": "Character growth follows logical emotional progression",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "behavioral_consistency": {
+              "description": "Actions align with established personality and history",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "relatability": {
+              "description": "Reader can understand and connect with character journey",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "psychological_depth": {
+              "score": 90,
+              "reasoning": "The analysis demonstrates nuanced exploration of Elena's inner emotional landscape, showing multiple layers of psychological response to betrayal. The breakdown includes complex emotional stages like denial, anger, self-reflection, and empowerment, revealing sophisticated internal mechanisms."
+            },
+            "arc_coherence": {
+              "score": 95,
+              "reasoning": "The progression is meticulously structured with a clear, logical emotional trajectory. Each stage (shock, anger, self-reflection, empowerment) builds naturally and demonstrates intentional character development with a coherent psychological progression."
+            },
+            "behavioral_consistency": {
+              "score": 88,
+              "reasoning": "The analysis emphasizes maintaining core personality traits while allowing organic evolution. The recommendation to avoid abrupt personality shifts and ground responses in backstory shows careful attention to maintaining character integrity."
+            },
+            "relatability": {
+              "score": 92,
+              "reasoning": "The character development approach focuses on universal emotional experiences of betrayal, vulnerability, and resilience. The proposed arc creates multiple points of potential reader empathy and emotional connection."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "e62458ccaeb96116e8aa2f4389e87d90cf171ac15b4e58d29220914ac9d1d751",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:25:41.088655Z"
+    },
+    {
+      "test_number": 4,
+      "config": {
+        "test_number": 4,
+        "config_values": {
+          "temperature": 0.7,
+          "arc_complexity": "layered",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "self_consistency",
+          "n_samples": "5",
+          "trait_derivation": "explicit",
+          "reasoning_visibility": "visible"
+        },
+        "workflow": "character_development"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "psychological_depth": {
+            "score": 0.92,
+            "reasoning": "The analysis demonstrates profound psychological complexity by exploring multiple potential emotional responses to betrayal. It delves into Elena's inner landscape, examining nuanced potential paths of psychological transformation - distrust, revenge, or forgiveness. The exploration reveals deep understanding of human emotional mechanisms and potential trauma responses."
+          },
+          "arc_coherence": {
+            "score": 0.88,
+            "reasoning": "The character arc progression is meticulously mapped, presenting three distinct yet logically connected potential trajectories. Each path represents a coherent emotional journey with clear psychological motivations and potential narrative outcomes. The analysis shows careful consideration of how betrayal could fundamentally reshape Elena's character development."
+          },
+          "behavioral_consistency": {
+            "score": 0.85,
+            "reasoning": "The evaluation emphasizes maintaining continuity with Elena's established traits, suggesting her response will be rooted in her prior experiences and personality. The analysis demonstrates sensitivity to how past interactions would shape her current emotional response, ensuring her reactions feel authentic and true to her established character profile."
+          },
+          "relatability": {
+            "score": 0.9,
+            "reasoning": "By exploring universal human experiences of betrayal, trust, and emotional resilience, the analysis creates a deeply relatable character journey. The potential paths - from vulnerability to potential revenge or healing - tap into common emotional experiences that readers can empathize with and understand."
+          }
+        },
+        "overall_score": 0.8875,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:26:12.141734Z",
+        "metadata": {
+          "rubric": {
+            "psychological_depth": {
+              "description": "Character motivations, fears, desires feel authentic and complex",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "arc_coherence": {
+              "description": "Character growth follows logical emotional progression",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "behavioral_consistency": {
+              "description": "Actions align with established personality and history",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "relatability": {
+              "description": "Reader can understand and connect with character journey",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "psychological_depth": {
+              "score": 92,
+              "reasoning": "The analysis demonstrates profound psychological complexity by exploring multiple potential emotional responses to betrayal. It delves into Elena's inner landscape, examining nuanced potential paths of psychological transformation - distrust, revenge, or forgiveness. The exploration reveals deep understanding of human emotional mechanisms and potential trauma responses."
+            },
+            "arc_coherence": {
+              "score": 88,
+              "reasoning": "The character arc progression is meticulously mapped, presenting three distinct yet logically connected potential trajectories. Each path represents a coherent emotional journey with clear psychological motivations and potential narrative outcomes. The analysis shows careful consideration of how betrayal could fundamentally reshape Elena's character development."
+            },
+            "behavioral_consistency": {
+              "score": 85,
+              "reasoning": "The evaluation emphasizes maintaining continuity with Elena's established traits, suggesting her response will be rooted in her prior experiences and personality. The analysis demonstrates sensitivity to how past interactions would shape her current emotional response, ensuring her reactions feel authentic and true to her established character profile."
+            },
+            "relatability": {
+              "score": 90,
+              "reasoning": "By exploring universal human experiences of betrayal, trust, and emotional resilience, the analysis creates a deeply relatable character journey. The potential paths - from vulnerability to potential revenge or healing - tap into common emotional experiences that readers can empathize with and understand."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "7c43f975915be833d5a9e977828f7d8f23dd2f5fa83df63ab609b08fd8af8578",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 22847.689791000448,
+      "utility": 0.6612220362513611,
+      "workflow_output": "Character Development:\n**Character Development: Elena**\n\n**Current State: Facing Betrayal**\n\nElena stands at the precipice of a profound emotional and psychological transformation. Betrayal, a crucible of human experience, has shattered her trust and upended her understanding of relationships. This moment is pivotal, not only for her immediate reactions but for the trajectory of her character arc.\n\n**Continuity:**\n\nTo maintain continuity, Elena’s response to betrayal must align with her established traits and history. If she has been portrayed as resilient and pragmatic, her initial reaction might involve a calculated assessment of the situation, masking her pain with a veneer of composure. Conversely, if she is more emotionally expressive, she might experience a visceral outburst of anger or sorrow. Her past experiences with trust and vulnerability will also shape her response. For instance, if she has been betrayed before, she might exhibit a hardened exterior, while a first betrayal could leave her reeling in disbelief.\n\n**Arc Progression:**\n\nBetrayal serves as a catalyst for Elena’s arc, propelling her toward growth or decline. Her journey from this point can take several paths:\n\n1. **Descent into Distrust:** Elena might become increasingly guarded, isolating herself from others and viewing the world through a lens of suspicion. This path can lead her to make decisions that alienate allies and exacerbate her loneliness, ultimately culminating in a moment of reckoning where she must confront her self-imposed isolation.\n\n2. **Quest for Revenge:** Consumed by a desire for retribution, Elena might embark on a vengeful quest. This path can explore themes of justice and morality, challenging her to weigh the cost of her actions against the betrayal she endured. Her arc might culminate in a realization that revenge has hollowed her, prompting a search for redemption.\n\n3. **Path to Forgiveness:** Alternatively, Elena might grapple with the concept of forgiveness, seeking to understand the motivations behind the betrayal. This path can lead her to a deeper empathy and a renewed sense of purpose, transforming her pain into a source of strength. Her arc might culminate in a reconciliation, either with the betrayer or with herself, as she learns to trust again.\n\n**Writer Utility:**\n\nElena’s confrontation with betrayal offers rich narrative potential. It can serve as a turning point in the story, deepening her complexity and driving the plot forward. Writers can use her reactions to explore themes of trust, loyalty, and resilience, providing opportunities for character introspection and interpersonal conflict. Additionally, her response to betrayal can introduce new dynamics with other characters, whether through alliances formed in shared pain or confrontations born of mistrust.\n\n**Natural Prose Analysis:**\n\nElena’s development must feel organic, rooted in her character’s essence. Her internal monologue, if used, should reflect her struggle to reconcile her feelings with her self-perception. Dialogue with other characters can reveal her evolving mindset, whether through guarded exchanges, heated arguments, or vulnerable confessions. Actions, too, should mirror her emotional state—hesitant steps, clenched fists, or moments of quiet reflection can all convey her turmoil without explicit exposition.\n\nIn crafting Elena’s arc, it’s crucial to balance her immediate reactions with her long-term growth. The betrayal should leave a lasting imprint, influencing her decisions and relationships throughout the narrative. By weaving her response into the fabric of the story, writers can ensure that Elena’s development feels both inevitable and impactful, resonating with readers on a deeply human level.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.7,
+        "revision_strategy": "refine",
+        "output_format": "freeform",
+        "workflow": {
+          "started_at": "2025-10-28T12:25:41.090002Z",
+          "completed_at": "2025-10-28T12:26:03.937342Z",
+          "duration_seconds": 22.847689791000448
+        },
+        "evaluation": {
+          "rubric": {
+            "psychological_depth": {
+              "description": "Character motivations, fears, desires feel authentic and complex",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "arc_coherence": {
+              "description": "Character growth follows logical emotional progression",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "behavioral_consistency": {
+              "description": "Actions align with established personality and history",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "relatability": {
+              "description": "Reader can understand and connect with character journey",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "psychological_depth": {
+              "score": 92,
+              "reasoning": "The analysis demonstrates profound psychological complexity by exploring multiple potential emotional responses to betrayal. It delves into Elena's inner landscape, examining nuanced potential paths of psychological transformation - distrust, revenge, or forgiveness. The exploration reveals deep understanding of human emotional mechanisms and potential trauma responses."
+            },
+            "arc_coherence": {
+              "score": 88,
+              "reasoning": "The character arc progression is meticulously mapped, presenting three distinct yet logically connected potential trajectories. Each path represents a coherent emotional journey with clear psychological motivations and potential narrative outcomes. The analysis shows careful consideration of how betrayal could fundamentally reshape Elena's character development."
+            },
+            "behavioral_consistency": {
+              "score": 85,
+              "reasoning": "The evaluation emphasizes maintaining continuity with Elena's established traits, suggesting her response will be rooted in her prior experiences and personality. The analysis demonstrates sensitivity to how past interactions would shape her current emotional response, ensuring her reactions feel authentic and true to her established character profile."
+            },
+            "relatability": {
+              "score": 90,
+              "reasoning": "By exploring universal human experiences of betrayal, trust, and emotional resilience, the analysis creates a deeply relatable character journey. The potential paths - from vulnerability to potential revenge or healing - tap into common emotional experiences that readers can empathize with and understand."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "7c43f975915be833d5a9e977828f7d8f23dd2f5fa83df63ab609b08fd8af8578",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:26:12.142051Z"
+    },
+    {
+      "test_number": 5,
+      "config": {
+        "test_number": 5,
+        "config_values": {
+          "temperature": 0.9,
+          "arc_complexity": "simple",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "none",
+          "n_samples": "5",
+          "trait_derivation": "explicit",
+          "reasoning_visibility": "hidden"
+        },
+        "workflow": "character_development"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "psychological_depth": {
+            "score": 0.92,
+            "reasoning": "The analysis demonstrates nuanced exploration of Elena's inner emotional landscape, revealing complex motivations around betrayal, trust, and personal transformation. Multiple potential psychological responses are considered, showing depth of character introspection."
+          },
+          "arc_coherence": {
+            "score": 0.88,
+            "reasoning": "The character arc is meticulously mapped with clear progression stages: descent, awakening, and rebirth. Multiple potential trajectory paths are outlined, showing a logical and intentional emotional progression that feels organic and well-structured."
+          },
+          "behavioral_consistency": {
+            "score": 0.85,
+            "reasoning": "The analysis emphasizes maintaining continuity with Elena's established traits, suggesting her response to betrayal will be rooted in her core identity. Potential variations in response based on her historical personality demonstrate careful consideration of consistent character development."
+          },
+          "relatability": {
+            "score": 0.9,
+            "reasoning": "The exploration of betrayal, trust, and personal growth touches on universal human experiences. The analysis presents Elena's journey as deeply human, with emotional vulnerabilities and potential for transformation that readers can empathize with and understand."
+          }
+        },
+        "overall_score": 0.8875,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:26:42.051693Z",
+        "metadata": {
+          "rubric": {
+            "psychological_depth": {
+              "description": "Character motivations, fears, desires feel authentic and complex",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "arc_coherence": {
+              "description": "Character growth follows logical emotional progression",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "behavioral_consistency": {
+              "description": "Actions align with established personality and history",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "relatability": {
+              "description": "Reader can understand and connect with character journey",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "psychological_depth": {
+              "score": 92,
+              "reasoning": "The analysis demonstrates nuanced exploration of Elena's inner emotional landscape, revealing complex motivations around betrayal, trust, and personal transformation. Multiple potential psychological responses are considered, showing depth of character introspection."
+            },
+            "arc_coherence": {
+              "score": 88,
+              "reasoning": "The character arc is meticulously mapped with clear progression stages: descent, awakening, and rebirth. Multiple potential trajectory paths are outlined, showing a logical and intentional emotional progression that feels organic and well-structured."
+            },
+            "behavioral_consistency": {
+              "score": 85,
+              "reasoning": "The analysis emphasizes maintaining continuity with Elena's established traits, suggesting her response to betrayal will be rooted in her core identity. Potential variations in response based on her historical personality demonstrate careful consideration of consistent character development."
+            },
+            "relatability": {
+              "score": 90,
+              "reasoning": "The exploration of betrayal, trust, and personal growth touches on universal human experiences. The analysis presents Elena's journey as deeply human, with emotional vulnerabilities and potential for transformation that readers can empathize with and understand."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "354e94051ab7a9e912e1de45e817510fe2c885fc36612d164d2eab736989ea5c",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 23190.83400000818,
+      "utility": 0.6599999999999999,
+      "workflow_output": "Character Development:\n### Character Development Analysis: Elena\n\n#### Current State: Facing Betrayal\nElena’s current state is one of profound emotional turmoil. Betrayal has shattered her trust, upending her worldview and forcing her to confront vulnerabilities she once masked. This pivotal moment is a catalyst for her arc, offering fertile ground for growth, introspection, and transformation. Her reaction to betrayal will define her resilience, moral compass, and future relationships.\n\n---\n\n### **Continuity**\nTo maintain continuity, Elena’s response to betrayal must align with her established traits and backstory. If she’s historically been trusting and idealistic, her devastation will be profound, potentially leading to a crisis of faith. Conversely, if she’s guarded or pragmatic, betrayal might reinforce her cynicism, pushing her further into self-reliance. Her actions should feel organic, rooted in her core identity while allowing room for evolution.\n\n**Key Considerations:**\n- How does betrayal challenge Elena’s existing beliefs or values?\n- What unresolved conflicts or fears does betrayal amplify?\n- How does her past shape her immediate reaction (e.g., withdrawal, anger, denial)?\n\n---\n\n### **Arc Progression**\nElena’s arc should chart her journey from victimhood to agency. Betrayal is the inciting incident that propels her into a transformative process. Her growth can follow several trajectories:\n1. **The Descent:** Initially, she may spiral into despair, questioning her judgment and self-worth.\n2. **The Awakening:** Through introspection or external support, she begins to process her pain and recognize her own strength.\n3. **The Rebirth:** She emerges wiser, with a renewed sense of purpose and a clearer understanding of her boundaries.\n\n**Potential Arcs:**\n- **Cynicism to Compassion:** Betrayal hardens her heart, but she learns to trust again through empathy and forgiveness.\n- **Naivety to Wisdom:** She evolves from idealistic innocence to a more discerning, pragmatic outlook.\n- **Victim to Victor:** She transforms her pain into empowerment, using betrayal as fuel to achieve her goals.\n\n**Pacing:** Her progression should feel gradual and earned, with setbacks that test her resolve but ultimately reinforce her growth.\n\n---\n\n### **Writer Utility**\nElena’s journey offers rich narrative potential. Her betrayal can serve multiple storytelling functions:\n1. **Conflict:** Betrayal introduces high-stakes drama, driving the plot forward and deepening relationships.\n2. **Themes:** Her arc can explore themes of trust, resilience, identity, and the duality of human nature.\n3. **Character Dynamics:** Her interactions with allies, antagonists, and betrayers can reveal new facets of her personality.\n4. **Symbolism:** Betrayal can be a metaphor for larger societal or existential struggles, adding thematic depth.\n\n**Practical Tips:**\n- **Internal Monologue:** Use Elena’s thoughts to convey her emotional state and evolution.\n- **Flashbacks:** Reveal moments of foreshadowing or context that deepen the impact of betrayal.\n- **Dialogue:** Contrast her pre- and post-betrayal speech patterns to highlight her transformation.\n- **Relationships:** Show how her changed perspective affects her interactions with others.\n\n---\n\n### **Conclusion**\nElena’s journey through betrayal is a powerful vehicle for character development. By maintaining continuity, crafting a compelling arc, and leveraging her experiences for narrative utility, writers can create a deeply relatable and inspiring character. Her story reminds us that even in the face of betrayal, there is potential for growth, redemption, and renewal.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "revision_strategy": "refine",
+        "output_format": "freeform",
+        "workflow": {
+          "started_at": "2025-10-28T12:26:12.143850Z",
+          "completed_at": "2025-10-28T12:26:35.334336Z",
+          "duration_seconds": 23.19083400000818
+        },
+        "evaluation": {
+          "rubric": {
+            "psychological_depth": {
+              "description": "Character motivations, fears, desires feel authentic and complex",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "arc_coherence": {
+              "description": "Character growth follows logical emotional progression",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "behavioral_consistency": {
+              "description": "Actions align with established personality and history",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "relatability": {
+              "description": "Reader can understand and connect with character journey",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "psychological_depth": {
+              "score": 92,
+              "reasoning": "The analysis demonstrates nuanced exploration of Elena's inner emotional landscape, revealing complex motivations around betrayal, trust, and personal transformation. Multiple potential psychological responses are considered, showing depth of character introspection."
+            },
+            "arc_coherence": {
+              "score": 88,
+              "reasoning": "The character arc is meticulously mapped with clear progression stages: descent, awakening, and rebirth. Multiple potential trajectory paths are outlined, showing a logical and intentional emotional progression that feels organic and well-structured."
+            },
+            "behavioral_consistency": {
+              "score": 85,
+              "reasoning": "The analysis emphasizes maintaining continuity with Elena's established traits, suggesting her response to betrayal will be rooted in her core identity. Potential variations in response based on her historical personality demonstrate careful consideration of consistent character development."
+            },
+            "relatability": {
+              "score": 90,
+              "reasoning": "The exploration of betrayal, trust, and personal growth touches on universal human experiences. The analysis presents Elena's journey as deeply human, with emotional vulnerabilities and potential for transformation that readers can empathize with and understand."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "354e94051ab7a9e912e1de45e817510fe2c885fc36612d164d2eab736989ea5c",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:26:42.052206Z"
+    },
+    {
+      "test_number": 6,
+      "config": {
+        "test_number": 6,
+        "config_values": {
+          "temperature": 0.9,
+          "arc_complexity": "simple",
+          "reasoning_enabled": "true",
+          "verbalized_sampling": "self_consistency",
+          "n_samples": "3",
+          "trait_derivation": "show_dont_tell",
+          "reasoning_visibility": "visible"
+        },
+        "workflow": "character_development"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "psychological_depth": {
+            "score": 0.85,
+            "reasoning": "The analysis demonstrates nuanced exploration of Elena's internal emotional landscape, showing multiple potential psychological responses to betrayal. The text reveals complex motivational layers, examining how betrayal might trigger deep-seated vulnerabilities and reshape her worldview."
+          },
+          "arc_coherence": {
+            "score": 0.9,
+            "reasoning": "The character arc presents two logically structured potential trajectories (redemption and descent) that emerge organically from the betrayal experience. Each path shows a clear, plausible emotional progression with well-articulated potential outcomes."
+          },
+          "behavioral_consistency": {
+            "score": 0.88,
+            "reasoning": "The analysis emphasizes maintaining continuity with Elena's established personality traits, ensuring her reactions would be rooted in her existing psychological profile. The exploration of how different baseline personalities might respond demonstrates careful consideration of consistent character behavior."
+          },
+          "relatability": {
+            "score": 0.92,
+            "reasoning": "The character development centers on a universally understood emotional experience (betrayal), with detailed examination of human vulnerability and potential responses. The analysis captures authentic emotional complexity that readers can deeply empathize with."
+          }
+        },
+        "overall_score": 0.8875,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:27:05.170667Z",
+        "metadata": {
+          "rubric": {
+            "psychological_depth": {
+              "description": "Character motivations, fears, desires feel authentic and complex",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "arc_coherence": {
+              "description": "Character growth follows logical emotional progression",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "behavioral_consistency": {
+              "description": "Actions align with established personality and history",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "relatability": {
+              "description": "Reader can understand and connect with character journey",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "psychological_depth": {
+              "score": 85,
+              "reasoning": "The analysis demonstrates nuanced exploration of Elena's internal emotional landscape, showing multiple potential psychological responses to betrayal. The text reveals complex motivational layers, examining how betrayal might trigger deep-seated vulnerabilities and reshape her worldview."
+            },
+            "arc_coherence": {
+              "score": 90,
+              "reasoning": "The character arc presents two logically structured potential trajectories (redemption and descent) that emerge organically from the betrayal experience. Each path shows a clear, plausible emotional progression with well-articulated potential outcomes."
+            },
+            "behavioral_consistency": {
+              "score": 88,
+              "reasoning": "The analysis emphasizes maintaining continuity with Elena's established personality traits, ensuring her reactions would be rooted in her existing psychological profile. The exploration of how different baseline personalities might respond demonstrates careful consideration of consistent character behavior."
+            },
+            "relatability": {
+              "score": 92,
+              "reasoning": "The character development centers on a universally understood emotional experience (betrayal), with detailed examination of human vulnerability and potential responses. The analysis captures authentic emotional complexity that readers can deeply empathize with."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "ce593ff36634240a7dec1c0d0d8c6bd559bf56d0c7b918bda8d4c03cc83a74ca",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 15965.015666006366,
+      "utility": 0.6857332390234253,
+      "workflow_output": "Character Development:\n**Character Development Analysis: Elena**\n\n**Current State: Facing Betrayal**  \nElena’s character is at a pivotal moment, grappling with the emotional and psychological fallout of betrayal. This betrayal could stem from a trusted friend, lover, or mentor—someone she held in high regard. Her immediate reaction might be a mix of shock, anger, and disbelief, as her worldview is shaken. This event serves as a catalyst for her arc, forcing her to confront vulnerabilities she may have suppressed or overlooked.\n\n**Continuity**  \nElena’s reaction to betrayal should align with her established traits and backstory. If she’s inherently trusting and idealistic, the betrayal could shatter her naivety, leading to mistrust or cynicism. Conversely, if she’s already guarded or pragmatic, she might double down on self-reliance or retreat further into herself. Continuity ensures her response feels authentic and rooted in her personality, avoiding abrupt or inconsistent behavior.\n\n**Arc Progression**  \nElena’s arc can evolve in multiple directions, depending on the story’s themes and her role. Here are two potential trajectories:  \n1. **Redemption and Growth**: Elena processes her pain constructively, learning from the betrayal to become more discerning without losing her empathy. She may seek reconciliation or forgiveness, showcasing resilience and emotional maturity.  \n2. **Descent into Darkness**: The betrayal hardens Elena, fueling bitterness or a desire for revenge. She becomes more manipulative or isolated, potentially sacrificing her moral compass for self-preservation or retribution.  \n\nBoth arcs offer rich storytelling opportunities, but the choice should align with the narrative’s overall message and Elena’s role within it.\n\n**Writer Utility**  \nElena’s betrayal serves as a powerful tool for advancing the plot and deepening her character. Writers can use this moment to:  \n- **Create Conflict**: The betrayal can spark internal and external conflicts, driving the story forward.  \n- **Expose Flaws**: It reveals Elena’s weaknesses, such as naivety or over-reliance on others, making her more relatable and human.  \n- **Foreshadow Change**: Her reaction hints at her future evolution, whether toward growth or decay.  \n- **Build Relationships**: Betrayal can redefine her connections with other characters, fostering new alliances or rivalries.  \n\nBy carefully crafting Elena’s response and arc, writers can ensure her journey is compelling and integral to the story’s emotional and thematic depth. Her state of betrayal isn’t just a plot point—it’s a transformative moment that shapes her identity and the narrative’s trajectory.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "revision_strategy": "refine",
+        "output_format": "freeform",
+        "workflow": {
+          "started_at": "2025-10-28T12:26:42.054485Z",
+          "completed_at": "2025-10-28T12:26:58.019269Z",
+          "duration_seconds": 15.965015666006366
+        },
+        "evaluation": {
+          "rubric": {
+            "psychological_depth": {
+              "description": "Character motivations, fears, desires feel authentic and complex",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "arc_coherence": {
+              "description": "Character growth follows logical emotional progression",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "behavioral_consistency": {
+              "description": "Actions align with established personality and history",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "relatability": {
+              "description": "Reader can understand and connect with character journey",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "psychological_depth": {
+              "score": 85,
+              "reasoning": "The analysis demonstrates nuanced exploration of Elena's internal emotional landscape, showing multiple potential psychological responses to betrayal. The text reveals complex motivational layers, examining how betrayal might trigger deep-seated vulnerabilities and reshape her worldview."
+            },
+            "arc_coherence": {
+              "score": 90,
+              "reasoning": "The character arc presents two logically structured potential trajectories (redemption and descent) that emerge organically from the betrayal experience. Each path shows a clear, plausible emotional progression with well-articulated potential outcomes."
+            },
+            "behavioral_consistency": {
+              "score": 88,
+              "reasoning": "The analysis emphasizes maintaining continuity with Elena's established personality traits, ensuring her reactions would be rooted in her existing psychological profile. The exploration of how different baseline personalities might respond demonstrates careful consideration of consistent character behavior."
+            },
+            "relatability": {
+              "score": 92,
+              "reasoning": "The character development centers on a universally understood emotional experience (betrayal), with detailed examination of human vulnerability and potential responses. The analysis captures authentic emotional complexity that readers can deeply empathize with."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "ce593ff36634240a7dec1c0d0d8c6bd559bf56d0c7b918bda8d4c03cc83a74ca",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:27:05.171275Z"
+    },
+    {
+      "test_number": 7,
+      "config": {
+        "test_number": 7,
+        "config_values": {
+          "temperature": 0.9,
+          "arc_complexity": "layered",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "none",
+          "n_samples": "5",
+          "trait_derivation": "show_dont_tell",
+          "reasoning_visibility": "visible"
+        },
+        "workflow": "character_development"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "psychological_depth": {
+            "score": 0.92,
+            "reasoning": "The analysis reveals multi-layered internal conflict, exploring nuanced emotional responses to betrayal. Elena's inner dialogue demonstrates complex psychological processing - balancing initial impulse for retreat with a deeper desire for resilience and growth."
+          },
+          "arc_coherence": {
+            "score": 0.88,
+            "reasoning": "Character progression follows a logical emotional trajectory. The potential paths (cynicism, resilience, transformation) are thoughtfully mapped, showing a structured approach to character development that feels organic and purposeful."
+          },
+          "behavioral_consistency": {
+            "score": 0.85,
+            "reasoning": "The evaluation emphasizes maintaining continuity with Elena's established traits. The analysis carefully considers how her past experiences would shape her response, ensuring her reactions feel authentic and true to her established personality."
+          },
+          "relatability": {
+            "score": 0.9,
+            "reasoning": "The prose example and analysis capture universal emotional experiences of betrayal and personal growth. Elena's internal struggle and determination to transform pain into strength create a deeply human narrative that readers can empathize with."
+          }
+        },
+        "overall_score": 0.8875,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:27:32.926444Z",
+        "metadata": {
+          "rubric": {
+            "psychological_depth": {
+              "description": "Character motivations, fears, desires feel authentic and complex",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "arc_coherence": {
+              "description": "Character growth follows logical emotional progression",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "behavioral_consistency": {
+              "description": "Actions align with established personality and history",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "relatability": {
+              "description": "Reader can understand and connect with character journey",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "psychological_depth": {
+              "score": 92,
+              "reasoning": "The analysis reveals multi-layered internal conflict, exploring nuanced emotional responses to betrayal. Elena's inner dialogue demonstrates complex psychological processing - balancing initial impulse for retreat with a deeper desire for resilience and growth."
+            },
+            "arc_coherence": {
+              "score": 88,
+              "reasoning": "Character progression follows a logical emotional trajectory. The potential paths (cynicism, resilience, transformation) are thoughtfully mapped, showing a structured approach to character development that feels organic and purposeful."
+            },
+            "behavioral_consistency": {
+              "score": 85,
+              "reasoning": "The evaluation emphasizes maintaining continuity with Elena's established traits. The analysis carefully considers how her past experiences would shape her response, ensuring her reactions feel authentic and true to her established personality."
+            },
+            "relatability": {
+              "score": 90,
+              "reasoning": "The prose example and analysis capture universal emotional experiences of betrayal and personal growth. Elena's internal struggle and determination to transform pain into strength create a deeply human narrative that readers can empathize with."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "8d5757c11e515e94b1917f80a1f0276e9eedddb467e2bb6a410a9b1e61af7084",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 21240.139083005488,
+      "utility": 0.6669469915019591,
+      "workflow_output": "Character Development:\n### Character Development: Elena\n\n**Current State:** Facing betrayal\n\n**Analysis:**\n\n**1. Continuity:**  \nElena’s character arc must maintain consistency with her established traits, motivations, and backstory. If she has always been trusting, her reaction to betrayal will feel more profound and authentic. Conversely, if she has a history of skepticism, the betrayal might reinforce her guarded nature or push her toward unexpected vulnerability. Her past experiences—whether she’s been betrayed before or this is her first encounter with such pain—will inform her emotional response and actions. Continuity ensures that her evolution feels organic and rooted in who she is.\n\n**2. Arc Progression:**  \nBetrayal is a pivotal moment that can drastically alter Elena’s trajectory. Her arc might progress in several ways:  \n- *Cynicism:* Betrayal hardens her, making her mistrustful and emotionally distant.  \n- *Resilience:* She learns to navigate betrayal without losing her core values, emerging stronger and wiser.  \n- *Transformation:* The betrayal forces her to confront her own flaws or blind spots, leading to personal growth.  \nHer arc should reflect how she processes the betrayal—whether she seeks revenge, forgiveness, or self-preservation—and how it reshapes her relationships, goals, and sense of self.\n\n**3. Writer Utility:**  \nBetrayal is a versatile tool for deepening Elena’s character and driving the narrative forward. Writers can use this moment to:  \n- *Reveal Depth:* Show how Elena’s vulnerabilities, fears, and strengths manifest under pressure.  \n- *Create Conflict:* Betrayal can strain existing relationships or create new alliances as Elena navigates the fallout.  \n- *Foreshadow Growth:* Use this event as a catalyst for Elena’s transformation, setting up future challenges or resolutions.  \nAdditionally, the betrayal can serve as a mirror to Elena’s values. How she responds—whether she descends into bitterness or rises above the pain—can highlight her moral compass and inner resilience.\n\n**Natural Prose Example:**  \nElena stood in the dimly lit room, the weight of the revelation pressing against her chest. The words echoed in her mind, sharp and unrelenting: *“I never meant to hurt you.”* But the truth was a knife twisting deeper with every breath. She had trusted him—trusted them all—with the fragile pieces of herself she rarely showed. Now, those pieces lay shattered at her feet.  \nHer first instinct was to retreat, to build walls so high no one could ever breach them again. But something in her resisted, a quiet voice whispering that this pain didn’t have to define her. She clenched her fists, her nails biting into her palms, and made a silent vow: she would not let this betrayal break her. She would learn from it, grow from it, even if it meant walking away from everything she thought she knew.  \nElena’s journey from betrayal to self-discovery would be fraught with challenges, but it was a path she was determined to tread. The scars would remain, but they would serve as a reminder—not of her weakness, but of her strength.\n\n**Conclusion:**  \nElena’s character arc, rooted in continuity and enriched by her response to betrayal, offers writers a powerful opportunity to explore themes of trust, resilience, and identity. By carefully crafting her progression, writers can ensure that her story resonates emotionally and drives the narrative forward with purpose.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "revision_strategy": "refine",
+        "output_format": "freeform",
+        "workflow": {
+          "started_at": "2025-10-28T12:27:05.173910Z",
+          "completed_at": "2025-10-28T12:27:26.413731Z",
+          "duration_seconds": 21.240139083005488
+        },
+        "evaluation": {
+          "rubric": {
+            "psychological_depth": {
+              "description": "Character motivations, fears, desires feel authentic and complex",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "arc_coherence": {
+              "description": "Character growth follows logical emotional progression",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "behavioral_consistency": {
+              "description": "Actions align with established personality and history",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "relatability": {
+              "description": "Reader can understand and connect with character journey",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "psychological_depth": {
+              "score": 92,
+              "reasoning": "The analysis reveals multi-layered internal conflict, exploring nuanced emotional responses to betrayal. Elena's inner dialogue demonstrates complex psychological processing - balancing initial impulse for retreat with a deeper desire for resilience and growth."
+            },
+            "arc_coherence": {
+              "score": 88,
+              "reasoning": "Character progression follows a logical emotional trajectory. The potential paths (cynicism, resilience, transformation) are thoughtfully mapped, showing a structured approach to character development that feels organic and purposeful."
+            },
+            "behavioral_consistency": {
+              "score": 85,
+              "reasoning": "The evaluation emphasizes maintaining continuity with Elena's established traits. The analysis carefully considers how her past experiences would shape her response, ensuring her reactions feel authentic and true to her established personality."
+            },
+            "relatability": {
+              "score": 90,
+              "reasoning": "The prose example and analysis capture universal emotional experiences of betrayal and personal growth. Elena's internal struggle and determination to transform pain into strength create a deeply human narrative that readers can empathize with."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "8d5757c11e515e94b1917f80a1f0276e9eedddb467e2bb6a410a9b1e61af7084",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:27:32.927542Z"
+    },
+    {
+      "test_number": 8,
+      "config": {
+        "test_number": 8,
+        "config_values": {
+          "temperature": 0.9,
+          "arc_complexity": "layered",
+          "reasoning_enabled": "false",
+          "verbalized_sampling": "self_consistency",
+          "n_samples": "3",
+          "trait_derivation": "explicit",
+          "reasoning_visibility": "hidden"
+        },
+        "workflow": "character_development"
+      },
+      "quality_score": {
+        "dimension_scores": {
+          "psychological_depth": {
+            "score": 0.92,
+            "reasoning": "The analysis reveals multi-layered emotional complexity. Elena's internal journey from trust to betrayal demonstrates nuanced psychological exploration, capturing subtle emotional transitions like grief, anger, and eventual resilience. The prose example particularly highlights intricate emotional mapping, showing depth of psychological experience."
+          },
+          "arc_coherence": {
+            "score": 0.88,
+            "reasoning": "Elena's character progression follows a logical emotional trajectory. The development moves systematically from initial shock through emotional processing to eventual empowerment. The arc maintains clear psychological continuity while allowing meaningful transformation, demonstrating organic character growth."
+          },
+          "behavioral_consistency": {
+            "score": 0.85,
+            "reasoning": "Character actions consistently align with implied personality traits. The initial vulnerability, followed by measured response and eventual confrontation, reflects a coherent personality framework. The analysis explicitly connects her responses to her established psychological profile."
+          },
+          "relatability": {
+            "score": 0.9,
+            "reasoning": "The character's emotional journey feels universally accessible. Experiences of betrayal, self-discovery, and resilience are portrayed with authentic human complexity. The narrative captures common emotional experiences while maintaining individual character specificity."
+          }
+        },
+        "overall_score": 0.8875,
+        "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+        "timestamp": "2025-10-28T12:28:03.779016Z",
+        "metadata": {
+          "rubric": {
+            "psychological_depth": {
+              "description": "Character motivations, fears, desires feel authentic and complex",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "arc_coherence": {
+              "description": "Character growth follows logical emotional progression",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "behavioral_consistency": {
+              "description": "Actions align with established personality and history",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "relatability": {
+              "description": "Reader can understand and connect with character journey",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "psychological_depth": {
+              "score": 92,
+              "reasoning": "The analysis reveals multi-layered emotional complexity. Elena's internal journey from trust to betrayal demonstrates nuanced psychological exploration, capturing subtle emotional transitions like grief, anger, and eventual resilience. The prose example particularly highlights intricate emotional mapping, showing depth of psychological experience."
+            },
+            "arc_coherence": {
+              "score": 88,
+              "reasoning": "Elena's character progression follows a logical emotional trajectory. The development moves systematically from initial shock through emotional processing to eventual empowerment. The arc maintains clear psychological continuity while allowing meaningful transformation, demonstrating organic character growth."
+            },
+            "behavioral_consistency": {
+              "score": 85,
+              "reasoning": "Character actions consistently align with implied personality traits. The initial vulnerability, followed by measured response and eventual confrontation, reflects a coherent personality framework. The analysis explicitly connects her responses to her established psychological profile."
+            },
+            "relatability": {
+              "score": 90,
+              "reasoning": "The character's emotional journey feels universally accessible. Experiences of betrayal, self-discovery, and resilience are portrayed with authentic human complexity. The narrative captures common emotional experiences while maintaining individual character specificity."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "db60e1a3c5c78b3bfdc84d8acce934eb5468d2b051cb50d0192c727ca3b2d697",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "cost": 0.0,
+      "latency": 22843.816250009695,
+      "utility": 0.6612358310565409,
+      "workflow_output": "Character Development:\n**Character: Elena**  \n**Current State: Facing Betrayal**  \n\n**Analysis of Character Development:**  \n\n**Continuity:**  \nElena’s continuity is rooted in her established personality traits and prior experiences. Before the betrayal, she might have been depicted as trusting, empathetic, and optimistic—qualities that made her vulnerable to betrayal but also shaped her responses. Her history of loyalty to friends, family, or ideals provides a foundation for the emotional weight of the betrayal. For her development to feel coherent, her reactions must align with her core personality while allowing room for growth. For example, if she has a tendency to avoid conflict, her initial response to the betrayal might be withdrawal or denial, but this could evolve into assertive action as the story progresses.  \n\n**Arc Progression:**  \nElena’s arc begins with the shattering of her worldview. Betrayal forces her to confront the fragility of trust and the complexity of human relationships. Her progression should reflect a journey from naivety to self-awareness, or from despair to resilience. Early in the arc, she might experience anger, grief, or confusion, grappling with questions of self-worth and the motives of those who betrayed her.  \n\nAs she processes her emotions, she could begin to reclaim agency—perhaps by confronting the betrayer, seeking support from others, or redefining her values. Her arc might culminate in a renewed sense of purpose or a deeper understanding of herself and others. However, her growth doesn’t need to be linear; setbacks, such as moments of doubt or vulnerability, can make her journey more relatable and compelling.  \n\n**Writer Utility:**  \nElena’s arc serves multiple narrative functions. First, it creates emotional stakes, drawing readers into her struggle and fostering empathy. Second, it provides opportunities for thematic exploration, such as the nature of trust, the cost of vulnerability, or the resilience of the human spirit. Third, her development can drive plot progression, as her actions and decisions in response to betrayal influence the story’s direction.  \n\nFor writers, Elena’s arc can be used to:  \n- Reveal key themes or messages through her internal and external conflicts.  \n- Deepen relationships with other characters, especially those who support or challenge her during this time.  \n- Introduce moral ambiguity, as her reactions to betrayal might blur the line between heroism and flawed humanity.  \n- Create tension and suspense, particularly if the betrayal has ongoing repercussions or if Elena’s response leads to unintended consequences.  \n\n**Natural Prose Example:**  \nElena stood in the empty room, the letter trembling in her hands. The words blurred as tears welled in her eyes—lies she had missed, deceit she had trusted. Her heart, once full of warmth, now felt like a hollow shell. She had believed in Marcus, in their shared dreams, but his betrayal cut deeper than any blade.  \n\nFor days, she wandered aimlessly, replaying every conversation, every promise. The world felt colder, darker, as if the betrayal had stripped away its color. But slowly, like the first rays of dawn, a spark ignited within her. Anger replaced despair, and with it, a resolve to reclaim what was hers.  \n\nShe sought answers, confronting Marcus with a quiet fury that surprised even herself. His excuses rang hollow, and for the first time, she saw him for who he truly was—not the man she had loved, but a stranger who had used her trust as a weapon.  \n\nElena’s journey was far from over, but with each step, she grew stronger. The betrayal had shattered her, but in its wake, she found the pieces to rebuild herself—not as the person she once was, but as someone wiser, fiercer, and unafraid to face the shadows of the world.  \n\nThis development maintains continuity while pushing Elena’s arc forward, offering utility for narrative depth, thematic resonance, and emotional engagement.",
+      "metadata": {
+        "strategy": "standard",
+        "model": "openrouter/deepseek/deepseek-chat",
+        "temperature": 0.9,
+        "revision_strategy": "refine",
+        "output_format": "freeform",
+        "workflow": {
+          "started_at": "2025-10-28T12:27:32.967354Z",
+          "completed_at": "2025-10-28T12:27:55.810829Z",
+          "duration_seconds": 22.843816250009695
+        },
+        "evaluation": {
+          "rubric": {
+            "psychological_depth": {
+              "description": "Character motivations, fears, desires feel authentic and complex",
+              "scale": "0-100 points",
+              "weight": 0.35
+            },
+            "arc_coherence": {
+              "description": "Character growth follows logical emotional progression",
+              "scale": "0-100 points",
+              "weight": 0.3
+            },
+            "behavioral_consistency": {
+              "description": "Actions align with established personality and history",
+              "scale": "0-100 points",
+              "weight": 0.2
+            },
+            "relatability": {
+              "description": "Reader can understand and connect with character journey",
+              "scale": "0-100 points",
+              "weight": 0.15
+            }
+          },
+          "raw_response": {
+            "psychological_depth": {
+              "score": 92,
+              "reasoning": "The analysis reveals multi-layered emotional complexity. Elena's internal journey from trust to betrayal demonstrates nuanced psychological exploration, capturing subtle emotional transitions like grief, anger, and eventual resilience. The prose example particularly highlights intricate emotional mapping, showing depth of psychological experience."
+            },
+            "arc_coherence": {
+              "score": 88,
+              "reasoning": "Elena's character progression follows a logical emotional trajectory. The development moves systematically from initial shock through emotional processing to eventual empowerment. The arc maintains clear psychological continuity while allowing meaningful transformation, demonstrating organic character growth."
+            },
+            "behavioral_consistency": {
+              "score": 85,
+              "reasoning": "Character actions consistently align with implied personality traits. The initial vulnerability, followed by measured response and eventual confrontation, reflects a coherent personality framework. The analysis explicitly connects her responses to her established psychological profile."
+            },
+            "relatability": {
+              "score": 90,
+              "reasoning": "The character's emotional journey feels universally accessible. Experiences of betrayal, self-discovery, and resilience are portrayed with authentic human complexity. The narrative captures common emotional experiences while maintaining individual character specificity."
+            }
+          },
+          "temperature": 0.3,
+          "cache_key": "db60e1a3c5c78b3bfdc84d8acce934eb5468d2b051cb50d0192c727ca3b2d697",
+          "cache_hit": false,
+          "cache_recorded": true,
+          "model": "openrouter/anthropic/claude-3.5-haiku"
+        }
+      },
+      "timestamp": "2025-10-28T12:28:03.780629Z"
+    }
+  ],
+  "status": "COMPLETED",
+  "started_at": "2025-10-28T12:24:28.560664Z",
+  "completed_at": "2025-10-28T12:28:03.787422Z",
+  "experiment_metadata": {
+    "config_hash": "e1cc290556e93bac6b803ce1045ee57c12435c0b79611fe9d89668b192d0a968",
+    "created_at": "2025-10-28T12:24:28.560433Z",
+    "dependencies": {
+      "pydantic": "2.12.3",
+      "langgraph": "1.0.1",
+      "litellm": "1.79.0"
+    },
+    "non_deterministic_sources": [
+      "llm_sampling"
+    ]
+  },
+  "metadata": {
+    "normalization": {
+      "cost": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "latency": {
+        "min": 9150.980083009927,
+        "max": 23190.83400000818
+      }
+    }
+  },
+  "baseline_test_number": 1,
+  "baseline_config": {
+    "test_number": 1,
+    "config_values": {
+      "temperature": 0.7,
+      "arc_complexity": "simple",
+      "reasoning_enabled": "false",
+      "verbalized_sampling": "none",
+      "n_samples": "3",
+      "trait_derivation": "explicit",
+      "reasoning_visibility": "visible"
+    },
+    "workflow": "character_development"
+  },
+  "baseline_result": {
+    "test_number": 1,
+    "config": {
+      "test_number": 1,
+      "config_values": {
+        "temperature": 0.7,
+        "arc_complexity": "simple",
+        "reasoning_enabled": "false",
+        "verbalized_sampling": "none",
+        "n_samples": "3",
+        "trait_derivation": "explicit",
+        "reasoning_visibility": "visible"
+      },
+      "workflow": "character_development"
+    },
+    "quality_score": {
+      "dimension_scores": {
+        "psychological_depth": {
+          "score": 0.92,
+          "reasoning": "The analysis reveals multi-layered emotional complexity. Elena's internal conflict demonstrates nuanced psychological exploration - oscillating between anger, grief, and self-doubt. The prose captures intricate emotional states, showing vulnerability and potential for transformation. Depth is enhanced by exploring underlying fears of trust and self-worth."
+        },
+        "arc_coherence": {
+          "score": 0.88,
+          "reasoning": "The character arc follows a clear, logical progression from victimhood towards potential empowerment. The analysis explicitly outlines a structured emotional journey - from initial shock and paralysis to potential self-reclamation. The proposed trajectory feels organic and psychologically credible."
+        },
+        "behavioral_consistency": {
+          "score": 0.85,
+          "reasoning": "The analysis emphasizes maintaining continuity with Elena's established traits. Potential responses are contextualized through her presumed personality and backstory. The recommendation to align her reaction with her typical resilience or impulsiveness demonstrates careful character consideration."
+        },
+        "relatability": {
+          "score": 0.9,
+          "reasoning": "The character development centers on universal human experiences of betrayal, trust, and emotional recovery. The prose example particularly excels in creating an emotionally accessible narrative moment that invites reader empathy and understanding."
+        }
+      },
+      "overall_score": 0.8875,
+      "evaluator_model": "openrouter/anthropic/claude-3.5-haiku",
+      "timestamp": "2025-10-28T12:24:56.033212Z",
+      "metadata": {
+        "rubric": {
+          "psychological_depth": {
+            "description": "Character motivations, fears, desires feel authentic and complex",
+            "scale": "0-100 points",
+            "weight": 0.35
+          },
+          "arc_coherence": {
+            "description": "Character growth follows logical emotional progression",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "behavioral_consistency": {
+            "description": "Actions align with established personality and history",
+            "scale": "0-100 points",
+            "weight": 0.2
+          },
+          "relatability": {
+            "description": "Reader can understand and connect with character journey",
+            "scale": "0-100 points",
+            "weight": 0.15
+          }
+        },
+        "raw_response": {
+          "psychological_depth": {
+            "score": 92,
+            "reasoning": "The analysis reveals multi-layered emotional complexity. Elena's internal conflict demonstrates nuanced psychological exploration - oscillating between anger, grief, and self-doubt. The prose captures intricate emotional states, showing vulnerability and potential for transformation. Depth is enhanced by exploring underlying fears of trust and self-worth."
+          },
+          "arc_coherence": {
+            "score": 88,
+            "reasoning": "The character arc follows a clear, logical progression from victimhood towards potential empowerment. The analysis explicitly outlines a structured emotional journey - from initial shock and paralysis to potential self-reclamation. The proposed trajectory feels organic and psychologically credible."
+          },
+          "behavioral_consistency": {
+            "score": 85,
+            "reasoning": "The analysis emphasizes maintaining continuity with Elena's established traits. Potential responses are contextualized through her presumed personality and backstory. The recommendation to align her reaction with her typical resilience or impulsiveness demonstrates careful character consideration."
+          },
+          "relatability": {
+            "score": 90,
+            "reasoning": "The character development centers on universal human experiences of betrayal, trust, and emotional recovery. The prose example particularly excels in creating an emotionally accessible narrative moment that invites reader empathy and understanding."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "ca680dde6eea9c7df4b573b1c65a3b76f60db7c3a41ad1c2dd377a32c507adcc",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/anthropic/claude-3.5-haiku"
+      }
+    },
+    "cost": 0.0,
+    "latency": 19316.11758400686,
+    "utility": 0.71,
+    "workflow_output": "Character Development:\n**Character Development Analysis: Elena**\n\n**Current State:** Elena is reeling from a profound betrayal, a pivotal moment that shatters her trust and reshapes her worldview. This betrayal acts as a catalyst, forcing her to confront vulnerabilities she had long suppressed. Her emotional state is raw, oscillating between anger, grief, and self-doubt. This moment is not just a plot device but a transformative experience that will define her arc.\n\n**Continuity:**  \nTo maintain continuity, Elena’s reaction to betrayal must align with her established traits. If she is typically resilient and pragmatic, her initial response might be to withdraw and analyze the situation logically, even as her emotions simmer beneath the surface. Conversely, if she is more impulsive, she might lash out or seek immediate retribution. Her backstory should inform her reaction—has she faced betrayal before? If so, does this new betrayal reopen old wounds or feel like a pattern she can’t escape? Her relationships with the betrayer(s) should also factor into her response. A betrayal by a close friend or lover will cut deeper than one by a stranger or acquaintance.\n\n**Arc Progression:**  \nElena’s arc should evolve from victimhood to empowerment. Initially, she may feel lost or paralyzed by the betrayal, questioning her judgment and self-worth. This is an opportunity to explore her inner conflicts—does she blame herself, or does she externalize her pain? As the story progresses, she must grapple with her emotions and decide how to move forward. Will she seek revenge, forgiveness, or self-preservation? Her choices should reflect her growth and the lessons she learns. For example, if she initially seeks revenge, she might later realize it only perpetuates her pain, leading her to a more constructive path. Ultimately, her arc should culminate in a stronger, more self-aware version of herself, one who has reclaimed agency over her life.\n\n**Writer Utility:**  \nElena’s betrayal serves multiple narrative functions.  \n- **Conflict:** It introduces high-stakes emotional conflict, driving the plot forward.  \n- **Character Depth:** It reveals Elena’s vulnerabilities, fears, and values, making her more relatable and multidimensional.  \n- **Thematic Exploration:** It allows the writer to explore themes such as trust, resilience, and the human capacity for forgiveness or vengeance.  \n- **Relationships:** It reshapes Elena’s dynamics with other characters, particularly the betrayer(s). Does she sever ties, or does she attempt to rebuild trust? How do other characters react to her changed demeanor?  \n\n**Natural Prose Example:**  \nElena stood in the dimly lit room, the weight of the truth pressing against her chest like a stone. The letter in her hand trembled as she reread the words, each sentence a dagger twisting deeper. *How could they?* The question echoed in her mind, but no answer came. She had trusted them, believed in them, and now that trust lay shattered at her feet. Her breath hitched, and she crumpled the letter, tossing it into the fire. The flames consumed it hungrily, but they couldn’t erase the betrayal etched into her heart. She felt a surge of anger, hot and blinding, but beneath it lurked a colder, more insidious emotion—fear. Fear that she had been a fool, that her judgment was flawed, that she would never trust again. She clenched her fists, nails digging into her palms. No. She wouldn’t let this define her. She would rise, stronger, wiser, and she would not be broken again.  \n\nThis prose captures Elena’s emotional turmoil while hinting at her resilience, setting the stage for her arc to unfold. It maintains continuity by aligning her reaction with her established traits and provides writer utility by deepening her characterization and advancing the plot.",
+    "metadata": {
+      "strategy": "standard",
+      "model": "openrouter/deepseek/deepseek-chat",
+      "temperature": 0.7,
+      "revision_strategy": "refine",
+      "output_format": "freeform",
+      "workflow": {
+        "started_at": "2025-10-28T12:24:28.569221Z",
+        "completed_at": "2025-10-28T12:24:47.885044Z",
+        "duration_seconds": 19.31611758400686
+      },
+      "evaluation": {
+        "rubric": {
+          "psychological_depth": {
+            "description": "Character motivations, fears, desires feel authentic and complex",
+            "scale": "0-100 points",
+            "weight": 0.35
+          },
+          "arc_coherence": {
+            "description": "Character growth follows logical emotional progression",
+            "scale": "0-100 points",
+            "weight": 0.3
+          },
+          "behavioral_consistency": {
+            "description": "Actions align with established personality and history",
+            "scale": "0-100 points",
+            "weight": 0.2
+          },
+          "relatability": {
+            "description": "Reader can understand and connect with character journey",
+            "scale": "0-100 points",
+            "weight": 0.15
+          }
+        },
+        "raw_response": {
+          "psychological_depth": {
+            "score": 92,
+            "reasoning": "The analysis reveals multi-layered emotional complexity. Elena's internal conflict demonstrates nuanced psychological exploration - oscillating between anger, grief, and self-doubt. The prose captures intricate emotional states, showing vulnerability and potential for transformation. Depth is enhanced by exploring underlying fears of trust and self-worth."
+          },
+          "arc_coherence": {
+            "score": 88,
+            "reasoning": "The character arc follows a clear, logical progression from victimhood towards potential empowerment. The analysis explicitly outlines a structured emotional journey - from initial shock and paralysis to potential self-reclamation. The proposed trajectory feels organic and psychologically credible."
+          },
+          "behavioral_consistency": {
+            "score": 85,
+            "reasoning": "The analysis emphasizes maintaining continuity with Elena's established traits. Potential responses are contextualized through her presumed personality and backstory. The recommendation to align her reaction with her typical resilience or impulsiveness demonstrates careful character consideration."
+          },
+          "relatability": {
+            "score": 90,
+            "reasoning": "The character development centers on universal human experiences of betrayal, trust, and emotional recovery. The prose example particularly excels in creating an emotionally accessible narrative moment that invites reader empathy and understanding."
+          }
+        },
+        "temperature": 0.3,
+        "cache_key": "ca680dde6eea9c7df4b573b1c65a3b76f60db7c3a41ad1c2dd377a32c507adcc",
+        "cache_hit": false,
+        "cache_recorded": true,
+        "model": "openrouter/anthropic/claude-3.5-haiku"
+      }
+    },
+    "timestamp": "2025-10-28T12:24:56.033422Z"
+  },
+  "baseline_quality": 0.8875,
+  "quality_improvement_pct": 2.8169014084507067
+}
